@@ -5,78 +5,111 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI on Android：端侧推理落地路线图 · WK1995</title>
   <meta name="description" content="梳理端侧 AI 落地流程，从模型选择、优化到部署验证的关键步骤。">
+  <link rel="stylesheet" href="../assets/site.css">
   <style>
     :root {
       --bg: #090d14;
+      --bg-glow: #141c2d;
       --fg: #f2f5ff;
-      --muted: #a6afc5;
+      --fg-muted: #a6afc5;
       --border: rgba(255, 255, 255, 0.08);
       --accent: #6c63ff;
+      --card-bg: rgba(18, 24, 36, 0.9);
+      --control-bg: rgba(15, 22, 33, 0.72);
+      --control-border: rgba(255, 255, 255, 0.08);
       font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
     }
+
+    html[data-theme="light"] {
+      --bg: #eef4ff;
+      --bg-glow: #dce8ff;
+      --fg: #162033;
+      --fg-muted: #5a6880;
+      --border: rgba(15, 23, 42, 0.1);
+      --accent: #245fdd;
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --control-bg: rgba(255, 255, 255, 0.82);
+      --control-border: rgba(15, 23, 42, 0.12);
+    }
+
     body {
       margin: 0;
-      background: linear-gradient(160deg, #141c2d 0%, #070a11 60%);
+      background: linear-gradient(160deg, var(--bg-glow) 0%, var(--bg) 60%);
       color: var(--fg);
       line-height: 1.75;
     }
+
     .container {
       width: min(100%, 840px);
       margin: 0 auto;
       padding: 0 1.5rem 4rem;
     }
+
     header {
-      padding: 3rem 0 2rem;
+      padding: 2rem 0 2rem;
     }
+
     .back {
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
-      color: var(--muted);
+      color: var(--fg-muted);
       text-decoration: none;
       font-size: 0.85rem;
       letter-spacing: 0.05em;
       text-transform: uppercase;
+      margin-top: 1.5rem;
     }
+
     .back:hover,
     .back:focus {
       color: var(--fg);
     }
+
     h1 {
       margin: 1.5rem 0 0.75rem;
       font-size: clamp(2rem, 4.2vw, 2.75rem);
     }
+
     time {
-      color: var(--muted);
+      color: var(--fg-muted);
       letter-spacing: 0.08em;
       text-transform: uppercase;
       font-size: 0.85rem;
     }
+
     article {
-      background: rgba(18, 24, 36, 0.9);
+      background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 2.5rem;
+      backdrop-filter: blur(12px);
     }
+
     h2 {
       margin-top: 2.5rem;
       font-size: 1.75rem;
     }
+
     h3 {
       margin-top: 1.75rem;
       font-size: 1.25rem;
     }
+
     p {
-      color: var(--muted);
+      color: var(--fg-muted);
       font-size: 1.02rem;
     }
+
     ul {
       padding-left: 1.2rem;
-      color: var(--muted);
+      color: var(--fg-muted);
     }
+
     li {
       margin-bottom: 0.6rem;
     }
+
     pre {
       background: rgba(10, 14, 22, 0.95);
       border-radius: 12px;
@@ -86,9 +119,17 @@
       font-size: 0.95rem;
       line-height: 1.5;
     }
+
+    html[data-theme="light"] pre {
+      background: rgba(226, 234, 250, 0.9);
+      border-color: rgba(15, 23, 42, 0.08);
+      color: #13233a;
+    }
+
     code {
       font-family: "Fira Code", "Consolas", monospace;
     }
+
     blockquote {
       margin: 1.5rem 0;
       padding: 1rem 1.25rem;
@@ -97,12 +138,14 @@
       color: var(--fg);
       border-radius: 12px;
     }
+
     footer {
       margin-top: 3rem;
-      color: var(--muted);
+      color: var(--fg-muted);
       font-size: 0.9rem;
       text-align: center;
     }
+
     @media (max-width: 720px) {
       article {
         padding: 1.75rem;
@@ -110,66 +153,97 @@
     }
   </style>
 </head>
-<body>
+<body data-page="aiRoadmap">
   <div class="container">
     <header>
-      <a class="back" href="index.html">← 返回博客</a>
-      <h1>AI on Android：端侧推理落地路线图</h1>
+      <div class="site-topbar">
+        <a
+          class="brand-link"
+          href="https://github.com/wk1995"
+          target="_blank"
+          rel="noopener"
+          data-i18n-aria="brand.aria"
+          aria-label="打开 WK1995 的 GitHub 主页"
+        >
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82a7.56 7.56 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path>
+          </svg>
+        </a>
+        <div class="topbar-right">
+          <div class="control-row">
+            <label class="control-group" for="language-select">
+              <span class="control-label" id="language-label" data-i18n="controls.language">语言</span>
+              <select class="language-select" id="language-select" aria-label="语言">
+                <option value="zh">简体中文</option>
+                <option value="en">English</option>
+              </select>
+            </label>
+            <div class="control-group">
+              <span class="control-label" id="theme-caption" data-i18n="controls.theme">主题</span>
+              <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换主题">
+                <svg viewBox="0 0 16 16" aria-hidden="true">
+                  <path id="theme-icon" d="M9.598 1.591a.75.75 0 0 1 .287.857 6.998 6.998 0 0 0 8.442 8.442.75.75 0 0 1 .857.287.75.75 0 0 1-.131.94A8.5 8.5 0 1 1 8.658.722a.75.75 0 0 1 .94-.131Z"></path>
+                </svg>
+                <span id="theme-label" data-i18n="controls.theme.dark">暗色</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="back" href="index.html" data-i18n="back.blog">← 返回博客</a>
+      <h1 data-i18n="header.title">AI on Android：端侧推理落地路线图</h1>
       <time datetime="2025-09-15">2025.09.15</time>
     </header>
     <article>
-      <p>
-        很多团队已经在云端服务中拥抱大模型，但当这些能力需要真正走进终端，就意味着要面对性能、功耗和体验上的不同挑战。
-        这篇文章尝试梳理一个以 Android 为核心的端侧 AI 推理路线图，帮助你从方案设计到上线迭代更有章法。
+      <p data-i18n="article.p1">
+        很多团队已经在云端服务中拥抱大模型，但当这些能力需要真正走进终端，就意味着要面对性能、功耗和体验上的不同挑战。这篇文章尝试梳理一个以 Android 为核心的端侧 AI 推理路线图，帮助你从方案设计到上线迭代更有章法。
       </p>
 
-      <h2>1. 需求拆解与场景确认</h2>
-      <p>
-        首先需要厘清 AI 功能的目标：是实时的视觉场景理解、语音交互，还是辅助型工作流？不同场景对延迟、精度和功耗的要求大不相同。
-        建议在 PRD 阶段就设定可量化的指标，例如首帧识别时间 &lt; 400ms、平均功耗控制在 1.2W 内。
+      <h2 data-i18n="article.h2.1">1. 需求拆解与场景确认</h2>
+      <p data-i18n="article.p2">
+        首先需要厘清 AI 功能的目标：是实时的视觉场景理解、语音交互，还是辅助型工作流？不同场景对延迟、精度和功耗的要求大不相同。建议在 PRD 阶段就设定可量化的指标，例如首帧识别时间 &lt; 400ms、平均功耗控制在 1.2W 内。
       </p>
 
-      <h2>2. 模型选择与优化</h2>
-      <h3>2.1 基础模型评估</h3>
+      <h2 data-i18n="article.h2.2">2. 模型选择与优化</h2>
+      <h3 data-i18n="article.h3.21">2.1 基础模型评估</h3>
       <ul>
-        <li>优先选择已经有移动端基线的模型（如 MobileNetV3、Whisper Tiny、Phi-2-mini）。</li>
-        <li>结合任务对比精度/延迟曲线，避免“过度堆料”。</li>
+        <li data-i18n="article.li.211">优先选择已经有移动端基线的模型（如 MobileNetV3、Whisper Tiny、Phi-2-mini）。</li>
+        <li data-i18n="article.li.212">结合任务对比精度/延迟曲线，避免“过度堆料”。</li>
       </ul>
-      <h3>2.2 量化与蒸馏</h3>
-      <p>
-        TensorFlow Lite、ONNX Runtime 均提供量化工具，但上线前务必对比 FP32 和 INT8 的精度差异。
-        对于大模型，可以考虑 LoRA 蒸馏，保留关键信息的同时显著降低参数量。
+      <h3 data-i18n="article.h3.22">2.2 量化与蒸馏</h3>
+      <p data-i18n="article.p3">
+        TensorFlow Lite、ONNX Runtime 均提供量化工具，但上线前务必对比 FP32 和 INT8 的精度差异。对于大模型，可以考虑 LoRA 蒸馏，保留关键信息的同时显著降低参数量。
       </p>
 
-      <h2>3. 推理管线设计</h2>
-      <p>
+      <h2 data-i18n="article.h2.3">3. 推理管线设计</h2>
+      <p data-i18n="article.p4">
         Jetpack 的 WorkManager 与 Coroutine Scope 能帮我们较好地调度端侧任务，但仍需要细致处理以下环节：
       </p>
       <ul>
-        <li><strong>输入预处理：</strong>使用 MediaPipe、CameraX 获取统一格式的数据。</li>
-        <li><strong>内存管理：</strong>长时间运行的会话建议配合 MLExecution API 复用 Buffer。</li>
-        <li><strong>多模型协同：</strong>通过 `SequenceableModel` 对不同推理任务进行串联，减少上下文切换成本。</li>
+        <li data-i18n-html="article.li.31"><strong>输入预处理：</strong>使用 MediaPipe、CameraX 获取统一格式的数据。</li>
+        <li data-i18n-html="article.li.32"><strong>内存管理：</strong>长时间运行的会话建议配合 MLExecution API 复用 Buffer。</li>
+        <li data-i18n-html="article.li.33"><strong>多模型协同：</strong>通过 <code>SequenceableModel</code> 对不同推理任务进行串联，减少上下文切换成本。</li>
       </ul>
 
-      <h2>4. 性能与体验验证</h2>
-      <p>
+      <h2 data-i18n="article.h2.4">4. 性能与体验验证</h2>
+      <p data-i18n="article.p5">
         建立一套覆盖“性能-体验-安全”的测试策略非常关键：
       </p>
       <ul>
-        <li>Profilers（如 Perfetto）用于检测帧率和功耗波动。</li>
-        <li>借助 Firebase Test Lab 做广泛的机型适配验证。</li>
-        <li>设计灰度开关，将 AI 功能的启用权交给后台配置。</li>
+        <li data-i18n="article.li.41">Profilers（如 Perfetto）用于检测帧率和功耗波动。</li>
+        <li data-i18n="article.li.42">借助 Firebase Test Lab 做广泛的机型适配验证。</li>
+        <li data-i18n="article.li.43">设计灰度开关，将 AI 功能的启用权交给后台配置。</li>
       </ul>
 
-      <h2>5. 迭代与监控</h2>
-      <p>
+      <h2 data-i18n="article.h2.5">5. 迭代与监控</h2>
+      <p data-i18n="article.p6">
         端云协同是一个闭环：通过离线日志与用户反馈更新模型，利用 CloudLoop Studio 等工具自动提醒推理包的更新，并通过 OTA 发布到终端。
       </p>
-      <blockquote>
+      <blockquote data-i18n="article.quote">
         真正成功的移动 AI，不是一次性的炫技，而是构建可持续迭代的工程体系。
       </blockquote>
 
-      <h2>附录：工具链示例</h2>
+      <h2 data-i18n="article.h2.6">附录：工具链示例</h2>
       <pre><code>// build.gradle.kts (app)
 dependencies {
     implementation("org.tensorflow:tensorflow-lite-task-vision:0.4.4")
@@ -177,14 +251,14 @@ dependencies {
     implementation("androidx.camera:camera-camera2:1.4.0")
 }</code></pre>
 
-      <p>
+      <p data-i18n="article.p7">
         如果你正在规划端侧 AI 项目，欢迎联系我交流经验或一起打磨方案。
       </p>
     </article>
     <footer>
-      <p>下一步，我会分享关于模型裁剪工具链的实战指南，敬请期待。</p>
+      <p data-i18n="footer.copy">下一步，我会分享关于模型裁剪工具链的实战指南，敬请期待。</p>
     </footer>
   </div>
+  <script src="../assets/site.js"></script>
 </body>
 </html>
-

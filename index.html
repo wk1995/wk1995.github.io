@@ -5,60 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>WK1995 · AI x Android</title>
   <meta name="description" content="个人主页，聚焦人工智能与 Android 开发，记录我的项目、研究和博客文章。">
+  <link rel="stylesheet" href="assets/site.css">
   <style>
     :root {
       --bg: #0c1018;
+      --bg-glow: #1a1f2f;
       --fg: #f2f5ff;
       --fg-muted: #b0b8cc;
       --primary: #6c63ff;
       --accent: #1e90ff;
       --card-bg: rgba(17, 23, 34, 0.85);
       --border: rgba(255, 255, 255, 0.08);
+      --control-bg: rgba(15, 22, 33, 0.72);
+      --control-border: rgba(255, 255, 255, 0.08);
+      --cta-shadow: rgba(108, 99, 255, 0.28);
       font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
     }
-    * {
-      box-sizing: border-box;
+
+    html[data-theme="light"] {
+      --bg: #eef4ff;
+      --bg-glow: #d9e7ff;
+      --fg: #162033;
+      --fg-muted: #5a6880;
+      --primary: #245fdd;
+      --accent: #1177ee;
+      --card-bg: rgba(255, 255, 255, 0.84);
+      --border: rgba(15, 23, 42, 0.1);
+      --control-bg: rgba(255, 255, 255, 0.82);
+      --control-border: rgba(15, 23, 42, 0.12);
+      --cta-shadow: rgba(36, 95, 221, 0.18);
     }
+
     body {
       margin: 0;
-      background: radial-gradient(circle at top right, #1a1f2f, #090c13 65%);
+      background: radial-gradient(circle at top right, var(--bg-glow), var(--bg) 65%);
       color: var(--fg);
       line-height: 1.6;
     }
+
     header {
-      padding: 5rem 0 4rem;
+      padding: 4.5rem 0 4rem;
     }
+
     .container {
       width: min(100%, 1080px);
       margin: 0 auto;
       padding: 0 1.5rem;
     }
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.25rem 0 0.5rem;
-    }
-    nav .brand {
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-    nav a {
-      color: var(--fg-muted);
-      text-decoration: none;
-      margin-left: 1.5rem;
-      font-size: 0.95rem;
-      transition: color 0.2s ease;
-    }
-    nav a:hover,
-    nav a:focus {
-      color: var(--fg);
-    }
+
     .hero {
       display: grid;
       gap: 2rem;
-      margin-top: 3rem;
+      margin-top: 2.75rem;
     }
+
     .hero-eyebrow {
       text-transform: uppercase;
       letter-spacing: 0.24em;
@@ -66,51 +66,61 @@
       color: var(--accent);
       margin-bottom: 0.75rem;
     }
+
     h1 {
-      font-size: clamp(2.5rem, 5vw, 3.6rem);
-      line-height: 1.15;
+      font-size: clamp(2.7rem, 5vw, 4rem);
+      line-height: 1.1;
       margin: 0 0 1.25rem;
     }
+
     .hero-lead {
-      max-width: 640px;
+      max-width: 700px;
       color: var(--fg-muted);
       font-size: 1.1rem;
       margin-bottom: 2rem;
     }
+
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
     }
+
     .cta {
       display: inline-flex;
       align-items: center;
       padding: 0.85rem 1.6rem;
       border-radius: 999px;
       background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: var(--fg);
+      color: #f8fbff;
       font-weight: 600;
       text-decoration: none;
-      box-shadow: 0 12px 24px rgba(108, 99, 255, 0.28);
+      box-shadow: 0 12px 24px var(--cta-shadow);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
+
     .cta:hover,
     .cta:focus {
       transform: translateY(-2px);
-      box-shadow: 0 18px 32px rgba(108, 99, 255, 0.35);
+      box-shadow: 0 18px 32px var(--cta-shadow);
     }
+
     .cta.secondary {
       background: transparent;
       border: 1px solid var(--border);
+      color: var(--fg);
       box-shadow: none;
     }
+
     section {
       padding: 4.5rem 0;
     }
+
     section h2 {
       font-size: clamp(1.8rem, 4vw, 2.4rem);
       margin: 0 0 2.5rem;
     }
+
     .section-head {
       display: flex;
       align-items: flex-end;
@@ -118,9 +128,11 @@
       gap: 1.5rem;
       margin-bottom: 2rem;
     }
+
     .section-head h2 {
       margin-bottom: 0.8rem;
     }
+
     .section-eyebrow {
       margin: 0 0 0.75rem;
       color: var(--accent);
@@ -128,62 +140,63 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
     }
+
     .section-copy {
       max-width: 700px;
       margin: 0;
       color: var(--fg-muted);
     }
+
     .grid {
       display: grid;
       gap: 1.75rem;
     }
+
     .grid-2 {
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
+
     .grid-3 {
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
+
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 18px;
+      border-radius: 20px;
       padding: 1.75rem;
       min-height: 220px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      backdrop-filter: blur(12px);
     }
+
     .card:hover,
     .card:focus-within {
       transform: translateY(-4px);
-      border-color: rgba(108, 99, 255, 0.5);
+      border-color: rgba(108, 99, 255, 0.45);
     }
+
     .card h3 {
       margin: 0 0 0.75rem;
       font-size: 1.25rem;
     }
+
     .card p {
       margin: 0 0 1.25rem;
       color: var(--fg-muted);
       font-size: 0.98rem;
     }
-    .card a {
-      margin-top: auto;
-      font-weight: 600;
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 0.95rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
+
     .tags {
       display: flex;
       gap: 0.6rem;
       flex-wrap: wrap;
       margin-top: 1rem;
     }
+
     .tag {
       padding: 0.35rem 0.8rem;
       border-radius: 999px;
@@ -193,15 +206,18 @@
       text-transform: uppercase;
       color: var(--fg-muted);
     }
+
     .blog-preview article {
       padding-bottom: 1.5rem;
       border-bottom: 1px solid var(--border);
       margin-bottom: 1.5rem;
     }
+
     .blog-preview h3 {
       margin: 0 0 0.6rem;
       font-size: 1.25rem;
     }
+
     .blog-preview time {
       display: block;
       font-size: 0.85rem;
@@ -210,27 +226,36 @@
       color: var(--fg-muted);
       margin-bottom: 0.65rem;
     }
+
     .trending-summary {
       min-width: 240px;
       padding: 1.2rem 1.3rem;
       border-radius: 18px;
-      background: linear-gradient(180deg, rgba(18, 24, 36, 0.9), rgba(11, 16, 24, 0.95));
+      background: linear-gradient(180deg, var(--card-bg), rgba(11, 16, 24, 0.95));
       border: 1px solid var(--border);
     }
+
+    html[data-theme="light"] .trending-summary {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(238, 244, 255, 0.96));
+    }
+
     .trending-summary span,
     .trending-summary small {
       display: block;
       color: var(--fg-muted);
     }
+
     .trending-summary strong {
       display: block;
       margin: 0.35rem 0 0.2rem;
       font-size: 1.15rem;
       color: var(--fg);
     }
+
     .trending-grid {
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
+
     .trend-card {
       position: relative;
       overflow: hidden;
@@ -239,6 +264,13 @@
         linear-gradient(180deg, rgba(20, 27, 40, 0.9), rgba(11, 16, 24, 0.96)),
         radial-gradient(circle at top right, rgba(30, 144, 255, 0.18), transparent 45%);
     }
+
+    html[data-theme="light"] .trend-card {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(236, 243, 255, 0.94)),
+        radial-gradient(circle at top right, rgba(17, 119, 238, 0.12), transparent 45%);
+    }
+
     .trend-card::before {
       content: "";
       position: absolute;
@@ -248,6 +280,7 @@
       background: linear-gradient(90deg, var(--accent), var(--primary));
       opacity: 0.9;
     }
+
     .trend-card-top {
       display: flex;
       align-items: center;
@@ -255,6 +288,7 @@
       gap: 0.75rem;
       margin-bottom: 1rem;
     }
+
     .trend-rank {
       display: inline-flex;
       align-items: center;
@@ -268,6 +302,7 @@
       font-weight: 700;
       letter-spacing: 0.04em;
     }
+
     .trend-badge {
       display: inline-flex;
       align-items: center;
@@ -280,23 +315,28 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
+
     .trend-card h3 {
       margin: 0 0 0.9rem;
       font-size: 1.18rem;
       line-height: 1.35;
     }
+
     .trend-card h3 a {
       color: var(--fg);
       text-decoration: none;
     }
+
     .trend-card h3 a:hover,
     .trend-card h3 a:focus {
       color: var(--accent);
     }
+
     .trend-card p {
       margin: 0 0 1.25rem;
       color: var(--fg-muted);
     }
+
     .trend-metrics {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -304,12 +344,19 @@
       margin-top: auto;
       margin-bottom: 1.1rem;
     }
+
     .trend-metric {
       padding: 0.8rem 0.75rem;
       border-radius: 14px;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.04);
     }
+
+    html[data-theme="light"] .trend-metric {
+      background: rgba(17, 119, 238, 0.05);
+      border-color: rgba(17, 119, 238, 0.08);
+    }
+
     .trend-metric-label {
       display: block;
       margin-bottom: 0.35rem;
@@ -318,9 +365,11 @@
       letter-spacing: 0.05em;
       text-transform: uppercase;
     }
+
     .trend-metric-value {
       font-size: 1rem;
     }
+
     .trend-link {
       margin-top: auto;
       display: inline-flex;
@@ -330,77 +379,108 @@
       font-weight: 600;
       text-decoration: none;
     }
+
     .trend-card-empty {
       min-height: 180px;
       justify-content: center;
     }
+
     footer {
       padding: 3rem 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-top: 1px solid var(--border);
       text-align: center;
       color: var(--fg-muted);
       font-size: 0.9rem;
     }
+
     footer a {
       color: var(--fg);
       text-decoration: none;
       margin: 0 0.75rem;
     }
+
     @media (max-width: 720px) {
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.9rem;
-      }
-      nav a {
-        margin-left: 0;
-        margin-right: 1rem;
-      }
       header {
         padding-top: 3.5rem;
       }
+
       section {
         padding: 3.5rem 0;
       }
+
       .section-head {
         flex-direction: column;
         align-items: flex-start;
       }
+
       .trending-summary {
         width: 100%;
       }
+
       .trend-metrics {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+
       .card {
         min-height: 200px;
       }
     }
   </style>
 </head>
-<body>
+<body data-page="home">
   <div class="container">
-    <nav>
-      <span class="brand">WK1995</span>
-      <div>
-        <a href="#about">关于我</a>
-        <a href="#trending">热门项目</a>
-        <a href="#projects">项目</a>
-        <a href="#blog">博客</a>
-        <a href="mailto:kangw1995@gmail.com">联系</a>
+    <nav class="site-topbar">
+      <a
+        class="brand-link"
+        href="https://github.com/wk1995"
+        target="_blank"
+        rel="noopener"
+        data-i18n-aria="brand.aria"
+        aria-label="打开 WK1995 的 GitHub 主页"
+      >
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82a7.56 7.56 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path>
+        </svg>
+      </a>
+      <div class="topbar-right">
+        <div class="control-row">
+          <label class="control-group" for="language-select">
+            <span class="control-label" id="language-label" data-i18n="controls.language">语言</span>
+            <select class="language-select" id="language-select" aria-label="语言">
+              <option value="zh">简体中文</option>
+              <option value="en">English</option>
+            </select>
+          </label>
+          <div class="control-group">
+            <span class="control-label" id="theme-caption" data-i18n="controls.theme">主题</span>
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换主题">
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path id="theme-icon" d="M9.598 1.591a.75.75 0 0 1 .287.857 6.998 6.998 0 0 0 8.442 8.442.75.75 0 0 1 .857.287.75.75 0 0 1-.131.94A8.5 8.5 0 1 1 8.658.722a.75.75 0 0 1 .94-.131Z"></path>
+              </svg>
+              <span id="theme-label" data-i18n="controls.theme.dark">暗色</span>
+            </button>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="#about" data-i18n="nav.about">关于我</a>
+          <a href="#trending" data-i18n="nav.trending">热门项目</a>
+          <a href="#projects" data-i18n="nav.projects">项目</a>
+          <a href="#blog" data-i18n="nav.blog">博客</a>
+          <a href="mailto:kangw1995@gmail.com" data-i18n="nav.contact">联系</a>
+        </div>
       </div>
     </nav>
+
     <header>
       <div class="hero">
-        <span class="hero-eyebrow">AI × Android 开发生态</span>
-        <h1>将智能体验带到移动端，让 AI 真正落地。</h1>
-        <p class="hero-lead">
-          我是王康，一名 Android 工程师与 AI 实践者，专注于将机器学习能力嵌入应用中，打造端侧智能与云端协同的体验。
-          在这里记录我的项目、研究路线及落地实践。
+        <span class="hero-eyebrow" data-i18n="hero.eyebrow">AI × Android 开发生态</span>
+        <h1 data-i18n="hero.title">将智能体验带到移动端，让 AI 真正落地。</h1>
+        <p class="hero-lead" data-i18n="hero.lead">
+          我是王康，一名 Android 工程师与 AI 实践者，专注于将机器学习能力嵌入应用中，打造端侧智能与云端协同的体验。在这里记录我的项目、研究路线及落地实践。
         </p>
         <div class="hero-actions">
-          <a class="cta" href="#projects">探索项目</a>
-          <a class="cta secondary" href="#blog">阅读博客</a>
+          <a class="cta" href="#projects" data-i18n="hero.primary">探索项目</a>
+          <a class="cta secondary" href="#blog" data-i18n="hero.secondary">阅读博客</a>
         </div>
       </div>
     </header>
@@ -409,13 +489,12 @@
   <main>
     <section id="about">
       <div class="container">
-        <h2>关于与愿景</h2>
+        <h2 data-i18n="about.title">关于与愿景</h2>
         <div class="grid grid-2">
           <div class="card">
-            <h3>专注方向</h3>
-            <p>
-              端侧 AI 能力、跨端体验一致性、与云原生服务协同，是我当前关注的重点。
-              我相信真正优秀的移动应用，不仅需要良好的交互，还需要即时、智能与安全的数据处理能力。
+            <h3 data-i18n="about.focus.title">专注方向</h3>
+            <p data-i18n="about.focus.body">
+              端侧 AI 能力、跨端体验一致性、与云原生服务协同，是我当前关注的重点。我相信真正优秀的移动应用，不仅需要良好的交互，还需要即时、智能与安全的数据处理能力。
             </p>
             <div class="tags">
               <span class="tag">On-device ML</span>
@@ -425,13 +504,10 @@
             </div>
           </div>
           <div class="card">
-            <h3>正在研究</h3>
-            <p>
-              · 大模型在移动端的裁剪与蒸馏策略<br>
-              · Android AI 功能的最佳体验模式<br>
-              · 生成式 AI 在生产力工具中的落地方案
+            <h3 data-i18n="about.research.title">正在研究</h3>
+            <p data-i18n-html="about.research.body">
+              · 大模型在移动端的裁剪与蒸馏策略<br>· Android AI 功能的最佳体验模式<br>· 生成式 AI 在生产力工具中的落地方案
             </p>
-            <!-- <a href="https://github.com/wk1995" target="_blank" rel="noopener">查看 GitHub 项目 →</a> -->
           </div>
         </div>
       </div>
@@ -441,17 +517,16 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <p class="section-eyebrow">GitHub Radar</p>
-            <h2>GitHub 热门项目</h2>
-            <p class="section-copy">
-              每天抓取 GitHub Trending 榜单，展示最近热度上升最快的一批仓库。
-              这块区域更像是我的技术雷达，用来快速观察 AI、Android 以及更广泛开发生态的新变化。
+            <p class="section-eyebrow" data-i18n="trending.eyebrow">GitHub Radar</p>
+            <h2 data-i18n="trending.title">GitHub 热门项目</h2>
+            <p class="section-copy" data-i18n="trending.copy">
+              每天抓取 GitHub Trending 榜单，展示最近热度上升最快的一批仓库。这块区域更像是我的技术雷达，用来快速观察 AI、Android 以及更广泛开发生态的新变化。
             </p>
           </div>
           <div class="trending-summary">
-            <span>最近同步</span>
-            <strong id="trending-updated">加载中</strong>
-            <small id="trending-period">GitHub Trending · DAILY</small>
+            <span data-i18n="trending.syncLabel">最近同步</span>
+            <strong id="trending-updated" data-i18n="trending.syncLoading">加载中</strong>
+            <small id="trending-period" data-i18n="trending.periodLoading">GitHub Trending · DAILY</small>
           </div>
         </div>
         <div class="grid trending-grid" id="trending-list">
@@ -460,19 +535,19 @@
               <span class="trend-rank">#--</span>
               <span class="trend-badge">Loading</span>
             </div>
-            <h3>正在同步 GitHub Trending</h3>
-            <p>页面会展示仓库描述、语言、累计 Star 与今日新增 Star。</p>
+            <h3 data-i18n="trending.loadingTitle">正在同步 GitHub Trending</h3>
+            <p data-i18n="trending.loadingCopy">页面会展示仓库描述、语言、累计 Star 与今日新增 Star。</p>
             <div class="trend-metrics">
               <div class="trend-metric">
-                <span class="trend-metric-label">累计 Star</span>
+                <span class="trend-metric-label" data-i18n="trending.metricStars">累计 Star</span>
                 <strong class="trend-metric-value">--</strong>
               </div>
               <div class="trend-metric">
-                <span class="trend-metric-label">今日新增</span>
+                <span class="trend-metric-label" data-i18n="trending.metricToday">今日新增</span>
                 <strong class="trend-metric-value">--</strong>
               </div>
               <div class="trend-metric">
-                <span class="trend-metric-label">Fork</span>
+                <span class="trend-metric-label" data-i18n="trending.metricForks">Fork</span>
                 <strong class="trend-metric-value">--</strong>
               </div>
             </div>
@@ -483,78 +558,31 @@
 
     <section id="projects">
       <div class="container">
-        <h2>精选项目</h2>
-        <div class="grid grid-3">
-          <!-- <div class="card">
-            <h3>Voyager Assistant</h3>
-            <p>
-              针对 Android 的个人 AI 助手，支持多模型推理，并结合 WorkManager 实现上下文持久化和离线能力。
-            </p>
-            <div class="tags">
-              <span class="tag">Android</span>
-              <span class="tag">Compose</span>
-              <span class="tag">LLM</span>
-            </div>
-          </div>
-          <div class="card">
-            <h3>EdgeVision Kit</h3>
-            <p>
-              轻量级端侧视觉推理组件，基于 MediaPipe 与 TensorFlow Lite，可快速集成到现有应用中处理手势与物体识别。
-            </p>
-            <div class="tags">
-              <span class="tag">TensorFlow Lite</span>
-              <span class="tag">Kotlin</span>
-              <span class="tag">CameraX</span>
-            </div>
-          </div>
-          <div class="card">
-            <h3>CloudLoop Studio</h3>
-            <p>
-              将云端训练流程封装为图形化操作，自动同步到移动端推理模型，支持版本管理与 A/B 测试。
-            </p>
-            <div class="tags">
-              <span class="tag">MLOps</span>
-              <span class="tag">Kubernetes</span>
-              <span class="tag">Gradle Plugin</span>
-            </div>
-          </div> -->
-        </div>
+        <h2 data-i18n="projects.title">精选项目</h2>
+        <div class="grid grid-3"></div>
       </div>
     </section>
 
     <section id="blog">
       <div class="container">
-        <h2>最新博客</h2>
-        <div class="grid grid-2 blog-preview">
-          <!-- <article>
-            <time datetime="2025-09-15">2025.09.15</time>
-            <h3><a href="blog/ai-on-android-roadmap.html">AI on Android：端侧推理落地路线图</a></h3>
-            <p>
-              从模型裁剪、量化到 Jetpack Pipeline 的部署策略，梳理端侧 AI 应用的关键流程，并总结常见的性能陷阱。
-            </p>
-          </article>
-          <article>
-            <time datetime="2025-06-02">2025.06.02</time>
-            <h3><a href="blog/designing-ai-experiences.html">设计有温度的 AI 体验</a></h3>
-            <p>
-              探讨如何在 Android 应用中构建可信赖的智能助手，包括隐私保护、反馈机制与持续学习体系。
-            </p>
-          </article> -->
-        </div>
-        <a class="cta secondary" href="blog/index.html">查看全部文章</a>
+        <h2 data-i18n="blog.title">最新博客</h2>
+        <div class="grid grid-2 blog-preview"></div>
+        <a class="cta secondary" href="blog/index.html" data-i18n="blog.all">查看全部文章</a>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="container">
-      <p>© 2025 WK1995 · Inspired by the future of AI on Android</p>
+      <p data-i18n="footer.copy">© 2025 WK1995 · Inspired by the future of AI on Android</p>
       <p>
         <a href="https://github.com/wk1995" target="_blank" rel="noopener">GitHub</a>
         <a href="mailto:kangw1995@gmail.com">kangw1995@gmail.com</a>
       </p>
     </div>
   </footer>
+
+  <script src="assets/site.js"></script>
   <script src="data/trending.js"></script>
   <script src="assets/home.js"></script>
 </body>

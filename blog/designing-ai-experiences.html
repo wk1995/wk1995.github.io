@@ -5,78 +5,111 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>设计有温度的 AI 体验 · WK1995</title>
   <meta name="description" content="探讨在 Android 应用中构建可信赖的 AI 助手，强调交互设计与伦理思考。">
+  <link rel="stylesheet" href="../assets/site.css">
   <style>
     :root {
       --bg: #0a111c;
+      --bg-glow: #16243a;
       --fg: #f2f5ff;
-      --muted: #a6afc5;
+      --fg-muted: #a6afc5;
       --accent: #00b8d9;
       --border: rgba(255, 255, 255, 0.08);
+      --card-bg: rgba(17, 25, 37, 0.92);
+      --control-bg: rgba(15, 22, 33, 0.72);
+      --control-border: rgba(255, 255, 255, 0.08);
       font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
     }
+
+    html[data-theme="light"] {
+      --bg: #eff4ff;
+      --bg-glow: #d8e7ff;
+      --fg: #162033;
+      --fg-muted: #5a6880;
+      --accent: #0d91bf;
+      --border: rgba(15, 23, 42, 0.1);
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --control-bg: rgba(255, 255, 255, 0.82);
+      --control-border: rgba(15, 23, 42, 0.12);
+    }
+
     body {
       margin: 0;
-      background: radial-gradient(circle at 15% 20%, #16243a, #070b11 60%);
+      background: radial-gradient(circle at 15% 20%, var(--bg-glow), var(--bg) 60%);
       color: var(--fg);
       line-height: 1.75;
     }
+
     .container {
       width: min(100%, 840px);
       margin: 0 auto;
       padding: 0 1.5rem 4rem;
     }
+
     header {
-      padding: 3rem 0 2rem;
+      padding: 2rem 0 2rem;
     }
+
     .back {
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
-      color: var(--muted);
+      color: var(--fg-muted);
       text-decoration: none;
       font-size: 0.85rem;
       letter-spacing: 0.05em;
       text-transform: uppercase;
+      margin-top: 1.5rem;
     }
+
     .back:hover,
     .back:focus {
       color: var(--fg);
     }
+
     h1 {
       margin: 1.5rem 0 0.75rem;
       font-size: clamp(2rem, 4vw, 2.7rem);
     }
+
     time {
-      color: var(--muted);
+      color: var(--fg-muted);
       letter-spacing: 0.08em;
       text-transform: uppercase;
       font-size: 0.85rem;
     }
+
     article {
-      background: rgba(17, 25, 37, 0.92);
+      background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 2.4rem;
+      backdrop-filter: blur(12px);
     }
+
     h2 {
       margin-top: 2.3rem;
       font-size: 1.7rem;
     }
+
     h3 {
       margin-top: 1.75rem;
       font-size: 1.2rem;
     }
+
     p {
-      color: var(--muted);
+      color: var(--fg-muted);
       font-size: 1.02rem;
     }
+
     ul {
       padding-left: 1.2rem;
-      color: var(--muted);
+      color: var(--fg-muted);
     }
+
     li {
       margin-bottom: 0.6rem;
     }
+
     .highlight {
       background: rgba(0, 184, 217, 0.12);
       border-left: 3px solid var(--accent);
@@ -85,6 +118,7 @@
       margin: 1.5rem 0;
       color: var(--fg);
     }
+
     blockquote {
       margin: 1.5rem 0;
       padding: 1rem 1.25rem;
@@ -93,12 +127,19 @@
       color: var(--fg);
       border-radius: 12px;
     }
+
+    html[data-theme="light"] blockquote {
+      border-left-color: rgba(13, 145, 191, 0.2);
+      background: rgba(13, 145, 191, 0.06);
+    }
+
     footer {
       margin-top: 3rem;
-      color: var(--muted);
+      color: var(--fg-muted);
       font-size: 0.9rem;
       text-align: center;
     }
+
     @media (max-width: 720px) {
       article {
         padding: 1.75rem;
@@ -106,64 +147,92 @@
     }
   </style>
 </head>
-<body>
+<body data-page="designExperience">
   <div class="container">
     <header>
-      <a class="back" href="index.html">← 返回博客</a>
-      <h1>设计有温度的 AI 体验</h1>
+      <div class="site-topbar">
+        <a
+          class="brand-link"
+          href="https://github.com/wk1995"
+          target="_blank"
+          rel="noopener"
+          data-i18n-aria="brand.aria"
+          aria-label="打开 WK1995 的 GitHub 主页"
+        >
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82a7.56 7.56 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path>
+          </svg>
+        </a>
+        <div class="topbar-right">
+          <div class="control-row">
+            <label class="control-group" for="language-select">
+              <span class="control-label" id="language-label" data-i18n="controls.language">语言</span>
+              <select class="language-select" id="language-select" aria-label="语言">
+                <option value="zh">简体中文</option>
+                <option value="en">English</option>
+              </select>
+            </label>
+            <div class="control-group">
+              <span class="control-label" id="theme-caption" data-i18n="controls.theme">主题</span>
+              <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换主题">
+                <svg viewBox="0 0 16 16" aria-hidden="true">
+                  <path id="theme-icon" d="M9.598 1.591a.75.75 0 0 1 .287.857 6.998 6.998 0 0 0 8.442 8.442.75.75 0 0 1 .857.287.75.75 0 0 1-.131.94A8.5 8.5 0 1 1 8.658.722a.75.75 0 0 1 .94-.131Z"></path>
+                </svg>
+                <span id="theme-label" data-i18n="controls.theme.dark">暗色</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="back" href="index.html" data-i18n="back.blog">← 返回博客</a>
+      <h1 data-i18n="header.title">设计有温度的 AI 体验</h1>
       <time datetime="2025-06-02">2025.06.02</time>
     </header>
     <article>
-      <p>
-        当我们把生成式 AI 带入移动应用时，真正打动用户的不只是模型能力，而是它是否懂你、被信任，是否能在关键时刻提供帮助。
-        这篇文章从体验设计的角度总结我在 Android AI 项目中的一些观察。
+      <p data-i18n="article.p1">
+        当我们把生成式 AI 带入移动应用时，真正打动用户的不只是模型能力，而是它是否懂你、被信任，是否能在关键时刻提供帮助。这篇文章从体验设计的角度总结我在 Android AI 项目中的一些观察。
       </p>
 
-      <h2>1. 明确意图，降低认知负担</h2>
-      <p>
-        很多用户第一次接触 AI 助手时会不知所措。解决办法是以任务为导向给出示例，
-        通过 Chips、语音引导或快捷入口展示“我能做什么”，让用户在三秒内找到价值。
+      <h2 data-i18n="article.h2.1">1. 明确意图，降低认知负担</h2>
+      <p data-i18n="article.p2">
+        很多用户第一次接触 AI 助手时会不知所措。解决办法是以任务为导向给出示例，通过 Chips、语音引导或快捷入口展示“我能做什么”，让用户在三秒内找到价值。
       </p>
 
-      <h2>2. 即时反馈与可解释性</h2>
-      <div class="highlight">
+      <h2 data-i18n="article.h2.2">2. 即时反馈与可解释性</h2>
+      <div class="highlight" data-i18n="article.highlight">
         与其追求一次性给出完美答案，不如把生成过程透明化，给用户操作空间与撤销能力。
       </div>
-      <p>
-        在 Android 中，可以通过 `AnimatedContent` 或 `MotionLayout` 实现逐步展开的反馈，让用户感知系统正在思考；
-        同时提供“为什么得到这个答案”的可视化，提升可信度。
+      <p data-i18n="article.p3">
+        在 Android 中，可以通过 AnimatedContent 或 MotionLayout 实现逐步展开的反馈，让用户感知系统正在思考；同时提供“为什么得到这个答案”的可视化，提升可信度。
       </p>
 
-      <h2>3. 数据与隐私的边界</h2>
-      <p>
-        当 AI 需要访问相册、消息或麦克风时，我们必须清晰说明用途，并支持端侧推理的离线模式，减少敏感数据上传。
-        建议配合 `DataStore` 建立权限使用的日志，让用户随时了解自己的数据足迹。
+      <h2 data-i18n="article.h2.3">3. 数据与隐私的边界</h2>
+      <p data-i18n="article.p4">
+        当 AI 需要访问相册、消息或麦克风时，我们必须清晰说明用途，并支持端侧推理的离线模式，减少敏感数据上传。建议配合 DataStore 建立权限使用的日志，让用户随时了解自己的数据足迹。
       </p>
 
-      <h2>4. 面向持续学习的体验闭环</h2>
-      <p>
-        AI 的价值在于不断进化。设计良好的反馈表单、评分组件与语音回传机制，可以帮助团队持续优化模型。
-        更进一步，可以加入快速调优选项，让用户对回答进行“纠错”，形成端云协同的学习闭环。
+      <h2 data-i18n="article.h2.4">4. 面向持续学习的体验闭环</h2>
+      <p data-i18n="article.p5">
+        AI 的价值在于不断进化。设计良好的反馈表单、评分组件与语音回传机制，可以帮助团队持续优化模型。更进一步，可以加入快速调优选项，让用户对回答进行“纠错”，形成端云协同的学习闭环。
       </p>
 
-      <h2>5. 打造人格化的语气</h2>
-      <p>
-        人工智能的角色需要被塑造。通过一致的语气、动画与音效，AI 助手可以拥有“情绪”，
-        让用户在日常互动中形成信任。例如，在 Jetpack Compose 中定义统一的 `AssistantTone` 对话组件。
+      <h2 data-i18n="article.h2.5">5. 打造人格化的语气</h2>
+      <p data-i18n="article.p6">
+        人工智能的角色需要被塑造。通过一致的语气、动画与音效，AI 助手可以拥有“情绪”，让用户在日常互动中形成信任。例如，在 Jetpack Compose 中定义统一的 AssistantTone 对话组件。
       </p>
 
-      <blockquote>
+      <blockquote data-i18n="article.quote">
         真正有温度的 AI，来自技术、设计与伦理的协同，而不只是模型的参数规模。
       </blockquote>
 
-      <p>
+      <p data-i18n="article.p7">
         如果你也在打造移动端 AI 助手，欢迎与我交流体验设计的更多细节。下一篇文章将继续探讨对话式交互的测试方法。
       </p>
     </article>
     <footer>
-      <p>想了解更多实践？请持续关注博客或直接联系我。</p>
+      <p data-i18n="footer.copy">想了解更多实践？请持续关注博客或直接联系我。</p>
     </footer>
   </div>
+  <script src="../assets/site.js"></script>
 </body>
 </html>
-

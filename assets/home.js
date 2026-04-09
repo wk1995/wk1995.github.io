@@ -7,24 +7,76 @@
     return;
   }
 
+  const copy = {
+    zh: {
+      locale: "zh-CN",
+      unknown: "未知",
+      noDescription: "GitHub Trending 未提供项目描述。",
+      metricStars: "累计 Star",
+      metricToday: "今日新增",
+      metricForks: "Fork",
+      openRepo: "打开仓库",
+      unavailable: "GitHub 热门项目暂时不可用",
+      noItems: "数据文件存在，但没有可展示的仓库。",
+      openTrending: "直接打开 GitHub Trending",
+      localMissing: "本地直接打开文件时未找到预生成数据，请确认 data/trending.js 已加载。",
+      syncFailed: "自动同步数据失败，稍后再试。",
+      summaryPrefix: "GitHub Trending · ",
+    },
+    en: {
+      locale: "en-US",
+      unknown: "Unknown",
+      noDescription: "GitHub Trending did not provide a repository description.",
+      metricStars: "Stars",
+      metricToday: "Today",
+      metricForks: "Forks",
+      openRepo: "Open repository",
+      unavailable: "GitHub trending is temporarily unavailable",
+      noItems: "The data file exists, but there are no repositories to display.",
+      openTrending: "Open GitHub Trending",
+      localMissing: "Pre-generated data was not found when opening this file locally. Make sure data/trending.js is loaded.",
+      syncFailed: "Automatic sync failed. Please try again later.",
+      summaryPrefix: "GitHub Trending · ",
+    },
+  };
+
+  let state = {
+    mode: "idle",
+    data: null,
+    errorKey: null,
+  };
+
+  function getLanguage() {
+    if (window.WKSite && typeof window.WKSite.getLanguage === "function") {
+      return window.WKSite.getLanguage();
+    }
+    return document.documentElement.lang.startsWith("zh") ? "zh" : "en";
+  }
+
+  function getCopy() {
+    return copy[getLanguage()] || copy.zh;
+  }
+
   function formatNumber(value) {
+    const currentCopy = getCopy();
     if (typeof value !== "number") {
       return "--";
     }
-    return new Intl.NumberFormat("zh-CN").format(value);
+    return new Intl.NumberFormat(currentCopy.locale).format(value);
   }
 
   function formatDate(value) {
+    const currentCopy = getCopy();
     if (!value) {
-      return "未知";
+      return currentCopy.unknown;
     }
 
     const date = new Date(value);
     if (Number.isNaN(date.getTime())) {
-      return "未知";
+      return currentCopy.unknown;
     }
 
-    return new Intl.DateTimeFormat("zh-CN", {
+    return new Intl.DateTimeFormat(currentCopy.locale, {
       year: "numeric",
       month: "2-digit",
       day: "2-digit",
@@ -51,6 +103,7 @@
   }
 
   function createCard(item) {
+    const currentCopy = getCopy();
     const article = document.createElement("article");
     article.className = "card trend-card";
 
@@ -76,15 +129,14 @@
     title.appendChild(link);
 
     const description = document.createElement("p");
-    description.textContent =
-      item.description || "GitHub Trending 未提供项目描述。";
+    description.textContent = item.description || currentCopy.noDescription;
 
     const metrics = document.createElement("div");
     metrics.className = "trend-metrics";
     metrics.append(
-      createMetric("累计 Star", formatNumber(item.stars_total)),
-      createMetric("今日新增", "+" + formatNumber(item.stars_today)),
-      createMetric("Fork", formatNumber(item.forks_total))
+      createMetric(currentCopy.metricStars, formatNumber(item.stars_total)),
+      createMetric(currentCopy.metricToday, "+" + formatNumber(item.stars_today)),
+      createMetric(currentCopy.metricForks, formatNumber(item.forks_total))
     );
 
     const footer = document.createElement("a");
@@ -92,48 +144,64 @@
     footer.href = item.url;
     footer.target = "_blank";
     footer.rel = "noopener";
-    footer.textContent = "打开仓库";
+    footer.textContent = currentCopy.openRepo;
 
     article.append(top, title, description, metrics, footer);
     return article;
   }
 
-  function renderEmpty(message) {
+  function renderEmpty(messageKey) {
+    const currentCopy = getCopy();
+    state = {
+      mode: "empty",
+      data: null,
+      errorKey: messageKey,
+    };
+
+    trendingUpdated.textContent = currentCopy.unknown;
+    trendingPeriod.textContent = currentCopy.summaryPrefix + "DAILY";
     trendingList.innerHTML = "";
 
     const empty = document.createElement("article");
     empty.className = "card trend-card trend-card-empty";
 
     const title = document.createElement("h3");
-    title.textContent = "GitHub 热门项目暂时不可用";
+    title.textContent = currentCopy.unavailable;
 
     const description = document.createElement("p");
-    description.textContent = message;
+    description.textContent = currentCopy[messageKey] || currentCopy.noItems;
 
     const link = document.createElement("a");
     link.className = "trend-link";
     link.href = "https://github.com/trending";
     link.target = "_blank";
     link.rel = "noopener";
-    link.textContent = "直接打开 GitHub Trending";
+    link.textContent = currentCopy.openTrending;
 
     empty.append(title, description, link);
     trendingList.appendChild(empty);
   }
 
   function renderTrending(data) {
+    const currentCopy = getCopy();
     if (!data || !Array.isArray(data.items) || data.items.length === 0) {
-      renderEmpty("数据文件存在，但没有可展示的仓库。");
+      renderEmpty("noItems");
       return;
     }
 
+    state = {
+      mode: "data",
+      data: data,
+      errorKey: null,
+    };
+
     trendingUpdated.textContent = formatDate(data.generated_at);
     trendingPeriod.textContent =
-      "GitHub Trending · " + String(data.since || "daily").toUpperCase();
+      currentCopy.summaryPrefix + String(data.since || "daily").toUpperCase();
 
     trendingList.innerHTML = "";
     const fragment = document.createDocumentFragment();
-    data.items.slice(0, 6).forEach((item) => {
+    data.items.slice(0, 6).forEach(function (item) {
       fragment.appendChild(createCard(item));
     });
     trendingList.appendChild(fragment);
@@ -141,7 +209,7 @@
 
   async function loadFallback() {
     if (window.location.protocol === "file:") {
-      renderEmpty("本地直接打开文件时未找到预生成数据，请确认 data/trending.js 已加载。");
+      renderEmpty("localMissing");
       return;
     }
 
@@ -152,9 +220,21 @@
       }
       renderTrending(await response.json());
     } catch (error) {
-      renderEmpty("自动同步数据失败，稍后再试。");
+      renderEmpty("syncFailed");
     }
   }
+
+  function rerender() {
+    if (state.mode === "data" && state.data) {
+      renderTrending(state.data);
+      return;
+    }
+    if (state.mode === "empty" && state.errorKey) {
+      renderEmpty(state.errorKey);
+    }
+  }
+
+  window.addEventListener("wk:language-change", rerender);
 
   if (window.__TRENDING_DATA__) {
     renderTrending(window.__TRENDING_DATA__);
