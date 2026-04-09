@@ -111,6 +111,28 @@
       font-size: clamp(1.8rem, 4vw, 2.4rem);
       margin: 0 0 2.5rem;
     }
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .section-head h2 {
+      margin-bottom: 0.8rem;
+    }
+    .section-eyebrow {
+      margin: 0 0 0.75rem;
+      color: var(--accent);
+      font-size: 0.82rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+    .section-copy {
+      max-width: 700px;
+      margin: 0;
+      color: var(--fg-muted);
+    }
     .grid {
       display: grid;
       gap: 1.75rem;
@@ -188,6 +210,130 @@
       color: var(--fg-muted);
       margin-bottom: 0.65rem;
     }
+    .trending-summary {
+      min-width: 240px;
+      padding: 1.2rem 1.3rem;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(18, 24, 36, 0.9), rgba(11, 16, 24, 0.95));
+      border: 1px solid var(--border);
+    }
+    .trending-summary span,
+    .trending-summary small {
+      display: block;
+      color: var(--fg-muted);
+    }
+    .trending-summary strong {
+      display: block;
+      margin: 0.35rem 0 0.2rem;
+      font-size: 1.15rem;
+      color: var(--fg);
+    }
+    .trending-grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .trend-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 260px;
+      background:
+        linear-gradient(180deg, rgba(20, 27, 40, 0.9), rgba(11, 16, 24, 0.96)),
+        radial-gradient(circle at top right, rgba(30, 144, 255, 0.18), transparent 45%);
+    }
+    .trend-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+      opacity: 0.9;
+    }
+    .trend-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .trend-rank {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 3rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(108, 99, 255, 0.16);
+      color: var(--fg);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .trend-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(30, 144, 255, 0.28);
+      color: var(--accent);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .trend-card h3 {
+      margin: 0 0 0.9rem;
+      font-size: 1.18rem;
+      line-height: 1.35;
+    }
+    .trend-card h3 a {
+      color: var(--fg);
+      text-decoration: none;
+    }
+    .trend-card h3 a:hover,
+    .trend-card h3 a:focus {
+      color: var(--accent);
+    }
+    .trend-card p {
+      margin: 0 0 1.25rem;
+      color: var(--fg-muted);
+    }
+    .trend-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-top: auto;
+      margin-bottom: 1.1rem;
+    }
+    .trend-metric {
+      padding: 0.8rem 0.75rem;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .trend-metric-label {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: var(--fg-muted);
+      font-size: 0.76rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .trend-metric-value {
+      font-size: 1rem;
+    }
+    .trend-link {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .trend-card-empty {
+      min-height: 180px;
+      justify-content: center;
+    }
     footer {
       padding: 3rem 0;
       border-top: 1px solid rgba(255, 255, 255, 0.06);
@@ -201,14 +347,30 @@
       margin: 0 0.75rem;
     }
     @media (max-width: 720px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.9rem;
+      }
       nav a {
-        margin-left: 1rem;
+        margin-left: 0;
+        margin-right: 1rem;
       }
       header {
         padding-top: 3.5rem;
       }
       section {
         padding: 3.5rem 0;
+      }
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .trending-summary {
+        width: 100%;
+      }
+      .trend-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
       .card {
         min-height: 200px;
@@ -222,9 +384,10 @@
       <span class="brand">WK1995</span>
       <div>
         <a href="#about">关于我</a>
+        <a href="#trending">热门项目</a>
         <a href="#projects">项目</a>
         <a href="#blog">博客</a>
-        <a href="mailto:wk@example.com">联系</a>
+        <a href="mailto:kangw1995@gmail.com">联系</a>
       </div>
     </nav>
     <header>
@@ -270,6 +433,50 @@
             </p>
             <!-- <a href="https://github.com/wk1995" target="_blank" rel="noopener">查看 GitHub 项目 →</a> -->
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="trending">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-eyebrow">GitHub Radar</p>
+            <h2>GitHub 热门项目</h2>
+            <p class="section-copy">
+              每天抓取 GitHub Trending 榜单，展示最近热度上升最快的一批仓库。
+              这块区域更像是我的技术雷达，用来快速观察 AI、Android 以及更广泛开发生态的新变化。
+            </p>
+          </div>
+          <div class="trending-summary">
+            <span>最近同步</span>
+            <strong id="trending-updated">加载中</strong>
+            <small id="trending-period">GitHub Trending · DAILY</small>
+          </div>
+        </div>
+        <div class="grid trending-grid" id="trending-list">
+          <article class="card trend-card">
+            <div class="trend-card-top">
+              <span class="trend-rank">#--</span>
+              <span class="trend-badge">Loading</span>
+            </div>
+            <h3>正在同步 GitHub Trending</h3>
+            <p>页面会展示仓库描述、语言、累计 Star 与今日新增 Star。</p>
+            <div class="trend-metrics">
+              <div class="trend-metric">
+                <span class="trend-metric-label">累计 Star</span>
+                <strong class="trend-metric-value">--</strong>
+              </div>
+              <div class="trend-metric">
+                <span class="trend-metric-label">今日新增</span>
+                <strong class="trend-metric-value">--</strong>
+              </div>
+              <div class="trend-metric">
+                <span class="trend-metric-label">Fork</span>
+                <strong class="trend-metric-value">--</strong>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -344,9 +551,11 @@
       <p>© 2025 WK1995 · Inspired by the future of AI on Android</p>
       <p>
         <a href="https://github.com/wk1995" target="_blank" rel="noopener">GitHub</a>
-        <a href="kangw1995@gmail.com">kangw1995@gmail.com</a>
+        <a href="mailto:kangw1995@gmail.com">kangw1995@gmail.com</a>
       </p>
     </div>
   </footer>
+  <script src="data/trending.js"></script>
+  <script src="assets/home.js"></script>
 </body>
 </html>

@@ -1,0 +1,80 @@
+window.__TRENDING_DATA__ = {
+  "source": "https://github.com/trending?since=daily",
+  "since": "daily",
+  "generated_at": "2026-04-09T00:30:25.280608+00:00",
+  "items": [
+    {
+      "rank": 1,
+      "repo": "forrestchang/andrej-karpathy-skills",
+      "owner": "forrestchang",
+      "name": "andrej-karpathy-skills",
+      "url": "https://github.com/forrestchang/andrej-karpathy-skills",
+      "description": null,
+      "language": null,
+      "stars_total": 8963,
+      "forks_total": 621,
+      "stars_today": 702
+    },
+    {
+      "rank": 2,
+      "repo": "TheCraigHewitt/seomachine",
+      "owner": "TheCraigHewitt",
+      "name": "seomachine",
+      "url": "https://github.com/TheCraigHewitt/seomachine",
+      "description": "A specialized Claude Code workspace for creating long-form, SEO-optimized blog content for any business. This system helps you research, write, analyze, and optimize content that ranks well and serves your target audience.",
+      "language": "Python",
+      "stars_total": 4579,
+      "forks_total": 707,
+      "stars_today": 649
+    },
+    {
+      "rank": 3,
+      "repo": "google-ai-edge/gallery",
+      "owner": "google-ai-edge",
+      "name": "gallery",
+      "url": "https://github.com/google-ai-edge/gallery",
+      "description": "A gallery that showcases on-device ML/GenAI use cases and allows people to try and use models locally.",
+      "language": "Kotlin",
+      "stars_total": 19493,
+      "forks_total": 1820,
+      "stars_today": 853
+    },
+    {
+      "rank": 4,
+      "repo": "NVIDIA/personaplex",
+      "owner": "NVIDIA",
+      "name": "personaplex",
+      "url": "https://github.com/NVIDIA/personaplex",
+      "description": "PersonaPlex code.",
+      "language": "Python",
+      "stars_total": 8405,
+      "forks_total": 1204,
+      "stars_today": 586
+    },
+    {
+      "rank": 5,
+      "repo": "google-ai-edge/LiteRT-LM",
+      "owner": "google-ai-edge",
+      "name": "LiteRT-LM",
+      "url": "https://github.com/google-ai-edge/LiteRT-LM",
+      "description": null,
+      "language": "C++",
+      "stars_total": 2983,
+      "forks_total": 280,
+      "stars_today": 501
+    },
+    {
+      "rank": 6,
+      "repo": "elebumm/RedditVideoMakerBot",
+      "owner": "elebumm",
+      "name": "RedditVideoMakerBot",
+      "url": "https://github.com/elebumm/RedditVideoMakerBot",
+      "description": "Create Reddit Videos with just✨ one command ✨",
+      "language": "Python",
+      "stars_total": 10479,
+      "forks_total": 2577,
+      "stars_today": 555
+    }
+  ]
+}
+;

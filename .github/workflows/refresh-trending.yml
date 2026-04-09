@@ -1,0 +1,36 @@
+name: Refresh GitHub Trending
+
+on:
+  schedule:
+    - cron: "10 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Update trending data
+        run: python scripts/update_trending.py --since daily --limit 6
+
+      - name: Commit refreshed data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/trending.json data/trending.js
+          if git diff --cached --quiet; then
+            echo "No trending changes to commit."
+            exit 0
+          fi
+          git commit -m "【codex】更新 GitHub Trending 数据"
+          git push
