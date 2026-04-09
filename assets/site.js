@@ -28,7 +28,7 @@
           "nav.contact": "联系",
           "hero.eyebrow": "AI × Android 开发生态",
           "hero.title": "将智能体验带到移动端，让 AI 真正落地。",
-          "hero.lead": "我是王康，一名 Android 工程师与 AI 实践者，专注于将机器学习能力嵌入应用中，打造端侧智能与云端协同的体验。在这里记录我的项目、研究路线及落地实践。",
+          "hero.lead": "一名 Android 工程师与 AI 实践者，专注于将机器学习能力嵌入应用中，打造端侧智能与云端协同的体验。在这里记录我的项目、研究路线及落地实践。",
           "hero.primary": "探索项目",
           "hero.secondary": "阅读博客",
           "about.title": "关于与愿景",
