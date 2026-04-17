@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-04-16T04:22:20.667525+00:00",
+  "generated_at": "2026-04-17T04:18:45.855850+00:00",
   "items": [
     {
       "rank": 1,
@@ -11,69 +11,69 @@ window.__TRENDING_DATA__ = {
       "url": "https://github.com/forrestchang/andrej-karpathy-skills",
       "description": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
       "language": null,
-      "stars_total": 44245,
-      "forks_total": 3604,
-      "stars_today": 9646
+      "stars_total": 50932,
+      "forks_total": 4215,
+      "stars_today": 7959
     },
     {
       "rank": 2,
-      "repo": "pascalorg/editor",
-      "owner": "pascalorg",
-      "name": "editor",
-      "url": "https://github.com/pascalorg/editor",
-      "description": "Create and share 3D architectural projects.",
-      "language": "TypeScript",
-      "stars_total": 12785,
-      "forks_total": 1566,
-      "stars_today": 1391
-    },
-    {
-      "rank": 3,
       "repo": "thedotmack/claude-mem",
       "owner": "thedotmack",
       "name": "claude-mem",
       "url": "https://github.com/thedotmack/claude-mem",
       "description": "A Claude Code plugin that automatically captures everything Claude does during your coding sessions, compresses it with AI (using Claude's agent-sdk), and injects relevant context back into future sessions.",
       "language": "TypeScript",
-      "stars_total": 58095,
-      "forks_total": 4715,
-      "stars_today": 2305
+      "stars_total": 60198,
+      "forks_total": 4962,
+      "stars_today": 1897
+    },
+    {
+      "rank": 3,
+      "repo": "lsdefine/GenericAgent",
+      "owner": "lsdefine",
+      "name": "GenericAgent",
+      "url": "https://github.com/lsdefine/GenericAgent",
+      "description": "Self-evolving agent: grows skill tree from 3.3K-line seed, achieving full system control with 6x less token consumption",
+      "language": "Python",
+      "stars_total": 2947,
+      "forks_total": 329,
+      "stars_today": 872
     },
     {
       "rank": 4,
-      "repo": "Lordog/dive-into-llms",
-      "owner": "Lordog",
-      "name": "dive-into-llms",
-      "url": "https://github.com/Lordog/dive-into-llms",
-      "description": "《动手学大模型Dive into LLMs》系列编程实践教程",
-      "language": "Jupyter Notebook",
-      "stars_total": 29785,
-      "forks_total": 3618,
-      "stars_today": 941
+      "repo": "jamiepine/voicebox",
+      "owner": "jamiepine",
+      "name": "voicebox",
+      "url": "https://github.com/jamiepine/voicebox",
+      "description": "The open-source voice synthesis studio",
+      "language": "TypeScript",
+      "stars_total": 19194,
+      "forks_total": 2212,
+      "stars_today": 880
     },
     {
       "rank": 5,
-      "repo": "virattt/ai-hedge-fund",
-      "owner": "virattt",
-      "name": "ai-hedge-fund",
-      "url": "https://github.com/virattt/ai-hedge-fund",
-      "description": "An AI Hedge Fund Team",
-      "language": "Python",
-      "stars_total": 55218,
-      "forks_total": 9579,
-      "stars_today": 1058
+      "repo": "vercel-labs/open-agents",
+      "owner": "vercel-labs",
+      "name": "open-agents",
+      "url": "https://github.com/vercel-labs/open-agents",
+      "description": "An open source template for building cloud agents.",
+      "language": "TypeScript",
+      "stars_total": 3294,
+      "forks_total": 356,
+      "stars_today": 738
     },
     {
       "rank": 6,
-      "repo": "chrislgarry/Apollo-11",
-      "owner": "chrislgarry",
-      "name": "Apollo-11",
-      "url": "https://github.com/chrislgarry/Apollo-11",
-      "description": "Original Apollo 11 Guidance Computer (AGC) source code for the command and lunar modules.",
-      "language": "Assembly",
-      "stars_total": 66850,
-      "forks_total": 7613,
-      "stars_today": 606
+      "repo": "google/magika",
+      "owner": "google",
+      "name": "magika",
+      "url": "https://github.com/google/magika",
+      "description": "Fast and accurate AI powered file content types detection",
+      "language": "Python",
+      "stars_total": 14912,
+      "forks_total": 800,
+      "stars_today": 854
     }
   ]
 }
