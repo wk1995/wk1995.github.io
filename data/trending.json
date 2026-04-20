@@ -1,79 +1,79 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-04-19T04:21:30.457694+00:00",
+  "generated_at": "2026-04-20T04:27:37.191762+00:00",
   "items": [
     {
       "rank": 1,
+      "repo": "Fincept-Corporation/FinceptTerminal",
+      "owner": "Fincept-Corporation",
+      "name": "FinceptTerminal",
+      "url": "https://github.com/Fincept-Corporation/FinceptTerminal",
+      "description": "FinceptTerminal is a modern finance application offering advanced market analytics, investment research, and economic data tools, designed for interactive exploration and data-driven decision-making in a user-friendly environment.",
+      "language": "Python",
+      "stars_total": 7129,
+      "forks_total": 1077,
+      "stars_today": 1254
+    },
+    {
+      "rank": 2,
       "repo": "thunderbird/thunderbolt",
       "owner": "thunderbird",
       "name": "thunderbolt",
       "url": "https://github.com/thunderbird/thunderbolt",
       "description": "AI You Control: Choose your models. Own your data. Eliminate vendor lock-in.",
       "language": "TypeScript",
-      "stars_total": 1654,
-      "forks_total": 85,
-      "stars_today": 447
-    },
-    {
-      "rank": 2,
-      "repo": "BasedHardware/omi",
-      "owner": "BasedHardware",
-      "name": "omi",
-      "url": "https://github.com/BasedHardware/omi",
-      "description": "AI that sees your screen, listens to your conversations and tells you what to do",
-      "language": "Dart",
-      "stars_total": 10552,
-      "forks_total": 1727,
-      "stars_today": 609
+      "stars_total": 2322,
+      "forks_total": 134,
+      "stars_today": 695
     },
     {
       "rank": 3,
+      "repo": "tractorjuice/arc-kit",
+      "owner": "tractorjuice",
+      "name": "arc-kit",
+      "url": "https://github.com/tractorjuice/arc-kit",
+      "description": "Enterprise Architecture Governance & Vendor Procurement Toolkit",
+      "language": "HTML",
+      "stars_total": 1059,
+      "forks_total": 139,
+      "stars_today": 263
+    },
+    {
+      "rank": 4,
       "repo": "openai/openai-agents-python",
       "owner": "openai",
       "name": "openai-agents-python",
       "url": "https://github.com/openai/openai-agents-python",
       "description": "A lightweight, powerful framework for multi-agent workflows",
       "language": "Python",
-      "stars_total": 22448,
-      "forks_total": 3556,
-      "stars_today": 470
-    },
-    {
-      "rank": 4,
-      "repo": "EvoMap/evolver",
-      "owner": "EvoMap",
-      "name": "evolver",
-      "url": "https://github.com/EvoMap/evolver",
-      "description": "The GEP-Powered Self-Evolution Engine for AI Agents. Genome Evolution Protocol. | evomap.ai",
-      "language": "JavaScript",
-      "stars_total": 5089,
-      "forks_total": 493,
-      "stars_today": 1131
+      "stars_total": 23347,
+      "forks_total": 3643,
+      "stars_today": 752
     },
     {
       "rank": 5,
-      "repo": "deepseek-ai/DeepGEMM",
-      "owner": "deepseek-ai",
-      "name": "DeepGEMM",
-      "url": "https://github.com/deepseek-ai/DeepGEMM",
-      "description": "DeepGEMM: clean and efficient FP8 GEMM kernels with fine-grained scaling",
-      "language": "Cuda",
-      "stars_total": 6570,
-      "forks_total": 879,
-      "stars_today": 31
+      "repo": "pingdotgg/t3code",
+      "owner": "pingdotgg",
+      "name": "t3code",
+      "url": "https://github.com/pingdotgg/t3code",
+      "description": null,
+      "language": "TypeScript",
+      "stars_total": 9971,
+      "forks_total": 1849,
+      "stars_today": 109
     },
     {
       "rank": 6,
-      "repo": "Lordog/dive-into-llms",
-      "owner": "Lordog",
-      "name": "dive-into-llms",
-      "url": "https://github.com/Lordog/dive-into-llms",
-      "description": "《动手学大模型Dive into LLMs》系列编程实践教程",
-      "language": "Jupyter Notebook",
-      "stars_total": 32109,
-      "forks_total": 3904,
-      "stars_today": 547
+      "repo": "paperless-ngx/paperless-ngx",
+      "owner": "paperless-ngx",
+      "name": "paperless-ngx",
+      "url": "https://github.com/paperless-ngx/paperless-ngx",
+      "description": "A community-supported supercharged document management system: scan, index and archive all your documents",
+      "language": "Python",
+      "stars_total": 38977,
+      "forks_total": 2506,
+      "stars_today": 393
     }
   ]
 }
