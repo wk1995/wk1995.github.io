@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-04-21T04:18:24.338708+00:00",
+  "generated_at": "2026-04-22T04:14:31.529198+00:00",
   "items": [
     {
       "rank": 1,
@@ -11,69 +11,69 @@ window.__TRENDING_DATA__ = {
       "url": "https://github.com/Fincept-Corporation/FinceptTerminal",
       "description": "FinceptTerminal is a modern finance application offering advanced market analytics, investment research, and economic data tools, designed for interactive exploration and data-driven decision-making in a user-friendly environment.",
       "language": "Python",
-      "stars_total": 9949,
-      "forks_total": 1351,
-      "stars_today": 3109
+      "stars_total": 11900,
+      "forks_total": 1554,
+      "stars_today": 2548
     },
     {
       "rank": 2,
-      "repo": "ruvnet/RuView",
-      "owner": "ruvnet",
-      "name": "RuView",
-      "url": "https://github.com/ruvnet/RuView",
-      "description": "π RuView: WiFi DensePose turns commodity WiFi signals into real-time human pose estimation, vital sign monitoring, and presence detection — all without a single pixel of video.",
-      "language": "Rust",
-      "stars_total": 48362,
-      "forks_total": 6463,
-      "stars_today": 713
-    },
-    {
-      "rank": 3,
       "repo": "thunderbird/thunderbolt",
       "owner": "thunderbird",
       "name": "thunderbolt",
       "url": "https://github.com/thunderbird/thunderbolt",
       "description": "AI You Control: Choose your models. Own your data. Eliminate vendor lock-in.",
       "language": "TypeScript",
-      "stars_total": 2901,
-      "forks_total": 175,
-      "stars_today": 675
+      "stars_total": 3543,
+      "forks_total": 208,
+      "stars_today": 596
+    },
+    {
+      "rank": 3,
+      "repo": "zilliztech/claude-context",
+      "owner": "zilliztech",
+      "name": "claude-context",
+      "url": "https://github.com/zilliztech/claude-context",
+      "description": "Code search MCP for Claude Code. Make entire codebase the context for any coding agent.",
+      "language": "TypeScript",
+      "stars_total": 6762,
+      "forks_total": 578,
+      "stars_today": 169
     },
     {
       "rank": 4,
-      "repo": "paperless-ngx/paperless-ngx",
-      "owner": "paperless-ngx",
-      "name": "paperless-ngx",
-      "url": "https://github.com/paperless-ngx/paperless-ngx",
-      "description": "A community-supported supercharged document management system: scan, index and archive all your documents",
-      "language": "Python",
-      "stars_total": 39512,
-      "forks_total": 2547,
-      "stars_today": 606
+      "repo": "ruvnet/RuView",
+      "owner": "ruvnet",
+      "name": "RuView",
+      "url": "https://github.com/ruvnet/RuView",
+      "description": "π RuView: WiFi DensePose turns commodity WiFi signals into real-time human pose estimation, vital sign monitoring, and presence detection — all without a single pixel of video.",
+      "language": "Rust",
+      "stars_total": 48990,
+      "forks_total": 6522,
+      "stars_today": 824
     },
     {
       "rank": 5,
-      "repo": "tractorjuice/arc-kit",
-      "owner": "tractorjuice",
-      "name": "arc-kit",
-      "url": "https://github.com/tractorjuice/arc-kit",
-      "description": "Enterprise Architecture Governance & Vendor Procurement Toolkit",
-      "language": "HTML",
-      "stars_total": 1382,
-      "forks_total": 169,
-      "stars_today": 329
+      "repo": "microsoft/ai-agents-for-beginners",
+      "owner": "microsoft",
+      "name": "ai-agents-for-beginners",
+      "url": "https://github.com/microsoft/ai-agents-for-beginners",
+      "description": "12 Lessons to Get Started Building AI Agents",
+      "language": "Jupyter Notebook",
+      "stars_total": 57949,
+      "forks_total": 19897,
+      "stars_today": 200
     },
     {
       "rank": 6,
-      "repo": "koala73/worldmonitor",
-      "owner": "koala73",
-      "name": "worldmonitor",
-      "url": "https://github.com/koala73/worldmonitor",
-      "description": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface",
-      "language": "TypeScript",
-      "stars_total": 50347,
-      "forks_total": 8161,
-      "stars_today": 316
+      "repo": "dayanch96/YTLite",
+      "owner": "dayanch96",
+      "name": "YTLite",
+      "url": "https://github.com/dayanch96/YTLite",
+      "description": "A flexible enhancer for YouTube on iOS",
+      "language": "Logos",
+      "stars_total": 4862,
+      "forks_total": 20150,
+      "stars_today": 55
     }
   ]
 }
