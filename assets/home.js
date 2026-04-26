@@ -102,6 +102,17 @@
     return item;
   }
 
+  function getDescription(item) {
+    const currentCopy = getCopy();
+    const language = getLanguage();
+
+    if (item.descriptions && item.descriptions[language]) {
+      return item.descriptions[language];
+    }
+
+    return item.description || currentCopy.noDescription;
+  }
+
   function createCard(item) {
     const currentCopy = getCopy();
     const article = document.createElement("article");
@@ -129,7 +140,7 @@
     title.appendChild(link);
 
     const description = document.createElement("p");
-    description.textContent = item.description || currentCopy.noDescription;
+    description.textContent = getDescription(item);
 
     const metrics = document.createElement("div");
     metrics.className = "trend-metrics";
