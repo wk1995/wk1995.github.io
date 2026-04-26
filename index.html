@@ -80,12 +80,6 @@
       margin-bottom: 2rem;
     }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
     .cta {
       display: inline-flex;
       align-items: center;
@@ -156,10 +150,6 @@
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
 
-    .grid-3 {
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    }
-
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -205,26 +195,6 @@
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--fg-muted);
-    }
-
-    .blog-preview article {
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 1.5rem;
-    }
-
-    .blog-preview h3 {
-      margin: 0 0 0.6rem;
-      font-size: 1.25rem;
-    }
-
-    .blog-preview time {
-      display: block;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--fg-muted);
-      margin-bottom: 0.65rem;
     }
 
     .trending-summary {
@@ -464,8 +434,6 @@
         <div class="nav-links">
           <a href="#about" data-i18n="nav.about">关于我</a>
           <a href="#trending" data-i18n="nav.trending">热门项目</a>
-          <a href="#projects" data-i18n="nav.projects">项目</a>
-          <a href="#blog" data-i18n="nav.blog">博客</a>
           <a href="mailto:kangw1995@gmail.com" data-i18n="nav.contact">联系</a>
         </div>
       </div>
@@ -478,10 +446,6 @@
         <p class="hero-lead" data-i18n="hero.lead">
           一名 Android 工程师与 AI 实践者，专注于将机器学习能力嵌入应用中，打造端侧智能与云端协同的体验。在这里记录我的项目、研究路线及落地实践。
         </p>
-        <div class="hero-actions">
-          <a class="cta" href="#projects" data-i18n="hero.primary">探索项目</a>
-          <a class="cta secondary" href="#blog" data-i18n="hero.secondary">阅读博客</a>
-        </div>
       </div>
     </header>
   </div>
@@ -556,20 +520,6 @@
       </div>
     </section>
 
-    <section id="projects">
-      <div class="container">
-        <h2 data-i18n="projects.title">精选项目</h2>
-        <div class="grid grid-3"></div>
-      </div>
-    </section>
-
-    <section id="blog">
-      <div class="container">
-        <h2 data-i18n="blog.title">最新博客</h2>
-        <div class="grid grid-2 blog-preview"></div>
-        <a class="cta secondary" href="blog/index.html" data-i18n="blog.all">查看全部文章</a>
-      </div>
-    </section>
   </main>
 
   <footer>
