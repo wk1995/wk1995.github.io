@@ -7,6 +7,7 @@ from html import unescape
 from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError, URLError
+from urllib.parse import quote
 from urllib.request import Request, urlopen
 
 
@@ -29,6 +30,11 @@ FORKS_RE = re.compile(
     re.S,
 )
 TODAY_RE = re.compile(r'([\d,]+)\s+stars today')
+TRANSLATE_ENDPOINT = (
+    "https://translate.googleapis.com/translate_a/single"
+    "?client=gtx&sl=auto&dt=t&tl={target}&q={query}"
+)
+USER_AGENT = "Mozilla/5.0 (compatible; wk1995.github.io trending bot/1.0)"
 
 
 def clean_text(value: str | None) -> str | None:
@@ -45,7 +51,57 @@ def parse_number(value: str | None) -> int | None:
     return int(value.replace(",", "").strip())
 
 
-def parse_article(block: str, rank: int) -> dict[str, Any] | None:
+def fetch_text(url: str) -> str:
+    request = Request(url, headers={"User-Agent": USER_AGENT})
+    with urlopen(request, timeout=30) as response:
+        return response.read().decode("utf-8")
+
+
+def translate_text(
+    text: str | None,
+    target_language: str,
+    cache: dict[tuple[str, str], str | None],
+) -> str | None:
+    if not text:
+        return None
+
+    cache_key = (text, target_language)
+    if cache_key in cache:
+        return cache[cache_key]
+
+    query = quote(text, safe="")
+    url = TRANSLATE_ENDPOINT.format(target=target_language, query=query)
+
+    try:
+        payload = json.loads(fetch_text(url))
+        translated = clean_text(
+            "".join(chunk[0] for chunk in payload[0] if chunk and chunk[0])
+        )
+    except (HTTPError, URLError, OSError, ValueError, KeyError, IndexError, TypeError):
+        translated = text
+
+    cache[cache_key] = translated or text
+    return cache[cache_key]
+
+
+def build_descriptions(
+    description: str | None,
+    cache: dict[tuple[str, str], str | None],
+) -> dict[str, str] | None:
+    if not description:
+        return None
+
+    return {
+        "zh": translate_text(description, "zh-CN", cache) or description,
+        "en": translate_text(description, "en", cache) or description,
+    }
+
+
+def parse_article(
+    block: str,
+    rank: int,
+    translation_cache: dict[tuple[str, str], str | None],
+) -> dict[str, Any] | None:
     repo_match = REPO_RE.search(block)
     if not repo_match:
         return None
@@ -67,6 +123,7 @@ def parse_article(block: str, rank: int) -> dict[str, Any] | None:
     stars_total = parse_number(stars_match.group(1) if stars_match else None)
     forks_total = parse_number(forks_match.group(1) if forks_match else None)
     stars_today = parse_number(today_match.group(1) if today_match else None)
+    descriptions = build_descriptions(description, translation_cache)
 
     return {
         "rank": rank,
@@ -75,6 +132,7 @@ def parse_article(block: str, rank: int) -> dict[str, Any] | None:
         "name": name,
         "url": f"https://github.com/{repo}",
         "description": description,
+        "descriptions": descriptions,
         "language": language,
         "stars_total": stars_total,
         "forks_total": forks_total,
@@ -83,24 +141,16 @@ def parse_article(block: str, rank: int) -> dict[str, Any] | None:
 
 
 def fetch_html(url: str) -> str:
-    request = Request(
-        url,
-        headers={
-            "User-Agent": (
-                "Mozilla/5.0 (compatible; wk1995.github.io trending bot/1.0)"
-            )
-        },
-    )
-    with urlopen(request, timeout=30) as response:
-        return response.read().decode("utf-8")
+    return fetch_text(url)
 
 
 def build_payload(html: str, source_url: str, since: str, limit: int) -> dict[str, Any]:
     articles = ARTICLE_RE.findall(html)
     items: list[dict[str, Any]] = []
+    translation_cache: dict[tuple[str, str], str | None] = {}
 
     for block in articles:
-        parsed = parse_article(block, len(items) + 1)
+        parsed = parse_article(block, len(items) + 1, translation_cache)
         if parsed:
             items.append(parsed)
         if len(items) >= limit:

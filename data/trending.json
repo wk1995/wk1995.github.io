@@ -1,79 +1,103 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-04-09T00:30:25.280608+00:00",
+  "generated_at": "2026-04-26T14:30:34.920305+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "forrestchang/andrej-karpathy-skills",
-      "owner": "forrestchang",
-      "name": "andrej-karpathy-skills",
-      "url": "https://github.com/forrestchang/andrej-karpathy-skills",
-      "description": null,
-      "language": null,
-      "stars_total": 8963,
-      "forks_total": 621,
-      "stars_today": 702
+      "repo": "mattpocock/skills",
+      "owner": "mattpocock",
+      "name": "skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "My personal directory of skills, straight from my .claude directory.",
+      "descriptions": {
+        "zh": "我的个人技能目录，直接来自我的 .claude 目录。",
+        "en": "My personal directory of skills, straight from my .claude directory."
+      },
+      "language": "Shell",
+      "stars_total": 21807,
+      "forks_total": 1799,
+      "stars_today": 2507
     },
     {
       "rank": 2,
-      "repo": "TheCraigHewitt/seomachine",
-      "owner": "TheCraigHewitt",
-      "name": "seomachine",
-      "url": "https://github.com/TheCraigHewitt/seomachine",
-      "description": "A specialized Claude Code workspace for creating long-form, SEO-optimized blog content for any business. This system helps you research, write, analyze, and optimize content that ranks well and serves your target audience.",
+      "repo": "Alishahryar1/free-claude-code",
+      "owner": "Alishahryar1",
+      "name": "free-claude-code",
+      "url": "https://github.com/Alishahryar1/free-claude-code",
+      "description": "Use claude-code for free in the terminal, VSCode extension or via discord like openclaw",
+      "descriptions": {
+        "zh": "在终端、VSCode 扩展中或通过 openclaw 等 Discord 免费使用 claude-code",
+        "en": "Use claude-code for free in the terminal, VSCode extension or via discord like openclaw"
+      },
       "language": "Python",
-      "stars_total": 4579,
-      "forks_total": 707,
-      "stars_today": 649
+      "stars_total": 12581,
+      "forks_total": 1850,
+      "stars_today": 1694
     },
     {
       "rank": 3,
-      "repo": "google-ai-edge/gallery",
-      "owner": "google-ai-edge",
-      "name": "gallery",
-      "url": "https://github.com/google-ai-edge/gallery",
-      "description": "A gallery that showcases on-device ML/GenAI use cases and allows people to try and use models locally.",
-      "language": "Kotlin",
-      "stars_total": 19493,
-      "forks_total": 1820,
-      "stars_today": 853
+      "repo": "Z4nzu/hackingtool",
+      "owner": "Z4nzu",
+      "name": "hackingtool",
+      "url": "https://github.com/Z4nzu/hackingtool",
+      "description": "ALL IN ONE Hacking Tool For Hackers",
+      "descriptions": {
+        "zh": "黑客的多合一黑客工具",
+        "en": "ALL IN ONE Hacking Tool For Hackers"
+      },
+      "language": "Python",
+      "stars_total": 64831,
+      "forks_total": 7265,
+      "stars_today": 1724
     },
     {
       "rank": 4,
-      "repo": "NVIDIA/personaplex",
-      "owner": "NVIDIA",
-      "name": "personaplex",
-      "url": "https://github.com/NVIDIA/personaplex",
-      "description": "PersonaPlex code.",
-      "language": "Python",
-      "stars_total": 8405,
-      "forks_total": 1204,
-      "stars_today": 586
+      "repo": "abhigyanpatwari/GitNexus",
+      "owner": "abhigyanpatwari",
+      "name": "GitNexus",
+      "url": "https://github.com/abhigyanpatwari/GitNexus",
+      "description": "GitNexus: The Zero-Server Code Intelligence Engine - GitNexus is a client-side knowledge graph creator that runs entirely in your browser. Drop in a GitHub repo or ZIP file, and get an interactive knowledge graph wit a built in Graph RAG Agent. Perfect for code exploration",
+      "descriptions": {
+        "zh": "GitNexus：零服务器代码智能引擎 - GitNexus 是一个完全在浏览器中运行的客户端知识图创建器。放入 GitHub 存储库或 ZIP 文件，即可获得带有内置 Graph RAG 代理的交互式知识图。非常适合代码探索",
+        "en": "GitNexus: The Zero-Server Code Intelligence Engine - GitNexus is a client-side knowledge graph creator that runs entirely in your browser. Drop in a GitHub repo or ZIP file, and get an interactive knowledge graph wit a built in Graph RAG Agent. Perfect for code exploration"
+      },
+      "language": "TypeScript",
+      "stars_total": 29804,
+      "forks_total": 3433,
+      "stars_today": 667
     },
     {
       "rank": 5,
-      "repo": "google-ai-edge/LiteRT-LM",
-      "owner": "google-ai-edge",
-      "name": "LiteRT-LM",
-      "url": "https://github.com/google-ai-edge/LiteRT-LM",
-      "description": null,
-      "language": "C++",
-      "stars_total": 2983,
-      "forks_total": 280,
-      "stars_today": 501
+      "repo": "PostHog/posthog",
+      "owner": "PostHog",
+      "name": "posthog",
+      "url": "https://github.com/PostHog/posthog",
+      "description": "🦔 PostHog is an all-in-one developer platform for building successful products. We offer product analytics, web analytics, session replay, error tracking, feature flags, experimentation, surveys, data warehouse, a CDP, and an AI product assistant to help debug your code, ship features faster, and keep all your usage and customer data in one stack.",
+      "descriptions": {
+        "zh": "🦔 PostHog 是一个用于构建成功产品的一体化开发者平台。我们提供产品分析、网络分析、会话重播、错误跟踪、功能标记、实验、调查、数据仓库、CDP 和 AI 产品助手，以帮助调试您的代码、更快地发布功能，并将您的所有使用情况和客户数据保存在一个堆栈中。",
+        "en": "🦔 PostHog is an all-in-one developer platform for building successful products. We offer product analytics, web analytics, session replay, error tracking, feature flags, experimentation, surveys, data warehouse, a CDP, and an AI product assistant to help debug your code, ship features faster, and keep all your usage and customer data in one stack."
+      },
+      "language": "Python",
+      "stars_total": 33685,
+      "forks_total": 2622,
+      "stars_today": 338
     },
     {
       "rank": 6,
-      "repo": "elebumm/RedditVideoMakerBot",
-      "owner": "elebumm",
-      "name": "RedditVideoMakerBot",
-      "url": "https://github.com/elebumm/RedditVideoMakerBot",
-      "description": "Create Reddit Videos with just✨ one command ✨",
-      "language": "Python",
-      "stars_total": 10479,
-      "forks_total": 2577,
-      "stars_today": 555
+      "repo": "microsoft/typescript-go",
+      "owner": "microsoft",
+      "name": "typescript-go",
+      "url": "https://github.com/microsoft/typescript-go",
+      "description": "Staging repo for development of native port of TypeScript",
+      "descriptions": {
+        "zh": "用于开发 TypeScript 本机端口的临时存储库",
+        "en": "Staging repo for development of native port of TypeScript"
+      },
+      "language": "Go",
+      "stars_total": 25118,
+      "forks_total": 915,
+      "stars_today": 130
     }
   ]
 }
