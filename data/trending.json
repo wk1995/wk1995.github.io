@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-04-25T04:06:00.685978+00:00",
+  "generated_at": "2026-04-26T04:30:06.868024+00:00",
   "items": [
     {
       "rank": 1,
@@ -11,69 +11,69 @@
       "url": "https://github.com/Alishahryar1/free-claude-code",
       "description": "Use claude-code for free in the terminal, VSCode extension or via discord like openclaw",
       "language": "Python",
-      "stars_total": 9357,
-      "forks_total": 1388,
-      "stars_today": 2638
+      "stars_total": 11710,
+      "forks_total": 1752,
+      "stars_today": 4007
     },
     {
       "rank": 2,
-      "repo": "huggingface/ml-intern",
-      "owner": "huggingface",
-      "name": "ml-intern",
-      "url": "https://github.com/huggingface/ml-intern",
-      "description": "🤗 ml-intern: an open-source ML engineer that reads papers, trains models, and ships ML models",
-      "language": "Python",
-      "stars_total": 5481,
-      "forks_total": 481,
-      "stars_today": 2985
+      "repo": "mattpocock/skills",
+      "owner": "mattpocock",
+      "name": "skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "My personal directory of skills, straight from my .claude directory.",
+      "language": "Shell",
+      "stars_total": 20386,
+      "forks_total": 1695,
+      "stars_today": 1139
     },
     {
       "rank": 3,
-      "repo": "google/osv-scanner",
-      "owner": "google",
-      "name": "osv-scanner",
-      "url": "https://github.com/google/osv-scanner",
-      "description": "Vulnerability scanner written in Go which uses the data provided by https://osv.dev",
-      "language": "Go",
-      "stars_total": 9566,
-      "forks_total": 625,
-      "stars_today": 141
-    },
-    {
-      "rank": 4,
       "repo": "Z4nzu/hackingtool",
       "owner": "Z4nzu",
       "name": "hackingtool",
       "url": "https://github.com/Z4nzu/hackingtool",
       "description": "ALL IN ONE Hacking Tool For Hackers",
       "language": "Python",
-      "stars_total": 62501,
-      "forks_total": 7016,
-      "stars_today": 1378
+      "stars_total": 64106,
+      "forks_total": 7184,
+      "stars_today": 1200
+    },
+    {
+      "rank": 4,
+      "repo": "PostHog/posthog",
+      "owner": "PostHog",
+      "name": "posthog",
+      "url": "https://github.com/PostHog/posthog",
+      "description": "🦔 PostHog is an all-in-one developer platform for building successful products. We offer product analytics, web analytics, session replay, error tracking, feature flags, experimentation, surveys, data warehouse, a CDP, and an AI product assistant to help debug your code, ship features faster, and keep all your usage and customer data in one stack.",
+      "language": "Python",
+      "stars_total": 33540,
+      "forks_total": 2609,
+      "stars_today": 471
     },
     {
       "rank": 5,
-      "repo": "zilliztech/claude-context",
-      "owner": "zilliztech",
-      "name": "claude-context",
-      "url": "https://github.com/zilliztech/claude-context",
-      "description": "Code search MCP for Claude Code. Make entire codebase the context for any coding agent.",
-      "language": "TypeScript",
-      "stars_total": 9073,
-      "forks_total": 694,
-      "stars_today": 706
+      "repo": "davila7/claude-code-templates",
+      "owner": "davila7",
+      "name": "claude-code-templates",
+      "url": "https://github.com/davila7/claude-code-templates",
+      "description": "CLI tool for configuring and monitoring Claude Code",
+      "language": "Python",
+      "stars_total": 25402,
+      "forks_total": 2531,
+      "stars_today": 87
     },
     {
       "rank": 6,
-      "repo": "open-metadata/OpenMetadata",
-      "owner": "open-metadata",
-      "name": "OpenMetadata",
-      "url": "https://github.com/open-metadata/OpenMetadata",
-      "description": "OpenMetadata is a unified metadata platform for data discovery, data observability, and data governance powered by a central metadata repository, in-depth column level lineage, and seamless team collaboration.",
-      "language": "TypeScript",
-      "stars_total": 13402,
-      "forks_total": 2038,
-      "stars_today": 530
+      "repo": "deepseek-ai/DeepEP",
+      "owner": "deepseek-ai",
+      "name": "DeepEP",
+      "url": "https://github.com/deepseek-ai/DeepEP",
+      "description": "DeepEP: an efficient expert-parallel communication library",
+      "language": "Cuda",
+      "stars_total": 9518,
+      "forks_total": 1198,
+      "stars_today": 189
     }
   ]
 }
