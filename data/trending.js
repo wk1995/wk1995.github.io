@@ -1,31 +1,31 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-04-26T04:30:06.868024+00:00",
+  "generated_at": "2026-04-26T14:22:10.490683+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "Alishahryar1/free-claude-code",
-      "owner": "Alishahryar1",
-      "name": "free-claude-code",
-      "url": "https://github.com/Alishahryar1/free-claude-code",
-      "description": "Use claude-code for free in the terminal, VSCode extension or via discord like openclaw",
-      "language": "Python",
-      "stars_total": 11710,
-      "forks_total": 1752,
-      "stars_today": 4007
-    },
-    {
-      "rank": 2,
       "repo": "mattpocock/skills",
       "owner": "mattpocock",
       "name": "skills",
       "url": "https://github.com/mattpocock/skills",
       "description": "My personal directory of skills, straight from my .claude directory.",
       "language": "Shell",
-      "stars_total": 20386,
-      "forks_total": 1695,
-      "stars_today": 1139
+      "stars_total": 21781,
+      "forks_total": 1798,
+      "stars_today": 2507
+    },
+    {
+      "rank": 2,
+      "repo": "Alishahryar1/free-claude-code",
+      "owner": "Alishahryar1",
+      "name": "free-claude-code",
+      "url": "https://github.com/Alishahryar1/free-claude-code",
+      "description": "Use claude-code for free in the terminal, VSCode extension or via discord like openclaw",
+      "language": "Python",
+      "stars_total": 12569,
+      "forks_total": 1849,
+      "stars_today": 1694
     },
     {
       "rank": 3,
@@ -35,45 +35,45 @@ window.__TRENDING_DATA__ = {
       "url": "https://github.com/Z4nzu/hackingtool",
       "description": "ALL IN ONE Hacking Tool For Hackers",
       "language": "Python",
-      "stars_total": 64106,
-      "forks_total": 7184,
-      "stars_today": 1200
+      "stars_total": 64815,
+      "forks_total": 7264,
+      "stars_today": 1724
     },
     {
       "rank": 4,
+      "repo": "abhigyanpatwari/GitNexus",
+      "owner": "abhigyanpatwari",
+      "name": "GitNexus",
+      "url": "https://github.com/abhigyanpatwari/GitNexus",
+      "description": "GitNexus: The Zero-Server Code Intelligence Engine - GitNexus is a client-side knowledge graph creator that runs entirely in your browser. Drop in a GitHub repo or ZIP file, and get an interactive knowledge graph wit a built in Graph RAG Agent. Perfect for code exploration",
+      "language": "TypeScript",
+      "stars_total": 29794,
+      "forks_total": 3434,
+      "stars_today": 667
+    },
+    {
+      "rank": 5,
       "repo": "PostHog/posthog",
       "owner": "PostHog",
       "name": "posthog",
       "url": "https://github.com/PostHog/posthog",
       "description": "🦔 PostHog is an all-in-one developer platform for building successful products. We offer product analytics, web analytics, session replay, error tracking, feature flags, experimentation, surveys, data warehouse, a CDP, and an AI product assistant to help debug your code, ship features faster, and keep all your usage and customer data in one stack.",
       "language": "Python",
-      "stars_total": 33540,
-      "forks_total": 2609,
-      "stars_today": 471
-    },
-    {
-      "rank": 5,
-      "repo": "davila7/claude-code-templates",
-      "owner": "davila7",
-      "name": "claude-code-templates",
-      "url": "https://github.com/davila7/claude-code-templates",
-      "description": "CLI tool for configuring and monitoring Claude Code",
-      "language": "Python",
-      "stars_total": 25402,
-      "forks_total": 2531,
-      "stars_today": 87
+      "stars_total": 33684,
+      "forks_total": 2622,
+      "stars_today": 338
     },
     {
       "rank": 6,
-      "repo": "deepseek-ai/DeepEP",
-      "owner": "deepseek-ai",
-      "name": "DeepEP",
-      "url": "https://github.com/deepseek-ai/DeepEP",
-      "description": "DeepEP: an efficient expert-parallel communication library",
-      "language": "Cuda",
-      "stars_total": 9518,
-      "forks_total": 1198,
-      "stars_today": 189
+      "repo": "microsoft/typescript-go",
+      "owner": "microsoft",
+      "name": "typescript-go",
+      "url": "https://github.com/microsoft/typescript-go",
+      "description": "Staging repo for development of native port of TypeScript",
+      "language": "Go",
+      "stars_total": 25118,
+      "forks_total": 915,
+      "stars_today": 130
     }
   ]
 }
