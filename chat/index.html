@@ -9,79 +9,82 @@
   <link rel="stylesheet" href="../assets/chat-page.css">
 </head>
 <body data-page="chatPage">
-  <div class="chat-page-shell">
-    <header class="chat-page-header">
-      <div class="chat-page-container">
-        <nav class="site-topbar">
-          <a
-            class="brand-link"
-            href="https://github.com/wk1995"
-            target="_blank"
-            rel="noopener"
-            data-i18n-aria="brand.aria"
-            aria-label="打开 WK1995 的 GitHub 主页"
-          >
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82a7.56 7.56 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path>
-            </svg>
-          </a>
-          <div class="topbar-right">
-            <div class="nav-links">
-              <a href="/" data-chat-link="home">返回首页</a>
-            </div>
-            <div class="control-row">
-              <label class="sr-only" for="language-select" data-i18n="controls.language">语言</label>
-              <span class="control-label" id="language-label" data-i18n="controls.language">语言</span>
-              <select id="language-select" aria-label="语言">
-                <option value="zh">简体中文</option>
-                <option value="en">English</option>
-              </select>
-              <span class="control-label" id="theme-caption" data-i18n="controls.theme">主题</span>
-              <button id="theme-toggle" type="button" aria-label="切换主题">
-                <svg id="theme-icon" viewBox="0 0 16 16" aria-hidden="true"></svg>
-                <span id="theme-label">Dark</span>
-              </button>
-            </div>
-          </div>
-        </nav>
-
-        <div class="chat-page-intro">
-          <p class="chat-page-eyebrow" data-chat-text="eyebrow">AI Workspace</p>
-          <h1 data-chat-text="title">AI Chat 工作台</h1>
-          <p class="chat-page-subtitle" data-chat-text="subtitle">
-            左侧管理对话记录，中间专注对话，右侧统一维护模型和 Key。
-          </p>
-        </div>
+  <div class="chat-app">
+    <aside class="chat-sidebar">
+      <div class="chat-sidebar-head">
+        <a
+          class="chat-brand"
+          href="https://github.com/wk1995"
+          target="_blank"
+          rel="noopener"
+          data-i18n-aria="brand.aria"
+          aria-label="打开 WK1995 的 GitHub 主页"
+        >
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82a7.56 7.56 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path>
+          </svg>
+          <span>WK AI</span>
+        </a>
+        <a class="chat-home-link" href="/" data-chat-link="home">返回首页</a>
       </div>
-    </header>
 
-    <main class="chat-page-container chat-workspace-grid">
-      <aside class="chat-page-panel chat-history-panel">
-        <div class="chat-panel-head">
+      <button class="chat-new-button" id="new-conversation" type="button">
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M8 2a.75.75 0 0 1 .75.75v4.5h4.5a.75.75 0 0 1 0 1.5h-4.5v4.5a.75.75 0 0 1-1.5 0v-4.5h-4.5a.75.75 0 0 1 0-1.5h4.5v-4.5A.75.75 0 0 1 8 2Z"></path>
+        </svg>
+        <span data-chat-text="newChat">新对话</span>
+      </button>
+
+      <div class="chat-history-list" id="conversation-list"></div>
+
+      <div class="chat-sidebar-footer">
+        <div class="chat-sidebar-control">
           <div>
-            <p class="chat-panel-eyebrow" data-chat-text="historyEyebrow">History</p>
-            <h2 data-chat-text="historyTitle">聊天记录</h2>
+            <label class="sr-only" for="language-select" data-i18n="controls.language">语言</label>
+            <span class="control-label" id="language-label" data-i18n="controls.language">语言</span>
           </div>
-          <button class="chat-panel-action" id="new-conversation" type="button" data-chat-text="newChat">
-            新对话
+          <select id="language-select" class="language-select" aria-label="语言">
+            <option value="zh">简体中文</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+
+        <div class="chat-sidebar-control">
+          <span class="control-label" id="theme-caption" data-i18n="controls.theme">主题</span>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切换主题">
+            <svg id="theme-icon" viewBox="0 0 16 16" aria-hidden="true"></svg>
+            <span id="theme-label">Dark</span>
           </button>
         </div>
-        <div class="chat-history-list" id="conversation-list"></div>
-      </aside>
+      </div>
+    </aside>
 
-      <section class="chat-page-panel chat-main-panel">
-        <div class="chat-main-head">
-          <div>
-            <p class="chat-panel-eyebrow" data-chat-text="chatEyebrow">Conversation</p>
-            <h2 id="conversation-title">新对话</h2>
-          </div>
-          <div class="chat-main-meta">
-            <span class="chat-meta-chip" id="active-model-chip">DeepSeek V4 Flash</span>
-            <span class="chat-meta-chip" id="connection-chip">待配置</span>
+    <main class="chat-stage">
+      <div class="chat-stage-head">
+        <div class="chat-stage-copy">
+          <p class="chat-stage-overline" data-chat-text="chatEyebrow">Conversation</p>
+          <h1 id="conversation-title">新对话</h1>
+          <div class="chat-stage-chips">
+            <span class="chat-meta-chip" id="active-model-chip">请选择模型</span>
+            <span class="chat-meta-chip" id="connection-chip">待配置 Key</span>
           </div>
         </div>
-        <div class="chat-main-status" id="chat-status" role="status" aria-live="polite"></div>
+        <div class="chat-stage-actions">
+          <button class="chat-icon-button" id="open-settings" type="button" data-chat-aria="openSettings">
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M9.596 1.303a1 1 0 0 0-1.192 0l-.792.602a1 1 0 0 1-1.127.083l-.92-.49a1 1 0 0 0-1.167.242l-.77.87a1 1 0 0 0-.19 1.174l.39.978a1 1 0 0 1-.252 1.104l-.712.712a1 1 0 0 0-.242 1.167l.49.92a1 1 0 0 1-.083 1.127l-.602.792a1 1 0 0 0 0 1.192l.602.792a1 1 0 0 1 .083 1.127l-.49.92a1 1 0 0 0 .242 1.167l.87.77a1 1 0 0 0 1.174.19l.978-.39a1 1 0 0 1 1.104.252l.712.712a1 1 0 0 0 1.167.242l.92-.49a1 1 0 0 1 1.127.083l.792.602a1 1 0 0 0 1.192 0l.792-.602a1 1 0 0 1 1.127-.083l.92.49a1 1 0 0 0 1.167-.242l.77-.87a1 1 0 0 0 .19-1.174l-.39-.978a1 1 0 0 1 .252-1.104l.712-.712a1 1 0 0 0 .242-1.167l-.49-.92a1 1 0 0 1 .083-1.127l.602-.792a1 1 0 0 0 0-1.192l-.602-.792a1 1 0 0 1-.083-1.127l.49-.92a1 1 0 0 0-.242-1.167l-.87-.77a1 1 0 0 0-1.174-.19l-.978.39a1 1 0 0 1-1.104-.252l-.712-.712a1 1 0 0 0-1.167-.242l-.92.49a1 1 0 0 1-1.127-.083l-.792-.602ZM8 10.75a2.75 2.75 0 1 0 0-5.5 2.75 2.75 0 0 0 0 5.5Z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="chat-main-status" id="chat-status" role="status" aria-live="polite"></div>
+
+      <section class="chat-message-board">
         <div class="chat-main-body" id="message-list"></div>
+      </section>
+
+      <div class="chat-composer-wrap">
         <div class="chat-main-composer">
           <textarea id="message-input" rows="1" placeholder="输入你的问题，按 Enter 发送"></textarea>
           <div class="chat-composer-row">
@@ -96,41 +99,54 @@
             </div>
           </div>
         </div>
-      </section>
-
-      <aside class="chat-page-panel chat-settings-panel-page">
-        <div class="chat-panel-head">
-          <div>
-            <p class="chat-panel-eyebrow" data-chat-text="settingsEyebrow">Settings</p>
-            <h2 data-chat-text="settingsTitle">参数设置</h2>
-          </div>
-        </div>
-        <div class="chat-settings-form">
-          <label class="chat-settings-label" for="model-select" data-chat-text="modelLabel">模型选择</label>
-          <select id="model-select"></select>
-
-          <label class="chat-settings-label" for="api-key-input" data-chat-text="keyLabel">DeepSeek API Key</label>
-          <input id="api-key-input" type="password" autocomplete="off" placeholder="粘贴当前模型对应的 API Key">
-
-          <div class="chat-settings-actions">
-            <button class="chat-primary-button" id="save-key" type="button" data-chat-text="saveKey">保存 Key</button>
-            <button class="chat-secondary-button" id="clear-key" type="button" data-chat-text="clearKey">删除当前 Key</button>
-          </div>
-
-          <div class="chat-settings-note" data-chat-text="settingsNote">
-            当前页面会把模型与 Key 保存在本地浏览器中，不会提交到仓库。
-          </div>
-        </div>
-
-        <div class="chat-saved-models">
-          <div class="chat-panel-subhead">
-            <h3 data-chat-text="savedModelsTitle">已保存模型</h3>
-            <span id="saved-model-count">0</span>
-          </div>
-          <div class="chat-saved-model-list" id="saved-model-list"></div>
-        </div>
-      </aside>
+      </div>
     </main>
+
+    <div class="chat-settings-backdrop" id="settings-backdrop"></div>
+
+    <aside class="chat-settings-drawer" id="settings-drawer" aria-hidden="true">
+      <div class="chat-settings-drawer-head">
+        <div>
+          <p class="chat-panel-eyebrow" data-chat-text="settingsEyebrow">Settings</p>
+          <h2 data-chat-text="settingsTitle">参数设置</h2>
+          <p class="chat-settings-helper" data-chat-text="settingsHelper">
+            选择模型并保存当前浏览器的 API Key。
+          </p>
+        </div>
+        <button class="chat-icon-button" id="close-settings" type="button" data-chat-aria="closeSettings">
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 1 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 1 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="chat-setup-banner" id="setup-banner"></div>
+
+      <div class="chat-settings-form">
+        <label class="chat-settings-label" for="model-select" data-chat-text="modelLabel">模型选择</label>
+        <select id="model-select"></select>
+
+        <label class="chat-settings-label" for="api-key-input" data-chat-text="keyLabel">DeepSeek API Key</label>
+        <input id="api-key-input" type="password" autocomplete="off" placeholder="粘贴当前模型对应的 API Key">
+
+        <div class="chat-settings-actions">
+          <button class="chat-primary-button" id="save-key" type="button" data-chat-text="saveKey">保存 Key</button>
+          <button class="chat-secondary-button" id="clear-key" type="button" data-chat-text="clearKey">删除当前 Key</button>
+        </div>
+
+        <div class="chat-settings-note" data-chat-text="settingsNote">
+          当前页面会把模型与 Key 保存在本地浏览器中，不会提交到仓库。
+        </div>
+      </div>
+
+      <div class="chat-saved-models">
+        <div class="chat-panel-subhead">
+          <h3 data-chat-text="savedModelsTitle">已保存模型</h3>
+          <span id="saved-model-count">0</span>
+        </div>
+        <div class="chat-saved-model-list" id="saved-model-list"></div>
+      </div>
+    </aside>
   </div>
 
   <script src="../assets/site.js"></script>
