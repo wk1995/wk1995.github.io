@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-04-27T04:37:45.828611+00:00",
+  "generated_at": "2026-04-28T04:42:09.157413+00:00",
   "items": [
     {
       "rank": 1,
@@ -9,50 +9,18 @@ window.__TRENDING_DATA__ = {
       "owner": "mattpocock",
       "name": "skills",
       "url": "https://github.com/mattpocock/skills",
-      "description": "Agent Skills for real engineers. Straight from my .claude directory.",
+      "description": "Skills for Real Engineers. Straight from my .claude directory.",
       "descriptions": {
-        "zh": "真正工程师的代理技能。直接来自我的 .claude 目录。",
-        "en": "Agent Skills for real engineers. Straight from my .claude directory."
+        "zh": "真正工程师的技能。直接来自我的 .claude 目录。",
+        "en": "Skills for Real Engineers. Straight from my .claude directory."
       },
       "language": "Shell",
-      "stars_total": 24717,
-      "forks_total": 2006,
-      "stars_today": 2519
+      "stars_total": 31429,
+      "forks_total": 2469,
+      "stars_today": 5645
     },
     {
       "rank": 2,
-      "repo": "Alishahryar1/free-claude-code",
-      "owner": "Alishahryar1",
-      "name": "free-claude-code",
-      "url": "https://github.com/Alishahryar1/free-claude-code",
-      "description": "Use claude-code for free in the terminal, VSCode extension or via discord like openclaw",
-      "descriptions": {
-        "zh": "在终端、VSCode 扩展中或通过 openclaw 等 Discord 免费使用 claude-code",
-        "en": "Use claude-code for free in the terminal, VSCode extension or via discord like openclaw"
-      },
-      "language": "Python",
-      "stars_total": 14142,
-      "forks_total": 1999,
-      "stars_today": 1701
-    },
-    {
-      "rank": 3,
-      "repo": "Z4nzu/hackingtool",
-      "owner": "Z4nzu",
-      "name": "hackingtool",
-      "url": "https://github.com/Z4nzu/hackingtool",
-      "description": "ALL IN ONE Hacking Tool For Hackers",
-      "descriptions": {
-        "zh": "黑客的多合一黑客工具",
-        "en": "ALL IN ONE Hacking Tool For Hackers"
-      },
-      "language": "Python",
-      "stars_total": 65812,
-      "forks_total": 7388,
-      "stars_today": 1720
-    },
-    {
-      "rank": 4,
       "repo": "abhigyanpatwari/GitNexus",
       "owner": "abhigyanpatwari",
       "name": "GitNexus",
@@ -63,41 +31,73 @@ window.__TRENDING_DATA__ = {
         "en": "GitNexus: The Zero-Server Code Intelligence Engine - GitNexus is a client-side knowledge graph creator that runs entirely in your browser. Drop in a GitHub repo or ZIP file, and get an interactive knowledge graph wit a built in Graph RAG Agent. Perfect for code exploration"
       },
       "language": "TypeScript",
-      "stars_total": 30367,
-      "forks_total": 3508,
-      "stars_today": 700
+      "stars_total": 31790,
+      "forks_total": 3627,
+      "stars_today": 1102
+    },
+    {
+      "rank": 3,
+      "repo": "ComposioHQ/awesome-codex-skills",
+      "owner": "ComposioHQ",
+      "name": "awesome-codex-skills",
+      "url": "https://github.com/ComposioHQ/awesome-codex-skills",
+      "description": "A curated list of practical Codex skills for automating workflows across the Codex CLI and API.",
+      "descriptions": {
+        "zh": "用于跨 Codex CLI 和 API 实现工作流程自动化的实用 Codex 技能精选列表。",
+        "en": "A curated list of practical Codex skills for automating workflows across the Codex CLI and API."
+      },
+      "language": "Python",
+      "stars_total": 2981,
+      "forks_total": 212,
+      "stars_today": 638
+    },
+    {
+      "rank": 4,
+      "repo": "Alishahryar1/free-claude-code",
+      "owner": "Alishahryar1",
+      "name": "free-claude-code",
+      "url": "https://github.com/Alishahryar1/free-claude-code",
+      "description": "Use claude-code for free in the terminal, VSCode extension or via discord like openclaw",
+      "descriptions": {
+        "zh": "在终端、VSCode 扩展中或通过 openclaw 等 Discord 免费使用 claude-code",
+        "en": "Use claude-code for free in the terminal, VSCode extension or via discord like openclaw"
+      },
+      "language": "Python",
+      "stars_total": 16415,
+      "forks_total": 2282,
+      "stars_today": 2949
     },
     {
       "rank": 5,
-      "repo": "PostHog/posthog",
-      "owner": "PostHog",
-      "name": "posthog",
-      "url": "https://github.com/PostHog/posthog",
-      "description": "🦔 PostHog is an all-in-one developer platform for building successful products. We offer product analytics, web analytics, session replay, error tracking, feature flags, experimentation, surveys, data warehouse, a CDP, and an AI product assistant to help debug your code, ship features faster, and keep all your usage and customer data in one stack.",
+      "repo": "gastownhall/beads",
+      "owner": "gastownhall",
+      "name": "beads",
+      "url": "https://github.com/gastownhall/beads",
+      "description": "Beads - A memory upgrade for your coding agent",
       "descriptions": {
-        "zh": "🦔 PostHog 是一个用于构建成功产品的一体化开发者平台。我们提供产品分析、网络分析、会话重播、错误跟踪、功能标记、实验、调查、数据仓库、CDP 和 AI 产品助手，以帮助调试您的代码、更快地发布功能，并将您的所有使用情况和客户数据保存在一个堆栈中。",
-        "en": "🦔 PostHog is an all-in-one developer platform for building successful products. We offer product analytics, web analytics, session replay, error tracking, feature flags, experimentation, surveys, data warehouse, a CDP, and an AI product assistant to help debug your code, ship features faster, and keep all your usage and customer data in one stack."
+        "zh": "Beads - 编码代理的内存升级",
+        "en": "Beads - A memory upgrade for your coding agent"
       },
-      "language": "Python",
-      "stars_total": 33921,
-      "forks_total": 2638,
-      "stars_today": 337
+      "language": "Go",
+      "stars_total": 22292,
+      "forks_total": 1461,
+      "stars_today": 498
     },
     {
       "rank": 6,
-      "repo": "microsoft/typescript-go",
-      "owner": "microsoft",
-      "name": "typescript-go",
-      "url": "https://github.com/microsoft/typescript-go",
-      "description": "Staging repo for development of native port of TypeScript",
+      "repo": "penpot/penpot",
+      "owner": "penpot",
+      "name": "penpot",
+      "url": "https://github.com/penpot/penpot",
+      "description": "Penpot: The open-source design tool for design and code collaboration",
       "descriptions": {
-        "zh": "用于开发 TypeScript 本机端口的临时存储库",
-        "en": "Staging repo for development of native port of TypeScript"
+        "zh": "Penpot：用于设计和代码协作的开源设计工具",
+        "en": "Penpot: The open-source design tool for design and code collaboration"
       },
-      "language": "Go",
-      "stars_total": 25184,
-      "forks_total": 924,
-      "stars_today": 23
+      "language": "Clojure",
+      "stars_total": 46732,
+      "forks_total": 2805,
+      "stars_today": 166
     }
   ]
 }
