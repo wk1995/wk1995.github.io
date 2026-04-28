@@ -93,6 +93,7 @@
       copyAction: "复制文案",
       editAction: "编辑消息",
       regenerateAction: "重新生成",
+      scrollToBottom: "回到底部",
       editingTitle: "正在编辑用户消息",
       editingDescription: "保存后会从这条用户消息重新生成后续回复。",
       cancelEdit: "取消编辑",
@@ -170,6 +171,7 @@
       copyAction: "Copy message",
       editAction: "Edit message",
       regenerateAction: "Regenerate reply",
+      scrollToBottom: "Scroll to bottom",
       editingTitle: "Editing a user message",
       editingDescription: "Saving will regenerate the downstream reply from this message.",
       cancelEdit: "Cancel edit",
@@ -187,6 +189,7 @@
     status: { type: "", key: "", raw: "" },
     ui: loadUi(),
     editingMessageId: "",
+    scrollPinned: true,
   };
 
   function lang() {
@@ -467,6 +470,35 @@
     refs.input.style.height = Math.min(Math.max(refs.input.scrollHeight, 64), 220) + "px";
   }
 
+  function isNearBottom() {
+    const threshold = 96;
+    const distance = refs.messages.scrollHeight - refs.messages.scrollTop - refs.messages.clientHeight;
+    return distance <= threshold;
+  }
+
+  function syncScrollButton() {
+    const conversation = activeConversation();
+    refs.scrollToBottom.hidden = state.scrollPinned || !conversation.messages.length;
+  }
+
+  function scrollMessagesToBottom(behavior) {
+    if (typeof refs.messages.scrollTo === "function") {
+      refs.messages.scrollTo({
+        top: refs.messages.scrollHeight,
+        behavior: behavior || "auto",
+      });
+    } else {
+      refs.messages.scrollTop = refs.messages.scrollHeight;
+    }
+    state.scrollPinned = true;
+    syncScrollButton();
+  }
+
+  function handleMessageScroll() {
+    state.scrollPinned = isNearBottom();
+    syncScrollButton();
+  }
+
   function initState() {
     const raw = loadJson(STATE_KEY);
     const items = Array.isArray(raw.conversations) ? raw.conversations : [];
@@ -657,6 +689,7 @@
         button.appendChild(preview);
         button.addEventListener("click", function () {
           state.activeId = item.id;
+          state.scrollPinned = true;
           cancelEditing(true);
           saveState();
           renderAll();
@@ -870,6 +903,7 @@
 
   function renderConversation() {
     const conversation = activeConversation();
+    const preserveScrollTop = state.scrollPinned ? null : refs.messages.scrollTop;
     refs.title.textContent = conversationTitle(conversation);
     refs.modelChip.textContent = selectedModel() ? label(selectedModel()) : t("selectModel");
     refs.connectionChip.textContent = !selectedModel() ? t("modelRequired") : (keyForModel() ? t("ready") : t("missing"));
@@ -898,12 +932,20 @@
         grid.appendChild(button);
       });
       refs.messages.appendChild(empty);
+      state.scrollPinned = true;
+      syncScrollButton();
       return;
     }
     conversation.messages.forEach(function (message, index) {
       refs.messages.appendChild(renderMessage(message, index, conversation.messages));
     });
-    refs.messages.scrollTop = refs.messages.scrollHeight;
+    if (state.scrollPinned) {
+      scrollMessagesToBottom();
+    } else if (preserveScrollTop !== null) {
+      refs.messages.scrollTop = preserveScrollTop;
+      state.scrollPinned = isNearBottom();
+      syncScrollButton();
+    }
   }
 
   function renderStatus() {
@@ -1002,6 +1044,7 @@
     const conversation = activeConversation();
     const pending = createPendingAssistant();
     const startedAt = now();
+    state.scrollPinned = true;
     conversation.messages.push(pending);
     touchConversation(conversation);
     renderAll();
@@ -1082,6 +1125,7 @@
     }
     refs.input.value = "";
     resizeInput();
+    state.scrollPinned = true;
     if (editing) {
       const conversation = activeConversation();
       const editIndex = findMessageIndex(conversation, editing.id);
@@ -1141,6 +1185,7 @@
     if (previousUserIndex(conversation.messages, assistantIndex) === -1) {
       return;
     }
+    state.scrollPinned = true;
     conversation.messages = conversation.messages.slice(0, assistantIndex);
     touchConversation(conversation);
     renderAll();
@@ -1163,6 +1208,7 @@
     const item = blankConversation();
     state.conversations.unshift(item);
     state.activeId = item.id;
+    state.scrollPinned = true;
     cancelEditing(true);
     saveState();
     renderAll();
@@ -1173,6 +1219,7 @@
     const conversation = activeConversation();
     conversation.title = "";
     conversation.messages = [];
+    state.scrollPinned = true;
     cancelEditing(true);
     touchConversation(conversation);
     renderAll();
@@ -1222,6 +1269,9 @@
     });
     refs.saveKey.addEventListener("click", saveKey);
     refs.clearKey.addEventListener("click", clearKey);
+    refs.scrollToBottom.addEventListener("click", function () {
+      scrollMessagesToBottom("smooth");
+    });
     refs.openSettings.addEventListener("click", function () {
       openSettings();
     });
@@ -1242,6 +1292,7 @@
       }
     });
     refs.input.addEventListener("input", resizeInput);
+    refs.messages.addEventListener("scroll", handleMessageScroll);
     refs.input.addEventListener("keydown", function (event) {
       if (event.key === "Enter" && !event.shiftKey) {
         event.preventDefault();
@@ -1264,6 +1315,7 @@
     refs.connectionChip = document.getElementById("connection-chip");
     refs.status = document.getElementById("chat-status");
     refs.messages = document.getElementById("message-list");
+    refs.scrollToBottom = document.getElementById("scroll-to-bottom");
     refs.input = document.getElementById("message-input");
     refs.editingBanner = document.getElementById("editing-banner");
     refs.editingTitle = document.getElementById("editing-title");
