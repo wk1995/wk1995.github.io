@@ -564,7 +564,7 @@ html[data-theme="dark"] .chat-answer-label {
   background: var(--surface-strong);
   box-shadow: var(--shadow-soft);
   color: var(--fg);
-  white-space: pre-wrap;
+  white-space: normal;
   word-break: break-word;
 }
 
@@ -591,7 +591,16 @@ html[data-theme="dark"] .chat-answer-label {
 .chat-rich-text p,
 .chat-rich-text ul,
 .chat-rich-text ol,
-.chat-rich-text h3 {
+.chat-rich-text h1,
+.chat-rich-text h2,
+.chat-rich-text h3,
+.chat-rich-text h4,
+.chat-rich-text h5,
+.chat-rich-text h6,
+.chat-rich-text blockquote,
+.chat-rich-text pre,
+.chat-rich-text hr,
+.chat-rich-text table {
   margin: 0;
 }
 
@@ -599,6 +608,26 @@ html[data-theme="dark"] .chat-answer-label {
   white-space: pre-wrap;
   font-size: 1rem;
   line-height: 1.8;
+}
+
+.chat-rich-text a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-color: rgba(77, 107, 255, 0.32);
+  text-underline-offset: 0.16em;
+}
+
+.chat-rich-text strong {
+  font-weight: 700;
+}
+
+.chat-rich-text em {
+  font-style: italic;
+}
+
+.chat-rich-text del {
+  text-decoration: line-through;
+  opacity: 0.8;
 }
 
 .chat-rich-text ul,
@@ -611,16 +640,118 @@ html[data-theme="dark"] .chat-answer-label {
   margin-top: 0.35rem;
 }
 
+.chat-rich-text h1,
+.chat-rich-text h2,
+.chat-rich-text h3,
+.chat-rich-text h4,
+.chat-rich-text h5,
+.chat-rich-text h6 {
+  line-height: 1.35;
+}
+
+.chat-rich-text h1 {
+  font-size: 1.35rem;
+}
+
+.chat-rich-text h2 {
+  font-size: 1.2rem;
+}
+
 .chat-rich-text h3 {
-  font-size: 1.02rem;
+  font-size: 1.08rem;
+}
+
+.chat-rich-text h4,
+.chat-rich-text h5,
+.chat-rich-text h6 {
+  font-size: 1rem;
+}
+
+.chat-rich-text blockquote {
+  padding: 0.9rem 1rem;
+  border-left: 3px solid rgba(77, 107, 255, 0.32);
+  border-radius: 0 16px 16px 0;
+  background: rgba(77, 107, 255, 0.06);
+  color: var(--fg-muted);
+}
+
+.chat-rich-text :not(pre) > code {
+  display: inline-block;
+  padding: 0.08rem 0.4rem;
+  border: 1px solid rgba(77, 107, 255, 0.16);
+  border-radius: 0.5rem;
+  background: rgba(77, 107, 255, 0.08);
+  color: var(--primary);
+  font-size: 0.92em;
+  font-family: "Cascadia Code", "Consolas", monospace;
+}
+
+.chat-rich-text pre {
+  overflow-x: auto;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(23, 35, 57, 0.08);
+  border-radius: 18px;
+  background: #0f172a;
+  color: #e6edf7;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+html[data-theme="dark"] .chat-rich-text pre {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: #09111f;
+}
+
+.chat-rich-text pre code {
+  display: block;
+  white-space: pre;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  font-family: "Cascadia Code", "Consolas", monospace;
+}
+
+.chat-rich-text hr {
+  height: 1px;
+  border: none;
+  background: var(--border);
+}
+
+.chat-rich-text table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.chat-rich-text th,
+.chat-rich-text td {
+  padding: 0.72rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+  font-size: 0.94rem;
+}
+
+.chat-rich-text th {
+  background: rgba(77, 107, 255, 0.08);
+  font-weight: 700;
+}
+
+.chat-rich-text tr:last-child td {
+  border-bottom: none;
 }
 
 .chat-rich-text--reasoning p,
 .chat-rich-text--reasoning ul,
-.chat-rich-text--reasoning ol {
+.chat-rich-text--reasoning ol,
+.chat-rich-text--reasoning blockquote {
   color: var(--fg-muted);
   font-size: 0.92rem;
   line-height: 1.7;
+}
+
+.chat-rich-text--reasoning :not(pre) > code {
+  color: var(--fg);
 }
 
 .chat-reasoning {

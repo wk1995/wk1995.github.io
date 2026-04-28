@@ -700,45 +700,283 @@
 
   function renderRichText(container, text) {
     container.innerHTML = "";
-    const blocks = text.trim().split(/\n{2,}/).filter(Boolean);
-    if (!blocks.length) {
-      const paragraph = document.createElement("p");
-      paragraph.textContent = text.trim();
-      container.appendChild(paragraph);
+    const source = typeof text === "string" ? text.replace(/\r\n?/g, "\n").trim() : "";
+    if (!source) {
       return;
     }
-    blocks.forEach(function (block) {
-      const lines = block.split(/\n/).filter(Boolean);
-      if (lines.every(function (line) { return /^\s*[-*•]\s+/.test(line); })) {
-        const list = document.createElement("ul");
-        lines.forEach(function (line) {
-          const item = document.createElement("li");
-          item.textContent = line.replace(/^\s*[-*•]\s+/, "");
-          list.appendChild(item);
-        });
-        container.appendChild(list);
-        return;
+    renderMarkdownBlocks(container, source);
+  }
+
+  function safeLink(raw) {
+    const input = (raw || "").trim();
+    if (!input) {
+      return "";
+    }
+    try {
+      const target = new URL(input, window.location.href);
+      if (["http:", "https:", "mailto:", "tel:"].indexOf(target.protocol) === -1) {
+        return "";
       }
-      if (lines.every(function (line) { return /^\s*\d+\.\s+/.test(line); })) {
-        const list = document.createElement("ol");
-        lines.forEach(function (line) {
-          const item = document.createElement("li");
-          item.textContent = line.replace(/^\s*\d+\.\s+/, "");
-          list.appendChild(item);
-        });
-        container.appendChild(list);
-        return;
+      return target.href;
+    } catch (error) {
+      return "";
+    }
+  }
+
+  function appendInlineNodes(target, text) {
+    const source = String(text || "");
+    const pattern = /(\[([^\]]+)\]\(([^)\s]+)(?:\s+"([^"]*)")?\))|(`([^`]+)`)|(\*\*([^*]+)\*\*)|(~~([^~]+)~~)|(\*([^*]+)\*)|(_([^_]+)_)/g;
+    let lastIndex = 0;
+    let match = pattern.exec(source);
+    while (match) {
+      if (match.index > lastIndex) {
+        target.appendChild(document.createTextNode(source.slice(lastIndex, match.index)));
       }
-      if (/^\s*#{1,3}\s+/.test(block)) {
-        const heading = document.createElement("h3");
-        heading.textContent = block.replace(/^\s*#{1,3}\s+/, "");
-        container.appendChild(heading);
-        return;
+      if (match[1]) {
+        const href = safeLink(match[3]);
+        if (href) {
+          const link = document.createElement("a");
+          link.href = href;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          if (match[4]) {
+            link.title = match[4];
+          }
+          appendInlineNodes(link, match[2]);
+          target.appendChild(link);
+        } else {
+          target.appendChild(document.createTextNode(match[0]));
+        }
+      } else if (match[5]) {
+        const code = document.createElement("code");
+        code.textContent = match[6];
+        target.appendChild(code);
+      } else if (match[7]) {
+        const strong = document.createElement("strong");
+        appendInlineNodes(strong, match[8]);
+        target.appendChild(strong);
+      } else if (match[9]) {
+        const strike = document.createElement("del");
+        appendInlineNodes(strike, match[10]);
+        target.appendChild(strike);
+      } else if (match[11]) {
+        const emphasis = document.createElement("em");
+        appendInlineNodes(emphasis, match[12]);
+        target.appendChild(emphasis);
+      } else if (match[13]) {
+        const emphasis = document.createElement("em");
+        appendInlineNodes(emphasis, match[14]);
+        target.appendChild(emphasis);
       }
-      const paragraph = document.createElement("p");
-      paragraph.textContent = lines.join("\n");
-      container.appendChild(paragraph);
+      lastIndex = pattern.lastIndex;
+      match = pattern.exec(source);
+    }
+    if (lastIndex < source.length) {
+      target.appendChild(document.createTextNode(source.slice(lastIndex)));
+    }
+  }
+
+  function appendInlineLines(target, text) {
+    const lines = String(text || "").split("\n");
+    lines.forEach(function (line, index) {
+      if (index > 0) {
+        target.appendChild(document.createElement("br"));
+      }
+      appendInlineNodes(target, line);
     });
+  }
+
+  function createParagraph(text) {
+    const paragraph = document.createElement("p");
+    appendInlineLines(paragraph, text);
+    return paragraph;
+  }
+
+  function parseTableRow(line) {
+    const normalized = line.trim().replace(/^\|/, "").replace(/\|$/, "");
+    return normalized.split("|").map(function (cell) {
+      return cell.trim();
+    });
+  }
+
+  function isTableSeparator(line) {
+    const cells = parseTableRow(line);
+    return cells.length > 0 && cells.every(function (cell) {
+      return /^:?-{3,}:?$/.test(cell);
+    });
+  }
+
+  function buildList(lines, ordered) {
+    const list = document.createElement(ordered ? "ol" : "ul");
+    lines.forEach(function (line) {
+      const item = document.createElement("li");
+      const text = ordered
+        ? line.replace(/^\s*\d+\.\s+/, "")
+        : line.replace(/^\s*[-*•]\s+/, "");
+      appendInlineLines(item, text);
+      list.appendChild(item);
+    });
+    return list;
+  }
+
+  function buildCodeBlock(lines, language) {
+    const pre = document.createElement("pre");
+    const code = document.createElement("code");
+    if (language) {
+      code.dataset.language = language;
+    }
+    code.textContent = lines.join("\n");
+    pre.appendChild(code);
+    return pre;
+  }
+
+  function buildTable(lines) {
+    const table = document.createElement("table");
+    const thead = document.createElement("thead");
+    const tbody = document.createElement("tbody");
+    const headers = parseTableRow(lines[0]);
+    const aligns = parseTableRow(lines[1]).map(function (cell) {
+      if (/^:-+:$/.test(cell)) {
+        return "center";
+      }
+      if (/^-+:$/.test(cell)) {
+        return "right";
+      }
+      if (/^:-+$/.test(cell)) {
+        return "left";
+      }
+      return "";
+    });
+    const headRow = document.createElement("tr");
+    headers.forEach(function (cell, index) {
+      const th = document.createElement("th");
+      if (aligns[index]) {
+        th.style.textAlign = aligns[index];
+      }
+      appendInlineLines(th, cell);
+      headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
+    lines.slice(2).forEach(function (line) {
+      const row = document.createElement("tr");
+      parseTableRow(line).forEach(function (cell, index) {
+        const td = document.createElement("td");
+        if (aligns[index]) {
+          td.style.textAlign = aligns[index];
+        }
+        appendInlineLines(td, cell);
+        row.appendChild(td);
+      });
+      tbody.appendChild(row);
+    });
+    table.appendChild(thead);
+    table.appendChild(tbody);
+    return table;
+  }
+
+  function renderMarkdownBlocks(container, source) {
+    const lines = source.split("\n");
+    let index = 0;
+    while (index < lines.length) {
+      const line = lines[index];
+      if (!line.trim()) {
+        index += 1;
+        continue;
+      }
+
+      const codeMatch = line.match(/^\s*```([\w-]+)?\s*$/);
+      if (codeMatch) {
+        const language = codeMatch[1] || "";
+        const codeLines = [];
+        index += 1;
+        while (index < lines.length && !/^\s*```\s*$/.test(lines[index])) {
+          codeLines.push(lines[index]);
+          index += 1;
+        }
+        if (index < lines.length) {
+          index += 1;
+        }
+        container.appendChild(buildCodeBlock(codeLines, language));
+        continue;
+      }
+
+      if (/^\s*(?:---|\*\*\*|___)\s*$/.test(line)) {
+        container.appendChild(document.createElement("hr"));
+        index += 1;
+        continue;
+      }
+
+      const headingMatch = line.match(/^\s*(#{1,6})\s+(.*)$/);
+      if (headingMatch) {
+        const level = Math.min(headingMatch[1].length, 6);
+        const heading = document.createElement("h" + level);
+        appendInlineLines(heading, headingMatch[2].trim());
+        container.appendChild(heading);
+        index += 1;
+        continue;
+      }
+
+      if (/^\s*>\s?/.test(line)) {
+        const quoteLines = [];
+        while (index < lines.length && /^\s*>\s?/.test(lines[index])) {
+          quoteLines.push(lines[index].replace(/^\s*>\s?/, ""));
+          index += 1;
+        }
+        const blockquote = document.createElement("blockquote");
+        renderMarkdownBlocks(blockquote, quoteLines.join("\n"));
+        container.appendChild(blockquote);
+        continue;
+      }
+
+      if (index + 1 < lines.length && /\|/.test(line) && isTableSeparator(lines[index + 1])) {
+        const tableLines = [line, lines[index + 1]];
+        index += 2;
+        while (index < lines.length && /\|/.test(lines[index]) && lines[index].trim()) {
+          tableLines.push(lines[index]);
+          index += 1;
+        }
+        container.appendChild(buildTable(tableLines));
+        continue;
+      }
+
+      if (/^\s*[-*•]\s+/.test(line)) {
+        const listLines = [];
+        while (index < lines.length && /^\s*[-*•]\s+/.test(lines[index])) {
+          listLines.push(lines[index]);
+          index += 1;
+        }
+        container.appendChild(buildList(listLines, false));
+        continue;
+      }
+
+      if (/^\s*\d+\.\s+/.test(line)) {
+        const listLines = [];
+        while (index < lines.length && /^\s*\d+\.\s+/.test(lines[index])) {
+          listLines.push(lines[index]);
+          index += 1;
+        }
+        container.appendChild(buildList(listLines, true));
+        continue;
+      }
+
+      const paragraphLines = [];
+      while (index < lines.length && lines[index].trim()) {
+        if (
+          /^\s*```/.test(lines[index]) ||
+          /^\s*(#{1,6})\s+/.test(lines[index]) ||
+          /^\s*(?:---|\*\*\*|___)\s*$/.test(lines[index]) ||
+          /^\s*>\s?/.test(lines[index]) ||
+          /^\s*[-*•]\s+/.test(lines[index]) ||
+          /^\s*\d+\.\s+/.test(lines[index]) ||
+          (index + 1 < lines.length && /\|/.test(lines[index]) && isTableSeparator(lines[index + 1]))
+        ) {
+          break;
+        }
+        paragraphLines.push(lines[index]);
+        index += 1;
+      }
+      container.appendChild(createParagraph(paragraphLines.join("\n")));
+    }
   }
 
   function createActionButton(kind, labelText) {
