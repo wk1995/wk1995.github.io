@@ -297,6 +297,14 @@ html[data-theme="dark"] .chat-sidebar {
   gap: 1rem;
 }
 
+.chat-stage-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 .chat-stage-copy {
   min-width: 0;
 }
@@ -1350,6 +1358,11 @@ html[data-theme="dark"] .chat-composer-wrap {
 
   .chat-stage-actions {
     align-self: flex-end;
+  }
+
+  .chat-stage-actions .github-auth-slot,
+  .chat-stage-actions .github-auth-actions-inline {
+    width: auto;
   }
 
   .chat-composer-actions {

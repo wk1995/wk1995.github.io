@@ -25,3 +25,28 @@
 ## 联系方式
 
 [kangw1995@gmail.com](mailto:kangw1995@gmail.com)
+
+## GitHub Login Setup
+
+The homepage and chat page now include a GitHub login entry and a feedback form that creates repository issues.
+
+Because this site is deployed on GitHub Pages, the frontend cannot safely store a GitHub OAuth app `client_secret`.
+You need to configure:
+
+1. `assets/github-auth-config.js`
+   - `clientId`: your GitHub OAuth app client ID
+   - `exchangeUrl`: your own HTTPS endpoint that exchanges the OAuth code for an access token
+2. Your OAuth app callback URL should point to:
+   - `https://wk1995.github.io/auth/callback/`
+3. Your exchange endpoint should accept:
+   - `clientId`
+   - `code`
+   - `codeVerifier`
+   - `redirectUri`
+4. Your exchange endpoint should call:
+   - `POST https://github.com/login/oauth/access_token`
+   - using the OAuth app `client_secret` on the server side
+5. Your exchange endpoint should return JSON containing:
+   - `access_token`
+   - `scope`
+   - `token_type`
