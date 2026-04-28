@@ -40,9 +40,12 @@
       settingsNote: "模型与 Key 只保存在当前浏览器本地，不会提交到仓库。",
       savedModelsTitle: "已保存模型",
       composerHint: "Enter 发送，Shift + Enter 换行",
+      dropTitle: "松开以上传附件",
+      dropBody: "支持拖拽文件、粘贴图片或使用附件按钮。",
       clearConversation: "清空当前对话",
       send: "发送",
       resend: "保存并重发",
+      attachAction: "附件",
       newChat: "开启新对话",
       untitled: "新对话",
       emptyTitle: "开始一轮新的 AI 对话",
@@ -93,12 +96,34 @@
       copyAction: "复制文案",
       editAction: "编辑消息",
       regenerateAction: "重新生成",
+      downloadAction: "导出回复",
+      saveAttachmentAction: "另存附件",
+      removeAttachmentAction: "移除附件",
       scrollToBottom: "回到底部",
       editingTitle: "正在编辑用户消息",
       editingDescription: "保存后会从这条用户消息重新生成后续回复。",
       cancelEdit: "取消编辑",
       userRole: "用户消息",
       assistantRole: "助手回复",
+      pickAttachments: "选择附件",
+      attachmentCount: "个附件",
+      attachmentHint: "支持图片、文本、音频、视频和常见文件。文本类附件会提取内容参与对话。",
+      attachmentImageOnly: "图片已附加；当前 DeepSeek 直连版本会随消息保存并可下载，但只向模型发送图片元数据。",
+      attachmentReady: "附件已加入当前消息。",
+      attachmentRemoved: "已移除附件。",
+      attachmentTooMany: "单条消息最多保留 6 个附件。",
+      attachmentTooLarge: "附件过大，当前版本仅支持 2 MB 以内的单个附件。",
+      attachmentUnsupported: "无法读取该附件，请换一个文件重试。",
+      attachmentNone: "暂无附件",
+      attachmentSection: "附件",
+      attachmentKindImage: "图片",
+      attachmentKindText: "文本",
+      attachmentKindAudio: "音频",
+      attachmentKindVideo: "视频",
+      attachmentKindFile: "文件",
+      exportSuccess: "已导出当前回复。",
+      exportFailed: "导出失败，请重试。",
+      multimodalNotice: "DeepSeek 当前公开 chat API 在此页面按文本对话发送；文本类附件会提取内容，其他附件保留预览、下载和元数据。",
     },
     en: {
       metaTitle: "AI Chat Workspace · WK1995",
@@ -118,9 +143,12 @@
       settingsNote: "Model choices and API keys stay only in this browser and are never committed.",
       savedModelsTitle: "Saved models",
       composerHint: "Enter to send, Shift + Enter for a new line",
+      dropTitle: "Drop files to attach",
+      dropBody: "Drag files here, paste images, or use the attachment button.",
       clearConversation: "Clear current chat",
       send: "Send",
       resend: "Save and resend",
+      attachAction: "Attach",
       newChat: "New chat",
       untitled: "New chat",
       emptyTitle: "Start a fresh AI conversation",
@@ -171,16 +199,80 @@
       copyAction: "Copy message",
       editAction: "Edit message",
       regenerateAction: "Regenerate reply",
+      downloadAction: "Export reply",
+      saveAttachmentAction: "Save attachment",
+      removeAttachmentAction: "Remove attachment",
       scrollToBottom: "Scroll to bottom",
       editingTitle: "Editing a user message",
       editingDescription: "Saving will regenerate the downstream reply from this message.",
       cancelEdit: "Cancel edit",
       userRole: "User message",
       assistantRole: "Assistant reply",
+      pickAttachments: "Pick attachments",
+      attachmentCount: "attachments",
+      attachmentHint: "Supports images, text, audio, video, and common files. Text-like attachments are extracted into the conversation.",
+      attachmentImageOnly: "The image is attached and remains downloadable in chat, but this DeepSeek direct chat flow only sends image metadata to the model.",
+      attachmentReady: "Attachment added to the current message.",
+      attachmentRemoved: "Attachment removed.",
+      attachmentTooMany: "A single message can keep up to 6 attachments.",
+      attachmentTooLarge: "The file is too large. This version supports up to 2 MB per attachment.",
+      attachmentUnsupported: "This attachment could not be read. Try another file.",
+      attachmentNone: "No attachments yet",
+      attachmentSection: "Attachments",
+      attachmentKindImage: "Image",
+      attachmentKindText: "Text",
+      attachmentKindAudio: "Audio",
+      attachmentKindVideo: "Video",
+      attachmentKindFile: "File",
+      exportSuccess: "The reply has been exported.",
+      exportFailed: "Export failed. Try again.",
+      multimodalNotice: "This page currently sends DeepSeek chat requests as text. Text-like attachments are extracted for the model; other attachments stay available as previews, downloads, and metadata.",
     },
   };
 
   const refs = {};
+  const MAX_ATTACHMENTS = 6;
+  const MAX_ATTACHMENT_BYTES = 2 * 1024 * 1024;
+  const INLINE_ATTACHMENT_TEXT_LIMIT = 12000;
+  const TEXT_FILE_EXTENSIONS = {
+    txt: true,
+    md: true,
+    markdown: true,
+    json: true,
+    js: true,
+    jsx: true,
+    ts: true,
+    tsx: true,
+    java: true,
+    kt: true,
+    kts: true,
+    xml: true,
+    yml: true,
+    yaml: true,
+    csv: true,
+    tsv: true,
+    html: true,
+    css: true,
+    scss: true,
+    less: true,
+    sql: true,
+    gradle: true,
+    properties: true,
+    log: true,
+    py: true,
+    rb: true,
+    go: true,
+    rs: true,
+    c: true,
+    cc: true,
+    cpp: true,
+    h: true,
+    hpp: true,
+    sh: true,
+    bat: true,
+    ps1: true,
+    swift: true,
+  };
   const state = {
     config: loadConfig(),
     conversations: [],
@@ -189,6 +281,8 @@
     status: { type: "", key: "", raw: "" },
     ui: loadUi(),
     editingMessageId: "",
+    composerAttachments: [],
+    dragDepth: 0,
     scrollPinned: true,
   };
 
@@ -212,8 +306,73 @@
       edit: '<path d="M11.013 1.427a1.75 1.75 0 0 1 2.475 2.475l-7.63 7.63a2.25 2.25 0 0 1-.921.55l-2.19.626a.75.75 0 0 1-.928-.928l.626-2.19a2.25 2.25 0 0 1 .55-.921l7.63-7.63ZM10.5 3.06 3.9 9.66a.75.75 0 0 0-.184.307l-.347 1.215 1.215-.347a.75.75 0 0 0 .307-.184l6.6-6.6-1-.99Z"></path>',
       refresh: '<path d="M8 2.25A5.75 5.75 0 0 1 13.61 7h.89a.75.75 0 0 1 0 1.5h-2.25A.75.75 0 0 1 11.5 7V4.75a.75.75 0 0 1 1.5 0v1.05A4.25 4.25 0 1 0 8 12.25a4.22 4.22 0 0 0 3.128-1.374.75.75 0 1 1 1.102 1.018A5.72 5.72 0 0 1 8 13.75a5.75 5.75 0 1 1 0-11.5Z"></path>',
       clock: '<path d="M8 1.5a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13Zm0 1.5a5 5 0 1 0 0 10A5 5 0 0 0 8 3Zm.75 1.5a.75.75 0 0 0-1.5 0V8c0 .199.079.39.22.53l2 2a.75.75 0 0 0 1.06-1.06L8.75 7.69V4.5Z"></path>',
+      attach: '<path d="M8.75 3.5a2.75 2.75 0 0 0-5.5 0v5.75a4 4 0 1 0 8 0V4.5a2 2 0 1 0-4 0v4.75a.75.75 0 0 0 1.5 0V5a.75.75 0 0 1 1.5 0v4.25a2.5 2.5 0 1 1-5 0V3.5a1.25 1.25 0 0 1 2.5 0v5.75a2.25 2.25 0 0 0 4.5 0V4.5a3.5 3.5 0 1 0-7 0v4.75a.75.75 0 0 0 1.5 0V3.5a2 2 0 0 1 4 0v5.75a.75.75 0 0 0 1.5 0V3.5a3.5 3.5 0 0 0-3.5-3.5Z"></path>',
+      close: '<path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 1 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 1 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>',
+      download: '<path d="M8 1.75a.75.75 0 0 1 .75.75v5.19l1.72-1.72a.75.75 0 0 1 1.06 1.06l-3 3a.75.75 0 0 1-1.06 0l-3-3a.75.75 0 1 1 1.06-1.06l1.72 1.72V2.5A.75.75 0 0 1 8 1.75Zm-4.25 9.5a.75.75 0 0 1 .75.75v.25c0 .138.112.25.25.25h6.5a.25.25 0 0 0 .25-.25V12a.75.75 0 0 1 1.5 0v.25A1.75 1.75 0 0 1 11.25 14h-6.5A1.75 1.75 0 0 1 3 12.25V12a.75.75 0 0 1 .75-.75Z"></path>',
+      image: '<path d="M1.75 3.5A1.75 1.75 0 0 1 3.5 1.75h9A1.75 1.75 0 0 1 14.25 3.5v9a1.75 1.75 0 0 1-1.75 1.75h-9A1.75 1.75 0 0 1 1.75 12.5v-9Zm1.5 7.19 2.1-2.54a.75.75 0 0 1 1.14-.03l1.5 1.72 1.88-2.44a.75.75 0 0 1 1.18.03l1.7 2.13V3.5a.25.25 0 0 0-.25-.25h-9a.25.25 0 0 0-.25.25v7.19ZM11.8 12.75 9.3 9.62l-1.91 2.48a.75.75 0 0 1-1.15.02L4.79 10.4l-1.54 1.87a.25.25 0 0 0 .25.23h8.3Z"></path>',
+      file: '<path d="M3.5 1.75A1.75 1.75 0 0 0 1.75 3.5v9A1.75 1.75 0 0 0 3.5 14.25h9a1.75 1.75 0 0 0 1.75-1.75V6.06a1.75 1.75 0 0 0-.513-1.237L9.427.513A1.75 1.75 0 0 0 8.19 0H3.5Zm4.25 1.56 3.94 3.94H9A1.25 1.25 0 0 1 7.75 6V3.31Z"></path>',
+      audio: '<path d="M10.5 2.75a.75.75 0 0 1 .75.75v6.379a2.25 2.25 0 1 1-1.5-2.12V5.31l-4 1.143v4.43a2.25 2.25 0 1 1-1.5-2.12V4.94a.75.75 0 0 1 .544-.72l5.5-1.571a.75.75 0 0 1 .206-.029Z"></path>',
+      video: '<path d="M2.75 3.25A1.5 1.5 0 0 1 4.25 1.75h4.5a1.5 1.5 0 0 1 1.5 1.5v1.34l2.086-1.192A1 1 0 0 1 13.75 4.27v7.46a1 1 0 0 1-1.414.872L10.25 11.41v1.34a1.5 1.5 0 0 1-1.5 1.5h-4.5a1.5 1.5 0 0 1-1.5-1.5v-9.5Z"></path>',
     };
     return icons[name] || "";
+  }
+
+  function fileExtension(name) {
+    const value = String(name || "");
+    const index = value.lastIndexOf(".");
+    return index === -1 ? "" : value.slice(index + 1).toLowerCase();
+  }
+
+  function attachmentKind(type, name) {
+    if ((type || "").indexOf("image/") === 0) {
+      return "image";
+    }
+    if ((type || "").indexOf("audio/") === 0) {
+      return "audio";
+    }
+    if ((type || "").indexOf("video/") === 0) {
+      return "video";
+    }
+    if (isTextAttachment(type, name)) {
+      return "text";
+    }
+    return "file";
+  }
+
+  function isTextAttachment(type, name) {
+    const value = (type || "").toLowerCase();
+    if (value.indexOf("text/") === 0) {
+      return true;
+    }
+    if (value.indexOf("json") !== -1 || value.indexOf("xml") !== -1 || value.indexOf("javascript") !== -1) {
+      return true;
+    }
+    return Boolean(TEXT_FILE_EXTENSIONS[fileExtension(name)]);
+  }
+
+  function formatBytes(bytes) {
+    const value = Number(bytes) || 0;
+    if (value < 1024) {
+      return value + " B";
+    }
+    if (value < 1024 * 1024) {
+      return (value / 1024).toFixed(1).replace(/\.0$/, "") + " KB";
+    }
+    return (value / (1024 * 1024)).toFixed(1).replace(/\.0$/, "") + " MB";
+  }
+
+  function attachmentKindLabel(kind) {
+    return t(
+      kind === "image"
+        ? "attachmentKindImage"
+        : kind === "text"
+          ? "attachmentKindText"
+          : kind === "audio"
+            ? "attachmentKindAudio"
+            : kind === "video"
+              ? "attachmentKindVideo"
+              : "attachmentKindFile"
+    );
   }
 
   function modelMeta(id) {
@@ -242,12 +401,52 @@
     }
   }
 
+  function readFileAsDataUrl(file) {
+    return new Promise(function (resolve, reject) {
+      const reader = new FileReader();
+      reader.onload = function () {
+        resolve(typeof reader.result === "string" ? reader.result : "");
+      };
+      reader.onerror = function () {
+        reject(reader.error || new Error("Failed to read file"));
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function readFileAsText(file) {
+    return new Promise(function (resolve, reject) {
+      const reader = new FileReader();
+      reader.onload = function () {
+        resolve(typeof reader.result === "string" ? reader.result : "");
+      };
+      reader.onerror = function () {
+        reject(reader.error || new Error("Failed to read file"));
+      };
+      reader.readAsText(file);
+    });
+  }
+
+  function cloneAttachment(attachment) {
+    return {
+      id: attachment && attachment.id ? attachment.id : uid(),
+      name: attachment && attachment.name ? attachment.name : "attachment",
+      type: attachment && attachment.type ? attachment.type : "application/octet-stream",
+      size: attachment && Number(attachment.size) >= 0 ? Number(attachment.size) : 0,
+      kind: attachmentKind(attachment && attachment.type, attachment && attachment.name),
+      dataUrl: attachment && typeof attachment.dataUrl === "string" ? attachment.dataUrl : "",
+      textContent: attachment && typeof attachment.textContent === "string" ? attachment.textContent : "",
+      source: attachment && attachment.source ? attachment.source : "upload",
+    };
+  }
+
   function normalizeMessage(message) {
     return {
       id: message && message.id ? message.id : uid(),
       role: message && message.role === "assistant" ? "assistant" : "user",
       content: message && typeof message.content === "string" ? message.content : "",
       reasoning: message && typeof message.reasoning === "string" ? message.reasoning : "",
+      attachments: Array.isArray(message && message.attachments) ? message.attachments.map(cloneAttachment) : [],
       pending: Boolean(message && message.pending),
       timestamp: message && message.timestamp ? message.timestamp : now(),
       editedAt: message && message.editedAt ? message.editedAt : 0,
@@ -382,12 +581,21 @@
 
   function conversationPreview(item) {
     const visible = item.messages.filter(function (message) {
-      return typeof message.content === "string" && message.content.trim() && !message.pending;
+      return !message.pending && (
+        (typeof message.content === "string" && message.content.trim()) ||
+        (Array.isArray(message.attachments) && message.attachments.length)
+      );
     });
     if (!visible.length) {
       return t("emptyBody");
     }
-    return visible[visible.length - 1].content.trim().replace(/\s+/g, " ").slice(0, 88);
+    const latest = visible[visible.length - 1];
+    if (typeof latest.content === "string" && latest.content.trim()) {
+      return latest.content.trim().replace(/\s+/g, " ").slice(0, 88);
+    }
+    return "[" + t("attachmentSection") + "] " + latest.attachments.map(function (attachment) {
+      return attachment.name;
+    }).join(", ").slice(0, 88);
   }
 
   function maskKey(value) {
@@ -398,6 +606,108 @@
       return value;
     }
     return value.slice(0, 4) + "..." + value.slice(-4);
+  }
+
+  async function fileToAttachment(file, source) {
+    if (!file || typeof file.size !== "number") {
+      throw new Error("attachmentUnsupported");
+    }
+    if (file.size > MAX_ATTACHMENT_BYTES) {
+      throw new Error("attachmentTooLarge");
+    }
+    const kind = attachmentKind(file.type, file.name);
+    const attachment = {
+      id: uid(),
+      name: file.name || "attachment",
+      type: file.type || "application/octet-stream",
+      size: file.size || 0,
+      kind: kind,
+      dataUrl: "",
+      textContent: "",
+      source: source || "upload",
+    };
+    if (kind === "text") {
+      attachment.textContent = await readFileAsText(file);
+    }
+    attachment.dataUrl = await readFileAsDataUrl(file);
+    return attachment;
+  }
+
+  function cloneAttachments(items) {
+    return Array.isArray(items) ? items.map(cloneAttachment) : [];
+  }
+
+  function clearComposerAttachments(skipRender) {
+    state.composerAttachments = [];
+    if (refs.attachmentInput) {
+      refs.attachmentInput.value = "";
+    }
+    if (!skipRender) {
+      renderComposerState();
+    }
+  }
+
+  function removeComposerAttachment(id) {
+    state.composerAttachments = state.composerAttachments.filter(function (attachment) {
+      return attachment.id !== id;
+    });
+    renderComposerState();
+    setStatus("success", "attachmentRemoved");
+  }
+
+  function downloadDataUrl(name, dataUrl) {
+    const link = document.createElement("a");
+    link.href = dataUrl;
+    link.download = name || "download";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  function exportMessage(message) {
+    const name = "reply-" + new Date(message.timestamp).toISOString().replace(/[:.]/g, "-") + ".md";
+    const body = messageCopyPayload(message);
+    const blob = new Blob([body], { type: "text/markdown;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = name;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
+
+  async function addComposerFiles(list, source) {
+    const files = Array.from(list || []).filter(function (item) {
+      return item && typeof item.name === "string";
+    });
+    if (!files.length) {
+      return;
+    }
+    const nextTotal = state.composerAttachments.length + files.length;
+    if (nextTotal > MAX_ATTACHMENTS) {
+      setStatus("error", "attachmentTooMany");
+      return;
+    }
+    const attachments = [];
+    for (let index = 0; index < files.length; index += 1) {
+      try {
+        attachments.push(await fileToAttachment(files[index], source));
+      } catch (error) {
+        setStatus("error", error && error.message ? error.message : "attachmentUnsupported");
+        return;
+      }
+    }
+    state.composerAttachments = state.composerAttachments.concat(attachments);
+    if (refs.attachmentInput) {
+      refs.attachmentInput.value = "";
+    }
+    renderComposerState();
+    const hasImageOnly = attachments.some(function (attachment) {
+      return attachment.kind === "image";
+    });
+    setStatus("success", hasImageOnly ? "attachmentImageOnly" : "attachmentReady");
   }
 
   function activeConversation() {
@@ -497,6 +807,24 @@
   function handleMessageScroll() {
     state.scrollPinned = isNearBottom();
     syncScrollButton();
+  }
+
+  function setDropzoneActive(active) {
+    refs.composerDropzone.hidden = !active;
+    refs.composer.classList.toggle("is-dragging", active);
+  }
+
+  function extractFilesFromItems(items) {
+    const files = [];
+    Array.from(items || []).forEach(function (item) {
+      if (item.kind === "file") {
+        const file = item.getAsFile();
+        if (file) {
+          files.push(file);
+        }
+      }
+    });
+    return files;
   }
 
   function initState() {
@@ -1009,10 +1337,105 @@
   }
 
   function messageCopyPayload(message) {
+    const attachmentText = Array.isArray(message.attachments) && message.attachments.length
+      ? "\n\n" + t("attachmentSection") + ":\n" + message.attachments.map(function (attachment, index) {
+        return (index + 1) + ". " + attachment.name + " (" + attachmentKindLabel(attachment.kind) + ", " + formatBytes(attachment.size) + ")";
+      }).join("\n")
+      : "";
     if (message.role === "assistant" && message.reasoning) {
-      return t("thoughtSection") + ":\n" + message.reasoning.trim() + "\n\n" + t("ai") + ":\n" + message.content.trim();
+      return t("thoughtSection") + ":\n" + message.reasoning.trim() + "\n\n" + t("ai") + ":\n" + message.content.trim() + attachmentText;
     }
-    return message.content.trim();
+    return message.content.trim() + attachmentText;
+  }
+
+  function attachmentSummary(attachment) {
+    return attachmentKindLabel(attachment.kind) + " · " + formatBytes(attachment.size);
+  }
+
+  function attachmentIcon(attachment) {
+    return attachment.kind === "image"
+      ? "image"
+      : attachment.kind === "audio"
+        ? "audio"
+        : attachment.kind === "video"
+          ? "video"
+          : "file";
+  }
+
+  function renderAttachmentCollection(target, attachments, options) {
+    if (!Array.isArray(attachments) || !attachments.length) {
+      target.hidden = true;
+      target.innerHTML = "";
+      return;
+    }
+    const config = options || {};
+    target.hidden = false;
+    target.innerHTML = "";
+    attachments.forEach(function (attachment) {
+      const card = document.createElement("article");
+      const header = document.createElement("div");
+      const label = document.createElement("div");
+      const title = document.createElement("strong");
+      const meta = document.createElement("span");
+      const actions = document.createElement("div");
+      const preview = document.createElement("div");
+
+      card.className = "chat-attachment-card" + (attachment.kind === "image" ? " is-image" : "");
+      header.className = "chat-attachment-head";
+      label.className = "chat-attachment-label";
+      meta.className = "chat-attachment-meta";
+      actions.className = "chat-attachment-actions";
+      preview.className = "chat-attachment-preview";
+
+      title.textContent = attachment.name;
+      meta.textContent = attachmentSummary(attachment);
+      label.innerHTML = '<span class="chat-attachment-icon" aria-hidden="true"><svg viewBox="0 0 16 16">' + icon(attachmentIcon(attachment)) + "</svg></span>";
+      label.appendChild(title);
+      label.appendChild(meta);
+
+      if (attachment.kind === "image" && attachment.dataUrl) {
+        const image = document.createElement("img");
+        image.src = attachment.dataUrl;
+        image.alt = attachment.name;
+        preview.appendChild(image);
+      } else if (attachment.kind === "text" && attachment.textContent) {
+        const snippet = document.createElement("pre");
+        snippet.textContent = attachment.textContent.slice(0, 320);
+        preview.appendChild(snippet);
+      } else {
+        const hint = document.createElement("span");
+        hint.textContent = attachmentKindLabel(attachment.kind);
+        preview.appendChild(hint);
+      }
+
+      if (attachment.dataUrl) {
+        const download = document.createElement("button");
+        download.type = "button";
+        download.className = "chat-attachment-action";
+        download.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true">' + icon("download") + '</svg><span>' + t("saveAttachmentAction") + "</span>";
+        download.addEventListener("click", function () {
+          downloadDataUrl(attachment.name, attachment.dataUrl);
+        });
+        actions.appendChild(download);
+      }
+
+      if (typeof config.onRemove === "function") {
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "chat-attachment-action is-danger";
+        remove.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true">' + icon("close") + '</svg><span>' + t("removeAttachmentAction") + "</span>";
+        remove.addEventListener("click", function () {
+          config.onRemove(attachment.id);
+        });
+        actions.appendChild(remove);
+      }
+
+      header.appendChild(label);
+      header.appendChild(actions);
+      card.appendChild(header);
+      card.appendChild(preview);
+      target.appendChild(card);
+    });
   }
 
   function renderMessage(message, index, messages) {
@@ -1027,6 +1450,8 @@
     const content = document.createElement("div");
     const footer = document.createElement("div");
     const answerBlock = document.createElement("div");
+    const attachments = document.createElement("div");
+    const hasContent = Boolean((message.content || "").trim()) || message.pending;
 
     article.className = "chat-message";
     article.dataset.role = message.role;
@@ -1038,6 +1463,7 @@
     content.className = "chat-rich-text";
     footer.className = "chat-message-footer";
     answerBlock.className = "chat-answer-block";
+    attachments.className = "chat-message-attachments";
 
     avatar.textContent = message.role === "user" ? t("userAvatar") : t("aiAvatar");
     avatar.setAttribute("aria-label", message.role === "user" ? t("userRole") : t("assistantRole"));
@@ -1065,24 +1491,31 @@
       body.appendChild(reasoning);
     }
 
-    if (message.pending) {
-      content.innerHTML = "<p>" + t("thinking") + "</p>";
-      bubble.classList.add("is-pending");
-    } else {
-      renderRichText(content, message.content);
+    renderAttachmentCollection(attachments, message.attachments || []);
+    if (!attachments.hidden) {
+      body.appendChild(attachments);
     }
 
-    bubble.appendChild(content);
+    if (hasContent) {
+      if (message.pending) {
+        content.innerHTML = "<p>" + t("thinking") + "</p>";
+        bubble.classList.add("is-pending");
+      } else {
+        renderRichText(content, message.content);
+      }
 
-    if (message.role === "assistant" && !message.pending) {
-      const answerLabel = document.createElement("div");
-      answerLabel.className = "chat-answer-label";
-      answerLabel.textContent = t("answerSection");
-      answerBlock.appendChild(answerLabel);
-      answerBlock.appendChild(bubble);
-      body.appendChild(answerBlock);
-    } else {
-      body.appendChild(bubble);
+      bubble.appendChild(content);
+
+      if (message.role === "assistant" && !message.pending) {
+        const answerLabel = document.createElement("div");
+        answerLabel.className = "chat-answer-label";
+        answerLabel.textContent = t("answerSection");
+        answerBlock.appendChild(answerLabel);
+        answerBlock.appendChild(bubble);
+        body.appendChild(answerBlock);
+      } else {
+        body.appendChild(bubble);
+      }
     }
 
     if (message.role === "user" && !message.pending) {
@@ -1095,6 +1528,7 @@
       });
       editButton.addEventListener("click", function () {
         state.editingMessageId = message.id;
+        state.composerAttachments = cloneAttachments(message.attachments);
         setDraft(message.content);
         renderComposerState();
         setStatus("success", "statusEditing");
@@ -1119,6 +1553,16 @@
         });
       });
       footer.appendChild(copyButton);
+      const exportButton = createActionButton("download", t("downloadAction"));
+      exportButton.addEventListener("click", function () {
+        try {
+          exportMessage(message);
+          setStatus("success", "exportSuccess");
+        } catch (error) {
+          setStatus("error", "exportFailed");
+        }
+      });
+      footer.appendChild(exportButton);
       if (index === messages.length - 1) {
         const regenerateButton = createActionButton("refresh", t("regenerateAction"));
         regenerateButton.addEventListener("click", function () {
@@ -1199,6 +1643,9 @@
     refs.editingBanner.hidden = !editing;
     refs.send.textContent = editing ? t("resend") : t("send");
     refs.cancelEdit.hidden = !editing;
+    renderAttachmentCollection(refs.composerAttachments, state.composerAttachments, {
+      onRemove: removeComposerAttachment,
+    });
   }
 
   function syncSettingsPanel() {
@@ -1226,9 +1673,13 @@
     saveState();
   }
 
-  function ensureConversationTitle(item, text) {
+  function ensureConversationTitle(item, text, attachments) {
     if (!item.title && text) {
       item.title = text.trim().slice(0, 28);
+      return;
+    }
+    if (!item.title && Array.isArray(attachments) && attachments.length) {
+      item.title = attachments[0].name.slice(0, 28);
     }
   }
 
@@ -1243,6 +1694,35 @@
     });
   }
 
+  function attachmentPromptSection(attachment, index) {
+    const lines = [
+      "[" + (index + 1) + "] " + attachment.name,
+      "- type: " + attachment.type,
+      "- size: " + formatBytes(attachment.size),
+      "- kind: " + attachment.kind,
+    ];
+    if (attachment.kind === "text" && attachment.textContent) {
+      lines.push("- extracted_text:");
+      lines.push(attachment.textContent.slice(0, INLINE_ATTACHMENT_TEXT_LIMIT));
+    } else if (attachment.kind === "image") {
+      lines.push("- note: " + t("attachmentImageOnly"));
+    } else {
+      lines.push("- note: " + t("multimodalNotice"));
+    }
+    return lines.join("\n");
+  }
+
+  function composeUserMessageContent(message) {
+    const base = (message.content || "").trim();
+    if (!Array.isArray(message.attachments) || !message.attachments.length) {
+      return base;
+    }
+    const sections = message.attachments.map(function (attachment, index) {
+      return attachmentPromptSection(attachment, index);
+    });
+    return (base ? base + "\n\n" : "") + "[" + t("attachmentSection") + "]\n" + sections.join("\n\n");
+  }
+
   function requestMessages() {
     return [{ role: "system", content: t("prompt") }].concat(
       activeConversation().messages
@@ -1250,7 +1730,10 @@
           return (item.role === "user" || item.role === "assistant") && !item.pending;
         })
         .map(function (item) {
-          return { role: item.role, content: item.content };
+          return {
+            role: item.role,
+            content: item.role === "user" ? composeUserMessageContent(item) : item.content,
+          };
         })
     );
   }
@@ -1347,7 +1830,14 @@
   async function sendMessage() {
     const text = refs.input.value.trim();
     const editing = activeEditingMessage();
+    const draftAttachments = cloneAttachments(state.composerAttachments);
     if (!text) {
+      if (!draftAttachments.length) {
+        setStatus("error", "statusMessage");
+        return;
+      }
+    }
+    if (!text && !draftAttachments.length) {
       setStatus("error", "statusMessage");
       return;
     }
@@ -1374,14 +1864,18 @@
       conversation.messages[editIndex] = normalizeMessage({
         ...conversation.messages[editIndex],
         content: text,
+        attachments: draftAttachments,
         timestamp: now(),
         editedAt: now(),
       });
       conversation.messages = conversation.messages.slice(0, editIndex + 1);
       if (editIndex === 0) {
-        conversation.title = text.trim().slice(0, 28);
+        conversation.title = text.trim()
+          ? text.trim().slice(0, 28)
+          : (draftAttachments[0] ? draftAttachments[0].name.slice(0, 28) : "");
       }
       touchConversation(conversation);
+      clearComposerAttachments(true);
       cancelEditing(true);
       renderAll();
       await runAssistantReply("statusSending");
@@ -1391,12 +1885,14 @@
     const userMessage = normalizeMessage({
       role: "user",
       content: text,
+      attachments: draftAttachments,
       pending: false,
       timestamp: now(),
     });
-    ensureConversationTitle(conversation, text);
+    ensureConversationTitle(conversation, text, draftAttachments);
     conversation.messages.push(userMessage);
     touchConversation(conversation);
+    clearComposerAttachments(true);
     renderAll();
     await runAssistantReply("statusSending");
   }
@@ -1435,6 +1931,8 @@
     refs.newChat.disabled = state.busy;
     refs.clearChat.disabled = state.busy;
     refs.cancelEdit.disabled = state.busy;
+    refs.pickAttachments.disabled = state.busy;
+    refs.attachmentInput.disabled = state.busy;
     refs.input.disabled = state.busy;
     refs.modelSelect.disabled = state.busy;
     refs.keyInput.disabled = state.busy;
@@ -1447,6 +1945,7 @@
     state.conversations.unshift(item);
     state.activeId = item.id;
     state.scrollPinned = true;
+    clearComposerAttachments(true);
     cancelEditing(true);
     saveState();
     renderAll();
@@ -1458,6 +1957,7 @@
     conversation.title = "";
     conversation.messages = [];
     state.scrollPinned = true;
+    clearComposerAttachments(true);
     cancelEditing(true);
     touchConversation(conversation);
     renderAll();
@@ -1502,8 +2002,14 @@
     refs.newChat.addEventListener("click", createConversation);
     refs.clearChat.addEventListener("click", clearConversation);
     refs.send.addEventListener("click", sendMessage);
+    refs.pickAttachments.addEventListener("click", function () {
+      refs.attachmentInput.click();
+    });
     refs.cancelEdit.addEventListener("click", function () {
       cancelEditing();
+    });
+    refs.attachmentInput.addEventListener("change", function (event) {
+      addComposerFiles(event.target.files, "upload");
     });
     refs.saveKey.addEventListener("click", saveKey);
     refs.clearKey.addEventListener("click", clearKey);
@@ -1530,11 +2036,54 @@
       }
     });
     refs.input.addEventListener("input", resizeInput);
+    refs.input.addEventListener("paste", function (event) {
+      const files = extractFilesFromItems(event.clipboardData && event.clipboardData.items);
+      if (files.length) {
+        event.preventDefault();
+        addComposerFiles(files, "paste");
+      }
+    });
     refs.messages.addEventListener("scroll", handleMessageScroll);
     refs.input.addEventListener("keydown", function (event) {
       if (event.key === "Enter" && !event.shiftKey) {
         event.preventDefault();
         sendMessage();
+      }
+    });
+    refs.composer.addEventListener("dragenter", function (event) {
+      event.preventDefault();
+      state.dragDepth += 1;
+      setDropzoneActive(true);
+    });
+    refs.composer.addEventListener("dragover", function (event) {
+      event.preventDefault();
+      setDropzoneActive(true);
+    });
+    refs.composer.addEventListener("dragleave", function (event) {
+      event.preventDefault();
+      if (event.target === refs.composer || !refs.composer.contains(event.relatedTarget)) {
+        state.dragDepth = Math.max(state.dragDepth - 1, 0);
+      }
+      if (!state.dragDepth) {
+        setDropzoneActive(false);
+      }
+    });
+    refs.composer.addEventListener("drop", function (event) {
+      event.preventDefault();
+      state.dragDepth = 0;
+      setDropzoneActive(false);
+      addComposerFiles(event.dataTransfer && event.dataTransfer.files, "drop");
+    });
+    window.addEventListener("dragover", function (event) {
+      if (event.dataTransfer && Array.from(event.dataTransfer.types || []).indexOf("Files") !== -1) {
+        event.preventDefault();
+      }
+    });
+    window.addEventListener("drop", function (event) {
+      if (!refs.composer.contains(event.target)) {
+        event.preventDefault();
+        state.dragDepth = 0;
+        setDropzoneActive(false);
       }
     });
     window.addEventListener("keydown", function (event) {
@@ -1554,7 +2103,12 @@
     refs.status = document.getElementById("chat-status");
     refs.messages = document.getElementById("message-list");
     refs.scrollToBottom = document.getElementById("scroll-to-bottom");
+    refs.composer = document.querySelector(".chat-main-composer");
+    refs.composerDropzone = document.getElementById("composer-dropzone");
+    refs.composerAttachments = document.getElementById("composer-attachments");
     refs.input = document.getElementById("message-input");
+    refs.attachmentInput = document.getElementById("attachment-input");
+    refs.pickAttachments = document.getElementById("pick-attachments");
     refs.editingBanner = document.getElementById("editing-banner");
     refs.editingTitle = document.getElementById("editing-title");
     refs.editingDescription = document.getElementById("editing-description");

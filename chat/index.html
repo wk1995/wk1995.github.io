@@ -92,6 +92,7 @@
 
       <div class="chat-composer-wrap">
         <div class="chat-main-composer">
+          <input id="attachment-input" type="file" multiple hidden>
           <div class="chat-editing-banner" id="editing-banner" hidden>
             <div>
               <strong id="editing-title">正在编辑消息</strong>
@@ -99,10 +100,21 @@
             </div>
             <button class="chat-secondary-button" id="cancel-edit" type="button">取消编辑</button>
           </div>
+          <div class="chat-composer-dropzone" id="composer-dropzone" hidden>
+            <strong data-chat-text="dropTitle">松开以上传附件</strong>
+            <p data-chat-text="dropBody">支持拖拽文件、粘贴图片或使用附件按钮。</p>
+          </div>
+          <div class="chat-composer-attachments" id="composer-attachments" hidden></div>
           <textarea id="message-input" rows="1" placeholder="输入你的问题，按 Enter 发送"></textarea>
           <div class="chat-composer-row">
             <span class="chat-composer-hint" data-chat-text="composerHint">Enter 发送，Shift + Enter 换行</span>
             <div class="chat-composer-actions">
+              <button class="chat-secondary-button" id="pick-attachments" type="button" data-chat-aria="pickAttachments">
+                <svg viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M8.75 3.5a2.75 2.75 0 0 0-5.5 0v5.75a4 4 0 1 0 8 0V4.5a2 2 0 1 0-4 0v4.75a.75.75 0 0 0 1.5 0V5a.75.75 0 0 1 1.5 0v4.25a2.5 2.5 0 1 1-5 0V3.5a1.25 1.25 0 0 1 2.5 0v5.75a2.25 2.25 0 0 0 4.5 0V4.5a3.5 3.5 0 1 0-7 0v4.75a.75.75 0 0 0 1.5 0V3.5a2 2 0 0 1 4 0v5.75a.75.75 0 0 0 1.5 0V3.5a3.5 3.5 0 0 0-3.5-3.5Z"></path>
+                </svg>
+                <span data-chat-text="attachAction">附件</span>
+              </button>
               <button class="chat-secondary-button" id="clear-conversation" type="button" data-chat-text="clearConversation">
                 清空当前对话
               </button>
@@ -159,6 +171,7 @@
         </div>
         <div class="chat-saved-model-list" id="saved-model-list"></div>
       </div>
+
     </aside>
   </div>
 
