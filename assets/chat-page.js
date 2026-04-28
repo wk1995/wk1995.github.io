@@ -1,7 +1,13 @@
 (function () {
-  const CONFIG_KEY = "wk1995-ai-chat-config";
-  const STATE_KEY = "wk1995-ai-chat-page-state";
+  const LEGACY_CONFIG_KEY = "wk1995-ai-chat-config";
+  const LEGACY_STATE_KEY = "wk1995-ai-chat-page-state";
   const UI_KEY = "wk1995-ai-chat-page-ui";
+  const STORAGE_BOOTSTRAP_KEY = "wk1995-ai-chat-storage-bootstrap";
+  const DEFAULT_STORAGE_PATHS = {
+    chatList: "wk1995/cache/chat-list",
+    chatRecords: "wk1995/cache/chat-records",
+    modelApi: "wk1995/cache/model-api",
+  };
   const API_URL = "https://api.deepseek.com/chat/completions";
   const MODELS = [
     { id: "deepseek-v4-flash", labels: { zh: "DeepSeek V4 Flash", en: "DeepSeek V4 Flash" } },
@@ -32,6 +38,27 @@
       settingsEyebrow: "Settings",
       settingsTitle: "参数设置",
       settingsHelper: "选择模型并保存当前浏览器的 API Key。",
+      storageSectionTitle: "缓存路径",
+      storageListLabel: "聊天列表缓存路径",
+      storageRecordsLabel: "聊天记录缓存路径",
+      storageApiLabel: "大模型 API 缓存路径",
+      storagePathPlaceholder: "输入浏览器本地缓存命名空间，例如 wk1995/cache/chat-list",
+      storagePathNote: "这里的“路径”是浏览器本地缓存命名空间，不是真实磁盘目录。切换路径时会把当前数据写入新路径，旧路径数据会保留。",
+      saveStoragePaths: "保存路径",
+      resetStoragePaths: "恢复默认",
+      storageSaved: "缓存路径已保存，当前数据已写入新的本地命名空间。",
+      storageReset: "缓存路径已恢复默认值。",
+      backupSectionTitle: "备份与恢复",
+      exportBackup: "导出整包备份",
+      importBackup: "恢复备份",
+      backupNote: "备份文件会包含三组缓存路径，以及聊天列表、聊天记录和模型 API 配置，方便换设备恢复。",
+      exportModule: "导出",
+      backupImported: "备份已恢复到当前浏览器。",
+      backupInvalid: "备份文件无效或格式不正确。",
+      backupExported: "备份文件已导出。",
+      moduleChatList: "聊天列表",
+      moduleChatRecords: "聊天记录",
+      moduleModelApi: "大模型 API",
       modelLabel: "模型选择",
       keyLabel: "DeepSeek API Key",
       keyPlaceholder: "粘贴当前模型对应的 API Key",
@@ -135,6 +162,27 @@
       settingsEyebrow: "Settings",
       settingsTitle: "Model Settings",
       settingsHelper: "Choose a model and save the API key in this browser.",
+      storageSectionTitle: "Cache Paths",
+      storageListLabel: "Chat list cache path",
+      storageRecordsLabel: "Chat record cache path",
+      storageApiLabel: "Model API cache path",
+      storagePathPlaceholder: "Enter a browser storage namespace, for example wk1995/cache/chat-list",
+      storagePathNote: "This “path” is a browser storage namespace, not a real disk folder. Switching paths writes current data into the new namespace and keeps the old one untouched.",
+      saveStoragePaths: "Save paths",
+      resetStoragePaths: "Reset defaults",
+      storageSaved: "Cache paths have been saved and the current data has been written to the new namespaces.",
+      storageReset: "Cache paths have been reset to defaults.",
+      backupSectionTitle: "Backup & Restore",
+      exportBackup: "Export full backup",
+      importBackup: "Restore backup",
+      backupNote: "The backup file contains the three cache paths plus chat list, chat records, and model API settings for device migration.",
+      exportModule: "Export",
+      backupImported: "The backup has been restored in this browser.",
+      backupInvalid: "The backup file is invalid or uses an unsupported format.",
+      backupExported: "The backup file has been exported.",
+      moduleChatList: "Chat list",
+      moduleChatRecords: "Chat records",
+      moduleModelApi: "Model API",
       modelLabel: "Model",
       keyLabel: "DeepSeek API Key",
       keyPlaceholder: "Paste the API key for the selected model",
@@ -273,8 +321,10 @@
     ps1: true,
     swift: true,
   };
+  const initialStorage = loadStorageConfig();
   const state = {
-    config: loadConfig(),
+    storage: initialStorage,
+    config: loadConfig(initialStorage),
     conversations: [],
     activeId: "",
     busy: false,
@@ -401,6 +451,24 @@
     }
   }
 
+  function normalizeStoragePath(value, fallback) {
+    const path = typeof value === "string" ? value.trim() : "";
+    return path || fallback;
+  }
+
+  function storageKey(moduleName, paths) {
+    const source = paths || state.storage;
+    return normalizeStoragePath(source[moduleName], DEFAULT_STORAGE_PATHS[moduleName]);
+  }
+
+  function loadStorageConfig() {
+    return normalizedStorageConfig(loadJson(STORAGE_BOOTSTRAP_KEY));
+  }
+
+  function saveStorageConfig() {
+    localStorage.setItem(STORAGE_BOOTSTRAP_KEY, JSON.stringify(state.storage));
+  }
+
   function readFileAsDataUrl(file) {
     return new Promise(function (resolve, reject) {
       const reader = new FileReader();
@@ -456,8 +524,11 @@
     };
   }
 
-  function loadConfig() {
-    const raw = loadJson(CONFIG_KEY);
+  function loadConfig(paths) {
+    let raw = loadJson(storageKey("modelApi", paths));
+    if (!Object.keys(raw).length) {
+      raw = loadJson(LEGACY_CONFIG_KEY);
+    }
     const keys = {};
     Object.keys(raw.keys || {}).forEach(function (id) {
       const value = typeof raw.keys[id] === "string" ? raw.keys[id].trim() : "";
@@ -472,7 +543,7 @@
   }
 
   function saveConfig() {
-    localStorage.setItem(CONFIG_KEY, JSON.stringify(state.config));
+    localStorage.setItem(storageKey("modelApi"), JSON.stringify(state.config));
   }
 
   function loadUi() {
@@ -484,6 +555,82 @@
 
   function saveUi() {
     localStorage.setItem(UI_KEY, JSON.stringify(state.ui));
+  }
+
+  function normalizedStorageConfig(raw, fallback) {
+    const base = fallback || DEFAULT_STORAGE_PATHS;
+    return {
+      chatList: normalizeStoragePath(raw && raw.chatList, base.chatList || DEFAULT_STORAGE_PATHS.chatList),
+      chatRecords: normalizeStoragePath(raw && raw.chatRecords, base.chatRecords || DEFAULT_STORAGE_PATHS.chatRecords),
+      modelApi: normalizeStoragePath(raw && raw.modelApi, base.modelApi || DEFAULT_STORAGE_PATHS.modelApi),
+    };
+  }
+
+  function moduleLabel(moduleName) {
+    return t(
+      moduleName === "chatList"
+        ? "moduleChatList"
+        : moduleName === "chatRecords"
+          ? "moduleChatRecords"
+          : "moduleModelApi"
+    );
+  }
+
+  function exportJsonFile(fileName, payload) {
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
+
+  function persistAllData(paths) {
+    localStorage.setItem(storageKey("modelApi", paths), JSON.stringify(state.config));
+    localStorage.setItem(
+      storageKey("chatList", paths),
+      JSON.stringify(listPayloadFromConversations(state.conversations, state.activeId))
+    );
+    localStorage.setItem(
+      storageKey("chatRecords", paths),
+      JSON.stringify(recordPayloadFromConversations(state.conversations))
+    );
+  }
+
+  function exportModuleBackup(moduleName) {
+    const payload = {
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      module: moduleName,
+      storage: { [moduleName]: storageKey(moduleName) },
+      data: moduleName === "chatList"
+        ? listPayloadFromConversations(state.conversations, state.activeId)
+        : moduleName === "chatRecords"
+          ? recordPayloadFromConversations(state.conversations)
+          : state.config,
+    };
+    exportJsonFile(
+      "wk1995-ai-chat-" + moduleName + "-backup.json",
+      payload
+    );
+    setStatus("success", "backupExported");
+  }
+
+  function exportFullBackup() {
+    exportJsonFile("wk1995-ai-chat-backup.json", {
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      storage: state.storage,
+      modules: {
+        chatList: listPayloadFromConversations(state.conversations, state.activeId),
+        chatRecords: recordPayloadFromConversations(state.conversations),
+        modelApi: state.config,
+      },
+    });
+    setStatus("success", "backupExported");
   }
 
   function selectedModel() {
@@ -738,11 +885,117 @@
     return -1;
   }
 
+  function listPayloadFromConversations(conversations, activeId) {
+    return {
+      activeId: activeId || "",
+      conversations: conversations.map(function (item) {
+        return {
+          id: item.id,
+          title: item.title,
+          createdAt: item.createdAt,
+          updatedAt: item.updatedAt,
+        };
+      }),
+    };
+  }
+
+  function recordPayloadFromConversations(conversations) {
+    return {
+      conversations: conversations.map(function (item) {
+        return {
+          id: item.id,
+          messages: item.messages.map(normalizeMessage),
+        };
+      }),
+    };
+  }
+
+  function loadConversationState(paths) {
+    let listRaw = loadJson(storageKey("chatList", paths));
+    let recordRaw = loadJson(storageKey("chatRecords", paths));
+    const hasList = Array.isArray(listRaw.conversations);
+    const hasRecords = Array.isArray(recordRaw.conversations);
+    if (!hasList && !hasRecords) {
+      const legacy = loadJson(LEGACY_STATE_KEY);
+      const items = Array.isArray(legacy.conversations) ? legacy.conversations : [];
+      return {
+        activeId: typeof legacy.activeId === "string" ? legacy.activeId : "",
+        conversations: items
+          .filter(function (item) {
+            return item && item.id && Array.isArray(item.messages);
+          })
+          .map(function (item) {
+            return {
+              id: item.id,
+              title: typeof item.title === "string" ? item.title : "",
+              createdAt: item.createdAt || now(),
+              updatedAt: item.updatedAt || now(),
+              messages: item.messages.map(normalizeMessage),
+            };
+          }),
+      };
+    }
+    const metaMap = {};
+    (Array.isArray(listRaw.conversations) ? listRaw.conversations : []).forEach(function (item) {
+      if (item && item.id) {
+        metaMap[item.id] = {
+          id: item.id,
+          title: typeof item.title === "string" ? item.title : "",
+          createdAt: item.createdAt || now(),
+          updatedAt: item.updatedAt || now(),
+          messages: [],
+        };
+      }
+    });
+    (Array.isArray(recordRaw.conversations) ? recordRaw.conversations : []).forEach(function (item) {
+      if (!item || !item.id || !Array.isArray(item.messages)) {
+        return;
+      }
+      if (!metaMap[item.id]) {
+        metaMap[item.id] = {
+          id: item.id,
+          title: "",
+          createdAt: now(),
+          updatedAt: now(),
+          messages: [],
+        };
+      }
+      metaMap[item.id].messages = item.messages.map(normalizeMessage);
+    });
+    const conversations = Object.keys(metaMap).map(function (id) {
+      return metaMap[id];
+    }).sort(function (a, b) {
+      return b.updatedAt - a.updatedAt;
+    });
+    return {
+      activeId: typeof listRaw.activeId === "string" ? listRaw.activeId : "",
+      conversations: conversations,
+    };
+  }
+
+  function applyConversationState(raw) {
+    state.conversations = Array.isArray(raw && raw.conversations) ? raw.conversations : [];
+    if (!state.conversations.length) {
+      state.conversations = [blankConversation()];
+    }
+    state.activeId = state.conversations.some(function (item) {
+      return item.id === raw.activeId;
+    }) ? raw.activeId : state.conversations[0].id;
+  }
+
   function saveState() {
-    localStorage.setItem(STATE_KEY, JSON.stringify({
-      activeId: state.activeId,
-      conversations: state.conversations,
-    }));
+    try {
+      localStorage.setItem(
+        storageKey("chatList"),
+        JSON.stringify(listPayloadFromConversations(state.conversations, state.activeId))
+      );
+      localStorage.setItem(
+        storageKey("chatRecords"),
+        JSON.stringify(recordPayloadFromConversations(state.conversations))
+      );
+    } catch (error) {
+      console.warn("Failed to persist chat state", error);
+    }
   }
 
   function setStatus(type, key, raw) {
@@ -828,27 +1081,8 @@
   }
 
   function initState() {
-    const raw = loadJson(STATE_KEY);
-    const items = Array.isArray(raw.conversations) ? raw.conversations : [];
-    state.conversations = items
-      .filter(function (item) {
-        return item && item.id && Array.isArray(item.messages);
-      })
-      .map(function (item) {
-        return {
-          id: item.id,
-          title: typeof item.title === "string" ? item.title : "",
-          createdAt: item.createdAt || now(),
-          updatedAt: item.updatedAt || now(),
-          messages: item.messages.map(normalizeMessage),
-        };
-      });
-    if (!state.conversations.length) {
-      state.conversations = [blankConversation()];
-    }
-    state.activeId = state.conversations.some(function (item) {
-      return item.id === raw.activeId;
-    }) ? raw.activeId : state.conversations[0].id;
+    const raw = loadConversationState(state.storage);
+    applyConversationState(raw);
     if (needsSetup()) {
       state.ui.settingsOpen = true;
     }
@@ -911,6 +1145,9 @@
       node.setAttribute("title", t(key));
     });
     refs.keyInput.setAttribute("placeholder", t("keyPlaceholder"));
+    refs.storageChatList.setAttribute("placeholder", t("storagePathPlaceholder"));
+    refs.storageChatRecords.setAttribute("placeholder", t("storagePathPlaceholder"));
+    refs.storageModelApi.setAttribute("placeholder", t("storagePathPlaceholder"));
     refs.input.setAttribute("placeholder", needsSetup() ? t("placeholderMissing") : t("placeholderReady"));
     refs.editingTitle.textContent = t("editingTitle");
     refs.editingDescription.textContent = t("editingDescription");
@@ -1658,6 +1895,7 @@
   function renderAll() {
     applyStaticText();
     renderModelSelect();
+    renderStorageSettings();
     renderSetupBanner();
     renderSavedModels();
     renderHistory();
@@ -1938,6 +2176,17 @@
     refs.keyInput.disabled = state.busy;
     refs.saveKey.disabled = state.busy;
     refs.clearKey.disabled = state.busy;
+    refs.storageChatList.disabled = state.busy;
+    refs.storageChatRecords.disabled = state.busy;
+    refs.storageModelApi.disabled = state.busy;
+    refs.saveStoragePaths.disabled = state.busy;
+    refs.resetStoragePaths.disabled = state.busy;
+    refs.exportChatList.disabled = state.busy;
+    refs.exportChatRecords.disabled = state.busy;
+    refs.exportModelApi.disabled = state.busy;
+    refs.exportBackup.disabled = state.busy;
+    refs.importBackup.disabled = state.busy;
+    refs.backupImportInput.disabled = state.busy;
   }
 
   function createConversation() {
@@ -1998,6 +2247,90 @@
     setStatus("success", "statusCleared");
   }
 
+  function currentStorageInputs() {
+    return normalizedStorageConfig({
+      chatList: refs.storageChatList.value,
+      chatRecords: refs.storageChatRecords.value,
+      modelApi: refs.storageModelApi.value,
+    }, state.storage);
+  }
+
+  function renderStorageSettings() {
+    refs.storageChatList.value = storageKey("chatList");
+    refs.storageChatRecords.value = storageKey("chatRecords");
+    refs.storageModelApi.value = storageKey("modelApi");
+  }
+
+  function saveStoragePaths() {
+    const next = currentStorageInputs();
+    persistAllData(next);
+    state.storage = next;
+    saveStorageConfig();
+    state.config = loadConfig(state.storage);
+    applyConversationState(loadConversationState(state.storage));
+    renderAll();
+    setStatus("success", "storageSaved");
+  }
+
+  function resetStoragePaths() {
+    state.storage = normalizedStorageConfig(DEFAULT_STORAGE_PATHS, DEFAULT_STORAGE_PATHS);
+    persistAllData(state.storage);
+    saveStorageConfig();
+    state.config = loadConfig(state.storage);
+    applyConversationState(loadConversationState(state.storage));
+    renderAll();
+    setStatus("success", "storageReset");
+  }
+
+  async function importBackupFile(file) {
+    try {
+      const text = await readFileAsText(file);
+      const payload = JSON.parse(text);
+      if (!payload || typeof payload !== "object") {
+        throw new Error("backupInvalid");
+      }
+      let nextStorage = state.storage;
+      if (payload.storage && typeof payload.storage === "object") {
+        nextStorage = normalizedStorageConfig(payload.storage, state.storage);
+      }
+      if (payload.modules && typeof payload.modules === "object") {
+        if (payload.modules.modelApi) {
+          localStorage.setItem(storageKey("modelApi", nextStorage), JSON.stringify(payload.modules.modelApi));
+        }
+        if (payload.modules.chatList) {
+          localStorage.setItem(storageKey("chatList", nextStorage), JSON.stringify(payload.modules.chatList));
+        }
+        if (payload.modules.chatRecords) {
+          localStorage.setItem(storageKey("chatRecords", nextStorage), JSON.stringify(payload.modules.chatRecords));
+        }
+      } else if (payload.module && payload.data) {
+        if (payload.module === "modelApi") {
+          localStorage.setItem(storageKey("modelApi", nextStorage), JSON.stringify(payload.data));
+        } else if (payload.module === "chatList") {
+          localStorage.setItem(storageKey("chatList", nextStorage), JSON.stringify(payload.data));
+        } else if (payload.module === "chatRecords") {
+          localStorage.setItem(storageKey("chatRecords", nextStorage), JSON.stringify(payload.data));
+        } else {
+          throw new Error("backupInvalid");
+        }
+      } else {
+        throw new Error("backupInvalid");
+      }
+      state.storage = nextStorage;
+      saveStorageConfig();
+      state.config = loadConfig(state.storage);
+      applyConversationState(loadConversationState(state.storage));
+      clearComposerAttachments(true);
+      cancelEditing(true);
+      renderAll();
+      setStatus("success", "backupImported");
+    } catch (error) {
+      setStatus("error", error && error.message ? error.message : "backupInvalid");
+    } finally {
+      refs.backupImportInput.value = "";
+    }
+  }
+
   function bind() {
     refs.newChat.addEventListener("click", createConversation);
     refs.clearChat.addEventListener("click", clearConversation);
@@ -2013,6 +2346,27 @@
     });
     refs.saveKey.addEventListener("click", saveKey);
     refs.clearKey.addEventListener("click", clearKey);
+    refs.saveStoragePaths.addEventListener("click", saveStoragePaths);
+    refs.resetStoragePaths.addEventListener("click", resetStoragePaths);
+    refs.exportChatList.addEventListener("click", function () {
+      exportModuleBackup("chatList");
+    });
+    refs.exportChatRecords.addEventListener("click", function () {
+      exportModuleBackup("chatRecords");
+    });
+    refs.exportModelApi.addEventListener("click", function () {
+      exportModuleBackup("modelApi");
+    });
+    refs.exportBackup.addEventListener("click", exportFullBackup);
+    refs.importBackup.addEventListener("click", function () {
+      refs.backupImportInput.click();
+    });
+    refs.backupImportInput.addEventListener("change", function (event) {
+      const file = event.target.files && event.target.files[0];
+      if (file) {
+        importBackupFile(file);
+      }
+    });
     refs.scrollToBottom.addEventListener("click", function () {
       scrollMessagesToBottom("smooth");
     });
@@ -2119,6 +2473,17 @@
     refs.keyInput = document.getElementById("api-key-input");
     refs.saveKey = document.getElementById("save-key");
     refs.clearKey = document.getElementById("clear-key");
+    refs.storageChatList = document.getElementById("storage-chat-list");
+    refs.storageChatRecords = document.getElementById("storage-chat-records");
+    refs.storageModelApi = document.getElementById("storage-model-api");
+    refs.saveStoragePaths = document.getElementById("save-storage-paths");
+    refs.resetStoragePaths = document.getElementById("reset-storage-paths");
+    refs.exportChatList = document.getElementById("export-chat-list");
+    refs.exportChatRecords = document.getElementById("export-chat-records");
+    refs.exportModelApi = document.getElementById("export-model-api");
+    refs.exportBackup = document.getElementById("export-backup");
+    refs.importBackup = document.getElementById("import-backup");
+    refs.backupImportInput = document.getElementById("backup-import-input");
     refs.savedCount = document.getElementById("saved-model-count");
     refs.savedList = document.getElementById("saved-model-list");
     refs.openSettings = document.getElementById("open-settings");

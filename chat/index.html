@@ -166,12 +166,61 @@
 
       <div class="chat-saved-models">
         <div class="chat-panel-subhead">
+          <h3 data-chat-text="storageSectionTitle">缓存路径</h3>
+        </div>
+        <div class="chat-settings-form">
+          <label class="chat-settings-label" for="storage-chat-list" data-chat-text="storageListLabel">聊天列表缓存路径</label>
+          <div class="chat-storage-row">
+            <input id="storage-chat-list" type="text" placeholder="wk1995/cache/chat-list">
+            <button class="chat-secondary-button chat-inline-button" id="export-chat-list" type="button" data-chat-text="exportModule">导出</button>
+          </div>
+
+          <label class="chat-settings-label" for="storage-chat-records" data-chat-text="storageRecordsLabel">聊天记录缓存路径</label>
+          <div class="chat-storage-row">
+            <input id="storage-chat-records" type="text" placeholder="wk1995/cache/chat-records">
+            <button class="chat-secondary-button chat-inline-button" id="export-chat-records" type="button" data-chat-text="exportModule">导出</button>
+          </div>
+
+          <label class="chat-settings-label" for="storage-model-api" data-chat-text="storageApiLabel">大模型 API 缓存路径</label>
+          <div class="chat-storage-row">
+            <input id="storage-model-api" type="text" placeholder="wk1995/cache/model-api">
+            <button class="chat-secondary-button chat-inline-button" id="export-model-api" type="button" data-chat-text="exportModule">导出</button>
+          </div>
+
+          <div class="chat-settings-actions">
+            <button class="chat-primary-button" id="save-storage-paths" type="button" data-chat-text="saveStoragePaths">保存路径</button>
+            <button class="chat-secondary-button" id="reset-storage-paths" type="button" data-chat-text="resetStoragePaths">恢复默认</button>
+          </div>
+
+          <div class="chat-settings-note" data-chat-text="storagePathNote">
+            这里的“路径”是浏览器本地缓存命名空间，不是真实磁盘目录。
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-saved-models">
+        <div class="chat-panel-subhead">
           <h3 data-chat-text="savedModelsTitle">已保存模型</h3>
           <span id="saved-model-count">0</span>
         </div>
         <div class="chat-saved-model-list" id="saved-model-list"></div>
       </div>
 
+      <div class="chat-saved-models">
+        <div class="chat-panel-subhead">
+          <h3 data-chat-text="backupSectionTitle">备份与恢复</h3>
+        </div>
+        <div class="chat-settings-form">
+          <input id="backup-import-input" type="file" accept="application/json" hidden>
+          <div class="chat-settings-actions">
+            <button class="chat-primary-button" id="export-backup" type="button" data-chat-text="exportBackup">导出整包备份</button>
+            <button class="chat-secondary-button" id="import-backup" type="button" data-chat-text="importBackup">恢复备份</button>
+          </div>
+          <div class="chat-settings-note" data-chat-text="backupNote">
+            备份文件会包含三组缓存路径，以及聊天列表、聊天记录和模型 API 配置，方便换设备恢复。
+          </div>
+        </div>
+      </div>
     </aside>
   </div>
 
