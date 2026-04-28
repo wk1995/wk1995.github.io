@@ -86,6 +86,13 @@
 
       <div class="chat-composer-wrap">
         <div class="chat-main-composer">
+          <div class="chat-editing-banner" id="editing-banner" hidden>
+            <div>
+              <strong id="editing-title">正在编辑消息</strong>
+              <p id="editing-description">保存后会从这条用户消息重新生成后续回复。</p>
+            </div>
+            <button class="chat-secondary-button" id="cancel-edit" type="button">取消编辑</button>
+          </div>
           <textarea id="message-input" rows="1" placeholder="输入你的问题，按 Enter 发送"></textarea>
           <div class="chat-composer-row">
             <span class="chat-composer-hint" data-chat-text="composerHint">Enter 发送，Shift + Enter 换行</span>

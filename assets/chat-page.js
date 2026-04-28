@@ -42,6 +42,7 @@
       composerHint: "Enter 发送，Shift + Enter 换行",
       clearConversation: "清空当前对话",
       send: "发送",
+      resend: "保存并重发",
       newChat: "开启新对话",
       untitled: "新对话",
       emptyTitle: "开始一轮新的 AI 对话",
@@ -63,8 +64,14 @@
       statusLoaded: "已加载当前模型保存的本地 Key。",
       statusMissing: "当前模型还没有保存 Key。",
       statusDraft: "已把示例问题放进输入框。",
+      statusCopied: "已复制当前消息文案。",
+      statusRegenerated: "正在重新生成回复...",
+      statusEditing: "正在编辑这条用户消息，发送后会重建后续回复。",
+      statusEditCancelled: "已取消编辑。",
       you: "你",
       ai: "AI",
+      userAvatar: "WK",
+      aiAvatar: "AI",
       thinking: "正在思考...",
       failed: "请求失败：",
       invalid: "模型返回了空内容，请检查模型和 Key 是否有效。",
@@ -78,6 +85,19 @@
       historyGroupToday: "今天",
       historyGroupWeek: "7 天内",
       historyGroupMonth: "30 天内",
+      thoughtSection: "已思考",
+      answerSection: "正式答复",
+      replyTiming: "回复",
+      answerAt: "回答于",
+      editedMark: "已编辑",
+      copyAction: "复制文案",
+      editAction: "编辑消息",
+      regenerateAction: "重新生成",
+      editingTitle: "正在编辑用户消息",
+      editingDescription: "保存后会从这条用户消息重新生成后续回复。",
+      cancelEdit: "取消编辑",
+      userRole: "用户消息",
+      assistantRole: "助手回复",
     },
     en: {
       metaTitle: "AI Chat Workspace · WK1995",
@@ -99,6 +119,7 @@
       composerHint: "Enter to send, Shift + Enter for a new line",
       clearConversation: "Clear current chat",
       send: "Send",
+      resend: "Save and resend",
       newChat: "New chat",
       untitled: "New chat",
       emptyTitle: "Start a fresh AI conversation",
@@ -120,8 +141,14 @@
       statusLoaded: "Loaded the saved key for the current model.",
       statusMissing: "No key has been saved for this model yet.",
       statusDraft: "A starter prompt has been placed in the composer.",
+      statusCopied: "Copied the current message text.",
+      statusRegenerated: "Regenerating the reply...",
+      statusEditing: "Editing this user message. Sending will rebuild the downstream reply.",
+      statusEditCancelled: "Editing cancelled.",
       you: "You",
       ai: "AI",
+      userAvatar: "WK",
+      aiAvatar: "AI",
       thinking: "Thinking...",
       failed: "Request failed:",
       invalid: "The model returned an empty response. Check whether the selected model and key are valid.",
@@ -135,6 +162,19 @@
       historyGroupToday: "Today",
       historyGroupWeek: "Last 7 days",
       historyGroupMonth: "Last 30 days",
+      thoughtSection: "Thought process",
+      answerSection: "Answer",
+      replyTiming: "Reply",
+      answerAt: "Answered at",
+      editedMark: "Edited",
+      copyAction: "Copy message",
+      editAction: "Edit message",
+      regenerateAction: "Regenerate reply",
+      editingTitle: "Editing a user message",
+      editingDescription: "Saving will regenerate the downstream reply from this message.",
+      cancelEdit: "Cancel edit",
+      userRole: "User message",
+      assistantRole: "Assistant reply",
     },
   };
 
@@ -146,6 +186,7 @@
     busy: false,
     status: { type: "", key: "", raw: "" },
     ui: loadUi(),
+    editingMessageId: "",
   };
 
   function lang() {
@@ -160,6 +201,16 @@
 
   function starters() {
     return STARTERS[lang()] || STARTERS.zh;
+  }
+
+  function icon(name) {
+    const icons = {
+      copy: '<path d="M3.75 2A1.75 1.75 0 0 0 2 3.75v7.5C2 12.216 2.784 13 3.75 13h5.5A1.75 1.75 0 0 0 11 11.25v-7.5A1.75 1.75 0 0 0 9.25 2h-5.5Zm7.5 2a1.75 1.75 0 0 1 1.75 1.75v5.5a1.75 1.75 0 0 1-1.75 1.75H11v-1.5h.25a.25.25 0 0 0 .25-.25v-5.5a.25.25 0 0 0-.25-.25H11V4h.25Z"></path>',
+      edit: '<path d="M11.013 1.427a1.75 1.75 0 0 1 2.475 2.475l-7.63 7.63a2.25 2.25 0 0 1-.921.55l-2.19.626a.75.75 0 0 1-.928-.928l.626-2.19a2.25 2.25 0 0 1 .55-.921l7.63-7.63ZM10.5 3.06 3.9 9.66a.75.75 0 0 0-.184.307l-.347 1.215 1.215-.347a.75.75 0 0 0 .307-.184l6.6-6.6-1-.99Z"></path>',
+      refresh: '<path d="M8 2.25A5.75 5.75 0 0 1 13.61 7h.89a.75.75 0 0 1 0 1.5h-2.25A.75.75 0 0 1 11.5 7V4.75a.75.75 0 0 1 1.5 0v1.05A4.25 4.25 0 1 0 8 12.25a4.22 4.22 0 0 0 3.128-1.374.75.75 0 1 1 1.102 1.018A5.72 5.72 0 0 1 8 13.75a5.75 5.75 0 1 1 0-11.5Z"></path>',
+      clock: '<path d="M8 1.5a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13Zm0 1.5a5 5 0 1 0 0 10A5 5 0 0 0 8 3Zm.75 1.5a.75.75 0 0 0-1.5 0V8c0 .199.079.39.22.53l2 2a.75.75 0 0 0 1.06-1.06L8.75 7.69V4.5Z"></path>',
+    };
+    return icons[name] || "";
   }
 
   function modelMeta(id) {
@@ -186,6 +237,21 @@
     } catch (error) {
       return {};
     }
+  }
+
+  function normalizeMessage(message) {
+    return {
+      id: message && message.id ? message.id : uid(),
+      role: message && message.role === "assistant" ? "assistant" : "user",
+      content: message && typeof message.content === "string" ? message.content : "",
+      reasoning: message && typeof message.reasoning === "string" ? message.reasoning : "",
+      pending: Boolean(message && message.pending),
+      timestamp: message && message.timestamp ? message.timestamp : now(),
+      editedAt: message && message.editedAt ? message.editedAt : 0,
+      thinkingMs: message && Number(message.thinkingMs) > 0 ? Number(message.thinkingMs) : 0,
+      answerMs: message && Number(message.answerMs) > 0 ? Number(message.answerMs) : 0,
+      totalMs: message && Number(message.totalMs) > 0 ? Number(message.totalMs) : 0,
+    };
   }
 
   function loadConfig() {
@@ -267,6 +333,46 @@
     }).format(new Date(value));
   }
 
+  function formatDuration(value) {
+    const seconds = Math.max(value || 0, 80) / 1000;
+    const fixed = seconds >= 10 ? seconds.toFixed(0) : seconds.toFixed(1);
+    return lang() === "zh" ? fixed + " 秒" : fixed + "s";
+  }
+
+  function reasoningLabel(message) {
+    return lang() === "zh"
+      ? t("thoughtSection") + "（用时 " + formatDuration(message.thinkingMs || message.totalMs) + "）"
+      : t("thoughtSection") + " (" + formatDuration(message.thinkingMs || message.totalMs) + ")";
+  }
+
+  function replyMetrics(message) {
+    return [
+      t("answerAt") + " " + formatTime(message.timestamp),
+      t("thoughtSection") + " " + formatDuration(message.thinkingMs || message.totalMs),
+      t("replyTiming") + " " + formatDuration(message.answerMs || message.totalMs),
+    ];
+  }
+
+  function splitDurations(totalMs, reasoning, content) {
+    const safeTotal = Math.max(totalMs || 0, 240);
+    if (reasoning && reasoning.trim()) {
+      const reasoningWeight = Math.max(reasoning.trim().length, 36);
+      const answerWeight = Math.max((content || "").trim().length, 18);
+      const thinkingMs = Math.round((safeTotal * reasoningWeight) / (reasoningWeight + answerWeight));
+      return {
+        totalMs: safeTotal,
+        thinkingMs: Math.max(thinkingMs, 180),
+        answerMs: Math.max(safeTotal - thinkingMs, 160),
+      };
+    }
+    const answerMs = Math.max(Math.min(Math.round(Math.max((content || "").length, 18) * 18), Math.round(safeTotal * 0.38)), 180);
+    return {
+      totalMs: safeTotal,
+      thinkingMs: Math.max(safeTotal - answerMs, 180),
+      answerMs: answerMs,
+    };
+  }
+
   function conversationTitle(item) {
     return item.title || t("untitled");
   }
@@ -295,6 +401,30 @@
     return state.conversations.find(function (item) { return item.id === state.activeId; }) || state.conversations[0];
   }
 
+  function activeEditingMessage() {
+    if (!state.editingMessageId) {
+      return null;
+    }
+    return activeConversation().messages.find(function (message) {
+      return message.id === state.editingMessageId && message.role === "user";
+    }) || null;
+  }
+
+  function findMessageIndex(conversation, messageId) {
+    return conversation.messages.findIndex(function (message) {
+      return message.id === messageId;
+    });
+  }
+
+  function previousUserIndex(messages, assistantIndex) {
+    for (let index = assistantIndex - 1; index >= 0; index -= 1) {
+      if (messages[index].role === "user") {
+        return index;
+      }
+    }
+    return -1;
+  }
+
   function saveState() {
     localStorage.setItem(STATE_KEY, JSON.stringify({
       activeId: state.activeId,
@@ -312,6 +442,14 @@
     resizeInput();
     refs.input.focus();
     refs.input.setSelectionRange(refs.input.value.length, refs.input.value.length);
+  }
+
+  function cancelEditing(skipStatus) {
+    state.editingMessageId = "";
+    renderComposerState();
+    if (!skipStatus) {
+      setStatus("", "statusEditCancelled");
+    }
   }
 
   function blankConversation() {
@@ -342,7 +480,7 @@
           title: typeof item.title === "string" ? item.title : "",
           createdAt: item.createdAt || now(),
           updatedAt: item.updatedAt || now(),
-          messages: item.messages,
+          messages: item.messages.map(normalizeMessage),
         };
       });
     if (!state.conversations.length) {
@@ -414,6 +552,9 @@
     });
     refs.keyInput.setAttribute("placeholder", t("keyPlaceholder"));
     refs.input.setAttribute("placeholder", needsSetup() ? t("placeholderMissing") : t("placeholderReady"));
+    refs.editingTitle.textContent = t("editingTitle");
+    refs.editingDescription.textContent = t("editingDescription");
+    refs.cancelEdit.textContent = t("cancelEdit");
   }
 
   function renderModelSelect() {
@@ -516,11 +657,215 @@
         button.appendChild(preview);
         button.addEventListener("click", function () {
           state.activeId = item.id;
+          cancelEditing(true);
           saveState();
           renderAll();
         });
         container.appendChild(button);
       });
+  }
+
+  function renderRichText(container, text) {
+    container.innerHTML = "";
+    const blocks = text.trim().split(/\n{2,}/).filter(Boolean);
+    if (!blocks.length) {
+      const paragraph = document.createElement("p");
+      paragraph.textContent = text.trim();
+      container.appendChild(paragraph);
+      return;
+    }
+    blocks.forEach(function (block) {
+      const lines = block.split(/\n/).filter(Boolean);
+      if (lines.every(function (line) { return /^\s*[-*•]\s+/.test(line); })) {
+        const list = document.createElement("ul");
+        lines.forEach(function (line) {
+          const item = document.createElement("li");
+          item.textContent = line.replace(/^\s*[-*•]\s+/, "");
+          list.appendChild(item);
+        });
+        container.appendChild(list);
+        return;
+      }
+      if (lines.every(function (line) { return /^\s*\d+\.\s+/.test(line); })) {
+        const list = document.createElement("ol");
+        lines.forEach(function (line) {
+          const item = document.createElement("li");
+          item.textContent = line.replace(/^\s*\d+\.\s+/, "");
+          list.appendChild(item);
+        });
+        container.appendChild(list);
+        return;
+      }
+      if (/^\s*#{1,3}\s+/.test(block)) {
+        const heading = document.createElement("h3");
+        heading.textContent = block.replace(/^\s*#{1,3}\s+/, "");
+        container.appendChild(heading);
+        return;
+      }
+      const paragraph = document.createElement("p");
+      paragraph.textContent = lines.join("\n");
+      container.appendChild(paragraph);
+    });
+  }
+
+  function createActionButton(kind, labelText) {
+    const button = document.createElement("button");
+    const sr = document.createElement("span");
+    button.type = "button";
+    button.className = "chat-message-action";
+    button.setAttribute("aria-label", labelText);
+    button.setAttribute("title", labelText);
+    button.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true">' + icon(kind) + "</svg>";
+    sr.className = "sr-only";
+    sr.textContent = labelText;
+    button.appendChild(sr);
+    return button;
+  }
+
+  function copyText(value) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(value);
+    }
+    return new Promise(function (resolve) {
+      const area = document.createElement("textarea");
+      area.value = value;
+      document.body.appendChild(area);
+      area.select();
+      document.execCommand("copy");
+      document.body.removeChild(area);
+      resolve();
+    });
+  }
+
+  function messageCopyPayload(message) {
+    if (message.role === "assistant" && message.reasoning) {
+      return t("thoughtSection") + ":\n" + message.reasoning.trim() + "\n\n" + t("ai") + ":\n" + message.content.trim();
+    }
+    return message.content.trim();
+  }
+
+  function renderMessage(message, index, messages) {
+    const article = document.createElement("article");
+    const shell = document.createElement("div");
+    const avatar = document.createElement("div");
+    const body = document.createElement("div");
+    const header = document.createElement("div");
+    const name = document.createElement("strong");
+    const meta = document.createElement("span");
+    const bubble = document.createElement("div");
+    const content = document.createElement("div");
+    const footer = document.createElement("div");
+    const answerBlock = document.createElement("div");
+
+    article.className = "chat-message";
+    article.dataset.role = message.role;
+    shell.className = "chat-message-shell";
+    avatar.className = "chat-message-avatar";
+    body.className = "chat-message-card";
+    header.className = "chat-message-head";
+    bubble.className = "chat-message-bubble";
+    content.className = "chat-rich-text";
+    footer.className = "chat-message-footer";
+    answerBlock.className = "chat-answer-block";
+
+    avatar.textContent = message.role === "user" ? t("userAvatar") : t("aiAvatar");
+    avatar.setAttribute("aria-label", message.role === "user" ? t("userRole") : t("assistantRole"));
+
+    name.textContent = message.role === "user" ? t("you") : t("ai");
+    meta.textContent = formatTime(message.timestamp) + (message.role === "user" && message.editedAt ? " · " + t("editedMark") : "");
+    header.appendChild(name);
+    header.appendChild(meta);
+    body.appendChild(header);
+
+    if (message.role === "assistant" && message.reasoning && !message.pending) {
+      const reasoning = document.createElement("details");
+      const summary = document.createElement("summary");
+      const reasoningBody = document.createElement("div");
+      const reasoningContent = document.createElement("div");
+      reasoning.className = "chat-reasoning";
+      summary.textContent = reasoningLabel(message);
+      reasoningContent.className = "chat-rich-text chat-rich-text--reasoning";
+      renderRichText(reasoningContent, message.reasoning);
+      reasoningBody.className = "chat-reasoning-body";
+      reasoningBody.appendChild(reasoningContent);
+      reasoning.appendChild(summary);
+      reasoning.appendChild(reasoningBody);
+      reasoning.open = true;
+      body.appendChild(reasoning);
+    }
+
+    if (message.pending) {
+      content.innerHTML = "<p>" + t("thinking") + "</p>";
+      bubble.classList.add("is-pending");
+    } else {
+      renderRichText(content, message.content);
+    }
+
+    bubble.appendChild(content);
+
+    if (message.role === "assistant" && !message.pending) {
+      const answerLabel = document.createElement("div");
+      answerLabel.className = "chat-answer-label";
+      answerLabel.textContent = t("answerSection");
+      answerBlock.appendChild(answerLabel);
+      answerBlock.appendChild(bubble);
+      body.appendChild(answerBlock);
+    } else {
+      body.appendChild(bubble);
+    }
+
+    if (message.role === "user" && !message.pending) {
+      const copyButton = createActionButton("copy", t("copyAction"));
+      const editButton = createActionButton("edit", t("editAction"));
+      copyButton.addEventListener("click", function () {
+        copyText(messageCopyPayload(message)).then(function () {
+          setStatus("success", "statusCopied");
+        });
+      });
+      editButton.addEventListener("click", function () {
+        state.editingMessageId = message.id;
+        setDraft(message.content);
+        renderComposerState();
+        setStatus("success", "statusEditing");
+      });
+      footer.appendChild(copyButton);
+      footer.appendChild(editButton);
+    }
+
+    if (message.role === "assistant" && !message.pending) {
+      const metrics = document.createElement("div");
+      const copyButton = createActionButton("copy", t("copyAction"));
+      metrics.className = "chat-message-metrics";
+      replyMetrics(message).forEach(function (item) {
+        const chip = document.createElement("span");
+        chip.className = "chat-message-metric";
+        chip.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true">' + icon("clock") + '</svg><span>' + item + "</span>";
+        metrics.appendChild(chip);
+      });
+      copyButton.addEventListener("click", function () {
+        copyText(messageCopyPayload(message)).then(function () {
+          setStatus("success", "statusCopied");
+        });
+      });
+      footer.appendChild(copyButton);
+      if (index === messages.length - 1) {
+        const regenerateButton = createActionButton("refresh", t("regenerateAction"));
+        regenerateButton.addEventListener("click", function () {
+          regenerateReply(message.id);
+        });
+        footer.appendChild(regenerateButton);
+      }
+      footer.appendChild(metrics);
+    }
+
+    if (footer.childNodes.length) {
+      body.appendChild(footer);
+    }
+
+    shell.appendChild(avatar);
+    shell.appendChild(body);
+    article.appendChild(shell);
+    return article;
   }
 
   function renderConversation() {
@@ -555,18 +900,8 @@
       refs.messages.appendChild(empty);
       return;
     }
-    conversation.messages.forEach(function (message) {
-      const article = document.createElement("article");
-      article.className = "chat-message";
-      article.dataset.role = message.role;
-      article.innerHTML =
-        '<div class="chat-message-head"><span>' +
-        (message.role === "user" ? t("you") : t("ai")) +
-        "</span><span>" +
-        formatTime(message.timestamp) +
-        '</span></div><div class="chat-message-bubble"></div>';
-      article.querySelector(".chat-message-bubble").textContent = message.pending ? t("thinking") : message.content;
-      refs.messages.appendChild(article);
+    conversation.messages.forEach(function (message, index) {
+      refs.messages.appendChild(renderMessage(message, index, conversation.messages));
     });
     refs.messages.scrollTop = refs.messages.scrollHeight;
   }
@@ -577,6 +912,13 @@
       refs.status.classList.add("is-" + state.status.type);
     }
     refs.status.textContent = state.status.raw || t(state.status.key || statusKey());
+  }
+
+  function renderComposerState() {
+    const editing = activeEditingMessage();
+    refs.editingBanner.hidden = !editing;
+    refs.send.textContent = editing ? t("resend") : t("send");
+    refs.cancelEdit.hidden = !editing;
   }
 
   function syncSettingsPanel() {
@@ -594,6 +936,7 @@
     renderHistory();
     renderConversation();
     renderStatus();
+    renderComposerState();
     resizeInput();
     syncSettingsPanel();
   }
@@ -609,30 +952,15 @@
     }
   }
 
-  function pushMessage(role, content, pending) {
-    const conversation = activeConversation();
-    conversation.messages.push({
-      role: role,
-      content: content,
-      pending: Boolean(pending),
+  function createPendingAssistant() {
+    return normalizeMessage({
+      id: uid(),
+      role: "assistant",
+      content: "",
+      reasoning: "",
+      pending: true,
       timestamp: now(),
     });
-    touchConversation(conversation);
-    renderAll();
-  }
-
-  function replacePending(content) {
-    const conversation = activeConversation();
-    for (let i = conversation.messages.length - 1; i >= 0; i -= 1) {
-      if (conversation.messages[i].role === "assistant") {
-        conversation.messages[i].content = content;
-        conversation.messages[i].pending = false;
-        conversation.messages[i].timestamp = now();
-        break;
-      }
-    }
-    touchConversation(conversation);
-    renderAll();
   }
 
   function requestMessages() {
@@ -647,7 +975,18 @@
     );
   }
 
-  function responseText(payload) {
+  function responseReasoning(payload) {
+    const choice = payload && payload.choices && payload.choices[0];
+    const message = choice && choice.message;
+    if (!message) {
+      return "";
+    }
+    return typeof message.reasoning_content === "string" && message.reasoning_content.trim()
+      ? message.reasoning_content.trim()
+      : "";
+  }
+
+  function responseContent(payload) {
     const choice = payload && payload.choices && payload.choices[0];
     const message = choice && choice.message;
     if (!message) {
@@ -656,37 +995,19 @@
     if (typeof message.content === "string" && message.content.trim()) {
       return message.content.trim();
     }
-    if (typeof message.reasoning_content === "string" && message.reasoning_content.trim()) {
-      return message.reasoning_content.trim();
-    }
     return "";
   }
 
-  async function sendMessage() {
-    const text = refs.input.value.trim();
-    if (!text) {
-      setStatus("error", "statusMessage");
-      return;
-    }
-    if (!selectedModel()) {
-      openSettings("model");
-      setStatus("error", "statusSelectModel");
-      return;
-    }
-    if (!keyForModel()) {
-      openSettings("key");
-      setStatus("error", "statusNeedSetup");
-      return;
-    }
-    refs.input.value = "";
-    resizeInput();
+  async function runAssistantReply(statusMessageKey) {
     const conversation = activeConversation();
-    ensureConversationTitle(conversation, text);
-    pushMessage("user", text, false);
-    pushMessage("assistant", "", true);
+    const pending = createPendingAssistant();
+    const startedAt = now();
+    conversation.messages.push(pending);
+    touchConversation(conversation);
+    renderAll();
     state.busy = true;
     syncBusy();
-    setStatus("success", "statusSending");
+    setStatus("success", statusMessageKey || "statusSending");
     try {
       const response = await fetch(API_URL, {
         method: "POST",
@@ -705,14 +1026,36 @@
         const message = payload && payload.error && (payload.error.message || payload.error.type || JSON.stringify(payload.error));
         throw new Error(message || response.statusText || "Unknown error");
       }
-      const content = responseText(payload);
+      const reasoning = responseReasoning(payload);
+      const content = responseContent(payload) || reasoning;
       if (!content) {
         throw new Error(t("invalid"));
       }
-      replacePending(content);
+      const durations = splitDurations(now() - startedAt, reasoning, content);
+      const pendingIndex = findMessageIndex(conversation, pending.id);
+      if (pendingIndex !== -1) {
+        conversation.messages[pendingIndex] = normalizeMessage({
+          id: pending.id,
+          role: "assistant",
+          content: content,
+          reasoning: content === reasoning ? "" : reasoning,
+          pending: false,
+          timestamp: now(),
+          thinkingMs: durations.thinkingMs,
+          answerMs: durations.answerMs,
+          totalMs: durations.totalMs,
+        });
+      }
+      touchConversation(conversation);
+      renderAll();
       setStatus("success", "statusReady");
     } catch (error) {
-      replacePending(t("failed") + " " + error.message);
+      const pendingIndex = findMessageIndex(conversation, pending.id);
+      if (pendingIndex !== -1) {
+        conversation.messages.splice(pendingIndex, 1);
+      }
+      touchConversation(conversation);
+      renderAll();
       setStatus("error", "", t("failed") + " " + error.message);
     } finally {
       state.busy = false;
@@ -720,10 +1063,95 @@
     }
   }
 
+  async function sendMessage() {
+    const text = refs.input.value.trim();
+    const editing = activeEditingMessage();
+    if (!text) {
+      setStatus("error", "statusMessage");
+      return;
+    }
+    if (!selectedModel()) {
+      openSettings("model");
+      setStatus("error", "statusSelectModel");
+      return;
+    }
+    if (!keyForModel()) {
+      openSettings("key");
+      setStatus("error", "statusNeedSetup");
+      return;
+    }
+    refs.input.value = "";
+    resizeInput();
+    if (editing) {
+      const conversation = activeConversation();
+      const editIndex = findMessageIndex(conversation, editing.id);
+      if (editIndex === -1) {
+        cancelEditing(true);
+        return;
+      }
+      conversation.messages[editIndex] = normalizeMessage({
+        ...conversation.messages[editIndex],
+        content: text,
+        timestamp: now(),
+        editedAt: now(),
+      });
+      conversation.messages = conversation.messages.slice(0, editIndex + 1);
+      if (editIndex === 0) {
+        conversation.title = text.trim().slice(0, 28);
+      }
+      touchConversation(conversation);
+      cancelEditing(true);
+      renderAll();
+      await runAssistantReply("statusSending");
+      return;
+    }
+    const conversation = activeConversation();
+    const userMessage = normalizeMessage({
+      role: "user",
+      content: text,
+      pending: false,
+      timestamp: now(),
+    });
+    ensureConversationTitle(conversation, text);
+    conversation.messages.push(userMessage);
+    touchConversation(conversation);
+    renderAll();
+    await runAssistantReply("statusSending");
+  }
+
+  async function regenerateReply(messageId) {
+    if (state.busy) {
+      return;
+    }
+    if (!selectedModel()) {
+      openSettings("model");
+      setStatus("error", "statusSelectModel");
+      return;
+    }
+    if (!keyForModel()) {
+      openSettings("key");
+      setStatus("error", "statusNeedSetup");
+      return;
+    }
+    const conversation = activeConversation();
+    const assistantIndex = findMessageIndex(conversation, messageId);
+    if (assistantIndex === -1 || conversation.messages[assistantIndex].role !== "assistant") {
+      return;
+    }
+    if (previousUserIndex(conversation.messages, assistantIndex) === -1) {
+      return;
+    }
+    conversation.messages = conversation.messages.slice(0, assistantIndex);
+    touchConversation(conversation);
+    renderAll();
+    await runAssistantReply("statusRegenerated");
+  }
+
   function syncBusy() {
     refs.send.disabled = state.busy;
     refs.newChat.disabled = state.busy;
     refs.clearChat.disabled = state.busy;
+    refs.cancelEdit.disabled = state.busy;
     refs.input.disabled = state.busy;
     refs.modelSelect.disabled = state.busy;
     refs.keyInput.disabled = state.busy;
@@ -735,6 +1163,7 @@
     const item = blankConversation();
     state.conversations.unshift(item);
     state.activeId = item.id;
+    cancelEditing(true);
     saveState();
     renderAll();
     refs.input.focus();
@@ -744,6 +1173,7 @@
     const conversation = activeConversation();
     conversation.title = "";
     conversation.messages = [];
+    cancelEditing(true);
     touchConversation(conversation);
     renderAll();
     setStatus("", "", "");
@@ -787,6 +1217,9 @@
     refs.newChat.addEventListener("click", createConversation);
     refs.clearChat.addEventListener("click", clearConversation);
     refs.send.addEventListener("click", sendMessage);
+    refs.cancelEdit.addEventListener("click", function () {
+      cancelEditing();
+    });
     refs.saveKey.addEventListener("click", saveKey);
     refs.clearKey.addEventListener("click", clearKey);
     refs.openSettings.addEventListener("click", function () {
@@ -832,6 +1265,10 @@
     refs.status = document.getElementById("chat-status");
     refs.messages = document.getElementById("message-list");
     refs.input = document.getElementById("message-input");
+    refs.editingBanner = document.getElementById("editing-banner");
+    refs.editingTitle = document.getElementById("editing-title");
+    refs.editingDescription = document.getElementById("editing-description");
+    refs.cancelEdit = document.getElementById("cancel-edit");
     refs.clearChat = document.getElementById("clear-conversation");
     refs.send = document.getElementById("send-message");
     refs.modelSelect = document.getElementById("model-select");
