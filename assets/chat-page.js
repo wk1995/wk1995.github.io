@@ -8,12 +8,24 @@
     chatRecords: "wk1995/cache/chat-records",
     modelApi: "wk1995/cache/model-api",
   };
-  const API_URL = "https://api.deepseek.com/chat/completions";
+  const PROVIDERS = {
+    deepseek: {
+      apiUrl: "https://api.deepseek.com/chat/completions",
+      keyLabel: { zh: "DeepSeek", en: "DeepSeek" },
+    },
+    zhipu: {
+      apiUrl: "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+      keyLabel: { zh: "智谱", en: "Zhipu" },
+    },
+  };
   const MODELS = [
-    { id: "deepseek-v4-flash", labels: { zh: "DeepSeek V4 Flash", en: "DeepSeek V4 Flash" } },
-    { id: "deepseek-v4-pro", labels: { zh: "DeepSeek V4 Pro", en: "DeepSeek V4 Pro" } },
-    { id: "deepseek-chat", labels: { zh: "DeepSeek Chat", en: "DeepSeek Chat" }, legacy: true },
-    { id: "deepseek-reasoner", labels: { zh: "DeepSeek Reasoner", en: "DeepSeek Reasoner" }, legacy: true },
+    { id: "deepseek-v4-flash", provider: "deepseek", labels: { zh: "DeepSeek V4 Flash", en: "DeepSeek V4 Flash" } },
+    { id: "deepseek-v4-pro", provider: "deepseek", labels: { zh: "DeepSeek V4 Pro", en: "DeepSeek V4 Pro" } },
+    { id: "deepseek-chat", provider: "deepseek", labels: { zh: "DeepSeek Chat", en: "DeepSeek Chat" }, legacy: true },
+    { id: "deepseek-reasoner", provider: "deepseek", labels: { zh: "DeepSeek Reasoner", en: "DeepSeek Reasoner" }, legacy: true },
+    { id: "glm-4.6", provider: "zhipu", labels: { zh: "智谱 GLM-4.6", en: "Zhipu GLM-4.6" }, thinking: true },
+    { id: "glm-4.6v", provider: "zhipu", labels: { zh: "智谱 GLM-4.6V", en: "Zhipu GLM-4.6V" }, thinking: true, vision: true },
+    { id: "glm-4.6v-flash", provider: "zhipu", labels: { zh: "智谱 GLM-4.6V-Flash", en: "Zhipu GLM-4.6V-Flash" }, thinking: true, vision: true },
   ];
   const STARTERS = {
     zh: [
@@ -37,7 +49,7 @@
       chatEyebrow: "Conversation",
       settingsEyebrow: "Settings",
       settingsTitle: "参数设置",
-      settingsHelper: "选择模型并保存当前浏览器的 API Key。",
+      settingsHelper: "选择 DeepSeek 或智谱模型，并把对应的 API Key 保存到当前浏览器。",
       storageSectionTitle: "缓存路径",
       storageListLabel: "聊天列表缓存路径",
       storageRecordsLabel: "聊天记录缓存路径",
@@ -60,7 +72,7 @@
       moduleChatRecords: "聊天记录",
       moduleModelApi: "大模型 API",
       modelLabel: "模型选择",
-      keyLabel: "DeepSeek API Key",
+      keyLabel: "模型 API Key",
       keyPlaceholder: "粘贴当前模型对应的 API Key",
       saveKey: "保存 Key",
       clearKey: "删除当前 Key",
@@ -87,10 +99,10 @@
       statusReady: "当前模型已就绪，可以直接开始。",
       statusNeedSetup: "先为当前模型填写并保存 API Key。",
       statusSelectModel: "先选择一个可用模型，再保存对应的 API Key。",
-      statusSaved: "当前模型的 Key 已保存到本地。",
+      statusSaved: "当前模型的 API Key 已保存到本地。",
       statusCleared: "当前模型的 Key 已删除。",
       statusMessage: "请先输入要发送的内容。",
-      statusSending: "正在请求 DeepSeek...",
+      statusSending: "正在请求模型...",
       statusLoaded: "已加载当前模型保存的本地 Key。",
       statusMissing: "当前模型还没有保存 Key。",
       statusDraft: "已把示例问题放进输入框。",
@@ -110,7 +122,7 @@
       openSettings: "打开设置面板",
       closeSettings: "关闭设置面板",
       setupTitle: "开始对话前先完成设置",
-      setupBodyAll: "请选择一个模型，并为当前模型保存 DeepSeek API Key。",
+      setupBodyAll: "请选择一个模型，并为当前模型保存对应的 API Key。",
       setupBodyKey: "当前模型还没有保存 API Key，请先在这里完成设置。",
       historyGroupToday: "今天",
       historyGroupWeek: "7 天内",
@@ -135,7 +147,7 @@
       pickAttachments: "选择附件",
       attachmentCount: "个附件",
       attachmentHint: "支持图片、文本、音频、视频和常见文件。文本类附件会提取内容参与对话。",
-      attachmentImageOnly: "图片已附加；当前 DeepSeek 直连版本会随消息保存并可下载，但只向模型发送图片元数据。",
+      attachmentImageOnly: "图片已附加；支持视觉输入的模型会直接接收图片，其它模型只会收到图片的元数据说明。",
       attachmentReady: "附件已加入当前消息。",
       attachmentRemoved: "已移除附件。",
       attachmentTooMany: "单条消息最多保留 6 个附件。",
@@ -150,7 +162,9 @@
       attachmentKindFile: "文件",
       exportSuccess: "已导出当前回复。",
       exportFailed: "导出失败，请重试。",
-      multimodalNotice: "DeepSeek 当前公开 chat API 在此页面按文本对话发送；文本类附件会提取内容，其他附件保留预览、下载和元数据。",
+      multimodalNotice: "文本类附件会提取内容参与对话；其它附件会尽量按当前模型能力发送，无法直传的附件会保留预览、下载和元数据。",
+      attachmentFallbackPrompt: "请结合这些附件继续回答。",
+      savedEmptyTitle: "尚未保存模型",
     },
     en: {
       metaTitle: "AI Chat Workspace · WK1995",
@@ -161,7 +175,7 @@
       chatEyebrow: "Conversation",
       settingsEyebrow: "Settings",
       settingsTitle: "Model Settings",
-      settingsHelper: "Choose a model and save the API key in this browser.",
+      settingsHelper: "Choose a DeepSeek or Zhipu model and save its API key in this browser.",
       storageSectionTitle: "Cache Paths",
       storageListLabel: "Chat list cache path",
       storageRecordsLabel: "Chat record cache path",
@@ -184,7 +198,7 @@
       moduleChatRecords: "Chat records",
       moduleModelApi: "Model API",
       modelLabel: "Model",
-      keyLabel: "DeepSeek API Key",
+      keyLabel: "Model API Key",
       keyPlaceholder: "Paste the API key for the selected model",
       saveKey: "Save key",
       clearKey: "Delete current key",
@@ -211,10 +225,10 @@
       statusReady: "The current model is ready.",
       statusNeedSetup: "Save an API key for the current model before chatting.",
       statusSelectModel: "Choose a model first, then save the corresponding API key.",
-      statusSaved: "The current model key has been saved locally.",
+      statusSaved: "The current model API key has been saved locally.",
       statusCleared: "The current model key has been removed.",
       statusMessage: "Type a message before sending.",
-      statusSending: "Calling DeepSeek...",
+      statusSending: "Calling the model...",
       statusLoaded: "Loaded the saved key for the current model.",
       statusMissing: "No key has been saved for this model yet.",
       statusDraft: "A starter prompt has been placed in the composer.",
@@ -234,7 +248,7 @@
       openSettings: "Open settings panel",
       closeSettings: "Close settings panel",
       setupTitle: "Complete setup before starting",
-      setupBodyAll: "Choose a model and save the corresponding DeepSeek API key first.",
+      setupBodyAll: "Choose a model and save the corresponding API key first.",
       setupBodyKey: "The current model does not have a saved API key yet. Finish the setup here first.",
       historyGroupToday: "Today",
       historyGroupWeek: "Last 7 days",
@@ -259,7 +273,7 @@
       pickAttachments: "Pick attachments",
       attachmentCount: "attachments",
       attachmentHint: "Supports images, text, audio, video, and common files. Text-like attachments are extracted into the conversation.",
-      attachmentImageOnly: "The image is attached and remains downloadable in chat, but this DeepSeek direct chat flow only sends image metadata to the model.",
+      attachmentImageOnly: "The image is attached. Vision-capable models will receive the image directly; other models only receive its metadata.",
       attachmentReady: "Attachment added to the current message.",
       attachmentRemoved: "Attachment removed.",
       attachmentTooMany: "A single message can keep up to 6 attachments.",
@@ -274,7 +288,9 @@
       attachmentKindFile: "File",
       exportSuccess: "The reply has been exported.",
       exportFailed: "Export failed. Try again.",
-      multimodalNotice: "This page currently sends DeepSeek chat requests as text. Text-like attachments are extracted for the model; other attachments stay available as previews, downloads, and metadata.",
+      multimodalNotice: "Text-like attachments are extracted into the conversation. Other attachments are sent when the selected model supports them; otherwise they remain as previews, downloads, and metadata.",
+      attachmentFallbackPrompt: "Please answer based on these attachments.",
+      savedEmptyTitle: "No saved model yet",
     },
   };
 
@@ -433,6 +449,25 @@
     const meta = modelMeta(id);
     const base = meta ? (meta.labels[lang()] || meta.labels.zh) : id;
     return meta && meta.legacy ? base + " - " + t("legacy") : base;
+  }
+
+  function providerMeta(providerId) {
+    return PROVIDERS[providerId] || PROVIDERS.deepseek;
+  }
+
+  function providerIdForModel(id) {
+    const meta = modelMeta(id);
+    return meta && meta.provider ? meta.provider : "deepseek";
+  }
+
+  function modelSupportsVision(id) {
+    const meta = modelMeta(id);
+    return Boolean(meta && meta.vision);
+  }
+
+  function modelSupportsThinking(id) {
+    const meta = modelMeta(id);
+    return Boolean(meta && meta.thinking);
   }
 
   function now() {
@@ -1189,7 +1224,7 @@
       const title = document.createElement("strong");
       const detail = document.createElement("span");
       empty.className = "chat-saved-model-item";
-      title.textContent = "DeepSeek";
+      title.textContent = t("savedEmptyTitle");
       detail.textContent = t("missing");
       empty.appendChild(title);
       empty.appendChild(detail);
@@ -1932,7 +1967,21 @@
     });
   }
 
-  function attachmentPromptSection(attachment, index) {
+  function canSendNativeImageAttachment(attachment, modelId) {
+    return Boolean(
+      modelSupportsVision(modelId) &&
+      attachment &&
+      attachment.kind === "image" &&
+      typeof attachment.dataUrl === "string" &&
+      attachment.dataUrl
+    );
+  }
+
+  function attachmentPromptSection(attachment, index, options) {
+    const config = options || {};
+    if (config.skipNativeImages && canSendNativeImageAttachment(attachment, config.modelId)) {
+      return "";
+    }
     const lines = [
       "[" + (index + 1) + "] " + attachment.name,
       "- type: " + attachment.type,
@@ -1950,18 +1999,69 @@
     return lines.join("\n");
   }
 
-  function composeUserMessageContent(message) {
+  function composeUserMessageContent(message, options) {
+    const config = options || {};
     const base = (message.content || "").trim();
     if (!Array.isArray(message.attachments) || !message.attachments.length) {
-      return base;
+      return base || (config.fallbackText || "");
     }
     const sections = message.attachments.map(function (attachment, index) {
-      return attachmentPromptSection(attachment, index);
-    });
+      return attachmentPromptSection(attachment, index, config);
+    }).filter(Boolean);
+    if (!sections.length) {
+      return base || (config.fallbackText || "");
+    }
     return (base ? base + "\n\n" : "") + "[" + t("attachmentSection") + "]\n" + sections.join("\n\n");
   }
 
-  function requestMessages() {
+  function imagePayloadValue(attachment) {
+    const match = typeof attachment.dataUrl === "string" && attachment.dataUrl.match(/^data:[^;]+;base64,(.+)$/);
+    return match ? match[1] : attachment.dataUrl;
+  }
+
+  function buildVisionUserContent(message, modelId) {
+    const blocks = [];
+    const textContent = composeUserMessageContent(message, {
+      modelId: modelId,
+      skipNativeImages: true,
+      fallbackText: t("attachmentFallbackPrompt"),
+    }).trim();
+    if (textContent) {
+      blocks.push({
+        type: "text",
+        text: textContent,
+      });
+    }
+    (message.attachments || []).forEach(function (attachment) {
+      if (canSendNativeImageAttachment(attachment, modelId)) {
+        blocks.push({
+          type: "image_url",
+          image_url: {
+            url: imagePayloadValue(attachment),
+          },
+        });
+      }
+    });
+    if (!blocks.length) {
+      blocks.push({
+        type: "text",
+        text: t("attachmentFallbackPrompt"),
+      });
+    }
+    return blocks;
+  }
+
+  function requestContentForMessage(message, modelId) {
+    if (message.role !== "user") {
+      return message.content;
+    }
+    if (providerIdForModel(modelId) === "zhipu" && modelSupportsVision(modelId)) {
+      return buildVisionUserContent(message, modelId);
+    }
+    return composeUserMessageContent(message);
+  }
+
+  function requestMessages(modelId) {
     return [{ role: "system", content: t("prompt") }].concat(
       activeConversation().messages
         .filter(function (item) {
@@ -1970,7 +2070,7 @@
         .map(function (item) {
           return {
             role: item.role,
-            content: item.role === "user" ? composeUserMessageContent(item) : item.content,
+            content: requestContentForMessage(item, modelId),
           };
         })
     );
@@ -1996,13 +2096,41 @@
     if (typeof message.content === "string" && message.content.trim()) {
       return message.content.trim();
     }
+    if (Array.isArray(message.content)) {
+      return message.content.map(function (item) {
+        return typeof item === "string"
+          ? item
+          : item && typeof item.text === "string"
+            ? item.text
+            : "";
+      }).join("\n").trim();
+    }
     return "";
+  }
+
+  function requestApiUrl(modelId) {
+    return providerMeta(providerIdForModel(modelId)).apiUrl;
+  }
+
+  function buildRequestPayload(modelId) {
+    const payload = {
+      model: modelId,
+      messages: requestMessages(modelId),
+      stream: false,
+    };
+    if (providerIdForModel(modelId) === "zhipu" && modelSupportsThinking(modelId)) {
+      payload.thinking = {
+        type: "enabled",
+      };
+    }
+    return payload;
   }
 
   async function runAssistantReply(statusMessageKey) {
     const conversation = activeConversation();
     const pending = createPendingAssistant();
     const startedAt = now();
+    const modelId = selectedModel();
     state.scrollPinned = true;
     conversation.messages.push(pending);
     touchConversation(conversation);
@@ -2011,17 +2139,13 @@
     syncBusy();
     setStatus("success", statusMessageKey || "statusSending");
     try {
-      const response = await fetch(API_URL, {
+      const response = await fetch(requestApiUrl(modelId), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + keyForModel(),
+          Authorization: "Bearer " + keyForModel(modelId),
         },
-        body: JSON.stringify({
-          model: selectedModel(),
-          messages: requestMessages(),
-          stream: false,
-        }),
+        body: JSON.stringify(buildRequestPayload(modelId)),
       });
       const payload = await response.json().catch(function () { return null; });
       if (!response.ok) {
