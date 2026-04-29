@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-04-28T04:42:09.157413+00:00",
+  "generated_at": "2026-04-29T04:37:52.425616+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,9 +15,9 @@ window.__TRENDING_DATA__ = {
         "en": "Skills for Real Engineers. Straight from my .claude directory."
       },
       "language": "Shell",
-      "stars_total": 31429,
-      "forks_total": 2469,
-      "stars_today": 5645
+      "stars_total": 38657,
+      "forks_total": 3039,
+      "stars_today": 7321
     },
     {
       "rank": 2,
@@ -31,9 +31,9 @@ window.__TRENDING_DATA__ = {
         "en": "GitNexus: The Zero-Server Code Intelligence Engine - GitNexus is a client-side knowledge graph creator that runs entirely in your browser. Drop in a GitHub repo or ZIP file, and get an interactive knowledge graph wit a built in Graph RAG Agent. Perfect for code exploration"
       },
       "language": "TypeScript",
-      "stars_total": 31790,
-      "forks_total": 3627,
-      "stars_today": 1102
+      "stars_total": 32769,
+      "forks_total": 3717,
+      "stars_today": 1607
     },
     {
       "rank": 3,
@@ -47,57 +47,57 @@ window.__TRENDING_DATA__ = {
         "en": "A curated list of practical Codex skills for automating workflows across the Codex CLI and API."
       },
       "language": "Python",
-      "stars_total": 2981,
-      "forks_total": 212,
-      "stars_today": 638
+      "stars_total": 4190,
+      "forks_total": 267,
+      "stars_today": 953
     },
     {
       "rank": 4,
-      "repo": "Alishahryar1/free-claude-code",
-      "owner": "Alishahryar1",
-      "name": "free-claude-code",
-      "url": "https://github.com/Alishahryar1/free-claude-code",
-      "description": "Use claude-code for free in the terminal, VSCode extension or via discord like openclaw",
+      "repo": "microsoft/VibeVoice",
+      "owner": "microsoft",
+      "name": "VibeVoice",
+      "url": "https://github.com/microsoft/VibeVoice",
+      "description": "Open-Source Frontier Voice AI",
       "descriptions": {
-        "zh": "在终端、VSCode 扩展中或通过 openclaw 等 Discord 免费使用 claude-code",
-        "en": "Use claude-code for free in the terminal, VSCode extension or via discord like openclaw"
+        "zh": "开源语音人工智能前沿",
+        "en": "Open-Source Frontier Voice AI"
       },
       "language": "Python",
-      "stars_total": 16415,
-      "forks_total": 2282,
-      "stars_today": 2949
+      "stars_total": 45039,
+      "forks_total": 4996,
+      "stars_today": 1483
     },
     {
       "rank": 5,
-      "repo": "gastownhall/beads",
-      "owner": "gastownhall",
-      "name": "beads",
-      "url": "https://github.com/gastownhall/beads",
-      "description": "Beads - A memory upgrade for your coding agent",
+      "repo": "davila7/claude-code-templates",
+      "owner": "davila7",
+      "name": "claude-code-templates",
+      "url": "https://github.com/davila7/claude-code-templates",
+      "description": "CLI tool for configuring and monitoring Claude Code",
       "descriptions": {
-        "zh": "Beads - 编码代理的内存升级",
-        "en": "Beads - A memory upgrade for your coding agent"
+        "zh": "用于配置和监控 Claude Code 的 CLI 工具",
+        "en": "CLI tool for configuring and monitoring Claude Code"
       },
-      "language": "Go",
-      "stars_total": 22292,
-      "forks_total": 1461,
-      "stars_today": 498
+      "language": "Python",
+      "stars_total": 26236,
+      "forks_total": 2617,
+      "stars_today": 346
     },
     {
       "rank": 6,
-      "repo": "penpot/penpot",
-      "owner": "penpot",
-      "name": "penpot",
-      "url": "https://github.com/penpot/penpot",
-      "description": "Penpot: The open-source design tool for design and code collaboration",
+      "repo": "HunxByts/GhostTrack",
+      "owner": "HunxByts",
+      "name": "GhostTrack",
+      "url": "https://github.com/HunxByts/GhostTrack",
+      "description": "Useful tool to track location or mobile number",
       "descriptions": {
-        "zh": "Penpot：用于设计和代码协作的开源设计工具",
-        "en": "Penpot: The open-source design tool for design and code collaboration"
+        "zh": "跟踪位置或手机号码的有用工具",
+        "en": "Useful tool to track location or mobile number"
       },
-      "language": "Clojure",
-      "stars_total": 46732,
-      "forks_total": 2805,
-      "stars_today": 166
+      "language": "Python",
+      "stars_total": 10800,
+      "forks_total": 1509,
+      "stars_today": 967
     }
   ]
 }
