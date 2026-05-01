@@ -131,6 +131,17 @@
       answerSection: "正式答复",
       replyTiming: "回复",
       answerAt: "回答于",
+      tokenSection: "Token 用量",
+      tokenOverview: "总览",
+      tokenPromptBreakdown: "输入拆分",
+      tokenCompletionBreakdown: "输出拆分",
+      tokenTotal: "总计",
+      tokenPrompt: "输入",
+      tokenCompletion: "输出",
+      tokenCached: "缓存命中",
+      tokenFresh: "缓存未命中",
+      tokenReasoning: "推理",
+      tokenAnswer: "正式答复",
       editedMark: "已编辑",
       copyAction: "复制文案",
       editAction: "编辑消息",
@@ -257,6 +268,17 @@
       answerSection: "Answer",
       replyTiming: "Reply",
       answerAt: "Answered at",
+      tokenSection: "Token usage",
+      tokenOverview: "Overview",
+      tokenPromptBreakdown: "Prompt breakdown",
+      tokenCompletionBreakdown: "Completion breakdown",
+      tokenTotal: "Total",
+      tokenPrompt: "Input",
+      tokenCompletion: "Output",
+      tokenCached: "Cached input",
+      tokenFresh: "Fresh input",
+      tokenReasoning: "Reasoning",
+      tokenAnswer: "Answer",
       editedMark: "Edited",
       copyAction: "Copy message",
       editAction: "Edit message",
@@ -543,6 +565,62 @@
     };
   }
 
+  function normalizeTokenCount(value) {
+    const number = Number(value);
+    return Number.isFinite(number) && number >= 0 ? Math.round(number) : 0;
+  }
+
+  function normalizeTokenUsage(usage) {
+    if (!usage || typeof usage !== "object") {
+      return null;
+    }
+    const promptDetails = usage.prompt_tokens_details && typeof usage.prompt_tokens_details === "object"
+      ? usage.prompt_tokens_details
+      : {};
+    const completionDetails = usage.completion_tokens_details && typeof usage.completion_tokens_details === "object"
+      ? usage.completion_tokens_details
+      : {};
+    const promptTokens = normalizeTokenCount(usage.prompt_tokens);
+    const completionTokens = normalizeTokenCount(usage.completion_tokens);
+    const explicitTotal = normalizeTokenCount(usage.total_tokens);
+    const cachedPromptTokens = Math.min(
+      normalizeTokenCount(
+        usage.prompt_cache_hit_tokens > 0
+          ? usage.prompt_cache_hit_tokens
+          : promptDetails.cached_tokens
+      ),
+      promptTokens || Number.MAX_SAFE_INTEGER
+    );
+    const freshPromptTokens = promptTokens
+      ? Math.max(
+        normalizeTokenCount(
+          usage.prompt_cache_miss_tokens > 0
+            ? usage.prompt_cache_miss_tokens
+            : promptTokens - cachedPromptTokens
+        ),
+        0
+      )
+      : 0;
+    const reasoningTokens = Math.min(
+      normalizeTokenCount(completionDetails.reasoning_tokens),
+      completionTokens || Number.MAX_SAFE_INTEGER
+    );
+    const answerTokens = completionTokens ? Math.max(completionTokens - reasoningTokens, 0) : 0;
+    const totalTokens = explicitTotal || promptTokens + completionTokens;
+    if (!promptTokens && !completionTokens && !totalTokens) {
+      return null;
+    }
+    return {
+      promptTokens: promptTokens,
+      completionTokens: completionTokens,
+      totalTokens: totalTokens,
+      cachedPromptTokens: cachedPromptTokens,
+      freshPromptTokens: freshPromptTokens,
+      reasoningTokens: reasoningTokens,
+      answerTokens: answerTokens,
+    };
+  }
+
   function normalizeMessage(message) {
     return {
       id: message && message.id ? message.id : uid(),
@@ -556,6 +634,7 @@
       thinkingMs: message && Number(message.thinkingMs) > 0 ? Number(message.thinkingMs) : 0,
       answerMs: message && Number(message.answerMs) > 0 ? Number(message.answerMs) : 0,
       totalMs: message && Number(message.totalMs) > 0 ? Number(message.totalMs) : 0,
+      tokenUsage: normalizeTokenUsage(message && message.tokenUsage),
     };
   }
 
@@ -723,6 +802,27 @@
     return lang() === "zh" ? fixed + " 秒" : fixed + "s";
   }
 
+  function formatTokenCount(value) {
+    return new Intl.NumberFormat(lang() === "zh" ? "zh-CN" : "en-US").format(Math.max(Number(value) || 0, 0));
+  }
+
+  function formatTokenValue(value) {
+    const unit = lang() === "zh"
+      ? "Token"
+      : Math.abs(Number(value) || 0) === 1
+        ? "token"
+        : "tokens";
+    return formatTokenCount(value) + " " + unit;
+  }
+
+  function formatTokenShare(value, total) {
+    if (!total) {
+      return "0%";
+    }
+    const percent = (Math.max(value, 0) / total) * 100;
+    return (percent >= 10 ? percent.toFixed(0) : percent.toFixed(1)).replace(/\.0$/, "") + "%";
+  }
+
   function reasoningLabel(message) {
     return lang() === "zh"
       ? t("thoughtSection") + "（用时 " + formatDuration(message.thinkingMs || message.totalMs) + "）"
@@ -730,11 +830,131 @@
   }
 
   function replyMetrics(message) {
-    return [
+    const items = [
       t("answerAt") + " " + formatTime(message.timestamp),
       t("thoughtSection") + " " + formatDuration(message.thinkingMs || message.totalMs),
       t("replyTiming") + " " + formatDuration(message.answerMs || message.totalMs),
     ];
+    if (message.tokenUsage && message.tokenUsage.totalTokens) {
+      items.push(t("tokenTotal") + " " + formatTokenValue(message.tokenUsage.totalTokens));
+    }
+    return items;
+  }
+
+  function tokenUsageRows(usage) {
+    if (!usage) {
+      return [];
+    }
+    const rows = [];
+    const overallTotal = usage.totalTokens || (usage.promptTokens + usage.completionTokens);
+    if (overallTotal && (usage.promptTokens || usage.completionTokens)) {
+      rows.push({
+        label: t("tokenOverview"),
+        total: overallTotal,
+        segments: [
+          usage.promptTokens ? { key: "tokenPrompt", tone: "prompt", value: usage.promptTokens } : null,
+          usage.completionTokens ? { key: "tokenCompletion", tone: "completion", value: usage.completionTokens } : null,
+        ].filter(Boolean),
+      });
+    }
+    if (usage.promptTokens) {
+      const promptSegments = [
+        usage.cachedPromptTokens ? { key: "tokenCached", tone: "cached", value: usage.cachedPromptTokens } : null,
+        usage.freshPromptTokens ? { key: "tokenFresh", tone: "fresh", value: usage.freshPromptTokens } : null,
+      ].filter(Boolean);
+      if (promptSegments.length > 1) {
+        rows.push({
+          label: t("tokenPromptBreakdown"),
+          total: usage.promptTokens,
+          segments: promptSegments,
+        });
+      }
+    }
+    if (usage.completionTokens) {
+      const completionSegments = [
+        usage.reasoningTokens ? { key: "tokenReasoning", tone: "reasoning", value: usage.reasoningTokens } : null,
+        usage.answerTokens ? { key: "tokenAnswer", tone: "answer", value: usage.answerTokens } : null,
+      ].filter(Boolean);
+      if (completionSegments.length > 1) {
+        rows.push({
+          label: t("tokenCompletionBreakdown"),
+          total: usage.completionTokens,
+          segments: completionSegments,
+        });
+      }
+    }
+    return rows;
+  }
+
+  function renderTokenUsage(message) {
+    const usage = message && message.tokenUsage;
+    const rows = tokenUsageRows(usage);
+    if (!usage || !usage.totalTokens || !rows.length) {
+      return null;
+    }
+    const panel = document.createElement("section");
+    const head = document.createElement("div");
+    const title = document.createElement("span");
+    const total = document.createElement("strong");
+
+    panel.className = "chat-token-panel";
+    panel.setAttribute("aria-label", t("tokenSection"));
+    head.className = "chat-token-panel-head";
+    title.textContent = t("tokenSection");
+    total.textContent = t("tokenTotal") + " " + formatTokenValue(usage.totalTokens);
+    head.appendChild(title);
+    head.appendChild(total);
+    panel.appendChild(head);
+
+    rows.forEach(function (row) {
+      const rowNode = document.createElement("div");
+      const rowHead = document.createElement("div");
+      const rowLabel = document.createElement("span");
+      const rowTotal = document.createElement("span");
+      const bar = document.createElement("div");
+      const legend = document.createElement("div");
+
+      rowNode.className = "chat-token-row";
+      rowHead.className = "chat-token-row-head";
+      rowLabel.className = "chat-token-row-label";
+      rowTotal.className = "chat-token-row-total";
+      bar.className = "chat-token-bar";
+      legend.className = "chat-token-legend";
+      rowLabel.textContent = row.label;
+      rowTotal.textContent = formatTokenValue(row.total);
+      rowHead.appendChild(rowLabel);
+      rowHead.appendChild(rowTotal);
+      rowNode.appendChild(rowHead);
+
+      row.segments.forEach(function (segment) {
+        const width = row.total ? Math.max((segment.value / row.total) * 100, 0) : 0;
+        const block = document.createElement("span");
+        const item = document.createElement("span");
+        const swatch = document.createElement("span");
+        const text = document.createElement("span");
+
+        block.className = "chat-token-segment is-" + segment.tone;
+        block.style.width = width + "%";
+        block.setAttribute(
+          "aria-label",
+          t(segment.key) + " " + formatTokenValue(segment.value) + " (" + formatTokenShare(segment.value, row.total) + ")"
+        );
+        bar.appendChild(block);
+
+        item.className = "chat-token-legend-item";
+        swatch.className = "chat-token-swatch is-" + segment.tone;
+        text.textContent = t(segment.key) + " " + formatTokenValue(segment.value) + " · " + formatTokenShare(segment.value, row.total);
+        item.appendChild(swatch);
+        item.appendChild(text);
+        legend.appendChild(item);
+      });
+
+      rowNode.appendChild(bar);
+      rowNode.appendChild(legend);
+      panel.appendChild(rowNode);
+    });
+
+    return panel;
   }
 
   function splitDurations(totalMs, reasoning, content) {
@@ -1812,6 +2032,7 @@
     if (message.role === "assistant" && !message.pending) {
       const metrics = document.createElement("div");
       const copyButton = createActionButton("copy", t("copyAction"));
+      const tokenUsage = renderTokenUsage(message);
       metrics.className = "chat-message-metrics";
       replyMetrics(message).forEach(function (item) {
         const chip = document.createElement("span");
@@ -1841,6 +2062,9 @@
           regenerateReply(message.id);
         });
         footer.appendChild(regenerateButton);
+      }
+      if (tokenUsage) {
+        footer.appendChild(tokenUsage);
       }
       footer.appendChild(metrics);
     }
@@ -2108,6 +2332,10 @@
     return "";
   }
 
+  function responseTokenUsage(payload) {
+    return normalizeTokenUsage(payload && payload.usage);
+  }
+
   function requestApiUrl(modelId) {
     return providerMeta(providerIdForModel(modelId)).apiUrl;
   }
@@ -2154,6 +2382,7 @@
       }
       const reasoning = responseReasoning(payload);
       const content = responseContent(payload) || reasoning;
+      const tokenUsage = responseTokenUsage(payload);
       if (!content) {
         throw new Error(t("invalid"));
       }
@@ -2170,6 +2399,7 @@
           thinkingMs: durations.thinkingMs,
           answerMs: durations.answerMs,
           totalMs: durations.totalMs,
+          tokenUsage: tokenUsage,
         });
       }
       touchConversation(conversation);
