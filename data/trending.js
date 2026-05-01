@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-04-30T04:40:53.063419+00:00",
+  "generated_at": "2026-05-01T04:56:40.299760+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,12 +15,28 @@ window.__TRENDING_DATA__ = {
         "en": "Warp is an agentic development environment, born out of the terminal."
       },
       "language": "Rust",
-      "stars_total": 45262,
-      "forks_total": 2762,
-      "stars_today": 12822
+      "stars_total": 49670,
+      "forks_total": 3260,
+      "stars_today": 8399
     },
     {
       "rank": 2,
+      "repo": "TauricResearch/TradingAgents",
+      "owner": "TauricResearch",
+      "name": "TradingAgents",
+      "url": "https://github.com/TauricResearch/TradingAgents",
+      "description": "TradingAgents: Multi-Agents LLM Financial Trading Framework",
+      "descriptions": {
+        "zh": "TradingAgents：多代理LLM金融交易框架",
+        "en": "TradingAgents: Multi-Agents LLM Financial Trading Framework"
+      },
+      "language": "Python",
+      "stars_total": 58066,
+      "forks_total": 11046,
+      "stars_today": 2023
+    },
+    {
+      "rank": 3,
       "repo": "mattpocock/skills",
       "owner": "mattpocock",
       "name": "skills",
@@ -31,73 +47,54 @@ window.__TRENDING_DATA__ = {
         "en": "Skills for Real Engineers. Straight from my .claude directory."
       },
       "language": "Shell",
-      "stars_total": 45688,
-      "forks_total": 3686,
-      "stars_today": 7280
-    },
-    {
-      "rank": 3,
-      "repo": "HunxByts/GhostTrack",
-      "owner": "HunxByts",
-      "name": "GhostTrack",
-      "url": "https://github.com/HunxByts/GhostTrack",
-      "description": "Useful tool to track location or mobile number",
-      "descriptions": {
-        "zh": "跟踪位置或手机号码的有用工具",
-        "en": "Useful tool to track location or mobile number"
-      },
-      "language": "Python",
-      "stars_total": 11705,
-      "forks_total": 1600,
-      "stars_today": 1033
+      "stars_total": 49994,
+      "forks_total": 4110,
+      "stars_today": 6187
     },
     {
       "rank": 4,
-      "repo": "ComposioHQ/awesome-codex-skills",
-      "owner": "ComposioHQ",
-      "name": "awesome-codex-skills",
-      "url": "https://github.com/ComposioHQ/awesome-codex-skills",
-      "description": "A curated list of practical Codex skills for automating workflows across the Codex CLI and API.",
+      "repo": "obra/superpowers",
+      "owner": "obra",
+      "name": "superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
       "descriptions": {
-        "zh": "用于跨 Codex CLI 和 API 实现工作流程自动化的实用 Codex 技能精选列表。",
-        "en": "A curated list of practical Codex skills for automating workflows across the Codex CLI and API."
+        "zh": "有效的代理技能框架和软件开发方法。",
+        "en": "An agentic skills framework & software development methodology that works."
       },
-      "language": "Python",
-      "stars_total": 4914,
-      "forks_total": 302,
-      "stars_today": 1177
+      "language": "Shell",
+      "stars_total": 174749,
+      "forks_total": 15418,
+      "stars_today": 1632
     },
     {
       "rank": 5,
-      "repo": "1jehuang/jcode",
-      "owner": "1jehuang",
-      "name": "jcode",
-      "url": "https://github.com/1jehuang/jcode",
-      "description": "Coding Agent Harness",
-      "descriptions": {
-        "zh": "编码剂线束",
-        "en": "Coding Agent Harness"
-      },
-      "language": "Rust",
-      "stars_total": 1503,
-      "forks_total": 138,
-      "stars_today": 411
+      "repo": "lukilabs/craft-agents-oss",
+      "owner": "lukilabs",
+      "name": "craft-agents-oss",
+      "url": "https://github.com/lukilabs/craft-agents-oss",
+      "description": null,
+      "descriptions": null,
+      "language": "TypeScript",
+      "stars_total": 5604,
+      "forks_total": 742,
+      "stars_today": 319
     },
     {
       "rank": 6,
-      "repo": "abhigyanpatwari/GitNexus",
-      "owner": "abhigyanpatwari",
-      "name": "GitNexus",
-      "url": "https://github.com/abhigyanpatwari/GitNexus",
-      "description": "GitNexus: The Zero-Server Code Intelligence Engine - GitNexus is a client-side knowledge graph creator that runs entirely in your browser. Drop in a GitHub repo or ZIP file, and get an interactive knowledge graph wit a built in Graph RAG Agent. Perfect for code exploration",
+      "repo": "public-apis/public-apis",
+      "owner": "public-apis",
+      "name": "public-apis",
+      "url": "https://github.com/public-apis/public-apis",
+      "description": "A collective list of free APIs",
       "descriptions": {
-        "zh": "GitNexus：零服务器代码智能引擎 - GitNexus 是一个完全在浏览器中运行的客户端知识图创建器。放入 GitHub 存储库或 ZIP 文件，即可获得带有内置 Graph RAG 代理的交互式知识图。非常适合代码探索",
-        "en": "GitNexus: The Zero-Server Code Intelligence Engine - GitNexus is a client-side knowledge graph creator that runs entirely in your browser. Drop in a GitHub repo or ZIP file, and get an interactive knowledge graph wit a built in Graph RAG Agent. Perfect for code exploration"
+        "zh": "免费 API 集合列表",
+        "en": "A collective list of free APIs"
       },
-      "language": "TypeScript",
-      "stars_total": 33452,
-      "forks_total": 3794,
-      "stars_today": 774
+      "language": "Python",
+      "stars_total": 429650,
+      "forks_total": 46877,
+      "stars_today": 322
     }
   ]
 }
