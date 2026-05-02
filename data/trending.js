@@ -1,26 +1,10 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-01T04:56:40.299760+00:00",
+  "generated_at": "2026-05-02T04:26:28.494760+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "warpdotdev/warp",
-      "owner": "warpdotdev",
-      "name": "warp",
-      "url": "https://github.com/warpdotdev/warp",
-      "description": "Warp is an agentic development environment, born out of the terminal.",
-      "descriptions": {
-        "zh": "Warp 是一个代理开发环境，脱胎于终端。",
-        "en": "Warp is an agentic development environment, born out of the terminal."
-      },
-      "language": "Rust",
-      "stars_total": 49670,
-      "forks_total": 3260,
-      "stars_today": 8399
-    },
-    {
-      "rank": 2,
       "repo": "TauricResearch/TradingAgents",
       "owner": "TauricResearch",
       "name": "TradingAgents",
@@ -31,12 +15,60 @@ window.__TRENDING_DATA__ = {
         "en": "TradingAgents: Multi-Agents LLM Financial Trading Framework"
       },
       "language": "Python",
-      "stars_total": 58066,
-      "forks_total": 11046,
-      "stars_today": 2023
+      "stars_total": 60132,
+      "forks_total": 11569,
+      "stars_today": 2112
+    },
+    {
+      "rank": 2,
+      "repo": "soxoj/maigret",
+      "owner": "soxoj",
+      "name": "maigret",
+      "url": "https://github.com/soxoj/maigret",
+      "description": "🕵️‍♂️ Collect a dossier on a person by username from 3000+ sites",
+      "descriptions": {
+        "zh": "🕵️‍♂️ 从 3000 多个网站按用户名收集某人的档案",
+        "en": "🕵️‍♂️ Collect a dossier on a person by username from 3000+ sites"
+      },
+      "language": "Python",
+      "stars_total": 21820,
+      "forks_total": 1534,
+      "stars_today": 535
     },
     {
       "rank": 3,
+      "repo": "warpdotdev/warp",
+      "owner": "warpdotdev",
+      "name": "warp",
+      "url": "https://github.com/warpdotdev/warp",
+      "description": "Warp is an agentic development environment, born out of the terminal.",
+      "descriptions": {
+        "zh": "Warp 是一个代理开发环境，脱胎于终端。",
+        "en": "Warp is an agentic development environment, born out of the terminal."
+      },
+      "language": "Rust",
+      "stars_total": 51710,
+      "forks_total": 3488,
+      "stars_today": 3401
+    },
+    {
+      "rank": 4,
+      "repo": "1jehuang/jcode",
+      "owner": "1jehuang",
+      "name": "jcode",
+      "url": "https://github.com/1jehuang/jcode",
+      "description": "Coding Agent Harness",
+      "descriptions": {
+        "zh": "编码剂线束",
+        "en": "Coding Agent Harness"
+      },
+      "language": "Rust",
+      "stars_total": 2429,
+      "forks_total": 214,
+      "stars_today": 403
+    },
+    {
+      "rank": 5,
       "repo": "mattpocock/skills",
       "owner": "mattpocock",
       "name": "skills",
@@ -47,54 +79,25 @@ window.__TRENDING_DATA__ = {
         "en": "Skills for Real Engineers. Straight from my .claude directory."
       },
       "language": "Shell",
-      "stars_total": 49994,
-      "forks_total": 4110,
-      "stars_today": 6187
-    },
-    {
-      "rank": 4,
-      "repo": "obra/superpowers",
-      "owner": "obra",
-      "name": "superpowers",
-      "url": "https://github.com/obra/superpowers",
-      "description": "An agentic skills framework & software development methodology that works.",
-      "descriptions": {
-        "zh": "有效的代理技能框架和软件开发方法。",
-        "en": "An agentic skills framework & software development methodology that works."
-      },
-      "language": "Shell",
-      "stars_total": 174749,
-      "forks_total": 15418,
-      "stars_today": 1632
-    },
-    {
-      "rank": 5,
-      "repo": "lukilabs/craft-agents-oss",
-      "owner": "lukilabs",
-      "name": "craft-agents-oss",
-      "url": "https://github.com/lukilabs/craft-agents-oss",
-      "description": null,
-      "descriptions": null,
-      "language": "TypeScript",
-      "stars_total": 5604,
-      "forks_total": 742,
-      "stars_today": 319
+      "stars_total": 52934,
+      "forks_total": 4449,
+      "stars_today": 3645
     },
     {
       "rank": 6,
-      "repo": "public-apis/public-apis",
-      "owner": "public-apis",
-      "name": "public-apis",
-      "url": "https://github.com/public-apis/public-apis",
-      "description": "A collective list of free APIs",
+      "repo": "browserbase/skills",
+      "owner": "browserbase",
+      "name": "skills",
+      "url": "https://github.com/browserbase/skills",
+      "description": "Claude Agent SDK with a web browsing tool",
       "descriptions": {
-        "zh": "免费 API 集合列表",
-        "en": "A collective list of free APIs"
+        "zh": "Claude Agent SDK 带有网页浏览工具",
+        "en": "Claude Agent SDK with a web browsing tool"
       },
-      "language": "Python",
-      "stars_total": 429650,
-      "forks_total": 46877,
-      "stars_today": 322
+      "language": "JavaScript",
+      "stars_total": 1230,
+      "forks_total": 86,
+      "stars_today": 334
     }
   ]
 }
