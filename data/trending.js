@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-02T04:26:28.494760+00:00",
+  "generated_at": "2026-05-03T04:49:30.724723+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,76 +15,28 @@ window.__TRENDING_DATA__ = {
         "en": "TradingAgents: Multi-Agents LLM Financial Trading Framework"
       },
       "language": "Python",
-      "stars_total": 60132,
-      "forks_total": 11569,
-      "stars_today": 2112
+      "stars_total": 63194,
+      "forks_total": 12225,
+      "stars_today": 2225
     },
     {
       "rank": 2,
-      "repo": "soxoj/maigret",
-      "owner": "soxoj",
-      "name": "maigret",
-      "url": "https://github.com/soxoj/maigret",
-      "description": "🕵️‍♂️ Collect a dossier on a person by username from 3000+ sites",
+      "repo": "ruvnet/ruflo",
+      "owner": "ruvnet",
+      "name": "ruflo",
+      "url": "https://github.com/ruvnet/ruflo",
+      "description": "🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, distributed swarm intelligence, RAG integration, and native Claude Code / Codex Integration",
       "descriptions": {
-        "zh": "🕵️‍♂️ 从 3000 多个网站按用户名收集某人的档案",
-        "en": "🕵️‍♂️ Collect a dossier on a person by username from 3000+ sites"
+        "zh": "🌊 Claude 领先的代理编排平台。部署智能多代理群、协调自主工作流程并构建对话式 AI 系统。具有企业级架构、分布式集群智能、RAG 集成和本机 Claude Code/Codex 集成",
+        "en": "🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, distributed swarm intelligence, RAG integration, and native Claude Code / Codex Integration"
       },
-      "language": "Python",
-      "stars_total": 21820,
-      "forks_total": 1534,
-      "stars_today": 535
+      "language": "TypeScript",
+      "stars_total": 37013,
+      "forks_total": 4240,
+      "stars_today": 1299
     },
     {
       "rank": 3,
-      "repo": "warpdotdev/warp",
-      "owner": "warpdotdev",
-      "name": "warp",
-      "url": "https://github.com/warpdotdev/warp",
-      "description": "Warp is an agentic development environment, born out of the terminal.",
-      "descriptions": {
-        "zh": "Warp 是一个代理开发环境，脱胎于终端。",
-        "en": "Warp is an agentic development environment, born out of the terminal."
-      },
-      "language": "Rust",
-      "stars_total": 51710,
-      "forks_total": 3488,
-      "stars_today": 3401
-    },
-    {
-      "rank": 4,
-      "repo": "1jehuang/jcode",
-      "owner": "1jehuang",
-      "name": "jcode",
-      "url": "https://github.com/1jehuang/jcode",
-      "description": "Coding Agent Harness",
-      "descriptions": {
-        "zh": "编码剂线束",
-        "en": "Coding Agent Harness"
-      },
-      "language": "Rust",
-      "stars_total": 2429,
-      "forks_total": 214,
-      "stars_today": 403
-    },
-    {
-      "rank": 5,
-      "repo": "mattpocock/skills",
-      "owner": "mattpocock",
-      "name": "skills",
-      "url": "https://github.com/mattpocock/skills",
-      "description": "Skills for Real Engineers. Straight from my .claude directory.",
-      "descriptions": {
-        "zh": "真正工程师的技能。直接来自我的 .claude 目录。",
-        "en": "Skills for Real Engineers. Straight from my .claude directory."
-      },
-      "language": "Shell",
-      "stars_total": 52934,
-      "forks_total": 4449,
-      "stars_today": 3645
-    },
-    {
-      "rank": 6,
       "repo": "browserbase/skills",
       "owner": "browserbase",
       "name": "skills",
@@ -95,9 +47,54 @@ window.__TRENDING_DATA__ = {
         "en": "Claude Agent SDK with a web browsing tool"
       },
       "language": "JavaScript",
-      "stars_total": 1230,
-      "forks_total": 86,
-      "stars_today": 334
+      "stars_total": 1563,
+      "forks_total": 104,
+      "stars_today": 346
+    },
+    {
+      "rank": 4,
+      "repo": "soxoj/maigret",
+      "owner": "soxoj",
+      "name": "maigret",
+      "url": "https://github.com/soxoj/maigret",
+      "description": "🕵️‍♂️ Collect a dossier on a person by username from 3000+ sites",
+      "descriptions": {
+        "zh": "🕵️‍♂️ 从 3000 多个网站按用户名收集某人的档案",
+        "en": "🕵️‍♂️ Collect a dossier on a person by username from 3000+ sites"
+      },
+      "language": "Python",
+      "stars_total": 22935,
+      "forks_total": 1613,
+      "stars_today": 1064
+    },
+    {
+      "rank": 5,
+      "repo": "Flowseal/zapret-discord-youtube",
+      "owner": "Flowseal",
+      "name": "zapret-discord-youtube",
+      "url": "https://github.com/Flowseal/zapret-discord-youtube",
+      "description": null,
+      "descriptions": null,
+      "language": "Batchfile",
+      "stars_total": 27132,
+      "forks_total": 2113,
+      "stars_today": 181
+    },
+    {
+      "rank": 6,
+      "repo": "1jehuang/jcode",
+      "owner": "1jehuang",
+      "name": "jcode",
+      "url": "https://github.com/1jehuang/jcode",
+      "description": "Coding Agent Harness",
+      "descriptions": {
+        "zh": "编码剂线束",
+        "en": "Coding Agent Harness"
+      },
+      "language": "Rust",
+      "stars_total": 2940,
+      "forks_total": 264,
+      "stars_today": 482
     }
   ]
 }
