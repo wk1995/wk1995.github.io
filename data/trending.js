@@ -1,10 +1,26 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-03T04:49:30.724723+00:00",
+  "generated_at": "2026-05-04T04:49:24.350466+00:00",
   "items": [
     {
       "rank": 1,
+      "repo": "ruvnet/ruflo",
+      "owner": "ruvnet",
+      "name": "ruflo",
+      "url": "https://github.com/ruvnet/ruflo",
+      "description": "🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, self-learning swarm intelligence, RAG integration, and native Claude Code / Codex Integration",
+      "descriptions": {
+        "zh": "🌊 Claude 领先的代理编排平台。部署智能多代理群、协调自主工作流程并构建对话式 AI 系统。具有企业级架构、自学习群体智能、RAG 集成和原生 Claude Code/Codex 集成",
+        "en": "🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, self-learning swarm intelligence, RAG integration, and native Claude Code / Codex Integration"
+      },
+      "language": "TypeScript",
+      "stars_total": 39361,
+      "forks_total": 4466,
+      "stars_today": 1840
+    },
+    {
+      "rank": 2,
       "repo": "TauricResearch/TradingAgents",
       "owner": "TauricResearch",
       "name": "TradingAgents",
@@ -15,44 +31,12 @@ window.__TRENDING_DATA__ = {
         "en": "TradingAgents: Multi-Agents LLM Financial Trading Framework"
       },
       "language": "Python",
-      "stars_total": 63194,
-      "forks_total": 12225,
-      "stars_today": 2225
-    },
-    {
-      "rank": 2,
-      "repo": "ruvnet/ruflo",
-      "owner": "ruvnet",
-      "name": "ruflo",
-      "url": "https://github.com/ruvnet/ruflo",
-      "description": "🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, distributed swarm intelligence, RAG integration, and native Claude Code / Codex Integration",
-      "descriptions": {
-        "zh": "🌊 Claude 领先的代理编排平台。部署智能多代理群、协调自主工作流程并构建对话式 AI 系统。具有企业级架构、分布式集群智能、RAG 集成和本机 Claude Code/Codex 集成",
-        "en": "🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, distributed swarm intelligence, RAG integration, and native Claude Code / Codex Integration"
-      },
-      "language": "TypeScript",
-      "stars_total": 37013,
-      "forks_total": 4240,
-      "stars_today": 1299
+      "stars_total": 65619,
+      "forks_total": 12715,
+      "stars_today": 3313
     },
     {
       "rank": 3,
-      "repo": "browserbase/skills",
-      "owner": "browserbase",
-      "name": "skills",
-      "url": "https://github.com/browserbase/skills",
-      "description": "Claude Agent SDK with a web browsing tool",
-      "descriptions": {
-        "zh": "Claude Agent SDK 带有网页浏览工具",
-        "en": "Claude Agent SDK with a web browsing tool"
-      },
-      "language": "JavaScript",
-      "stars_total": 1563,
-      "forks_total": 104,
-      "stars_today": 346
-    },
-    {
-      "rank": 4,
       "repo": "soxoj/maigret",
       "owner": "soxoj",
       "name": "maigret",
@@ -63,38 +47,57 @@ window.__TRENDING_DATA__ = {
         "en": "🕵️‍♂️ Collect a dossier on a person by username from 3000+ sites"
       },
       "language": "Python",
-      "stars_total": 22935,
-      "forks_total": 1613,
-      "stars_today": 1064
+      "stars_total": 23976,
+      "forks_total": 1689,
+      "stars_today": 1119
+    },
+    {
+      "rank": 4,
+      "repo": "Hmbown/DeepSeek-TUI",
+      "owner": "Hmbown",
+      "name": "DeepSeek-TUI",
+      "url": "https://github.com/Hmbown/DeepSeek-TUI",
+      "description": "Coding agent for DeepSeek models that runs in your terminal",
+      "descriptions": {
+        "zh": "在终端中运行的 DeepSeek 模型的编码代理",
+        "en": "Coding agent for DeepSeek models that runs in your terminal"
+      },
+      "language": "Rust",
+      "stars_total": 2377,
+      "forks_total": 141,
+      "stars_today": 343
     },
     {
       "rank": 5,
-      "repo": "Flowseal/zapret-discord-youtube",
-      "owner": "Flowseal",
-      "name": "zapret-discord-youtube",
-      "url": "https://github.com/Flowseal/zapret-discord-youtube",
-      "description": null,
-      "descriptions": null,
-      "language": "Batchfile",
-      "stars_total": 27132,
-      "forks_total": 2113,
-      "stars_today": 181
+      "repo": "AIDC-AI/Pixelle-Video",
+      "owner": "AIDC-AI",
+      "name": "Pixelle-Video",
+      "url": "https://github.com/AIDC-AI/Pixelle-Video",
+      "description": "🚀 AI 全自动短视频引擎 | AI Fully Automated Short Video Engine",
+      "descriptions": {
+        "zh": "🚀 AI 全自动短视频引擎 | AI Fully Automated Short Video Engine",
+        "en": "🚀 AI Fully Automated Short Video Engine | AI Fully Automated Short Video Engine"
+      },
+      "language": "Python",
+      "stars_total": 10205,
+      "forks_total": 1595,
+      "stars_today": 497
     },
     {
       "rank": 6,
-      "repo": "1jehuang/jcode",
-      "owner": "1jehuang",
-      "name": "jcode",
-      "url": "https://github.com/1jehuang/jcode",
-      "description": "Coding Agent Harness",
+      "repo": "browserbase/skills",
+      "owner": "browserbase",
+      "name": "skills",
+      "url": "https://github.com/browserbase/skills",
+      "description": "Claude Agent SDK with a web browsing tool",
       "descriptions": {
-        "zh": "编码剂线束",
-        "en": "Coding Agent Harness"
+        "zh": "Claude Agent SDK 带有网页浏览工具",
+        "en": "Claude Agent SDK with a web browsing tool"
       },
-      "language": "Rust",
-      "stars_total": 2940,
-      "forks_total": 264,
-      "stars_today": 482
+      "language": "JavaScript",
+      "stars_total": 1872,
+      "forks_total": 125,
+      "stars_today": 322
     }
   ]
 }
