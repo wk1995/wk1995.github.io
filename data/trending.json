@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-06T04:40:17.529675+00:00",
+  "generated_at": "2026-05-07T04:42:28.476448+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,41 +15,41 @@
         "en": "Coding agent for DeepSeek models that runs in your terminal"
       },
       "language": "Rust",
-      "stars_total": 8942,
-      "forks_total": 684,
-      "stars_today": 2434
+      "stars_total": 15280,
+      "forks_total": 1191,
+      "stars_today": 6175
     },
     {
       "rank": 2,
-      "repo": "ruvnet/ruflo",
-      "owner": "ruvnet",
-      "name": "ruflo",
-      "url": "https://github.com/ruvnet/ruflo",
-      "description": "🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, self-learning swarm intelligence, RAG integration, and native Claude Code / Codex Integration",
+      "repo": "addyosmani/agent-skills",
+      "owner": "addyosmani",
+      "name": "agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "description": "Production-grade engineering skills for AI coding agents.",
       "descriptions": {
-        "zh": "🌊 Claude 领先的代理编排平台。部署智能多代理群、协调自主工作流程并构建对话式 AI 系统。具有企业级架构、自学习群体智能、RAG 集成和原生 Claude Code/Codex 集成",
-        "en": "🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, self-learning swarm intelligence, RAG integration, and native Claude Code / Codex Integration"
+        "zh": "AI 编码代理的生产级工程技能。",
+        "en": "Production-grade engineering skills for AI coding agents."
       },
-      "language": "TypeScript",
-      "stars_total": 44024,
-      "forks_total": 4895,
-      "stars_today": 2432
+      "language": "Shell",
+      "stars_total": 31078,
+      "forks_total": 3669,
+      "stars_today": 800
     },
     {
       "rank": 3,
-      "repo": "virattt/dexter",
-      "owner": "virattt",
-      "name": "dexter",
-      "url": "https://github.com/virattt/dexter",
-      "description": "An autonomous agent for deep financial research",
+      "repo": "PriorLabs/TabPFN",
+      "owner": "PriorLabs",
+      "name": "TabPFN",
+      "url": "https://github.com/PriorLabs/TabPFN",
+      "description": "⚡ TabPFN: Foundation Model for Tabular Data ⚡",
       "descriptions": {
-        "zh": "深度金融研究的自主代理",
-        "en": "An autonomous agent for deep financial research"
+        "zh": "⚡ TabPFN：表格数据的基础模型 ⚡",
+        "en": "⚡ TabPFN: Foundation Model for Tabular Data ⚡"
       },
-      "language": "TypeScript",
-      "stars_total": 23920,
-      "forks_total": 2912,
-      "stars_today": 659
+      "language": "Python",
+      "stars_total": 6628,
+      "forks_total": 660,
+      "stars_today": 218
     },
     {
       "rank": 4,
@@ -63,41 +63,41 @@
         "en": "Open source DocuSign alternative. Create, fill, and sign digital documents ✍️"
       },
       "language": "Ruby",
-      "stars_total": 14133,
-      "forks_total": 1275,
-      "stars_today": 927
+      "stars_total": 15029,
+      "forks_total": 1369,
+      "stars_today": 774
     },
     {
       "rank": 5,
-      "repo": "bwya77/vscode-dark-islands",
-      "owner": "bwya77",
-      "name": "vscode-dark-islands",
-      "url": "https://github.com/bwya77/vscode-dark-islands",
-      "description": "VSCode theme based off the easemate IDE and Jetbrains islands theme",
+      "repo": "LearningCircuit/local-deep-research",
+      "owner": "LearningCircuit",
+      "name": "local-deep-research",
+      "url": "https://github.com/LearningCircuit/local-deep-research",
+      "description": "~95% on SimpleQA (e.g. Qwen3.6-27B on a 3090). Supports all local and cloud LLMs (llama.cpp, Ollama, Google, ...). 10+ search engines - arXiv, PubMed, your private documents. Everything Local & Encrypted.",
       "descriptions": {
-        "zh": "VSCode 主题基于 easemate IDE 和 Jetbrains 群岛主题",
-        "en": "VSCode theme based off the easemate IDE and Jetbrains islands theme"
+        "zh": "SimpleQA 上约为 95%（例如 3090 上的 Qwen3.6-27B）。支持所有本地和云 LLM（llama.cpp、Ollama、Google...）。 10 多个搜索引擎 - arXiv、PubMed、您的私人文档。一切都是本地和加密的。",
+        "en": "~95% on SimpleQA (e.g. Qwen3.6-27B on a 3090). Supports all local and cloud LLMs (llama.cpp, Ollama, Google, ...). 10+ search engines - arXiv, PubMed, your private documents. Everything Local & Encrypted."
       },
-      "language": "PowerShell",
-      "stars_total": 7938,
-      "forks_total": 242,
-      "stars_today": 321
+      "language": "Python",
+      "stars_total": 5766,
+      "forks_total": 523,
+      "stars_today": 532
     },
     {
       "rank": 6,
-      "repo": "mksglu/context-mode",
-      "owner": "mksglu",
-      "name": "context-mode",
-      "url": "https://github.com/mksglu/context-mode",
-      "description": "Context window optimization for AI coding agents. Sandboxes tool output, 98% reduction. 14 platforms",
+      "repo": "LadybirdBrowser/ladybird",
+      "owner": "LadybirdBrowser",
+      "name": "ladybird",
+      "url": "https://github.com/LadybirdBrowser/ladybird",
+      "description": "Truly independent web browser",
       "descriptions": {
-        "zh": "AI 编码代理的上下文窗口优化。沙盒工具输出，减少 98%。 14个平台",
-        "en": "Context window optimization for AI coding agents. Sandboxes tool output, 98% reduction. 14 platforms"
+        "zh": "真正独立的网络浏览器",
+        "en": "Truly independent web browser"
       },
-      "language": "TypeScript",
-      "stars_total": 13203,
-      "forks_total": 902,
-      "stars_today": 276
+      "language": "C++",
+      "stars_total": 63027,
+      "forks_total": 2997,
+      "stars_today": 113
     }
   ]
 }
