@@ -1,10 +1,23 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-07T04:42:28.476448+00:00",
+  "generated_at": "2026-05-08T04:23:13.287805+00:00",
   "items": [
     {
       "rank": 1,
+      "repo": "anthropics/financial-services",
+      "owner": "anthropics",
+      "name": "financial-services",
+      "url": "https://github.com/anthropics/financial-services",
+      "description": null,
+      "descriptions": null,
+      "language": "Python",
+      "stars_total": 12282,
+      "forks_total": 1576,
+      "stars_today": 1343
+    },
+    {
+      "rank": 2,
       "repo": "Hmbown/DeepSeek-TUI",
       "owner": "Hmbown",
       "name": "DeepSeek-TUI",
@@ -15,57 +28,41 @@
         "en": "Coding agent for DeepSeek models that runs in your terminal"
       },
       "language": "Rust",
-      "stars_total": 15280,
-      "forks_total": 1191,
-      "stars_today": 6175
-    },
-    {
-      "rank": 2,
-      "repo": "addyosmani/agent-skills",
-      "owner": "addyosmani",
-      "name": "agent-skills",
-      "url": "https://github.com/addyosmani/agent-skills",
-      "description": "Production-grade engineering skills for AI coding agents.",
-      "descriptions": {
-        "zh": "AI 编码代理的生产级工程技能。",
-        "en": "Production-grade engineering skills for AI coding agents."
-      },
-      "language": "Shell",
-      "stars_total": 31078,
-      "forks_total": 3669,
-      "stars_today": 800
+      "stars_total": 19602,
+      "forks_total": 1496,
+      "stars_today": 5799
     },
     {
       "rank": 3,
-      "repo": "PriorLabs/TabPFN",
-      "owner": "PriorLabs",
-      "name": "TabPFN",
-      "url": "https://github.com/PriorLabs/TabPFN",
-      "description": "⚡ TabPFN: Foundation Model for Tabular Data ⚡",
+      "repo": "z-lab/dflash",
+      "owner": "z-lab",
+      "name": "dflash",
+      "url": "https://github.com/z-lab/dflash",
+      "description": "DFlash: Block Diffusion for Flash Speculative Decoding",
       "descriptions": {
-        "zh": "⚡ TabPFN：表格数据的基础模型 ⚡",
-        "en": "⚡ TabPFN: Foundation Model for Tabular Data ⚡"
+        "zh": "DFlash：用于闪存推测解码的块扩散",
+        "en": "DFlash: Block Diffusion for Flash Speculative Decoding"
       },
       "language": "Python",
-      "stars_total": 6628,
-      "forks_total": 660,
-      "stars_today": 218
+      "stars_total": 3559,
+      "forks_total": 254,
+      "stars_today": 671
     },
     {
       "rank": 4,
-      "repo": "docusealco/docuseal",
-      "owner": "docusealco",
-      "name": "docuseal",
-      "url": "https://github.com/docusealco/docuseal",
-      "description": "Open source DocuSign alternative. Create, fill, and sign digital documents ✍️",
+      "repo": "InsForge/InsForge",
+      "owner": "InsForge",
+      "name": "InsForge",
+      "url": "https://github.com/InsForge/InsForge",
+      "description": "InsForge is a Postgres-based backend with auth, storage, compute, hosting, and AI gateway. Built for coding agents.",
       "descriptions": {
-        "zh": "开源 DocuSign 替代方案。创建、填写和签署数字文档 ✍️",
-        "en": "Open source DocuSign alternative. Create, fill, and sign digital documents ✍️"
+        "zh": "InsForge 是一个基于 Postgres 的后端，具有身份验证、存储、计算、托管和 AI 网关。专为编码代理而设计。",
+        "en": "InsForge is a Postgres-based backend with auth, storage, compute, hosting, and AI gateway. Built for coding agents."
       },
-      "language": "Ruby",
-      "stars_total": 15029,
-      "forks_total": 1369,
-      "stars_today": 774
+      "language": "TypeScript",
+      "stars_total": 8929,
+      "forks_total": 736,
+      "stars_today": 460
     },
     {
       "rank": 5,
@@ -79,25 +76,25 @@
         "en": "~95% on SimpleQA (e.g. Qwen3.6-27B on a 3090). Supports all local and cloud LLMs (llama.cpp, Ollama, Google, ...). 10+ search engines - arXiv, PubMed, your private documents. Everything Local & Encrypted."
       },
       "language": "Python",
-      "stars_total": 5766,
-      "forks_total": 523,
-      "stars_today": 532
+      "stars_total": 6369,
+      "forks_total": 555,
+      "stars_today": 559
     },
     {
       "rank": 6,
-      "repo": "LadybirdBrowser/ladybird",
-      "owner": "LadybirdBrowser",
-      "name": "ladybird",
-      "url": "https://github.com/LadybirdBrowser/ladybird",
-      "description": "Truly independent web browser",
+      "repo": "addyosmani/agent-skills",
+      "owner": "addyosmani",
+      "name": "agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "description": "Production-grade engineering skills for AI coding agents.",
       "descriptions": {
-        "zh": "真正独立的网络浏览器",
-        "en": "Truly independent web browser"
+        "zh": "AI 编码代理的生产级工程技能。",
+        "en": "Production-grade engineering skills for AI coding agents."
       },
-      "language": "C++",
-      "stars_total": 63027,
-      "forks_total": 2997,
-      "stars_today": 113
+      "language": "Shell",
+      "stars_total": 33297,
+      "forks_total": 3845,
+      "stars_today": 3062
     }
   ]
 }
