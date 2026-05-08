@@ -561,6 +561,8 @@
 
     const overlay = createElement("div", "github-auth-overlay");
     const modal = createElement("div", "github-auth-modal");
+    overlay.hidden = true;
+    modal.hidden = true;
     modal.id = AUTH_DIALOG_ID;
     modal.setAttribute("role", "dialog");
     modal.setAttribute("aria-modal", "true");
@@ -632,16 +634,20 @@
   }
 
   function renderDialog() {
-    const shell = ensureDialogShell();
     const dialog = state.dialog;
 
     if (!dialog) {
+      if (!state.shell) {
+        return;
+      }
+      const shell = state.shell;
       shell.overlay.hidden = true;
       shell.modal.hidden = true;
       document.body.classList.remove("github-auth-modal-open");
       return;
     }
 
+    const shell = ensureDialogShell();
     shell.overlay.hidden = false;
     shell.modal.hidden = false;
     document.body.classList.add("github-auth-modal-open");
