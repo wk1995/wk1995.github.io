@@ -543,6 +543,11 @@ html[data-theme="light"] .chat-icon-button {
   padding: 1.5rem;
 }
 
+.github-auth-overlay[hidden],
+.github-auth-modal[hidden] {
+  display: none !important;
+}
+
 .github-auth-card {
   width: min(100%, 560px);
   max-height: min(86vh, 760px);
