@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>反馈 | WK1995</title>
+  <meta name="description" content="提交 Bug、Idea 或改进建议，并同步到 wk1995.github.io 的 GitHub Issues。">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    :root {
+      --bg: #0c1018;
+      --bg-glow: #1a1f2f;
+      --fg: #f2f5ff;
+      --fg-muted: #b0b8cc;
+      --primary: #6c63ff;
+      --accent: #1e90ff;
+      --card-bg: rgba(17, 23, 34, 0.85);
+      --border: rgba(255, 255, 255, 0.08);
+      --control-bg: rgba(15, 22, 33, 0.72);
+      --control-border: rgba(255, 255, 255, 0.08);
+      font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+    }
+
+    html[data-theme="light"] {
+      --bg: #eef4ff;
+      --bg-glow: #d9e7ff;
+      --fg: #162033;
+      --fg-muted: #5a6880;
+      --primary: #245fdd;
+      --accent: #1177ee;
+      --card-bg: rgba(255, 255, 255, 0.84);
+      --border: rgba(15, 23, 42, 0.1);
+      --control-bg: rgba(255, 255, 255, 0.82);
+      --control-border: rgba(15, 23, 42, 0.12);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top right, var(--bg-glow), transparent 26%),
+        linear-gradient(180deg, var(--bg), #080c14 72%);
+      color: var(--fg);
+    }
+
+    .container {
+      width: min(100%, 1080px);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    header {
+      padding: 1rem 0 1.5rem;
+    }
+
+    .hero {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .back:hover,
+    .back:focus {
+      color: var(--fg);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.4rem, 4.6vw, 3.6rem);
+      line-height: 1.08;
+    }
+
+    .intro {
+      max-width: 720px;
+      margin: 0;
+      color: var(--fg-muted);
+      font-size: 1.04rem;
+      line-height: 1.75;
+    }
+
+    footer {
+      padding: 2.5rem 0 3rem;
+      color: var(--fg-muted);
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    footer a {
+      color: var(--fg);
+      text-decoration: none;
+    }
+
+    @media (max-width: 720px) {
+      header {
+        padding-top: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body data-page="feedbackPage">
+  <div class="container">
+    <header>
+      <div class="site-topbar">
+        <a
+          class="brand-link"
+          href="https://github.com/wk1995"
+          target="_blank"
+          rel="noopener"
+          data-i18n-aria="brand.aria"
+          aria-label="Open WK1995 GitHub profile"
+        >
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82a7.56 7.56 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path>
+          </svg>
+        </a>
+        <div class="topbar-right">
+          <div class="control-row">
+            <label class="control-group" for="language-select">
+              <span class="control-label" id="language-label">语言</span>
+              <select class="language-select" id="language-select" aria-label="Language">
+                <option value="zh">简体中文</option>
+                <option value="en">English</option>
+              </select>
+            </label>
+            <div class="control-group">
+              <span class="control-label" id="theme-caption">主题</span>
+              <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换主题">
+                <svg viewBox="0 0 16 16" aria-hidden="true">
+                  <path id="theme-icon" d="M9.598 1.591a.75.75 0 0 1 .287.857 6.998 6.998 0 0 0 8.442 8.442.75.75 0 0 1 .857.287.75.75 0 0 1-.131.94A8.5 8.5 0 1 1 8.658.722a.75.75 0 0 1 .94-.131Z"></path>
+                </svg>
+                <span id="theme-label">暗色</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero">
+        <a class="back" href="../index.html" data-feedback-copy="backHome">返回首页</a>
+        <h1 data-feedback-copy="pageTitle">提交反馈</h1>
+        <p class="intro" data-feedback-copy="pageIntro">
+          这里是统一反馈入口。登录 GitHub 后，你可以把 Bug、功能建议或体验改进直接同步到仓库 Issue。
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <section class="feedback-page-section">
+        <div data-github-feedback-page></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        <a href="https://github.com/wk1995" target="_blank" rel="noopener">GitHub</a>
+        ·
+        <a href="mailto:kangw1995@gmail.com">kangw1995@gmail.com</a>
+      </p>
+    </footer>
+  </div>
+
+  <script src="../assets/site.js"></script>
+  <script src="../assets/feedback-entry.js"></script>
+  <script src="../assets/github-auth-config.js"></script>
+  <script src="../assets/github-auth.js"></script>
+</body>
+</html>

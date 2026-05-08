@@ -1,6 +1,7 @@
 (function () {
   const slots = Array.from(document.querySelectorAll("[data-github-auth-slot]"));
-  if (!slots.length) {
+  const pageRoots = Array.from(document.querySelectorAll("[data-github-feedback-page]"));
+  if (!slots.length && !pageRoots.length) {
     return;
   }
 
@@ -57,6 +58,16 @@
       feedbackOpenIssue: "打开 Issue",
       feedbackFailedTitle: "提交反馈失败",
       feedbackAuthExpired: "GitHub 登录状态已失效，请重新登录后再提交反馈。",
+      feedbackPageStatusLabel: "GitHub 连接",
+      feedbackPageStatusTitle: "连接 GitHub 账号",
+      feedbackPageGuestBody: "登录后，反馈会直接创建到仓库公开 Issue。",
+      feedbackPageSignedInBody: "当前已经连接 GitHub，提交后会在仓库中创建公开 Issue。",
+      feedbackPageSignedInAs: "当前账号",
+      feedbackPageFormTitle: "反馈内容",
+      feedbackPageFormReady: "描述问题现象、复现步骤，或者告诉我你希望新增的能力。",
+      feedbackPageFormLocked: "请先登录 GitHub，再填写反馈并同步到仓库 Issue。",
+      feedbackPagePublicNote: "仓库 Issue 默认公开可见，请不要提交敏感信息。",
+      feedbackPageSuccessBody: "反馈已经同步到仓库，你可以直接打开 Issue 查看。",
       modalClose: "关闭对话框"
     },
     en: {
@@ -106,6 +117,16 @@
       feedbackOpenIssue: "Open issue",
       feedbackFailedTitle: "Feedback submission failed",
       feedbackAuthExpired: "Your GitHub login has expired. Sign in again before submitting feedback.",
+      feedbackPageStatusLabel: "GitHub",
+      feedbackPageStatusTitle: "Connect your GitHub account",
+      feedbackPageGuestBody: "Sign in first, then your feedback will be created as a public repository issue.",
+      feedbackPageSignedInBody: "GitHub is connected. Submitting this form will create a public issue in the repository.",
+      feedbackPageSignedInAs: "Signed in as",
+      feedbackPageFormTitle: "Feedback details",
+      feedbackPageFormReady: "Describe the bug, repro steps, or the capability you want to add.",
+      feedbackPageFormLocked: "Sign in with GitHub before filling out the form and syncing it into repository issues.",
+      feedbackPagePublicNote: "Repository issues are public by default. Do not submit sensitive information.",
+      feedbackPageSuccessBody: "Your feedback has been synced to the repository. You can open the issue directly.",
       modalClose: "Close dialog"
     }
   };
@@ -115,7 +136,13 @@
     busy: false,
     dialog: null,
     shell: null,
-    pendingLogin: null
+    pendingLogin: null,
+    pageFeedback: {
+      draft: initialFeedbackDraft(),
+      submitting: false,
+      error: "",
+      successHref: ""
+    }
   };
 
   const config = normalizeConfig(window.WKGitHubAuthConfig || {});
@@ -218,6 +245,20 @@
 
   function callbackUrl() {
     return new URL("/auth/callback/", window.location.origin).toString();
+  }
+
+  function feedbackSourceUrl() {
+    if (document.body && document.body.dataset.page === "feedbackPage" && document.referrer) {
+      try {
+        const referrer = new URL(document.referrer);
+        if (referrer.origin === window.location.origin) {
+          return referrer.toString();
+        }
+      } catch (error) {
+        // Ignore invalid referrers and fall back to the current page.
+      }
+    }
+    return window.location.href;
   }
 
   function toBase64Url(bytes) {
@@ -781,7 +822,7 @@
       state.auth.user ? "@" + state.auth.user.login : "Unknown",
       "",
       "## Source Page",
-      window.location.href,
+      feedbackSourceUrl(),
       "",
       "## Submitted At",
       new Date().toISOString(),
@@ -790,6 +831,31 @@
       draft.details.trim()
     ];
     return lines.join("\n");
+  }
+
+  async function createIssue(draft) {
+    const response = await fetch(issueEndpoint(), {
+      method: "POST",
+      headers: Object.assign({}, authHeaders(state.auth.token), {
+        "Content-Type": "application/json"
+      }),
+      body: JSON.stringify({
+        title: buildIssueTitle(draft.type, draft.title),
+        body: buildIssueBody(draft)
+      })
+    });
+
+    if (response.status === 401) {
+      clearAuthState();
+      throw new Error(t("feedbackAuthExpired"));
+    }
+
+    if (!response.ok) {
+      const error = await parseError(response);
+      throw new Error(error || t("feedbackFailedTitle"));
+    }
+
+    return response.json();
   }
 
   async function submitFeedback() {
@@ -818,28 +884,7 @@
     renderDialog();
 
     try {
-      const response = await fetch(issueEndpoint(), {
-        method: "POST",
-        headers: Object.assign({}, authHeaders(state.auth.token), {
-          "Content-Type": "application/json"
-        }),
-        body: JSON.stringify({
-          title: buildIssueTitle(draft.type, draft.title),
-          body: buildIssueBody(draft)
-        })
-      });
-
-      if (response.status === 401) {
-        clearAuthState();
-        throw new Error(t("feedbackAuthExpired"));
-      }
-
-      if (!response.ok) {
-        const error = await parseError(response);
-        throw new Error(error || t("feedbackFailedTitle"));
-      }
-
-      const data = await response.json();
+      const data = await createIssue(draft);
       openMessageDialog({
         title: t("feedbackSuccessTitle"),
         body: t("feedbackSuccessBody"),
@@ -852,6 +897,41 @@
     }
   }
 
+  async function submitPageFeedback() {
+    if (!isAuthenticated()) {
+      openMessageDialog({
+        title: t("feedbackFailedTitle"),
+        body: t("feedbackAuthExpired")
+      });
+      return;
+    }
+
+    const draft = state.pageFeedback.draft;
+    if (!draft.title.trim() || !draft.details.trim()) {
+      state.pageFeedback.error = t("feedbackValidationBody");
+      renderAll();
+      return;
+    }
+
+    state.pageFeedback.submitting = true;
+    state.pageFeedback.error = "";
+    state.pageFeedback.successHref = "";
+    renderAll();
+
+    try {
+      const data = await createIssue(draft);
+      state.pageFeedback.draft = initialFeedbackDraft();
+      state.pageFeedback.submitting = false;
+      state.pageFeedback.error = "";
+      state.pageFeedback.successHref = typeof data.html_url === "string" ? data.html_url : "";
+      renderAll();
+    } catch (error) {
+      state.pageFeedback.submitting = false;
+      state.pageFeedback.error = error && error.message ? error.message : t("feedbackFailedTitle");
+      renderAll();
+    }
+  }
+
   function buildSlotButton(text, className, handler) {
     const button = createElement("button", className, text);
     button.type = "button";
@@ -860,26 +940,7 @@
     return button;
   }
 
-  function renderSlot(slot) {
-    slot.innerHTML = "";
-    const actions = createElement("div", "github-auth-actions-inline");
-
-    if (!isAuthenticated()) {
-      actions.appendChild(buildSlotButton(
-        t("login"),
-        "github-auth-button github-auth-button-primary github-auth-slot-button",
-        startLogin
-      ));
-      slot.appendChild(actions);
-      return;
-    }
-
-    actions.appendChild(buildSlotButton(
-      t("feedback"),
-      "github-auth-button github-auth-button-secondary github-auth-slot-button",
-      openFeedbackDialog
-    ));
-
+  function buildProfileLink() {
     const profile = createElement("a", "github-auth-profile");
     profile.href = state.auth.user.htmlUrl;
     profile.target = "_blank";
@@ -896,7 +957,24 @@
     }
 
     profile.appendChild(createElement("span", "github-auth-profile-name", state.auth.user.login));
-    actions.appendChild(profile);
+    return profile;
+  }
+
+  function renderSlot(slot) {
+    slot.innerHTML = "";
+    const actions = createElement("div", "github-auth-actions-inline");
+
+    if (!isAuthenticated()) {
+      actions.appendChild(buildSlotButton(
+        t("login"),
+        "github-auth-button github-auth-button-primary github-auth-slot-button",
+        startLogin
+      ));
+      slot.appendChild(actions);
+      return;
+    }
+
+    actions.appendChild(buildProfileLink());
     actions.appendChild(buildSlotButton(
       t("logout"),
       "github-auth-button github-auth-button-ghost github-auth-slot-button",
@@ -905,8 +983,141 @@
     slot.appendChild(actions);
   }
 
+  function renderFeedbackPage(root) {
+    root.innerHTML = "";
+
+    const shell = createElement("div", "feedback-page-shell");
+
+    const statusPanel = createElement("section", "feedback-page-panel feedback-page-status");
+    const statusCopy = createElement("div", "feedback-page-status-copy");
+    statusCopy.appendChild(createElement("span", "feedback-page-kicker", t("feedbackPageStatusLabel")));
+    statusCopy.appendChild(createElement("h2", "feedback-page-title", t("feedbackPageStatusTitle")));
+    statusCopy.appendChild(createElement(
+      "p",
+      "feedback-page-copy",
+      isAuthenticated() ? t("feedbackPageSignedInBody") : t("feedbackPageGuestBody")
+    ));
+    if (isAuthenticated()) {
+      statusCopy.appendChild(createElement(
+        "p",
+        "feedback-page-note",
+        t("feedbackPageSignedInAs") + " @" + state.auth.user.login
+      ));
+    }
+    statusCopy.appendChild(createElement("p", "feedback-page-note", t("feedbackPagePublicNote")));
+
+    const statusActions = createElement("div", "feedback-page-actions");
+    if (isAuthenticated()) {
+      statusActions.appendChild(buildProfileLink());
+      statusActions.appendChild(buildSecondaryButton(t("logout"), logout));
+    } else {
+      statusActions.appendChild(buildPrimaryButton(t("login"), startLogin));
+    }
+
+    statusPanel.append(statusCopy, statusActions);
+    shell.appendChild(statusPanel);
+
+    const formPanel = createElement("section", "feedback-page-panel");
+    formPanel.appendChild(createElement("span", "feedback-page-kicker", t("feedback")));
+    formPanel.appendChild(createElement("h2", "feedback-page-title", t("feedbackPageFormTitle")));
+    formPanel.appendChild(createElement(
+      "p",
+      "feedback-page-copy",
+      isAuthenticated() ? t("feedbackPageFormReady") : t("feedbackPageFormLocked")
+    ));
+
+    if (isAuthenticated() && state.pageFeedback.successHref) {
+      const success = createElement("div", "feedback-page-success");
+      success.appendChild(createElement("strong", "", t("feedbackSuccessTitle")));
+      success.appendChild(createElement("p", "", t("feedbackPageSuccessBody")));
+      const successActions = createElement("div", "feedback-page-actions");
+      const issueLink = createElement("a", "github-auth-button github-auth-button-primary", t("feedbackOpenIssue"));
+      issueLink.href = state.pageFeedback.successHref;
+      issueLink.target = "_blank";
+      issueLink.rel = "noopener";
+      successActions.appendChild(issueLink);
+      success.appendChild(successActions);
+      formPanel.appendChild(success);
+    }
+
+    if (!isAuthenticated()) {
+      shell.appendChild(formPanel);
+      root.appendChild(shell);
+      return;
+    }
+
+    const draft = state.pageFeedback.draft;
+    const form = createElement("form", "github-auth-form");
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      submitPageFeedback();
+    });
+
+    const typeLabel = createElement("label", "github-auth-field");
+    typeLabel.appendChild(createElement("span", "github-auth-field-label", t("feedbackType")));
+    const typeSelect = document.createElement("select");
+    typeSelect.className = "github-auth-select";
+    [
+      { value: "bug", label: t("feedbackBug") },
+      { value: "idea", label: t("feedbackIdea") }
+    ].forEach(function (item) {
+      const option = document.createElement("option");
+      option.value = item.value;
+      option.textContent = item.label;
+      option.selected = draft.type === item.value;
+      typeSelect.appendChild(option);
+    });
+    typeSelect.addEventListener("change", function () {
+      state.pageFeedback.draft.type = typeSelect.value;
+    });
+    typeLabel.appendChild(typeSelect);
+
+    const titleLabel = createElement("label", "github-auth-field");
+    titleLabel.appendChild(createElement("span", "github-auth-field-label", t("feedbackTitleLabel")));
+    const titleInput = document.createElement("input");
+    titleInput.className = "github-auth-input";
+    titleInput.type = "text";
+    titleInput.value = draft.title;
+    titleInput.placeholder = t("feedbackTitlePlaceholder");
+    titleInput.addEventListener("input", function () {
+      state.pageFeedback.draft.title = titleInput.value;
+    });
+    titleLabel.appendChild(titleInput);
+
+    const detailLabel = createElement("label", "github-auth-field");
+    detailLabel.appendChild(createElement("span", "github-auth-field-label", t("feedbackDetailLabel")));
+    const detailInput = document.createElement("textarea");
+    detailInput.className = "github-auth-textarea";
+    detailInput.rows = 8;
+    detailInput.value = draft.details;
+    detailInput.placeholder = t("feedbackDetailPlaceholder");
+    detailInput.addEventListener("input", function () {
+      state.pageFeedback.draft.details = detailInput.value;
+    });
+    detailLabel.appendChild(detailInput);
+
+    form.append(typeLabel, titleLabel, detailLabel);
+
+    if (state.pageFeedback.error) {
+      form.appendChild(createElement("p", "github-auth-error", state.pageFeedback.error));
+    }
+
+    const actions = buildActionRow();
+    const submit = buildPrimaryButton(t("feedbackSubmit"), function () {
+      form.requestSubmit();
+    });
+    submit.disabled = Boolean(state.pageFeedback.submitting);
+    actions.appendChild(submit);
+    form.appendChild(actions);
+    formPanel.appendChild(form);
+
+    shell.appendChild(formPanel);
+    root.appendChild(shell);
+  }
+
   function renderAll() {
     slots.forEach(renderSlot);
+    pageRoots.forEach(renderFeedbackPage);
     renderDialog();
   }
 
