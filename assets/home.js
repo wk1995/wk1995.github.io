@@ -228,10 +228,22 @@
           observer.unobserve(entry.target);
         });
       },
-      { threshold: 0.35 }
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -8% 0px",
+      }
     );
 
     motionTargets.forEach(function (node) {
+      const rect = node.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
+      const isVisibleOnLoad = rect.top < viewportHeight * 0.92 && rect.bottom > 0;
+
+      if (isVisibleOnLoad) {
+        startMotionFor(node);
+        return;
+      }
+
       observer.observe(node);
     });
   }
