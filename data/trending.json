@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-08T04:23:13.287805+00:00",
+  "generated_at": "2026-05-09T04:32:41.544019+00:00",
   "items": [
     {
       "rank": 1,
@@ -12,76 +12,12 @@
       "description": null,
       "descriptions": null,
       "language": "Python",
-      "stars_total": 12282,
-      "forks_total": 1576,
-      "stars_today": 1343
+      "stars_total": 15670,
+      "forks_total": 1974,
+      "stars_today": 3660
     },
     {
       "rank": 2,
-      "repo": "Hmbown/DeepSeek-TUI",
-      "owner": "Hmbown",
-      "name": "DeepSeek-TUI",
-      "url": "https://github.com/Hmbown/DeepSeek-TUI",
-      "description": "Coding agent for DeepSeek models that runs in your terminal",
-      "descriptions": {
-        "zh": "在终端中运行的 DeepSeek 模型的编码代理",
-        "en": "Coding agent for DeepSeek models that runs in your terminal"
-      },
-      "language": "Rust",
-      "stars_total": 19602,
-      "forks_total": 1496,
-      "stars_today": 5799
-    },
-    {
-      "rank": 3,
-      "repo": "z-lab/dflash",
-      "owner": "z-lab",
-      "name": "dflash",
-      "url": "https://github.com/z-lab/dflash",
-      "description": "DFlash: Block Diffusion for Flash Speculative Decoding",
-      "descriptions": {
-        "zh": "DFlash：用于闪存推测解码的块扩散",
-        "en": "DFlash: Block Diffusion for Flash Speculative Decoding"
-      },
-      "language": "Python",
-      "stars_total": 3559,
-      "forks_total": 254,
-      "stars_today": 671
-    },
-    {
-      "rank": 4,
-      "repo": "InsForge/InsForge",
-      "owner": "InsForge",
-      "name": "InsForge",
-      "url": "https://github.com/InsForge/InsForge",
-      "description": "InsForge is a Postgres-based backend with auth, storage, compute, hosting, and AI gateway. Built for coding agents.",
-      "descriptions": {
-        "zh": "InsForge 是一个基于 Postgres 的后端，具有身份验证、存储、计算、托管和 AI 网关。专为编码代理而设计。",
-        "en": "InsForge is a Postgres-based backend with auth, storage, compute, hosting, and AI gateway. Built for coding agents."
-      },
-      "language": "TypeScript",
-      "stars_total": 8929,
-      "forks_total": 736,
-      "stars_today": 460
-    },
-    {
-      "rank": 5,
-      "repo": "LearningCircuit/local-deep-research",
-      "owner": "LearningCircuit",
-      "name": "local-deep-research",
-      "url": "https://github.com/LearningCircuit/local-deep-research",
-      "description": "~95% on SimpleQA (e.g. Qwen3.6-27B on a 3090). Supports all local and cloud LLMs (llama.cpp, Ollama, Google, ...). 10+ search engines - arXiv, PubMed, your private documents. Everything Local & Encrypted.",
-      "descriptions": {
-        "zh": "SimpleQA 上约为 95%（例如 3090 上的 Qwen3.6-27B）。支持所有本地和云 LLM（llama.cpp、Ollama、Google...）。 10 多个搜索引擎 - arXiv、PubMed、您的私人文档。一切都是本地和加密的。",
-        "en": "~95% on SimpleQA (e.g. Qwen3.6-27B on a 3090). Supports all local and cloud LLMs (llama.cpp, Ollama, Google, ...). 10+ search engines - arXiv, PubMed, your private documents. Everything Local & Encrypted."
-      },
-      "language": "Python",
-      "stars_total": 6369,
-      "forks_total": 555,
-      "stars_today": 559
-    },
-    {
-      "rank": 6,
       "repo": "addyosmani/agent-skills",
       "owner": "addyosmani",
       "name": "agent-skills",
@@ -92,9 +28,73 @@
         "en": "Production-grade engineering skills for AI coding agents."
       },
       "language": "Shell",
-      "stars_total": 33297,
-      "forks_total": 3845,
-      "stars_today": 3062
+      "stars_total": 35905,
+      "forks_total": 4066,
+      "stars_today": 1893
+    },
+    {
+      "rank": 3,
+      "repo": "Hmbown/DeepSeek-TUI",
+      "owner": "Hmbown",
+      "name": "DeepSeek-TUI",
+      "url": "https://github.com/Hmbown/DeepSeek-TUI",
+      "description": "Coding agent for DeepSeek models that runs in your terminal",
+      "descriptions": {
+        "zh": "在终端中运行的 DeepSeek 模型的编码代理",
+        "en": "Coding agent for DeepSeek models that runs in your terminal"
+      },
+      "language": "Rust",
+      "stars_total": 22179,
+      "forks_total": 1742,
+      "stars_today": 3731
+    },
+    {
+      "rank": 4,
+      "repo": "z-lab/dflash",
+      "owner": "z-lab",
+      "name": "dflash",
+      "url": "https://github.com/z-lab/dflash",
+      "description": "DFlash: Block Diffusion for Flash Speculative Decoding",
+      "descriptions": {
+        "zh": "DFlash：用于闪存推测解码的块扩散",
+        "en": "DFlash: Block Diffusion for Flash Speculative Decoding"
+      },
+      "language": "Python",
+      "stars_total": 3897,
+      "forks_total": 269,
+      "stars_today": 379
+    },
+    {
+      "rank": 5,
+      "repo": "decolua/9router",
+      "owner": "decolua",
+      "name": "9router",
+      "url": "https://github.com/decolua/9router",
+      "description": "Unlimited FREE AI coding. Connect Claude Code, Codex, Cursor, Cline, Copilot, Antigravity to FREE Claude/GPT/Gemini via 40+ providers. Auto-fallback, RTK -40% tokens, never hit limits.",
+      "descriptions": {
+        "zh": "无限免费人工智能编码。通过 40 多个提供商将 Claude Code、Codex、Cursor、Cline、Copilot、Antigravity 连接到免费的 Claude/GPT/Gemini。自动回退，RTK -40% 代币，永远不会达到极限。",
+        "en": "Unlimited FREE AI coding. Connect Claude Code, Codex, Cursor, Cline, Copilot, Antigravity to FREE Claude/GPT/Gemini via 40+ providers. Auto-fallback, RTK -40% tokens, never hit limits."
+      },
+      "language": "JavaScript",
+      "stars_total": 5786,
+      "forks_total": 1087,
+      "stars_today": 1052
+    },
+    {
+      "rank": 6,
+      "repo": "CloakHQ/CloakBrowser",
+      "owner": "CloakHQ",
+      "name": "CloakBrowser",
+      "url": "https://github.com/CloakHQ/CloakBrowser",
+      "description": "Stealth Chromium that passes every bot detection test. Drop-in Playwright replacement with source-level fingerprint patches. 30/30 tests passed.",
+      "descriptions": {
+        "zh": "Stealth Chromium 通过了所有机器人检测测试。使用源级指纹补丁替换 Playwright。 30/30 测试通过。",
+        "en": "Stealth Chromium that passes every bot detection test. Drop-in Playwright replacement with source-level fingerprint patches. 30/30 tests passed."
+      },
+      "language": "Python",
+      "stars_total": 3272,
+      "forks_total": 256,
+      "stars_today": 526
     }
   ]
 }
