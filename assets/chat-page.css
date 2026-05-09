@@ -870,6 +870,13 @@ html[data-theme="dark"] .chat-rich-text pre {
     var(--surface);
 }
 
+.chat-token-panel.is-missing {
+  border-style: dashed;
+  background:
+    linear-gradient(180deg, rgba(245, 165, 36, 0.08), rgba(245, 165, 36, 0) 100%),
+    var(--surface);
+}
+
 .chat-token-panel-head,
 .chat-token-row-head {
   display: flex;
@@ -893,6 +900,37 @@ html[data-theme="dark"] .chat-rich-text pre {
   color: var(--fg-muted);
   font-size: 0.78rem;
   font-weight: 600;
+}
+
+.chat-token-status.is-missing {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.58rem;
+  border-radius: 999px;
+  background: rgba(245, 165, 36, 0.14);
+  color: #b36a00;
+}
+
+.chat-token-empty {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.82rem 0.9rem;
+  border: 1px dashed rgba(245, 165, 36, 0.35);
+  border-radius: 14px;
+  background: rgba(245, 165, 36, 0.06);
+  color: var(--fg-muted);
+  font-size: 0.82rem;
+}
+
+.chat-token-empty::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  flex: 0 0 10px;
+  border-radius: 999px;
+  background: #f5a524;
+  box-shadow: 0 0 0 5px rgba(245, 165, 36, 0.12);
 }
 
 .chat-token-row {

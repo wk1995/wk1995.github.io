@@ -142,6 +142,8 @@
       tokenFresh: "缓存未命中",
       tokenReasoning: "推理",
       tokenAnswer: "正式答复",
+      tokenMissing: "未返回 usage",
+      tokenMissingDetail: "当前模型响应没有 usage 字段。",
       editedMark: "已编辑",
       copyAction: "复制文案",
       editAction: "编辑消息",
@@ -279,6 +281,8 @@
       tokenFresh: "Fresh input",
       tokenReasoning: "Reasoning",
       tokenAnswer: "Answer",
+      tokenMissing: "Usage missing",
+      tokenMissingDetail: "This model response did not include a usage field.",
       editedMark: "Edited",
       copyAction: "Copy message",
       editAction: "Edit message",
@@ -889,22 +893,32 @@
   function renderTokenUsage(message) {
     const usage = message && message.tokenUsage;
     const rows = tokenUsageRows(usage);
-    if (!usage || !usage.totalTokens || !rows.length) {
-      return null;
-    }
+    const hasUsage = Boolean(usage && usage.totalTokens && rows.length);
     const panel = document.createElement("section");
     const head = document.createElement("div");
     const title = document.createElement("span");
-    const total = document.createElement("strong");
+    const status = document.createElement("strong");
 
     panel.className = "chat-token-panel";
     panel.setAttribute("aria-label", t("tokenSection"));
     head.className = "chat-token-panel-head";
     title.textContent = t("tokenSection");
-    total.textContent = t("tokenTotal") + " " + formatTokenValue(usage.totalTokens);
+    status.className = "chat-token-status" + (hasUsage ? "" : " is-missing");
+    status.textContent = hasUsage
+      ? t("tokenTotal") + " " + formatTokenValue(usage.totalTokens)
+      : t("tokenMissing");
     head.appendChild(title);
-    head.appendChild(total);
+    head.appendChild(status);
     panel.appendChild(head);
+
+    if (!hasUsage) {
+      const empty = document.createElement("div");
+      panel.classList.add("is-missing");
+      empty.className = "chat-token-empty";
+      empty.textContent = t("tokenMissingDetail");
+      panel.appendChild(empty);
+      return panel;
+    }
 
     rows.forEach(function (row) {
       const rowNode = document.createElement("div");
@@ -1999,12 +2013,14 @@
       bubble.appendChild(content);
 
       if (message.role === "assistant" && !message.pending) {
+        const tokenUsage = renderTokenUsage(message);
         const answerLabel = document.createElement("div");
         answerLabel.className = "chat-answer-label";
         answerLabel.textContent = t("answerSection");
         answerBlock.appendChild(answerLabel);
         answerBlock.appendChild(bubble);
         body.appendChild(answerBlock);
+        body.appendChild(tokenUsage);
       } else {
         body.appendChild(bubble);
       }
@@ -2032,7 +2048,6 @@
     if (message.role === "assistant" && !message.pending) {
       const metrics = document.createElement("div");
       const copyButton = createActionButton("copy", t("copyAction"));
-      const tokenUsage = renderTokenUsage(message);
       metrics.className = "chat-message-metrics";
       replyMetrics(message).forEach(function (item) {
         const chip = document.createElement("span");
@@ -2062,9 +2077,6 @@
           regenerateReply(message.id);
         });
         footer.appendChild(regenerateButton);
-      }
-      if (tokenUsage) {
-        footer.appendChild(tokenUsage);
       }
       footer.appendChild(metrics);
     }
