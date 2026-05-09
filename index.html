@@ -650,9 +650,8 @@
       </a>
       <div class="topbar-center">
         <div class="nav-links nav-links--hero">
-          <a href="#models" data-i18n="nav.models">模型榜单</a>
+          <a href="/chat/#model-watch" data-i18n="nav.models">模型榜单</a>
           <a href="/blog/" data-i18n="nav.blog">博客</a>
-          <a href="#trending" data-i18n="nav.trending">热门项目</a>
           <a href="#about" data-i18n="nav.about">关于我</a>
         </div>
         <form class="nav-search" id="site-search-form" role="search">
@@ -692,176 +691,6 @@
     <section class="home-stage">
       <div class="container">
         <div class="home-stage-grid">
-          <section class="home-panel home-panel--models" id="models">
-            <div class="panel-head">
-              <div>
-                <p class="section-eyebrow" data-i18n="models.eyebrow">AI Model Watch</p>
-                <h2 data-i18n="models.title">AI 模型观察榜</h2>
-              </div>
-              <span class="trend-badge" data-i18n="models.badge">榜单</span>
-            </div>
-            <p class="panel-copy" data-i18n="models.copy">
-              以通用能力、工程可用性和生态成熟度为准，做一个首页常驻的模型观察视图。
-            </p>
-            <div class="panel-scroll">
-              <div class="model-rank-list">
-                <article class="model-rank-item is-top-1 search-card" data-rank="01">
-                  <span class="model-rank-index">01</span>
-                  <div class="model-rank-copy">
-                    <div class="model-rank-headline">
-                      <span class="model-rank-logo">O</span>
-                      <div>
-                        <h3>OpenAI GPT</h3>
-                        <div class="model-rank-trend is-up">↑ 4.8</div>
-                      </div>
-                    </div>
-                    <p data-i18n="models.item.1.body">综合推理、工具调用与工程集成最稳，适合作为旗舰 AI 能力的基线。</p>
-                    <div class="model-rank-chips">
-                      <span class="model-chip">Multimodal</span>
-                      <span class="model-chip">Agent</span>
-                      <span class="model-chip">Flagship</span>
-                    </div>
-                    <div class="model-rank-meter">
-                      <span class="model-rank-meter-fill" data-meter-target="98.5"></span>
-                    </div>
-                  </div>
-                  <div class="model-rank-score">
-                    <strong data-score-target="98.5">0</strong>
-                    <span data-i18n="models.scoreLabel">观察值</span>
-                  </div>
-                </article>
-                <article class="model-rank-item is-top-2 search-card" data-rank="02">
-                  <span class="model-rank-index">02</span>
-                  <div class="model-rank-copy">
-                    <div class="model-rank-headline">
-                      <span class="model-rank-logo">C</span>
-                      <div>
-                        <h3>Anthropic Claude</h3>
-                        <div class="model-rank-trend is-up">↑ 3.6</div>
-                      </div>
-                    </div>
-                    <p data-i18n="models.item.2.body">长文本写作和代码协作体验突出，适合需要高质量表达的工作流。</p>
-                    <div class="model-rank-chips">
-                      <span class="model-chip">Writing</span>
-                      <span class="model-chip">Code</span>
-                      <span class="model-chip">Reasoning</span>
-                    </div>
-                    <div class="model-rank-meter">
-                      <span class="model-rank-meter-fill" data-meter-target="95.0"></span>
-                    </div>
-                  </div>
-                  <div class="model-rank-score">
-                    <strong data-score-target="95">0</strong>
-                    <span data-i18n="models.scoreLabel">观察值</span>
-                  </div>
-                </article>
-                <article class="model-rank-item is-top-3 search-card" data-rank="03">
-                  <span class="model-rank-index">03</span>
-                  <div class="model-rank-copy">
-                    <div class="model-rank-headline">
-                      <span class="model-rank-logo">G</span>
-                      <div>
-                        <h3>Google Gemini</h3>
-                        <div class="model-rank-trend is-up">↑ 2.4</div>
-                      </div>
-                    </div>
-                    <p data-i18n="models.item.3.body">多模态与生态整合能力强，适合作为搜索、办公和代理场景的中枢模型。</p>
-                    <div class="model-rank-chips">
-                      <span class="model-chip">Search</span>
-                      <span class="model-chip">Office</span>
-                      <span class="model-chip">Vision</span>
-                    </div>
-                    <div class="model-rank-meter">
-                      <span class="model-rank-meter-fill" data-meter-target="93.0"></span>
-                    </div>
-                  </div>
-                  <div class="model-rank-score">
-                    <strong data-score-target="93">0</strong>
-                    <span data-i18n="models.scoreLabel">观察值</span>
-                  </div>
-                </article>
-                <article class="model-rank-item search-card" data-rank="04">
-                  <span class="model-rank-index">04</span>
-                  <div class="model-rank-copy">
-                    <div class="model-rank-headline">
-                      <span class="model-rank-logo">D</span>
-                      <div>
-                        <h3>DeepSeek</h3>
-                        <div class="model-rank-trend is-up">↑ 5.1</div>
-                      </div>
-                    </div>
-                    <p data-i18n="models.item.4.body">性价比和推理效率非常强，适合高频调用和大规模上线场景。</p>
-                    <div class="model-rank-chips">
-                      <span class="model-chip">Efficiency</span>
-                      <span class="model-chip">Inference</span>
-                      <span class="model-chip">Scale</span>
-                    </div>
-                    <div class="model-rank-meter">
-                      <span class="model-rank-meter-fill" data-meter-target="91.0"></span>
-                    </div>
-                  </div>
-                  <div class="model-rank-score">
-                    <strong data-score-target="91">0</strong>
-                    <span data-i18n="models.scoreLabel">观察值</span>
-                  </div>
-                </article>
-                <article class="model-rank-item search-card" data-rank="05">
-                  <span class="model-rank-index">05</span>
-                  <div class="model-rank-copy">
-                    <div class="model-rank-headline">
-                      <span class="model-rank-logo">Z</span>
-                      <div>
-                        <h3>Zhipu GLM</h3>
-                        <div class="model-rank-trend is-flat">→ 0.8</div>
-                      </div>
-                    </div>
-                    <p data-i18n="models.item.5.body">中文任务、工具兼容和企业落地路径清晰，适合本地生态集成。</p>
-                    <div class="model-rank-chips">
-                      <span class="model-chip">Chinese</span>
-                      <span class="model-chip">Enterprise</span>
-                      <span class="model-chip">Tools</span>
-                    </div>
-                    <div class="model-rank-meter">
-                      <span class="model-rank-meter-fill" data-meter-target="88.0"></span>
-                    </div>
-                  </div>
-                  <div class="model-rank-score">
-                    <strong data-score-target="88">0</strong>
-                    <span data-i18n="models.scoreLabel">观察值</span>
-                  </div>
-                </article>
-                <article class="model-rank-item search-card" data-rank="06">
-                  <span class="model-rank-index">06</span>
-                  <div class="model-rank-copy">
-                    <div class="model-rank-headline">
-                      <span class="model-rank-logo">Q</span>
-                      <div>
-                        <h3>Qwen</h3>
-                        <div class="model-rank-trend is-up">↑ 1.7</div>
-                      </div>
-                    </div>
-                    <p data-i18n="models.item.6.body">开源生态活跃，便于二次训练、私有化部署与端云协同实验。</p>
-                    <div class="model-rank-chips">
-                      <span class="model-chip">Open Source</span>
-                      <span class="model-chip">Fine-tune</span>
-                      <span class="model-chip">Private</span>
-                    </div>
-                    <div class="model-rank-meter">
-                      <span class="model-rank-meter-fill" data-meter-target="86.0"></span>
-                    </div>
-                  </div>
-                  <div class="model-rank-score">
-                    <strong data-score-target="86">0</strong>
-                    <span data-i18n="models.scoreLabel">观察值</span>
-                  </div>
-                </article>
-              </div>
-            </div>
-            <p class="model-rank-note" data-i18n="models.note">
-              该榜单为站内手动观察排序，用来快速建立模型直觉，不代表严格基准测试结果。
-            </p>
-          </section>
-
           <section class="home-panel home-panel--intro" id="about">
             <div class="panel-head">
               <div>
@@ -924,50 +753,6 @@
                   · 大模型在移动端的裁剪与蒸馏策略<br>· Android AI 功能的最佳体验模式<br>· 生成式 AI 在生产力工具中的落地方案
                 </p>
               </article>
-            </div>
-          </section>
-
-          <section class="home-panel home-panel--trending" id="trending">
-            <div class="panel-head">
-              <div>
-                <p class="section-eyebrow" data-i18n="trending.eyebrow">GitHub Radar</p>
-                <h2 data-i18n="trending.title">GitHub 热门项目</h2>
-              </div>
-              <span class="trend-badge" data-i18n="trending.badge">实时</span>
-            </div>
-            <p class="panel-copy" data-i18n="trending.copy">
-              每天抓取 GitHub Trending 榜单，展示最近热度上升最快的一批仓库。这块区域更像是我的技术雷达，用来快速观察 AI、Android 以及更广泛开发生态的新变化。
-            </p>
-            <div class="trending-summary">
-              <span data-i18n="trending.syncLabel">最近同步</span>
-              <strong id="trending-updated" data-i18n="trending.syncLoading">加载中</strong>
-              <small id="trending-period" data-i18n="trending.periodLoading">GitHub Trending · DAILY</small>
-            </div>
-            <div class="panel-scroll">
-              <div class="grid trending-grid" id="trending-list">
-                <article class="card trend-card">
-                  <div class="trend-card-top">
-                    <span class="trend-rank">#--</span>
-                    <span class="trend-badge">Loading</span>
-                  </div>
-                  <h3 data-i18n="trending.loadingTitle">正在同步 GitHub Trending</h3>
-                  <p data-i18n="trending.loadingCopy">页面会展示仓库描述、语言、累计 Star 与今日新增 Star。</p>
-                  <div class="trend-metrics">
-                    <div class="trend-metric">
-                      <span class="trend-metric-label" data-i18n="trending.metricStars">累计 Star</span>
-                      <strong class="trend-metric-value">--</strong>
-                    </div>
-                    <div class="trend-metric">
-                      <span class="trend-metric-label" data-i18n="trending.metricToday">今日新增</span>
-                      <strong class="trend-metric-value">--</strong>
-                    </div>
-                    <div class="trend-metric">
-                      <span class="trend-metric-label" data-i18n="trending.metricForks">Fork</span>
-                      <strong class="trend-metric-value">--</strong>
-                    </div>
-                  </div>
-                </article>
-              </div>
             </div>
           </section>
         </div>
@@ -1065,7 +850,6 @@
   </footer>
 
   <script src="assets/site.js"></script>
-  <script src="data/trending.js"></script>
   <script src="assets/home.js"></script>
   <script src="assets/chat-link.js"></script>
 </body>
