@@ -629,47 +629,61 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="assets/home-landing.css">
 </head>
 <body data-page="home">
   <div class="container">
     <nav class="site-topbar">
       <a
-        class="brand-link"
+        class="brand-link brand-lockup"
         href="https://github.com/wk1995"
         target="_blank"
         rel="noopener"
         data-i18n-aria="brand.aria"
         aria-label="打开 WK1995 的 GitHub 主页"
       >
-        <svg viewBox="0 0 16 16" aria-hidden="true">
-          <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82a7.56 7.56 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path>
-        </svg>
+        <span class="brand-mark" aria-hidden="true">AI</span>
+        <span class="brand-copy">
+          <strong>WK1995</strong>
+          <small>Android × AI Builder</small>
+        </span>
       </a>
-      <div class="topbar-right">
-        <div class="control-row">
-          <label class="control-group" for="language-select">
-            <span class="control-label" id="language-label" data-i18n="controls.language">语言</span>
-            <select class="language-select" id="language-select" aria-label="语言">
-              <option value="zh">简体中文</option>
-              <option value="en">English</option>
-            </select>
-          </label>
-          <div class="control-group">
-            <span class="control-label" id="theme-caption" data-i18n="controls.theme">主题</span>
-            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换主题">
-              <svg viewBox="0 0 16 16" aria-hidden="true">
-                <path id="theme-icon" d="M9.598 1.591a.75.75 0 0 1 .287.857 6.998 6.998 0 0 0 8.442 8.442.75.75 0 0 1 .857.287.75.75 0 0 1-.131.94A8.5 8.5 0 1 1 8.658.722a.75.75 0 0 1 .94-.131Z"></path>
-              </svg>
-              <span id="theme-label" data-i18n="controls.theme.dark">暗色</span>
-            </button>
-          </div>
-        </div>
-        <div class="nav-links">
+      <div class="topbar-center">
+        <div class="nav-links nav-links--hero">
           <a href="#models" data-i18n="nav.models">模型榜单</a>
-          <a href="#about" data-i18n="nav.about">关于我</a>
+          <a href="/blog/" data-i18n="nav.blog">博客</a>
           <a href="#trending" data-i18n="nav.trending">热门项目</a>
-          <a href="mailto:kangw1995@gmail.com" data-i18n="nav.contact">联系</a>
+          <a href="#about" data-i18n="nav.about">关于我</a>
         </div>
+        <form class="nav-search" id="site-search-form" role="search">
+          <input
+            class="nav-search-input"
+            id="site-search-input"
+            type="search"
+            data-i18n-placeholder="nav.searchPlaceholder"
+            placeholder="搜索 AI / Repo / 文章"
+          >
+          <button class="nav-search-button" type="submit" data-i18n="nav.searchAction">搜索</button>
+        </form>
+        <div class="nav-search-status" id="site-search-status" aria-live="polite"></div>
+      </div>
+      <div class="topbar-controls">
+        <div class="control-group control-group--compact">
+          <span class="control-label sr-only" id="theme-caption" data-i18n="controls.theme">主题</span>
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换主题">
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path id="theme-icon" d="M9.598 1.591a.75.75 0 0 1 .287.857 6.998 6.998 0 0 0 8.442 8.442.75.75 0 0 1 .857.287.75.75 0 0 1-.131.94A8.5 8.5 0 1 1 8.658.722a.75.75 0 0 1 .94-.131Z"></path>
+            </svg>
+            <span id="theme-label" data-i18n="controls.theme.dark">暗色</span>
+          </button>
+        </div>
+        <label class="control-group control-group--compact" for="language-select">
+          <span class="control-label sr-only" id="language-label" data-i18n="controls.language">语言</span>
+          <select class="language-select" id="language-select" aria-label="语言">
+            <option value="zh">简体中文</option>
+            <option value="en">English</option>
+          </select>
+        </label>
       </div>
     </nav>
   </div>
@@ -691,69 +705,153 @@
             </p>
             <div class="panel-scroll">
               <div class="model-rank-list">
-                <article class="model-rank-item">
+                <article class="model-rank-item is-top-1 search-card" data-rank="01">
                   <span class="model-rank-index">01</span>
                   <div class="model-rank-copy">
-                    <h3>OpenAI GPT</h3>
+                    <div class="model-rank-headline">
+                      <span class="model-rank-logo">O</span>
+                      <div>
+                        <h3>OpenAI GPT</h3>
+                        <div class="model-rank-trend is-up">↑ 4.8</div>
+                      </div>
+                    </div>
                     <p data-i18n="models.item.1.body">综合推理、工具调用与工程集成最稳，适合作为旗舰 AI 能力的基线。</p>
+                    <div class="model-rank-chips">
+                      <span class="model-chip">Multimodal</span>
+                      <span class="model-chip">Agent</span>
+                      <span class="model-chip">Flagship</span>
+                    </div>
+                    <div class="model-rank-meter">
+                      <span class="model-rank-meter-fill" data-meter-target="98.5"></span>
+                    </div>
                   </div>
                   <div class="model-rank-score">
-                    <strong>98</strong>
+                    <strong data-score-target="98.5">0</strong>
                     <span data-i18n="models.scoreLabel">观察值</span>
                   </div>
                 </article>
-                <article class="model-rank-item">
+                <article class="model-rank-item is-top-2 search-card" data-rank="02">
                   <span class="model-rank-index">02</span>
                   <div class="model-rank-copy">
-                    <h3>Anthropic Claude</h3>
+                    <div class="model-rank-headline">
+                      <span class="model-rank-logo">C</span>
+                      <div>
+                        <h3>Anthropic Claude</h3>
+                        <div class="model-rank-trend is-up">↑ 3.6</div>
+                      </div>
+                    </div>
                     <p data-i18n="models.item.2.body">长文本写作和代码协作体验突出，适合需要高质量表达的工作流。</p>
+                    <div class="model-rank-chips">
+                      <span class="model-chip">Writing</span>
+                      <span class="model-chip">Code</span>
+                      <span class="model-chip">Reasoning</span>
+                    </div>
+                    <div class="model-rank-meter">
+                      <span class="model-rank-meter-fill" data-meter-target="95.0"></span>
+                    </div>
                   </div>
                   <div class="model-rank-score">
-                    <strong>95</strong>
+                    <strong data-score-target="95">0</strong>
                     <span data-i18n="models.scoreLabel">观察值</span>
                   </div>
                 </article>
-                <article class="model-rank-item">
+                <article class="model-rank-item is-top-3 search-card" data-rank="03">
                   <span class="model-rank-index">03</span>
                   <div class="model-rank-copy">
-                    <h3>Google Gemini</h3>
+                    <div class="model-rank-headline">
+                      <span class="model-rank-logo">G</span>
+                      <div>
+                        <h3>Google Gemini</h3>
+                        <div class="model-rank-trend is-up">↑ 2.4</div>
+                      </div>
+                    </div>
                     <p data-i18n="models.item.3.body">多模态与生态整合能力强，适合作为搜索、办公和代理场景的中枢模型。</p>
+                    <div class="model-rank-chips">
+                      <span class="model-chip">Search</span>
+                      <span class="model-chip">Office</span>
+                      <span class="model-chip">Vision</span>
+                    </div>
+                    <div class="model-rank-meter">
+                      <span class="model-rank-meter-fill" data-meter-target="93.0"></span>
+                    </div>
                   </div>
                   <div class="model-rank-score">
-                    <strong>93</strong>
+                    <strong data-score-target="93">0</strong>
                     <span data-i18n="models.scoreLabel">观察值</span>
                   </div>
                 </article>
-                <article class="model-rank-item">
+                <article class="model-rank-item search-card" data-rank="04">
                   <span class="model-rank-index">04</span>
                   <div class="model-rank-copy">
-                    <h3>DeepSeek</h3>
+                    <div class="model-rank-headline">
+                      <span class="model-rank-logo">D</span>
+                      <div>
+                        <h3>DeepSeek</h3>
+                        <div class="model-rank-trend is-up">↑ 5.1</div>
+                      </div>
+                    </div>
                     <p data-i18n="models.item.4.body">性价比和推理效率非常强，适合高频调用和大规模上线场景。</p>
+                    <div class="model-rank-chips">
+                      <span class="model-chip">Efficiency</span>
+                      <span class="model-chip">Inference</span>
+                      <span class="model-chip">Scale</span>
+                    </div>
+                    <div class="model-rank-meter">
+                      <span class="model-rank-meter-fill" data-meter-target="91.0"></span>
+                    </div>
                   </div>
                   <div class="model-rank-score">
-                    <strong>91</strong>
+                    <strong data-score-target="91">0</strong>
                     <span data-i18n="models.scoreLabel">观察值</span>
                   </div>
                 </article>
-                <article class="model-rank-item">
+                <article class="model-rank-item search-card" data-rank="05">
                   <span class="model-rank-index">05</span>
                   <div class="model-rank-copy">
-                    <h3>Zhipu GLM</h3>
+                    <div class="model-rank-headline">
+                      <span class="model-rank-logo">Z</span>
+                      <div>
+                        <h3>Zhipu GLM</h3>
+                        <div class="model-rank-trend is-flat">→ 0.8</div>
+                      </div>
+                    </div>
                     <p data-i18n="models.item.5.body">中文任务、工具兼容和企业落地路径清晰，适合本地生态集成。</p>
+                    <div class="model-rank-chips">
+                      <span class="model-chip">Chinese</span>
+                      <span class="model-chip">Enterprise</span>
+                      <span class="model-chip">Tools</span>
+                    </div>
+                    <div class="model-rank-meter">
+                      <span class="model-rank-meter-fill" data-meter-target="88.0"></span>
+                    </div>
                   </div>
                   <div class="model-rank-score">
-                    <strong>88</strong>
+                    <strong data-score-target="88">0</strong>
                     <span data-i18n="models.scoreLabel">观察值</span>
                   </div>
                 </article>
-                <article class="model-rank-item">
+                <article class="model-rank-item search-card" data-rank="06">
                   <span class="model-rank-index">06</span>
                   <div class="model-rank-copy">
-                    <h3>Qwen</h3>
+                    <div class="model-rank-headline">
+                      <span class="model-rank-logo">Q</span>
+                      <div>
+                        <h3>Qwen</h3>
+                        <div class="model-rank-trend is-up">↑ 1.7</div>
+                      </div>
+                    </div>
                     <p data-i18n="models.item.6.body">开源生态活跃，便于二次训练、私有化部署与端云协同实验。</p>
+                    <div class="model-rank-chips">
+                      <span class="model-chip">Open Source</span>
+                      <span class="model-chip">Fine-tune</span>
+                      <span class="model-chip">Private</span>
+                    </div>
+                    <div class="model-rank-meter">
+                      <span class="model-rank-meter-fill" data-meter-target="86.0"></span>
+                    </div>
                   </div>
                   <div class="model-rank-score">
-                    <strong>86</strong>
+                    <strong data-score-target="86">0</strong>
                     <span data-i18n="models.scoreLabel">观察值</span>
                   </div>
                 </article>
@@ -773,18 +871,41 @@
               <span class="trend-badge" data-i18n="about.badge">Android × AI</span>
             </div>
             <div class="hero">
+              <div class="hero-identity">
+                <span class="hero-avatar">WK</span>
+                <div class="hero-identity-copy">
+                  <strong>Wang Kang</strong>
+                  <span>WK1995 · AI Engineer</span>
+                </div>
+              </div>
               <span class="hero-eyebrow" data-i18n="hero.eyebrow">AI × Android 开发生态</span>
               <h1 data-i18n="hero.title">将智能体验带到移动端，让 AI 真正落地。</h1>
               <p class="hero-lead" data-i18n="hero.lead">
                 一名 Android 工程师与 AI 实践者，专注于将机器学习能力嵌入应用中，打造端侧智能与云端协同的体验。在这里记录我的项目、研究路线及落地实践。
               </p>
+              <p class="hero-subhead" data-i18n="hero.subhead">Android × AI 工程实践，专注端侧智能、Agent、LLM 集成与 AI 产品化。</p>
+              <div class="hero-metrics">
+                <article class="hero-metric-card">
+                  <strong data-count-to="12" data-count-suffix="+">0</strong>
+                  <span data-i18n="hero.metric.projects">AI 项目</span>
+                </article>
+                <article class="hero-metric-card">
+                  <strong data-count-to="240" data-count-suffix="+">0</strong>
+                  <span data-i18n="hero.metric.commits">GitHub 提交</span>
+                </article>
+                <article class="hero-metric-card">
+                  <strong data-count-to="50" data-count-suffix="k+">0</strong>
+                  <span data-i18n="hero.metric.reads">博客阅读</span>
+                </article>
+              </div>
               <div class="hero-actions">
-                <a class="cta" href="/chat/" data-i18n="hero.primaryAction">打开 AI Chat</a>
+                <a class="cta" href="/chat/" data-i18n="hero.primaryAction">进入 AI 实验室</a>
                 <a class="cta secondary" href="/blog/" data-i18n="hero.secondaryAction">浏览博客</a>
               </div>
             </div>
             <div class="panel-scroll panel-stack">
-              <article class="card intro-card">
+              <article class="card intro-card search-card">
+                <span class="intro-card-kicker" data-i18n="about.focus.caption">工程主线</span>
                 <h3 data-i18n="about.focus.title">专注方向</h3>
                 <p data-i18n="about.focus.body">
                   端侧 AI 能力、跨端体验一致性、与云原生服务协同，是我当前关注的重点。我相信真正优秀的移动应用，不仅需要良好的交互，还需要即时、智能与安全的数据处理能力。
@@ -796,7 +917,8 @@
                   <span class="tag">MLOps</span>
                 </div>
               </article>
-              <article class="card intro-card">
+              <article class="card intro-card search-card">
+                <span class="intro-card-kicker" data-i18n="about.research.caption">研究线索</span>
                 <h3 data-i18n="about.research.title">正在研究</h3>
                 <p data-i18n-html="about.research.body">
                   · 大模型在移动端的裁剪与蒸馏策略<br>· Android AI 功能的最佳体验模式<br>· 生成式 AI 在生产力工具中的落地方案
@@ -848,6 +970,85 @@
               </div>
             </div>
           </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="feed-stage" id="blog">
+      <div class="container">
+        <div class="feed-head">
+          <div>
+            <p class="section-eyebrow" data-i18n="feed.eyebrow">Signal Layer</p>
+            <h2 data-i18n="feed.title">最近文章 / AI 动态 / 技术标签</h2>
+          </div>
+          <p class="panel-copy" data-i18n="feed.copy">把长期写作、短期观察和工程关键词放在同一层，形成更像个人 AI 工作台的扩展区。</p>
+        </div>
+        <div class="feed-grid">
+          <article class="feed-card search-card">
+            <div class="feed-card-head">
+              <h3 data-i18n="articles.title">最近文章</h3>
+              <span class="trend-badge" data-i18n="articles.badge">Blog</span>
+            </div>
+            <a class="article-teaser" href="/blog/ai-on-android-roadmap.html">
+              <span class="article-meta" data-i18n="articles.item.1.meta">路线图</span>
+              <strong data-i18n="articles.item.1.title">AI on Android：端侧推理落地路线图</strong>
+              <p data-i18n="articles.item.1.body">从模型选择、量化蒸馏到上线验证，梳理端侧 AI 的完整落地链路。</p>
+              <span class="article-link" data-i18n="articles.item.1.cta">阅读全文</span>
+            </a>
+            <a class="article-teaser" href="/blog/designing-ai-experiences.html">
+              <span class="article-meta" data-i18n="articles.item.2.meta">体验设计</span>
+              <strong data-i18n="articles.item.2.title">设计有温度的 AI 体验</strong>
+              <p data-i18n="articles.item.2.body">围绕可信度、透明度和反馈闭环，重做移动端 AI 助手的交互节奏。</p>
+              <span class="article-link" data-i18n="articles.item.2.cta">阅读全文</span>
+            </a>
+            <a class="article-teaser" href="/chat/">
+              <span class="article-meta" data-i18n="articles.item.3.meta">实验场</span>
+              <strong data-i18n="articles.item.3.title">AI Chat 工作台</strong>
+              <p data-i18n="articles.item.3.body">把多模型对话、附件、Token 面板和流式消息集中到一个实验入口。</p>
+              <span class="article-link" data-i18n="articles.item.3.cta">打开工作台</span>
+            </a>
+          </article>
+
+          <article class="feed-card search-card">
+            <div class="feed-card-head">
+              <h3 data-i18n="pulse.title">AI 动态</h3>
+              <span class="trend-badge" data-i18n="pulse.badge">Pulse</span>
+            </div>
+            <div class="pulse-list">
+              <article class="pulse-item">
+                <strong data-i18n="pulse.item.1.title">模型竞争转向 Agent 能力</strong>
+                <p data-i18n="pulse.item.1.body">工具调用、长上下文和自动执行链路，正在成为新一轮模型差异化核心。</p>
+              </article>
+              <article class="pulse-item">
+                <strong data-i18n="pulse.item.2.title">端侧 AI 正在回到产品中心</strong>
+                <p data-i18n="pulse.item.2.body">推理效率、成本和隐私要求，让端云协同重新成为移动 AI 的关键优势。</p>
+              </article>
+              <article class="pulse-item">
+                <strong data-i18n="pulse.item.3.title">GitHub Trending 继续主导信号源</strong>
+                <p data-i18n="pulse.item.3.body">开源项目热度变化仍然是观察 AI 生态方向最快的窗口之一。</p>
+              </article>
+            </div>
+          </article>
+
+          <article class="feed-card search-card">
+            <div class="feed-card-head">
+              <h3 data-i18n="tags.title">技术标签</h3>
+              <span class="trend-badge" data-i18n="tags.badge">Stack</span>
+            </div>
+            <div class="tag-cloud">
+              <span class="tag-cloud-item">Android AI</span>
+              <span class="tag-cloud-item">On-device ML</span>
+              <span class="tag-cloud-item">Agent Workflow</span>
+              <span class="tag-cloud-item">RAG UI</span>
+              <span class="tag-cloud-item">PromptOps</span>
+              <span class="tag-cloud-item">TensorFlow Lite</span>
+              <span class="tag-cloud-item">Jetpack Compose</span>
+              <span class="tag-cloud-item">LLM Product</span>
+              <span class="tag-cloud-item">Streaming UX</span>
+            </div>
+            <p class="feed-note" data-i18n="tags.copy">这三类标签代表我当前最关注的工程方向：端侧性能、Agent 编排和模型产品化。</p>
+            <a class="cta secondary feed-cta" href="/chat/" data-i18n="tags.note">如果你也在做 Android × AI，欢迎直接进入工作台开始交流。</a>
+          </article>
         </div>
       </div>
     </section>
