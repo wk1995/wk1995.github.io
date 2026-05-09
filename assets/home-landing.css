@@ -545,6 +545,11 @@ html[data-theme="light"] .home-panel {
   color: #f8fafc;
 }
 
+html[data-theme="light"] .hero-metric-card strong,
+html[data-theme="light"] .model-rank-score strong {
+  color: #0f172a;
+}
+
 .hero-metric-card span {
   position: relative;
   z-index: 1;
@@ -649,6 +654,13 @@ html[data-theme="light"] .tag {
   overflow: hidden;
 }
 
+html[data-theme="light"] .model-rank-item {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(243, 248, 255, 0.88)),
+    rgba(255, 255, 255, 0.88);
+  box-shadow: 0 18px 44px rgba(37, 99, 235, 0.08);
+}
+
 .model-rank-item::before {
   content: attr(data-rank);
   position: absolute;
@@ -660,6 +672,10 @@ html[data-theme="light"] .tag {
   letter-spacing: -0.08em;
   color: rgba(255, 255, 255, 0.045);
   pointer-events: none;
+}
+
+html[data-theme="light"] .model-rank-item::before {
+  color: rgba(37, 99, 235, 0.08);
 }
 
 .model-rank-item:hover,
@@ -695,6 +711,11 @@ html[data-theme="light"] .tag {
   border: 1px solid rgba(122, 166, 255, 0.14);
   font-size: 0.82rem;
   font-weight: 800;
+}
+
+html[data-theme="light"] .model-rank-index {
+  background: rgba(37, 99, 235, 0.06);
+  color: #1e3a8a;
 }
 
 .model-rank-headline {
@@ -757,6 +778,11 @@ html[data-theme="light"] .tag {
   font-size: 0.72rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+}
+
+html[data-theme="light"] .model-chip {
+  background: rgba(37, 99, 235, 0.06);
+  color: #1d4ed8;
 }
 
 .model-rank-meter {
@@ -1020,6 +1046,13 @@ html[data-theme="light"] .tag {
   transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
 }
 
+html[data-theme="light"] .feed-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 248, 255, 0.88)),
+    rgba(255, 255, 255, 0.9);
+  box-shadow: 0 18px 44px rgba(37, 99, 235, 0.08);
+}
+
 .feed-card::before {
   content: "";
   position: absolute;
@@ -1111,6 +1144,10 @@ html[data-theme="light"] .tag {
   background: rgba(255, 255, 255, 0.04);
 }
 
+html[data-theme="light"] .pulse-item {
+  background: rgba(37, 99, 235, 0.05);
+}
+
 .pulse-item strong {
   display: block;
   margin-bottom: 0.45rem;
@@ -1139,6 +1176,11 @@ html[data-theme="light"] .tag {
   color: #dbeafe;
   font-size: 0.8rem;
   letter-spacing: 0.04em;
+}
+
+html[data-theme="light"] .tag-cloud-item {
+  background: rgba(37, 99, 235, 0.06);
+  color: #1d4ed8;
 }
 
 .feed-note {
