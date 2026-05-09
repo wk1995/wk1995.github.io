@@ -129,6 +129,7 @@
       historyGroupMonth: "30 天内",
       thoughtSection: "已思考",
       answerSection: "正式答复",
+      errorSection: "请求失败",
       replyTiming: "回复",
       answerAt: "回答于",
       tokenSection: "Token 用量",
@@ -268,6 +269,7 @@
       historyGroupMonth: "Last 30 days",
       thoughtSection: "Thought process",
       answerSection: "Answer",
+      errorSection: "Request failed",
       replyTiming: "Reply",
       answerAt: "Answered at",
       tokenSection: "Token usage",
@@ -377,6 +379,7 @@
     dragDepth: 0,
     scrollPinned: true,
   };
+  let streamingRenderQueued = false;
 
   function lang() {
     return window.WKSite && typeof window.WKSite.getLanguage === "function"
@@ -633,6 +636,7 @@
       reasoning: message && typeof message.reasoning === "string" ? message.reasoning : "",
       attachments: Array.isArray(message && message.attachments) ? message.attachments.map(cloneAttachment) : [],
       pending: Boolean(message && message.pending),
+      failed: Boolean(message && message.failed),
       timestamp: message && message.timestamp ? message.timestamp : now(),
       editedAt: message && message.editedAt ? message.editedAt : 0,
       thinkingMs: message && Number(message.thinkingMs) > 0 ? Number(message.thinkingMs) : 0,
@@ -1142,6 +1146,33 @@
   function findMessageIndex(conversation, messageId) {
     return conversation.messages.findIndex(function (message) {
       return message.id === messageId;
+    });
+  }
+
+  function replaceMessage(conversation, messageId, patch) {
+    const index = findMessageIndex(conversation, messageId);
+    if (index === -1) {
+      return null;
+    }
+    conversation.messages[index] = normalizeMessage({
+      ...conversation.messages[index],
+      ...patch,
+      id: messageId,
+    });
+    return conversation.messages[index];
+  }
+
+  function queueStreamingConversationRender() {
+    if (streamingRenderQueued) {
+      return;
+    }
+    streamingRenderQueued = true;
+    const schedule = typeof window.requestAnimationFrame === "function"
+      ? window.requestAnimationFrame.bind(window)
+      : function (callback) { return window.setTimeout(callback, 16); };
+    schedule(function () {
+      streamingRenderQueued = false;
+      renderConversation();
     });
   }
 
@@ -1957,10 +1988,12 @@
     const footer = document.createElement("div");
     const answerBlock = document.createElement("div");
     const attachments = document.createElement("div");
-    const hasContent = Boolean((message.content || "").trim()) || message.pending;
+    const textContent = (message.content || "").trim();
+    const hasContent = Boolean(textContent) || message.pending;
 
     article.className = "chat-message";
     article.dataset.role = message.role;
+    article.classList.toggle("is-failed", Boolean(message.failed));
     shell.className = "chat-message-shell";
     avatar.className = "chat-message-avatar";
     body.className = "chat-message-card";
@@ -1980,13 +2013,13 @@
     header.appendChild(meta);
     body.appendChild(header);
 
-    if (message.role === "assistant" && message.reasoning && !message.pending) {
+    if (message.role === "assistant" && message.reasoning) {
       const reasoning = document.createElement("details");
       const summary = document.createElement("summary");
       const reasoningBody = document.createElement("div");
       const reasoningContent = document.createElement("div");
       reasoning.className = "chat-reasoning";
-      summary.textContent = reasoningLabel(message);
+      summary.textContent = message.pending ? t("thoughtSection") : reasoningLabel(message);
       reasoningContent.className = "chat-rich-text chat-rich-text--reasoning";
       renderRichText(reasoningContent, message.reasoning);
       reasoningBody.className = "chat-reasoning-body";
@@ -2004,7 +2037,12 @@
 
     if (hasContent) {
       if (message.pending) {
-        content.innerHTML = "<p>" + t("thinking") + "</p>";
+        if (textContent) {
+          renderRichText(content, message.content);
+          bubble.classList.add("is-streaming");
+        } else {
+          content.innerHTML = "<p>" + t("thinking") + "</p>";
+        }
         bubble.classList.add("is-pending");
       } else {
         renderRichText(content, message.content);
@@ -2012,15 +2050,16 @@
 
       bubble.appendChild(content);
 
-      if (message.role === "assistant" && !message.pending) {
-        const tokenUsage = renderTokenUsage(message);
+      if (message.role === "assistant" && (!message.pending || textContent)) {
         const answerLabel = document.createElement("div");
         answerLabel.className = "chat-answer-label";
-        answerLabel.textContent = t("answerSection");
+        answerLabel.textContent = message.failed ? t("errorSection") : t("answerSection");
         answerBlock.appendChild(answerLabel);
         answerBlock.appendChild(bubble);
         body.appendChild(answerBlock);
-        body.appendChild(tokenUsage);
+        if (!message.pending && !message.failed) {
+          body.appendChild(renderTokenUsage(message));
+        }
       } else {
         body.appendChild(bubble);
       }
@@ -2049,28 +2088,32 @@
       const metrics = document.createElement("div");
       const copyButton = createActionButton("copy", t("copyAction"));
       metrics.className = "chat-message-metrics";
-      replyMetrics(message).forEach(function (item) {
-        const chip = document.createElement("span");
-        chip.className = "chat-message-metric";
-        chip.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true">' + icon("clock") + '</svg><span>' + item + "</span>";
-        metrics.appendChild(chip);
-      });
+      if (!message.failed) {
+        replyMetrics(message).forEach(function (item) {
+          const chip = document.createElement("span");
+          chip.className = "chat-message-metric";
+          chip.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true">' + icon("clock") + '</svg><span>' + item + "</span>";
+          metrics.appendChild(chip);
+        });
+      }
       copyButton.addEventListener("click", function () {
         copyText(messageCopyPayload(message)).then(function () {
           setStatus("success", "statusCopied");
         });
       });
       footer.appendChild(copyButton);
-      const exportButton = createActionButton("download", t("downloadAction"));
-      exportButton.addEventListener("click", function () {
-        try {
-          exportMessage(message);
-          setStatus("success", "exportSuccess");
-        } catch (error) {
-          setStatus("error", "exportFailed");
-        }
-      });
-      footer.appendChild(exportButton);
+      if (!message.failed) {
+        const exportButton = createActionButton("download", t("downloadAction"));
+        exportButton.addEventListener("click", function () {
+          try {
+            exportMessage(message);
+            setStatus("success", "exportSuccess");
+          } catch (error) {
+            setStatus("error", "exportFailed");
+          }
+        });
+        footer.appendChild(exportButton);
+      }
       if (index === messages.length - 1) {
         const regenerateButton = createActionButton("refresh", t("regenerateAction"));
         regenerateButton.addEventListener("click", function () {
@@ -2078,7 +2121,9 @@
         });
         footer.appendChild(regenerateButton);
       }
-      footer.appendChild(metrics);
+      if (metrics.childNodes.length) {
+        footer.appendChild(metrics);
+      }
     }
 
     if (footer.childNodes.length) {
@@ -2301,7 +2346,7 @@
     return [{ role: "system", content: t("prompt") }].concat(
       activeConversation().messages
         .filter(function (item) {
-          return (item.role === "user" || item.role === "assistant") && !item.pending;
+          return (item.role === "user" || item.role === "assistant") && !item.pending && !item.failed;
         })
         .map(function (item) {
           return {
@@ -2348,6 +2393,117 @@
     return normalizeTokenUsage(payload && payload.usage);
   }
 
+  function responseErrorMessage(payload, fallback) {
+    if (payload && payload.error) {
+      if (typeof payload.error.message === "string" && payload.error.message.trim()) {
+        return payload.error.message.trim();
+      }
+      if (typeof payload.error.type === "string" && payload.error.type.trim()) {
+        return payload.error.type.trim();
+      }
+      return JSON.stringify(payload.error);
+    }
+    if (typeof fallback === "string" && fallback.trim()) {
+      return fallback.trim();
+    }
+    return "Unknown error";
+  }
+
+  async function readErrorResponse(response) {
+    const fallback = response && response.statusText ? response.statusText : "Unknown error";
+    try {
+      const raw = await response.text();
+      if (!raw) {
+        return fallback;
+      }
+      try {
+        return responseErrorMessage(JSON.parse(raw), fallback);
+      } catch (error) {
+        return raw.trim() || fallback;
+      }
+    } catch (error) {
+      return fallback;
+    }
+  }
+
+  function streamChoice(payload) {
+    return payload && Array.isArray(payload.choices) ? payload.choices[0] || null : null;
+  }
+
+  function streamDelta(payload) {
+    const choice = streamChoice(payload);
+    return choice && choice.delta && typeof choice.delta === "object" ? choice.delta : null;
+  }
+
+  function streamReasoningDelta(payload) {
+    const delta = streamDelta(payload);
+    return delta && typeof delta.reasoning_content === "string" ? delta.reasoning_content : "";
+  }
+
+  function streamContentDelta(payload) {
+    const delta = streamDelta(payload);
+    return delta && typeof delta.content === "string" ? delta.content : "";
+  }
+
+  function buildStreamPayload(modelId) {
+    const payload = buildRequestPayload(modelId);
+    payload.stream = true;
+    if (providerIdForModel(modelId) === "deepseek") {
+      payload.stream_options = {
+        include_usage: true,
+      };
+    }
+    return payload;
+  }
+
+  async function consumeSseResponse(response, onChunk) {
+    if (!response.body) {
+      throw new Error("Streaming is not supported by this browser response");
+    }
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder("utf-8");
+    let buffer = "";
+
+    function processBuffer(forceFlush) {
+      let boundary = buffer.search(/\r?\n\r?\n/);
+      while (boundary !== -1) {
+        const rawEvent = buffer.slice(0, boundary);
+        const match = buffer.slice(boundary).match(/^\r?\n\r?\n/);
+        const step = match ? match[0].length : 2;
+        buffer = buffer.slice(boundary + step);
+        processEvent(rawEvent);
+        boundary = buffer.search(/\r?\n\r?\n/);
+      }
+      if (forceFlush && buffer.trim()) {
+        processEvent(buffer);
+        buffer = "";
+      }
+    }
+
+    function processEvent(rawEvent) {
+      const data = rawEvent
+        .split(/\r?\n/)
+        .filter(function (line) { return line.indexOf("data:") === 0; })
+        .map(function (line) { return line.slice(5).trimStart(); })
+        .join("\n");
+      if (!data || data === "[DONE]") {
+        return;
+      }
+      onChunk(JSON.parse(data));
+    }
+
+    while (true) {
+      const result = await reader.read();
+      if (result.done) {
+        buffer += decoder.decode();
+        processBuffer(true);
+        return;
+      }
+      buffer += decoder.decode(result.value, { stream: true });
+      processBuffer(false);
+    }
+  }
+
   function requestApiUrl(modelId) {
     return providerMeta(providerIdForModel(modelId)).apiUrl;
   }
@@ -2385,46 +2541,84 @@
           "Content-Type": "application/json",
           Authorization: "Bearer " + keyForModel(modelId),
         },
-        body: JSON.stringify(buildRequestPayload(modelId)),
+        body: JSON.stringify(buildStreamPayload(modelId)),
       });
-      const payload = await response.json().catch(function () { return null; });
       if (!response.ok) {
-        const message = payload && payload.error && (payload.error.message || payload.error.type || JSON.stringify(payload.error));
-        throw new Error(message || response.statusText || "Unknown error");
+        throw new Error(await readErrorResponse(response));
       }
-      const reasoning = responseReasoning(payload);
-      const content = responseContent(payload) || reasoning;
-      const tokenUsage = responseTokenUsage(payload);
+      const streamState = {
+        content: "",
+        reasoning: "",
+        tokenUsage: null,
+      };
+      await consumeSseResponse(response, function (payload) {
+        const nextReasoning = streamReasoningDelta(payload);
+        const nextContent = streamContentDelta(payload);
+        const nextUsage = responseTokenUsage(payload);
+        let changed = false;
+
+        if (nextReasoning) {
+          streamState.reasoning += nextReasoning;
+          changed = true;
+        }
+        if (nextContent) {
+          streamState.content += nextContent;
+          changed = true;
+        }
+        if (nextUsage) {
+          streamState.tokenUsage = nextUsage;
+        }
+        if (!changed) {
+          return;
+        }
+        replaceMessage(conversation, pending.id, {
+          role: "assistant",
+          pending: true,
+          failed: false,
+          content: streamState.content,
+          reasoning: streamState.reasoning,
+          totalMs: now() - startedAt,
+        });
+        queueStreamingConversationRender();
+      });
+
+      const reasoning = streamState.reasoning.trim();
+      const content = (streamState.content.trim() || reasoning).trim();
       if (!content) {
         throw new Error(t("invalid"));
       }
       const durations = splitDurations(now() - startedAt, reasoning, content);
-      const pendingIndex = findMessageIndex(conversation, pending.id);
-      if (pendingIndex !== -1) {
-        conversation.messages[pendingIndex] = normalizeMessage({
-          id: pending.id,
-          role: "assistant",
-          content: content,
-          reasoning: content === reasoning ? "" : reasoning,
-          pending: false,
-          timestamp: now(),
-          thinkingMs: durations.thinkingMs,
-          answerMs: durations.answerMs,
-          totalMs: durations.totalMs,
-          tokenUsage: tokenUsage,
-        });
-      }
+      replaceMessage(conversation, pending.id, {
+        role: "assistant",
+        content: content,
+        reasoning: content === reasoning ? "" : reasoning,
+        pending: false,
+        failed: false,
+        timestamp: now(),
+        thinkingMs: durations.thinkingMs,
+        answerMs: durations.answerMs,
+        totalMs: durations.totalMs,
+        tokenUsage: streamState.tokenUsage,
+      });
       touchConversation(conversation);
       renderAll();
       setStatus("success", "statusReady");
     } catch (error) {
-      const pendingIndex = findMessageIndex(conversation, pending.id);
-      if (pendingIndex !== -1) {
-        conversation.messages.splice(pendingIndex, 1);
-      }
+      replaceMessage(conversation, pending.id, {
+        role: "assistant",
+        content: t("failed") + " " + (error && error.message ? error.message : "Unknown error"),
+        reasoning: "",
+        pending: false,
+        failed: true,
+        timestamp: now(),
+        thinkingMs: 0,
+        answerMs: 0,
+        totalMs: Math.max(now() - startedAt, 0),
+        tokenUsage: null,
+      });
       touchConversation(conversation);
       renderAll();
-      setStatus("error", "", t("failed") + " " + error.message);
+      setStatus("error", "", t("failed") + " " + (error && error.message ? error.message : "Unknown error"));
     } finally {
       state.busy = false;
       syncBusy();
