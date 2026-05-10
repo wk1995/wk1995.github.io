@@ -1,24 +1,49 @@
 (function () {
-  const searchForm = document.getElementById("site-search-form");
-  const searchInput = document.getElementById("site-search-input");
-  const searchStatus = document.getElementById("site-search-status");
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const motionTargets = Array.from(document.querySelectorAll("[data-count-to], [data-score-target], [data-meter-target]"));
-  let currentSearchQuery = "";
+  const trendingList = document.getElementById("trending-list");
+  const trendingUpdated = document.getElementById("trending-updated");
+  const trendingPeriod = document.getElementById("trending-period");
+
+  if (!trendingList || !trendingUpdated || !trendingPeriod) {
+    return;
+  }
 
   const copy = {
     zh: {
       locale: "zh-CN",
-      searchFound: "找到 {count} 个结果，已定位到第一个。",
-      searchNone: "没有找到匹配内容。",
-      searchCleared: "已清除搜索高亮。",
+      unknown: "未知",
+      noDescription: "GitHub Trending 未提供项目描述。",
+      metricStars: "累计 Star",
+      metricToday: "今日新增",
+      metricForks: "Fork",
+      openRepo: "打开仓库",
+      unavailable: "GitHub 热门项目暂时不可用",
+      noItems: "数据文件存在，但没有可展示的仓库。",
+      openTrending: "直接打开 GitHub Trending",
+      localMissing: "本地直接打开文件时未找到预生成数据，请确认 data/trending.js 已加载。",
+      syncFailed: "自动同步数据失败，稍后再试。",
+      summaryPrefix: "GitHub Trending · ",
     },
     en: {
       locale: "en-US",
-      searchFound: "Found {count} matches and jumped to the first one.",
-      searchNone: "No matching content was found.",
-      searchCleared: "Search highlights cleared.",
+      unknown: "Unknown",
+      noDescription: "GitHub Trending did not provide a repository description.",
+      metricStars: "Stars",
+      metricToday: "Today",
+      metricForks: "Forks",
+      openRepo: "Open repository",
+      unavailable: "GitHub trending is temporarily unavailable",
+      noItems: "The data file exists, but there are no repositories to display.",
+      openTrending: "Open GitHub Trending",
+      localMissing: "Pre-generated data was not found when opening this file locally. Make sure data/trending.js is loaded.",
+      syncFailed: "Automatic sync failed. Please try again later.",
+      summaryPrefix: "GitHub Trending · ",
     },
+  };
+
+  let state = {
+    mode: "idle",
+    data: null,
+    errorKey: null,
   };
 
   function getLanguage() {
@@ -28,242 +53,203 @@
     return document.documentElement.lang.startsWith("zh") ? "zh" : "en";
   }
 
-  function t(key) {
-    const language = getLanguage();
-    return (copy[language] || copy.zh)[key];
+  function getCopy() {
+    return copy[getLanguage()] || copy.zh;
   }
 
-  function setSearchStatus(message) {
-    if (!searchStatus) {
-      return;
-    }
-    searchStatus.textContent = message || "";
-  }
-
-  function clearSearchHighlights() {
-    document.querySelectorAll(".is-search-hit").forEach(function (node) {
-      node.classList.remove("is-search-hit");
-    });
-  }
-
-  function normalizeSearchValue(value) {
-    return String(value || "")
-      .trim()
-      .toLowerCase()
-      .replace(/\s+/g, " ");
-  }
-
-  function runSearch(query, options) {
-    const settings = options || {};
-    const normalizedQuery = normalizeSearchValue(query);
-
-    currentSearchQuery = normalizedQuery;
-    clearSearchHighlights();
-
-    if (!normalizedQuery) {
-      if (!settings.silent) {
-        setSearchStatus("");
-      }
-      return [];
-    }
-
-    const cards = Array.from(document.querySelectorAll(".search-card"));
-    const matches = cards.filter(function (card) {
-      return normalizeSearchValue(card.textContent).includes(normalizedQuery);
-    });
-
-    matches.forEach(function (card) {
-      card.classList.add("is-search-hit");
-    });
-
-    if (!matches.length) {
-      if (!settings.silent) {
-        setSearchStatus(t("searchNone"));
-      }
-      return [];
-    }
-
-    if (settings.scroll !== false) {
-      matches[0].scrollIntoView({
-        behavior: reducedMotion ? "auto" : "smooth",
-        block: "center",
-      });
-    }
-
-    if (!settings.silent) {
-      setSearchStatus(t("searchFound").replace("{count}", String(matches.length)));
-    }
-
-    return matches;
-  }
-
-  function initSearch() {
-    if (!searchForm || !searchInput) {
-      return;
-    }
-
-    searchForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-      runSearch(searchInput.value);
-    });
-
-    searchInput.addEventListener("input", function () {
-      if (searchInput.value.trim()) {
-        return;
-      }
-
-      clearSearchHighlights();
-      currentSearchQuery = "";
-      setSearchStatus("");
-    });
-
-    searchInput.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") {
-        searchInput.value = "";
-        clearSearchHighlights();
-        currentSearchQuery = "";
-        setSearchStatus(t("searchCleared"));
-      }
-    });
-  }
-
-  function formatScore(value) {
-    if (typeof value !== "number" || Number.isNaN(value)) {
+  function formatNumber(value) {
+    const currentCopy = getCopy();
+    if (typeof value !== "number") {
       return "--";
     }
-    return value % 1 === 0 ? String(value) : value.toFixed(1);
+    return new Intl.NumberFormat(currentCopy.locale).format(value);
   }
 
-  function animateNumber(node, target, formatter) {
-    if (!node || node.dataset.animated === "true") {
-      return;
+  function formatDate(value) {
+    const currentCopy = getCopy();
+    if (!value) {
+      return currentCopy.unknown;
     }
 
-    node.dataset.animated = "true";
-
-    if (reducedMotion) {
-      node.textContent = formatter(target);
-      return;
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) {
+      return currentCopy.unknown;
     }
 
-    const startedAt = performance.now();
-    const duration = 1100;
-
-    function tick(now) {
-      const progress = Math.min((now - startedAt) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      node.textContent = formatter(target * eased);
-      if (progress < 1) {
-        requestAnimationFrame(tick);
-      } else {
-        node.textContent = formatter(target);
-      }
-    }
-
-    requestAnimationFrame(tick);
+    return new Intl.DateTimeFormat(currentCopy.locale, {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: "Asia/Shanghai",
+    }).format(date);
   }
 
-  function animateMeter(node, target) {
-    if (!node || node.dataset.animated === "true") {
-      return;
-    }
+  function createMetric(label, value) {
+    const item = document.createElement("div");
+    item.className = "trend-metric";
 
-    node.dataset.animated = "true";
+    const metricLabel = document.createElement("span");
+    metricLabel.className = "trend-metric-label";
+    metricLabel.textContent = label;
 
-    if (reducedMotion) {
-      node.style.width = target + "%";
-      return;
-    }
+    const metricValue = document.createElement("strong");
+    metricValue.className = "trend-metric-value";
+    metricValue.textContent = value;
 
-    requestAnimationFrame(function () {
-      node.style.transition = "width 1s cubic-bezier(0.22, 1, 0.36, 1)";
-      node.style.width = target + "%";
-    });
+    item.append(metricLabel, metricValue);
+    return item;
   }
 
-  function startMotionFor(node) {
-    if (!node) {
-      return;
+  function getDescription(item) {
+    const currentCopy = getCopy();
+    const language = getLanguage();
+
+    if (item.descriptions && item.descriptions[language]) {
+      return item.descriptions[language];
     }
 
-    if (node.dataset.countTo) {
-      const target = Number(node.dataset.countTo);
-      const suffix = node.dataset.countSuffix || "";
-      animateNumber(node, target, function (value) {
-        return Math.round(value).toLocaleString(t("locale")) + suffix;
-      });
-      return;
-    }
-
-    if (node.dataset.scoreTarget) {
-      const target = Number(node.dataset.scoreTarget);
-      animateNumber(node, target, function (value) {
-        return formatScore(Math.round(value * 10) / 10);
-      });
-      return;
-    }
-
-    if (node.dataset.meterTarget) {
-      animateMeter(node, Number(node.dataset.meterTarget));
-    }
+    return item.description || currentCopy.noDescription;
   }
 
-  function initMotion() {
-    if (!motionTargets.length) {
-      return;
-    }
+  function createCard(item) {
+    const currentCopy = getCopy();
+    const article = document.createElement("article");
+    article.className = "card trend-card";
 
-    if (!("IntersectionObserver" in window) || reducedMotion) {
-      motionTargets.forEach(startMotionFor);
-      return;
-    }
+    const top = document.createElement("div");
+    top.className = "trend-card-top";
 
-    const observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) {
-            return;
-          }
-          startMotionFor(entry.target);
-          observer.unobserve(entry.target);
-        });
-      },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -8% 0px",
-      }
+    const rank = document.createElement("span");
+    rank.className = "trend-rank";
+    rank.textContent = "#" + item.rank;
+
+    const tag = document.createElement("span");
+    tag.className = "trend-badge";
+    tag.textContent = item.language || "Trending";
+
+    top.append(rank, tag);
+
+    const title = document.createElement("h3");
+    const link = document.createElement("a");
+    link.href = item.url;
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.textContent = item.repo;
+    title.appendChild(link);
+
+    const description = document.createElement("p");
+    description.textContent = getDescription(item);
+
+    const metrics = document.createElement("div");
+    metrics.className = "trend-metrics";
+    metrics.append(
+      createMetric(currentCopy.metricStars, formatNumber(item.stars_total)),
+      createMetric(currentCopy.metricToday, "+" + formatNumber(item.stars_today)),
+      createMetric(currentCopy.metricForks, formatNumber(item.forks_total))
     );
 
-    motionTargets.forEach(function (node) {
-      const rect = node.getBoundingClientRect();
-      const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
-      const isVisibleOnLoad = rect.top < viewportHeight * 0.92 && rect.bottom > 0;
+    const footer = document.createElement("a");
+    footer.className = "trend-link";
+    footer.href = item.url;
+    footer.target = "_blank";
+    footer.rel = "noopener";
+    footer.textContent = currentCopy.openRepo;
 
-      if (isVisibleOnLoad) {
-        startMotionFor(node);
-        return;
-      }
+    article.append(top, title, description, metrics, footer);
+    return article;
+  }
 
-      observer.observe(node);
+  function renderEmpty(messageKey) {
+    const currentCopy = getCopy();
+    state = {
+      mode: "empty",
+      data: null,
+      errorKey: messageKey,
+    };
+
+    trendingUpdated.textContent = currentCopy.unknown;
+    trendingPeriod.textContent = currentCopy.summaryPrefix + "DAILY";
+    trendingList.innerHTML = "";
+
+    const empty = document.createElement("article");
+    empty.className = "card trend-card trend-card-empty";
+
+    const title = document.createElement("h3");
+    title.textContent = currentCopy.unavailable;
+
+    const description = document.createElement("p");
+    description.textContent = currentCopy[messageKey] || currentCopy.noItems;
+
+    const link = document.createElement("a");
+    link.className = "trend-link";
+    link.href = "https://github.com/trending";
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.textContent = currentCopy.openTrending;
+
+    empty.append(title, description, link);
+    trendingList.appendChild(empty);
+  }
+
+  function renderTrending(data) {
+    const currentCopy = getCopy();
+    if (!data || !Array.isArray(data.items) || data.items.length === 0) {
+      renderEmpty("noItems");
+      return;
+    }
+
+    state = {
+      mode: "data",
+      data: data,
+      errorKey: null,
+    };
+
+    trendingUpdated.textContent = formatDate(data.generated_at);
+    trendingPeriod.textContent =
+      currentCopy.summaryPrefix + String(data.since || "daily").toUpperCase();
+
+    trendingList.innerHTML = "";
+    const fragment = document.createDocumentFragment();
+    data.items.slice(0, 6).forEach(function (item) {
+      fragment.appendChild(createCard(item));
     });
+    trendingList.appendChild(fragment);
   }
 
-  function initScrollState() {
-    function syncScrollState() {
-      document.body.classList.toggle("is-scrolled", window.scrollY > 12);
+  async function loadFallback() {
+    if (window.location.protocol === "file:") {
+      renderEmpty("localMissing");
+      return;
     }
 
-    syncScrollState();
-    window.addEventListener("scroll", syncScrollState, { passive: true });
+    try {
+      const response = await fetch("data/trending.json", { cache: "no-store" });
+      if (!response.ok) {
+        throw new Error("Unable to fetch trending.json");
+      }
+      renderTrending(await response.json());
+    } catch (error) {
+      renderEmpty("syncFailed");
+    }
   }
 
-  initSearch();
-  initMotion();
-  initScrollState();
-
-  window.addEventListener("wk:language-change", function () {
-    if (currentSearchQuery) {
-      runSearch(currentSearchQuery, { scroll: false, silent: false });
+  function rerender() {
+    if (state.mode === "data" && state.data) {
+      renderTrending(state.data);
+      return;
     }
-  });
+    if (state.mode === "empty" && state.errorKey) {
+      renderEmpty(state.errorKey);
+    }
+  }
+
+  window.addEventListener("wk:language-change", rerender);
+
+  if (window.__TRENDING_DATA__) {
+    renderTrending(window.__TRENDING_DATA__);
+  } else {
+    loadFallback();
+  }
 })();

@@ -48,7 +48,7 @@
     }
 
     .container {
-      width: min(100%, 1440px);
+      width: min(100%, 1080px);
       margin: 0 auto;
       padding: 0 1.5rem;
     }
@@ -74,179 +74,10 @@
     }
 
     .hero-lead {
-      max-width: 720px;
+      max-width: 700px;
       color: var(--fg-muted);
       font-size: 1.1rem;
-      margin: 0;
-    }
-
-    main {
-      padding: 0 0 4.5rem;
-    }
-
-    .home-stage {
-      padding: 0;
-    }
-
-    .home-stage-grid {
-      display: grid;
-      grid-template-columns: minmax(260px, 0.9fr) minmax(420px, 1.18fr) minmax(320px, 1fr);
-      gap: 1.2rem;
-      align-items: stretch;
-    }
-
-    .home-panel {
-      position: relative;
-      display: grid;
-      grid-template-rows: auto auto minmax(0, 1fr) auto;
-      gap: 1rem;
-      min-height: calc(100svh - 8.5rem);
-      padding: 1.35rem;
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0) 18%),
-        var(--card-bg);
-      box-shadow: 0 24px 56px rgba(7, 11, 19, 0.24);
-      backdrop-filter: blur(18px);
-      overflow: hidden;
-    }
-
-    html[data-theme="light"] .home-panel {
-      box-shadow: 0 24px 56px rgba(36, 95, 221, 0.08);
-    }
-
-    .home-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0 auto auto 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, rgba(30, 144, 255, 0.95), rgba(108, 99, 255, 0.92));
-      opacity: 0.92;
-    }
-
-    .panel-head {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .panel-copy {
-      margin: 0;
-      color: var(--fg-muted);
-      font-size: 0.96rem;
-    }
-
-    .panel-scroll {
-      min-height: 0;
-      overflow: auto;
-      padding-right: 0.2rem;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(108, 99, 255, 0.34) transparent;
-    }
-
-    .panel-scroll::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    .panel-scroll::-webkit-scrollbar-thumb {
-      background: rgba(108, 99, 255, 0.3);
-      border-radius: 999px;
-    }
-
-    .panel-stack {
-      display: grid;
-      gap: 1rem;
-      align-content: start;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-top: 0.2rem;
-    }
-
-    .intro-card {
-      min-height: auto;
-      padding: 1.2rem 1.25rem;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.035);
-    }
-
-    html[data-theme="light"] .intro-card {
-      background: rgba(255, 255, 255, 0.66);
-    }
-
-    .model-rank-list {
-      display: grid;
-      gap: 0.9rem;
-      align-content: start;
-    }
-
-    .model-rank-item {
-      display: grid;
-      grid-template-columns: auto minmax(0, 1fr) auto;
-      gap: 0.9rem;
-      align-items: start;
-      padding: 1rem 1.05rem;
-      border-radius: 22px;
-      border: 1px solid var(--border);
-      background:
-        linear-gradient(135deg, rgba(108, 99, 255, 0.1), rgba(30, 144, 255, 0.03));
-    }
-
-    .model-rank-index {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 2.7rem;
-      height: 2.7rem;
-      border-radius: 18px;
-      background: rgba(108, 99, 255, 0.18);
-      color: var(--fg);
-      font-weight: 800;
-      letter-spacing: 0.08em;
-    }
-
-    .model-rank-copy h3 {
-      margin: 0 0 0.35rem;
-      font-size: 1rem;
-      line-height: 1.3;
-    }
-
-    .model-rank-copy p {
-      margin: 0;
-      color: var(--fg-muted);
-      font-size: 0.9rem;
-    }
-
-    .model-rank-score {
-      display: grid;
-      justify-items: end;
-      gap: 0.1rem;
-      text-align: right;
-    }
-
-    .model-rank-score strong {
-      font-size: 1.3rem;
-      line-height: 1;
-      color: var(--fg);
-    }
-
-    .model-rank-score span {
-      color: var(--fg-muted);
-      font-size: 0.74rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .model-rank-note {
-      margin: 0;
-      color: var(--fg-muted);
-      font-size: 0.84rem;
+      margin-bottom: 2rem;
     }
 
     .cta {
@@ -392,14 +223,13 @@
     }
 
     .trending-grid {
-      grid-template-columns: 1fr;
-      align-content: start;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 
     .trend-card {
       position: relative;
       overflow: hidden;
-      min-height: auto;
+      min-height: 260px;
       background:
         linear-gradient(180deg, rgba(20, 27, 40, 0.9), rgba(11, 16, 24, 0.96)),
         radial-gradient(circle at top right, rgba(30, 144, 255, 0.18), transparent 45%);
@@ -475,10 +305,6 @@
     .trend-card p {
       margin: 0 0 1.25rem;
       color: var(--fg-muted);
-      display: -webkit-box;
-      overflow: hidden;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 3;
     }
 
     .trend-metrics {
@@ -529,36 +355,6 @@
       justify-content: center;
     }
 
-    .home-panel--intro h2,
-    .home-panel--trending h2,
-    .home-panel--models h2 {
-      margin: 0;
-      font-size: clamp(1.55rem, 2vw, 2.2rem);
-    }
-
-    .home-panel--intro .panel-head {
-      margin-bottom: 0.2rem;
-    }
-
-    .home-panel--intro .hero {
-      gap: 1.35rem;
-      margin-top: 0;
-    }
-
-    .home-panel--intro .hero-eyebrow {
-      margin-bottom: 0;
-    }
-
-    .home-panel--trending .trending-summary {
-      width: 100%;
-      min-width: 0;
-      padding: 1rem 1.1rem;
-    }
-
-    .home-panel--trending .trend-card {
-      padding: 1.3rem;
-    }
-
     footer {
       padding: 3rem 0;
       border-top: 1px solid var(--border);
@@ -573,276 +369,159 @@
       margin: 0 0.75rem;
     }
 
-    @media (max-width: 1180px) {
-      body {
-        scroll-snap-type: y mandatory;
-      }
-
-      .container {
-        width: min(100%, 960px);
-      }
-
-      .home-stage-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .home-panel {
-        min-height: 84svh;
-        max-height: 84svh;
-        scroll-snap-align: start;
-      }
-
-      .panel-scroll {
-        overflow: auto;
-      }
-    }
-
     @media (max-width: 720px) {
-      main {
-        padding-bottom: 3rem;
+      header {
+        padding-top: 3.5rem;
       }
 
-      .home-panel {
-        min-height: 86svh;
-        max-height: 86svh;
-        padding: 1.1rem;
-        border-radius: 24px;
+      section {
+        padding: 3.5rem 0;
       }
 
-      .hero-actions {
+      .section-head {
         flex-direction: column;
-        align-items: stretch;
+        align-items: flex-start;
       }
 
-      .model-rank-item {
-        grid-template-columns: auto minmax(0, 1fr);
-      }
-
-      .model-rank-score {
-        justify-items: start;
-        text-align: left;
-        grid-column: 2;
+      .trending-summary {
+        width: 100%;
       }
 
       .trend-metrics {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+
+      .card {
+        min-height: 200px;
+      }
     }
   </style>
-  <link rel="stylesheet" href="assets/home-landing.css">
 </head>
 <body data-page="home">
   <div class="container">
     <nav class="site-topbar">
       <a
-        class="brand-link brand-lockup"
+        class="brand-link"
         href="https://github.com/wk1995"
         target="_blank"
         rel="noopener"
         data-i18n-aria="brand.aria"
         aria-label="打开 WK1995 的 GitHub 主页"
       >
-        <span class="brand-mark" aria-hidden="true">AI</span>
-        <span class="brand-copy">
-          <strong>WK1995</strong>
-          <small>Android × AI Builder</small>
-        </span>
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82a7.56 7.56 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path>
+        </svg>
       </a>
-      <div class="topbar-center">
-        <div class="nav-links nav-links--hero">
-          <a href="/chat/#model-watch" data-i18n="nav.models">模型榜单</a>
-          <a href="/blog/" data-i18n="nav.blog">博客</a>
+      <div class="topbar-right">
+        <div class="control-row">
+          <a class="github-auth-button github-auth-button-secondary" href="feedback/" data-feedback-entry>Feedback</a>
+          <div class="github-auth-slot" data-github-auth-slot="home"></div>
+          <label class="control-group" for="language-select">
+            <span class="control-label" id="language-label" data-i18n="controls.language">语言</span>
+            <select class="language-select" id="language-select" aria-label="语言">
+              <option value="zh">简体中文</option>
+              <option value="en">English</option>
+            </select>
+          </label>
+          <div class="control-group">
+            <span class="control-label" id="theme-caption" data-i18n="controls.theme">主题</span>
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换主题">
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path id="theme-icon" d="M9.598 1.591a.75.75 0 0 1 .287.857 6.998 6.998 0 0 0 8.442 8.442.75.75 0 0 1 .857.287.75.75 0 0 1-.131.94A8.5 8.5 0 1 1 8.658.722a.75.75 0 0 1 .94-.131Z"></path>
+              </svg>
+              <span id="theme-label" data-i18n="controls.theme.dark">暗色</span>
+            </button>
+          </div>
+        </div>
+        <div class="nav-links">
           <a href="#about" data-i18n="nav.about">关于我</a>
+          <a href="#trending" data-i18n="nav.trending">热门项目</a>
+          <a href="mailto:kangw1995@gmail.com" data-i18n="nav.contact">联系</a>
         </div>
-        <form class="nav-search" id="site-search-form" role="search">
-          <input
-            class="nav-search-input"
-            id="site-search-input"
-            type="search"
-            data-i18n-placeholder="nav.searchPlaceholder"
-            placeholder="搜索 AI / Repo / 文章"
-          >
-          <button class="nav-search-button" type="submit" data-i18n="nav.searchAction">搜索</button>
-        </form>
-        <div class="nav-search-status" id="site-search-status" aria-live="polite"></div>
-      </div>
-      <div class="topbar-controls">
-        <a class="github-auth-button github-auth-button-secondary" href="feedback/" data-feedback-entry>鍙嶉</a>
-        <div class="github-auth-slot" data-github-auth-slot="home"></div>
-        <div class="control-group control-group--compact">
-          <span class="control-label sr-only" id="theme-caption" data-i18n="controls.theme">主题</span>
-          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换主题">
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path id="theme-icon" d="M9.598 1.591a.75.75 0 0 1 .287.857 6.998 6.998 0 0 0 8.442 8.442.75.75 0 0 1 .857.287.75.75 0 0 1-.131.94A8.5 8.5 0 1 1 8.658.722a.75.75 0 0 1 .94-.131Z"></path>
-            </svg>
-            <span id="theme-label" data-i18n="controls.theme.dark">暗色</span>
-          </button>
-        </div>
-        <label class="control-group control-group--compact" for="language-select">
-          <span class="control-label sr-only" id="language-label" data-i18n="controls.language">语言</span>
-          <select class="language-select" id="language-select" aria-label="语言">
-            <option value="zh">简体中文</option>
-            <option value="en">English</option>
-          </select>
-        </label>
       </div>
     </nav>
+
+    <header>
+      <div class="hero">
+        <span class="hero-eyebrow" data-i18n="hero.eyebrow">AI × Android 开发生态</span>
+        <h1 data-i18n="hero.title">将智能体验带到移动端，让 AI 真正落地。</h1>
+        <p class="hero-lead" data-i18n="hero.lead">
+          一名 Android 工程师与 AI 实践者，专注于将机器学习能力嵌入应用中，打造端侧智能与云端协同的体验。在这里记录我的项目、研究路线及落地实践。
+        </p>
+      </div>
+    </header>
   </div>
 
   <main>
-    <section class="home-stage">
+    <section id="about">
       <div class="container">
-        <div class="home-stage-grid">
-          <section class="home-panel home-panel--intro" id="about">
-            <div class="panel-head">
-              <div>
-                <p class="section-eyebrow" data-i18n="about.eyebrow">个人定位</p>
-                <h2 data-i18n="about.title">关于与愿景</h2>
-              </div>
-              <span class="trend-badge" data-i18n="about.badge">Android × AI</span>
+        <h2 data-i18n="about.title">关于与愿景</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3 data-i18n="about.focus.title">专注方向</h3>
+            <p data-i18n="about.focus.body">
+              端侧 AI 能力、跨端体验一致性、与云原生服务协同，是我当前关注的重点。我相信真正优秀的移动应用，不仅需要良好的交互，还需要即时、智能与安全的数据处理能力。
+            </p>
+            <div class="tags">
+              <span class="tag">On-device ML</span>
+              <span class="tag">Jetpack</span>
+              <span class="tag">LLM Integration</span>
+              <span class="tag">MLOps</span>
             </div>
-            <div class="home-hero-grid">
-              <div class="hero">
-                <div class="hero-identity">
-                  <span class="hero-avatar">WK</span>
-                  <div class="hero-identity-copy">
-                    <strong>Wang Kang</strong>
-                    <span>WK1995 · AI Engineer</span>
-                  </div>
-                </div>
-                <span class="hero-eyebrow" data-i18n="hero.eyebrow">AI × Android 开发生态</span>
-                <h1 data-i18n="hero.title">将智能体验带到移动端，让 AI 真正落地。</h1>
-                <p class="hero-lead" data-i18n="hero.lead">
-                  一名 Android 工程师与 AI 实践者，专注于将机器学习能力嵌入应用中，打造端侧智能与云端协同的体验。在这里记录我的项目、研究路线及落地实践。
-                </p>
-                <p class="hero-subhead" data-i18n="hero.subhead">Android × AI 工程实践，专注端侧智能、Agent、LLM 集成与 AI 产品化。</p>
-                <div class="hero-metrics">
-                  <article class="hero-metric-card">
-                    <strong data-count-to="12" data-count-suffix="+">12+</strong>
-                    <span data-i18n="hero.metric.projects">AI 项目</span>
-                  </article>
-                  <article class="hero-metric-card">
-                    <strong data-count-to="240" data-count-suffix="+">240+</strong>
-                    <span data-i18n="hero.metric.commits">GitHub 提交</span>
-                  </article>
-                  <article class="hero-metric-card">
-                    <strong data-count-to="50" data-count-suffix="k+">50k+</strong>
-                    <span data-i18n="hero.metric.reads">博客阅读</span>
-                  </article>
-                </div>
-                <div class="hero-actions">
-                  <a class="cta" href="/chat/" data-i18n="hero.primaryAction">进入 AI 实验室</a>
-                  <a class="cta secondary" href="/blog/" data-i18n="hero.secondaryAction">浏览博客</a>
-                </div>
-              </div>
-              <div class="hero-side-stack panel-stack">
-                <article class="card intro-card search-card">
-                  <span class="intro-card-kicker" data-i18n="about.focus.caption">工程主线</span>
-                  <h3 data-i18n="about.focus.title">专注方向</h3>
-                  <p data-i18n="about.focus.body">
-                    端侧 AI 能力、跨端体验一致性、与云原生服务协同，是我当前关注的重点。我相信真正优秀的移动应用，不仅需要良好的交互，还需要即时、智能与安全的数据处理能力。
-                  </p>
-                  <div class="tags">
-                    <span class="tag">On-device ML</span>
-                    <span class="tag">Jetpack</span>
-                    <span class="tag">LLM Integration</span>
-                    <span class="tag">MLOps</span>
-                  </div>
-                </article>
-                <article class="card intro-card search-card">
-                  <span class="intro-card-kicker" data-i18n="about.research.caption">研究线索</span>
-                  <h3 data-i18n="about.research.title">正在研究</h3>
-                  <p data-i18n-html="about.research.body">
-                    · 大模型在移动端的裁剪与蒸馏策略<br>· Android AI 功能的最佳体验模式<br>· 生成式 AI 在生产力工具中的落地方案
-                  </p>
-                </article>
-              </div>
-            </div>
-          </section>
+          </div>
+          <div class="card">
+            <h3 data-i18n="about.research.title">正在研究</h3>
+            <p data-i18n-html="about.research.body">
+              · 大模型在移动端的裁剪与蒸馏策略<br>· Android AI 功能的最佳体验模式<br>· 生成式 AI 在生产力工具中的落地方案
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="feed-stage" id="blog">
+    <section id="trending">
       <div class="container">
-        <div class="feed-head">
+        <div class="section-head">
           <div>
-            <p class="section-eyebrow" data-i18n="feed.eyebrow">Signal Layer</p>
-            <h2 data-i18n="feed.title">最近文章 / AI 动态 / 技术标签</h2>
+            <p class="section-eyebrow" data-i18n="trending.eyebrow">GitHub Radar</p>
+            <h2 data-i18n="trending.title">GitHub 热门项目</h2>
+            <p class="section-copy" data-i18n="trending.copy">
+              每天抓取 GitHub Trending 榜单，展示最近热度上升最快的一批仓库。这块区域更像是我的技术雷达，用来快速观察 AI、Android 以及更广泛开发生态的新变化。
+            </p>
           </div>
-          <p class="panel-copy" data-i18n="feed.copy">把长期写作、短期观察和工程关键词放在同一层，形成更像个人 AI 工作台的扩展区。</p>
+          <div class="trending-summary">
+            <span data-i18n="trending.syncLabel">最近同步</span>
+            <strong id="trending-updated" data-i18n="trending.syncLoading">加载中</strong>
+            <small id="trending-period" data-i18n="trending.periodLoading">GitHub Trending · DAILY</small>
+          </div>
         </div>
-        <div class="feed-grid">
-          <article class="feed-card feed-card--feature search-card">
-            <div class="feed-card-head">
-              <h3 data-i18n="articles.title">最近文章</h3>
-              <span class="trend-badge" data-i18n="articles.badge">Blog</span>
+        <div class="grid trending-grid" id="trending-list">
+          <article class="card trend-card">
+            <div class="trend-card-top">
+              <span class="trend-rank">#--</span>
+              <span class="trend-badge">Loading</span>
             </div>
-            <a class="article-teaser" href="/blog/ai-on-android-roadmap.html">
-              <span class="article-meta" data-i18n="articles.item.1.meta">路线图</span>
-              <strong data-i18n="articles.item.1.title">AI on Android：端侧推理落地路线图</strong>
-              <p data-i18n="articles.item.1.body">从模型选择、量化蒸馏到上线验证，梳理端侧 AI 的完整落地链路。</p>
-              <span class="article-link" data-i18n="articles.item.1.cta">阅读全文</span>
-            </a>
-            <a class="article-teaser" href="/blog/designing-ai-experiences.html">
-              <span class="article-meta" data-i18n="articles.item.2.meta">体验设计</span>
-              <strong data-i18n="articles.item.2.title">设计有温度的 AI 体验</strong>
-              <p data-i18n="articles.item.2.body">围绕可信度、透明度和反馈闭环，重做移动端 AI 助手的交互节奏。</p>
-              <span class="article-link" data-i18n="articles.item.2.cta">阅读全文</span>
-            </a>
-            <a class="article-teaser" href="/chat/">
-              <span class="article-meta" data-i18n="articles.item.3.meta">实验场</span>
-              <strong data-i18n="articles.item.3.title">AI Chat 工作台</strong>
-              <p data-i18n="articles.item.3.body">把多模型对话、附件、Token 面板和流式消息集中到一个实验入口。</p>
-              <span class="article-link" data-i18n="articles.item.3.cta">打开工作台</span>
-            </a>
+            <h3 data-i18n="trending.loadingTitle">正在同步 GitHub Trending</h3>
+            <p data-i18n="trending.loadingCopy">页面会展示仓库描述、语言、累计 Star 与今日新增 Star。</p>
+            <div class="trend-metrics">
+              <div class="trend-metric">
+                <span class="trend-metric-label" data-i18n="trending.metricStars">累计 Star</span>
+                <strong class="trend-metric-value">--</strong>
+              </div>
+              <div class="trend-metric">
+                <span class="trend-metric-label" data-i18n="trending.metricToday">今日新增</span>
+                <strong class="trend-metric-value">--</strong>
+              </div>
+              <div class="trend-metric">
+                <span class="trend-metric-label" data-i18n="trending.metricForks">Fork</span>
+                <strong class="trend-metric-value">--</strong>
+              </div>
+            </div>
           </article>
-
-          <div class="feed-side-stack">
-            <article class="feed-card search-card">
-              <div class="feed-card-head">
-                <h3 data-i18n="pulse.title">AI 动态</h3>
-                <span class="trend-badge" data-i18n="pulse.badge">Pulse</span>
-              </div>
-              <div class="pulse-list">
-                <article class="pulse-item">
-                  <strong data-i18n="pulse.item.1.title">模型竞争转向 Agent 能力</strong>
-                  <p data-i18n="pulse.item.1.body">工具调用、长上下文和自动执行链路，正在成为新一轮模型差异化核心。</p>
-                </article>
-                <article class="pulse-item">
-                  <strong data-i18n="pulse.item.2.title">端侧 AI 正在回到产品中心</strong>
-                  <p data-i18n="pulse.item.2.body">推理效率、成本和隐私要求，让端云协同重新成为移动 AI 的关键优势。</p>
-                </article>
-                <article class="pulse-item">
-                  <strong data-i18n="pulse.item.3.title">GitHub Trending 继续主导信号源</strong>
-                  <p data-i18n="pulse.item.3.body">开源项目热度变化仍然是观察 AI 生态方向最快的窗口之一。</p>
-                </article>
-              </div>
-            </article>
-
-            <article class="feed-card search-card">
-              <div class="feed-card-head">
-                <h3 data-i18n="tags.title">技术标签</h3>
-                <span class="trend-badge" data-i18n="tags.badge">Stack</span>
-              </div>
-              <div class="tag-cloud">
-                <span class="tag-cloud-item">Android AI</span>
-                <span class="tag-cloud-item">On-device ML</span>
-                <span class="tag-cloud-item">Agent Workflow</span>
-                <span class="tag-cloud-item">RAG UI</span>
-                <span class="tag-cloud-item">PromptOps</span>
-                <span class="tag-cloud-item">TensorFlow Lite</span>
-                <span class="tag-cloud-item">Jetpack Compose</span>
-                <span class="tag-cloud-item">LLM Product</span>
-                <span class="tag-cloud-item">Streaming UX</span>
-              </div>
-              <p class="feed-note" data-i18n="tags.copy">这三类标签代表我当前最关注的工程方向：端侧性能、Agent 编排和模型产品化。</p>
-              <a class="cta secondary feed-cta" href="/chat/" data-i18n="tags.note">如果你也在做 Android × AI，欢迎直接进入工作台开始交流。</a>
-            </article>
-          </div>
         </div>
       </div>
     </section>
+
   </main>
 
   <footer>
@@ -859,6 +538,7 @@
   <script src="assets/feedback-entry.js"></script>
   <script src="assets/github-auth-config.js"></script>
   <script src="assets/github-auth.js"></script>
+  <script src="data/trending.js"></script>
   <script src="assets/home.js"></script>
   <script src="assets/chat-link.js"></script>
 </body>
