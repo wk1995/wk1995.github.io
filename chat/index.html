@@ -82,50 +82,156 @@
 
       <div class="chat-main-status" id="chat-status" role="status" aria-live="polite"></div>
 
-      <section class="chat-message-board">
-        <div class="chat-main-body" id="message-list"></div>
-        <button class="chat-scroll-bottom" id="scroll-to-bottom" type="button" data-chat-aria="scrollToBottom" hidden>
-          <svg viewBox="0 0 16 16" aria-hidden="true">
-            <path d="M8 13.25a.75.75 0 0 1-.53-.22l-4-4a.75.75 0 0 1 1.06-1.06L7.25 10.69V2.75a.75.75 0 0 1 1.5 0v7.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-.53.22Z"></path>
-          </svg>
-          <span class="sr-only" data-chat-text="scrollToBottom">回到底部</span>
-        </button>
-      </section>
+      <div class="chat-stage-shell">
+        <div class="chat-stage-main">
+          <section class="chat-message-board">
+            <div class="chat-main-body" id="message-list"></div>
+            <button class="chat-scroll-bottom" id="scroll-to-bottom" type="button" data-chat-aria="scrollToBottom" hidden>
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M8 13.25a.75.75 0 0 1-.53-.22l-4-4a.75.75 0 0 1 1.06-1.06L7.25 10.69V2.75a.75.75 0 0 1 1.5 0v7.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-.53.22Z"></path>
+              </svg>
+              <span class="sr-only" data-chat-text="scrollToBottom">回到底部</span>
+            </button>
+          </section>
 
-      <div class="chat-composer-wrap">
-        <div class="chat-main-composer">
-          <input id="attachment-input" type="file" multiple hidden>
-          <div class="chat-editing-banner" id="editing-banner" hidden>
-            <div>
-              <strong id="editing-title">正在编辑消息</strong>
-              <p id="editing-description">保存后会从这条用户消息重新生成后续回复。</p>
-            </div>
-            <button class="chat-secondary-button" id="cancel-edit" type="button">取消编辑</button>
-          </div>
-          <div class="chat-composer-dropzone" id="composer-dropzone" hidden>
-            <strong data-chat-text="dropTitle">松开以上传附件</strong>
-            <p data-chat-text="dropBody">支持拖拽文件、粘贴图片或使用附件按钮。</p>
-          </div>
-          <div class="chat-composer-attachments" id="composer-attachments" hidden></div>
-          <textarea id="message-input" rows="1" placeholder="输入你的问题，按 Enter 发送"></textarea>
-          <div class="chat-composer-row">
-            <span class="chat-composer-hint" data-chat-text="composerHint">Enter 发送，Shift + Enter 换行</span>
-            <div class="chat-composer-actions">
-              <button class="chat-secondary-button" id="pick-attachments" type="button" data-chat-aria="pickAttachments">
-                <svg viewBox="0 0 16 16" aria-hidden="true">
-                  <path d="M8.75 3.5a2.75 2.75 0 0 0-5.5 0v5.75a4 4 0 1 0 8 0V4.5a2 2 0 1 0-4 0v4.75a.75.75 0 0 0 1.5 0V5a.75.75 0 0 1 1.5 0v4.25a2.5 2.5 0 1 1-5 0V3.5a1.25 1.25 0 0 1 2.5 0v5.75a2.25 2.25 0 0 0 4.5 0V4.5a3.5 3.5 0 1 0-7 0v4.75a.75.75 0 0 0 1.5 0V3.5a2 2 0 0 1 4 0v5.75a.75.75 0 0 0 1.5 0V3.5a3.5 3.5 0 0 0-3.5-3.5Z"></path>
-                </svg>
-                <span data-chat-text="attachAction">附件</span>
-              </button>
-              <button class="chat-secondary-button" id="clear-conversation" type="button" data-chat-text="clearConversation">
-                清空当前对话
-              </button>
-              <button class="chat-primary-button" id="send-message" type="button" data-chat-text="send">
-                发送
-              </button>
+          <div class="chat-composer-wrap">
+            <div class="chat-main-composer">
+              <input id="attachment-input" type="file" multiple hidden>
+              <div class="chat-editing-banner" id="editing-banner" hidden>
+                <div>
+                  <strong id="editing-title">正在编辑消息</strong>
+                  <p id="editing-description">保存后会从这条用户消息重新生成后续回复。</p>
+                </div>
+                <button class="chat-secondary-button" id="cancel-edit" type="button">取消编辑</button>
+              </div>
+              <div class="chat-composer-dropzone" id="composer-dropzone" hidden>
+                <strong data-chat-text="dropTitle">松开以上传附件</strong>
+                <p data-chat-text="dropBody">支持拖拽文件、粘贴图片或使用附件按钮。</p>
+              </div>
+              <div class="chat-composer-attachments" id="composer-attachments" hidden></div>
+              <textarea id="message-input" rows="1" placeholder="输入你的问题，按 Enter 发送"></textarea>
+              <div class="chat-composer-row">
+                <span class="chat-composer-hint" data-chat-text="composerHint">Enter 发送，Shift + Enter 换行</span>
+                <div class="chat-composer-actions">
+                  <button class="chat-secondary-button" id="pick-attachments" type="button" data-chat-aria="pickAttachments">
+                    <svg viewBox="0 0 16 16" aria-hidden="true">
+                      <path d="M8.75 3.5a2.75 2.75 0 0 0-5.5 0v5.75a4 4 0 1 0 8 0V4.5a2 2 0 1 0-4 0v4.75a.75.75 0 0 0 1.5 0V5a.75.75 0 0 1 1.5 0v4.25a2.5 2.5 0 1 1-5 0V3.5a1.25 1.25 0 0 1 2.5 0v5.75a2.25 2.25 0 0 0 4.5 0V4.5a3.5 3.5 0 1 0-7 0v4.75a.75.75 0 0 0 1.5 0V3.5a2 2 0 0 1 4 0v5.75a.75.75 0 0 0 1.5 0V3.5a3.5 3.5 0 0 0-3.5-3.5Z"></path>
+                    </svg>
+                    <span data-chat-text="attachAction">附件</span>
+                  </button>
+                  <button class="chat-secondary-button" id="clear-conversation" type="button" data-chat-text="clearConversation">
+                    清空当前对话
+                  </button>
+                  <button class="chat-primary-button" id="send-message" type="button" data-chat-text="send">
+                    发送
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+        <aside class="chat-model-watch-panel" id="model-watch">
+          <div class="chat-model-watch-head">
+            <div>
+              <p class="chat-panel-eyebrow" data-chat-text="watchlistEyebrow">AI Model Watch</p>
+              <h2 data-chat-text="watchlistTitle">AI 模型观察榜</h2>
+            </div>
+            <span class="chat-model-watch-badge" data-chat-text="watchlistBadge">Watchlist</span>
+          </div>
+          <p class="chat-model-watch-copy" data-chat-text="watchlistCopy">
+            把当前主流模型放进一个常驻观察面板，方便在聊天工作台里随时建立模型直觉。
+          </p>
+          <div class="chat-model-watch-list">
+            <article class="chat-model-card is-top-1">
+              <div class="chat-model-rank-row">
+                <span class="chat-model-rank">01</span>
+                <div class="chat-model-summary">
+                  <div class="chat-model-summary-head">
+                    <span class="chat-model-logo">O</span>
+                    <strong>OpenAI GPT</strong>
+                  </div>
+                  <span class="chat-model-trend is-up">↑ 4.8 · Multimodal · Agent</span>
+                </div>
+                <strong class="chat-model-score">98.5</strong>
+              </div>
+              <p data-chat-text="watch.item.1.body">综合推理、工具调用与工程集成最稳，适合作为旗舰 AI 能力的基线。</p>
+            </article>
+            <article class="chat-model-card is-top-2">
+              <div class="chat-model-rank-row">
+                <span class="chat-model-rank">02</span>
+                <div class="chat-model-summary">
+                  <div class="chat-model-summary-head">
+                    <span class="chat-model-logo">C</span>
+                    <strong>Anthropic Claude</strong>
+                  </div>
+                  <span class="chat-model-trend is-up">↑ 3.6 · Writing · Code</span>
+                </div>
+                <strong class="chat-model-score">95.0</strong>
+              </div>
+              <p data-chat-text="watch.item.2.body">长文本写作和代码协作体验突出，适合需要高质量表达的工作流。</p>
+            </article>
+            <article class="chat-model-card is-top-3">
+              <div class="chat-model-rank-row">
+                <span class="chat-model-rank">03</span>
+                <div class="chat-model-summary">
+                  <div class="chat-model-summary-head">
+                    <span class="chat-model-logo">G</span>
+                    <strong>Google Gemini</strong>
+                  </div>
+                  <span class="chat-model-trend is-up">↑ 2.4 · Search · Vision</span>
+                </div>
+                <strong class="chat-model-score">93.0</strong>
+              </div>
+              <p data-chat-text="watch.item.3.body">多模态与生态整合能力强，适合作为搜索、办公和代理场景的中枢模型。</p>
+            </article>
+            <article class="chat-model-card">
+              <div class="chat-model-rank-row">
+                <span class="chat-model-rank">04</span>
+                <div class="chat-model-summary">
+                  <div class="chat-model-summary-head">
+                    <span class="chat-model-logo">D</span>
+                    <strong>DeepSeek</strong>
+                  </div>
+                  <span class="chat-model-trend is-up">↑ 5.1 · Efficiency · Scale</span>
+                </div>
+                <strong class="chat-model-score">91.0</strong>
+              </div>
+              <p data-chat-text="watch.item.4.body">性价比和推理效率非常强，适合高频调用和大规模上线场景。</p>
+            </article>
+            <article class="chat-model-card">
+              <div class="chat-model-rank-row">
+                <span class="chat-model-rank">05</span>
+                <div class="chat-model-summary">
+                  <div class="chat-model-summary-head">
+                    <span class="chat-model-logo">Z</span>
+                    <strong>Zhipu GLM</strong>
+                  </div>
+                  <span class="chat-model-trend is-flat">→ 0.8 · Chinese · Tools</span>
+                </div>
+                <strong class="chat-model-score">88.0</strong>
+              </div>
+              <p data-chat-text="watch.item.5.body">中文任务、工具兼容和企业落地路径清晰，适合本地生态集成。</p>
+            </article>
+            <article class="chat-model-card">
+              <div class="chat-model-rank-row">
+                <span class="chat-model-rank">06</span>
+                <div class="chat-model-summary">
+                  <div class="chat-model-summary-head">
+                    <span class="chat-model-logo">Q</span>
+                    <strong>Qwen</strong>
+                  </div>
+                  <span class="chat-model-trend is-up">↑ 1.7 · Open Source · Private</span>
+                </div>
+                <strong class="chat-model-score">86.0</strong>
+              </div>
+              <p data-chat-text="watch.item.6.body">开源生态活跃，便于二次训练、私有化部署与端云协同实验。</p>
+            </article>
+          </div>
+          <p class="chat-model-watch-note" data-chat-text="watchlistNote">
+            该榜单为站内手动观察排序，用来快速建立模型直觉，不代表严格基准测试结果。
+          </p>
+        </aside>
       </div>
     </main>
 
