@@ -1,23 +1,10 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-10T04:52:54.581907+00:00",
+  "generated_at": "2026-05-11T05:05:51.745547+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "anthropics/financial-services",
-      "owner": "anthropics",
-      "name": "financial-services",
-      "url": "https://github.com/anthropics/financial-services",
-      "description": null,
-      "descriptions": null,
-      "language": "Python",
-      "stars_total": 17640,
-      "forks_total": 2249,
-      "stars_today": 3281
-    },
-    {
-      "rank": 2,
       "repo": "bytedance/UI-TARS-desktop",
       "owner": "bytedance",
       "name": "UI-TARS-desktop",
@@ -28,73 +15,86 @@ window.__TRENDING_DATA__ = {
         "en": "The Open-Source Multimodal AI Agent Stack: Connecting Cutting-Edge AI Models and Agent Infra"
       },
       "language": "TypeScript",
-      "stars_total": 31538,
-      "forks_total": 3133,
-      "stars_today": 552
+      "stars_total": 32365,
+      "forks_total": 3203,
+      "stars_today": 669
+    },
+    {
+      "rank": 2,
+      "repo": "anthropics/financial-services",
+      "owner": "anthropics",
+      "name": "financial-services",
+      "url": "https://github.com/anthropics/financial-services",
+      "description": null,
+      "descriptions": null,
+      "language": "Python",
+      "stars_total": 19216,
+      "forks_total": 2493,
+      "stars_today": 1449
     },
     {
       "rank": 3,
-      "repo": "rohitg00/agentmemory",
-      "owner": "rohitg00",
-      "name": "agentmemory",
-      "url": "https://github.com/rohitg00/agentmemory",
-      "description": "#1 Persistent memory for AI coding agents based on real-world benchmarks",
+      "repo": "addyosmani/agent-skills",
+      "owner": "addyosmani",
+      "name": "agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "description": "Production-grade engineering skills for AI coding agents.",
       "descriptions": {
-        "zh": "#1 基于真实世界基准的人工智能编码代理的持久内存",
-        "en": "#1 Persistent memory for AI coding agents based on real-world benchmarks"
+        "zh": "AI 编码代理的生产级工程技能。",
+        "en": "Production-grade engineering skills for AI coding agents."
       },
-      "language": "TypeScript",
-      "stars_total": 3578,
-      "forks_total": 348,
-      "stars_today": 533
+      "language": "Shell",
+      "stars_total": 38740,
+      "forks_total": 4283,
+      "stars_today": 1065
     },
     {
       "rank": 4,
-      "repo": "datawhalechina/hello-agents",
-      "owner": "datawhalechina",
-      "name": "hello-agents",
-      "url": "https://github.com/datawhalechina/hello-agents",
-      "description": "📚 《从零开始构建智能体》——从零开始的智能体原理与实践教程",
+      "repo": "CloakHQ/CloakBrowser",
+      "owner": "CloakHQ",
+      "name": "CloakBrowser",
+      "url": "https://github.com/CloakHQ/CloakBrowser",
+      "description": "Stealth Chromium that passes every bot detection test. Drop-in Playwright replacement with source-level fingerprint patches. 30/30 tests passed.",
       "descriptions": {
-        "zh": "📚 《从零开始构建智能体》——从零开始的智能体原理与实践教程",
-        "en": "📚 \"Building an Agent from Scratch\" - A tutorial on the principles and practice of agents from scratch"
+        "zh": "Stealth Chromium 通过了所有机器人检测测试。使用源级指纹补丁替换 Playwright。 30/30 测试通过。",
+        "en": "Stealth Chromium that passes every bot detection test. Drop-in Playwright replacement with source-level fingerprint patches. 30/30 tests passed."
       },
       "language": "Python",
-      "stars_total": 45818,
-      "forks_total": 5542,
-      "stars_today": 1197
+      "stars_total": 5014,
+      "forks_total": 380,
+      "stars_today": 496
     },
     {
       "rank": 5,
-      "repo": "datawhalechina/easy-vibe",
-      "owner": "datawhalechina",
-      "name": "easy-vibe",
-      "url": "https://github.com/datawhalechina/easy-vibe",
-      "description": "💻 vibe coding 2026 | Your first modern programming course for beginners to master step by step.",
+      "repo": "HKUDS/AI-Trader",
+      "owner": "HKUDS",
+      "name": "AI-Trader",
+      "url": "https://github.com/HKUDS/AI-Trader",
+      "description": "\"AI-Trader: 100% Fully-Automated Agent-Native Trading\"",
       "descriptions": {
-        "zh": "💻 氛围编码 2026 |您的第一门现代编程课程，供初学者逐步掌握。",
-        "en": "💻 vibe coding 2026 | Your first modern programming course for beginners to master step by step."
+        "zh": "“AI-Trader：100%全自动代理原生交易”",
+        "en": "\"AI-Trader: 100% Fully-Automated Agent-Native Trading\""
       },
-      "language": "JavaScript",
-      "stars_total": 8632,
-      "forks_total": 867,
-      "stars_today": 294
+      "language": "Python",
+      "stars_total": 15752,
+      "forks_total": 2543,
+      "stars_today": 163
     },
     {
       "rank": 6,
-      "repo": "rowboatlabs/rowboat",
-      "owner": "rowboatlabs",
-      "name": "rowboat",
-      "url": "https://github.com/rowboatlabs/rowboat",
-      "description": "Open-source AI coworker, with memory",
+      "repo": "jundot/omlx",
+      "owner": "jundot",
+      "name": "omlx",
+      "url": "https://github.com/jundot/omlx",
+      "description": "LLM inference server with continuous batching & SSD caching for Apple Silicon — managed from the macOS menu bar",
       "descriptions": {
-        "zh": "开源人工智能同事，有记忆",
-        "en": "Open-source AI coworker, with memory"
+        "zh": "LLM 推理服务器，具有适用于 Apple Silicon 的连续批处理和 SSD 缓存 - 从 macOS 菜单栏进行管理",
+        "en": "LLM inference server with continuous batching & SSD caching for Apple Silicon — managed from the macOS menu bar"
       },
-      "language": "TypeScript",
-      "stars_total": 13852,
-      "forks_total": 1372,
-      "stars_today": 144
+      "language": "Python",
+      "stars_total": 13394,
+      "forks_total": 1141,
+      "stars_today": 185
     }
   ]
 }
