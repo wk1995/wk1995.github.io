@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-11T05:05:51.745547+00:00",
+  "generated_at": "2026-05-12T04:47:27.107146+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,41 +15,12 @@ window.__TRENDING_DATA__ = {
         "en": "The Open-Source Multimodal AI Agent Stack: Connecting Cutting-Edge AI Models and Agent Infra"
       },
       "language": "TypeScript",
-      "stars_total": 32365,
-      "forks_total": 3203,
-      "stars_today": 669
+      "stars_total": 33165,
+      "forks_total": 3287,
+      "stars_today": 956
     },
     {
       "rank": 2,
-      "repo": "anthropics/financial-services",
-      "owner": "anthropics",
-      "name": "financial-services",
-      "url": "https://github.com/anthropics/financial-services",
-      "description": null,
-      "descriptions": null,
-      "language": "Python",
-      "stars_total": 19216,
-      "forks_total": 2493,
-      "stars_today": 1449
-    },
-    {
-      "rank": 3,
-      "repo": "addyosmani/agent-skills",
-      "owner": "addyosmani",
-      "name": "agent-skills",
-      "url": "https://github.com/addyosmani/agent-skills",
-      "description": "Production-grade engineering skills for AI coding agents.",
-      "descriptions": {
-        "zh": "AI 编码代理的生产级工程技能。",
-        "en": "Production-grade engineering skills for AI coding agents."
-      },
-      "language": "Shell",
-      "stars_total": 38740,
-      "forks_total": 4283,
-      "stars_today": 1065
-    },
-    {
-      "rank": 4,
       "repo": "CloakHQ/CloakBrowser",
       "owner": "CloakHQ",
       "name": "CloakBrowser",
@@ -60,41 +31,73 @@ window.__TRENDING_DATA__ = {
         "en": "Stealth Chromium that passes every bot detection test. Drop-in Playwright replacement with source-level fingerprint patches. 30/30 tests passed."
       },
       "language": "Python",
-      "stars_total": 5014,
-      "forks_total": 380,
-      "stars_today": 496
+      "stars_total": 6497,
+      "forks_total": 476,
+      "stars_today": 1320
+    },
+    {
+      "rank": 3,
+      "repo": "yikart/AiToEarn",
+      "owner": "yikart",
+      "name": "AiToEarn",
+      "url": "https://github.com/yikart/AiToEarn",
+      "description": "Let's use AI to Earn!",
+      "descriptions": {
+        "zh": "让我们用AI来赚钱吧！",
+        "en": "Let's use AI to Earn!"
+      },
+      "language": "TypeScript",
+      "stars_total": 11051,
+      "forks_total": 2027,
+      "stars_today": 427
+    },
+    {
+      "rank": 4,
+      "repo": "playcanvas/supersplat",
+      "owner": "playcanvas",
+      "name": "supersplat",
+      "url": "https://github.com/playcanvas/supersplat",
+      "description": "3D Gaussian Splat Editor",
+      "descriptions": {
+        "zh": "3D 高斯 Splat 编辑器",
+        "en": "3D Gaussian Splat Editor"
+      },
+      "language": "TypeScript",
+      "stars_total": 7443,
+      "forks_total": 814,
+      "stars_today": 531
     },
     {
       "rank": 5,
-      "repo": "HKUDS/AI-Trader",
-      "owner": "HKUDS",
-      "name": "AI-Trader",
-      "url": "https://github.com/HKUDS/AI-Trader",
-      "description": "\"AI-Trader: 100% Fully-Automated Agent-Native Trading\"",
+      "repo": "datawhalechina/easy-vibe",
+      "owner": "datawhalechina",
+      "name": "easy-vibe",
+      "url": "https://github.com/datawhalechina/easy-vibe",
+      "description": "💻 vibe coding 2026 | Your first modern Coding course for beginners to master step by step.",
       "descriptions": {
-        "zh": "“AI-Trader：100%全自动代理原生交易”",
-        "en": "\"AI-Trader: 100% Fully-Automated Agent-Native Trading\""
+        "zh": "💻 氛围编码 2026 |您的第一门现代编码课程，供初学者逐步掌握。",
+        "en": "💻 vibe coding 2026 | Your first modern Coding course for beginners to master step by step."
       },
-      "language": "Python",
-      "stars_total": 15752,
-      "forks_total": 2543,
-      "stars_today": 163
+      "language": "JavaScript",
+      "stars_total": 10079,
+      "forks_total": 959,
+      "stars_today": 812
     },
     {
       "rank": 6,
-      "repo": "jundot/omlx",
-      "owner": "jundot",
-      "name": "omlx",
-      "url": "https://github.com/jundot/omlx",
-      "description": "LLM inference server with continuous batching & SSD caching for Apple Silicon — managed from the macOS menu bar",
+      "repo": "decolua/9router",
+      "owner": "decolua",
+      "name": "9router",
+      "url": "https://github.com/decolua/9router",
+      "description": "Unlimited FREE AI coding. Connect Claude Code, Codex, Cursor, Cline, Copilot, Antigravity to FREE Claude/GPT/Gemini via 40+ providers. Auto-fallback, RTK -40% tokens, never hit limits.",
       "descriptions": {
-        "zh": "LLM 推理服务器，具有适用于 Apple Silicon 的连续批处理和 SSD 缓存 - 从 macOS 菜单栏进行管理",
-        "en": "LLM inference server with continuous batching & SSD caching for Apple Silicon — managed from the macOS menu bar"
+        "zh": "无限免费人工智能编码。通过 40 多个提供商将 Claude Code、Codex、Cursor、Cline、Copilot、Antigravity 连接到免费的 Claude/GPT/Gemini。自动回退，RTK -40% 代币，永远不会达到极限。",
+        "en": "Unlimited FREE AI coding. Connect Claude Code, Codex, Cursor, Cline, Copilot, Antigravity to FREE Claude/GPT/Gemini via 40+ providers. Auto-fallback, RTK -40% tokens, never hit limits."
       },
-      "language": "Python",
-      "stars_total": 13394,
-      "forks_total": 1141,
-      "stars_today": 185
+      "language": "JavaScript",
+      "stars_total": 8535,
+      "forks_total": 1350,
+      "stars_today": 941
     }
   ]
 }
