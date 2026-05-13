@@ -1,26 +1,42 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-12T04:47:27.107146+00:00",
+  "generated_at": "2026-05-13T04:57:41.086708+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "bytedance/UI-TARS-desktop",
-      "owner": "bytedance",
-      "name": "UI-TARS-desktop",
-      "url": "https://github.com/bytedance/UI-TARS-desktop",
-      "description": "The Open-Source Multimodal AI Agent Stack: Connecting Cutting-Edge AI Models and Agent Infra",
+      "repo": "tinyhumansai/openhuman",
+      "owner": "tinyhumansai",
+      "name": "openhuman",
+      "url": "https://github.com/tinyhumansai/openhuman",
+      "description": "Your Personal AI super intelligence. Private, Simple and extremely powerful.",
       "descriptions": {
-        "zh": "开源多模式 AI 代理堆栈：连接尖端 AI 模型和代理基础设施",
-        "en": "The Open-Source Multimodal AI Agent Stack: Connecting Cutting-Edge AI Models and Agent Infra"
+        "zh": "您的个人人工智能超级智能。私密、简单且极其强大。",
+        "en": "Your Personal AI super intelligence. Private, Simple and extremely powerful."
       },
-      "language": "TypeScript",
-      "stars_total": 33165,
-      "forks_total": 3287,
-      "stars_today": 956
+      "language": "Rust",
+      "stars_total": 3067,
+      "forks_total": 296,
+      "stars_today": 1014
     },
     {
       "rank": 2,
+      "repo": "rohitg00/agentmemory",
+      "owner": "rohitg00",
+      "name": "agentmemory",
+      "url": "https://github.com/rohitg00/agentmemory",
+      "description": "#1 Persistent memory for AI coding agents based on real-world benchmarks",
+      "descriptions": {
+        "zh": "#1 基于真实世界基准的人工智能编码代理的持久内存",
+        "en": "#1 Persistent memory for AI coding agents based on real-world benchmarks"
+      },
+      "language": "TypeScript",
+      "stars_total": 6163,
+      "forks_total": 570,
+      "stars_today": 1048
+    },
+    {
+      "rank": 3,
       "repo": "CloakHQ/CloakBrowser",
       "owner": "CloakHQ",
       "name": "CloakBrowser",
@@ -31,73 +47,57 @@
         "en": "Stealth Chromium that passes every bot detection test. Drop-in Playwright replacement with source-level fingerprint patches. 30/30 tests passed."
       },
       "language": "Python",
-      "stars_total": 6497,
-      "forks_total": 476,
-      "stars_today": 1320
-    },
-    {
-      "rank": 3,
-      "repo": "yikart/AiToEarn",
-      "owner": "yikart",
-      "name": "AiToEarn",
-      "url": "https://github.com/yikart/AiToEarn",
-      "description": "Let's use AI to Earn!",
-      "descriptions": {
-        "zh": "让我们用AI来赚钱吧！",
-        "en": "Let's use AI to Earn!"
-      },
-      "language": "TypeScript",
-      "stars_total": 11051,
-      "forks_total": 2027,
-      "stars_today": 427
+      "stars_total": 8205,
+      "forks_total": 599,
+      "stars_today": 1606
     },
     {
       "rank": 4,
-      "repo": "playcanvas/supersplat",
-      "owner": "playcanvas",
-      "name": "supersplat",
-      "url": "https://github.com/playcanvas/supersplat",
-      "description": "3D Gaussian Splat Editor",
+      "repo": "apernet/hysteria",
+      "owner": "apernet",
+      "name": "hysteria",
+      "url": "https://github.com/apernet/hysteria",
+      "description": "Hysteria is a powerful, lightning fast and censorship resistant proxy.",
       "descriptions": {
-        "zh": "3D 高斯 Splat 编辑器",
-        "en": "3D Gaussian Splat Editor"
+        "zh": "Hysteria 是一个强大、快如闪电且抗审查的代理。",
+        "en": "Hysteria is a powerful, lightning fast and censorship resistant proxy."
       },
-      "language": "TypeScript",
-      "stars_total": 7443,
-      "forks_total": 814,
-      "stars_today": 531
+      "language": "Go",
+      "stars_total": 20320,
+      "forks_total": 2103,
+      "stars_today": 51
     },
     {
       "rank": 5,
-      "repo": "datawhalechina/easy-vibe",
-      "owner": "datawhalechina",
-      "name": "easy-vibe",
-      "url": "https://github.com/datawhalechina/easy-vibe",
-      "description": "💻 vibe coding 2026 | Your first modern Coding course for beginners to master step by step.",
+      "repo": "mattpocock/skills",
+      "owner": "mattpocock",
+      "name": "skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .claude directory.",
       "descriptions": {
-        "zh": "💻 氛围编码 2026 |您的第一门现代编码课程，供初学者逐步掌握。",
-        "en": "💻 vibe coding 2026 | Your first modern Coding course for beginners to master step by step."
+        "zh": "真正工程师的技能。直接来自我的 .claude 目录。",
+        "en": "Skills for Real Engineers. Straight from my .claude directory."
       },
-      "language": "JavaScript",
-      "stars_total": 10079,
-      "forks_total": 959,
-      "stars_today": 812
+      "language": "Shell",
+      "stars_total": 76705,
+      "forks_total": 6616,
+      "stars_today": 3867
     },
     {
       "rank": 6,
-      "repo": "decolua/9router",
-      "owner": "decolua",
-      "name": "9router",
-      "url": "https://github.com/decolua/9router",
-      "description": "Unlimited FREE AI coding. Connect Claude Code, Codex, Cursor, Cline, Copilot, Antigravity to FREE Claude/GPT/Gemini via 40+ providers. Auto-fallback, RTK -40% tokens, never hit limits.",
+      "repo": "anonfaded/FadCam",
+      "owner": "anonfaded",
+      "name": "FadCam",
+      "url": "https://github.com/anonfaded/FadCam",
+      "description": "Open-source, ad-free Android multimedia recorder with background video recording, screen recording, live streaming, and remote camera control",
       "descriptions": {
-        "zh": "无限免费人工智能编码。通过 40 多个提供商将 Claude Code、Codex、Cursor、Cline、Copilot、Antigravity 连接到免费的 Claude/GPT/Gemini。自动回退，RTK -40% 代币，永远不会达到极限。",
-        "en": "Unlimited FREE AI coding. Connect Claude Code, Codex, Cursor, Cline, Copilot, Antigravity to FREE Claude/GPT/Gemini via 40+ providers. Auto-fallback, RTK -40% tokens, never hit limits."
+        "zh": "开源、无广告的 Android 多媒体录像机，具有后台视频录制、屏幕录制、直播和远程摄像头控制功能",
+        "en": "Open-source, ad-free Android multimedia recorder with background video recording, screen recording, live streaming, and remote camera control"
       },
-      "language": "JavaScript",
-      "stars_total": 8535,
-      "forks_total": 1350,
-      "stars_today": 941
+      "language": "Java",
+      "stars_total": 2282,
+      "forks_total": 172,
+      "stars_today": 116
     }
   ]
 }
