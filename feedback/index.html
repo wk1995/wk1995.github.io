@@ -149,14 +149,27 @@
         <a class="back" href="../index.html" data-feedback-copy="backHome">返回首页</a>
         <h1 data-feedback-copy="pageTitle">提交反馈</h1>
         <p class="intro" data-feedback-copy="pageIntro">
-          这里是统一反馈入口。登录 GitHub 后，你可以把 Bug、功能建议或体验改进直接同步到仓库 Issue。
+          这里是统一反馈入口。点击按钮会直接打开 GitHub 新建 Issue 页面，不需要在站点内登录。
         </p>
       </div>
     </header>
 
     <main>
       <section class="feedback-page-section">
-        <div data-github-feedback-page></div>
+        <article class="github-auth-card">
+          <div class="github-auth-card-body">
+            <p class="intro" data-feedback-copy="pageIntro">
+              这里是统一反馈入口。点击按钮会直接打开 GitHub 新建 Issue 页面，不需要在站点内登录。
+            </p>
+            <div class="github-auth-actions">
+              <a
+                class="github-auth-button github-auth-button-primary"
+                href="https://github.com/wk1995/wk1995.github.io/issues/new"
+                data-feedback-copy="openIssue"
+              >打开 GitHub Issue</a>
+            </div>
+          </div>
+        </article>
       </section>
     </main>
 
@@ -171,7 +184,5 @@
 
   <script src="../assets/site.js"></script>
   <script src="../assets/feedback-entry.js"></script>
-  <script src="../assets/github-auth-config.js"></script>
-  <script src="../assets/github-auth.js"></script>
 </body>
 </html>
