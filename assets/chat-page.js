@@ -18,6 +18,11 @@
       keyLabel: { zh: "智谱", en: "Zhipu" },
     },
   };
+  const CUSTOM_MODEL_PREFIX = "custom:";
+  const CUSTOM_MODEL_TYPES = {
+    openai: true,
+    anthropic: true,
+  };
   const MODELS = [
     { id: "deepseek-v4-flash", provider: "deepseek", labels: { zh: "DeepSeek V4 Flash", en: "DeepSeek V4 Flash" } },
     { id: "deepseek-v4-pro", provider: "deepseek", labels: { zh: "DeepSeek V4 Pro", en: "DeepSeek V4 Pro" } },
@@ -59,8 +64,30 @@
       "watch.item.5.body": "中文任务、工具兼容和企业落地路径清晰，适合本地生态集成。",
       "watch.item.6.body": "开源生态活跃，便于二次训练、私有化部署与端云协同实验。",
       settingsEyebrow: "Settings",
+      customModelTitle: "自定义模型",
+      customModelHelper: "填写 Base URL、API Key、模型名，并选择 OpenAI 或 Anthropic 类型。",
+      customBaseUrlLabel: "Base URL",
+      customBaseUrlPlaceholder: "例如 https://api.openai.com/v1",
+      customModelNameLabel: "模型名",
+      customModelNamePlaceholder: "例如 gpt-4.1-mini",
+      customModelTypeLabel: "类型",
+      customApiKeyLabel: "API Key",
+      customApiKeyPlaceholder: "粘贴这个自定义接口的 API Key",
+      saveCustomModel: "保存自定义模型",
+      updateCustomModel: "更新自定义模型",
+      deleteCustomModel: "删除当前自定义模型",
+      customModelNote: "OpenAI 类型会调用 /chat/completions；Anthropic 类型会调用 /messages，并自动带上 anthropic-version 请求头。",
+      customModelGroup: "自定义模型",
+      builtInModelGroup: "内置模型",
+      openAiTypeLabel: "OpenAI",
+      anthropicTypeLabel: "Anthropic",
+      statusCustomRequired: "请完整填写 Base URL、模型名和 API Key。",
+      statusCustomInvalidUrl: "Base URL 需要是有效的 http 或 https 地址。",
+      statusCustomSaved: "自定义模型已保存到本地。",
+      statusCustomDeleted: "自定义模型已删除。",
+      statusSelectCustomModel: "请先选择一个自定义模型。",
       settingsTitle: "参数设置",
-      settingsHelper: "选择 DeepSeek 或智谱模型，并把对应的 API Key 保存到当前浏览器。",
+      settingsHelper: "选择内置模型或添加自定义接口，并把对应的 API Key 保存到当前浏览器。",
       storageSectionTitle: "缓存路径",
       storageListLabel: "聊天列表缓存路径",
       storageRecordsLabel: "聊天记录缓存路径",
@@ -210,8 +237,30 @@
       "watch.item.5.body": "Clear strength in Chinese tasks, tool compatibility, and enterprise deployment paths.",
       "watch.item.6.body": "A lively open-source ecosystem that is ideal for fine-tuning and private deployment experiments.",
       settingsEyebrow: "Settings",
+      customModelTitle: "Custom model",
+      customModelHelper: "Enter a Base URL, API key, model name, then choose OpenAI or Anthropic.",
+      customBaseUrlLabel: "Base URL",
+      customBaseUrlPlaceholder: "For example https://api.openai.com/v1",
+      customModelNameLabel: "Model name",
+      customModelNamePlaceholder: "For example gpt-4.1-mini",
+      customModelTypeLabel: "API type",
+      customApiKeyLabel: "API Key",
+      customApiKeyPlaceholder: "Paste the API key for this custom endpoint",
+      saveCustomModel: "Save custom model",
+      updateCustomModel: "Update custom model",
+      deleteCustomModel: "Delete selected custom model",
+      customModelNote: "OpenAI uses /chat/completions. Anthropic uses /messages with the anthropic-version header.",
+      customModelGroup: "Custom models",
+      builtInModelGroup: "Built-in models",
+      openAiTypeLabel: "OpenAI",
+      anthropicTypeLabel: "Anthropic",
+      statusCustomRequired: "Fill in Base URL, model name, and API key first.",
+      statusCustomInvalidUrl: "Base URL must be a valid http or https URL.",
+      statusCustomSaved: "The custom model has been saved locally.",
+      statusCustomDeleted: "The custom model has been deleted.",
+      statusSelectCustomModel: "Select a custom model first.",
       settingsTitle: "Model Settings",
-      settingsHelper: "Choose a DeepSeek or Zhipu model and save its API key in this browser.",
+      settingsHelper: "Choose a built-in model or add a custom endpoint, then save the API key in this browser.",
       storageSectionTitle: "Cache Paths",
       storageListLabel: "Chat list cache path",
       storageRecordsLabel: "Chat record cache path",
@@ -492,13 +541,73 @@
     );
   }
 
-  function modelMeta(id) {
-    return MODELS.find(function (item) { return item.id === id; });
+  function normalizeCustomModelType(value) {
+    return CUSTOM_MODEL_TYPES[value] ? value : "openai";
+  }
+
+  function customTypeLabel(type) {
+    return t(normalizeCustomModelType(type) === "anthropic" ? "anthropicTypeLabel" : "openAiTypeLabel");
+  }
+
+  function customModelSeed(value) {
+    return String(value || "")
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .slice(0, 48) || "model";
+  }
+
+  function normalizeCustomModels(rawModels) {
+    const seen = {};
+    return (Array.isArray(rawModels) ? rawModels : [])
+      .map(function (item) {
+        const model = typeof item.model === "string" ? item.model.trim() : "";
+        const baseUrl = typeof item.baseUrl === "string" ? item.baseUrl.trim() : "";
+        if (!model || !baseUrl) {
+          return null;
+        }
+        const type = normalizeCustomModelType(item.type);
+        const baseId = typeof item.id === "string" && item.id.indexOf(CUSTOM_MODEL_PREFIX) === 0
+          ? item.id
+          : CUSTOM_MODEL_PREFIX + customModelSeed(type + "-" + model + "-" + baseUrl);
+        let id = baseId;
+        let index = 2;
+        while (seen[id]) {
+          id = baseId + "-" + index;
+          index += 1;
+        }
+        seen[id] = true;
+        return {
+          id: id,
+          custom: true,
+          type: type,
+          baseUrl: baseUrl,
+          model: model,
+        };
+      })
+      .filter(Boolean);
+  }
+
+  function customModels() {
+    return Array.isArray(state.config.customModels) ? state.config.customModels : [];
+  }
+
+  function customModelMeta(id, source) {
+    const models = Array.isArray(source) ? source : customModels();
+    return models.find(function (item) { return item.id === id; }) || null;
+  }
+
+  function modelMeta(id, customSource) {
+    return MODELS.find(function (item) { return item.id === id; }) || customModelMeta(id, customSource);
   }
 
   function label(id) {
     const meta = modelMeta(id);
-    const base = meta ? (meta.labels[lang()] || meta.labels.zh) : id;
+    const base = meta && meta.custom ? meta.model : meta ? (meta.labels[lang()] || meta.labels.zh) : id;
+    if (meta && meta.custom) {
+      return base + " - " + customTypeLabel(meta.type);
+    }
     return meta && meta.legacy ? base + " - " + t("legacy") : base;
   }
 
@@ -508,6 +617,9 @@
 
   function providerIdForModel(id) {
     const meta = modelMeta(id);
+    if (meta && meta.custom) {
+      return "custom";
+    }
     return meta && meta.provider ? meta.provider : "deepseek";
   }
 
@@ -673,16 +785,18 @@
     if (!Object.keys(raw).length) {
       raw = loadJson(LEGACY_CONFIG_KEY);
     }
+    const customModelItems = normalizeCustomModels(raw.customModels);
     const keys = {};
     Object.keys(raw.keys || {}).forEach(function (id) {
       const value = typeof raw.keys[id] === "string" ? raw.keys[id].trim() : "";
-      if (value && modelMeta(id)) {
+      if (value && modelMeta(id, customModelItems)) {
         keys[id] = value;
       }
     });
     return {
-      selectedModel: modelMeta(raw.selectedModel) ? raw.selectedModel : (Object.keys(keys)[0] || ""),
+      selectedModel: modelMeta(raw.selectedModel, customModelItems) ? raw.selectedModel : (Object.keys(keys)[0] || ""),
       keys: keys,
+      customModels: customModelItems,
     };
   }
 
@@ -1467,6 +1581,9 @@
       node.setAttribute("title", t(key));
     });
     refs.keyInput.setAttribute("placeholder", t("keyPlaceholder"));
+    refs.customBaseUrl.setAttribute("placeholder", t("customBaseUrlPlaceholder"));
+    refs.customModelName.setAttribute("placeholder", t("customModelNamePlaceholder"));
+    refs.customApiKey.setAttribute("placeholder", t("customApiKeyPlaceholder"));
     refs.storageChatList.setAttribute("placeholder", t("storagePathPlaceholder"));
     refs.storageChatRecords.setAttribute("placeholder", t("storagePathPlaceholder"));
     refs.storageModelApi.setAttribute("placeholder", t("storagePathPlaceholder"));
@@ -1482,14 +1599,40 @@
     placeholder.value = "";
     placeholder.textContent = t("selectModel");
     refs.modelSelect.appendChild(placeholder);
+    const builtInGroup = document.createElement("optgroup");
+    builtInGroup.label = t("builtInModelGroup");
     MODELS.forEach(function (model) {
       const option = document.createElement("option");
       option.value = model.id;
       option.textContent = label(model.id);
-      refs.modelSelect.appendChild(option);
+      builtInGroup.appendChild(option);
     });
+    refs.modelSelect.appendChild(builtInGroup);
+    if (customModels().length) {
+      const customGroup = document.createElement("optgroup");
+      customGroup.label = t("customModelGroup");
+      customModels().forEach(function (model) {
+        const option = document.createElement("option");
+        option.value = model.id;
+        option.textContent = label(model.id);
+        customGroup.appendChild(option);
+      });
+      refs.modelSelect.appendChild(customGroup);
+    }
     refs.modelSelect.value = selectedModel();
     refs.keyInput.value = keyForModel();
+  }
+
+  function renderCustomModelForm() {
+    const custom = customModelMeta(selectedModel());
+    refs.customBaseUrl.value = custom ? custom.baseUrl : "";
+    refs.customModelName.value = custom ? custom.model : "";
+    refs.customType.value = custom ? custom.type : "openai";
+    refs.customApiKey.value = custom ? keyForModel(custom.id) : "";
+    refs.customType.options[0].textContent = t("openAiTypeLabel");
+    refs.customType.options[1].textContent = t("anthropicTypeLabel");
+    refs.saveCustomModel.textContent = t(custom ? "updateCustomModel" : "saveCustomModel");
+    refs.deleteCustomModel.disabled = state.busy || !custom;
   }
 
   function renderSetupBanner() {
@@ -2233,6 +2376,7 @@
   function renderAll() {
     applyStaticText();
     renderModelSelect();
+    renderCustomModelForm();
     renderStorageSettings();
     renderSetupBanner();
     renderSavedModels();
@@ -2391,6 +2535,18 @@
   }
 
   function responseContent(payload) {
+    if (payload && typeof payload.content === "string" && payload.content.trim()) {
+      return payload.content.trim();
+    }
+    if (payload && Array.isArray(payload.content)) {
+      return payload.content.map(function (item) {
+        return typeof item === "string"
+          ? item
+          : item && typeof item.text === "string"
+            ? item.text
+            : "";
+      }).join("\n").trim();
+    }
     const choice = payload && payload.choices && payload.choices[0];
     const message = choice && choice.message;
     if (!message) {
@@ -2412,6 +2568,13 @@
   }
 
   function responseTokenUsage(payload) {
+    if (payload && payload.usage && typeof payload.usage === "object" && payload.usage.input_tokens >= 0) {
+      return normalizeTokenUsage({
+        prompt_tokens: payload.usage.input_tokens,
+        completion_tokens: payload.usage.output_tokens,
+        total_tokens: Number(payload.usage.input_tokens || 0) + Number(payload.usage.output_tokens || 0),
+      });
+    }
     return normalizeTokenUsage(payload && payload.usage);
   }
 
@@ -2526,13 +2689,36 @@
     }
   }
 
+  function requestModelName(modelId) {
+    const custom = customModelMeta(modelId);
+    return custom ? custom.model : modelId;
+  }
+
+  function endpointUrl(baseUrl, suffix) {
+    const trimmed = String(baseUrl || "").trim().replace(/\/+$/, "");
+    return trimmed.toLowerCase().endsWith(suffix)
+      ? trimmed
+      : trimmed + suffix;
+  }
+
   function requestApiUrl(modelId) {
+    const custom = customModelMeta(modelId);
+    if (custom) {
+      return custom.type === "anthropic"
+        ? endpointUrl(custom.baseUrl, "/messages")
+        : endpointUrl(custom.baseUrl, "/chat/completions");
+    }
     return providerMeta(providerIdForModel(modelId)).apiUrl;
+  }
+
+  function isAnthropicModel(modelId) {
+    const custom = customModelMeta(modelId);
+    return Boolean(custom && custom.type === "anthropic");
   }
 
   function buildRequestPayload(modelId) {
     const payload = {
-      model: modelId,
+      model: requestModelName(modelId),
       messages: requestMessages(modelId),
       stream: false,
     };
@@ -2542,6 +2728,47 @@
       };
     }
     return payload;
+  }
+
+  function anthropicMessages(modelId) {
+    return activeConversation().messages
+      .filter(function (item) {
+        return (item.role === "user" || item.role === "assistant") && !item.pending && !item.failed;
+      })
+      .map(function (item) {
+        return {
+          role: item.role,
+          content: item.role === "user" ? composeUserMessageContent(item) : item.content,
+        };
+      });
+  }
+
+  function buildAnthropicPayload(modelId) {
+    return {
+      model: requestModelName(modelId),
+      system: t("prompt"),
+      messages: anthropicMessages(modelId),
+      max_tokens: 4096,
+    };
+  }
+
+  function requestHeaders(modelId) {
+    if (isAnthropicModel(modelId)) {
+      return {
+        "Content-Type": "application/json",
+        "x-api-key": keyForModel(modelId),
+        "anthropic-version": "2023-06-01",
+        "anthropic-dangerous-direct-browser-access": "true",
+      };
+    }
+    return {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + keyForModel(modelId),
+    };
+  }
+
+  function modelRequestBody(modelId) {
+    return JSON.stringify(isAnthropicModel(modelId) ? buildAnthropicPayload(modelId) : buildStreamPayload(modelId));
   }
 
   async function runAssistantReply(statusMessageKey) {
@@ -2559,14 +2786,36 @@
     try {
       const response = await fetch(requestApiUrl(modelId), {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + keyForModel(modelId),
-        },
-        body: JSON.stringify(buildStreamPayload(modelId)),
+        headers: requestHeaders(modelId),
+        body: modelRequestBody(modelId),
       });
       if (!response.ok) {
         throw new Error(await readErrorResponse(response));
+      }
+      if (isAnthropicModel(modelId)) {
+        const payload = await response.json();
+        const reasoning = responseReasoning(payload);
+        const content = (responseContent(payload) || reasoning).trim();
+        if (!content) {
+          throw new Error(t("invalid"));
+        }
+        const durations = splitDurations(now() - startedAt, reasoning, content);
+        replaceMessage(conversation, pending.id, {
+          role: "assistant",
+          content: content,
+          reasoning: content === reasoning ? "" : reasoning,
+          pending: false,
+          failed: false,
+          timestamp: now(),
+          thinkingMs: durations.thinkingMs,
+          answerMs: durations.answerMs,
+          totalMs: durations.totalMs,
+          tokenUsage: responseTokenUsage(payload),
+        });
+        touchConversation(conversation);
+        renderAll();
+        setStatus("success", "statusReady");
+        return;
       }
       const streamState = {
         content: "",
@@ -2758,6 +3007,12 @@
     refs.keyInput.disabled = state.busy;
     refs.saveKey.disabled = state.busy;
     refs.clearKey.disabled = state.busy;
+    refs.customBaseUrl.disabled = state.busy;
+    refs.customModelName.disabled = state.busy;
+    refs.customType.disabled = state.busy;
+    refs.customApiKey.disabled = state.busy;
+    refs.saveCustomModel.disabled = state.busy;
+    refs.deleteCustomModel.disabled = state.busy || !customModelMeta(selectedModel());
     refs.storageChatList.disabled = state.busy;
     refs.storageChatRecords.disabled = state.busy;
     refs.storageModelApi.disabled = state.busy;
@@ -2827,6 +3082,68 @@
     saveUi();
     renderAll();
     setStatus("success", "statusCleared");
+  }
+
+  function isValidBaseUrl(value) {
+    try {
+      const url = new URL(value);
+      return url.protocol === "http:" || url.protocol === "https:";
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function nextSelectedConfiguredModel() {
+    return Object.keys(state.config.keys).find(function (id) {
+      return state.config.keys[id] && modelMeta(id);
+    }) || "";
+  }
+
+  function saveCustomModel() {
+    const baseUrl = refs.customBaseUrl.value.trim();
+    const modelName = refs.customModelName.value.trim();
+    const apiKey = refs.customApiKey.value.trim();
+    const type = normalizeCustomModelType(refs.customType.value);
+    if (!baseUrl || !modelName || !apiKey) {
+      setStatus("error", "statusCustomRequired");
+      return;
+    }
+    if (!isValidBaseUrl(baseUrl)) {
+      setStatus("error", "statusCustomInvalidUrl");
+      return;
+    }
+    const current = customModelMeta(selectedModel());
+    const next = {
+      id: current ? current.id : CUSTOM_MODEL_PREFIX + customModelSeed(type + "-" + modelName + "-" + baseUrl + "-" + now()),
+      custom: true,
+      type: type,
+      baseUrl: baseUrl,
+      model: modelName,
+    };
+    state.config.customModels = customModels()
+      .filter(function (item) { return item.id !== next.id; })
+      .concat(next);
+    state.config.selectedModel = next.id;
+    state.config.keys[next.id] = apiKey;
+    saveConfig();
+    renderAll();
+    setStatus("success", "statusCustomSaved");
+  }
+
+  function deleteCustomModel() {
+    const current = customModelMeta(selectedModel());
+    if (!current) {
+      setStatus("error", "statusSelectCustomModel");
+      return;
+    }
+    state.config.customModels = customModels().filter(function (item) {
+      return item.id !== current.id;
+    });
+    delete state.config.keys[current.id];
+    state.config.selectedModel = nextSelectedConfiguredModel();
+    saveConfig();
+    renderAll();
+    setStatus("success", "statusCustomDeleted");
   }
 
   function currentStorageInputs() {
@@ -2928,6 +3245,8 @@
     });
     refs.saveKey.addEventListener("click", saveKey);
     refs.clearKey.addEventListener("click", clearKey);
+    refs.saveCustomModel.addEventListener("click", saveCustomModel);
+    refs.deleteCustomModel.addEventListener("click", deleteCustomModel);
     refs.saveStoragePaths.addEventListener("click", saveStoragePaths);
     refs.resetStoragePaths.addEventListener("click", resetStoragePaths);
     refs.exportChatList.addEventListener("click", function () {
@@ -3055,6 +3374,12 @@
     refs.keyInput = document.getElementById("api-key-input");
     refs.saveKey = document.getElementById("save-key");
     refs.clearKey = document.getElementById("clear-key");
+    refs.customBaseUrl = document.getElementById("custom-model-base-url");
+    refs.customModelName = document.getElementById("custom-model-name");
+    refs.customType = document.getElementById("custom-model-type");
+    refs.customApiKey = document.getElementById("custom-api-key-input");
+    refs.saveCustomModel = document.getElementById("save-custom-model");
+    refs.deleteCustomModel = document.getElementById("delete-custom-model");
     refs.storageChatList = document.getElementById("storage-chat-list");
     refs.storageChatRecords = document.getElementById("storage-chat-records");
     refs.storageModelApi = document.getElementById("storage-model-api");

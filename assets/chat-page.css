@@ -1648,6 +1648,17 @@ html[data-theme="dark"] .chat-composer-wrap {
   background: var(--surface-muted);
 }
 
+.chat-settings-form .chat-panel-subhead {
+  align-items: flex-start;
+  margin-top: 0;
+}
+
+.chat-settings-form .chat-panel-subhead .chat-settings-helper {
+  max-width: 24rem;
+  margin: 0;
+  text-align: right;
+}
+
 .chat-settings-form select,
 .chat-settings-form input {
   padding: 0.86rem 0.92rem;
@@ -1777,6 +1788,11 @@ html[data-theme="dark"] .chat-composer-wrap {
 
   .chat-stage-actions {
     align-self: flex-end;
+  }
+
+  .chat-settings-form .chat-panel-subhead .chat-settings-helper {
+    max-width: none;
+    text-align: left;
   }
 
   .chat-stage-actions .github-auth-slot,

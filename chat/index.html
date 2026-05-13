@@ -272,6 +272,39 @@
         </div>
       </div>
 
+      <div class="chat-settings-form">
+        <div class="chat-panel-subhead">
+          <h3 data-chat-text="customModelTitle">Custom model</h3>
+          <p class="chat-settings-helper" data-chat-text="customModelHelper">
+            Add any OpenAI-compatible or Anthropic-compatible endpoint.
+          </p>
+        </div>
+
+        <label class="chat-settings-label" for="custom-model-base-url" data-chat-text="customBaseUrlLabel">Base URL</label>
+        <input id="custom-model-base-url" type="url" autocomplete="off" placeholder="https://api.openai.com/v1">
+
+        <label class="chat-settings-label" for="custom-model-name" data-chat-text="customModelNameLabel">Model name</label>
+        <input id="custom-model-name" type="text" autocomplete="off" placeholder="gpt-4.1-mini">
+
+        <label class="chat-settings-label" for="custom-model-type" data-chat-text="customModelTypeLabel">API type</label>
+        <select id="custom-model-type">
+          <option value="openai">OpenAI</option>
+          <option value="anthropic">Anthropic</option>
+        </select>
+
+        <label class="chat-settings-label" for="custom-api-key-input" data-chat-text="customApiKeyLabel">API Key</label>
+        <input id="custom-api-key-input" type="password" autocomplete="off" placeholder="Paste the API key for this endpoint">
+
+        <div class="chat-settings-actions">
+          <button class="chat-primary-button" id="save-custom-model" type="button" data-chat-text="saveCustomModel">Save custom model</button>
+          <button class="chat-secondary-button" id="delete-custom-model" type="button" data-chat-text="deleteCustomModel">Delete selected custom model</button>
+        </div>
+
+        <div class="chat-settings-note" data-chat-text="customModelNote">
+          OpenAI uses /chat/completions. Anthropic uses /messages with the anthropic-version header.
+        </div>
+      </div>
+
       <div class="chat-saved-models">
         <div class="chat-panel-subhead">
           <h3 data-chat-text="storageSectionTitle">缓存路径</h3>
