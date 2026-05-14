@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-13T04:57:41.086708+00:00",
+  "generated_at": "2026-05-14T04:56:30.753256+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,9 +15,9 @@
         "en": "Your Personal AI super intelligence. Private, Simple and extremely powerful."
       },
       "language": "Rust",
-      "stars_total": 3067,
-      "forks_total": 296,
-      "stars_today": 1014
+      "stars_total": 6081,
+      "forks_total": 496,
+      "stars_today": 1696
     },
     {
       "rank": 2,
@@ -31,73 +31,73 @@
         "en": "#1 Persistent memory for AI coding agents based on real-world benchmarks"
       },
       "language": "TypeScript",
-      "stars_total": 6163,
-      "forks_total": 570,
-      "stars_today": 1048
+      "stars_total": 7999,
+      "forks_total": 680,
+      "stars_today": 1379
     },
     {
       "rank": 3,
-      "repo": "CloakHQ/CloakBrowser",
-      "owner": "CloakHQ",
-      "name": "CloakBrowser",
-      "url": "https://github.com/CloakHQ/CloakBrowser",
-      "description": "Stealth Chromium that passes every bot detection test. Drop-in Playwright replacement with source-level fingerprint patches. 30/30 tests passed.",
+      "repo": "obra/superpowers",
+      "owner": "obra",
+      "name": "superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
       "descriptions": {
-        "zh": "Stealth Chromium 通过了所有机器人检测测试。使用源级指纹补丁替换 Playwright。 30/30 测试通过。",
-        "en": "Stealth Chromium that passes every bot detection test. Drop-in Playwright replacement with source-level fingerprint patches. 30/30 tests passed."
+        "zh": "有效的代理技能框架和软件开发方法。",
+        "en": "An agentic skills framework & software development methodology that works."
       },
-      "language": "Python",
-      "stars_total": 8205,
-      "forks_total": 599,
-      "stars_today": 1606
+      "language": "Shell",
+      "stars_total": 189875,
+      "forks_total": 16907,
+      "stars_today": 1401
     },
     {
       "rank": 4,
-      "repo": "apernet/hysteria",
-      "owner": "apernet",
-      "name": "hysteria",
-      "url": "https://github.com/apernet/hysteria",
-      "description": "Hysteria is a powerful, lightning fast and censorship resistant proxy.",
+      "repo": "yikart/AiToEarn",
+      "owner": "yikart",
+      "name": "AiToEarn",
+      "url": "https://github.com/yikart/AiToEarn",
+      "description": "Let's use AI to Earn!",
       "descriptions": {
-        "zh": "Hysteria 是一个强大、快如闪电且抗审查的代理。",
-        "en": "Hysteria is a powerful, lightning fast and censorship resistant proxy."
+        "zh": "让我们用AI来赚钱吧！",
+        "en": "Let's use AI to Earn!"
       },
-      "language": "Go",
-      "stars_total": 20320,
-      "forks_total": 2103,
-      "stars_today": 51
+      "language": "TypeScript",
+      "stars_total": 13165,
+      "forks_total": 2258,
+      "stars_today": 981
     },
     {
       "rank": 5,
-      "repo": "mattpocock/skills",
-      "owner": "mattpocock",
-      "name": "skills",
-      "url": "https://github.com/mattpocock/skills",
-      "description": "Skills for Real Engineers. Straight from my .claude directory.",
+      "repo": "influxdata/telegraf",
+      "owner": "influxdata",
+      "name": "telegraf",
+      "url": "https://github.com/influxdata/telegraf",
+      "description": "Agent for collecting, processing, aggregating, and writing metrics, logs, and other arbitrary data.",
       "descriptions": {
-        "zh": "真正工程师的技能。直接来自我的 .claude 目录。",
-        "en": "Skills for Real Engineers. Straight from my .claude directory."
+        "zh": "用于收集、处理、聚合和写入指标、日志和其他任意数据的代理。",
+        "en": "Agent for collecting, processing, aggregating, and writing metrics, logs, and other arbitrary data."
       },
-      "language": "Shell",
-      "stars_total": 76705,
-      "forks_total": 6616,
-      "stars_today": 3867
+      "language": "Go",
+      "stars_total": 17047,
+      "forks_total": 5783,
+      "stars_today": 13
     },
     {
       "rank": 6,
-      "repo": "anonfaded/FadCam",
-      "owner": "anonfaded",
-      "name": "FadCam",
-      "url": "https://github.com/anonfaded/FadCam",
-      "description": "Open-source, ad-free Android multimedia recorder with background video recording, screen recording, live streaming, and remote camera control",
+      "repo": "millionco/react-doctor",
+      "owner": "millionco",
+      "name": "react-doctor",
+      "url": "https://github.com/millionco/react-doctor",
+      "description": "Your agent writes bad React. This catches it",
       "descriptions": {
-        "zh": "开源、无广告的 Android 多媒体录像机，具有后台视频录制、屏幕录制、直播和远程摄像头控制功能",
-        "en": "Open-source, ad-free Android multimedia recorder with background video recording, screen recording, live streaming, and remote camera control"
+        "zh": "你的代理写了糟糕的 React。这抓住了它",
+        "en": "Your agent writes bad React. This catches it"
       },
-      "language": "Java",
-      "stars_total": 2282,
-      "forks_total": 172,
-      "stars_today": 116
+      "language": "TypeScript",
+      "stars_total": 9363,
+      "forks_total": 293,
+      "stars_today": 604
     }
   ]
 }
