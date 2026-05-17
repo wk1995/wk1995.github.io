@@ -1,42 +1,26 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-16T04:36:33.138965+00:00",
+  "generated_at": "2026-05-17T05:00:19.359804+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "tinyhumansai/openhuman",
-      "owner": "tinyhumansai",
-      "name": "openhuman",
-      "url": "https://github.com/tinyhumansai/openhuman",
-      "description": "Your Personal AI super intelligence. Private, Simple and extremely powerful.",
+      "repo": "oven-sh/bun",
+      "owner": "oven-sh",
+      "name": "bun",
+      "url": "https://github.com/oven-sh/bun",
+      "description": "Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one",
       "descriptions": {
-        "zh": "您的个人人工智能超级智能。私密、简单且极其强大。",
-        "en": "Your Personal AI super intelligence. Private, Simple and extremely powerful."
+        "zh": "令人难以置信的快速 JavaScript 运行时、捆绑器、测试运行器和包管理器 – 全部合而为一",
+        "en": "Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one"
       },
       "language": "Rust",
-      "stars_total": 9243,
-      "forks_total": 778,
-      "stars_today": 1271
+      "stars_total": 91358,
+      "forks_total": 4558,
+      "stars_today": 397
     },
     {
       "rank": 2,
-      "repo": "obra/superpowers",
-      "owner": "obra",
-      "name": "superpowers",
-      "url": "https://github.com/obra/superpowers",
-      "description": "An agentic skills framework & software development methodology that works.",
-      "descriptions": {
-        "zh": "有效的代理技能框架和软件开发方法。",
-        "en": "An agentic skills framework & software development methodology that works."
-      },
-      "language": "Shell",
-      "stars_total": 193009,
-      "forks_total": 17161,
-      "stars_today": 1648
-    },
-    {
-      "rank": 3,
       "repo": "K-Dense-AI/scientific-agent-skills",
       "owner": "K-Dense-AI",
       "name": "scientific-agent-skills",
@@ -47,12 +31,44 @@
         "en": "A set of ready to use Agent Skills for research, science, engineering, analysis, finance and writing."
       },
       "language": "Python",
-      "stars_total": 22567,
-      "forks_total": 2438,
-      "stars_today": 646
+      "stars_total": 23296,
+      "forks_total": 2495,
+      "stars_today": 673
+    },
+    {
+      "rank": 3,
+      "repo": "obra/superpowers",
+      "owner": "obra",
+      "name": "superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "descriptions": {
+        "zh": "有效的代理技能框架和软件开发方法。",
+        "en": "An agentic skills framework & software development methodology that works."
+      },
+      "language": "Shell",
+      "stars_total": 194236,
+      "forks_total": 17272,
+      "stars_today": 1305
     },
     {
       "rank": 4,
+      "repo": "Anil-matcha/Open-Generative-AI",
+      "owner": "Anil-matcha",
+      "name": "Open-Generative-AI",
+      "url": "https://github.com/Anil-matcha/Open-Generative-AI",
+      "description": "Open-source alternative to AI video platforms — Free AI image & video generation studio with 200+ models (Flux, Midjourney, Kling, Sora, Veo). No content filters. Self-hosted, MIT licensed.",
+      "descriptions": {
+        "zh": "AI 视频平台的开源替代方案 — 免费 AI 图像和视频生成工作室，拥有 200 多个模型（Flux、Midjourney、Kling、Sora、Veo）。没有内容过滤器。自托管，麻省理工学院许可。",
+        "en": "Open-source alternative to AI video platforms — Free AI image & video generation studio with 200+ models (Flux, Midjourney, Kling, Sora, Veo). No content filters. Self-hosted, MIT licensed."
+      },
+      "language": "JavaScript",
+      "stars_total": 14560,
+      "forks_total": 2530,
+      "stars_today": 317
+    },
+    {
+      "rank": 5,
       "repo": "supertone-inc/supertonic",
       "owner": "supertone-inc",
       "name": "supertonic",
@@ -63,41 +79,25 @@
         "en": "Lightning-Fast, On-Device, Multilingual TTS — running natively via ONNX."
       },
       "language": "Swift",
-      "stars_total": 6142,
-      "forks_total": 606,
-      "stars_today": 719
-    },
-    {
-      "rank": 5,
-      "repo": "ruvnet/RuView",
-      "owner": "ruvnet",
-      "name": "RuView",
-      "url": "https://github.com/ruvnet/RuView",
-      "description": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video.",
-      "descriptions": {
-        "zh": "π RuView 将商用 WiFi 信号转化为实时空间智能、生命体征监测和存在检测 - 所有这些都无需视频像素。",
-        "en": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video."
-      },
-      "language": "Rust",
-      "stars_total": 57613,
-      "forks_total": 7561,
-      "stars_today": 1859
+      "stars_total": 7017,
+      "forks_total": 719,
+      "stars_today": 749
     },
     {
       "rank": 6,
-      "repo": "influxdata/telegraf",
-      "owner": "influxdata",
-      "name": "telegraf",
-      "url": "https://github.com/influxdata/telegraf",
-      "description": "Agent for collecting, processing, aggregating, and writing metrics, logs, and other arbitrary data.",
+      "repo": "tinyhumansai/openhuman",
+      "owner": "tinyhumansai",
+      "name": "openhuman",
+      "url": "https://github.com/tinyhumansai/openhuman",
+      "description": "Your Personal AI super intelligence. Private, Simple and extremely powerful.",
       "descriptions": {
-        "zh": "用于收集、处理、聚合和写入指标、日志和其他任意数据的代理。",
-        "en": "Agent for collecting, processing, aggregating, and writing metrics, logs, and other arbitrary data."
+        "zh": "您的个人人工智能超级智能。私密、简单且极其强大。",
+        "en": "Your Personal AI super intelligence. Private, Simple and extremely powerful."
       },
-      "language": "Go",
-      "stars_total": 17447,
-      "forks_total": 5803,
-      "stars_today": 212
+      "language": "Rust",
+      "stars_total": 11030,
+      "forks_total": 954,
+      "stars_today": 1549
     }
   ]
 }
