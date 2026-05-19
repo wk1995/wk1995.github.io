@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-18T05:16:41.176604+00:00",
+  "generated_at": "2026-05-19T05:12:15.009496+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,12 +15,28 @@
         "en": "Your Personal AI super intelligence. Private, Simple and extremely powerful."
       },
       "language": "Rust",
-      "stars_total": 14082,
-      "forks_total": 1207,
-      "stars_today": 1690
+      "stars_total": 18100,
+      "forks_total": 1584,
+      "stars_today": 3941
     },
     {
       "rank": 2,
+      "repo": "Imbad0202/academic-research-skills",
+      "owner": "Imbad0202",
+      "name": "academic-research-skills",
+      "url": "https://github.com/Imbad0202/academic-research-skills",
+      "description": "Academic Research Skills for Claude Code: research → write → review → revise → finalize",
+      "descriptions": {
+        "zh": "克劳德·代码的学术研究技巧：研究→写作→审阅→修改→定稿",
+        "en": "Academic Research Skills for Claude Code: research → write → review → revise → finalize"
+      },
+      "language": "Python",
+      "stars_total": 12410,
+      "forks_total": 1247,
+      "stars_today": 1439
+    },
+    {
+      "rank": 3,
       "repo": "HKUDS/CLI-Anything",
       "owner": "HKUDS",
       "name": "CLI-Anything",
@@ -31,73 +47,57 @@
         "en": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/"
       },
       "language": "Python",
-      "stars_total": 35899,
-      "forks_total": 3498,
-      "stars_today": 238
-    },
-    {
-      "rank": 3,
-      "repo": "calcom/cal.diy",
-      "owner": "calcom",
-      "name": "cal.diy",
-      "url": "https://github.com/calcom/cal.diy",
-      "description": "Scheduling infrastructure for absolutely everyone.",
-      "descriptions": {
-        "zh": "为所有人安排基础设施。",
-        "en": "Scheduling infrastructure for absolutely everyone."
-      },
-      "language": "TypeScript",
-      "stars_total": 43392,
-      "forks_total": 13417,
-      "stars_today": 433
+      "stars_total": 36899,
+      "forks_total": 3569,
+      "stars_today": 1049
     },
     {
       "rank": 4,
-      "repo": "oven-sh/bun",
-      "owner": "oven-sh",
-      "name": "bun",
-      "url": "https://github.com/oven-sh/bun",
-      "description": "Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one",
+      "repo": "K-Dense-AI/scientific-agent-skills",
+      "owner": "K-Dense-AI",
+      "name": "scientific-agent-skills",
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "description": "A set of ready to use Agent Skills for research, science, engineering, analysis, finance and writing.",
       "descriptions": {
-        "zh": "令人难以置信的快速 JavaScript 运行时、捆绑器、测试运行器和包管理器 – 全部合而为一",
-        "en": "Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one"
+        "zh": "一套用于研究、科学、工程、分析、金融和写作的现成可用的代理技能。",
+        "en": "A set of ready to use Agent Skills for research, science, engineering, analysis, finance and writing."
       },
-      "language": "Rust",
-      "stars_total": 91781,
-      "forks_total": 4579,
-      "stars_today": 910
+      "language": "Python",
+      "stars_total": 24529,
+      "forks_total": 2584,
+      "stars_today": 609
     },
     {
       "rank": 5,
-      "repo": "Anil-matcha/Open-Generative-AI",
-      "owner": "Anil-matcha",
-      "name": "Open-Generative-AI",
-      "url": "https://github.com/Anil-matcha/Open-Generative-AI",
-      "description": "Open-source alternative to AI video platforms — Free AI image & video generation studio with 200+ models (Flux, Midjourney, Kling, Sora, Veo). No content filters. Self-hosted, MIT licensed.",
+      "repo": "supertone-inc/supertonic",
+      "owner": "supertone-inc",
+      "name": "supertonic",
+      "url": "https://github.com/supertone-inc/supertonic",
+      "description": "Lightning-Fast, On-Device, Multilingual TTS — running natively via ONNX.",
       "descriptions": {
-        "zh": "AI 视频平台的开源替代方案 — 免费 AI 图像和视频生成工作室，拥有 200 多个模型（Flux、Midjourney、Kling、Sora、Veo）。没有内容过滤器。自托管，麻省理工学院许可。",
-        "en": "Open-source alternative to AI video platforms — Free AI image & video generation studio with 200+ models (Flux, Midjourney, Kling, Sora, Veo). No content filters. Self-hosted, MIT licensed."
+        "zh": "快如闪电、设备内多语言 TTS — 通过 ONNX 本地运行。",
+        "en": "Lightning-Fast, On-Device, Multilingual TTS — running natively via ONNX."
       },
-      "language": "JavaScript",
-      "stars_total": 15322,
-      "forks_total": 2610,
-      "stars_today": 703
+      "language": "Swift",
+      "stars_total": 8458,
+      "forks_total": 861,
+      "stars_today": 715
     },
     {
       "rank": 6,
-      "repo": "BigBodyCobain/Shadowbroker",
-      "owner": "BigBodyCobain",
-      "name": "Shadowbroker",
-      "url": "https://github.com/BigBodyCobain/Shadowbroker",
-      "description": "Open-source intelligence for the global theater. Track everything from the corporate/private jets of the wealthy, and spy satellites, to seismic events in one unified interface. Hook an AI agent up to have it parse through data and find previously unseen correlations. The knowledge is available to all but rarely aggregated in the open, until now.",
+      "repo": "ggml-org/llama.cpp",
+      "owner": "ggml-org",
+      "name": "llama.cpp",
+      "url": "https://github.com/ggml-org/llama.cpp",
+      "description": "LLM inference in C/C++",
       "descriptions": {
-        "zh": "全球战区的开源情报。在一个统一的界面中跟踪从富人的公司/私人飞机、间谍卫星到地震事件的一切信息。连接人工智能代理，让它解析数据并找到以前未见过的相关性。这些知识可供所有人使用，但迄今为止很少公开汇总。",
-        "en": "Open-source intelligence for the global theater. Track everything from the corporate/private jets of the wealthy, and spy satellites, to seismic events in one unified interface. Hook an AI agent up to have it parse through data and find previously unseen correlations. The knowledge is available to all but rarely aggregated in the open, until now."
+        "zh": "C/C++ 中的 LLM 推理",
+        "en": "LLM inference in C/C++"
       },
-      "language": "Python",
-      "stars_total": 7245,
-      "forks_total": 1126,
-      "stars_today": 333
+      "language": "C++",
+      "stars_total": 111152,
+      "forks_total": 18395,
+      "stars_today": 213
     }
   ]
 }
