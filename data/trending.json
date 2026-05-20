@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-19T05:12:15.009496+00:00",
+  "generated_at": "2026-05-20T05:14:42.316213+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,28 +15,12 @@
         "en": "Your Personal AI super intelligence. Private, Simple and extremely powerful."
       },
       "language": "Rust",
-      "stars_total": 18100,
-      "forks_total": 1584,
-      "stars_today": 3941
+      "stars_total": 21951,
+      "forks_total": 1951,
+      "stars_today": 3973
     },
     {
       "rank": 2,
-      "repo": "Imbad0202/academic-research-skills",
-      "owner": "Imbad0202",
-      "name": "academic-research-skills",
-      "url": "https://github.com/Imbad0202/academic-research-skills",
-      "description": "Academic Research Skills for Claude Code: research → write → review → revise → finalize",
-      "descriptions": {
-        "zh": "克劳德·代码的学术研究技巧：研究→写作→审阅→修改→定稿",
-        "en": "Academic Research Skills for Claude Code: research → write → review → revise → finalize"
-      },
-      "language": "Python",
-      "stars_total": 12410,
-      "forks_total": 1247,
-      "stars_today": 1439
-    },
-    {
-      "rank": 3,
       "repo": "HKUDS/CLI-Anything",
       "owner": "HKUDS",
       "name": "CLI-Anything",
@@ -47,57 +31,73 @@
         "en": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/"
       },
       "language": "Python",
-      "stars_total": 36899,
-      "forks_total": 3569,
-      "stars_today": 1049
+      "stars_total": 37917,
+      "forks_total": 3628,
+      "stars_today": 1038
+    },
+    {
+      "rank": 3,
+      "repo": "Imbad0202/academic-research-skills",
+      "owner": "Imbad0202",
+      "name": "academic-research-skills",
+      "url": "https://github.com/Imbad0202/academic-research-skills",
+      "description": "Academic Research Skills for Claude Code: research → write → review → revise → finalize",
+      "descriptions": {
+        "zh": "克劳德·代码的学术研究技巧：研究→写作→审阅→修改→定稿",
+        "en": "Academic Research Skills for Claude Code: research → write → review → revise → finalize"
+      },
+      "language": "Python",
+      "stars_total": 14464,
+      "forks_total": 1348,
+      "stars_today": 3164
     },
     {
       "rank": 4,
-      "repo": "K-Dense-AI/scientific-agent-skills",
-      "owner": "K-Dense-AI",
-      "name": "scientific-agent-skills",
-      "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
-      "description": "A set of ready to use Agent Skills for research, science, engineering, analysis, finance and writing.",
+      "repo": "obra/superpowers",
+      "owner": "obra",
+      "name": "superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
       "descriptions": {
-        "zh": "一套用于研究、科学、工程、分析、金融和写作的现成可用的代理技能。",
-        "en": "A set of ready to use Agent Skills for research, science, engineering, analysis, finance and writing."
+        "zh": "有效的代理技能框架和软件开发方法。",
+        "en": "An agentic skills framework & software development methodology that works."
       },
-      "language": "Python",
-      "stars_total": 24529,
-      "forks_total": 2584,
-      "stars_today": 609
+      "language": "Shell",
+      "stars_total": 198784,
+      "forks_total": 17732,
+      "stars_today": 1623
     },
     {
       "rank": 5,
-      "repo": "supertone-inc/supertonic",
-      "owner": "supertone-inc",
-      "name": "supertonic",
-      "url": "https://github.com/supertone-inc/supertonic",
-      "description": "Lightning-Fast, On-Device, Multilingual TTS — running natively via ONNX.",
+      "repo": "anthropics/claude-plugins-official",
+      "owner": "anthropics",
+      "name": "claude-plugins-official",
+      "url": "https://github.com/anthropics/claude-plugins-official",
+      "description": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
       "descriptions": {
-        "zh": "快如闪电、设备内多语言 TTS — 通过 ONNX 本地运行。",
-        "en": "Lightning-Fast, On-Device, Multilingual TTS — running natively via ONNX."
+        "zh": "由 Anthropic 管理的官方高品质 Claude 代码插件目录。",
+        "en": "Official, Anthropic-managed directory of high quality Claude Code Plugins."
       },
-      "language": "Swift",
-      "stars_total": 8458,
-      "forks_total": 861,
-      "stars_today": 715
+      "language": "Python",
+      "stars_total": 20345,
+      "forks_total": 2514,
+      "stars_today": 171
     },
     {
       "rank": 6,
-      "repo": "ggml-org/llama.cpp",
-      "owner": "ggml-org",
-      "name": "llama.cpp",
-      "url": "https://github.com/ggml-org/llama.cpp",
-      "description": "LLM inference in C/C++",
+      "repo": "rohitg00/agentmemory",
+      "owner": "rohitg00",
+      "name": "agentmemory",
+      "url": "https://github.com/rohitg00/agentmemory",
+      "description": "#1 Persistent memory for AI coding agents based on real-world benchmarks",
       "descriptions": {
-        "zh": "C/C++ 中的 LLM 推理",
-        "en": "LLM inference in C/C++"
+        "zh": "#1 基于真实世界基准的人工智能编码代理的持久内存",
+        "en": "#1 Persistent memory for AI coding agents based on real-world benchmarks"
       },
-      "language": "C++",
-      "stars_total": 111152,
-      "forks_total": 18395,
-      "stars_today": 213
+      "language": "TypeScript",
+      "stars_total": 14374,
+      "forks_total": 1195,
+      "stars_today": 1609
     }
   ]
 }
