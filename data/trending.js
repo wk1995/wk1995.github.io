@@ -1,42 +1,26 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-20T05:14:42.316213+00:00",
+  "generated_at": "2026-05-21T05:18:23.286376+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "tinyhumansai/openhuman",
-      "owner": "tinyhumansai",
-      "name": "openhuman",
-      "url": "https://github.com/tinyhumansai/openhuman",
-      "description": "Your Personal AI super intelligence. Private, Simple and extremely powerful.",
+      "repo": "colbymchenry/codegraph",
+      "owner": "colbymchenry",
+      "name": "codegraph",
+      "url": "https://github.com/colbymchenry/codegraph",
+      "description": "Pre-indexed code knowledge graph for Claude Code, Codex, Cursor, and OpenCode — fewer tokens, fewer tool calls, 100% local",
       "descriptions": {
-        "zh": "您的个人人工智能超级智能。私密、简单且极其强大。",
-        "en": "Your Personal AI super intelligence. Private, Simple and extremely powerful."
+        "zh": "Claude Code、Codex、Cursor 和 OpenCode 的预索引代码知识图 — 更少的标记、更少的工具调用、100% 本地化",
+        "en": "Pre-indexed code knowledge graph for Claude Code, Codex, Cursor, and OpenCode — fewer tokens, fewer tool calls, 100% local"
       },
-      "language": "Rust",
-      "stars_total": 21951,
-      "forks_total": 1951,
-      "stars_today": 3973
+      "language": "TypeScript",
+      "stars_total": 10503,
+      "forks_total": 646,
+      "stars_today": 2123
     },
     {
       "rank": 2,
-      "repo": "HKUDS/CLI-Anything",
-      "owner": "HKUDS",
-      "name": "CLI-Anything",
-      "url": "https://github.com/HKUDS/CLI-Anything",
-      "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
-      "descriptions": {
-        "zh": "“CLI-Anything：使所有软件代理原生”--CLI-Hub：https://clianything.cc/",
-        "en": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/"
-      },
-      "language": "Python",
-      "stars_total": 37917,
-      "forks_total": 3628,
-      "stars_today": 1038
-    },
-    {
-      "rank": 3,
       "repo": "Imbad0202/academic-research-skills",
       "owner": "Imbad0202",
       "name": "academic-research-skills",
@@ -47,57 +31,73 @@ window.__TRENDING_DATA__ = {
         "en": "Academic Research Skills for Claude Code: research → write → review → revise → finalize"
       },
       "language": "Python",
-      "stars_total": 14464,
-      "forks_total": 1348,
-      "stars_today": 3164
+      "stars_total": 16711,
+      "forks_total": 1471,
+      "stars_today": 1667
+    },
+    {
+      "rank": 3,
+      "repo": "tinyhumansai/openhuman",
+      "owner": "tinyhumansai",
+      "name": "openhuman",
+      "url": "https://github.com/tinyhumansai/openhuman",
+      "description": "Your Personal AI super intelligence. Private, Simple and extremely powerful.",
+      "descriptions": {
+        "zh": "您的个人人工智能超级智能。私密、简单且极其强大。",
+        "en": "Your Personal AI super intelligence. Private, Simple and extremely powerful."
+      },
+      "language": "Rust",
+      "stars_total": 23957,
+      "forks_total": 2154,
+      "stars_today": 3394
     },
     {
       "rank": 4,
-      "repo": "obra/superpowers",
-      "owner": "obra",
-      "name": "superpowers",
-      "url": "https://github.com/obra/superpowers",
-      "description": "An agentic skills framework & software development methodology that works.",
+      "repo": "multica-ai/andrej-karpathy-skills",
+      "owner": "multica-ai",
+      "name": "andrej-karpathy-skills",
+      "url": "https://github.com/multica-ai/andrej-karpathy-skills",
+      "description": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
       "descriptions": {
-        "zh": "有效的代理技能框架和软件开发方法。",
-        "en": "An agentic skills framework & software development methodology that works."
+        "zh": "用于改进 Claude 代码行为的单个 CLAUDE.md 文件，源自 Andrej Karpathy 对 LLM 编码陷阱的观察。",
+        "en": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls."
       },
-      "language": "Shell",
-      "stars_total": 198784,
-      "forks_total": 17732,
-      "stars_today": 1623
+      "language": null,
+      "stars_total": 141408,
+      "forks_total": 14523,
+      "stars_today": 2679
     },
     {
       "rank": 5,
-      "repo": "anthropics/claude-plugins-official",
-      "owner": "anthropics",
-      "name": "claude-plugins-official",
-      "url": "https://github.com/anthropics/claude-plugins-official",
-      "description": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
+      "repo": "rohitg00/ai-engineering-from-scratch",
+      "owner": "rohitg00",
+      "name": "ai-engineering-from-scratch",
+      "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
+      "description": "Learn it. Build it. Ship it for others.",
       "descriptions": {
-        "zh": "由 Anthropic 管理的官方高品质 Claude 代码插件目录。",
-        "en": "Official, Anthropic-managed directory of high quality Claude Code Plugins."
+        "zh": "学习它。建造它。寄给别人。",
+        "en": "Learn it. Build it. Ship it for others."
       },
       "language": "Python",
-      "stars_total": 20345,
-      "forks_total": 2514,
-      "stars_today": 171
+      "stars_total": 9861,
+      "forks_total": 1989,
+      "stars_today": 765
     },
     {
       "rank": 6,
-      "repo": "rohitg00/agentmemory",
-      "owner": "rohitg00",
-      "name": "agentmemory",
-      "url": "https://github.com/rohitg00/agentmemory",
-      "description": "#1 Persistent memory for AI coding agents based on real-world benchmarks",
+      "repo": "HKUDS/CLI-Anything",
+      "owner": "HKUDS",
+      "name": "CLI-Anything",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
       "descriptions": {
-        "zh": "#1 基于真实世界基准的人工智能编码代理的持久内存",
-        "en": "#1 Persistent memory for AI coding agents based on real-world benchmarks"
+        "zh": "“CLI-Anything：使所有软件代理原生”--CLI-Hub：https://clianything.cc/",
+        "en": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/"
       },
-      "language": "TypeScript",
-      "stars_total": 14374,
-      "forks_total": 1195,
-      "stars_today": 1609
+      "language": "Python",
+      "stars_total": 38661,
+      "forks_total": 3672,
+      "stars_today": 890
     }
   ]
 }
