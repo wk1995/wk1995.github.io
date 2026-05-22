@@ -3,12 +3,13 @@
   const LEGACY_STATE_KEY = "wk1995-ai-chat-page-state";
   const UI_KEY = "wk1995-ai-chat-page-ui";
   const STORAGE_BOOTSTRAP_KEY = "wk1995-ai-chat-storage-bootstrap";
-  const DEFAULT_STORAGE_PATHS = {
+  const MODEL_CATALOG = window.WKModelCatalog || null;
+  const DEFAULT_STORAGE_PATHS = MODEL_CATALOG ? MODEL_CATALOG.DEFAULT_STORAGE_PATHS : {
     chatList: "wk1995/cache/chat-list",
     chatRecords: "wk1995/cache/chat-records",
     modelApi: "wk1995/cache/model-api",
   };
-  const PROVIDERS = {
+  const PROVIDERS = MODEL_CATALOG ? MODEL_CATALOG.PROVIDERS : {
     deepseek: {
       apiUrl: "https://api.deepseek.com/chat/completions",
       keyLabel: { zh: "DeepSeek", en: "DeepSeek" },
@@ -18,12 +19,23 @@
       keyLabel: { zh: "智谱", en: "Zhipu" },
     },
   };
-  const CUSTOM_MODEL_PREFIX = "custom:";
-  const CUSTOM_MODEL_TYPES = {
+  const CUSTOM_MODEL_PREFIX = MODEL_CATALOG ? MODEL_CATALOG.CUSTOM_MODEL_PREFIX : "custom:";
+  const CUSTOM_MODEL_TYPES = MODEL_CATALOG ? MODEL_CATALOG.CUSTOM_MODEL_TYPES : {
     openai: true,
     anthropic: true,
   };
-  const MODELS = [
+  const MODELS = MODEL_CATALOG ? MODEL_CATALOG.MODELS.map(function (model) {
+    return {
+      id: model.id,
+      provider: model.provider,
+      labels: model.labels,
+      legacy: Boolean(model.legacy),
+      thinking: Boolean(model.thinking),
+      vision: Boolean(model.vision),
+      context: model.context || "",
+      strengths: model.strengths || {},
+    };
+  }) : [
     { id: "deepseek-v4-flash", provider: "deepseek", labels: { zh: "DeepSeek V4 Flash", en: "DeepSeek V4 Flash" } },
     { id: "deepseek-v4-pro", provider: "deepseek", labels: { zh: "DeepSeek V4 Pro", en: "DeepSeek V4 Pro" } },
     { id: "deepseek-chat", provider: "deepseek", labels: { zh: "DeepSeek Chat", en: "DeepSeek Chat" }, legacy: true },
@@ -110,6 +122,15 @@
       moduleChatRecords: "聊天记录",
       moduleModelApi: "大模型 API",
       modelLabel: "模型选择",
+      selectedModelTitle: "当前模型",
+      selectedModelHint: "从大模型列表页选择一个模型后，这里会自动带回模型属性。",
+      chooseModelAction: "选择模型",
+      selectedModelProvider: "接口",
+      selectedModelNoKey: "尚未保存当前模型的 API Key",
+      modelFeatureText: "文本",
+      modelFeatureVision: "视觉",
+      modelFeatureThinking: "推理",
+      modelFeatureLegacy: "旧入口",
       keyLabel: "模型 API Key",
       keyPlaceholder: "粘贴当前模型对应的 API Key",
       saveKey: "保存 Key",
@@ -283,6 +304,15 @@
       moduleChatRecords: "Chat records",
       moduleModelApi: "Model API",
       modelLabel: "Model",
+      selectedModelTitle: "Current model",
+      selectedModelHint: "Choose a model from the model list page and its attributes will come back here.",
+      chooseModelAction: "Choose model",
+      selectedModelProvider: "Endpoint",
+      selectedModelNoKey: "No API key saved for the current model",
+      modelFeatureText: "Text",
+      modelFeatureVision: "Vision",
+      modelFeatureThinking: "Reasoning",
+      modelFeatureLegacy: "Legacy",
       keyLabel: "Model API Key",
       keyPlaceholder: "Paste the API key for the selected model",
       saveKey: "Save key",
@@ -609,6 +639,27 @@
       return base + " - " + customTypeLabel(meta.type);
     }
     return meta && meta.legacy ? base + " - " + t("legacy") : base;
+  }
+
+  function modelFeatureText(meta) {
+    if (!meta) {
+      return t("selectedModelHint");
+    }
+    if (meta.custom) {
+      return customTypeLabel(meta.type) + " · " + meta.baseUrl;
+    }
+    const features = [t("modelFeatureText")];
+    if (meta.vision) {
+      features.push(t("modelFeatureVision"));
+    }
+    if (meta.thinking) {
+      features.push(t("modelFeatureThinking"));
+    }
+    if (meta.legacy) {
+      features.push(t("modelFeatureLegacy"));
+    }
+    const provider = providerMeta(meta.provider).keyLabel[lang()] || providerMeta(meta.provider).keyLabel.zh;
+    return provider + " · " + features.join(" / ");
   }
 
   function providerMeta(providerId) {
@@ -1552,7 +1603,9 @@
   function openSettings(focusTarget) {
     setSettingsOpen(true);
     if (focusTarget === "model") {
-      refs.modelSelect.focus();
+      if (refs.chooseModel) {
+        refs.chooseModel.focus();
+      }
     } else if (focusTarget === "key") {
       refs.keyInput.focus();
     }
@@ -1594,32 +1647,17 @@
   }
 
   function renderModelSelect() {
-    refs.modelSelect.innerHTML = "";
-    const placeholder = document.createElement("option");
-    placeholder.value = "";
-    placeholder.textContent = t("selectModel");
-    refs.modelSelect.appendChild(placeholder);
-    const builtInGroup = document.createElement("optgroup");
-    builtInGroup.label = t("builtInModelGroup");
-    MODELS.forEach(function (model) {
-      const option = document.createElement("option");
-      option.value = model.id;
-      option.textContent = label(model.id);
-      builtInGroup.appendChild(option);
-    });
-    refs.modelSelect.appendChild(builtInGroup);
-    if (customModels().length) {
-      const customGroup = document.createElement("optgroup");
-      customGroup.label = t("customModelGroup");
-      customModels().forEach(function (model) {
-        const option = document.createElement("option");
-        option.value = model.id;
-        option.textContent = label(model.id);
-        customGroup.appendChild(option);
-      });
-      refs.modelSelect.appendChild(customGroup);
+    const current = selectedModel();
+    refs.modelSelect.value = current;
+    if (refs.settingsModelName) {
+      refs.settingsModelName.textContent = current ? label(current) : t("selectModel");
     }
-    refs.modelSelect.value = selectedModel();
+    if (refs.settingsModelMeta) {
+      refs.settingsModelMeta.textContent = current ? modelFeatureText(modelMeta(current)) : t("selectedModelHint");
+    }
+    if (refs.chooseModel) {
+      refs.chooseModel.setAttribute("href", "../models/?from=chat");
+    }
     refs.keyInput.value = keyForModel();
   }
 
@@ -3004,6 +3042,10 @@
     refs.attachmentInput.disabled = state.busy;
     refs.input.disabled = state.busy;
     refs.modelSelect.disabled = state.busy;
+    if (refs.chooseModel) {
+      refs.chooseModel.setAttribute("aria-disabled", state.busy ? "true" : "false");
+      refs.chooseModel.classList.toggle("is-disabled", state.busy);
+    }
     refs.keyInput.disabled = state.busy;
     refs.saveKey.disabled = state.busy;
     refs.clearKey.disabled = state.busy;
@@ -3274,6 +3316,11 @@
     refs.openSettings.addEventListener("click", function () {
       openSettings();
     });
+    refs.chooseModel.addEventListener("click", function (event) {
+      if (state.busy) {
+        event.preventDefault();
+      }
+    });
     refs.closeSettings.addEventListener("click", closeSettings);
     refs.backdrop.addEventListener("click", closeSettings);
     refs.modelSelect.addEventListener("change", function () {
@@ -3371,6 +3418,9 @@
     refs.clearChat = document.getElementById("clear-conversation");
     refs.send = document.getElementById("send-message");
     refs.modelSelect = document.getElementById("model-select");
+    refs.settingsModelName = document.getElementById("settings-model-name");
+    refs.settingsModelMeta = document.getElementById("settings-model-meta");
+    refs.chooseModel = document.getElementById("choose-model-link");
     refs.keyInput = document.getElementById("api-key-input");
     refs.saveKey = document.getElementById("save-key");
     refs.clearKey = document.getElementById("clear-key");

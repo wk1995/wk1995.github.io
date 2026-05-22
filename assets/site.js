@@ -21,7 +21,8 @@
         home: {
           "meta.title": "WK1995 · AI x Android",
           "meta.description": "个人主页，聚焦人工智能与 Android 开发，记录我的项目、研究和博客文章。",
-          "nav.models": "模型榜单",
+          "nav.models": "模型列表",
+          "nav.apps": "个人 App",
           "nav.blog": "博客",
           "nav.about": "关于我",
           "nav.trending": "热门项目",
@@ -186,6 +187,7 @@
           "meta.title": "WK1995 · AI x Android",
           "meta.description": "Personal site focused on AI and Android engineering, with projects, notes, and blog posts.",
           "nav.models": "Models",
+          "nav.apps": "Apps",
           "nav.blog": "Blog",
           "nav.about": "About",
           "nav.trending": "Trending",

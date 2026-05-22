@@ -255,8 +255,17 @@
       <div class="chat-setup-banner" id="setup-banner"></div>
 
       <div class="chat-settings-form">
-        <label class="chat-settings-label" for="model-select" data-chat-text="modelLabel">模型选择</label>
-        <select id="model-select"></select>
+        <input id="model-select" type="hidden">
+        <div class="chat-selected-model-panel">
+          <div>
+            <span class="chat-settings-label" data-chat-text="selectedModelTitle">当前模型</span>
+            <strong id="settings-model-name">请选择模型</strong>
+            <p id="settings-model-meta" data-chat-text="selectedModelHint">
+              从大模型列表页选择一个模型后，这里会自动带回模型属性。
+            </p>
+          </div>
+          <a class="chat-secondary-button" id="choose-model-link" href="../models/?from=chat" data-chat-text="chooseModelAction">选择模型</a>
+        </div>
 
         <label class="chat-settings-label" for="api-key-input" data-chat-text="keyLabel">Model API Key</label>
         <input id="api-key-input" type="password" autocomplete="off" placeholder="粘贴当前模型对应的 API Key">
@@ -365,6 +374,7 @@
   </div>
 
   <script src="../assets/site.js"></script>
+  <script src="../assets/model-catalog.js"></script>
   <script src="../assets/feedback-entry.js"></script>
   <script src="../assets/chat-page.js"></script>
 </body>
