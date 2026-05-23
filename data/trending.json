@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-22T05:12:21.905330+00:00",
+  "generated_at": "2026-05-23T04:51:09.584681+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,9 +15,9 @@
         "en": "Official, Anthropic-managed directory of high quality Claude Code Plugins."
       },
       "language": "Python",
-      "stars_total": 22920,
-      "forks_total": 2661,
-      "stars_today": 682
+      "stars_total": 25249,
+      "forks_total": 2782,
+      "stars_today": 2549
     },
     {
       "rank": 2,
@@ -25,34 +25,66 @@
       "owner": "colbymchenry",
       "name": "codegraph",
       "url": "https://github.com/colbymchenry/codegraph",
-      "description": "Pre-indexed code knowledge graph for Claude Code, Codex, Cursor, and OpenCode — fewer tokens, fewer tool calls, 100% local",
+      "description": "Pre-indexed code knowledge graph for Claude Code, Codex, Cursor, OpenCode, and Hermes Agent — fewer tokens, fewer tool calls, 100% local",
       "descriptions": {
-        "zh": "Claude Code、Codex、Cursor 和 OpenCode 的预索引代码知识图 — 更少的标记、更少的工具调用、100% 本地化",
-        "en": "Pre-indexed code knowledge graph for Claude Code, Codex, Cursor, and OpenCode — fewer tokens, fewer tool calls, 100% local"
+        "zh": "Claude Code、Codex、Cursor、OpenCode 和 Hermes Agent 的预索引代码知识图 — 更少的令牌、更少的工具调用、100% 本地化",
+        "en": "Pre-indexed code knowledge graph for Claude Code, Codex, Cursor, OpenCode, and Hermes Agent — fewer tokens, fewer tool calls, 100% local"
       },
       "language": "TypeScript",
-      "stars_total": 14299,
-      "forks_total": 809,
-      "stars_today": 4294
+      "stars_total": 16962,
+      "forks_total": 937,
+      "stars_today": 3684
     },
     {
       "rank": 3,
-      "repo": "multica-ai/andrej-karpathy-skills",
-      "owner": "multica-ai",
-      "name": "andrej-karpathy-skills",
-      "url": "https://github.com/multica-ai/andrej-karpathy-skills",
-      "description": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
+      "repo": "ruvnet/RuView",
+      "owner": "ruvnet",
+      "name": "RuView",
+      "url": "https://github.com/ruvnet/RuView",
+      "description": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video.",
       "descriptions": {
-        "zh": "用于改进 Claude 代码行为的单个 CLAUDE.md 文件，源自 Andrej Karpathy 对 LLM 编码陷阱的观察。",
-        "en": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls."
+        "zh": "π RuView 将商用 WiFi 信号转化为实时空间智能、生命体征监测和存在检测 - 所有这些都无需视频像素。",
+        "en": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video."
       },
-      "language": null,
-      "stars_total": 143782,
-      "forks_total": 14736,
-      "stars_today": 2614
+      "language": "Rust",
+      "stars_total": 64149,
+      "forks_total": 8472,
+      "stars_today": 978
     },
     {
       "rank": 4,
+      "repo": "rohitg00/ai-engineering-from-scratch",
+      "owner": "rohitg00",
+      "name": "ai-engineering-from-scratch",
+      "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
+      "description": "Learn it. Build it. Ship it for others.",
+      "descriptions": {
+        "zh": "学习它。建造它。寄给别人。",
+        "en": "Learn it. Build it. Ship it for others."
+      },
+      "language": "Python",
+      "stars_total": 12181,
+      "forks_total": 2303,
+      "stars_today": 988
+    },
+    {
+      "rank": 5,
+      "repo": "ChromeDevTools/chrome-devtools-mcp",
+      "owner": "ChromeDevTools",
+      "name": "chrome-devtools-mcp",
+      "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+      "description": "Chrome DevTools for coding agents",
+      "descriptions": {
+        "zh": "用于编码代理的 Chrome DevTools",
+        "en": "Chrome DevTools for coding agents"
+      },
+      "language": "TypeScript",
+      "stars_total": 41050,
+      "forks_total": 2610,
+      "stars_today": 501
+    },
+    {
+      "rank": 6,
       "repo": "dotnet/skills",
       "owner": "dotnet",
       "name": "skills",
@@ -63,41 +95,9 @@
         "en": "Repository for skills to assist AI coding agents with .NET and C#"
       },
       "language": "C#",
-      "stars_total": 2270,
-      "forks_total": 184,
-      "stars_today": 129
-    },
-    {
-      "rank": 5,
-      "repo": "obra/superpowers",
-      "owner": "obra",
-      "name": "superpowers",
-      "url": "https://github.com/obra/superpowers",
-      "description": "An agentic skills framework & software development methodology that works.",
-      "descriptions": {
-        "zh": "有效的代理技能框架和软件开发方法。",
-        "en": "An agentic skills framework & software development methodology that works."
-      },
-      "language": "Shell",
-      "stars_total": 201836,
-      "forks_total": 17984,
-      "stars_today": 1576
-    },
-    {
-      "rank": 6,
-      "repo": "HKUDS/CLI-Anything",
-      "owner": "HKUDS",
-      "name": "CLI-Anything",
-      "url": "https://github.com/HKUDS/CLI-Anything",
-      "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
-      "descriptions": {
-        "zh": "“CLI-Anything：使所有软件代理原生”--CLI-Hub：https://clianything.cc/",
-        "en": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/"
-      },
-      "language": "Python",
-      "stars_total": 39249,
-      "forks_total": 3719,
-      "stars_today": 656
+      "stars_total": 2581,
+      "forks_total": 202,
+      "stars_today": 389
     }
   ]
 }
