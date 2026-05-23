@@ -29,6 +29,10 @@
       platformOther: "其他平台",
       noResults: "没有匹配的 App",
       noResultsBody: "换一个关键词试试。",
+      details: "查看详情",
+      historyVersions: "历史版本",
+      latestVersion: "最新版本",
+      installFiles: "安装包",
     },
     en: {
       eyebrow: "Personal Apps",
@@ -59,6 +63,10 @@
       platformOther: "Other",
       noResults: "No matching apps",
       noResultsBody: "Try another keyword.",
+      details: "Details",
+      historyVersions: "Version history",
+      latestVersion: "Latest",
+      installFiles: "Packages",
     },
   };
 
@@ -195,33 +203,120 @@
     }
   }
 
-  function normalizeAppItem(item, index, context) {
-    const source = item || {};
-    const name = typeof source.name === "string" ? source.name.trim() : "";
-    const file = typeof source.file === "string" ? source.file.trim() : "";
-    const url = typeof source.url === "string" ? source.url.trim() : "";
-    if (!name || (!file && !url)) {
+  function normalizeFiles(rawFiles) {
+    return (Array.isArray(rawFiles) ? rawFiles : [])
+      .map(function (item) {
+        if (typeof item === "string") {
+          return { file: item, type: item.split(".").pop() || "file", size: "", updatedAt: "" };
+        }
+        if (!item || typeof item !== "object") {
+          return null;
+        }
+        const file = typeof item.file === "string" ? item.file.trim() : "";
+        const url = typeof item.url === "string" ? item.url.trim() : "";
+        if (!file && !url) {
+          return null;
+        }
+        return {
+          file: file,
+          url: url,
+          type: typeof item.type === "string" ? item.type.trim() : (file.split(".").pop() || "file"),
+          size: typeof item.size === "string" ? item.size.trim() : "",
+          updatedAt: typeof item.updatedAt === "string" ? item.updatedAt.trim() : "",
+        };
+      })
+      .filter(Boolean);
+  }
+
+  function normalizeRelease(source, context, fallbackVersion) {
+    const item = source || {};
+    const files = normalizeFiles(item.files);
+    const file = typeof item.file === "string" ? item.file.trim() : "";
+    const url = typeof item.url === "string" ? item.url.trim() : "";
+    if (!files.length && (file || url)) {
+      files.push({
+        file: file,
+        url: url,
+        type: typeof item.type === "string" ? item.type.trim() : (file.split(".").pop() || "file"),
+        size: typeof item.size === "string" ? item.size.trim() : "",
+        updatedAt: typeof item.updatedAt === "string" ? item.updatedAt.trim() : "",
+      });
+    }
+    if (!files.length) {
       return null;
     }
+    const basePath = typeof item.basePath === "string" && item.basePath.trim()
+      ? item.basePath.trim()
+      : context.basePath;
+    return {
+      version: typeof item.version === "string" && item.version.trim() ? item.version.trim() : fallbackVersion || "latest",
+      basePath: basePath,
+      file: file || files[0].file || "",
+      url: url || files[0].url || "",
+      files: files,
+      readme: typeof item.readme === "string" ? item.readme : "",
+      readmeFile: typeof item.readmeFile === "string" ? item.readmeFile : "",
+      updatedAt: typeof item.updatedAt === "string" ? item.updatedAt.trim() : (files[0].updatedAt || ""),
+    };
+  }
+
+  function normalizeReleases(source, context) {
+    const releases = [];
+    (Array.isArray(source.versions) ? source.versions : []).forEach(function (item, index) {
+      const release = normalizeRelease(item, context, "v" + (index + 1));
+      if (release) {
+        releases.push(release);
+      }
+    });
+    const latest = normalizeRelease(source.latest, context, "latest");
+    if (latest && !releases.some(function (item) {
+      return item.version === latest.version && item.basePath === latest.basePath && item.file === latest.file;
+    })) {
+      releases.push(latest);
+    }
+    const legacy = normalizeRelease(source, context, source.version || "latest");
+    if (legacy && !releases.length) {
+      releases.push(legacy);
+    }
+    return releases;
+  }
+
+  function normalizeAppItem(item, index, context) {
+    const source = item || {};
+    const sourceId = typeof source.id === "string" && source.id.trim() ? source.id.trim() : "";
     const declaredPlatform = normalizePlatform(source.platform);
-    const inferredPlatform = platformFromFile(file || url);
+    const inferredPlatform = platformFromFile(source.file || source.url || sourceId);
     const platformId = declaredPlatform || context.platform || inferredPlatform || "other";
     const meta = platformMeta(platformId);
     const basePath = typeof source.basePath === "string" && source.basePath.trim()
       ? source.basePath.trim()
       : context.basePath || meta.defaultBasePath;
+    const releases = normalizeReleases(source, { basePath: basePath });
+    const latest = normalizeRelease(source.latest, { basePath: basePath }, "latest") || releases[releases.length - 1] || null;
+    const name = typeof source.name === "string" && source.name.trim()
+      ? source.name.trim()
+      : sourceId.split("/").pop() || "";
+    if (!name || !latest) {
+      return null;
+    }
     return {
-      id: typeof source.id === "string" && source.id.trim() ? source.id.trim() : platformId + "-app-" + index,
+      id: sourceId || platformId + "-app-" + index,
+      slug: typeof source.slug === "string" ? source.slug.trim() : "",
       name: name,
-      version: typeof source.version === "string" ? source.version.trim() : "",
+      version: latest.version || "",
       platform: platformLabel(platformId),
       platformId: platformId,
       basePath: basePath,
-      file: file,
-      url: url,
+      file: latest.file || "",
+      url: latest.url || "",
+      latest: latest,
+      versions: releases.length ? releases : [latest],
+      hasHistory: Boolean(source.hasHistory) || releases.length > 1,
+      readme: typeof source.readme === "string" ? source.readme : "",
+      readmeFile: typeof source.readmeFile === "string" ? source.readmeFile : "",
       description: typeof source.description === "string" ? source.description.trim() : "",
-      updatedAt: typeof source.updatedAt === "string" ? source.updatedAt.trim() : "",
-      size: typeof source.size === "string" ? source.size.trim() : "",
+      updatedAt: typeof source.updatedAt === "string" ? source.updatedAt.trim() : latest.updatedAt || "",
+      size: latest.files && latest.files[0] ? latest.files[0].size : "",
       architecture: typeof source.architecture === "string" ? source.architecture.trim() : "",
       channel: typeof source.channel === "string" ? source.channel.trim() : "",
     };
@@ -240,6 +335,9 @@
     Object.keys(rawPlatforms || {}).forEach(function (key) {
       const platform = normalizePlatform(key) || "other";
       const value = rawPlatforms[key];
+      if (Array.isArray(value) && value.every(function (item) { return typeof item === "string"; })) {
+        return;
+      }
       const platformBasePath = basePaths[platform] || platformMeta(platform).defaultBasePath;
       if (Array.isArray(value)) {
         grouped.push.apply(grouped, normalizeApps(value, { platform: platform, basePath: platformBasePath }));
@@ -282,11 +380,16 @@
   }
 
   function appDownloadUrl(app) {
-    if (app.url) {
-      return new URL(app.url, window.location.href).href;
+    const release = app.latest || app;
+    if (release.url) {
+      return new URL(release.url, window.location.href).href;
     }
-    const base = new URL(app.basePath || state.manifest.basePath || "packages/", window.location.href);
-    return new URL(app.file, base).href;
+    const base = new URL(release.basePath || app.basePath || state.manifest.basePath || "packages/", window.location.href);
+    return new URL(release.file || app.file, base).href;
+  }
+
+  function appDetailUrl(app) {
+    return "detail/?id=" + encodeURIComponent(app.id);
   }
 
   function appInitial(app) {
@@ -308,6 +411,15 @@
       app.channel,
       app.file,
       app.url,
+      app.readme,
+      (app.versions || []).map(function (release) {
+        return [
+          release.version,
+          release.file,
+          release.url,
+          (release.files || []).map(function (file) { return file.file || file.url || ""; }).join(" "),
+        ].join(" ");
+      }).join(" "),
     ].join(" ").toLowerCase().indexOf(value) !== -1;
   }
 
@@ -614,6 +726,8 @@
     const downloadText = document.createElement("div");
     const qrLabel = document.createElement("span");
     const link = document.createElement("a");
+    const detailLink = document.createElement("a");
+    const actions = document.createElement("div");
 
     card.className = "app-card";
     head.className = "app-card-head";
@@ -626,6 +740,10 @@
     link.href = url;
     link.textContent = t("download");
     link.download = app.file || "";
+    detailLink.className = "catalog-secondary-action";
+    detailLink.href = appDetailUrl(app);
+    detailLink.textContent = t("details");
+    actions.className = "catalog-action-row";
 
     mark.textContent = appInitial(app);
     heading.textContent = app.name;
@@ -642,6 +760,14 @@
     }
     if (app.size) {
       chips.appendChild(createChip(app.size));
+    }
+    if (app.hasHistory) {
+      chips.appendChild(createChip(t("historyVersions") + " · " + app.versions.length));
+    } else if (app.version) {
+      chips.appendChild(createChip(t("latestVersion") + " · " + app.version));
+    }
+    if (app.latest && app.latest.files && app.latest.files.length > 1) {
+      chips.appendChild(createChip(t("installFiles") + " · " + app.latest.files.length));
     }
     if (app.architecture) {
       chips.appendChild(createChip(app.architecture));
@@ -661,6 +787,7 @@
     downloadText.appendChild(qrLabel);
     downloadText.appendChild(document.createElement("br"));
     downloadText.appendChild(link);
+    actions.appendChild(detailLink);
 
     title.appendChild(heading);
     if (meta.textContent) {
@@ -676,6 +803,7 @@
       card.appendChild(chips);
     }
     card.appendChild(download);
+    card.appendChild(actions);
     return card;
   }
 

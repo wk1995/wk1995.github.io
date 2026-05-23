@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>App 详情 · WK1995</title>
+  <meta name="description" content="个人 App 的项目介绍和历史版本安装包。">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../assets/catalog-pages.css">
+</head>
+<body data-page="personalAppsPage">
+  <nav class="catalog-topbar">
+    <a class="catalog-brand" href="../" aria-label="返回 App 列表">
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M2 2.75A1.75 1.75 0 0 1 3.75 1h8.5A1.75 1.75 0 0 1 14 2.75v10.5A1.75 1.75 0 0 1 12.25 15h-8.5A1.75 1.75 0 0 1 2 13.25V2.75Zm1.5 0v10.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25ZM6 11.75A.75.75 0 0 1 6.75 11h2.5a.75.75 0 0 1 0 1.5h-2.5A.75.75 0 0 1 6 11.75Z"></path>
+      </svg>
+      <span>WK Apps</span>
+    </a>
+    <div class="catalog-topbar-actions">
+      <label class="control-group">
+        <span class="control-label" id="language-label" data-i18n="controls.language">语言</span>
+        <select class="language-select" id="language-select" aria-label="语言">
+          <option value="zh">简体中文</option>
+          <option value="en">English</option>
+        </select>
+      </label>
+      <div class="control-group">
+        <span class="control-label" id="theme-caption" data-i18n="controls.theme">主题</span>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换主题">
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path id="theme-icon" d="M9.598 1.591a.75.75 0 0 1 .287.857 6.998 6.998 0 0 0 8.442 8.442.75.75 0 0 1 .857.287.75.75 0 0 1-.131.94A8.5 8.5 0 1 1 8.658.722a.75.75 0 0 1 .94-.131Z"></path>
+          </svg>
+          <span id="theme-label" data-i18n="controls.theme.dark">暗色</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="catalog-shell app-detail-shell">
+    <header class="catalog-page-head">
+      <div>
+        <p class="catalog-kicker" id="app-detail-platform">App Detail</p>
+        <h1 id="app-detail-title">App 详情</h1>
+        <p id="app-detail-summary">读取安装包清单中。</p>
+      </div>
+      <a class="catalog-primary-link" href="../" id="app-detail-back">返回列表</a>
+    </header>
+
+    <section class="app-detail-layout">
+      <article class="catalog-section">
+        <div class="catalog-section-head">
+          <h2 id="app-readme-title">项目介绍</h2>
+        </div>
+        <div class="app-readme" id="app-readme"></div>
+      </article>
+
+      <aside class="catalog-section">
+        <div class="catalog-section-head">
+          <h2 id="app-version-title">版本安装包</h2>
+          <span id="app-version-count">0</span>
+        </div>
+        <div class="app-version-list" id="app-version-list"></div>
+      </aside>
+    </section>
+
+    <div class="catalog-status" id="app-detail-status" role="status" aria-live="polite"></div>
+  </main>
+
+  <script src="../../assets/site.js"></script>
+  <script src="../../assets/app-detail.js"></script>
+</body>
+</html>
