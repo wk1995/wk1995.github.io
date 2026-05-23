@@ -3,7 +3,7 @@
     zh: {
       eyebrow: "Personal Apps",
       title: "个人 App 列表",
-      intro: "workflow 生成的安装包放入 apps/packages 后，页面会按清单生成下载入口和二维码。",
+      intro: "workflow 生成的安装包按平台放入 apps/packages，页面会自动按 Android、iOS、Harmony、Windows、macOS 等平台生成下载入口和二维码。",
       packageDir: "安装包目录",
       searchLabel: "搜索 App",
       searchPlaceholder: "App 名称 / 平台 / 版本",
@@ -18,13 +18,22 @@
       updated: "更新",
       version: "版本",
       platform: "平台",
+      allPlatforms: "全部平台",
+      platformAndroid: "Android",
+      platformIos: "iOS",
+      platformHarmony: "HarmonyOS",
+      platformWindows: "Windows",
+      platformMacos: "macOS",
+      platformLinux: "Linux",
+      platformWeb: "Web",
+      platformOther: "其他平台",
       noResults: "没有匹配的 App",
       noResultsBody: "换一个关键词试试。",
     },
     en: {
       eyebrow: "Personal Apps",
       title: "Personal app list",
-      intro: "When workflow-generated packages are placed in apps/packages, this page reads the manifest and creates download QR codes.",
+      intro: "Place workflow-generated packages under apps/packages by platform. This page groups Android, iOS, Harmony, Windows, macOS, and other packages with download QR codes.",
       packageDir: "Package directory",
       searchLabel: "Search apps",
       searchPlaceholder: "App name / platform / version",
@@ -39,9 +48,56 @@
       updated: "Updated",
       version: "Version",
       platform: "Platform",
+      allPlatforms: "All platforms",
+      platformAndroid: "Android",
+      platformIos: "iOS",
+      platformHarmony: "HarmonyOS",
+      platformWindows: "Windows",
+      platformMacos: "macOS",
+      platformLinux: "Linux",
+      platformWeb: "Web",
+      platformOther: "Other",
       noResults: "No matching apps",
       noResultsBody: "Try another keyword.",
     },
+  };
+
+  const PLATFORMS = [
+    { id: "android", textKey: "platformAndroid", defaultBasePath: "packages/android/", extensions: ["apk", "aab"] },
+    { id: "ios", textKey: "platformIos", defaultBasePath: "packages/ios/", extensions: ["ipa"] },
+    { id: "harmony", textKey: "platformHarmony", defaultBasePath: "packages/harmony/", extensions: ["hap", "app"] },
+    { id: "windows", textKey: "platformWindows", defaultBasePath: "packages/windows/", extensions: ["exe", "msi", "msix", "appx"] },
+    { id: "macos", textKey: "platformMacos", defaultBasePath: "packages/macos/", extensions: ["dmg", "pkg"] },
+    { id: "linux", textKey: "platformLinux", defaultBasePath: "packages/linux/", extensions: ["deb", "rpm", "appimage"] },
+    { id: "web", textKey: "platformWeb", defaultBasePath: "packages/web/", extensions: ["html", "zip"] },
+    { id: "other", textKey: "platformOther", defaultBasePath: "packages/other/", extensions: [] },
+  ];
+  const PLATFORM_ALIASES = {
+    android: "android",
+    apk: "android",
+    aab: "android",
+    ios: "ios",
+    iphone: "ios",
+    ipad: "ios",
+    ipa: "ios",
+    harmony: "harmony",
+    harmonyos: "harmony",
+    hongmeng: "harmony",
+    ohos: "harmony",
+    hap: "harmony",
+    windows: "windows",
+    window: "windows",
+    win: "windows",
+    win32: "windows",
+    win64: "windows",
+    mac: "macos",
+    macos: "macos",
+    osx: "macos",
+    darwin: "macos",
+    linux: "linux",
+    web: "web",
+    h5: "web",
+    other: "other",
   };
 
   const QR_LEVELS = [
@@ -57,6 +113,7 @@
   const state = {
     manifest: { basePath: "packages/", apps: [] },
     filter: "",
+    platform: "all",
     error: "",
   };
 
@@ -71,6 +128,61 @@
     return (text[language] && text[language][key]) || text.zh[key] || key;
   }
 
+  function platformMeta(id) {
+    return PLATFORMS.find(function (item) { return item.id === id; }) || PLATFORMS[PLATFORMS.length - 1];
+  }
+
+  function platformLabel(id) {
+    return t(platformMeta(id).textKey);
+  }
+
+  function normalizePlatform(value) {
+    const raw = String(value || "")
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "");
+    return PLATFORM_ALIASES[raw] || "";
+  }
+
+  function platformFromFile(value) {
+    const clean = String(value || "").split("?")[0].split("#")[0].toLowerCase();
+    const match = clean.match(/\.([a-z0-9]+)$/);
+    const extension = match ? match[1] : "";
+    if (extension) {
+      const byExtension = PLATFORMS.find(function (item) {
+        return item.extensions.indexOf(extension) !== -1;
+      });
+      if (byExtension) {
+        return byExtension.id;
+      }
+    }
+    const segments = clean.split(/[\\/]/).filter(Boolean);
+    for (let i = 0; i < segments.length; i += 1) {
+      const platform = normalizePlatform(segments[i]);
+      if (platform) {
+        return platform;
+      }
+    }
+    return "";
+  }
+
+  function selectedPlatformFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const platform = normalizePlatform(params.get("platform"));
+    return platform || "all";
+  }
+
+  function updatePlatformUrl(platform) {
+    const params = new URLSearchParams(window.location.search);
+    if (platform && platform !== "all") {
+      params.set("platform", platform);
+    } else {
+      params.delete("platform");
+    }
+    const next = window.location.pathname + (params.toString() ? "?" + params.toString() : "");
+    window.history.replaceState({}, "", next);
+  }
+
   function applyStaticText() {
     document.querySelectorAll("[data-app-text]").forEach(function (node) {
       node.textContent = t(node.dataset.appText);
@@ -83,39 +195,89 @@
     }
   }
 
-  function normalizeApps(raw) {
+  function normalizeAppItem(item, index, context) {
+    const source = item || {};
+    const name = typeof source.name === "string" ? source.name.trim() : "";
+    const file = typeof source.file === "string" ? source.file.trim() : "";
+    const url = typeof source.url === "string" ? source.url.trim() : "";
+    if (!name || (!file && !url)) {
+      return null;
+    }
+    const declaredPlatform = normalizePlatform(source.platform);
+    const inferredPlatform = platformFromFile(file || url);
+    const platformId = declaredPlatform || context.platform || inferredPlatform || "other";
+    const meta = platformMeta(platformId);
+    const basePath = typeof source.basePath === "string" && source.basePath.trim()
+      ? source.basePath.trim()
+      : context.basePath || meta.defaultBasePath;
+    return {
+      id: typeof source.id === "string" && source.id.trim() ? source.id.trim() : platformId + "-app-" + index,
+      name: name,
+      version: typeof source.version === "string" ? source.version.trim() : "",
+      platform: platformLabel(platformId),
+      platformId: platformId,
+      basePath: basePath,
+      file: file,
+      url: url,
+      description: typeof source.description === "string" ? source.description.trim() : "",
+      updatedAt: typeof source.updatedAt === "string" ? source.updatedAt.trim() : "",
+      size: typeof source.size === "string" ? source.size.trim() : "",
+      architecture: typeof source.architecture === "string" ? source.architecture.trim() : "",
+      channel: typeof source.channel === "string" ? source.channel.trim() : "",
+    };
+  }
+
+  function normalizeApps(raw, context) {
     return (Array.isArray(raw) ? raw : [])
       .map(function (item, index) {
-        const name = typeof item.name === "string" ? item.name.trim() : "";
-        const file = typeof item.file === "string" ? item.file.trim() : "";
-        const url = typeof item.url === "string" ? item.url.trim() : "";
-        if (!name || (!file && !url)) {
-          return null;
-        }
-        return {
-          id: typeof item.id === "string" && item.id.trim() ? item.id.trim() : "app-" + index,
-          name: name,
-          version: typeof item.version === "string" ? item.version.trim() : "",
-          platform: typeof item.platform === "string" ? item.platform.trim() : "",
-          file: file,
-          url: url,
-          description: typeof item.description === "string" ? item.description.trim() : "",
-          updatedAt: typeof item.updatedAt === "string" ? item.updatedAt.trim() : "",
-          size: typeof item.size === "string" ? item.size.trim() : "",
-        };
+        return normalizeAppItem(item, index, context || {});
       })
       .filter(Boolean);
+  }
+
+  function normalizePlatformGroups(rawPlatforms, basePaths) {
+    const grouped = [];
+    Object.keys(rawPlatforms || {}).forEach(function (key) {
+      const platform = normalizePlatform(key) || "other";
+      const value = rawPlatforms[key];
+      const platformBasePath = basePaths[platform] || platformMeta(platform).defaultBasePath;
+      if (Array.isArray(value)) {
+        grouped.push.apply(grouped, normalizeApps(value, { platform: platform, basePath: platformBasePath }));
+        return;
+      }
+      if (value && typeof value === "object") {
+        const groupBasePath = typeof value.basePath === "string" && value.basePath.trim()
+          ? value.basePath.trim()
+          : platformBasePath;
+        grouped.push.apply(grouped, normalizeApps(value.apps, { platform: platform, basePath: groupBasePath }));
+      }
+    });
+    return grouped;
   }
 
   function normalizeManifest(raw) {
     const basePath = typeof raw.basePath === "string" && raw.basePath.trim()
       ? raw.basePath.trim()
       : "packages/";
+    const basePaths = {};
+    PLATFORMS.forEach(function (platform) {
+      basePaths[platform.id] = platform.defaultBasePath;
+    });
+    Object.keys(raw.basePaths || {}).forEach(function (key) {
+      const platform = normalizePlatform(key);
+      const value = raw.basePaths[key];
+      if (platform && typeof value === "string" && value.trim()) {
+        basePaths[platform] = value.trim();
+      }
+    });
+    const flatApps = normalizeApps(raw.apps, { basePath: basePath });
+    const groupedApps = normalizePlatformGroups(raw.platforms, basePaths);
     return {
       version: raw.version || 1,
       updatedAt: typeof raw.updatedAt === "string" ? raw.updatedAt.trim() : "",
       basePath: basePath,
-      apps: normalizeApps(raw.apps),
+      basePaths: basePaths,
+      apps: flatApps.concat(groupedApps),
     };
   }
 
@@ -123,7 +285,7 @@
     if (app.url) {
       return new URL(app.url, window.location.href).href;
     }
-    const base = new URL(state.manifest.basePath || "packages/", window.location.href);
+    const base = new URL(app.basePath || state.manifest.basePath || "packages/", window.location.href);
     return new URL(app.file, base).href;
   }
 
@@ -140,7 +302,10 @@
       app.name,
       app.version,
       app.platform,
+      app.platformId,
       app.description,
+      app.architecture,
+      app.channel,
       app.file,
       app.url,
     ].join(" ").toLowerCase().indexOf(value) !== -1;
@@ -464,10 +629,10 @@
 
     mark.textContent = appInitial(app);
     heading.textContent = app.name;
-    meta.textContent = [app.platform, app.version].filter(Boolean).join(" · ");
+    meta.textContent = [platformLabel(app.platformId), app.version].filter(Boolean).join(" · ");
     description.textContent = app.description || url;
-    if (app.platform) {
-      chips.appendChild(createChip(t("platform") + " · " + app.platform));
+    if (app.platformId) {
+      chips.appendChild(createChip(t("platform") + " · " + platformLabel(app.platformId)));
     }
     if (app.version) {
       chips.appendChild(createChip(t("version") + " · " + app.version));
@@ -477,6 +642,12 @@
     }
     if (app.size) {
       chips.appendChild(createChip(app.size));
+    }
+    if (app.architecture) {
+      chips.appendChild(createChip(app.architecture));
+    }
+    if (app.channel) {
+      chips.appendChild(createChip(app.channel));
     }
 
     try {
@@ -523,20 +694,116 @@
     }
   }
 
+  function appsForCurrentView() {
+    return state.manifest.apps.filter(function (app) {
+      const platformMatch = state.platform === "all" || app.platformId === state.platform;
+      return platformMatch && matchesFilter(app);
+    });
+  }
+
+  function platformCounts() {
+    const counts = { all: 0 };
+    PLATFORMS.forEach(function (platform) {
+      counts[platform.id] = 0;
+    });
+    state.manifest.apps.forEach(function (app) {
+      if (matchesFilter(app)) {
+        counts.all += 1;
+        counts[app.platformId] = (counts[app.platformId] || 0) + 1;
+      }
+    });
+    return counts;
+  }
+
+  function platformHref(platform) {
+    const params = new URLSearchParams(window.location.search);
+    if (platform === "all") {
+      params.delete("platform");
+    } else {
+      params.set("platform", platform);
+    }
+    return window.location.pathname + (params.toString() ? "?" + params.toString() : "");
+  }
+
+  function renderPlatformNav() {
+    const counts = platformCounts();
+    refs.platforms.innerHTML = "";
+    [{ id: "all", label: t("allPlatforms") }].concat(PLATFORMS.map(function (platform) {
+      return { id: platform.id, label: platformLabel(platform.id) };
+    })).forEach(function (platform) {
+      const link = document.createElement("a");
+      const label = document.createElement("strong");
+      const count = document.createElement("span");
+      link.className = "catalog-platform-link" + (state.platform === platform.id ? " is-active" : "");
+      link.href = platformHref(platform.id);
+      label.textContent = platform.label;
+      count.className = "catalog-platform-count";
+      count.textContent = String(counts[platform.id] || 0);
+      link.appendChild(label);
+      link.appendChild(count);
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+        state.platform = platform.id;
+        updatePlatformUrl(platform.id);
+        render();
+      });
+      refs.platforms.appendChild(link);
+    });
+  }
+
+  function platformDescription(platformId, count) {
+    if (lang() === "zh") {
+      return platformLabel(platformId) + " · " + count + " 个安装包";
+    }
+    return platformLabel(platformId) + " · " + count + " " + (count === 1 ? "package" : "packages");
+  }
+
+  function createPlatformGroup(platformId, apps) {
+    const group = document.createElement("section");
+    const head = document.createElement("div");
+    const copy = document.createElement("div");
+    const heading = document.createElement("h3");
+    const detail = document.createElement("p");
+    const count = document.createElement("span");
+    const grid = document.createElement("div");
+    group.className = "app-platform-group";
+    head.className = "app-platform-head";
+    grid.className = "app-platform-grid";
+    heading.textContent = platformLabel(platformId);
+    detail.textContent = platformDescription(platformId, apps.length);
+    count.className = "catalog-badge";
+    count.textContent = String(apps.length);
+    copy.appendChild(heading);
+    copy.appendChild(detail);
+    head.appendChild(copy);
+    head.appendChild(count);
+    apps.forEach(function (app) {
+      grid.appendChild(createAppCard(app));
+    });
+    group.appendChild(head);
+    group.appendChild(grid);
+    return group;
+  }
+
   function renderApps() {
-    const apps = state.manifest.apps.filter(matchesFilter);
-    refs.grid.innerHTML = "";
+    const apps = appsForCurrentView();
+    refs.groups.innerHTML = "";
     refs.count.textContent = String(apps.length);
     if (!state.manifest.apps.length) {
-      refs.grid.appendChild(createEmptyState("emptyTitle", "emptyBody"));
+      refs.groups.appendChild(createEmptyState("emptyTitle", "emptyBody"));
       return;
     }
     if (!apps.length) {
-      refs.grid.appendChild(createEmptyState("noResults", "noResultsBody"));
+      refs.groups.appendChild(createEmptyState("noResults", "noResultsBody"));
       return;
     }
-    apps.forEach(function (app) {
-      refs.grid.appendChild(createAppCard(app));
+    PLATFORMS.forEach(function (platform) {
+      const platformApps = apps.filter(function (app) {
+        return app.platformId === platform.id;
+      });
+      if (platformApps.length) {
+        refs.groups.appendChild(createPlatformGroup(platform.id, platformApps));
+      }
     });
   }
 
@@ -548,6 +815,7 @@
   function render() {
     applyStaticText();
     renderSource();
+    renderPlatformNav();
     renderApps();
     renderStatus();
   }
@@ -572,18 +840,24 @@
       state.filter = event.target.value;
       render();
     });
+    window.addEventListener("popstate", function () {
+      state.platform = selectedPlatformFromUrl();
+      render();
+    });
     window.addEventListener("wk:language-change", render);
   }
 
   function collect() {
     refs.search = document.getElementById("app-search");
     refs.source = document.getElementById("app-source");
-    refs.grid = document.getElementById("app-grid");
+    refs.platforms = document.getElementById("app-platforms");
+    refs.groups = document.getElementById("app-groups");
     refs.count = document.getElementById("app-count");
     refs.status = document.getElementById("app-status");
   }
 
   function init() {
+    state.platform = selectedPlatformFromUrl();
     collect();
     bind();
     render();

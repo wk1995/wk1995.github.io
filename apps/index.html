@@ -41,7 +41,7 @@
       <div>
         <p class="catalog-kicker" data-app-text="eyebrow">Personal Apps</p>
         <h1 data-app-text="title">个人 App 列表</h1>
-        <p data-app-text="intro">workflow 生成的安装包放入 apps/packages 后，页面会按清单生成下载入口和二维码。</p>
+        <p data-app-text="intro">workflow 生成的安装包按平台放入 apps/packages，页面会自动按 Android、iOS、Harmony、Windows、macOS 等平台生成下载入口和二维码。</p>
       </div>
       <a class="catalog-primary-link" href="packages/" data-app-text="packageDir">安装包目录</a>
     </header>
@@ -54,12 +54,14 @@
       <div class="catalog-current" id="app-source"></div>
     </section>
 
+    <nav class="catalog-platforms" id="app-platforms" aria-label="平台分类"></nav>
+
     <section class="catalog-section">
       <div class="catalog-section-head">
         <h2 data-app-text="listTitle">App 安装包</h2>
         <span id="app-count">0</span>
       </div>
-      <div class="app-grid" id="app-grid"></div>
+      <div class="app-platform-groups" id="app-groups"></div>
     </section>
 
     <div class="catalog-status" id="app-status" role="status" aria-live="polite"></div>
