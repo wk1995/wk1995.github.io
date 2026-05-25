@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-24T05:11:55.033299+00:00",
+  "generated_at": "2026-05-25T05:47:34.905371+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,44 +15,12 @@ window.__TRENDING_DATA__ = {
         "en": "Graphs that teach > graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and ask questions about. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more."
       },
       "language": "TypeScript",
-      "stars_total": 22262,
-      "forks_total": 1975,
-      "stars_today": 2299
+      "stars_total": 27387,
+      "forks_total": 2329,
+      "stars_today": 3999
     },
     {
       "rank": 2,
-      "repo": "anthropics/claude-plugins-official",
-      "owner": "anthropics",
-      "name": "claude-plugins-official",
-      "url": "https://github.com/anthropics/claude-plugins-official",
-      "description": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
-      "descriptions": {
-        "zh": "由 Anthropic 管理的官方高品质 Claude 代码插件目录。",
-        "en": "Official, Anthropic-managed directory of high quality Claude Code Plugins."
-      },
-      "language": "Python",
-      "stars_total": 26680,
-      "forks_total": 2869,
-      "stars_today": 2193
-    },
-    {
-      "rank": 3,
-      "repo": "colbymchenry/codegraph",
-      "owner": "colbymchenry",
-      "name": "codegraph",
-      "url": "https://github.com/colbymchenry/codegraph",
-      "description": "Pre-indexed code knowledge graph for Claude Code, Codex, Cursor, OpenCode, and Hermes Agent — fewer tokens, fewer tool calls, 100% local",
-      "descriptions": {
-        "zh": "Claude Code、Codex、Cursor、OpenCode 和 Hermes Agent 的预索引代码知识图 — 更少的令牌、更少的工具调用、100% 本地化",
-        "en": "Pre-indexed code knowledge graph for Claude Code, Codex, Cursor, OpenCode, and Hermes Agent — fewer tokens, fewer tool calls, 100% local"
-      },
-      "language": "TypeScript",
-      "stars_total": 20038,
-      "forks_total": 1119,
-      "stars_today": 2456
-    },
-    {
-      "rank": 4,
       "repo": "rohitg00/ai-engineering-from-scratch",
       "owner": "rohitg00",
       "name": "ai-engineering-from-scratch",
@@ -63,28 +31,44 @@ window.__TRENDING_DATA__ = {
         "en": "Learn it. Build it. Ship it for others."
       },
       "language": "Python",
-      "stars_total": 14030,
-      "forks_total": 2616,
-      "stars_today": 1521
+      "stars_total": 16782,
+      "forks_total": 2932,
+      "stars_today": 1853
+    },
+    {
+      "rank": 3,
+      "repo": "anthropics/claude-plugins-official",
+      "owner": "anthropics",
+      "name": "claude-plugins-official",
+      "url": "https://github.com/anthropics/claude-plugins-official",
+      "description": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
+      "descriptions": {
+        "zh": "由 Anthropic 管理的官方高品质 Claude 代码插件目录。",
+        "en": "Official, Anthropic-managed directory of high quality Claude Code Plugins."
+      },
+      "language": "Python",
+      "stars_total": 27410,
+      "forks_total": 2915,
+      "stars_today": 1173
+    },
+    {
+      "rank": 4,
+      "repo": "anthropics/knowledge-work-plugins",
+      "owner": "anthropics",
+      "name": "knowledge-work-plugins",
+      "url": "https://github.com/anthropics/knowledge-work-plugins",
+      "description": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork",
+      "descriptions": {
+        "zh": "主要供知识工作者在 Claude Cowork 中使用的开源插件存储库",
+        "en": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork"
+      },
+      "language": "Python",
+      "stars_total": 14284,
+      "forks_total": 1763,
+      "stars_today": 550
     },
     {
       "rank": 5,
-      "repo": "Fincept-Corporation/FinceptTerminal",
-      "owner": "Fincept-Corporation",
-      "name": "FinceptTerminal",
-      "url": "https://github.com/Fincept-Corporation/FinceptTerminal",
-      "description": "FinceptTerminal is a modern finance application offering advanced market analytics, investment research, and economic data tools, designed for interactive exploration and data-driven decision-making in a user-friendly environment.",
-      "descriptions": {
-        "zh": "FinceptTerminal 是一款现代金融应用程序，提供先进的市场分析、投资研究和经济数据工具，专为在用户友好的环境中进行交互式探索和数据驱动的决策而设计。",
-        "en": "FinceptTerminal is a modern finance application offering advanced market analytics, investment research, and economic data tools, designed for interactive exploration and data-driven decision-making in a user-friendly environment."
-      },
-      "language": "Python",
-      "stars_total": 23205,
-      "forks_total": 3201,
-      "stars_today": 545
-    },
-    {
-      "rank": 6,
       "repo": "multica-ai/andrej-karpathy-skills",
       "owner": "multica-ai",
       "name": "andrej-karpathy-skills",
@@ -95,9 +79,25 @@ window.__TRENDING_DATA__ = {
         "en": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls."
       },
       "language": null,
-      "stars_total": 150065,
-      "forks_total": 15395,
-      "stars_today": 3507
+      "stars_total": 152775,
+      "forks_total": 15657,
+      "stars_today": 2551
+    },
+    {
+      "rank": 6,
+      "repo": "earendil-works/pi",
+      "owner": "earendil-works",
+      "name": "pi",
+      "url": "https://github.com/earendil-works/pi",
+      "description": "AI agent toolkit: coding agent CLI, unified LLM API, TUI & web UI libraries, Slack bot, vLLM pods",
+      "descriptions": {
+        "zh": "AI 代理工具包：编码代理 CLI、统一 LLM API、TUI 和 Web UI 库、Slack 机器人、vLLM pod",
+        "en": "AI agent toolkit: coding agent CLI, unified LLM API, TUI & web UI libraries, Slack bot, vLLM pods"
+      },
+      "language": "TypeScript",
+      "stars_total": 54104,
+      "forks_total": 6454,
+      "stars_today": 456
     }
   ]
 }
