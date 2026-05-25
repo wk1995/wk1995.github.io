@@ -1,6 +1,13 @@
 {
-  "version": 1,
-  "updatedAt": "",
+  "schemaVersion": 2,
+  "version": 2,
+  "versionName": "main-20260525234848",
+  "versionNumber": "20260525234848",
+  "release": {
+    "versionName": "main-20260525234848",
+    "versionNumber": "20260525234848"
+  },
+  "updatedAt": "2026-05-25",
   "basePath": "packages/",
   "basePaths": {
     "android": "packages/android/",
@@ -12,9 +19,58 @@
     "web": "packages/web/",
     "other": "packages/other/"
   },
-  "apps": [],
+  "apps": [
+    {
+      "id": "android/cn.wk.android.body.os",
+      "slug": "cn.wk.android.body.os",
+      "name": "Cn.Wk.Android.Body.Os",
+      "platform": "android",
+      "platformId": "android",
+      "description": "",
+      "readme": "",
+      "readmeFile": "",
+      "latest": {
+        "version": "latest",
+        "basePath": "packages/android/cn.wk.android.body.os/",
+        "file": "BodyOS-1.00.00-20260519001.apk",
+        "files": [
+          {
+            "file": "BodyOS-1.00.00-20260519001.apk",
+            "type": "apk",
+            "size": "1.4 MB",
+            "updatedAt": "2026-05-25"
+          }
+        ],
+        "readme": "",
+        "readmeFile": "",
+        "updatedAt": "2026-05-25"
+      },
+      "versions": [
+        {
+          "version": "latest",
+          "basePath": "packages/android/cn.wk.android.body.os/",
+          "file": "BodyOS-1.00.00-20260519001.apk",
+          "files": [
+            {
+              "file": "BodyOS-1.00.00-20260519001.apk",
+              "type": "apk",
+              "size": "1.4 MB",
+              "updatedAt": "2026-05-25"
+            }
+          ],
+          "readme": "",
+          "readmeFile": "",
+          "updatedAt": "2026-05-25"
+        }
+      ],
+      "hasHistory": false,
+      "updatedAt": "2026-05-25"
+    }
+  ],
   "platforms": {
-    "android": [],
+    "android": [
+      "android/cn.wk.android.body.os"
+    ],
     "ios": [],
     "harmony": [],
     "windows": [],

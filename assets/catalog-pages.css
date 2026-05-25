@@ -547,6 +547,104 @@ html[data-theme="dark"] .catalog-empty {
   font-weight: 700;
 }
 
+.app-detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.85fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.app-readme {
+  display: grid;
+  gap: 0.85rem;
+  color: var(--catalog-muted);
+}
+
+.app-readme h1,
+.app-readme h2,
+.app-readme h3,
+.app-readme p,
+.app-readme ul {
+  margin: 0;
+}
+
+.app-readme h1,
+.app-readme h2,
+.app-readme h3 {
+  color: var(--catalog-text);
+  line-height: 1.25;
+}
+
+.app-readme h1 {
+  font-size: 1.45rem;
+}
+
+.app-readme h2 {
+  font-size: 1.25rem;
+}
+
+.app-readme h3 {
+  font-size: 1.08rem;
+}
+
+.app-readme p,
+.app-readme li {
+  line-height: 1.8;
+}
+
+.app-readme ul {
+  padding-left: 1.2rem;
+}
+
+.app-readme code {
+  padding: 0.08rem 0.35rem;
+  border-radius: 6px;
+  background: rgba(30, 144, 255, 0.1);
+  color: var(--catalog-primary);
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.92em;
+}
+
+.app-version-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.app-version-card {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.95rem;
+  border: 1px solid var(--catalog-border);
+  border-radius: 8px;
+  background: var(--catalog-surface);
+}
+
+.app-version-card h3,
+.app-version-card p {
+  margin: 0;
+}
+
+.app-version-card h3 {
+  font-size: 1rem;
+}
+
+.app-version-card p,
+.app-version-files span {
+  color: var(--catalog-muted);
+  font-size: 0.86rem;
+}
+
+.app-version-files {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.app-version-file {
+  overflow-wrap: anywhere;
+  color: var(--catalog-primary);
+  font-weight: 700;
+}
+
 @media (max-width: 760px) {
   .catalog-topbar,
   .catalog-page-head,
@@ -588,5 +686,9 @@ html[data-theme="dark"] .catalog-empty {
   .app-platform-head {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .app-detail-layout {
+    grid-template-columns: 1fr;
   }
 }
