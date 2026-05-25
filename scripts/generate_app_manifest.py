@@ -2,7 +2,8 @@ import json
 import os
 import re
 import subprocess
-from datetime import datetime, timezone
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 
@@ -10,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PACKAGES_DIR = ROOT / "apps" / "packages"
 MANIFEST_PATH = PACKAGES_DIR / "manifest.json"
 VERSION_NUMBER_RE = re.compile(r"^\d{14}$")
+DISPLAY_TIMEZONE = ZoneInfo("Asia/Shanghai")
 
 PLATFORMS = {
     "android": {
@@ -60,7 +62,7 @@ def posix(path: Path) -> str:
 
 
 def iso_from_timestamp(timestamp: float) -> str:
-    return datetime.fromtimestamp(timestamp, timezone.utc).date().isoformat()
+    return datetime.fromtimestamp(timestamp, DISPLAY_TIMEZONE).date().isoformat()
 
 
 def git_date(path: Path) -> str:
@@ -76,7 +78,7 @@ def git_date(path: Path) -> str:
         result = None
     value = result.stdout.strip() if result else ""
     if value:
-        return value[:10]
+        return datetime.fromisoformat(value).astimezone(DISPLAY_TIMEZONE).date().isoformat()
     return iso_from_timestamp(path.stat().st_mtime)
 
 

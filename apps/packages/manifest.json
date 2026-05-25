@@ -30,12 +30,12 @@
       "readme": "",
       "readmeFile": "",
       "latest": {
-        "version": "3(1.00.02)",
-        "basePath": "packages/android/cn.wk.android.body.os/3(1.00.02)/",
-        "file": "BodyOS-1.00.02-20260525001.apk",
+        "version": "4(1.00.03)",
+        "basePath": "packages/android/cn.wk.android.body.os/4(1.00.03)/",
+        "file": "BodyOS-1.00.03-20260526001.apk",
         "files": [
           {
-            "file": "BodyOS-1.00.02-20260525001.apk",
+            "file": "BodyOS-1.00.03-20260526001.apk",
             "type": "apk",
             "size": "1.5 MB",
             "updatedAt": "2026-05-26"
@@ -53,6 +53,22 @@
           "files": [
             {
               "file": "BodyOS-1.00.02-20260525001.apk",
+              "type": "apk",
+              "size": "1.5 MB",
+              "updatedAt": "2026-05-26"
+            }
+          ],
+          "readme": "",
+          "readmeFile": "",
+          "updatedAt": "2026-05-26"
+        },
+        {
+          "version": "4(1.00.03)",
+          "basePath": "packages/android/cn.wk.android.body.os/4(1.00.03)/",
+          "file": "BodyOS-1.00.03-20260526001.apk",
+          "files": [
+            {
+              "file": "BodyOS-1.00.03-20260526001.apk",
               "type": "apk",
               "size": "1.5 MB",
               "updatedAt": "2026-05-26"
