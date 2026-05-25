@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "updatedAt": "",
+  "basePath": "packages/",
+  "basePaths": {
+    "android": "packages/android/",
+    "ios": "packages/ios/",
+    "harmony": "packages/harmony/",
+    "windows": "packages/windows/",
+    "macos": "packages/macos/",
+    "linux": "packages/linux/",
+    "web": "packages/web/",
+    "other": "packages/other/"
+  },
+  "apps": [],
+  "platforms": {
+    "android": [],
+    "ios": [],
+    "harmony": [],
+    "windows": [],
+    "macos": [],
+    "linux": [],
+    "web": [],
+    "other": []
+  }
+}

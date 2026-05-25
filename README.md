@@ -25,3 +25,9 @@
 ## 联系方式
 
 [kangw1995@gmail.com](mailto:kangw1995@gmail.com)
+
+## 反馈入口
+
+首页、聊天页和博客页的反馈按钮会直接打开仓库的新建 Issue 页面：
+
+`https://github.com/wk1995/wk1995.github.io/issues/new`

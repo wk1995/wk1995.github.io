@@ -70,6 +70,7 @@
           </div>
         </div>
         <div class="chat-stage-actions">
+          <a class="github-auth-button github-auth-button-secondary" href="https://github.com/wk1995/wk1995.github.io/issues/new" data-feedback-entry>反馈</a>
           <button class="chat-icon-button" id="open-settings" type="button" data-chat-aria="openSettings">
             <svg viewBox="0 0 16 16" aria-hidden="true">
               <path d="M9.596 1.303a1 1 0 0 0-1.192 0l-.792.602a1 1 0 0 1-1.127.083l-.92-.49a1 1 0 0 0-1.167.242l-.77.87a1 1 0 0 0-.19 1.174l.39.978a1 1 0 0 1-.252 1.104l-.712.712a1 1 0 0 0-.242 1.167l.49.92a1 1 0 0 1-.083 1.127l-.602.792a1 1 0 0 0 0 1.192l.602.792a1 1 0 0 1 .083 1.127l-.49.92a1 1 0 0 0 .242 1.167l.87.77a1 1 0 0 0 1.174.19l.978-.39a1 1 0 0 1 1.104.252l.712.712a1 1 0 0 0 1.167.242l.92-.49a1 1 0 0 1 1.127.083l.792.602a1 1 0 0 0 1.192 0l.792-.602a1 1 0 0 1 1.127-.083l.92.49a1 1 0 0 0 1.167-.242l.77-.87a1 1 0 0 0 .19-1.174l-.39-.978a1 1 0 0 1 .252-1.104l.712-.712a1 1 0 0 0 .242-1.167l-.49-.92a1 1 0 0 1 .083-1.127l.602-.792a1 1 0 0 0 0-1.192l-.602-.792a1 1 0 0 1-.083-1.127l.49-.92a1 1 0 0 0-.242-1.167l-.87-.77a1 1 0 0 0-1.174-.19l-.978.39a1 1 0 0 1-1.104-.252l-.712-.712a1 1 0 0 0-1.167-.242l-.92.49a1 1 0 0 1-1.127-.083l-.792-.602ZM8 10.75a2.75 2.75 0 1 0 0-5.5 2.75 2.75 0 0 0 0 5.5Z"></path>
@@ -80,25 +81,156 @@
 
       <div class="chat-main-status" id="chat-status" role="status" aria-live="polite"></div>
 
-      <section class="chat-message-board">
-        <div class="chat-main-body" id="message-list"></div>
-      </section>
+      <div class="chat-stage-shell">
+        <div class="chat-stage-main">
+          <section class="chat-message-board">
+            <div class="chat-main-body" id="message-list"></div>
+            <button class="chat-scroll-bottom" id="scroll-to-bottom" type="button" data-chat-aria="scrollToBottom" hidden>
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M8 13.25a.75.75 0 0 1-.53-.22l-4-4a.75.75 0 0 1 1.06-1.06L7.25 10.69V2.75a.75.75 0 0 1 1.5 0v7.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-.53.22Z"></path>
+              </svg>
+              <span class="sr-only" data-chat-text="scrollToBottom">回到底部</span>
+            </button>
+          </section>
 
-      <div class="chat-composer-wrap">
-        <div class="chat-main-composer">
-          <textarea id="message-input" rows="1" placeholder="输入你的问题，按 Enter 发送"></textarea>
-          <div class="chat-composer-row">
-            <span class="chat-composer-hint" data-chat-text="composerHint">Enter 发送，Shift + Enter 换行</span>
-            <div class="chat-composer-actions">
-              <button class="chat-secondary-button" id="clear-conversation" type="button" data-chat-text="clearConversation">
-                清空当前对话
-              </button>
-              <button class="chat-primary-button" id="send-message" type="button" data-chat-text="send">
-                发送
-              </button>
+          <div class="chat-composer-wrap">
+            <div class="chat-main-composer">
+              <input id="attachment-input" type="file" multiple hidden>
+              <div class="chat-editing-banner" id="editing-banner" hidden>
+                <div>
+                  <strong id="editing-title">正在编辑消息</strong>
+                  <p id="editing-description">保存后会从这条用户消息重新生成后续回复。</p>
+                </div>
+                <button class="chat-secondary-button" id="cancel-edit" type="button">取消编辑</button>
+              </div>
+              <div class="chat-composer-dropzone" id="composer-dropzone" hidden>
+                <strong data-chat-text="dropTitle">松开以上传附件</strong>
+                <p data-chat-text="dropBody">支持拖拽文件、粘贴图片或使用附件按钮。</p>
+              </div>
+              <div class="chat-composer-attachments" id="composer-attachments" hidden></div>
+              <textarea id="message-input" rows="1" placeholder="输入你的问题，按 Enter 发送"></textarea>
+              <div class="chat-composer-row">
+                <span class="chat-composer-hint" data-chat-text="composerHint">Enter 发送，Shift + Enter 换行</span>
+                <div class="chat-composer-actions">
+                  <button class="chat-secondary-button" id="pick-attachments" type="button" data-chat-aria="pickAttachments">
+                    <svg viewBox="0 0 16 16" aria-hidden="true">
+                      <path d="M8.75 3.5a2.75 2.75 0 0 0-5.5 0v5.75a4 4 0 1 0 8 0V4.5a2 2 0 1 0-4 0v4.75a.75.75 0 0 0 1.5 0V5a.75.75 0 0 1 1.5 0v4.25a2.5 2.5 0 1 1-5 0V3.5a1.25 1.25 0 0 1 2.5 0v5.75a2.25 2.25 0 0 0 4.5 0V4.5a3.5 3.5 0 1 0-7 0v4.75a.75.75 0 0 0 1.5 0V3.5a2 2 0 0 1 4 0v5.75a.75.75 0 0 0 1.5 0V3.5a3.5 3.5 0 0 0-3.5-3.5Z"></path>
+                    </svg>
+                    <span data-chat-text="attachAction">附件</span>
+                  </button>
+                  <button class="chat-secondary-button" id="clear-conversation" type="button" data-chat-text="clearConversation">
+                    清空当前对话
+                  </button>
+                  <button class="chat-primary-button" id="send-message" type="button" data-chat-text="send">
+                    发送
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+        <aside class="chat-model-watch-panel" id="model-watch">
+          <div class="chat-model-watch-head">
+            <div>
+              <p class="chat-panel-eyebrow" data-chat-text="watchlistEyebrow">AI Model Watch</p>
+              <h2 data-chat-text="watchlistTitle">AI 模型观察榜</h2>
+            </div>
+            <span class="chat-model-watch-badge" data-chat-text="watchlistBadge">Watchlist</span>
+          </div>
+          <p class="chat-model-watch-copy" data-chat-text="watchlistCopy">
+            把当前主流模型放进一个常驻观察面板，方便在聊天工作台里随时建立模型直觉。
+          </p>
+          <div class="chat-model-watch-list">
+            <article class="chat-model-card is-top-1">
+              <div class="chat-model-rank-row">
+                <span class="chat-model-rank">01</span>
+                <div class="chat-model-summary">
+                  <div class="chat-model-summary-head">
+                    <span class="chat-model-logo">O</span>
+                    <strong>OpenAI GPT</strong>
+                  </div>
+                  <span class="chat-model-trend is-up">↑ 4.8 · Multimodal · Agent</span>
+                </div>
+                <strong class="chat-model-score">98.5</strong>
+              </div>
+              <p data-chat-text="watch.item.1.body">综合推理、工具调用与工程集成最稳，适合作为旗舰 AI 能力的基线。</p>
+            </article>
+            <article class="chat-model-card is-top-2">
+              <div class="chat-model-rank-row">
+                <span class="chat-model-rank">02</span>
+                <div class="chat-model-summary">
+                  <div class="chat-model-summary-head">
+                    <span class="chat-model-logo">C</span>
+                    <strong>Anthropic Claude</strong>
+                  </div>
+                  <span class="chat-model-trend is-up">↑ 3.6 · Writing · Code</span>
+                </div>
+                <strong class="chat-model-score">95.0</strong>
+              </div>
+              <p data-chat-text="watch.item.2.body">长文本写作和代码协作体验突出，适合需要高质量表达的工作流。</p>
+            </article>
+            <article class="chat-model-card is-top-3">
+              <div class="chat-model-rank-row">
+                <span class="chat-model-rank">03</span>
+                <div class="chat-model-summary">
+                  <div class="chat-model-summary-head">
+                    <span class="chat-model-logo">G</span>
+                    <strong>Google Gemini</strong>
+                  </div>
+                  <span class="chat-model-trend is-up">↑ 2.4 · Search · Vision</span>
+                </div>
+                <strong class="chat-model-score">93.0</strong>
+              </div>
+              <p data-chat-text="watch.item.3.body">多模态与生态整合能力强，适合作为搜索、办公和代理场景的中枢模型。</p>
+            </article>
+            <article class="chat-model-card">
+              <div class="chat-model-rank-row">
+                <span class="chat-model-rank">04</span>
+                <div class="chat-model-summary">
+                  <div class="chat-model-summary-head">
+                    <span class="chat-model-logo">D</span>
+                    <strong>DeepSeek</strong>
+                  </div>
+                  <span class="chat-model-trend is-up">↑ 5.1 · Efficiency · Scale</span>
+                </div>
+                <strong class="chat-model-score">91.0</strong>
+              </div>
+              <p data-chat-text="watch.item.4.body">性价比和推理效率非常强，适合高频调用和大规模上线场景。</p>
+            </article>
+            <article class="chat-model-card">
+              <div class="chat-model-rank-row">
+                <span class="chat-model-rank">05</span>
+                <div class="chat-model-summary">
+                  <div class="chat-model-summary-head">
+                    <span class="chat-model-logo">Z</span>
+                    <strong>Zhipu GLM</strong>
+                  </div>
+                  <span class="chat-model-trend is-flat">→ 0.8 · Chinese · Tools</span>
+                </div>
+                <strong class="chat-model-score">88.0</strong>
+              </div>
+              <p data-chat-text="watch.item.5.body">中文任务、工具兼容和企业落地路径清晰，适合本地生态集成。</p>
+            </article>
+            <article class="chat-model-card">
+              <div class="chat-model-rank-row">
+                <span class="chat-model-rank">06</span>
+                <div class="chat-model-summary">
+                  <div class="chat-model-summary-head">
+                    <span class="chat-model-logo">Q</span>
+                    <strong>Qwen</strong>
+                  </div>
+                  <span class="chat-model-trend is-up">↑ 1.7 · Open Source · Private</span>
+                </div>
+                <strong class="chat-model-score">86.0</strong>
+              </div>
+              <p data-chat-text="watch.item.6.body">开源生态活跃，便于二次训练、私有化部署与端云协同实验。</p>
+            </article>
+          </div>
+          <p class="chat-model-watch-note" data-chat-text="watchlistNote">
+            该榜单为站内手动观察排序，用来快速建立模型直觉，不代表严格基准测试结果。
+          </p>
+        </aside>
       </div>
     </main>
 
@@ -123,10 +255,19 @@
       <div class="chat-setup-banner" id="setup-banner"></div>
 
       <div class="chat-settings-form">
-        <label class="chat-settings-label" for="model-select" data-chat-text="modelLabel">模型选择</label>
-        <select id="model-select"></select>
+        <input id="model-select" type="hidden">
+        <div class="chat-selected-model-panel">
+          <div>
+            <span class="chat-settings-label" data-chat-text="selectedModelTitle">当前模型</span>
+            <strong id="settings-model-name">请选择模型</strong>
+            <p id="settings-model-meta" data-chat-text="selectedModelHint">
+              从大模型列表页选择一个模型后，这里会自动带回模型属性。
+            </p>
+          </div>
+          <a class="chat-secondary-button" id="choose-model-link" href="../models/?from=chat" data-chat-text="chooseModelAction">选择模型</a>
+        </div>
 
-        <label class="chat-settings-label" for="api-key-input" data-chat-text="keyLabel">DeepSeek API Key</label>
+        <label class="chat-settings-label" for="api-key-input" data-chat-text="keyLabel">Model API Key</label>
         <input id="api-key-input" type="password" autocomplete="off" placeholder="粘贴当前模型对应的 API Key">
 
         <div class="chat-settings-actions">
@@ -139,6 +280,73 @@
         </div>
       </div>
 
+      <div class="chat-settings-form">
+        <div class="chat-panel-subhead">
+          <h3 data-chat-text="customModelTitle">Custom model</h3>
+          <p class="chat-settings-helper" data-chat-text="customModelHelper">
+            Add any OpenAI-compatible or Anthropic-compatible endpoint.
+          </p>
+        </div>
+
+        <label class="chat-settings-label" for="custom-model-base-url" data-chat-text="customBaseUrlLabel">Base URL</label>
+        <input id="custom-model-base-url" type="url" autocomplete="off" placeholder="https://api.openai.com/v1">
+
+        <label class="chat-settings-label" for="custom-model-name" data-chat-text="customModelNameLabel">Model name</label>
+        <input id="custom-model-name" type="text" autocomplete="off" placeholder="gpt-4.1-mini">
+
+        <label class="chat-settings-label" for="custom-model-type" data-chat-text="customModelTypeLabel">API type</label>
+        <select id="custom-model-type">
+          <option value="openai">OpenAI</option>
+          <option value="anthropic">Anthropic</option>
+        </select>
+
+        <label class="chat-settings-label" for="custom-api-key-input" data-chat-text="customApiKeyLabel">API Key</label>
+        <input id="custom-api-key-input" type="password" autocomplete="off" placeholder="Paste the API key for this endpoint">
+
+        <div class="chat-settings-actions">
+          <button class="chat-primary-button" id="save-custom-model" type="button" data-chat-text="saveCustomModel">Save custom model</button>
+          <button class="chat-secondary-button" id="delete-custom-model" type="button" data-chat-text="deleteCustomModel">Delete selected custom model</button>
+        </div>
+
+        <div class="chat-settings-note" data-chat-text="customModelNote">
+          OpenAI uses /chat/completions. Anthropic uses /messages with the anthropic-version header.
+        </div>
+      </div>
+
+      <div class="chat-saved-models">
+        <div class="chat-panel-subhead">
+          <h3 data-chat-text="storageSectionTitle">缓存路径</h3>
+        </div>
+        <div class="chat-settings-form">
+          <label class="chat-settings-label" for="storage-chat-list" data-chat-text="storageListLabel">聊天列表缓存路径</label>
+          <div class="chat-storage-row">
+            <input id="storage-chat-list" type="text" placeholder="wk1995/cache/chat-list">
+            <button class="chat-secondary-button chat-inline-button" id="export-chat-list" type="button" data-chat-text="exportModule">导出</button>
+          </div>
+
+          <label class="chat-settings-label" for="storage-chat-records" data-chat-text="storageRecordsLabel">聊天记录缓存路径</label>
+          <div class="chat-storage-row">
+            <input id="storage-chat-records" type="text" placeholder="wk1995/cache/chat-records">
+            <button class="chat-secondary-button chat-inline-button" id="export-chat-records" type="button" data-chat-text="exportModule">导出</button>
+          </div>
+
+          <label class="chat-settings-label" for="storage-model-api" data-chat-text="storageApiLabel">大模型 API 缓存路径</label>
+          <div class="chat-storage-row">
+            <input id="storage-model-api" type="text" placeholder="wk1995/cache/model-api">
+            <button class="chat-secondary-button chat-inline-button" id="export-model-api" type="button" data-chat-text="exportModule">导出</button>
+          </div>
+
+          <div class="chat-settings-actions">
+            <button class="chat-primary-button" id="save-storage-paths" type="button" data-chat-text="saveStoragePaths">保存路径</button>
+            <button class="chat-secondary-button" id="reset-storage-paths" type="button" data-chat-text="resetStoragePaths">恢复默认</button>
+          </div>
+
+          <div class="chat-settings-note" data-chat-text="storagePathNote">
+            这里的“路径”是浏览器本地缓存命名空间，不是真实磁盘目录。
+          </div>
+        </div>
+      </div>
+
       <div class="chat-saved-models">
         <div class="chat-panel-subhead">
           <h3 data-chat-text="savedModelsTitle">已保存模型</h3>
@@ -146,10 +354,28 @@
         </div>
         <div class="chat-saved-model-list" id="saved-model-list"></div>
       </div>
+
+      <div class="chat-saved-models">
+        <div class="chat-panel-subhead">
+          <h3 data-chat-text="backupSectionTitle">备份与恢复</h3>
+        </div>
+        <div class="chat-settings-form">
+          <input id="backup-import-input" type="file" accept="application/json" hidden>
+          <div class="chat-settings-actions">
+            <button class="chat-primary-button" id="export-backup" type="button" data-chat-text="exportBackup">导出整包备份</button>
+            <button class="chat-secondary-button" id="import-backup" type="button" data-chat-text="importBackup">恢复备份</button>
+          </div>
+          <div class="chat-settings-note" data-chat-text="backupNote">
+            备份文件会包含三组缓存路径，以及聊天列表、聊天记录和模型 API 配置，方便换设备恢复。
+          </div>
+        </div>
+      </div>
     </aside>
   </div>
 
   <script src="../assets/site.js"></script>
+  <script src="../assets/model-catalog.js"></script>
+  <script src="../assets/feedback-entry.js"></script>
   <script src="../assets/chat-page.js"></script>
 </body>
 </html>
