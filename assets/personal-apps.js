@@ -33,6 +33,7 @@
       historyVersions: "历史版本",
       latestVersion: "最新版本",
       installFiles: "安装包",
+      pageVersion: "页面版本",
     },
     en: {
       eyebrow: "Personal Apps",
@@ -67,6 +68,7 @@
       historyVersions: "Version history",
       latestVersion: "Latest",
       installFiles: "Packages",
+      pageVersion: "Page version",
     },
   };
 
@@ -370,8 +372,18 @@
     });
     const flatApps = normalizeApps(raw.apps, { basePath: basePath });
     const groupedApps = normalizePlatformGroups(raw.platforms, basePaths);
+    const release = raw.release && typeof raw.release === "object" ? raw.release : {};
+    const versionName = typeof raw.versionName === "string" && raw.versionName.trim()
+      ? raw.versionName.trim()
+      : (typeof release.versionName === "string" ? release.versionName.trim() : "");
+    const versionNumber = typeof raw.versionNumber === "string" && raw.versionNumber.trim()
+      ? raw.versionNumber.trim()
+      : (typeof release.versionNumber === "string" ? release.versionNumber.trim() : "");
     return {
+      schemaVersion: raw.schemaVersion || raw.version || 1,
       version: raw.version || 1,
+      versionName: versionName,
+      versionNumber: versionNumber,
       updatedAt: typeof raw.updatedAt === "string" ? raw.updatedAt.trim() : "",
       basePath: basePath,
       basePaths: basePaths,
@@ -711,6 +723,16 @@
     return empty;
   }
 
+  function manifestVersionText() {
+    if (!state.manifest.versionName && !state.manifest.versionNumber) {
+      return "";
+    }
+    if (state.manifest.versionName && state.manifest.versionNumber && state.manifest.versionName !== state.manifest.versionNumber) {
+      return state.manifest.versionName + " · " + state.manifest.versionNumber;
+    }
+    return state.manifest.versionName || state.manifest.versionNumber;
+  }
+
   function createAppCard(app) {
     const url = appDownloadUrl(app);
     const card = document.createElement("article");
@@ -812,9 +834,17 @@
     const title = document.createElement("span");
     const strong = document.createElement("strong");
     const detail = document.createElement("small");
+    const detailItems = [];
+    const versionText = manifestVersionText();
     title.textContent = t("sourceTitle");
     strong.textContent = t("sourceBody");
-    detail.textContent = state.manifest.updatedAt ? t("updated") + " · " + state.manifest.updatedAt : "";
+    if (state.manifest.updatedAt) {
+      detailItems.push(t("updated") + " · " + state.manifest.updatedAt);
+    }
+    if (versionText) {
+      detailItems.push(t("pageVersion") + " · " + versionText);
+    }
+    detail.textContent = detailItems.join(" / ");
     refs.source.appendChild(title);
     refs.source.appendChild(strong);
     if (detail.textContent) {

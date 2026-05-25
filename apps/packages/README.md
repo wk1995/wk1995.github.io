@@ -37,8 +37,15 @@ Recommended manifest shape:
 
 ```json
 {
+  "schemaVersion": 2,
   "version": 2,
-  "updatedAt": "2026-05-22T00:00:00.000Z",
+  "versionName": "main-20260522123045",
+  "versionNumber": "20260522123045",
+  "release": {
+    "versionName": "main-20260522123045",
+    "versionNumber": "20260522123045"
+  },
+  "updatedAt": "2026-05-22",
   "basePath": "packages/",
   "apps": [
     {
@@ -92,6 +99,12 @@ The manifest can be generated from the directory structure:
 
 ```powershell
 python scripts/generate_app_manifest.py
+```
+
+To stamp an official page release version, pass `APP_MANIFEST_VERSION_NUMBER` in `yyyyMMddHHmmss` format. `APP_MANIFEST_VERSION_NAME` is optional:
+
+```powershell
+$env:APP_MANIFEST_VERSION_NUMBER="20250601230133"; $env:APP_MANIFEST_VERSION_NAME="main-20250601230133"; python scripts/generate_app_manifest.py
 ```
 
 The app page still supports the old flat `apps` array:

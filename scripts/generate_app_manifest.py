@@ -1,4 +1,5 @@
 import json
+import os
 import re
 import subprocess
 from datetime import datetime, timezone
@@ -8,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGES_DIR = ROOT / "apps" / "packages"
 MANIFEST_PATH = PACKAGES_DIR / "manifest.json"
+VERSION_NUMBER_RE = re.compile(r"^\d{14}$")
 
 PLATFORMS = {
     "android": {
@@ -100,6 +102,53 @@ def display_name(value: str) -> str:
 def version_key(value: str):
     parts = re.split(r"([0-9]+)", value.lower())
     return [int(part) if part.isdigit() else part for part in parts]
+
+
+def env_flag(name: str) -> bool:
+    return os.environ.get(name, "").strip().lower() in {"1", "true", "yes", "on"}
+
+
+def existing_manifest() -> dict:
+    if not MANIFEST_PATH.exists():
+        return {}
+    try:
+        return json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+
+
+def release_metadata(existing: dict) -> dict:
+    version_number = os.environ.get("APP_MANIFEST_VERSION_NUMBER", "").strip()
+    version_name = os.environ.get("APP_MANIFEST_VERSION_NAME", "").strip()
+
+    if not version_number and env_flag("APP_MANIFEST_CREATE_VERSION"):
+        version_number = datetime.now().strftime("%Y%m%d%H%M%S")
+
+    if version_number:
+        if not VERSION_NUMBER_RE.fullmatch(version_number):
+            raise ValueError("APP_MANIFEST_VERSION_NUMBER must use yyyyMMddHHmmss format.")
+        return {
+            "versionName": version_name or f"release-{version_number}",
+            "versionNumber": version_number,
+        }
+
+    if isinstance(existing.get("release"), dict):
+        release = existing["release"]
+        version_name = str(release.get("versionName", "")).strip()
+        version_number = str(release.get("versionNumber", "")).strip()
+
+    version_name = version_name or str(existing.get("versionName", "")).strip()
+    version_number = version_number or str(existing.get("versionNumber", "")).strip()
+
+    if version_number:
+        return {
+            "versionName": version_name or f"release-{version_number}",
+            "versionNumber": version_number,
+        }
+    return {
+        "versionName": "",
+        "versionNumber": "",
+    }
 
 
 def read_text_file(path: Path) -> str:
@@ -222,6 +271,7 @@ def package_record(platform: str, package_dir: Path):
 
 
 def build_manifest():
+    release = release_metadata(existing_manifest())
     apps = []
     for platform in PLATFORMS:
         platform_dir = PACKAGES_DIR / platform
@@ -239,7 +289,11 @@ def build_manifest():
 
     updated_at = max((app["updatedAt"] for app in apps if app.get("updatedAt")), default="")
     return {
+      "schemaVersion": 2,
       "version": 2,
+      "versionName": release["versionName"],
+      "versionNumber": release["versionNumber"],
+      "release": release,
       "updatedAt": updated_at,
       "basePath": "packages/",
       "basePaths": {
