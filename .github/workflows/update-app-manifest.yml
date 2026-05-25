@@ -2,10 +2,10 @@ name: Update App Manifest
 
 on:
   push:
-    branches-ignore:
-      - main
     paths:
       - "apps/**"
+      - "scripts/generate_app_manifest.py"
+      - ".github/workflows/update-app-manifest.yml"
   pull_request:
     branches:
       - main

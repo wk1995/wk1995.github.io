@@ -7,7 +7,7 @@
     "versionName": "main-20260526000712",
     "versionNumber": "20260526000712"
   },
-  "updatedAt": "2026-05-25",
+  "updatedAt": "2026-05-26",
   "basePath": "packages/",
   "basePaths": {
     "android": "packages/android/",
@@ -38,12 +38,12 @@
             "file": "BodyOS-1.00.03-20260526001.apk",
             "type": "apk",
             "size": "1.5 MB",
-            "updatedAt": "2026-05-25"
+            "updatedAt": "2026-05-26"
           }
         ],
         "readme": "",
         "readmeFile": "",
-        "updatedAt": "2026-05-25"
+        "updatedAt": "2026-05-26"
       },
       "versions": [
         {
@@ -71,16 +71,16 @@
               "file": "BodyOS-1.00.03-20260526001.apk",
               "type": "apk",
               "size": "1.5 MB",
-              "updatedAt": "2026-05-25"
+              "updatedAt": "2026-05-26"
             }
           ],
           "readme": "",
           "readmeFile": "",
-          "updatedAt": "2026-05-25"
+          "updatedAt": "2026-05-26"
         }
       ],
       "hasHistory": true,
-      "updatedAt": "2026-05-25"
+      "updatedAt": "2026-05-26"
     }
   ],
   "platforms": {
