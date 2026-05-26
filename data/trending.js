@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-25T05:47:34.905371+00:00",
+  "generated_at": "2026-05-26T05:12:45.798821+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,44 +15,12 @@ window.__TRENDING_DATA__ = {
         "en": "Graphs that teach > graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and ask questions about. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more."
       },
       "language": "TypeScript",
-      "stars_total": 27387,
-      "forks_total": 2329,
-      "stars_today": 3999
+      "stars_total": 32102,
+      "forks_total": 2632,
+      "stars_today": 5604
     },
     {
       "rank": 2,
-      "repo": "rohitg00/ai-engineering-from-scratch",
-      "owner": "rohitg00",
-      "name": "ai-engineering-from-scratch",
-      "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
-      "description": "Learn it. Build it. Ship it for others.",
-      "descriptions": {
-        "zh": "学习它。建造它。寄给别人。",
-        "en": "Learn it. Build it. Ship it for others."
-      },
-      "language": "Python",
-      "stars_total": 16782,
-      "forks_total": 2932,
-      "stars_today": 1853
-    },
-    {
-      "rank": 3,
-      "repo": "anthropics/claude-plugins-official",
-      "owner": "anthropics",
-      "name": "claude-plugins-official",
-      "url": "https://github.com/anthropics/claude-plugins-official",
-      "description": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
-      "descriptions": {
-        "zh": "由 Anthropic 管理的官方高品质 Claude 代码插件目录。",
-        "en": "Official, Anthropic-managed directory of high quality Claude Code Plugins."
-      },
-      "language": "Python",
-      "stars_total": 27410,
-      "forks_total": 2915,
-      "stars_today": 1173
-    },
-    {
-      "rank": 4,
       "repo": "anthropics/knowledge-work-plugins",
       "owner": "anthropics",
       "name": "knowledge-work-plugins",
@@ -63,41 +31,73 @@ window.__TRENDING_DATA__ = {
         "en": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork"
       },
       "language": "Python",
-      "stars_total": 14284,
-      "forks_total": 1763,
-      "stars_today": 550
+      "stars_total": 15804,
+      "forks_total": 1893,
+      "stars_today": 1441
+    },
+    {
+      "rank": 3,
+      "repo": "rohitg00/ai-engineering-from-scratch",
+      "owner": "rohitg00",
+      "name": "ai-engineering-from-scratch",
+      "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
+      "description": "Learn it. Build it. Ship it for others.",
+      "descriptions": {
+        "zh": "学习它。建造它。寄给别人。",
+        "en": "Learn it. Build it. Ship it for others."
+      },
+      "language": "Python",
+      "stars_total": 19120,
+      "forks_total": 3216,
+      "stars_today": 3154
+    },
+    {
+      "rank": 4,
+      "repo": "affaan-m/ECC",
+      "owner": "affaan-m",
+      "name": "ECC",
+      "url": "https://github.com/affaan-m/ECC",
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "descriptions": {
+        "zh": "代理利用性能优化系统。 Claude Code、Codex、Opencode、Cursor 等的技能、直觉、记忆、安全性和研究优先的开发。",
+        "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
+      },
+      "language": "JavaScript",
+      "stars_total": 192814,
+      "forks_total": 29819,
+      "stars_today": 2025
     },
     {
       "rank": 5,
-      "repo": "multica-ai/andrej-karpathy-skills",
-      "owner": "multica-ai",
-      "name": "andrej-karpathy-skills",
-      "url": "https://github.com/multica-ai/andrej-karpathy-skills",
-      "description": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
+      "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+      "owner": "mukul975",
+      "name": "Anthropic-Cybersecurity-Skills",
+      "url": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills",
+      "description": "754 structured cybersecurity skills for AI agents · Mapped to 5 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND & NIST AI RMF · agentskills.io standard · Works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI & 20+ platforms · 26 security domains · Apache 2.0",
       "descriptions": {
-        "zh": "用于改进 Claude 代码行为的单个 CLAUDE.md 文件，源自 Andrej Karpathy 对 LLM 编码陷阱的观察。",
-        "en": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls."
+        "zh": "AI 代理的 754 项结构化网络安全技能 · 映射到 5 个框架：MITRE ATT&CK、NIST CSF 2.0、MITRE ATLAS、D3FEND 和 NIST AI RMF ·agentskills.io 标准 · 可与 Claude Code、GitHub Copilot、Codex CLI、Cursor、Gemini CLI 和 20 多个平台配合使用 · 26 个安全域 · Apache 2.0",
+        "en": "754 structured cybersecurity skills for AI agents · Mapped to 5 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND & NIST AI RMF · agentskills.io standard · Works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI & 20+ platforms · 26 security domains · Apache 2.0"
       },
-      "language": null,
-      "stars_total": 152775,
-      "forks_total": 15657,
-      "stars_today": 2551
+      "language": "Python",
+      "stars_total": 9425,
+      "forks_total": 1146,
+      "stars_today": 1004
     },
     {
       "rank": 6,
-      "repo": "earendil-works/pi",
-      "owner": "earendil-works",
-      "name": "pi",
-      "url": "https://github.com/earendil-works/pi",
-      "description": "AI agent toolkit: coding agent CLI, unified LLM API, TUI & web UI libraries, Slack bot, vLLM pods",
+      "repo": "colbymchenry/codegraph",
+      "owner": "colbymchenry",
+      "name": "codegraph",
+      "url": "https://github.com/colbymchenry/codegraph",
+      "description": "Pre-indexed code knowledge graph for Claude Code, Codex, Cursor, OpenCode, and Hermes Agent — fewer tokens, fewer tool calls, 100% local",
       "descriptions": {
-        "zh": "AI 代理工具包：编码代理 CLI、统一 LLM API、TUI 和 Web UI 库、Slack 机器人、vLLM pod",
-        "en": "AI agent toolkit: coding agent CLI, unified LLM API, TUI & web UI libraries, Slack bot, vLLM pods"
+        "zh": "Claude Code、Codex、Cursor、OpenCode 和 Hermes Agent 的预索引代码知识图 — 更少的令牌、更少的工具调用、100% 本地化",
+        "en": "Pre-indexed code knowledge graph for Claude Code, Codex, Cursor, OpenCode, and Hermes Agent — fewer tokens, fewer tool calls, 100% local"
       },
       "language": "TypeScript",
-      "stars_total": 54104,
-      "forks_total": 6454,
-      "stars_today": 456
+      "stars_total": 25833,
+      "forks_total": 1435,
+      "stars_today": 3161
     }
   ]
 }
