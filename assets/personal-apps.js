@@ -117,6 +117,7 @@
     { version: 3, size: 29, dataCodewords: 55, eccCodewords: 15, byteCapacity: 53, alignment: [6, 22] },
     { version: 4, size: 33, dataCodewords: 80, eccCodewords: 20, byteCapacity: 78, alignment: [6, 26] },
     { version: 5, size: 37, dataCodewords: 108, eccCodewords: 26, byteCapacity: 106, alignment: [6, 30] },
+    { version: 6, size: 41, dataCodewords: 136, eccCodewords: 18, byteCapacity: 134, alignment: [6, 34], blocks: [{ count: 2, dataCodewords: 68 }] },
   ];
 
   const refs = {};
@@ -529,6 +530,38 @@
     return result;
   }
 
+  function finalCodewords(data, level) {
+    const blockGroups = level.blocks || [{ count: 1, dataCodewords: level.dataCodewords }];
+    const blocks = [];
+    let offset = 0;
+    blockGroups.forEach(function (group) {
+      for (let i = 0; i < group.count; i += 1) {
+        const dataBlock = data.slice(offset, offset + group.dataCodewords);
+        offset += group.dataCodewords;
+        blocks.push({
+          data: dataBlock,
+          ecc: reedSolomonRemainder(dataBlock, level.eccCodewords),
+        });
+      }
+    });
+
+    const result = [];
+    const maxDataLength = Math.max.apply(null, blocks.map(function (block) { return block.data.length; }));
+    for (let i = 0; i < maxDataLength; i += 1) {
+      blocks.forEach(function (block) {
+        if (i < block.data.length) {
+          result.push(block.data[i]);
+        }
+      });
+    }
+    for (let i = 0; i < level.eccCodewords; i += 1) {
+      blocks.forEach(function (block) {
+        result.push(block.ecc[i]);
+      });
+    }
+    return result;
+  }
+
   function makeMatrix(codewords, level) {
     const size = level.size;
     const modules = Array.from({ length: size }, function () { return new Array(size).fill(false); });
@@ -675,7 +708,7 @@
       throw new Error("QR payload too long");
     }
     const data = createDataCodewords(bytes, level);
-    const codewords = data.concat(reedSolomonRemainder(data, level.eccCodewords));
+    const codewords = finalCodewords(data, level);
     const modules = makeMatrix(codewords, level);
     const border = 4;
     const unitSize = modules.length + border * 2;
