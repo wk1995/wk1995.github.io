@@ -7,7 +7,7 @@
     "versionName": "main-20260526075412",
     "versionNumber": "20260526075412"
   },
-  "updatedAt": "2026-05-26",
+  "updatedAt": "2026-05-27",
   "basePath": "packages/",
   "basePaths": {
     "android": "packages/android/",
@@ -30,20 +30,20 @@
       "readme": "",
       "readmeFile": "",
       "latest": {
-        "version": "4(1.00.03)",
-        "basePath": "packages/android/cn.wk.android.body.os/4(1.00.03)/",
-        "file": "BodyOS-1.00.03-20260526001.apk",
+        "version": "5(1.00.04)",
+        "basePath": "packages/android/cn.wk.android.body.os/5(1.00.04)/",
+        "file": "BodyOS-1.00.04-20260527001.apk",
         "files": [
           {
-            "file": "BodyOS-1.00.03-20260526001.apk",
+            "file": "BodyOS-1.00.04-20260527001.apk",
             "type": "apk",
             "size": "1.5 MB",
-            "updatedAt": "2026-05-26"
+            "updatedAt": "2026-05-27"
           }
         ],
         "readme": "",
         "readmeFile": "",
-        "updatedAt": "2026-05-26"
+        "updatedAt": "2026-05-27"
       },
       "versions": [
         {
@@ -55,12 +55,12 @@
               "file": "BodyOS-1.00.02-20260525001.apk",
               "type": "apk",
               "size": "1.5 MB",
-              "updatedAt": "2026-05-26"
+              "updatedAt": "2026-05-27"
             }
           ],
           "readme": "",
           "readmeFile": "",
-          "updatedAt": "2026-05-26"
+          "updatedAt": "2026-05-27"
         },
         {
           "version": "4(1.00.03)",
@@ -71,16 +71,32 @@
               "file": "BodyOS-1.00.03-20260526001.apk",
               "type": "apk",
               "size": "1.5 MB",
-              "updatedAt": "2026-05-26"
+              "updatedAt": "2026-05-27"
             }
           ],
           "readme": "",
           "readmeFile": "",
-          "updatedAt": "2026-05-26"
+          "updatedAt": "2026-05-27"
+        },
+        {
+          "version": "5(1.00.04)",
+          "basePath": "packages/android/cn.wk.android.body.os/5(1.00.04)/",
+          "file": "BodyOS-1.00.04-20260527001.apk",
+          "files": [
+            {
+              "file": "BodyOS-1.00.04-20260527001.apk",
+              "type": "apk",
+              "size": "1.5 MB",
+              "updatedAt": "2026-05-27"
+            }
+          ],
+          "readme": "",
+          "readmeFile": "",
+          "updatedAt": "2026-05-27"
         }
       ],
       "hasHistory": true,
-      "updatedAt": "2026-05-26"
+      "updatedAt": "2026-05-27"
     }
   ],
   "platforms": {
