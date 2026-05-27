@@ -400,6 +400,12 @@
     return new URL(release.file || app.file, base).href;
   }
 
+  function cacheFreshUrl(path) {
+    const url = new URL(path, window.location.href);
+    url.searchParams.set("_", String(Date.now()));
+    return url.href;
+  }
+
   function appDetailUrl(app) {
     return "detail/?id=" + encodeURIComponent(app.id);
   }
@@ -980,7 +986,13 @@
 
   async function loadManifest() {
     try {
-      const response = await fetch("packages/manifest.json", { cache: "no-store" });
+      const response = await fetch(cacheFreshUrl("packages/manifest.json"), {
+        cache: "no-store",
+        headers: {
+          "Cache-Control": "no-cache",
+          "Pragma": "no-cache",
+        },
+      });
       if (!response.ok) {
         throw new Error("HTTP " + response.status);
       }

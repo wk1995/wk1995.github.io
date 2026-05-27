@@ -29,6 +29,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event_name == 'pull_request' && github.base_ref || github.ref_name }}
+          fetch-depth: 0
 
       - name: Resolve target branch
         run: |
@@ -39,7 +40,7 @@ jobs:
           fi
 
       - name: Prepare page version
-        if: github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.base_ref == 'main'
+        if: (github.event_name == 'push' && github.ref_name == 'main') || (github.event_name == 'workflow_dispatch' && github.ref_name == 'main') || (github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.base_ref == 'main')
         run: |
           VERSION_NUMBER="$(TZ=Asia/Shanghai date +'%Y%m%d%H%M%S')"
           echo "APP_MANIFEST_VERSION_NAME=main-${VERSION_NUMBER}" >> "$GITHUB_ENV"
