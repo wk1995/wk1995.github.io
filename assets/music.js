@@ -13,6 +13,7 @@
   const duration = document.getElementById("duration");
   const trackList = document.getElementById("track-list");
   const exportMixButton = document.getElementById("export-mix");
+  const exportVideoButton = document.getElementById("export-video");
 
   const trackColors = ["#1e90ff", "#36c98d", "#f59e0b", "#f97373", "#a78bfa", "#22d3ee"];
 
@@ -121,6 +122,7 @@
       foreground: styles.getPropertyValue("--fg").trim() || "#f2f5ff",
       muted: styles.getPropertyValue("--fg-muted").trim() || "#b0b8cc",
       border: styles.getPropertyValue("--border").trim() || "rgba(255,255,255,0.08)",
+      background: styles.getPropertyValue("--bg").trim() || "#0c1018",
     };
   }
 
@@ -149,22 +151,19 @@
     return playhead;
   }
 
-  function drawWaveform() {
-    updateCanvasHeight();
-    resizeCanvas();
-
-    const context = canvas.getContext("2d");
-    const width = canvas.width;
-    const height = canvas.height;
-    const ratio = window.devicePixelRatio || 1;
+  function renderWaveformFrame(targetCanvas, current) {
+    const context = targetCanvas.getContext("2d");
+    const width = targetCanvas.width;
+    const height = targetCanvas.height;
+    const ratio = targetCanvas === canvas ? window.devicePixelRatio || 1 : Math.max(1, width / 1080);
     const colors = getCanvasColors();
     const trackCount = tracks.length;
     const gap = Math.max(8 * ratio, height * 0.018);
     const trackHeight = trackCount ? (height - gap * (trackCount - 1)) / trackCount : height;
-    const current = getCurrentPlayhead();
     const progressX = maxDuration > 0 ? Math.max(0, Math.min(width, width * (current / maxDuration))) : 0;
 
-    context.clearRect(0, 0, width, height);
+    context.fillStyle = colors.background;
+    context.fillRect(0, 0, width, height);
 
     if (!trackCount) {
       context.fillStyle = colors.border;
@@ -216,6 +215,12 @@
 
     context.fillStyle = colors.foreground;
     context.fillRect(progressX, 0, Math.max(2, ratio), height);
+  }
+
+  function drawWaveform() {
+    updateCanvasHeight();
+    resizeCanvas();
+    renderWaveformFrame(canvas, getCurrentPlayhead());
   }
 
   function updateProgress() {
@@ -293,6 +298,7 @@
     playhead = 0;
     trackList.innerHTML = "";
     exportMixButton.disabled = true;
+    exportVideoButton.disabled = true;
     if (playbackContext) {
       playbackContext.close();
       playbackContext = null;
@@ -558,6 +564,98 @@
     }
   }
 
+  function getSupportedVideoMimeType() {
+    const types = [
+      "video/webm;codecs=vp9",
+      "video/webm;codecs=vp8",
+      "video/webm",
+    ];
+
+    return types.find(function (type) {
+      return MediaRecorder.isTypeSupported(type);
+    }) || "";
+  }
+
+  async function exportWaveformVideo() {
+    if (!tracks.length || !maxDuration) {
+      setStatus("没有可导出的视频内容。");
+      return;
+    }
+
+    if (!window.MediaRecorder || !canvas.captureStream) {
+      setStatus("当前浏览器不支持 canvas 视频录制。");
+      return;
+    }
+
+    const frameRate = 30;
+    const exportCanvas = document.createElement("canvas");
+    exportCanvas.width = 1280;
+    exportCanvas.height = Math.min(1080, Math.max(720, tracks.length * 180));
+    const stream = exportCanvas.captureStream(frameRate);
+    const mimeType = getSupportedVideoMimeType();
+    const chunks = [];
+
+    exportMixButton.disabled = true;
+    exportVideoButton.disabled = true;
+    setStatus("正在导出波形视频，时长与工程时长一致...");
+
+    try {
+      const recorder = new MediaRecorder(stream, mimeType ? { mimeType: mimeType } : undefined);
+      const finished = new Promise(function (resolve, reject) {
+        recorder.addEventListener("dataavailable", function (event) {
+          if (event.data && event.data.size > 0) {
+            chunks.push(event.data);
+          }
+        });
+        recorder.addEventListener("stop", resolve);
+        recorder.addEventListener("error", function (event) {
+          reject(event.error || new Error("视频导出失败。"));
+        });
+      });
+
+      renderWaveformFrame(exportCanvas, 0);
+      recorder.start(1000);
+
+      await new Promise(function (resolve) {
+        const startedAt = performance.now();
+
+        function render() {
+          const elapsed = (performance.now() - startedAt) / 1000;
+          const current = Math.min(maxDuration, elapsed);
+          renderWaveformFrame(exportCanvas, current);
+          setStatus(`正在导出波形视频：${formatTime(current)} / ${formatTime(maxDuration)}`);
+
+          if (current >= maxDuration) {
+            resolve();
+            return;
+          }
+
+          window.requestAnimationFrame(render);
+        }
+
+        window.requestAnimationFrame(render);
+      });
+
+      recorder.stop();
+      await finished;
+      stream.getTracks().forEach(function (track) {
+        track.stop();
+      });
+
+      const videoBlob = new Blob(chunks, { type: recorder.mimeType || "video/webm" });
+      downloadBlob(videoBlob, "wk1995-music-waveform.webm");
+      setStatus(`已导出波形视频：${formatBytes(videoBlob.size)}。`);
+    } catch (error) {
+      stream.getTracks().forEach(function (track) {
+        track.stop();
+      });
+      setStatus(error.message || "导出波形视频失败。");
+    } finally {
+      exportMixButton.disabled = !tracks.length;
+      exportVideoButton.disabled = !tracks.length;
+    }
+  }
+
   async function loadFiles(fileList) {
     const files = Array.from(fileList || []).filter(isSupportedSource);
 
@@ -592,6 +690,7 @@
       emptyState.hidden = true;
       playToggle.disabled = false;
       exportMixButton.disabled = false;
+      exportVideoButton.disabled = false;
       renderTrackControls();
       setStatus("所有音轨波形已生成。");
       drawWaveform();
@@ -605,6 +704,7 @@
       setStatus(error.message || "无法解析文件中的音频。");
       playToggle.disabled = true;
       exportMixButton.disabled = true;
+      exportVideoButton.disabled = true;
       drawWaveform();
     }
   }
@@ -686,6 +786,7 @@
   });
 
   exportMixButton.addEventListener("click", exportMixedTrack);
+  exportVideoButton.addEventListener("click", exportWaveformVideo);
 
   canvas.addEventListener("click", function (event) {
     if (!maxDuration) {
