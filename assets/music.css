@@ -248,9 +248,100 @@ html[data-theme="light"] .music-wave-shell {
   opacity: 0.55;
 }
 
-.music-controls audio {
-  width: min(100%, 720px);
-  height: 44px;
+.music-export-button {
+  appearance: none;
+  min-height: 44px;
+  padding: 0.7rem 1rem;
+  border: 1px solid rgba(30, 144, 255, 0.28);
+  border-radius: 8px;
+  background: rgba(30, 144, 255, 0.12);
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.music-export-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.music-control-copy {
+  color: var(--fg-muted);
+  font-size: 0.95rem;
+}
+
+.music-track-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.music-track-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0.85rem;
+  padding: 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+html[data-theme="light"] .music-track-item {
+  background: rgba(17, 119, 238, 0.045);
+}
+
+.music-track-swatch {
+  width: 12px;
+  height: 42px;
+  border-radius: 999px;
+}
+
+.music-track-copy {
+  min-width: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.music-track-copy strong {
+  overflow: hidden;
+  color: var(--fg);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.music-track-copy span,
+.music-track-toggle,
+.music-property-control {
+  color: var(--fg-muted);
+  font-size: 0.86rem;
+}
+
+.music-track-controls {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 0.25rem;
+}
+
+.music-track-toggle {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.music-property-control {
+  display: grid;
+  grid-template-columns: 44px minmax(120px, 1fr) 54px;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.music-property-control input {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.music-property-value {
+  text-align: right;
 }
 
 .music-status {
@@ -272,6 +363,16 @@ html[data-theme="light"] .music-wave-shell {
   .music-controls {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .music-track-item {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+  }
+
+  .music-track-swatch {
+    width: 100%;
+    height: 8px;
   }
 
   .music-file-meta {
