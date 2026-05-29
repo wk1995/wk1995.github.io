@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-28T05:19:27.222041+00:00",
+  "generated_at": "2026-05-29T05:21:34.196422+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,44 +15,12 @@ window.__TRENDING_DATA__ = {
         "en": "Generate short videos with one click using AI LLM."
       },
       "language": "Python",
-      "stars_total": 63216,
-      "forks_total": 9203,
-      "stars_today": 1742
+      "stars_total": 67121,
+      "forks_total": 9702,
+      "stars_today": 4698
     },
     {
       "rank": 2,
-      "repo": "Lum1104/Understand-Anything",
-      "owner": "Lum1104",
-      "name": "Understand-Anything",
-      "url": "https://github.com/Lum1104/Understand-Anything",
-      "description": "Graphs that teach > graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and ask questions about. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more.",
-      "descriptions": {
-        "zh": "具有教学意义的图表 > 令人印象深刻的图表。将任何代码变成您可以探索、搜索和提问的交互式知识图。适用于 Claude Code、Codex、Cursor、Copilot、Gemini CLI 等。",
-        "en": "Graphs that teach > graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and ask questions about. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more."
-      },
-      "language": "TypeScript",
-      "stars_total": 40723,
-      "forks_total": 3257,
-      "stars_today": 4465
-    },
-    {
-      "rank": 3,
-      "repo": "hardikpandya/stop-slop",
-      "owner": "hardikpandya",
-      "name": "stop-slop",
-      "url": "https://github.com/hardikpandya/stop-slop",
-      "description": "A skill file for removing AI tells from prose",
-      "descriptions": {
-        "zh": "从散文中删除 AI 的技能文件",
-        "en": "A skill file for removing AI tells from prose"
-      },
-      "language": null,
-      "stars_total": 5872,
-      "forks_total": 438,
-      "stars_today": 664
-    },
-    {
-      "rank": 4,
       "repo": "affaan-m/ECC",
       "owner": "affaan-m",
       "name": "ECC",
@@ -63,28 +31,12 @@ window.__TRENDING_DATA__ = {
         "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
       },
       "language": "JavaScript",
-      "stars_total": 196287,
-      "forks_total": 30202,
-      "stars_today": 2062
+      "stars_total": 197538,
+      "forks_total": 30377,
+      "stars_today": 1385
     },
     {
-      "rank": 5,
-      "repo": "anthropics/knowledge-work-plugins",
-      "owner": "anthropics",
-      "name": "knowledge-work-plugins",
-      "url": "https://github.com/anthropics/knowledge-work-plugins",
-      "description": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork",
-      "descriptions": {
-        "zh": "主要供知识工作者在 Claude Cowork 中使用的开源插件存储库",
-        "en": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork"
-      },
-      "language": "Python",
-      "stars_total": 17412,
-      "forks_total": 2032,
-      "stars_today": 695
-    },
-    {
-      "rank": 6,
+      "rank": 3,
       "repo": "Leonxlnx/taste-skill",
       "owner": "Leonxlnx",
       "name": "taste-skill",
@@ -95,9 +47,57 @@ window.__TRENDING_DATA__ = {
         "en": "Taste-Skill - gives your AI good taste. stops the AI from generating boring, generic slop"
       },
       "language": "Shell",
-      "stars_total": 24738,
-      "forks_total": 1898,
-      "stars_today": 2715
+      "stars_total": 26855,
+      "forks_total": 2006,
+      "stars_today": 2234
+    },
+    {
+      "rank": 4,
+      "repo": "hardikpandya/stop-slop",
+      "owner": "hardikpandya",
+      "name": "stop-slop",
+      "url": "https://github.com/hardikpandya/stop-slop",
+      "description": "A skill file for removing AI tells from prose",
+      "descriptions": {
+        "zh": "从散文中删除 AI 的技能文件",
+        "en": "A skill file for removing AI tells from prose"
+      },
+      "language": null,
+      "stars_total": 6540,
+      "forks_total": 473,
+      "stars_today": 761
+    },
+    {
+      "rank": 5,
+      "repo": "twentyhq/twenty",
+      "owner": "twentyhq",
+      "name": "twenty",
+      "url": "https://github.com/twentyhq/twenty",
+      "description": "The open alternative to Salesforce, designed for AI.",
+      "descriptions": {
+        "zh": "Salesforce 的开放替代方案，专为 AI 设计。",
+        "en": "The open alternative to Salesforce, designed for AI."
+      },
+      "language": "TypeScript",
+      "stars_total": 47977,
+      "forks_total": 6805,
+      "stars_today": 493
+    },
+    {
+      "rank": 6,
+      "repo": "DigitalPlatDev/FreeDomain",
+      "owner": "DigitalPlatDev",
+      "name": "FreeDomain",
+      "url": "https://github.com/DigitalPlatDev/FreeDomain",
+      "description": "DigitalPlat FreeDomain: Free Domain For Everyone",
+      "descriptions": {
+        "zh": "DigitalPlat FreeDomain：适合所有人的免费域名",
+        "en": "DigitalPlat FreeDomain: Free Domain For Everyone"
+      },
+      "language": "HTML",
+      "stars_total": 170947,
+      "forks_total": 3303,
+      "stars_today": 1761
     }
   ]
 }
