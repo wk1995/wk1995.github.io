@@ -119,6 +119,67 @@
       </div>
     </section>
 
+    <section class="catalog-section control-monitor-section">
+      <div class="catalog-section-head">
+        <h2>Windows 运行监控</h2>
+        <span id="control-monitor-state">Live</span>
+      </div>
+      <div class="control-monitor-grid">
+        <article class="control-monitor-card">
+          <div class="control-monitor-head">
+            <span>CPU</span>
+            <strong id="control-cpu-title">--</strong>
+          </div>
+          <p id="control-cpu-detail">浏览器只能读取逻辑核心数量，无法读取真实 CPU 型号和占用率。</p>
+          <div class="control-meter" aria-hidden="true"><span id="control-cpu-meter"></span></div>
+        </article>
+        <article class="control-monitor-card">
+          <div class="control-monitor-head">
+            <span>GPU</span>
+            <strong id="control-gpu-title">--</strong>
+          </div>
+          <p id="control-gpu-detail">通过 WebGL 读取渲染器信息。</p>
+          <div class="control-meter" aria-hidden="true"><span id="control-gpu-meter"></span></div>
+        </article>
+        <article class="control-monitor-card">
+          <div class="control-monitor-head">
+            <span>内存</span>
+            <strong id="control-memory-title">--</strong>
+          </div>
+          <p id="control-memory-detail">优先显示 JS Heap 使用情况，系统总内存取决于浏览器支持。</p>
+          <div class="control-meter" aria-hidden="true"><span id="control-memory-meter"></span></div>
+        </article>
+        <article class="control-monitor-card">
+          <div class="control-monitor-head">
+            <span>磁盘</span>
+            <strong id="control-disk-title">--</strong>
+          </div>
+          <p id="control-disk-detail">浏览器只能估算站点可用存储空间，不能读取 Windows 分区详情。</p>
+          <div class="control-meter" aria-hidden="true"><span id="control-disk-meter"></span></div>
+        </article>
+        <article class="control-monitor-card">
+          <div class="control-monitor-head">
+            <span>网络</span>
+            <strong id="control-network-title">--</strong>
+          </div>
+          <p id="control-network-detail">显示在线状态、连接类型和浏览器估算带宽。</p>
+          <div class="control-meter" aria-hidden="true"><span id="control-network-meter"></span></div>
+        </article>
+        <article class="control-monitor-card">
+          <div class="control-monitor-head">
+            <span>风扇 / 硬盘传感器</span>
+            <strong id="control-sensor-title">需要本地代理</strong>
+          </div>
+          <p id="control-sensor-detail">Web 页面无法直接读取风扇转速、硬盘温度、SMART 健康状态。需要 Windows 本地服务或桌面端桥接。</p>
+          <div class="control-meter is-disabled" aria-hidden="true"><span id="control-sensor-meter"></span></div>
+        </article>
+      </div>
+      <div class="control-note">
+        <strong>权限边界</strong>
+        <p>如果后续需要真实 CPU 占用率、风扇转速、硬盘温度、SMART、物理磁盘列表，可以增加一个 Windows 本地采集服务，再由此页面通过 localhost API 读取。</p>
+      </div>
+    </section>
+
     <div class="catalog-status" id="control-status" role="status" aria-live="polite">系统信息会根据浏览器权限和平台能力显示，部分硬件字段可能不可用。</div>
   </main>
 
