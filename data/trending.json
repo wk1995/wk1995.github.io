@@ -1,26 +1,10 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-30T04:59:33.352585+00:00",
+  "generated_at": "2026-05-31T05:44:05.835780+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "harry0703/MoneyPrinterTurbo",
-      "owner": "harry0703",
-      "name": "MoneyPrinterTurbo",
-      "url": "https://github.com/harry0703/MoneyPrinterTurbo",
-      "description": "利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.",
-      "descriptions": {
-        "zh": "利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.",
-        "en": "Generate short videos with one click using AI LLM."
-      },
-      "language": "Python",
-      "stars_total": 70164,
-      "forks_total": 10117,
-      "stars_today": 3567
-    },
-    {
-      "rank": 2,
       "repo": "microsoft/markitdown",
       "owner": "microsoft",
       "name": "markitdown",
@@ -31,44 +15,28 @@
         "en": "Python tool for converting files and office documents to Markdown."
       },
       "language": "Python",
-      "stars_total": 130281,
-      "forks_total": 8937,
-      "stars_today": 1873
+      "stars_total": 132893,
+      "forks_total": 9094,
+      "stars_today": 2470
+    },
+    {
+      "rank": 2,
+      "repo": "harry0703/MoneyPrinterTurbo",
+      "owner": "harry0703",
+      "name": "MoneyPrinterTurbo",
+      "url": "https://github.com/harry0703/MoneyPrinterTurbo",
+      "description": "利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.",
+      "descriptions": {
+        "zh": "利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.",
+        "en": "Generate short videos with one click using AI LLM."
+      },
+      "language": "Python",
+      "stars_total": 72343,
+      "forks_total": 10368,
+      "stars_today": 2768
     },
     {
       "rank": 3,
-      "repo": "EveryInc/compound-engineering-plugin",
-      "owner": "EveryInc",
-      "name": "compound-engineering-plugin",
-      "url": "https://github.com/EveryInc/compound-engineering-plugin",
-      "description": "Official Compound Engineering plugin for Claude Code, Codex, Cursor, and more",
-      "descriptions": {
-        "zh": "适用于 Claude Code、Codex、Cursor 等的官方复合工程插件",
-        "en": "Official Compound Engineering plugin for Claude Code, Codex, Cursor, and more"
-      },
-      "language": "TypeScript",
-      "stars_total": 18201,
-      "forks_total": 1383,
-      "stars_today": 353
-    },
-    {
-      "rank": 4,
-      "repo": "twentyhq/twenty",
-      "owner": "twentyhq",
-      "name": "twenty",
-      "url": "https://github.com/twentyhq/twenty",
-      "description": "The open alternative to Salesforce, designed for AI.",
-      "descriptions": {
-        "zh": "Salesforce 的开放替代方案，专为 AI 设计。",
-        "en": "The open alternative to Salesforce, designed for AI."
-      },
-      "language": "TypeScript",
-      "stars_total": 48475,
-      "forks_total": 6874,
-      "stars_today": 578
-    },
-    {
-      "rank": 5,
       "repo": "anthropics/claude-code",
       "owner": "anthropics",
       "name": "claude-code",
@@ -79,25 +47,57 @@
         "en": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands."
       },
       "language": "Python",
-      "stars_total": 127972,
-      "forks_total": 20921,
-      "stars_today": 395
+      "stars_total": 128481,
+      "forks_total": 20952,
+      "stars_today": 592
+    },
+    {
+      "rank": 4,
+      "repo": "cursor/plugins",
+      "owner": "cursor",
+      "name": "plugins",
+      "url": "https://github.com/cursor/plugins",
+      "description": "Cursor plugin specification and official plugins",
+      "descriptions": {
+        "zh": "光标插件规范和官方插件",
+        "en": "Cursor plugin specification and official plugins"
+      },
+      "language": "TypeScript",
+      "stars_total": 1495,
+      "forks_total": 121,
+      "stars_today": 205
+    },
+    {
+      "rank": 5,
+      "repo": "revfactory/harness",
+      "owner": "revfactory",
+      "name": "harness",
+      "url": "https://github.com/revfactory/harness",
+      "description": "A meta-skill that designs domain-specific agent teams, defines specialized agents, and generates the skills they use.",
+      "descriptions": {
+        "zh": "一种元技能，用于设计特定领域的代理团队、定义专业代理并生成他们使用的技能。",
+        "en": "A meta-skill that designs domain-specific agent teams, defines specialized agents, and generates the skills they use."
+      },
+      "language": "HTML",
+      "stars_total": 4331,
+      "forks_total": 630,
+      "stars_today": 55
     },
     {
       "rank": 6,
-      "repo": "Leonxlnx/taste-skill",
-      "owner": "Leonxlnx",
-      "name": "taste-skill",
-      "url": "https://github.com/Leonxlnx/taste-skill",
-      "description": "Taste-Skill - gives your AI good taste. stops the AI from generating boring, generic slop",
+      "repo": "EveryInc/compound-engineering-plugin",
+      "owner": "EveryInc",
+      "name": "compound-engineering-plugin",
+      "url": "https://github.com/EveryInc/compound-engineering-plugin",
+      "description": "Official Compound Engineering plugin for Claude Code, Codex, Cursor, and more",
       "descriptions": {
-        "zh": "品味技能 - 给你的人工智能良好的品味。阻止人工智能产生无聊的、通用的斜坡",
-        "en": "Taste-Skill - gives your AI good taste. stops the AI from generating boring, generic slop"
+        "zh": "适用于 Claude Code、Codex、Cursor 等的官方复合工程插件",
+        "en": "Official Compound Engineering plugin for Claude Code, Codex, Cursor, and more"
       },
-      "language": "Shell",
-      "stars_total": 28366,
-      "forks_total": 2095,
-      "stars_today": 2062
+      "language": "TypeScript",
+      "stars_total": 18458,
+      "forks_total": 1393,
+      "stars_today": 349
     }
   ]
 }
