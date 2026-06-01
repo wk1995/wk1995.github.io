@@ -7,9 +7,13 @@ description: Create or refine distinctive, production-ready frontend UI for the 
 
 ## Core Approach
 
-Use this skill for frontend work in `wk1995.github.io`. Build on the public Anthropic `frontend-design` skill's emphasis on a clear aesthetic direction, production-grade execution, and avoiding generic AI-looking UI, then adapt those ideas to this repository's static site architecture.
+Use this skill for frontend work in `wk1995.github.io`. Build on public frontend-design and web-quality skills while adapting them to this repository's static site architecture.
 
-Before editing UI, read `references/repo-style.md` for repository-specific structure, tokens, and verification notes.
+Always read `references/repo-style.md` before editing UI. Then load only the extra reference that matches the task:
+
+- New page, redesign, visual polish, hero/section composition: read `references/design-direction.md`.
+- Review, audit, bug fix, accessibility, performance, responsive QA: read `references/web-quality-review.md`.
+- Need attribution or upstream context for the external skills distilled here: read `references/external-sources.md`.
 
 ## Workflow
 
@@ -17,7 +21,8 @@ Before editing UI, read `references/repo-style.md` for repository-specific struc
 2. Identify the user's actual surface: home, blog, article, chat, model catalog, app catalog, feedback, music, or package listing.
 3. Choose a concrete design direction that fits AI x Android, personal technical publishing, or operational catalog usage. Keep the direction specific enough to guide typography, density, color, motion, and hierarchy.
 4. Implement working static HTML/CSS/JS. Preserve existing page contracts: `data-page`, `data-i18n`, theme toggles, language persistence, and no-build GitHub Pages deployment.
-5. Verify desktop and mobile layouts. Check both light and dark themes when a page supports them, and confirm text does not overflow buttons, cards, nav, filters, or metadata rows.
+5. Review the result against `references/web-quality-review.md` when the change touches interaction, layout, media, forms, SEO, accessibility, or performance.
+6. Verify desktop and mobile layouts. Check both light and dark themes when a page supports them, and confirm text does not overflow buttons, cards, nav, filters, or metadata rows.
 
 ## Design Rules
 
@@ -29,6 +34,7 @@ Before editing UI, read `references/repo-style.md` for repository-specific struc
 - Preserve accessibility: semantic headings, usable focus states, adequate contrast, labels for controls, and reduced-motion-friendly animation.
 - Use motion for meaningful state changes and page atmosphere. Keep it CSS-only unless an existing JS pattern already handles the interaction.
 - Do not introduce frameworks, package managers, or build steps unless the user explicitly asks; this site is designed to work as static files.
+- When modern browser APIs or performance patterns are relevant and network is available, use GoogleChrome `modern-web-guidance` via `npx` as described in `references/web-quality-review.md`, then adapt the retrieved guidance conservatively.
 
 ## Implementation Checks
 
