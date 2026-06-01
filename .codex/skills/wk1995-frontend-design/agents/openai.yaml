@@ -1,0 +1,4 @@
+interface:
+  display_name: "WK1995 Frontend Design"
+  short_description: "Design guidance for this static site"
+  default_prompt: "Use $wk1995-frontend-design to refine a WK1995 site page with distinctive, production-ready frontend design."
