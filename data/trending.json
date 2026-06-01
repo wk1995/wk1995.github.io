@@ -1,26 +1,10 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-31T05:44:05.835780+00:00",
+  "generated_at": "2026-06-01T06:17:56.994486+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "microsoft/markitdown",
-      "owner": "microsoft",
-      "name": "markitdown",
-      "url": "https://github.com/microsoft/markitdown",
-      "description": "Python tool for converting files and office documents to Markdown.",
-      "descriptions": {
-        "zh": "用于将文件和 Office 文档转换为 Markdown 的 Python 工具。",
-        "en": "Python tool for converting files and office documents to Markdown."
-      },
-      "language": "Python",
-      "stars_total": 132893,
-      "forks_total": 9094,
-      "stars_today": 2470
-    },
-    {
-      "rank": 2,
       "repo": "harry0703/MoneyPrinterTurbo",
       "owner": "harry0703",
       "name": "MoneyPrinterTurbo",
@@ -31,60 +15,60 @@
         "en": "Generate short videos with one click using AI LLM."
       },
       "language": "Python",
-      "stars_total": 72343,
-      "forks_total": 10368,
-      "stars_today": 2768
+      "stars_total": 75270,
+      "forks_total": 10702,
+      "stars_today": 1937
+    },
+    {
+      "rank": 2,
+      "repo": "microsoft/markitdown",
+      "owner": "microsoft",
+      "name": "markitdown",
+      "url": "https://github.com/microsoft/markitdown",
+      "description": "Python tool for converting files and office documents to Markdown.",
+      "descriptions": {
+        "zh": "用于将文件和 Office 文档转换为 Markdown 的 Python 工具。",
+        "en": "Python tool for converting files and office documents to Markdown."
+      },
+      "language": "Python",
+      "stars_total": 135743,
+      "forks_total": 9270,
+      "stars_today": 2798
     },
     {
       "rank": 3,
-      "repo": "anthropics/claude-code",
-      "owner": "anthropics",
-      "name": "claude-code",
-      "url": "https://github.com/anthropics/claude-code",
-      "description": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.",
+      "repo": "D4Vinci/Scrapling",
+      "owner": "D4Vinci",
+      "name": "Scrapling",
+      "url": "https://github.com/D4Vinci/Scrapling",
+      "description": "🕷️ An adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl!",
       "descriptions": {
-        "zh": "Claude Code 是一种代理编码工具，它位于您的终端中，了解您的代码库，并通过执行例行任务、解释复杂代码和处理 git 工作流程来帮助您更快地编码 - 所有这些都通过自然语言命令进行。",
-        "en": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands."
+        "zh": "🕷️ 一个自适应网页抓取框架，可以处理从单个请求到全面抓取的所有内容！",
+        "en": "🕷️ An adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl!"
       },
       "language": "Python",
-      "stars_total": 128481,
-      "forks_total": 20952,
-      "stars_today": 592
+      "stars_total": 57020,
+      "forks_total": 5539,
+      "stars_today": 606
     },
     {
       "rank": 4,
-      "repo": "cursor/plugins",
-      "owner": "cursor",
-      "name": "plugins",
-      "url": "https://github.com/cursor/plugins",
-      "description": "Cursor plugin specification and official plugins",
+      "repo": "nesquena/hermes-webui",
+      "owner": "nesquena",
+      "name": "hermes-webui",
+      "url": "https://github.com/nesquena/hermes-webui",
+      "description": "Hermes WebUI: The best way to use Hermes Agent from the web or from your phone!",
       "descriptions": {
-        "zh": "光标插件规范和官方插件",
-        "en": "Cursor plugin specification and official plugins"
+        "zh": "Hermes WebUI：从网络或手机使用 Hermes Agent 的最佳方式！",
+        "en": "Hermes WebUI: The best way to use Hermes Agent from the web or from your phone!"
       },
-      "language": "TypeScript",
-      "stars_total": 1495,
-      "forks_total": 121,
-      "stars_today": 205
+      "language": "Python",
+      "stars_total": 10220,
+      "forks_total": 1390,
+      "stars_today": 357
     },
     {
       "rank": 5,
-      "repo": "revfactory/harness",
-      "owner": "revfactory",
-      "name": "harness",
-      "url": "https://github.com/revfactory/harness",
-      "description": "A meta-skill that designs domain-specific agent teams, defines specialized agents, and generates the skills they use.",
-      "descriptions": {
-        "zh": "一种元技能，用于设计特定领域的代理团队、定义专业代理并生成他们使用的技能。",
-        "en": "A meta-skill that designs domain-specific agent teams, defines specialized agents, and generates the skills they use."
-      },
-      "language": "HTML",
-      "stars_total": 4331,
-      "forks_total": 630,
-      "stars_today": 55
-    },
-    {
-      "rank": 6,
       "repo": "EveryInc/compound-engineering-plugin",
       "owner": "EveryInc",
       "name": "compound-engineering-plugin",
@@ -95,9 +79,25 @@
         "en": "Official Compound Engineering plugin for Claude Code, Codex, Cursor, and more"
       },
       "language": "TypeScript",
-      "stars_total": 18458,
-      "forks_total": 1393,
-      "stars_today": 349
+      "stars_total": 18810,
+      "forks_total": 1415,
+      "stars_today": 251
+    },
+    {
+      "rank": 6,
+      "repo": "github/docs",
+      "owner": "github",
+      "name": "docs",
+      "url": "https://github.com/github/docs",
+      "description": "The open-source repo for docs.github.com",
+      "descriptions": {
+        "zh": "docs.github.com 的开源存储库",
+        "en": "The open-source repo for docs.github.com"
+      },
+      "language": "TypeScript",
+      "stars_total": 19792,
+      "forks_total": 67295,
+      "stars_today": 27
     }
   ]
 }
