@@ -249,6 +249,17 @@ html[data-theme="light"] .music-edit-toolbar {
   text-align: right;
 }
 
+.music-edit-meta {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--fg-muted);
+  font-size: 0.86rem;
+}
+
 .music-wave-shell {
   position: relative;
   min-height: 260px;
@@ -356,6 +367,11 @@ html[data-theme="light"] .music-track-item {
   background: rgba(17, 119, 238, 0.045);
 }
 
+.music-track-item.is-selected {
+  border-color: rgba(30, 144, 255, 0.58);
+  background: rgba(30, 144, 255, 0.1);
+}
+
 .music-track-swatch {
   width: 12px;
   height: 42px;
@@ -434,7 +450,8 @@ html[data-theme="light"] .music-track-item {
   }
 
   .music-mode-group,
-  .music-edit-control {
+  .music-edit-control,
+  .music-edit-meta {
     width: 100%;
   }
 

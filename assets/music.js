@@ -21,6 +21,10 @@
   const panControl = document.getElementById("pan-control");
   const panValue = document.getElementById("pan-value");
   const cutSelectionButton = document.getElementById("cut-selection");
+  const splitPlayheadButton = document.getElementById("split-playhead");
+  const scopeSelectedButton = document.getElementById("scope-selected");
+  const scopeAllButton = document.getElementById("scope-all");
+  const selectedTrackLabel = document.getElementById("selected-track-label");
 
   const trackColors = ["#1e90ff", "#36c98d", "#f59e0b", "#f97373", "#a78bfa", "#22d3ee"];
 
@@ -35,6 +39,8 @@
   let selectionStart = null;
   let selectionEnd = null;
   let dragState = null;
+  let selectedTrackId = null;
+  let editScope = "selected";
 
   function setStatus(message) {
     status.textContent = message || "";
@@ -105,19 +111,43 @@
     };
   }
 
+  function getSelectedTrack() {
+    return tracks.find(function (track) {
+      return track.id === selectedTrackId;
+    }) || null;
+  }
+
+  function getTargetTracks() {
+    if (editScope === "all") {
+      return tracks;
+    }
+
+    const selectedTrack = getSelectedTrack();
+    return selectedTrack ? [selectedTrack] : [];
+  }
+
+  function updateScopeButtons() {
+    scopeSelectedButton.classList.toggle("is-active", editScope === "selected");
+    scopeAllButton.classList.toggle("is-active", editScope === "all");
+  }
+
   function updateEditControls() {
     const maxViewStart = getMaxViewStart();
     const hasTracks = tracks.length > 0;
+    const selectedTrack = getSelectedTrack();
 
     zoomControl.disabled = !hasTracks;
     panControl.disabled = !hasTracks || zoomLevel <= 1;
-    cutSelectionButton.disabled = !getSelectionRange();
+    splitPlayheadButton.disabled = !hasTracks || (editScope === "selected" && !selectedTrack);
+    cutSelectionButton.disabled = !getSelectionRange() || (editScope === "selected" && !selectedTrack);
     zoomControl.value = zoomLevel.toString();
     zoomValue.textContent = `${zoomLevel.toFixed(2)}x`;
     panControl.max = maxViewStart.toFixed(2);
     panControl.step = maxDuration > 60 ? "0.1" : "0.01";
     panControl.value = viewStart.toFixed(2);
     panValue.textContent = formatTime(viewStart);
+    selectedTrackLabel.textContent = selectedTrack ? `已选：${selectedTrack.file.name}` : "未选择音轨";
+    updateScopeButtons();
   }
 
   function setEditMode(mode) {
@@ -131,6 +161,35 @@
     const rect = canvas.getBoundingClientRect();
     const ratio = rect.width > 0 ? (clientX - rect.left) / rect.width : 0;
     return clamp(viewStart + clamp(ratio, 0, 1) * getVisibleDuration(), 0, maxDuration);
+  }
+
+  function getTrackIndexFromClientY(clientY) {
+    if (!tracks.length) {
+      return -1;
+    }
+
+    const rect = canvas.getBoundingClientRect();
+    const ratio = (window.devicePixelRatio || 1);
+    const y = (clientY - rect.top) * ratio;
+    const height = canvas.height;
+    const rulerHeight = 30 * ratio;
+    const trackAreaHeight = Math.max(1, height - rulerHeight);
+    const gap = Math.max(8 * ratio, height * 0.018);
+    const trackHeight = (trackAreaHeight - gap * (tracks.length - 1)) / tracks.length;
+
+    if (y < rulerHeight) {
+      return -1;
+    }
+
+    const relativeY = y - rulerHeight;
+    const index = Math.floor(relativeY / (trackHeight + gap));
+    const trackTop = index * (trackHeight + gap);
+
+    if (index < 0 || index >= tracks.length || relativeY < trackTop || relativeY > trackTop + trackHeight) {
+      return -1;
+    }
+
+    return index;
   }
 
   function isSupportedSource(file) {
@@ -147,7 +206,11 @@
       viewStart = 0;
       selectionStart = null;
       selectionEnd = null;
+      selectedTrackId = null;
     } else {
+      if (selectedTrackId && !getSelectedTrack()) {
+        selectedTrackId = tracks[0] ? tracks[0].id : null;
+      }
       zoomLevel = clamp(zoomLevel, 1, Number(zoomControl.max));
       viewStart = clampViewStart(viewStart);
     }
@@ -253,8 +316,10 @@
     const ratio = targetCanvas === canvas ? window.devicePixelRatio || 1 : Math.max(1, width / 1080);
     const colors = getCanvasColors();
     const trackCount = tracks.length;
+    const rulerHeight = 30 * ratio;
+    const trackAreaHeight = Math.max(1, height - rulerHeight);
     const gap = Math.max(8 * ratio, height * 0.018);
-    const trackHeight = trackCount ? (height - gap * (trackCount - 1)) / trackCount : height;
+    const trackHeight = trackCount ? (trackAreaHeight - gap * (trackCount - 1)) / trackCount : trackAreaHeight;
     const progressX = frameVisibleDuration > 0
       ? Math.max(0, Math.min(width, width * ((current - frameViewStart) / frameVisibleDuration)))
       : 0;
@@ -268,15 +333,46 @@
       return;
     }
 
+    context.fillStyle = "rgba(255,255,255,0.04)";
+    context.fillRect(0, 0, width, rulerHeight);
+    context.fillStyle = colors.border;
+    context.fillRect(0, rulerHeight, width, Math.max(1, ratio));
+
+    const visibleEnd = frameViewStart + frameVisibleDuration;
+    const roughTickCount = 8;
+    const rawTickStep = frameVisibleDuration / roughTickCount;
+    const tickBase = Math.pow(10, Math.floor(Math.log10(Math.max(0.001, rawTickStep))));
+    const tickStep = [1, 2, 5, 10].map(function (multiplier) {
+      return multiplier * tickBase;
+    }).find(function (step) {
+      return step >= rawTickStep;
+    }) || rawTickStep;
+    const firstTick = Math.ceil(frameViewStart / tickStep) * tickStep;
+
+    context.font = `${11 * ratio}px Segoe UI, Microsoft YaHei, sans-serif`;
+    for (let tick = firstTick; tick <= visibleEnd; tick += tickStep) {
+      const x = ((tick - frameViewStart) / frameVisibleDuration) * width;
+      context.fillStyle = colors.border;
+      context.fillRect(x, rulerHeight - 10 * ratio, Math.max(1, ratio), 10 * ratio);
+      context.fillStyle = colors.muted;
+      context.fillText(formatTime(tick), x + 4 * ratio, 18 * ratio);
+    }
+
     tracks.forEach(function (track, trackIndex) {
-      const top = trackIndex * (trackHeight + gap);
+      const top = rulerHeight + trackIndex * (trackHeight + gap);
       const centerY = top + trackHeight / 2;
-      const visibleEnd = frameViewStart + frameVisibleDuration;
       const labelX = 14 * ratio;
       const labelY = top + 22 * ratio;
 
-      context.fillStyle = trackIndex % 2 === 0 ? "rgba(255,255,255,0.025)" : "rgba(255,255,255,0.04)";
+      context.fillStyle = track.id === selectedTrackId
+        ? "rgba(30,144,255,0.12)"
+        : trackIndex % 2 === 0 ? "rgba(255,255,255,0.025)" : "rgba(255,255,255,0.04)";
       context.fillRect(0, top, width, trackHeight);
+      if (track.id === selectedTrackId) {
+        context.strokeStyle = "rgba(30,144,255,0.6)";
+        context.lineWidth = Math.max(1, ratio);
+        context.strokeRect(0, top, width, trackHeight);
+      }
       context.fillStyle = colors.border;
       context.fillRect(0, centerY, width, Math.max(1, ratio));
 
@@ -316,16 +412,32 @@
         context.fillStyle = "rgba(0,0,0,0.12)";
         context.fillRect(waveformWidth, top, width - waveformWidth, trackHeight);
       }
+
+      if (track.splits && track.splits.length) {
+        track.splits.forEach(function (splitTime) {
+          if (splitTime < frameViewStart || splitTime > visibleEnd) {
+            return;
+          }
+
+          const splitX = ((splitTime - frameViewStart) / frameVisibleDuration) * width;
+          context.strokeStyle = "rgba(245, 158, 11, 0.9)";
+          context.lineWidth = Math.max(1, ratio);
+          context.beginPath();
+          context.moveTo(splitX, top + 6 * ratio);
+          context.lineTo(splitX, top + trackHeight - 6 * ratio);
+          context.stroke();
+        });
+      }
     });
 
     if (frameSelection) {
       const selectedX = ((frameSelection.start - frameViewStart) / frameVisibleDuration) * width;
       const selectedWidth = ((frameSelection.end - frameSelection.start) / frameVisibleDuration) * width;
       context.fillStyle = "rgba(30, 144, 255, 0.16)";
-      context.fillRect(selectedX, 0, selectedWidth, height);
+      context.fillRect(selectedX, rulerHeight, selectedWidth, height - rulerHeight);
       context.strokeStyle = "rgba(30, 144, 255, 0.76)";
       context.lineWidth = Math.max(1, ratio);
-      context.strokeRect(selectedX, 0, selectedWidth, height);
+      context.strokeRect(selectedX, rulerHeight, selectedWidth, height - rulerHeight);
     }
 
     context.fillStyle = colors.foreground;
@@ -416,6 +528,8 @@
     selectionStart = null;
     selectionEnd = null;
     dragState = null;
+    selectedTrackId = null;
+    editScope = "selected";
     trackList.innerHTML = "";
     exportMixButton.disabled = true;
     exportVideoButton.disabled = true;
@@ -465,6 +579,13 @@
     tracks.forEach(function (track, index) {
       const item = document.createElement("div");
       item.className = "music-track-item";
+      item.classList.toggle("is-selected", track.id === selectedTrackId);
+      item.addEventListener("click", function () {
+        selectedTrackId = track.id;
+        updateEditControls();
+        renderTrackControls();
+        drawWaveform();
+      });
 
       const swatch = document.createElement("span");
       swatch.className = "music-track-swatch";
@@ -563,6 +684,7 @@
       volume: 1,
       muted: false,
       pan: 0,
+      splits: [],
       sourceNode: null,
       gainNode: null,
       panNode: null,
@@ -614,6 +736,9 @@
     track.audio.src = nextUrl;
     track.duration = track.buffer.duration;
     track.peaks = buildPeaks(track.buffer);
+    track.splits = (track.splits || [])
+      .filter(function (splitTime) { return splitTime < track.duration; })
+      .map(function (splitTime) { return clamp(splitTime, 0, track.duration); });
     track.sourceNode = null;
     track.gainNode = null;
     track.panNode = null;
@@ -622,15 +747,28 @@
 
   function cutSelection() {
     const range = getSelectionRange();
+    const targetTracks = getTargetTracks();
 
     if (!range) {
       setStatus("请先在波形区域拖出要剪切的时间选区。");
       return;
     }
 
+    if (!targetTracks.length) {
+      setStatus("请先选择一条音轨，或切换为全部音轨。");
+      return;
+    }
+
     pauseTracks();
-    tracks.forEach(function (track) {
+    targetTracks.forEach(function (track) {
       track.buffer = cutAudioBuffer(track.buffer, range.start, range.end);
+      track.splits = (track.splits || [])
+        .filter(function (splitTime) {
+          return splitTime < range.start || splitTime > range.end;
+        })
+        .map(function (splitTime) {
+          return splitTime > range.end ? splitTime - (range.end - range.start) : splitTime;
+        });
       resetTrackSourceFromBuffer(track);
     });
 
@@ -641,6 +779,32 @@
     updateProjectDuration();
     renderTrackControls();
     setStatus(`已剪切 ${formatTime(removedDuration)} 的选区。`);
+    drawWaveform();
+  }
+
+  function splitAtPlayhead() {
+    const targetTracks = getTargetTracks();
+
+    if (!targetTracks.length) {
+      setStatus("请先选择一条音轨，或切换为全部音轨。");
+      return;
+    }
+
+    targetTracks.forEach(function (track) {
+      if (playhead <= 0 || playhead >= track.duration) {
+        return;
+      }
+
+      const splitTime = Number(playhead.toFixed(2));
+      if (!track.splits.some(function (existing) { return Math.abs(existing - splitTime) < 0.03; })) {
+        track.splits.push(splitTime);
+        track.splits.sort(function (left, right) { return left - right; });
+      }
+    });
+
+    renderTrackControls();
+    updateEditControls();
+    setStatus(`已在 ${formatTime(playhead)} 标记分割点。`);
     drawWaveform();
   }
 
@@ -888,10 +1052,11 @@
     try {
       for (let index = 0; index < files.length; index += 1) {
         setStatus(`正在解析第 ${index + 1}/${files.length} 个文件...`);
-        loadedTracks.push(await createTrack(files[index], index));
+      loadedTracks.push(await createTrack(files[index], index));
       }
 
       tracks = loadedTracks;
+      selectedTrackId = tracks[0] ? tracks[0].id : null;
       trackSummary.textContent = `${tracks.length} 个音轨`;
       updateProjectDuration();
       emptyState.hidden = true;
@@ -1018,6 +1183,17 @@
   exportMixButton.addEventListener("click", exportMixedTrack);
   exportVideoButton.addEventListener("click", exportWaveformVideo);
   cutSelectionButton.addEventListener("click", cutSelection);
+  splitPlayheadButton.addEventListener("click", splitAtPlayhead);
+
+  scopeSelectedButton.addEventListener("click", function () {
+    editScope = "selected";
+    updateEditControls();
+  });
+
+  scopeAllButton.addEventListener("click", function () {
+    editScope = "all";
+    updateEditControls();
+  });
 
   selectModeButton.addEventListener("click", function () {
     setEditMode("select");
@@ -1051,6 +1227,13 @@
       return !track.audio.paused && !track.audio.ended;
     });
     const time = timeFromCanvasX(event.clientX);
+    const trackIndex = getTrackIndexFromClientY(event.clientY);
+
+    if (trackIndex >= 0) {
+      selectedTrackId = tracks[trackIndex].id;
+      renderTrackControls();
+      updateEditControls();
+    }
 
     dragState = {
       mode: editMode,
