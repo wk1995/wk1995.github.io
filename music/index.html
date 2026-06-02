@@ -85,6 +85,10 @@
               <button class="music-tool-button is-active" id="select-mode" type="button">选择</button>
               <button class="music-tool-button" id="pan-mode" type="button">平移</button>
             </div>
+            <div class="music-mode-group" role="group" aria-label="操作范围">
+              <button class="music-tool-button is-active" id="scope-selected" type="button">选中音轨</button>
+              <button class="music-tool-button" id="scope-all" type="button">全部音轨</button>
+            </div>
             <label class="music-edit-control">
               <span>缩放</span>
               <input id="zoom-control" type="range" min="1" max="12" step="0.25" value="1" disabled>
@@ -95,6 +99,8 @@
               <input id="pan-control" type="range" min="0" max="0" step="0.01" value="0" disabled>
               <strong id="pan-value">0:00</strong>
             </label>
+            <span class="music-edit-meta" id="selected-track-label">未选择音轨</span>
+            <button class="music-export-button" id="split-playhead" type="button" disabled>分割播放头</button>
             <button class="music-export-button" id="cut-selection" type="button" disabled>剪切选区</button>
           </div>
 
