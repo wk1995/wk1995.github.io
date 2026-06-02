@@ -70,6 +70,7 @@
           </div>
         </div>
         <div class="chat-stage-actions">
+          <a class="github-auth-button github-auth-button-secondary" href="https://github.com/wk1995/wk1995.github.io/issues/new" data-feedback-entry>反馈</a>
           <button class="chat-icon-button" id="open-settings" type="button" data-chat-aria="openSettings">
             <svg viewBox="0 0 16 16" aria-hidden="true">
               <path d="M9.596 1.303a1 1 0 0 0-1.192 0l-.792.602a1 1 0 0 1-1.127.083l-.92-.49a1 1 0 0 0-1.167.242l-.77.87a1 1 0 0 0-.19 1.174l.39.978a1 1 0 0 1-.252 1.104l-.712.712a1 1 0 0 0-.242 1.167l.49.92a1 1 0 0 1-.083 1.127l-.602.792a1 1 0 0 0 0 1.192l.602.792a1 1 0 0 1 .083 1.127l-.49.92a1 1 0 0 0 .242 1.167l.87.77a1 1 0 0 0 1.174.19l.978-.39a1 1 0 0 1 1.104.252l.712.712a1 1 0 0 0 1.167.242l.92-.49a1 1 0 0 1 1.127.083l.792.602a1 1 0 0 0 1.192 0l.792-.602a1 1 0 0 1 1.127-.083l.92.49a1 1 0 0 0 1.167-.242l.77-.87a1 1 0 0 0 .19-1.174l-.39-.978a1 1 0 0 1 .252-1.104l.712-.712a1 1 0 0 0 .242-1.167l-.49-.92a1 1 0 0 1 .083-1.127l.602-.792a1 1 0 0 0 0-1.192l-.602-.792a1 1 0 0 1-.083-1.127l.49-.92a1 1 0 0 0-.242-1.167l-.87-.77a1 1 0 0 0-1.174-.19l-.978.39a1 1 0 0 1-1.104-.252l-.712-.712a1 1 0 0 0-1.167-.242l-.92.49a1 1 0 0 1-1.127-.083l-.792-.602ZM8 10.75a2.75 2.75 0 1 0 0-5.5 2.75 2.75 0 0 0 0 5.5Z"></path>
@@ -254,8 +255,17 @@
       <div class="chat-setup-banner" id="setup-banner"></div>
 
       <div class="chat-settings-form">
-        <label class="chat-settings-label" for="model-select" data-chat-text="modelLabel">模型选择</label>
-        <select id="model-select"></select>
+        <input id="model-select" type="hidden">
+        <div class="chat-selected-model-panel">
+          <div>
+            <span class="chat-settings-label" data-chat-text="selectedModelTitle">当前模型</span>
+            <strong id="settings-model-name">请选择模型</strong>
+            <p id="settings-model-meta" data-chat-text="selectedModelHint">
+              从大模型列表页选择一个模型后，这里会自动带回模型属性。
+            </p>
+          </div>
+          <a class="chat-secondary-button" id="choose-model-link" href="../models/?from=chat" data-chat-text="chooseModelAction">选择模型</a>
+        </div>
 
         <label class="chat-settings-label" for="api-key-input" data-chat-text="keyLabel">Model API Key</label>
         <input id="api-key-input" type="password" autocomplete="off" placeholder="粘贴当前模型对应的 API Key">
@@ -267,6 +277,39 @@
 
         <div class="chat-settings-note" data-chat-text="settingsNote">
           当前页面会把模型与 Key 保存在本地浏览器中，不会提交到仓库。
+        </div>
+      </div>
+
+      <div class="chat-settings-form">
+        <div class="chat-panel-subhead">
+          <h3 data-chat-text="customModelTitle">Custom model</h3>
+          <p class="chat-settings-helper" data-chat-text="customModelHelper">
+            Add any OpenAI-compatible or Anthropic-compatible endpoint.
+          </p>
+        </div>
+
+        <label class="chat-settings-label" for="custom-model-base-url" data-chat-text="customBaseUrlLabel">Base URL</label>
+        <input id="custom-model-base-url" type="url" autocomplete="off" placeholder="https://api.openai.com/v1">
+
+        <label class="chat-settings-label" for="custom-model-name" data-chat-text="customModelNameLabel">Model name</label>
+        <input id="custom-model-name" type="text" autocomplete="off" placeholder="gpt-4.1-mini">
+
+        <label class="chat-settings-label" for="custom-model-type" data-chat-text="customModelTypeLabel">API type</label>
+        <select id="custom-model-type">
+          <option value="openai">OpenAI</option>
+          <option value="anthropic">Anthropic</option>
+        </select>
+
+        <label class="chat-settings-label" for="custom-api-key-input" data-chat-text="customApiKeyLabel">API Key</label>
+        <input id="custom-api-key-input" type="password" autocomplete="off" placeholder="Paste the API key for this endpoint">
+
+        <div class="chat-settings-actions">
+          <button class="chat-primary-button" id="save-custom-model" type="button" data-chat-text="saveCustomModel">Save custom model</button>
+          <button class="chat-secondary-button" id="delete-custom-model" type="button" data-chat-text="deleteCustomModel">Delete selected custom model</button>
+        </div>
+
+        <div class="chat-settings-note" data-chat-text="customModelNote">
+          OpenAI uses /chat/completions. Anthropic uses /messages with the anthropic-version header.
         </div>
       </div>
 
@@ -331,6 +374,8 @@
   </div>
 
   <script src="../assets/site.js"></script>
+  <script src="../assets/model-catalog.js"></script>
+  <script src="../assets/feedback-entry.js"></script>
   <script src="../assets/chat-page.js"></script>
 </body>
 </html>

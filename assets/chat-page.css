@@ -297,6 +297,14 @@ html[data-theme="dark"] .chat-sidebar {
   gap: 1rem;
 }
 
+.chat-stage-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 .chat-stage-copy {
   min-width: 0;
 }
@@ -387,7 +395,7 @@ html[data-theme="dark"] .chat-sidebar {
   width: min(1280px, 100%);
   min-height: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.25rem;
   margin: 0.95rem auto 0;
   align-items: stretch;
@@ -402,7 +410,7 @@ html[data-theme="dark"] .chat-sidebar {
 
 .chat-model-watch-panel {
   min-height: 0;
-  display: grid;
+  display: none;
   grid-template-rows: auto auto minmax(0, 1fr) auto;
   gap: 0.95rem;
   padding: 1.05rem;
@@ -1640,12 +1648,58 @@ html[data-theme="dark"] .chat-composer-wrap {
   background: var(--surface-muted);
 }
 
+.chat-settings-form .chat-panel-subhead {
+  align-items: flex-start;
+  margin-top: 0;
+}
+
+.chat-settings-form .chat-panel-subhead .chat-settings-helper {
+  max-width: 24rem;
+  margin: 0;
+  text-align: right;
+}
+
 .chat-settings-form select,
 .chat-settings-form input {
   padding: 0.86rem 0.92rem;
   border: 1px solid var(--border);
   border-radius: 16px;
   background: var(--surface-strong);
+}
+
+.chat-selected-model-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.8rem;
+  align-items: center;
+  padding: 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface-strong);
+}
+
+.chat-selected-model-panel strong,
+.chat-selected-model-panel p {
+  margin: 0;
+}
+
+.chat-selected-model-panel strong {
+  display: block;
+  margin-top: 0.28rem;
+  font-size: 1rem;
+  color: var(--fg);
+}
+
+.chat-selected-model-panel p {
+  margin-top: 0.25rem;
+  color: var(--fg-muted);
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.chat-secondary-button.is-disabled {
+  opacity: 0.54;
+  pointer-events: none;
 }
 
 .chat-settings-label {
@@ -1771,6 +1825,16 @@ html[data-theme="dark"] .chat-composer-wrap {
     align-self: flex-end;
   }
 
+  .chat-settings-form .chat-panel-subhead .chat-settings-helper {
+    max-width: none;
+    text-align: left;
+  }
+
+  .chat-stage-actions .github-auth-slot,
+  .chat-stage-actions .github-auth-actions-inline {
+    width: auto;
+  }
+
   .chat-composer-actions {
     width: 100%;
     flex-direction: column;
@@ -1783,6 +1847,10 @@ html[data-theme="dark"] .chat-composer-wrap {
   }
 
   .chat-storage-row {
+    grid-template-columns: 1fr;
+  }
+
+  .chat-selected-model-panel {
     grid-template-columns: 1fr;
   }
 

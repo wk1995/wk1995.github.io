@@ -143,6 +143,87 @@ select {
   color: var(--fg);
 }
 
+.feedback-page-section {
+  padding: 1rem 0 4.5rem;
+}
+
+.feedback-page-shell {
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+  gap: 1.5rem;
+}
+
+.feedback-page-panel {
+  padding: 1.6rem;
+  border-radius: 24px;
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+  background: var(--card-bg, rgba(17, 23, 34, 0.85));
+  box-shadow: 0 24px 60px rgba(2, 6, 23, 0.16);
+  backdrop-filter: blur(18px);
+}
+
+.feedback-page-status {
+  display: grid;
+  gap: 1.25rem;
+  align-content: start;
+}
+
+.feedback-page-status-copy {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.feedback-page-kicker {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.38rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(17, 119, 238, 0.1);
+  color: var(--accent, #1177ee);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.feedback-page-title {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.4vw, 1.8rem);
+  line-height: 1.2;
+}
+
+.feedback-page-copy,
+.feedback-page-note,
+.feedback-page-success p {
+  margin: 0;
+  color: var(--fg-muted, #94a3b8);
+}
+
+.feedback-page-note {
+  font-size: 0.92rem;
+}
+
+.feedback-page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.feedback-page-success {
+  display: grid;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+  padding: 1rem 1.05rem;
+  border-radius: 18px;
+  border: 1px solid rgba(17, 119, 238, 0.18);
+  background: rgba(17, 119, 238, 0.08);
+}
+
+.feedback-page-success strong {
+  color: var(--fg);
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -159,6 +240,10 @@ select {
   .site-topbar {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .feedback-page-shell {
+    grid-template-columns: 1fr;
   }
 
   .topbar-right {
@@ -417,6 +502,298 @@ html[data-theme="light"] .chat-icon-button {
 .chat-connection-copy span {
   color: var(--fg-muted);
   font-size: 0.78rem;
+}
+
+.github-auth-slot {
+  display: inline-flex;
+  align-items: center;
+}
+
+.github-auth-slot-chat {
+  margin-right: 0.75rem;
+}
+
+.github-auth-actions-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.github-auth-button,
+.github-auth-profile,
+.github-auth-icon-button {
+  appearance: none;
+  font: inherit;
+}
+
+.github-auth-button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.72rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--control-border, rgba(148, 163, 184, 0.22));
+  background: var(--control-bg, rgba(255, 255, 255, 0.08));
+  color: var(--fg);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.github-auth-button:hover,
+.github-auth-button:focus,
+.github-auth-profile:hover,
+.github-auth-profile:focus {
+  transform: translateY(-1px);
+  border-color: rgba(30, 144, 255, 0.34);
+}
+
+.github-auth-button:disabled {
+  opacity: 0.62;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.github-auth-button-primary {
+  background: linear-gradient(135deg, rgba(17, 119, 238, 0.96), rgba(36, 95, 221, 0.96));
+  border-color: rgba(17, 119, 238, 0.32);
+  color: #f8fbff;
+  box-shadow: 0 12px 24px rgba(17, 119, 238, 0.18);
+}
+
+.github-auth-button-secondary {
+  background: var(--control-bg, rgba(255, 255, 255, 0.08));
+}
+
+.github-auth-button-ghost {
+  background: transparent;
+}
+
+.github-auth-profile {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.38rem 0.85rem 0.38rem 0.4rem;
+  border-radius: 999px;
+  border: 1px solid var(--control-border, rgba(148, 163, 184, 0.22));
+  background: var(--control-bg, rgba(255, 255, 255, 0.08));
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.github-auth-profile img,
+.github-auth-avatar-fallback {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  flex: 0 0 auto;
+}
+
+.github-auth-profile img {
+  object-fit: cover;
+}
+
+.github-auth-avatar-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(17, 119, 238, 0.14);
+  color: var(--accent, #1177ee);
+  font-weight: 700;
+}
+
+.github-auth-profile-name {
+  font-size: 0.92rem;
+}
+
+.github-auth-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 88;
+  background: rgba(15, 23, 42, 0.46);
+  backdrop-filter: blur(6px);
+}
+
+.github-auth-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 89;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.github-auth-overlay[hidden],
+.github-auth-modal[hidden] {
+  display: none !important;
+}
+
+.github-auth-card {
+  width: min(100%, 560px);
+  max-height: min(86vh, 760px);
+  overflow: auto;
+  border: 1px solid var(--control-border, rgba(148, 163, 184, 0.22));
+  border-radius: 28px;
+  background: var(--card-bg, rgba(15, 22, 33, 0.96));
+  color: var(--fg);
+  box-shadow: 0 32px 72px rgba(2, 6, 23, 0.3);
+  backdrop-filter: blur(20px);
+}
+
+html[data-theme="light"] .github-auth-card {
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.github-auth-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.4rem 1.4rem 0;
+}
+
+.github-auth-card-title {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.github-auth-card-subtitle {
+  margin: 0.4rem 0 0;
+  color: var(--fg-muted);
+}
+
+.github-auth-card-body {
+  padding: 1.35rem 1.4rem 1.4rem;
+}
+
+.github-auth-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--fg-muted);
+  display: grid;
+  gap: 0.5rem;
+}
+
+.github-auth-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.github-auth-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.github-auth-field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.github-auth-field-label {
+  color: var(--fg-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.github-auth-input,
+.github-auth-select,
+.github-auth-textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border-radius: 18px;
+  border: 1px solid var(--control-border, rgba(148, 163, 184, 0.22));
+  background: var(--control-bg, rgba(255, 255, 255, 0.08));
+  color: var(--fg);
+  outline: none;
+}
+
+.github-auth-textarea {
+  resize: vertical;
+  min-height: 168px;
+}
+
+.github-auth-input:focus,
+.github-auth-select:focus,
+.github-auth-textarea:focus {
+  border-color: rgba(17, 119, 238, 0.42);
+}
+
+.github-auth-select option {
+  color: #0f172a;
+}
+
+.github-auth-error {
+  margin: 0;
+  color: #d94b6a;
+}
+
+.github-auth-icon-button {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  border: 1px solid var(--control-border, rgba(148, 163, 184, 0.22));
+  background: var(--control-bg, rgba(255, 255, 255, 0.08));
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.github-auth-icon-button svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+body.github-auth-modal-open {
+  overflow: hidden;
+}
+
+@media (max-width: 720px) {
+  .github-auth-slot,
+  .github-auth-actions-inline {
+    width: 100%;
+  }
+
+  .github-auth-actions-inline {
+    justify-content: flex-start;
+  }
+
+  .github-auth-slot-chat {
+    margin-right: 0;
+  }
+
+  .github-auth-profile {
+    max-width: 100%;
+  }
+
+  .github-auth-profile-name {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .github-auth-card-head,
+  .github-auth-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .github-auth-icon-button {
+    align-self: flex-end;
+  }
 }
 
 .chat-body {

@@ -1,0 +1,67 @@
+name: Update App Manifest
+
+on:
+  push:
+    paths:
+      - "apps/**"
+      - "scripts/generate_app_manifest.py"
+      - ".github/workflows/update-app-manifest.yml"
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: app-manifest-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  update:
+    if: github.actor != 'github-actions[bot]' && (github.event_name != 'pull_request' || github.event.pull_request.merged == true)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.base_ref || github.ref_name }}
+          fetch-depth: 0
+
+      - name: Resolve target branch
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "TARGET_BRANCH=${{ github.base_ref }}" >> "$GITHUB_ENV"
+          else
+            echo "TARGET_BRANCH=${GITHUB_REF_NAME}" >> "$GITHUB_ENV"
+          fi
+
+      - name: Prepare page version
+        if: (github.event_name == 'push' && github.ref_name == 'main') || (github.event_name == 'workflow_dispatch' && github.ref_name == 'main') || (github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.base_ref == 'main')
+        run: |
+          VERSION_NUMBER="$(TZ=Asia/Shanghai date +'%Y%m%d%H%M%S')"
+          echo "APP_MANIFEST_VERSION_NAME=main-${VERSION_NUMBER}" >> "$GITHUB_ENV"
+          echo "APP_MANIFEST_VERSION_NUMBER=${VERSION_NUMBER}" >> "$GITHUB_ENV"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate app manifest
+        run: python scripts/generate_app_manifest.py
+
+      - name: Commit manifest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps/packages/manifest.json
+          if git diff --cached --quiet; then
+            echo "No app manifest changes to commit."
+            exit 0
+          fi
+          git commit -m "【codex】更新 App manifest"
+          git push origin HEAD:${TARGET_BRANCH}
