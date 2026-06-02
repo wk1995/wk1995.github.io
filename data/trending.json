@@ -1,26 +1,10 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-01T06:17:56.994486+00:00",
+  "generated_at": "2026-06-02T06:00:51.993747+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "harry0703/MoneyPrinterTurbo",
-      "owner": "harry0703",
-      "name": "MoneyPrinterTurbo",
-      "url": "https://github.com/harry0703/MoneyPrinterTurbo",
-      "description": "利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.",
-      "descriptions": {
-        "zh": "利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.",
-        "en": "Generate short videos with one click using AI LLM."
-      },
-      "language": "Python",
-      "stars_total": 75270,
-      "forks_total": 10702,
-      "stars_today": 1937
-    },
-    {
-      "rank": 2,
       "repo": "microsoft/markitdown",
       "owner": "microsoft",
       "name": "markitdown",
@@ -31,28 +15,12 @@
         "en": "Python tool for converting files and office documents to Markdown."
       },
       "language": "Python",
-      "stars_total": 135743,
-      "forks_total": 9270,
-      "stars_today": 2798
+      "stars_total": 139194,
+      "forks_total": 9474,
+      "stars_today": 3034
     },
     {
-      "rank": 3,
-      "repo": "D4Vinci/Scrapling",
-      "owner": "D4Vinci",
-      "name": "Scrapling",
-      "url": "https://github.com/D4Vinci/Scrapling",
-      "description": "🕷️ An adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl!",
-      "descriptions": {
-        "zh": "🕷️ 一个自适应网页抓取框架，可以处理从单个请求到全面抓取的所有内容！",
-        "en": "🕷️ An adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl!"
-      },
-      "language": "Python",
-      "stars_total": 57020,
-      "forks_total": 5539,
-      "stars_today": 606
-    },
-    {
-      "rank": 4,
+      "rank": 2,
       "repo": "nesquena/hermes-webui",
       "owner": "nesquena",
       "name": "hermes-webui",
@@ -63,41 +31,73 @@
         "en": "Hermes WebUI: The best way to use Hermes Agent from the web or from your phone!"
       },
       "language": "Python",
-      "stars_total": 10220,
-      "forks_total": 1390,
-      "stars_today": 357
+      "stars_total": 11642,
+      "forks_total": 1475,
+      "stars_today": 945
+    },
+    {
+      "rank": 3,
+      "repo": "supermemoryai/supermemory",
+      "owner": "supermemoryai",
+      "name": "supermemory",
+      "url": "https://github.com/supermemoryai/supermemory",
+      "description": "Memory engine and app that is extremely fast, scalable. The Memory API for the AI era.",
+      "descriptions": {
+        "zh": "内存引擎和应用程序速度极快，可扩展。 AI时代的内存API。",
+        "en": "Memory engine and app that is extremely fast, scalable. The Memory API for the AI era."
+      },
+      "language": "TypeScript",
+      "stars_total": 24136,
+      "forks_total": 2158,
+      "stars_today": 647
+    },
+    {
+      "rank": 4,
+      "repo": "harry0703/MoneyPrinterTurbo",
+      "owner": "harry0703",
+      "name": "MoneyPrinterTurbo",
+      "url": "https://github.com/harry0703/MoneyPrinterTurbo",
+      "description": "利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.",
+      "descriptions": {
+        "zh": "利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.",
+        "en": "Generate short videos with one click using AI LLM."
+      },
+      "language": "Python",
+      "stars_total": 77182,
+      "forks_total": 10951,
+      "stars_today": 3375
     },
     {
       "rank": 5,
-      "repo": "EveryInc/compound-engineering-plugin",
-      "owner": "EveryInc",
-      "name": "compound-engineering-plugin",
-      "url": "https://github.com/EveryInc/compound-engineering-plugin",
-      "description": "Official Compound Engineering plugin for Claude Code, Codex, Cursor, and more",
+      "repo": "D4Vinci/Scrapling",
+      "owner": "D4Vinci",
+      "name": "Scrapling",
+      "url": "https://github.com/D4Vinci/Scrapling",
+      "description": "🕷️ An adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl!",
       "descriptions": {
-        "zh": "适用于 Claude Code、Codex、Cursor 等的官方复合工程插件",
-        "en": "Official Compound Engineering plugin for Claude Code, Codex, Cursor, and more"
+        "zh": "🕷️ 一个自适应网页抓取框架，可以处理从单个请求到全面抓取的所有内容！",
+        "en": "🕷️ An adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl!"
       },
-      "language": "TypeScript",
-      "stars_total": 18810,
-      "forks_total": 1415,
-      "stars_today": 251
+      "language": "Python",
+      "stars_total": 58346,
+      "forks_total": 5654,
+      "stars_today": 1486
     },
     {
       "rank": 6,
-      "repo": "github/docs",
-      "owner": "github",
-      "name": "docs",
-      "url": "https://github.com/github/docs",
-      "description": "The open-source repo for docs.github.com",
+      "repo": "pbakaus/impeccable",
+      "owner": "pbakaus",
+      "name": "impeccable",
+      "url": "https://github.com/pbakaus/impeccable",
+      "description": "The design language that makes your AI harness better at design.",
       "descriptions": {
-        "zh": "docs.github.com 的开源存储库",
-        "en": "The open-source repo for docs.github.com"
+        "zh": "使您的 AI 线束在设计上更加出色的设计语言。",
+        "en": "The design language that makes your AI harness better at design."
       },
-      "language": "TypeScript",
-      "stars_total": 19792,
-      "forks_total": 67295,
-      "stars_today": 27
+      "language": "JavaScript",
+      "stars_total": 32978,
+      "forks_total": 1792,
+      "stars_today": 485
     }
   ]
 }
