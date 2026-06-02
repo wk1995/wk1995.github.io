@@ -1,103 +1,103 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-05-27T05:44:15.889306+00:00",
+  "generated_at": "2026-06-02T06:00:51.993747+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "Lum1104/Understand-Anything",
-      "owner": "Lum1104",
-      "name": "Understand-Anything",
-      "url": "https://github.com/Lum1104/Understand-Anything",
-      "description": "Graphs that teach > graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and ask questions about. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more.",
+      "repo": "microsoft/markitdown",
+      "owner": "microsoft",
+      "name": "markitdown",
+      "url": "https://github.com/microsoft/markitdown",
+      "description": "Python tool for converting files and office documents to Markdown.",
       "descriptions": {
-        "zh": "具有教学意义的图表 > 令人印象深刻的图表。将任何代码变成您可以探索、搜索和提问的交互式知识图。适用于 Claude Code、Codex、Cursor、Copilot、Gemini CLI 等。",
-        "en": "Graphs that teach > graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and ask questions about. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more."
+        "zh": "用于将文件和 Office 文档转换为 Markdown 的 Python 工具。",
+        "en": "Python tool for converting files and office documents to Markdown."
       },
-      "language": "TypeScript",
-      "stars_total": 36801,
-      "forks_total": 2948,
-      "stars_today": 4697
+      "language": "Python",
+      "stars_total": 139194,
+      "forks_total": 9474,
+      "stars_today": 3034
     },
     {
       "rank": 2,
-      "repo": "affaan-m/ECC",
-      "owner": "affaan-m",
-      "name": "ECC",
-      "url": "https://github.com/affaan-m/ECC",
-      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "repo": "nesquena/hermes-webui",
+      "owner": "nesquena",
+      "name": "hermes-webui",
+      "url": "https://github.com/nesquena/hermes-webui",
+      "description": "Hermes WebUI: The best way to use Hermes Agent from the web or from your phone!",
       "descriptions": {
-        "zh": "代理利用性能优化系统。 Claude Code、Codex、Opencode、Cursor 等的技能、直觉、记忆、安全性和研究优先的开发。",
-        "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
+        "zh": "Hermes WebUI：从网络或手机使用 Hermes Agent 的最佳方式！",
+        "en": "Hermes WebUI: The best way to use Hermes Agent from the web or from your phone!"
       },
-      "language": "JavaScript",
-      "stars_total": 194813,
-      "forks_total": 30013,
-      "stars_today": 1915
+      "language": "Python",
+      "stars_total": 11642,
+      "forks_total": 1475,
+      "stars_today": 945
     },
     {
       "rank": 3,
-      "repo": "rohitg00/ai-engineering-from-scratch",
-      "owner": "rohitg00",
-      "name": "ai-engineering-from-scratch",
-      "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
-      "description": "Learn it. Build it. Ship it for others.",
+      "repo": "supermemoryai/supermemory",
+      "owner": "supermemoryai",
+      "name": "supermemory",
+      "url": "https://github.com/supermemoryai/supermemory",
+      "description": "Memory engine and app that is extremely fast, scalable. The Memory API for the AI era.",
       "descriptions": {
-        "zh": "学习它。建造它。寄给别人。",
-        "en": "Learn it. Build it. Ship it for others."
+        "zh": "内存引擎和应用程序速度极快，可扩展。 AI时代的内存API。",
+        "en": "Memory engine and app that is extremely fast, scalable. The Memory API for the AI era."
       },
-      "language": "Python",
-      "stars_total": 21120,
-      "forks_total": 3497,
-      "stars_today": 2155
+      "language": "TypeScript",
+      "stars_total": 24136,
+      "forks_total": 2158,
+      "stars_today": 647
     },
     {
       "rank": 4,
-      "repo": "anthropics/knowledge-work-plugins",
-      "owner": "anthropics",
-      "name": "knowledge-work-plugins",
-      "url": "https://github.com/anthropics/knowledge-work-plugins",
-      "description": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork",
+      "repo": "harry0703/MoneyPrinterTurbo",
+      "owner": "harry0703",
+      "name": "MoneyPrinterTurbo",
+      "url": "https://github.com/harry0703/MoneyPrinterTurbo",
+      "description": "利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.",
       "descriptions": {
-        "zh": "主要供知识工作者在 Claude Cowork 中使用的开源插件存储库",
-        "en": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork"
+        "zh": "利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.",
+        "en": "Generate short videos with one click using AI LLM."
       },
       "language": "Python",
-      "stars_total": 16812,
-      "forks_total": 1968,
-      "stars_today": 1718
+      "stars_total": 77182,
+      "forks_total": 10951,
+      "stars_today": 3375
     },
     {
       "rank": 5,
-      "repo": "mukul975/Anthropic-Cybersecurity-Skills",
-      "owner": "mukul975",
-      "name": "Anthropic-Cybersecurity-Skills",
-      "url": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills",
-      "description": "754 structured cybersecurity skills for AI agents · Mapped to 5 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND & NIST AI RMF · agentskills.io standard · Works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI & 20+ platforms · 26 security domains · Apache 2.0",
+      "repo": "D4Vinci/Scrapling",
+      "owner": "D4Vinci",
+      "name": "Scrapling",
+      "url": "https://github.com/D4Vinci/Scrapling",
+      "description": "🕷️ An adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl!",
       "descriptions": {
-        "zh": "AI 代理的 754 项结构化网络安全技能 · 映射到 5 个框架：MITRE ATT&CK、NIST CSF 2.0、MITRE ATLAS、D3FEND 和 NIST AI RMF ·agentskills.io 标准 · 可与 Claude Code、GitHub Copilot、Codex CLI、Cursor、Gemini CLI 和 20 多个平台配合使用 · 26 个安全域 · Apache 2.0",
-        "en": "754 structured cybersecurity skills for AI agents · Mapped to 5 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND & NIST AI RMF · agentskills.io standard · Works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI & 20+ platforms · 26 security domains · Apache 2.0"
+        "zh": "🕷️ 一个自适应网页抓取框架，可以处理从单个请求到全面抓取的所有内容！",
+        "en": "🕷️ An adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl!"
       },
       "language": "Python",
-      "stars_total": 10278,
-      "forks_total": 1202,
-      "stars_today": 880
+      "stars_total": 58346,
+      "forks_total": 5654,
+      "stars_today": 1486
     },
     {
       "rank": 6,
-      "repo": "hardikpandya/stop-slop",
-      "owner": "hardikpandya",
-      "name": "stop-slop",
-      "url": "https://github.com/hardikpandya/stop-slop",
-      "description": "A skill file for removing AI tells from prose",
+      "repo": "pbakaus/impeccable",
+      "owner": "pbakaus",
+      "name": "impeccable",
+      "url": "https://github.com/pbakaus/impeccable",
+      "description": "The design language that makes your AI harness better at design.",
       "descriptions": {
-        "zh": "从散文中删除 AI 的技能文件",
-        "en": "A skill file for removing AI tells from prose"
+        "zh": "使您的 AI 线束在设计上更加出色的设计语言。",
+        "en": "The design language that makes your AI harness better at design."
       },
-      "language": null,
-      "stars_total": 5153,
-      "forks_total": 406,
-      "stars_today": 539
+      "language": "JavaScript",
+      "stars_total": 32978,
+      "forks_total": 1792,
+      "stars_today": 485
     }
   ]
 }
