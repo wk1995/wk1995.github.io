@@ -14,6 +14,13 @@
   const trackList = document.getElementById("track-list");
   const exportMixButton = document.getElementById("export-mix");
   const exportVideoButton = document.getElementById("export-video");
+  const selectModeButton = document.getElementById("select-mode");
+  const panModeButton = document.getElementById("pan-mode");
+  const zoomControl = document.getElementById("zoom-control");
+  const zoomValue = document.getElementById("zoom-value");
+  const panControl = document.getElementById("pan-control");
+  const panValue = document.getElementById("pan-value");
+  const cutSelectionButton = document.getElementById("cut-selection");
 
   const trackColors = ["#1e90ff", "#36c98d", "#f59e0b", "#f97373", "#a78bfa", "#22d3ee"];
 
@@ -22,6 +29,12 @@
   let playhead = 0;
   let animationFrame = 0;
   let playbackContext = null;
+  let zoomLevel = 1;
+  let viewStart = 0;
+  let editMode = "select";
+  let selectionStart = null;
+  let selectionEnd = null;
+  let dragState = null;
 
   function setStatus(message) {
     status.textContent = message || "";
@@ -54,6 +67,72 @@
     return `${value.toFixed(value >= 10 ? 0 : 1)} ${units[unitIndex]}`;
   }
 
+  function clamp(value, min, max) {
+    return Math.min(max, Math.max(min, value));
+  }
+
+  function getVisibleDuration() {
+    if (!maxDuration) {
+      return 0;
+    }
+
+    return maxDuration / zoomLevel;
+  }
+
+  function getMaxViewStart() {
+    return Math.max(0, maxDuration - getVisibleDuration());
+  }
+
+  function clampViewStart(value) {
+    return clamp(value, 0, getMaxViewStart());
+  }
+
+  function getSelectionRange() {
+    if (selectionStart === null || selectionEnd === null) {
+      return null;
+    }
+
+    const start = Math.min(selectionStart, selectionEnd);
+    const end = Math.max(selectionStart, selectionEnd);
+
+    if (end - start < 0.05) {
+      return null;
+    }
+
+    return {
+      start: clamp(start, 0, maxDuration),
+      end: clamp(end, 0, maxDuration),
+    };
+  }
+
+  function updateEditControls() {
+    const maxViewStart = getMaxViewStart();
+    const hasTracks = tracks.length > 0;
+
+    zoomControl.disabled = !hasTracks;
+    panControl.disabled = !hasTracks || zoomLevel <= 1;
+    cutSelectionButton.disabled = !getSelectionRange();
+    zoomControl.value = zoomLevel.toString();
+    zoomValue.textContent = `${zoomLevel.toFixed(2)}x`;
+    panControl.max = maxViewStart.toFixed(2);
+    panControl.step = maxDuration > 60 ? "0.1" : "0.01";
+    panControl.value = viewStart.toFixed(2);
+    panValue.textContent = formatTime(viewStart);
+  }
+
+  function setEditMode(mode) {
+    editMode = mode;
+    selectModeButton.classList.toggle("is-active", mode === "select");
+    panModeButton.classList.toggle("is-active", mode === "pan");
+    canvas.classList.toggle("is-panning", mode === "pan");
+  }
+
+  function timeFromCanvasX(clientX) {
+    const rect = canvas.getBoundingClientRect();
+    const ratio = rect.width > 0 ? (clientX - rect.left) / rect.width : 0;
+    return clamp(viewStart + clamp(ratio, 0, 1) * getVisibleDuration(), 0, maxDuration);
+  }
+
   function isSupportedSource(file) {
     const extensionPattern = /\.(aac|aif|aiff|flac|m4a|mp3|mp4|oga|ogg|opus|wav|webm)$/i;
     return file.type.startsWith("audio/") || file.type.startsWith("video/") || extensionPattern.test(file.name);
@@ -63,8 +142,18 @@
     maxDuration = tracks.length
       ? Math.max.apply(null, tracks.map(function (track) { return track.duration; }))
       : 0;
+    if (maxDuration === 0) {
+      zoomLevel = 1;
+      viewStart = 0;
+      selectionStart = null;
+      selectionEnd = null;
+    } else {
+      zoomLevel = clamp(zoomLevel, 1, Number(zoomControl.max));
+      viewStart = clampViewStart(viewStart);
+    }
     duration.textContent = formatTime(maxDuration);
     fileMeta.textContent = tracks.length ? `总时长 ${formatTime(maxDuration)}` : "--";
+    updateEditControls();
   }
 
   function updateTrackAudioProperties(track) {
@@ -151,7 +240,13 @@
     return playhead;
   }
 
-  function renderWaveformFrame(targetCanvas, current) {
+  function renderWaveformFrame(targetCanvas, current, options) {
+    const frameOptions = options || {};
+    const frameViewStart = frameOptions.viewStart === undefined ? viewStart : frameOptions.viewStart;
+    const frameVisibleDuration = frameOptions.visibleDuration === undefined
+      ? getVisibleDuration()
+      : frameOptions.visibleDuration;
+    const frameSelection = frameOptions.selection === undefined ? getSelectionRange() : frameOptions.selection;
     const context = targetCanvas.getContext("2d");
     const width = targetCanvas.width;
     const height = targetCanvas.height;
@@ -160,7 +255,9 @@
     const trackCount = tracks.length;
     const gap = Math.max(8 * ratio, height * 0.018);
     const trackHeight = trackCount ? (height - gap * (trackCount - 1)) / trackCount : height;
-    const progressX = maxDuration > 0 ? Math.max(0, Math.min(width, width * (current / maxDuration))) : 0;
+    const progressX = frameVisibleDuration > 0
+      ? Math.max(0, Math.min(width, width * ((current - frameViewStart) / frameVisibleDuration)))
+      : 0;
 
     context.fillStyle = colors.background;
     context.fillRect(0, 0, width, height);
@@ -174,7 +271,7 @@
     tracks.forEach(function (track, trackIndex) {
       const top = trackIndex * (trackHeight + gap);
       const centerY = top + trackHeight / 2;
-      const waveformWidth = maxDuration > 0 ? Math.max(1, width * (track.duration / maxDuration)) : width;
+      const visibleEnd = frameViewStart + frameVisibleDuration;
       const labelX = 14 * ratio;
       const labelY = top + 22 * ratio;
 
@@ -193,11 +290,18 @@
         return;
       }
 
-      const barGap = Math.max(1, Math.floor(waveformWidth / track.peaks.length / 3));
-      const barWidth = Math.max(1, Math.floor(waveformWidth / track.peaks.length) - barGap);
+      const secondsPerPeak = track.duration / track.peaks.length;
+      const barWidth = Math.max(1, Math.ceil(width / Math.max(1, frameVisibleDuration / secondsPerPeak)));
 
       track.peaks.forEach(function (peak, index) {
-        const x = Math.floor((index / track.peaks.length) * waveformWidth);
+        const peakStart = index * secondsPerPeak;
+        const peakEnd = peakStart + secondsPerPeak;
+
+        if (peakEnd < frameViewStart || peakStart > visibleEnd) {
+          return;
+        }
+
+        const x = Math.floor(((peakStart - frameViewStart) / frameVisibleDuration) * width);
         const barHeight = Math.max(2 * ratio, peak * trackHeight * 0.68);
         const y = centerY - barHeight / 2;
 
@@ -207,11 +311,22 @@
         context.globalAlpha = 1;
       });
 
-      if (waveformWidth < width) {
+      if (track.duration < visibleEnd) {
+        const waveformWidth = Math.max(0, ((track.duration - frameViewStart) / frameVisibleDuration) * width);
         context.fillStyle = "rgba(0,0,0,0.12)";
         context.fillRect(waveformWidth, top, width - waveformWidth, trackHeight);
       }
     });
+
+    if (frameSelection) {
+      const selectedX = ((frameSelection.start - frameViewStart) / frameVisibleDuration) * width;
+      const selectedWidth = ((frameSelection.end - frameSelection.start) / frameVisibleDuration) * width;
+      context.fillStyle = "rgba(30, 144, 255, 0.16)";
+      context.fillRect(selectedX, 0, selectedWidth, height);
+      context.strokeStyle = "rgba(30, 144, 255, 0.76)";
+      context.lineWidth = Math.max(1, ratio);
+      context.strokeRect(selectedX, 0, selectedWidth, height);
+    }
 
     context.fillStyle = colors.foreground;
     context.fillRect(progressX, 0, Math.max(2, ratio), height);
@@ -296,9 +411,15 @@
     tracks = [];
     maxDuration = 0;
     playhead = 0;
+    zoomLevel = 1;
+    viewStart = 0;
+    selectionStart = null;
+    selectionEnd = null;
+    dragState = null;
     trackList.innerHTML = "";
     exportMixButton.disabled = true;
     exportVideoButton.disabled = true;
+    updateEditControls();
     if (playbackContext) {
       playbackContext.close();
       playbackContext = null;
@@ -447,6 +568,80 @@
       panNode: null,
       color: trackColors[index % trackColors.length],
     };
+  }
+
+  function cutAudioBuffer(audioBuffer, start, end) {
+    const sampleRate = audioBuffer.sampleRate;
+    const channelCount = audioBuffer.numberOfChannels;
+    const startSample = clamp(Math.floor(start * sampleRate), 0, audioBuffer.length);
+    const endSample = clamp(Math.floor(end * sampleRate), 0, audioBuffer.length);
+    const removedSamples = Math.max(0, endSample - startSample);
+
+    if (!removedSamples) {
+      return audioBuffer;
+    }
+
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioContext = new AudioContext();
+    const nextLength = Math.max(1, audioBuffer.length - removedSamples);
+    const nextBuffer = audioContext.createBuffer(channelCount, nextLength, sampleRate);
+
+    for (let channel = 0; channel < channelCount; channel += 1) {
+      const source = audioBuffer.getChannelData(channel);
+      const target = nextBuffer.getChannelData(channel);
+      target.set(source.subarray(0, Math.min(startSample, nextLength)), 0);
+      if (startSample < nextLength) {
+        target.set(source.subarray(endSample), startSample);
+      }
+    }
+
+    audioContext.close();
+    return nextBuffer;
+  }
+
+  function resetTrackSourceFromBuffer(track) {
+    const wavBlob = encodeWav(track.buffer);
+    const nextUrl = URL.createObjectURL(wavBlob);
+
+    track.audio.pause();
+    track.audio.removeAttribute("src");
+    track.audio.load();
+    URL.revokeObjectURL(track.url);
+
+    track.url = nextUrl;
+    track.audio = new Audio();
+    track.audio.preload = "metadata";
+    track.audio.src = nextUrl;
+    track.duration = track.buffer.duration;
+    track.peaks = buildPeaks(track.buffer);
+    track.sourceNode = null;
+    track.gainNode = null;
+    track.panNode = null;
+    updateTrackAudioProperties(track);
+  }
+
+  function cutSelection() {
+    const range = getSelectionRange();
+
+    if (!range) {
+      setStatus("请先在波形区域拖出要剪切的时间选区。");
+      return;
+    }
+
+    pauseTracks();
+    tracks.forEach(function (track) {
+      track.buffer = cutAudioBuffer(track.buffer, range.start, range.end);
+      resetTrackSourceFromBuffer(track);
+    });
+
+    const removedDuration = range.end - range.start;
+    playhead = clamp(range.start, 0, Math.max(0, maxDuration - removedDuration));
+    selectionStart = null;
+    selectionEnd = null;
+    updateProjectDuration();
+    renderTrackControls();
+    setStatus(`已剪切 ${formatTime(removedDuration)} 的选区。`);
+    drawWaveform();
   }
 
   function writeString(view, offset, string) {
@@ -613,7 +808,11 @@
         });
       });
 
-      renderWaveformFrame(exportCanvas, 0);
+      renderWaveformFrame(exportCanvas, 0, {
+        viewStart: 0,
+        visibleDuration: maxDuration,
+        selection: null,
+      });
       recorder.start(1000);
 
       await new Promise(function (resolve) {
@@ -622,7 +821,11 @@
         function render() {
           const elapsed = (performance.now() - startedAt) / 1000;
           const current = Math.min(maxDuration, elapsed);
-          renderWaveformFrame(exportCanvas, current);
+          renderWaveformFrame(exportCanvas, current, {
+            viewStart: 0,
+            visibleDuration: maxDuration,
+            selection: null,
+          });
           setStatus(`正在导出波形视频：${formatTime(current)} / ${formatTime(maxDuration)}`);
 
           if (current >= maxDuration) {
@@ -669,6 +872,10 @@
     emptyState.hidden = false;
     emptyState.textContent = "正在解析音频波形";
     playToggle.disabled = true;
+    zoomLevel = 1;
+    viewStart = 0;
+    selectionStart = null;
+    selectionEnd = null;
     trackSummary.textContent = `正在加载 ${files.length} 个音轨`;
     fileMeta.textContent = files.map(function (file) { return formatBytes(file.size); }).join(" · ");
     currentTime.textContent = "0:00";
@@ -754,6 +961,29 @@
     updateProgress();
   }
 
+  function seekTo(time, shouldResume) {
+    playhead = clamp(time, 0, maxDuration);
+
+    tracks.forEach(function (track) {
+      track.audio.currentTime = Math.min(playhead, Math.max(0, track.duration - 0.05));
+
+      if (playhead >= track.duration) {
+        track.audio.pause();
+        return;
+      }
+
+      if (shouldResume && track.audio.paused) {
+        ensurePlaybackGraph(track);
+        track.audio.play().catch(function () {
+          return undefined;
+        });
+      }
+    });
+
+    currentTime.textContent = formatTime(playhead);
+    drawWaveform();
+  }
+
   input.addEventListener("change", function (event) {
     loadFiles(event.target.files);
   });
@@ -787,8 +1017,32 @@
 
   exportMixButton.addEventListener("click", exportMixedTrack);
   exportVideoButton.addEventListener("click", exportWaveformVideo);
+  cutSelectionButton.addEventListener("click", cutSelection);
 
-  canvas.addEventListener("click", function (event) {
+  selectModeButton.addEventListener("click", function () {
+    setEditMode("select");
+  });
+
+  panModeButton.addEventListener("click", function () {
+    setEditMode("pan");
+  });
+
+  zoomControl.addEventListener("input", function () {
+    const previousVisibleDuration = getVisibleDuration();
+    const center = viewStart + previousVisibleDuration / 2;
+    zoomLevel = Number(zoomControl.value);
+    viewStart = clampViewStart(center - getVisibleDuration() / 2);
+    updateEditControls();
+    drawWaveform();
+  });
+
+  panControl.addEventListener("input", function () {
+    viewStart = clampViewStart(Number(panControl.value));
+    updateEditControls();
+    drawWaveform();
+  });
+
+  canvas.addEventListener("pointerdown", function (event) {
     if (!maxDuration) {
       return;
     }
@@ -796,27 +1050,84 @@
     const wasPlaying = tracks.some(function (track) {
       return !track.audio.paused && !track.audio.ended;
     });
+    const time = timeFromCanvasX(event.clientX);
+
+    dragState = {
+      mode: editMode,
+      startX: event.clientX,
+      startTime: time,
+      initialViewStart: viewStart,
+      wasPlaying: wasPlaying,
+      moved: false,
+    };
+
+    if (editMode === "select") {
+      selectionStart = time;
+      selectionEnd = time;
+    }
+
+    canvas.setPointerCapture(event.pointerId);
+    drawWaveform();
+  });
+
+  canvas.addEventListener("pointermove", function (event) {
+    if (!dragState) {
+      return;
+    }
+
     const rect = canvas.getBoundingClientRect();
-    const ratio = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
-    playhead = ratio * maxDuration;
+    const deltaX = event.clientX - dragState.startX;
+    dragState.moved = dragState.moved || Math.abs(deltaX) > 3;
 
-    tracks.forEach(function (track) {
-      track.audio.currentTime = Math.min(playhead, Math.max(0, track.duration - 0.05));
+    if (dragState.mode === "pan") {
+      const secondsPerPixel = getVisibleDuration() / rect.width;
+      viewStart = clampViewStart(dragState.initialViewStart - deltaX * secondsPerPixel);
+      updateEditControls();
+      drawWaveform();
+      return;
+    }
 
-      if (playhead >= track.duration) {
-        track.audio.pause();
-        return;
-      }
+    selectionEnd = timeFromCanvasX(event.clientX);
+    updateEditControls();
+    drawWaveform();
+  });
 
-      if (wasPlaying && track.audio.paused) {
-        ensurePlaybackGraph(track);
-        track.audio.play().catch(function () {
-          return undefined;
-        });
-      }
-    });
+  canvas.addEventListener("pointerup", function (event) {
+    if (!dragState) {
+      return;
+    }
 
-    currentTime.textContent = formatTime(playhead);
+    if (dragState.mode === "select" && !dragState.moved) {
+      selectionStart = null;
+      selectionEnd = null;
+      seekTo(dragState.startTime, dragState.wasPlaying);
+    }
+
+    updateEditControls();
+    dragState = null;
+    canvas.releasePointerCapture(event.pointerId);
+    drawWaveform();
+  });
+
+  canvas.addEventListener("pointercancel", function () {
+    dragState = null;
+    updateEditControls();
+    drawWaveform();
+  });
+
+  canvas.addEventListener("wheel", function (event) {
+    if (!maxDuration) {
+      return;
+    }
+
+    event.preventDefault();
+    const focusTime = timeFromCanvasX(event.clientX);
+    const nextZoom = clamp(zoomLevel * (event.deltaY < 0 ? 1.18 : 0.85), 1, Number(zoomControl.max));
+    const rect = canvas.getBoundingClientRect();
+    const focusRatio = rect.width > 0 ? clamp((event.clientX - rect.left) / rect.width, 0, 1) : 0.5;
+    zoomLevel = nextZoom;
+    viewStart = clampViewStart(focusTime - getVisibleDuration() * focusRatio);
+    updateEditControls();
     drawWaveform();
   });
 
@@ -825,5 +1136,7 @@
   window.addEventListener("beforeunload", clearTracks);
 
   setPlayIcon(false);
+  setEditMode("select");
+  updateEditControls();
   playToggle.disabled = true;
 })();
