@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>股票行情</title>
+  <meta name="description" content="中国股票行情搜索、自选和分时图。">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="stylesheet" href="../assets/stock.css">
+</head>
+<body class="stock-page">
+  <main class="stock-shell">
+    <section class="stock-search-section" aria-label="股票搜索">
+      <div class="stock-title-block">
+        <p>China A-Share Watch</p>
+        <h1>股票行情</h1>
+      </div>
+      <form class="stock-search" id="stock-search-form" role="search">
+        <label class="sr-only" for="stock-search-input">搜索中国股票</label>
+        <input id="stock-search-input" type="search" autocomplete="off" placeholder="搜索股票名称 / 股票代码">
+        <button type="submit">搜索</button>
+      </form>
+      <div class="stock-search-results" id="stock-search-results" role="listbox" aria-label="搜索结果"></div>
+      <p class="stock-status" id="stock-status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="stock-watch-section" id="watch-section" aria-label="自选行情">
+      <div class="stock-section-head">
+        <div>
+          <p>Watchlist</p>
+          <h2>自选分时图</h2>
+        </div>
+        <div class="stock-watch-tabs" id="watch-tabs" aria-label="自选股票"></div>
+      </div>
+      <div class="stock-chart-panel" id="watch-chart-panel">
+        <canvas id="stock-chart" width="980" height="360" aria-label="股票分时图"></canvas>
+        <div class="stock-empty" id="watch-empty">暂无自选股票，添加后显示分时图。</div>
+      </div>
+    </section>
+
+    <section class="stock-detail-section" id="detail-section" hidden aria-label="股票详情">
+      <div class="stock-detail-head">
+        <div>
+          <p class="stock-code" id="detail-code"></p>
+          <h2 id="detail-name">股票详情</h2>
+        </div>
+        <button class="stock-fav-button" id="favorite-toggle" type="button">添加自选</button>
+      </div>
+      <div class="stock-quote-grid" id="quote-grid"></div>
+      <div class="stock-detail-chart">
+        <canvas id="detail-chart" width="980" height="360" aria-label="详情分时图"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <script src="../assets/stock.js"></script>
+</body>
+</html>
