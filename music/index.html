@@ -80,6 +80,24 @@
             <span class="music-file-meta" id="file-meta">--</span>
           </div>
 
+          <div class="music-edit-toolbar" aria-label="音轨编辑工具">
+            <div class="music-mode-group" role="group" aria-label="编辑模式">
+              <button class="music-tool-button is-active" id="select-mode" type="button">选择</button>
+              <button class="music-tool-button" id="pan-mode" type="button">平移</button>
+            </div>
+            <label class="music-edit-control">
+              <span>缩放</span>
+              <input id="zoom-control" type="range" min="1" max="12" step="0.25" value="1" disabled>
+              <strong id="zoom-value">1.00x</strong>
+            </label>
+            <label class="music-edit-control">
+              <span>位置</span>
+              <input id="pan-control" type="range" min="0" max="0" step="0.01" value="0" disabled>
+              <strong id="pan-value">0:00</strong>
+            </label>
+            <button class="music-export-button" id="cut-selection" type="button" disabled>剪切选区</button>
+          </div>
+
           <div class="music-wave-shell">
             <canvas id="waveform" class="music-waveform" aria-label="音频波形图"></canvas>
             <div class="music-wave-empty" id="wave-empty">正在解析音频波形</div>
