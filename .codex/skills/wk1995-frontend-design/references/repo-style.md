@@ -6,6 +6,7 @@
 - Main entry points include `index.html`, `blog/`, `apps/`, `models/`, `chat/`, `feedback/`, `music/`, and `apps/packages/`.
 - Shared behavior lives mainly in `assets/site.js`; shared styles live in `assets/site.css`.
 - Catalog-style pages use `assets/catalog-pages.css` plus page-specific JS such as `assets/personal-apps.js`, `assets/model-catalog.js`, and `assets/app-detail.js`.
+- Skill-owned helper checks live in `.codex/skills/wk1995-frontend-design/scripts/`; they are for agent validation and should not be shipped as site assets.
 
 ## Existing Contracts
 
@@ -39,3 +40,4 @@
 - For static previews, direct file opening is usually enough. Use a local server only when relative fetches, module loading, or browser security rules require it.
 - If shared CSS variables change, inspect at least `index.html`, `blog/index.html`, `apps/index.html`, and `models/index.html`.
 - If translation keys change, search with `rg "key.name"` and verify both language branches have matching keys.
+- Run `.codex/skills/wk1995-frontend-design/scripts/check_site_quality.py` after UI edits to catch duplicate IDs, missing translation keys, weak image metadata, and CSS anti-patterns.
