@@ -1,11 +1,11 @@
 {
   "schemaVersion": 2,
   "version": 2,
-  "versionName": "main-20260526075412",
-  "versionNumber": "20260526075412",
+  "versionName": "main-20260603120146",
+  "versionNumber": "20260603120146",
   "release": {
-    "versionName": "main-20260526075412",
-    "versionNumber": "20260526075412"
+    "versionName": "main-20260603120146",
+    "versionNumber": "20260603120146"
   },
   "updatedAt": "2026-06-02",
   "basePath": "packages/",
