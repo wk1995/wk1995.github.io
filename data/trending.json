@@ -1,10 +1,26 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-02T06:00:51.993747+00:00",
+  "generated_at": "2026-06-03T06:15:08.727410+00:00",
   "items": [
     {
       "rank": 1,
+      "repo": "chopratejas/headroom",
+      "owner": "chopratejas",
+      "name": "headroom",
+      "url": "https://github.com/chopratejas/headroom",
+      "description": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, MCP server.",
+      "descriptions": {
+        "zh": "在工具输出、日志、文件和 RAG 块到达 LLM 之前对其进行压缩。减少 60-95% 的标记，答案相同。库、代理、MCP 服务器。",
+        "en": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, MCP server."
+      },
+      "language": "Python",
+      "stars_total": 7264,
+      "forks_total": 497,
+      "stars_today": 1265
+    },
+    {
+      "rank": 2,
       "repo": "microsoft/markitdown",
       "owner": "microsoft",
       "name": "markitdown",
@@ -15,60 +31,28 @@
         "en": "Python tool for converting files and office documents to Markdown."
       },
       "language": "Python",
-      "stars_total": 139194,
-      "forks_total": 9474,
-      "stars_today": 3034
-    },
-    {
-      "rank": 2,
-      "repo": "nesquena/hermes-webui",
-      "owner": "nesquena",
-      "name": "hermes-webui",
-      "url": "https://github.com/nesquena/hermes-webui",
-      "description": "Hermes WebUI: The best way to use Hermes Agent from the web or from your phone!",
-      "descriptions": {
-        "zh": "Hermes WebUI：从网络或手机使用 Hermes Agent 的最佳方式！",
-        "en": "Hermes WebUI: The best way to use Hermes Agent from the web or from your phone!"
-      },
-      "language": "Python",
-      "stars_total": 11642,
-      "forks_total": 1475,
-      "stars_today": 945
+      "stars_total": 141659,
+      "forks_total": 9655,
+      "stars_today": 3618
     },
     {
       "rank": 3,
-      "repo": "supermemoryai/supermemory",
-      "owner": "supermemoryai",
-      "name": "supermemory",
-      "url": "https://github.com/supermemoryai/supermemory",
-      "description": "Memory engine and app that is extremely fast, scalable. The Memory API for the AI era.",
+      "repo": "affaan-m/ECC",
+      "owner": "affaan-m",
+      "name": "ECC",
+      "url": "https://github.com/affaan-m/ECC",
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
       "descriptions": {
-        "zh": "内存引擎和应用程序速度极快，可扩展。 AI时代的内存API。",
-        "en": "Memory engine and app that is extremely fast, scalable. The Memory API for the AI era."
+        "zh": "代理利用性能优化系统。 Claude Code、Codex、Opencode、Cursor 等的技能、直觉、记忆、安全性和研究优先的开发。",
+        "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
       },
-      "language": "TypeScript",
-      "stars_total": 24136,
-      "forks_total": 2158,
-      "stars_today": 647
+      "language": "JavaScript",
+      "stars_total": 204414,
+      "forks_total": 31358,
+      "stars_today": 1533
     },
     {
       "rank": 4,
-      "repo": "harry0703/MoneyPrinterTurbo",
-      "owner": "harry0703",
-      "name": "MoneyPrinterTurbo",
-      "url": "https://github.com/harry0703/MoneyPrinterTurbo",
-      "description": "利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.",
-      "descriptions": {
-        "zh": "利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.",
-        "en": "Generate short videos with one click using AI LLM."
-      },
-      "language": "Python",
-      "stars_total": 77182,
-      "forks_total": 10951,
-      "stars_today": 3375
-    },
-    {
-      "rank": 5,
       "repo": "D4Vinci/Scrapling",
       "owner": "D4Vinci",
       "name": "Scrapling",
@@ -79,25 +63,41 @@
         "en": "🕷️ An adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl!"
       },
       "language": "Python",
-      "stars_total": 58346,
-      "forks_total": 5654,
-      "stars_today": 1486
+      "stars_total": 59420,
+      "forks_total": 5736,
+      "stars_today": 1182
+    },
+    {
+      "rank": 5,
+      "repo": "nesquena/hermes-webui",
+      "owner": "nesquena",
+      "name": "hermes-webui",
+      "url": "https://github.com/nesquena/hermes-webui",
+      "description": "Hermes WebUI: The best way to use Hermes Agent from the web or from your phone!",
+      "descriptions": {
+        "zh": "Hermes WebUI：从网络或手机使用 Hermes Agent 的最佳方式！",
+        "en": "Hermes WebUI: The best way to use Hermes Agent from the web or from your phone!"
+      },
+      "language": "Python",
+      "stars_total": 12712,
+      "forks_total": 1551,
+      "stars_today": 1722
     },
     {
       "rank": 6,
-      "repo": "pbakaus/impeccable",
-      "owner": "pbakaus",
-      "name": "impeccable",
-      "url": "https://github.com/pbakaus/impeccable",
-      "description": "The design language that makes your AI harness better at design.",
+      "repo": "reconurge/flowsint",
+      "owner": "reconurge",
+      "name": "flowsint",
+      "url": "https://github.com/reconurge/flowsint",
+      "description": "A modern platform for visual, flexible, and extensible graph-based investigations. For cybersecurity analysts and investigators.",
       "descriptions": {
-        "zh": "使您的 AI 线束在设计上更加出色的设计语言。",
-        "en": "The design language that makes your AI harness better at design."
+        "zh": "一个用于可视化、灵活且可扩展的基于图形的调查的现代平台。适用于网络安全分析师和调查人员。",
+        "en": "A modern platform for visual, flexible, and extensible graph-based investigations. For cybersecurity analysts and investigators."
       },
-      "language": "JavaScript",
-      "stars_total": 32978,
-      "forks_total": 1792,
-      "stars_today": 485
+      "language": "TypeScript",
+      "stars_total": 4637,
+      "forks_total": 593,
+      "stars_today": 124
     }
   ]
 }
