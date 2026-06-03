@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Music Waveform | WK1995</title>
+  <meta name="description" content="上传多份音频或视频文件，在同一个画布中查看多音轨波形、调整声音属性并导出混音。">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="stylesheet" href="../assets/music.css">
+</head>
+<body data-page="music">
+  <div class="music-page">
+    <header class="music-header">
+      <div class="music-container">
+        <div class="site-topbar">
+          <a
+            class="brand-link"
+            href="https://github.com/wk1995"
+            target="_blank"
+            rel="noopener"
+            data-i18n-aria="brand.aria"
+            aria-label="打开 WK1995 的 GitHub 主页"
+          >
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82a7.56 7.56 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path>
+            </svg>
+          </a>
+
+          <div class="topbar-right">
+            <div class="control-row">
+              <label class="control-group" for="language-select">
+                <span class="control-label" id="language-label">语言</span>
+                <select class="language-select" id="language-select" aria-label="语言">
+                  <option value="zh">简体中文</option>
+                  <option value="en">English</option>
+                </select>
+              </label>
+              <div class="control-group">
+                <span class="control-label" id="theme-caption">主题</span>
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换主题">
+                  <svg viewBox="0 0 16 16" aria-hidden="true">
+                    <path id="theme-icon" d="M9.598 1.591a.75.75 0 0 1 .287.857 6.998 6.998 0 0 0 8.442 8.442.75.75 0 0 1 .857.287.75.75 0 0 1-.131.94A8.5 8.5 0 1 1 8.658.722a.75.75 0 0 1 .94-.131Z"></path>
+                  </svg>
+                  <span id="theme-label">暗色</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="music-hero">
+          <p class="music-kicker">Audio Lab</p>
+          <h1>音频波形查看器</h1>
+          <p class="music-intro">提供多份本地音频或视频文件，页面会提取可解码的声音内容，把所有波形放在同一个画布中按音轨展示，并支持统一播放、点击跳转、独立属性调节和混音导出。</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="music-container">
+      <section class="music-workspace" aria-label="音频波形工具">
+        <div class="music-dropzone" id="dropzone">
+          <input id="audio-input" class="sr-only" type="file" accept="audio/*,video/*" multiple>
+          <label class="music-drop-label" for="audio-input">
+            <span class="music-drop-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3a1 1 0 0 1 1 1v9.59l2.3-2.29a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42l2.3 2.29V4a1 1 0 0 1 1-1Zm-7 14a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1Z"></path>
+              </svg>
+            </span>
+            <span class="music-drop-title">选择或拖入多个音频 / 视频文件</span>
+            <span class="music-drop-copy">支持浏览器可解码的 MP3、WAV、M4A、OGG、MP4 等格式，可一次选择多份</span>
+          </label>
+        </div>
+
+        <div class="music-panel" id="player-panel" hidden>
+          <div class="music-file-row">
+            <div class="music-file-copy">
+              <span class="music-file-label">当前工程</span>
+              <strong id="track-summary">未选择音频</strong>
+            </div>
+            <span class="music-file-meta" id="file-meta">--</span>
+          </div>
+
+          <div class="music-edit-toolbar" aria-label="音轨编辑工具">
+            <div class="music-mode-group" role="group" aria-label="编辑模式">
+              <button class="music-tool-button is-active" id="select-mode" type="button">选择</button>
+              <button class="music-tool-button" id="pan-mode" type="button">平移</button>
+            </div>
+            <div class="music-mode-group" role="group" aria-label="操作范围">
+              <button class="music-tool-button is-active" id="scope-selected" type="button">选中音轨</button>
+              <button class="music-tool-button" id="scope-all" type="button">全部音轨</button>
+            </div>
+            <label class="music-edit-control">
+              <span>缩放</span>
+              <input id="zoom-control" type="range" min="1" max="12" step="0.25" value="1" disabled>
+              <strong id="zoom-value">1.00x</strong>
+            </label>
+            <label class="music-edit-control">
+              <span>位置</span>
+              <input id="pan-control" type="range" min="0" max="0" step="0.01" value="0" disabled>
+              <strong id="pan-value">0:00</strong>
+            </label>
+            <span class="music-edit-meta" id="selected-track-label">未选择音轨</span>
+            <button class="music-export-button" id="split-playhead" type="button" disabled>分割播放头</button>
+            <button class="music-export-button" id="cut-selection" type="button" disabled>剪切选区</button>
+          </div>
+
+          <div class="music-wave-shell">
+            <canvas id="waveform" class="music-waveform" aria-label="音频波形图"></canvas>
+            <div class="music-wave-empty" id="wave-empty">正在解析音频波形</div>
+          </div>
+
+          <div class="music-time-row">
+            <span id="current-time">0:00</span>
+            <span id="duration">0:00</span>
+          </div>
+
+          <div class="music-controls">
+            <button class="music-play-button" id="play-toggle" type="button" aria-label="播放">
+              <svg id="play-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 5.8c0-.74.82-1.18 1.43-.77l8.34 5.72a.92.92 0 0 1 0 1.5l-8.34 5.72A.92.92 0 0 1 8 17.2V5.8Z"></path>
+              </svg>
+            </button>
+            <span class="music-control-copy">统一播放所有音轨</span>
+            <button class="music-export-button" id="export-mix" type="button" disabled>导出混音 WAV</button>
+            <button class="music-export-button" id="export-video" type="button" disabled>导出波形视频</button>
+          </div>
+
+          <div class="music-track-list" id="track-list" aria-label="音轨属性控制"></div>
+        </div>
+
+        <p class="music-status" id="music-status" role="status" aria-live="polite"></p>
+      </section>
+    </main>
+  </div>
+
+  <script src="../assets/site.js"></script>
+  <script src="../assets/music.js"></script>
+</body>
+</html>
