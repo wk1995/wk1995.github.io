@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-03T06:15:08.727410+00:00",
+  "generated_at": "2026-06-04T06:06:20.662074+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,28 +15,12 @@
         "en": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, MCP server."
       },
       "language": "Python",
-      "stars_total": 7264,
-      "forks_total": 497,
-      "stars_today": 1265
+      "stars_total": 10524,
+      "forks_total": 694,
+      "stars_today": 3530
     },
     {
       "rank": 2,
-      "repo": "microsoft/markitdown",
-      "owner": "microsoft",
-      "name": "markitdown",
-      "url": "https://github.com/microsoft/markitdown",
-      "description": "Python tool for converting files and office documents to Markdown.",
-      "descriptions": {
-        "zh": "用于将文件和 Office 文档转换为 Markdown 的 Python 工具。",
-        "en": "Python tool for converting files and office documents to Markdown."
-      },
-      "language": "Python",
-      "stars_total": 141659,
-      "forks_total": 9655,
-      "stars_today": 3618
-    },
-    {
-      "rank": 3,
       "repo": "affaan-m/ECC",
       "owner": "affaan-m",
       "name": "ECC",
@@ -47,28 +31,60 @@
         "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
       },
       "language": "JavaScript",
-      "stars_total": 204414,
-      "forks_total": 31358,
-      "stars_today": 1533
+      "stars_total": 206104,
+      "forks_total": 31646,
+      "stars_today": 2141
+    },
+    {
+      "rank": 3,
+      "repo": "aquasecurity/trivy",
+      "owner": "aquasecurity",
+      "name": "trivy",
+      "url": "https://github.com/aquasecurity/trivy",
+      "description": "Find vulnerabilities, misconfigurations, secrets, SBOM in containers, Kubernetes, code repositories, clouds and more",
+      "descriptions": {
+        "zh": "查找容器、Kubernetes、代码存储库、云等中的漏洞、错误配置、秘密、SBOM",
+        "en": "Find vulnerabilities, misconfigurations, secrets, SBOM in containers, Kubernetes, code repositories, clouds and more"
+      },
+      "language": "Go",
+      "stars_total": 35482,
+      "forks_total": 421,
+      "stars_today": 24
     },
     {
       "rank": 4,
-      "repo": "D4Vinci/Scrapling",
-      "owner": "D4Vinci",
-      "name": "Scrapling",
-      "url": "https://github.com/D4Vinci/Scrapling",
-      "description": "🕷️ An adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl!",
+      "repo": "NousResearch/hermes-agent",
+      "owner": "NousResearch",
+      "name": "hermes-agent",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "description": "The agent that grows with you",
       "descriptions": {
-        "zh": "🕷️ 一个自适应网页抓取框架，可以处理从单个请求到全面抓取的所有内容！",
-        "en": "🕷️ An adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl!"
+        "zh": "与您共同成长的代理商",
+        "en": "The agent that grows with you"
       },
       "language": "Python",
-      "stars_total": 59420,
-      "forks_total": 5736,
-      "stars_today": 1182
+      "stars_total": 179600,
+      "forks_total": 30768,
+      "stars_today": 1735
     },
     {
       "rank": 5,
+      "repo": "microsoft/markitdown",
+      "owner": "microsoft",
+      "name": "markitdown",
+      "url": "https://github.com/microsoft/markitdown",
+      "description": "Python tool for converting files and office documents to Markdown.",
+      "descriptions": {
+        "zh": "用于将文件和 Office 文档转换为 Markdown 的 Python 工具。",
+        "en": "Python tool for converting files and office documents to Markdown."
+      },
+      "language": "Python",
+      "stars_total": 143224,
+      "forks_total": 9788,
+      "stars_today": 1984
+    },
+    {
+      "rank": 6,
       "repo": "nesquena/hermes-webui",
       "owner": "nesquena",
       "name": "hermes-webui",
@@ -79,25 +95,9 @@
         "en": "Hermes WebUI: The best way to use Hermes Agent from the web or from your phone!"
       },
       "language": "Python",
-      "stars_total": 12712,
-      "forks_total": 1551,
-      "stars_today": 1722
-    },
-    {
-      "rank": 6,
-      "repo": "reconurge/flowsint",
-      "owner": "reconurge",
-      "name": "flowsint",
-      "url": "https://github.com/reconurge/flowsint",
-      "description": "A modern platform for visual, flexible, and extensible graph-based investigations. For cybersecurity analysts and investigators.",
-      "descriptions": {
-        "zh": "一个用于可视化、灵活且可扩展的基于图形的调查的现代平台。适用于网络安全分析师和调查人员。",
-        "en": "A modern platform for visual, flexible, and extensible graph-based investigations. For cybersecurity analysts and investigators."
-      },
-      "language": "TypeScript",
-      "stars_total": 4637,
-      "forks_total": 593,
-      "stars_today": 124
+      "stars_total": 13199,
+      "forks_total": 1608,
+      "stars_today": 719
     }
   ]
 }
