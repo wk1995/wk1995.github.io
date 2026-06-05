@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-04T06:06:20.662074+00:00",
+  "generated_at": "2026-06-05T05:46:44.015623+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,44 +15,12 @@ window.__TRENDING_DATA__ = {
         "en": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, MCP server."
       },
       "language": "Python",
-      "stars_total": 10524,
-      "forks_total": 694,
-      "stars_today": 3530
+      "stars_total": 13054,
+      "forks_total": 837,
+      "stars_today": 3142
     },
     {
       "rank": 2,
-      "repo": "affaan-m/ECC",
-      "owner": "affaan-m",
-      "name": "ECC",
-      "url": "https://github.com/affaan-m/ECC",
-      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
-      "descriptions": {
-        "zh": "代理利用性能优化系统。 Claude Code、Codex、Opencode、Cursor 等的技能、直觉、记忆、安全性和研究优先的开发。",
-        "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
-      },
-      "language": "JavaScript",
-      "stars_total": 206104,
-      "forks_total": 31646,
-      "stars_today": 2141
-    },
-    {
-      "rank": 3,
-      "repo": "aquasecurity/trivy",
-      "owner": "aquasecurity",
-      "name": "trivy",
-      "url": "https://github.com/aquasecurity/trivy",
-      "description": "Find vulnerabilities, misconfigurations, secrets, SBOM in containers, Kubernetes, code repositories, clouds and more",
-      "descriptions": {
-        "zh": "查找容器、Kubernetes、代码存储库、云等中的漏洞、错误配置、秘密、SBOM",
-        "en": "Find vulnerabilities, misconfigurations, secrets, SBOM in containers, Kubernetes, code repositories, clouds and more"
-      },
-      "language": "Go",
-      "stars_total": 35482,
-      "forks_total": 421,
-      "stars_today": 24
-    },
-    {
-      "rank": 4,
       "repo": "NousResearch/hermes-agent",
       "owner": "NousResearch",
       "name": "hermes-agent",
@@ -63,41 +31,73 @@ window.__TRENDING_DATA__ = {
         "en": "The agent that grows with you"
       },
       "language": "Python",
-      "stars_total": 179600,
-      "forks_total": 30768,
-      "stars_today": 1735
+      "stars_total": 181368,
+      "forks_total": 31123,
+      "stars_today": 1913
+    },
+    {
+      "rank": 3,
+      "repo": "affaan-m/ECC",
+      "owner": "affaan-m",
+      "name": "ECC",
+      "url": "https://github.com/affaan-m/ECC",
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "descriptions": {
+        "zh": "代理利用性能优化系统。 Claude Code、Codex、Opencode、Cursor 等的技能、直觉、记忆、安全性和研究优先的开发。",
+        "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
+      },
+      "language": "JavaScript",
+      "stars_total": 207523,
+      "forks_total": 31843,
+      "stars_today": 1750
+    },
+    {
+      "rank": 4,
+      "repo": "PaddlePaddle/PaddleOCR",
+      "owner": "PaddlePaddle",
+      "name": "PaddleOCR",
+      "url": "https://github.com/PaddlePaddle/PaddleOCR",
+      "description": "Turn any PDF or image document into structured data for your AI. A powerful, lightweight OCR toolkit that bridges the gap between images/PDFs and LLMs. Supports 100+ languages.",
+      "descriptions": {
+        "zh": "将任何 PDF 或图像文档转换为 AI 的结构化数据。一款功能强大、轻量级的 OCR 工具包，可弥合图像/PDF 和法学硕士之间的差距。支持 100 多种语言。",
+        "en": "Turn any PDF or image document into structured data for your AI. A powerful, lightweight OCR toolkit that bridges the gap between images/PDFs and LLMs. Supports 100+ languages."
+      },
+      "language": "Python",
+      "stars_total": 80063,
+      "forks_total": 10612,
+      "stars_today": 141
     },
     {
       "rank": 5,
-      "repo": "microsoft/markitdown",
-      "owner": "microsoft",
-      "name": "markitdown",
-      "url": "https://github.com/microsoft/markitdown",
-      "description": "Python tool for converting files and office documents to Markdown.",
+      "repo": "github/spec-kit",
+      "owner": "github",
+      "name": "spec-kit",
+      "url": "https://github.com/github/spec-kit",
+      "description": "💫 Toolkit to help you get started with Spec-Driven Development",
       "descriptions": {
-        "zh": "用于将文件和 Office 文档转换为 Markdown 的 Python 工具。",
-        "en": "Python tool for converting files and office documents to Markdown."
+        "zh": "💫 帮助您开始规范驱动开发的工具包",
+        "en": "💫 Toolkit to help you get started with Spec-Driven Development"
       },
       "language": "Python",
-      "stars_total": 143224,
-      "forks_total": 9788,
-      "stars_today": 1984
+      "stars_total": 108716,
+      "forks_total": 9604,
+      "stars_today": 321
     },
     {
       "rank": 6,
-      "repo": "nesquena/hermes-webui",
-      "owner": "nesquena",
-      "name": "hermes-webui",
-      "url": "https://github.com/nesquena/hermes-webui",
-      "description": "Hermes WebUI: The best way to use Hermes Agent from the web or from your phone!",
+      "repo": "NVIDIA/cosmos",
+      "owner": "NVIDIA",
+      "name": "cosmos",
+      "url": "https://github.com/NVIDIA/cosmos",
+      "description": "NVIDIA Cosmos is an open platform of world models, datasets, and tools that enables developers to build Physical AI for robots, autonomous vehicles, smart infrastructure, and more.",
       "descriptions": {
-        "zh": "Hermes WebUI：从网络或手机使用 Hermes Agent 的最佳方式！",
-        "en": "Hermes WebUI: The best way to use Hermes Agent from the web or from your phone!"
+        "zh": "NVIDIA Cosmos 是一个包含世界模型、数据集和工具的开放平台，使开发人员能够为机器人、自动驾驶车辆、智能基础设施等构建物理 AI。",
+        "en": "NVIDIA Cosmos is an open platform of world models, datasets, and tools that enables developers to build Physical AI for robots, autonomous vehicles, smart infrastructure, and more."
       },
-      "language": "Python",
-      "stars_total": 13199,
-      "forks_total": 1608,
-      "stars_today": 719
+      "language": "Jupyter Notebook",
+      "stars_total": 9114,
+      "forks_total": 584,
+      "stars_today": 133
     }
   ]
 }
