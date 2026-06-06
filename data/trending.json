@@ -1,26 +1,10 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-05T05:46:44.015623+00:00",
+  "generated_at": "2026-06-06T05:03:37.530644+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "chopratejas/headroom",
-      "owner": "chopratejas",
-      "name": "headroom",
-      "url": "https://github.com/chopratejas/headroom",
-      "description": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, MCP server.",
-      "descriptions": {
-        "zh": "在工具输出、日志、文件和 RAG 块到达 LLM 之前对其进行压缩。减少 60-95% 的标记，答案相同。库、代理、MCP 服务器。",
-        "en": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, MCP server."
-      },
-      "language": "Python",
-      "stars_total": 13054,
-      "forks_total": 837,
-      "stars_today": 3142
-    },
-    {
-      "rank": 2,
       "repo": "NousResearch/hermes-agent",
       "owner": "NousResearch",
       "name": "hermes-agent",
@@ -31,12 +15,60 @@
         "en": "The agent that grows with you"
       },
       "language": "Python",
-      "stars_total": 181368,
-      "forks_total": 31123,
-      "stars_today": 1913
+      "stars_total": 183477,
+      "forks_total": 31471,
+      "stars_today": 1845
+    },
+    {
+      "rank": 2,
+      "repo": "chopratejas/headroom",
+      "owner": "chopratejas",
+      "name": "headroom",
+      "url": "https://github.com/chopratejas/headroom",
+      "description": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, MCP server.",
+      "descriptions": {
+        "zh": "在工具输出、日志、文件和 RAG 块到达 LLM 之前对其进行压缩。减少 60-95% 的标记，答案相同。库、代理、MCP 服务器。",
+        "en": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, MCP server."
+      },
+      "language": "Python",
+      "stars_total": 14683,
+      "forks_total": 933,
+      "stars_today": 2473
     },
     {
       "rank": 3,
+      "repo": "CopilotKit/CopilotKit",
+      "owner": "CopilotKit",
+      "name": "CopilotKit",
+      "url": "https://github.com/CopilotKit/CopilotKit",
+      "description": "The Frontend Stack for Agents & Generative UI. React + Angular. Makers of the AG-UI Protocol",
+      "descriptions": {
+        "zh": "代理和生成式 UI 的前端堆栈。反应+角度。 AG-UI协议的制定者",
+        "en": "The Frontend Stack for Agents & Generative UI. React + Angular. Makers of the AG-UI Protocol"
+      },
+      "language": "TypeScript",
+      "stars_total": 32782,
+      "forks_total": 4201,
+      "stars_today": 366
+    },
+    {
+      "rank": 4,
+      "repo": "lfnovo/open-notebook",
+      "owner": "lfnovo",
+      "name": "open-notebook",
+      "url": "https://github.com/lfnovo/open-notebook",
+      "description": "An Open Source implementation of Notebook LM with more flexibility and features",
+      "descriptions": {
+        "zh": "Notebook LM 的开源实现，具有更多灵活性和功能",
+        "en": "An Open Source implementation of Notebook LM with more flexibility and features"
+      },
+      "language": "TypeScript",
+      "stars_total": 26119,
+      "forks_total": 3002,
+      "stars_today": 1152
+    },
+    {
+      "rank": 5,
       "repo": "affaan-m/ECC",
       "owner": "affaan-m",
       "name": "ECC",
@@ -47,57 +79,25 @@
         "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
       },
       "language": "JavaScript",
-      "stars_total": 207523,
-      "forks_total": 31843,
-      "stars_today": 1750
-    },
-    {
-      "rank": 4,
-      "repo": "PaddlePaddle/PaddleOCR",
-      "owner": "PaddlePaddle",
-      "name": "PaddleOCR",
-      "url": "https://github.com/PaddlePaddle/PaddleOCR",
-      "description": "Turn any PDF or image document into structured data for your AI. A powerful, lightweight OCR toolkit that bridges the gap between images/PDFs and LLMs. Supports 100+ languages.",
-      "descriptions": {
-        "zh": "将任何 PDF 或图像文档转换为 AI 的结构化数据。一款功能强大、轻量级的 OCR 工具包，可弥合图像/PDF 和法学硕士之间的差距。支持 100 多种语言。",
-        "en": "Turn any PDF or image document into structured data for your AI. A powerful, lightweight OCR toolkit that bridges the gap between images/PDFs and LLMs. Supports 100+ languages."
-      },
-      "language": "Python",
-      "stars_total": 80063,
-      "forks_total": 10612,
-      "stars_today": 141
-    },
-    {
-      "rank": 5,
-      "repo": "github/spec-kit",
-      "owner": "github",
-      "name": "spec-kit",
-      "url": "https://github.com/github/spec-kit",
-      "description": "💫 Toolkit to help you get started with Spec-Driven Development",
-      "descriptions": {
-        "zh": "💫 帮助您开始规范驱动开发的工具包",
-        "en": "💫 Toolkit to help you get started with Spec-Driven Development"
-      },
-      "language": "Python",
-      "stars_total": 108716,
-      "forks_total": 9604,
-      "stars_today": 321
+      "stars_total": 208487,
+      "forks_total": 31981,
+      "stars_today": 1361
     },
     {
       "rank": 6,
-      "repo": "NVIDIA/cosmos",
-      "owner": "NVIDIA",
-      "name": "cosmos",
-      "url": "https://github.com/NVIDIA/cosmos",
-      "description": "NVIDIA Cosmos is an open platform of world models, datasets, and tools that enables developers to build Physical AI for robots, autonomous vehicles, smart infrastructure, and more.",
+      "repo": "Panniantong/Agent-Reach",
+      "owner": "Panniantong",
+      "name": "Agent-Reach",
+      "url": "https://github.com/Panniantong/Agent-Reach",
+      "description": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
       "descriptions": {
-        "zh": "NVIDIA Cosmos 是一个包含世界模型、数据集和工具的开放平台，使开发人员能够为机器人、自动驾驶车辆、智能基础设施等构建物理 AI。",
-        "en": "NVIDIA Cosmos is an open platform of world models, datasets, and tools that enables developers to build Physical AI for robots, autonomous vehicles, smart infrastructure, and more."
+        "zh": "让您的人工智能代理有一双能够看到整个互联网的眼睛。阅读和搜索 Twitter、Reddit、YouTube、GitHub、Bilibili、小红书 — 一个 CLI，零 API 费用。",
+        "en": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees."
       },
-      "language": "Jupyter Notebook",
-      "stars_total": 9114,
-      "forks_total": 584,
-      "stars_today": 133
+      "language": "Python",
+      "stars_total": 21696,
+      "forks_total": 1876,
+      "stars_today": 148
     }
   ]
 }
