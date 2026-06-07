@@ -9,6 +9,8 @@
   const recordFormat = document.getElementById("record-format");
   const recordAudio = document.getElementById("record-audio");
   const startCameraButton = document.getElementById("start-camera");
+  const launchAndroidButton = document.getElementById("launch-android-app");
+  const androidLaunchStatus = document.getElementById("android-launch-status");
   const stopCameraButton = document.getElementById("stop-camera");
   const startRecordingButton = document.getElementById("start-recording");
   const stopRecordingButton = document.getElementById("stop-recording");
@@ -53,11 +55,22 @@
   let recordingStartedAt = 0;
   let recordingTimer = 0;
   let recordedFileName = "";
+  const androidBridgeOrigin = "http://127.0.0.1:18080";
 
   function setStatus(message, type) {
     status.textContent = message;
     status.classList.toggle("is-error", type === "error");
     status.classList.toggle("is-success", type === "success");
+  }
+
+  function setAndroidLaunchStatus(message, type) {
+    if (!androidLaunchStatus) {
+      return;
+    }
+
+    androidLaunchStatus.textContent = message;
+    androidLaunchStatus.classList.toggle("is-error", type === "error");
+    androidLaunchStatus.classList.toggle("is-success", type === "success");
   }
 
   function formatTime(totalSeconds) {
@@ -377,6 +390,39 @@
     }, 1000);
   }
 
+  async function launchAndroidApp() {
+    if (!launchAndroidButton) {
+      return;
+    }
+
+    launchAndroidButton.disabled = true;
+    setAndroidLaunchStatus("正在通过本地 bridge 启动 Android App...");
+
+    try {
+      const response = await fetch(`${androidBridgeOrigin}/launch-app`, {
+        method: "POST",
+      });
+      const payload = await response.json().catch(function () {
+        return {};
+      });
+
+      if (!response.ok || !payload.ok) {
+        throw new Error(payload.detail || payload.error || `HTTP ${response.status}`);
+      }
+
+      setAndroidLaunchStatus("已发送启动命令，手机 App 会自动开始推流。", "success");
+      setStatus("Android 手机摄像头已通过本地 bridge 启动。", "success");
+    } catch (error) {
+      setAndroidLaunchStatus(`启动失败：${error.message}`, "error");
+      setStatus("无法启动 Android 手机摄像头。请确认 bridge 正在运行且 ADB 已授权。", "error");
+    } finally {
+      launchAndroidButton.disabled = false;
+    }
+  }
+
+  if (launchAndroidButton) {
+    launchAndroidButton.addEventListener("click", launchAndroidApp);
+  }
   startCameraButton.addEventListener("click", startCamera);
   stopCameraButton.addEventListener("click", function () {
     stopStream();

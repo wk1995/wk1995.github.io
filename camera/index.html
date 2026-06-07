@@ -88,6 +88,20 @@
         <aside class="camera-control-panel" aria-label="录像控制">
           <div class="camera-status" id="camera-status" role="status" aria-live="polite">摄像头尚未打开。</div>
 
+          <div class="camera-usb-panel" aria-label="USB Android 摄像头">
+            <div>
+              <span class="camera-usb-kicker">USB Android</span>
+              <strong>手机摄像头</strong>
+              <p>通过本地 bridge 使用 ADB 启动手机 App 并自动推流。</p>
+            </div>
+            <button class="camera-button camera-button-usb" id="launch-android-app" type="button">
+              打开手机 App 并推流
+            </button>
+            <p class="camera-usb-status" id="android-launch-status" role="status" aria-live="polite">
+              需要先运行 usb-android-camera-mvp/bridge/bridge.js。
+            </p>
+          </div>
+
           <div class="camera-form-grid">
             <label class="camera-field">
               <span>摄像头</span>
