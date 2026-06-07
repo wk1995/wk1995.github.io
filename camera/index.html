@@ -66,6 +66,7 @@
         <div class="camera-preview-panel">
           <div class="camera-preview-shell">
             <video id="camera-preview" class="camera-preview" autoplay playsinline muted></video>
+            <img id="android-preview" class="camera-android-preview" alt="Android 手机摄像头实时画面" hidden>
             <div class="camera-empty" id="camera-empty">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h7A2.5 2.5 0 0 1 16 6.5V8l3.42-2.05A1 1 0 0 1 21 6.81v10.38a1 1 0 0 1-1.58.86L16 16v1.5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 4 17.5v-11Zm2.5-.5A.5.5 0 0 0 6 6.5v11a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-11a.5.5 0 0 0-.5-.5h-7Zm9.5 4.33v3.34l3 1.8V8.53l-3 1.8Z"></path>
@@ -87,20 +88,6 @@
 
         <aside class="camera-control-panel" aria-label="录像控制">
           <div class="camera-status" id="camera-status" role="status" aria-live="polite">摄像头尚未打开。</div>
-
-          <div class="camera-usb-panel" aria-label="USB Android 摄像头">
-            <div>
-              <span class="camera-usb-kicker">USB Android</span>
-              <strong>手机摄像头</strong>
-              <p>通过本地 bridge 使用 ADB 启动手机 App 并自动推流。</p>
-            </div>
-            <button class="camera-button camera-button-usb" id="launch-android-app" type="button">
-              打开手机 App 并推流
-            </button>
-            <p class="camera-usb-status" id="android-launch-status" role="status" aria-live="polite">
-              需要先运行 usb-android-camera-mvp/bridge/bridge.js。
-            </p>
-          </div>
 
           <div class="camera-form-grid">
             <label class="camera-field">

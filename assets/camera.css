@@ -156,6 +156,18 @@ html[data-theme="light"] .camera-preview-shell {
   background: #070b10;
 }
 
+.camera-android-preview {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  background: #070b10;
+}
+
+.camera-android-preview[hidden] {
+  display: none;
+}
+
 .camera-empty {
   position: absolute;
   inset: 0;
@@ -183,6 +195,23 @@ html[data-theme="light"] .camera-preview-shell {
 .camera-empty span {
   max-width: 360px;
   line-height: 1.65;
+}
+
+.camera-empty.is-loading svg {
+  animation: camera-pulse 1s ease-in-out infinite;
+}
+
+@keyframes camera-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.96);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
 }
 
 .camera-record-badge {
@@ -255,64 +284,6 @@ html[data-theme="light"] .camera-preview-shell {
 .camera-status.is-success {
   border-color: rgba(71, 209, 140, 0.3);
   background: rgba(71, 209, 140, 0.11);
-}
-
-.camera-usb-panel {
-  display: grid;
-  gap: 0.85rem;
-  padding: 0.95rem;
-  border: 1px solid rgba(71, 209, 140, 0.26);
-  border-radius: 14px;
-  background:
-    linear-gradient(135deg, rgba(71, 209, 140, 0.13), rgba(74, 163, 255, 0.08)),
-    var(--bg-panel-strong);
-}
-
-.camera-usb-panel strong,
-.camera-usb-panel p {
-  display: block;
-  margin: 0;
-}
-
-.camera-usb-panel strong {
-  color: var(--fg);
-  font-size: 1.02rem;
-}
-
-.camera-usb-panel p {
-  color: var(--fg-muted);
-  line-height: 1.55;
-}
-
-.camera-usb-kicker {
-  display: inline-flex;
-  width: fit-content;
-  margin-bottom: 0.38rem;
-  color: var(--primary);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.camera-button-usb {
-  background: linear-gradient(135deg, var(--primary), #65d7ff);
-  border-color: transparent;
-  color: #04140c;
-  font-weight: 800;
-}
-
-.camera-usb-status {
-  min-height: 1.55em;
-  font-size: 0.88rem;
-}
-
-.camera-usb-status.is-error {
-  color: var(--danger);
-}
-
-.camera-usb-status.is-success {
-  color: var(--primary);
 }
 
 .camera-form-grid {
