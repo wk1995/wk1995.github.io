@@ -1,87 +1,87 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-06T05:03:37.530644+00:00",
+  "generated_at": "2026-06-07T05:50:01.460631+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "NousResearch/hermes-agent",
-      "owner": "NousResearch",
-      "name": "hermes-agent",
-      "url": "https://github.com/NousResearch/hermes-agent",
-      "description": "The agent that grows with you",
+      "repo": "mvanhorn/last30days-skill",
+      "owner": "mvanhorn",
+      "name": "last30days-skill",
+      "url": "https://github.com/mvanhorn/last30days-skill",
+      "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
       "descriptions": {
-        "zh": "与您共同成长的代理商",
-        "en": "The agent that grows with you"
+        "zh": "AI 代理技能可研究 Reddit、X、YouTube、HN、Polymarket 和网络上的任何主题，然后综合得出有依据的摘要",
+        "en": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary"
       },
       "language": "Python",
-      "stars_total": 183477,
-      "forks_total": 31471,
-      "stars_today": 1845
+      "stars_total": 29088,
+      "forks_total": 2463,
+      "stars_today": 439
     },
     {
       "rank": 2,
-      "repo": "chopratejas/headroom",
-      "owner": "chopratejas",
-      "name": "headroom",
-      "url": "https://github.com/chopratejas/headroom",
-      "description": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, MCP server.",
-      "descriptions": {
-        "zh": "在工具输出、日志、文件和 RAG 块到达 LLM 之前对其进行压缩。减少 60-95% 的标记，答案相同。库、代理、MCP 服务器。",
-        "en": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, MCP server."
-      },
-      "language": "Python",
-      "stars_total": 14683,
-      "forks_total": 933,
-      "stars_today": 2473
-    },
-    {
-      "rank": 3,
       "repo": "CopilotKit/CopilotKit",
       "owner": "CopilotKit",
       "name": "CopilotKit",
       "url": "https://github.com/CopilotKit/CopilotKit",
-      "description": "The Frontend Stack for Agents & Generative UI. React + Angular. Makers of the AG-UI Protocol",
+      "description": "The Frontend Stack for Agents & Generative UI. React, Angular, Mobile, Slack, and more. Makers of the AG-UI Protocol",
       "descriptions": {
-        "zh": "代理和生成式 UI 的前端堆栈。反应+角度。 AG-UI协议的制定者",
-        "en": "The Frontend Stack for Agents & Generative UI. React + Angular. Makers of the AG-UI Protocol"
+        "zh": "代理和生成式 UI 的前端堆栈。 React、Angular、Mobile、Slack 等等。 AG-UI协议的制定者",
+        "en": "The Frontend Stack for Agents & Generative UI. React, Angular, Mobile, Slack, and more. Makers of the AG-UI Protocol"
       },
       "language": "TypeScript",
-      "stars_total": 32782,
-      "forks_total": 4201,
-      "stars_today": 366
+      "stars_total": 33343,
+      "forks_total": 4252,
+      "stars_today": 631
+    },
+    {
+      "rank": 3,
+      "repo": "MemPalace/mempalace",
+      "owner": "MemPalace",
+      "name": "mempalace",
+      "url": "https://github.com/MemPalace/mempalace",
+      "description": "The best-benchmarked open-source AI memory system. And it's free.",
+      "descriptions": {
+        "zh": "最佳基准的开源人工智能存储系统。而且它是免费的。",
+        "en": "The best-benchmarked open-source AI memory system. And it's free."
+      },
+      "language": "Python",
+      "stars_total": 54389,
+      "forks_total": 7118,
+      "stars_today": 446
     },
     {
       "rank": 4,
-      "repo": "lfnovo/open-notebook",
-      "owner": "lfnovo",
-      "name": "open-notebook",
-      "url": "https://github.com/lfnovo/open-notebook",
-      "description": "An Open Source implementation of Notebook LM with more flexibility and features",
+      "repo": "danielmiessler/Personal_AI_Infrastructure",
+      "owner": "danielmiessler",
+      "name": "Personal_AI_Infrastructure",
+      "url": "https://github.com/danielmiessler/Personal_AI_Infrastructure",
+      "description": "Agentic AI Infrastructure for magnifying HUMAN capabilities.",
       "descriptions": {
-        "zh": "Notebook LM 的开源实现，具有更多灵活性和功能",
-        "en": "An Open Source implementation of Notebook LM with more flexibility and features"
+        "zh": "用于放大人类能力的代理人工智能基础设施。",
+        "en": "Agentic AI Infrastructure for magnifying HUMAN capabilities."
       },
       "language": "TypeScript",
-      "stars_total": 26119,
-      "forks_total": 3002,
-      "stars_today": 1152
+      "stars_total": 15047,
+      "forks_total": 2126,
+      "stars_today": 70
     },
     {
       "rank": 5,
-      "repo": "affaan-m/ECC",
-      "owner": "affaan-m",
-      "name": "ECC",
-      "url": "https://github.com/affaan-m/ECC",
-      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "repo": "openai/plugins",
+      "owner": "openai",
+      "name": "plugins",
+      "url": "https://github.com/openai/plugins",
+      "description": "OpenAI Plugins",
       "descriptions": {
-        "zh": "代理利用性能优化系统。 Claude Code、Codex、Opencode、Cursor 等的技能、直觉、记忆、安全性和研究优先的开发。",
-        "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
+        "zh": "OpenAI 插件",
+        "en": "OpenAI Plugins"
       },
       "language": "JavaScript",
-      "stars_total": 208487,
-      "forks_total": 31981,
-      "stars_today": 1361
+      "stars_total": 1825,
+      "forks_total": 259,
+      "stars_today": 213
     },
     {
       "rank": 6,
@@ -95,9 +95,9 @@
         "en": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees."
       },
       "language": "Python",
-      "stars_total": 21696,
-      "forks_total": 1876,
-      "stars_today": 148
+      "stars_total": 22558,
+      "forks_total": 1926,
+      "stars_today": 683
     }
   ]
 }
