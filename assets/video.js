@@ -4,6 +4,13 @@
   const urlForm = document.getElementById("video-url-form");
   const urlInput = document.getElementById("video-url-input");
   const previewUrlButton = document.getElementById("preview-url");
+  const discoveryPanel = document.getElementById("video-discovery-panel");
+  const discoveryList = document.getElementById("video-discovery-list");
+  const discoveryCount = document.getElementById("video-discovery-count");
+  const addDiscoveredButton = document.getElementById("add-discovered-videos");
+  const queuePanel = document.getElementById("video-queue-panel");
+  const queueList = document.getElementById("video-queue-list");
+  const queueCount = document.getElementById("video-queue-count");
   const previewShell = document.getElementById("preview-shell");
   const previewEmpty = document.getElementById("preview-empty");
   const video = document.getElementById("source-video");
@@ -47,8 +54,11 @@
       intro: "导入本地视频，框选一个或多个水印区域，实时预览局部修复效果，并按浏览器支持的格式导出。",
       dropTitle: "选择或拖入视频文件",
       dropCopy: "支持 MP4、MOV、WebM、MKV、AVI、OGV、3GP 等常见视频容器；实际解码由当前浏览器决定。",
-      urlLabel: "视频网址",
-      urlPreviewAction: "获取预览图",
+      urlLabel: "网页或视频地址",
+      urlPreviewAction: "扫描视频",
+      discoveryTitle: "发现的视频",
+      addSelectedVideos: "加入选中视频",
+      queueTitle: "已选视频队列",
       previewEmpty: "正在准备视频预览",
       fileLabel: "当前文件",
       fileEmpty: "尚未选择视频",
@@ -77,6 +87,22 @@
       select: "选择",
       delete: "删除",
       loading: "正在读取视频文件...",
+      scanningPage: "正在扫描网页中的视频资源...",
+      scanFound: "已发现视频资源",
+      scanEmpty: "没有在这个网页中发现可识别的视频文件。",
+      scanBlocked: "无法读取这个网页。目标网站可能不允许跨域读取 HTML；请改用视频直链。",
+      failureTitle: "处理失败",
+      failureInputTip: "请粘贴完整的 http 或 https 地址。",
+      failureScanTip: "可能原因：目标网站禁止跨域读取、页面视频由脚本动态加载、需要登录或存在防盗链。可以打开网页复制视频直链后再扫描。",
+      failurePreviewTip: "可能原因：视频编码或容器不被当前浏览器支持、远程服务器禁止跨域媒体加载，或链接不是可直接访问的视频文件。",
+      failureDownloadTip: "可能原因：远程服务器禁止跨域下载、需要登录授权、链接已过期或存在防盗链。可改用本地文件导入。",
+      selectedCount: "已选择",
+      candidateCount: "个候选",
+      queueCount: "个视频",
+      operateVideo: "操作",
+      videoCandidate: "视频候选",
+      directVideo: "视频直链",
+      pageVideo: "网页资源",
       previewLoading: "正在获取视频预览图...",
       loaded: "视频已载入。可拖拽画面框选水印区域。",
       remoteLoaded: "已获取远程视频预览图。编辑或导出前会先下载原视频。",
@@ -115,8 +141,11 @@
       intro: "Import a local video, mark one or more watermark regions, preview the repair, and export in a format supported by the browser.",
       dropTitle: "Choose or drop a video file",
       dropCopy: "Accepts common containers such as MP4, MOV, WebM, MKV, AVI, OGV, and 3GP. Actual decoding depends on the current browser.",
-      urlLabel: "Video URL",
-      urlPreviewAction: "Get preview",
+      urlLabel: "Page or video URL",
+      urlPreviewAction: "Scan videos",
+      discoveryTitle: "Discovered videos",
+      addSelectedVideos: "Add selected",
+      queueTitle: "Selected video queue",
       previewEmpty: "Preparing video preview",
       fileLabel: "Current file",
       fileEmpty: "No video selected",
@@ -145,6 +174,22 @@
       select: "Select",
       delete: "Delete",
       loading: "Reading video file...",
+      scanningPage: "Scanning the page for video resources...",
+      scanFound: "Discovered video resources",
+      scanEmpty: "No recognizable video files were found on this page.",
+      scanBlocked: "Could not read this page. The target site may block cross-origin HTML access; use a direct video URL instead.",
+      failureTitle: "Failed",
+      failureInputTip: "Paste a complete http or https URL.",
+      failureScanTip: "Possible causes: the target site blocks cross-origin HTML reads, loads videos dynamically, requires login, or uses hotlink protection. Open the page and copy a direct video URL instead.",
+      failurePreviewTip: "Possible causes: the codec or container is not supported by this browser, the remote server blocks cross-origin media loading, or the link is not a directly playable video file.",
+      failureDownloadTip: "Possible causes: the remote server blocks cross-origin downloads, requires authorization, the link expired, or hotlink protection is enabled. Import a local file instead.",
+      selectedCount: "Selected",
+      candidateCount: "candidates",
+      queueCount: "videos",
+      operateVideo: "Operate",
+      videoCandidate: "Video candidate",
+      directVideo: "Direct video",
+      pageVideo: "Page resource",
       previewLoading: "Loading video preview...",
       loaded: "Video loaded. Drag on the frame to mark a watermark region.",
       remoteLoaded: "Remote preview loaded. The original video will be downloaded before editing or export.",
@@ -192,6 +237,9 @@
   let supportedFormats = [];
   let isExporting = false;
   let isDownloadingOriginal = false;
+  let discoveredVideos = [];
+  let queuedVideos = [];
+  let activeQueueId = null;
 
   function lang() {
     return window.WKSite && typeof window.WKSite.getLanguage === "function"
@@ -268,6 +316,80 @@
       && (candidate.type.indexOf("video/") === 0 || /\.(mp4|mov|m4v|webm|mkv|avi|ogv|3gp)$/i.test(candidate.name));
   }
 
+  function isLikelyVideoUrl(url) {
+    return /\.(mp4|mov|m4v|webm|mkv|avi|ogv|ogg|3gp)(?:$|[?#])/i.test(url || "");
+  }
+
+  function normalizeCandidateUrl(rawUrl, baseUrl) {
+    if (!rawUrl || /^(blob:|data:|javascript:)/i.test(rawUrl)) {
+      return "";
+    }
+
+    try {
+      return new URL(rawUrl, baseUrl).href;
+    } catch (error) {
+      return "";
+    }
+  }
+
+  function createCandidate(url, label, source) {
+    return {
+      id: `candidate-${Math.random().toString(16).slice(2)}-${Date.now()}`,
+      url: url,
+      label: label || getUrlFileName(url),
+      source: source || text("pageVideo"),
+      selected: true,
+    };
+  }
+
+  function dedupeCandidates(candidates) {
+    const seen = new Set();
+    return candidates.filter(function (candidate) {
+      if (!candidate.url || seen.has(candidate.url)) {
+        return false;
+      }
+      seen.add(candidate.url);
+      return true;
+    });
+  }
+
+  function extractVideoCandidatesFromHtml(html, pageUrl) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    const candidates = [];
+
+    doc.querySelectorAll("video[src], video source[src], source[src]").forEach(function (node) {
+      const url = normalizeCandidateUrl(node.getAttribute("src"), pageUrl);
+      if (url) {
+        candidates.push(createCandidate(url, node.getAttribute("title") || node.getAttribute("label") || getUrlFileName(url), "video/source"));
+      }
+    });
+
+    doc.querySelectorAll('meta[property="og:video"], meta[property="og:video:url"], meta[property="og:video:secure_url"], meta[name="twitter:player:stream"]').forEach(function (node) {
+      const url = normalizeCandidateUrl(node.getAttribute("content"), pageUrl);
+      if (url) {
+        candidates.push(createCandidate(url, getUrlFileName(url), "meta"));
+      }
+    });
+
+    doc.querySelectorAll("a[href], link[href]").forEach(function (node) {
+      const url = normalizeCandidateUrl(node.getAttribute("href"), pageUrl);
+      if (url && isLikelyVideoUrl(url)) {
+        const label = node.textContent && node.textContent.trim()
+          ? node.textContent.trim().slice(0, 90)
+          : getUrlFileName(url);
+        candidates.push(createCandidate(url, label, node.tagName.toLowerCase()));
+      }
+    });
+
+    const urlPattern = /https?:\/\/[^\s"'<>\\]+?\.(?:mp4|mov|m4v|webm|mkv|avi|ogv|ogg|3gp)(?:\?[^\s"'<>\\]*)?/gi;
+    (html.match(urlPattern) || []).forEach(function (url) {
+      candidates.push(createCandidate(url, getUrlFileName(url), "html"));
+    });
+
+    return dedupeCandidates(candidates).slice(0, 80);
+  }
+
   function hasSource() {
     return sourceMode === "local" || sourceMode === "remote";
   }
@@ -316,6 +438,139 @@
 
   function getDecodeErrorMessage(media) {
     return `${text("decodeError")} ${getSourceFormatSummary(media)}`;
+  }
+
+  function updateDiscoveryCount() {
+    const selectedCount = discoveredVideos.filter(function (candidate) {
+      return candidate.selected;
+    }).length;
+    discoveryCount.textContent = discoveredVideos.length
+      ? `${text("selectedCount")} ${selectedCount} / ${discoveredVideos.length} ${text("candidateCount")}`
+      : `0 ${text("candidateCount")}`;
+    addDiscoveredButton.disabled = selectedCount === 0 || isExporting || isDownloadingOriginal;
+  }
+
+  function renderDiscoveredVideos() {
+    discoveryList.innerHTML = "";
+    discoveryPanel.hidden = discoveredVideos.length === 0;
+
+    discoveredVideos.forEach(function (candidate, index) {
+      const card = document.createElement("label");
+      card.className = "video-candidate-card";
+
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = candidate.selected;
+      checkbox.addEventListener("change", function () {
+        candidate.selected = checkbox.checked;
+        updateDiscoveryCount();
+      });
+
+      const copyBlock = document.createElement("span");
+      copyBlock.className = "video-candidate-copy";
+      const title = document.createElement("strong");
+      title.textContent = candidate.label || `${text("videoCandidate")} ${index + 1}`;
+      const url = document.createElement("span");
+      url.textContent = candidate.url;
+      copyBlock.append(title, url);
+
+      const badge = document.createElement("span");
+      badge.className = "video-candidate-badge";
+      badge.textContent = candidate.source || text("pageVideo");
+
+      card.append(checkbox, copyBlock, badge);
+      discoveryList.append(card);
+    });
+
+    updateDiscoveryCount();
+  }
+
+  function renderDiscoveryFailure(message, tip) {
+    discoveredVideos = [];
+    discoveryPanel.hidden = false;
+    discoveryList.innerHTML = "";
+    discoveryCount.textContent = `0 ${text("candidateCount")}`;
+    addDiscoveredButton.disabled = true;
+
+    const card = document.createElement("div");
+    card.className = "video-failure-card";
+    const title = document.createElement("strong");
+    title.textContent = text("failureTitle");
+    const body = document.createElement("span");
+    body.textContent = message;
+    const hint = document.createElement("small");
+    hint.textContent = tip;
+    card.append(title, body, hint);
+    discoveryList.append(card);
+  }
+
+  function renderVideoQueue() {
+    queueList.innerHTML = "";
+    queuePanel.hidden = queuedVideos.length === 0;
+    queueCount.textContent = `${queuedVideos.length} ${text("queueCount")}`;
+
+    queuedVideos.forEach(function (item, index) {
+      const card = document.createElement("div");
+      card.className = "video-queue-card";
+      card.classList.toggle("is-active", item.id === activeQueueId);
+
+      const copyBlock = document.createElement("div");
+      copyBlock.className = "video-queue-copy";
+      const title = document.createElement("strong");
+      title.textContent = item.label || `${text("videoCandidate")} ${index + 1}`;
+      const url = document.createElement("span");
+      url.textContent = item.url;
+      copyBlock.append(title, url);
+
+      const button = document.createElement("button");
+      button.className = "video-secondary-button";
+      button.type = "button";
+      button.textContent = text("operateVideo");
+      button.disabled = isExporting || isDownloadingOriginal;
+      button.addEventListener("click", function () {
+        activateQueuedVideo(item.id);
+      });
+
+      card.append(copyBlock, button);
+      queueList.append(card);
+    });
+  }
+
+  function queueSelectedVideos() {
+    const selected = discoveredVideos.filter(function (candidate) {
+      return candidate.selected;
+    });
+
+    selected.forEach(function (candidate) {
+      const exists = queuedVideos.some(function (item) {
+        return item.url === candidate.url;
+      });
+      if (!exists) {
+        queuedVideos.push({
+          id: `queue-${Math.random().toString(16).slice(2)}-${Date.now()}`,
+          url: candidate.url,
+          label: candidate.label,
+        });
+      }
+    });
+
+    renderVideoQueue();
+    if (!activeQueueId && queuedVideos.length) {
+      activateQueuedVideo(queuedVideos[0].id);
+    }
+  }
+
+  function activateQueuedVideo(id) {
+    const item = queuedVideos.find(function (candidate) {
+      return candidate.id === id;
+    });
+    if (!item) {
+      return;
+    }
+
+    activeQueueId = item.id;
+    renderVideoQueue();
+    loadRemotePreview(item.url, item.label);
   }
 
   function getMediaRecorderFormats() {
@@ -398,6 +653,8 @@
     renderRegionControls();
     updateFileSummary();
     updatePathSummary();
+    renderDiscoveredVideos();
+    renderVideoQueue();
   }
 
   function setControlsEnabled(enabled) {
@@ -413,6 +670,9 @@
     exportButton.disabled = !enabled || !supportedFormats.length || busy;
     previewUrlButton.disabled = busy;
     urlInput.disabled = busy;
+    addDiscoveredButton.disabled = busy || !discoveredVideos.some(function (candidate) {
+      return candidate.selected;
+    });
   }
 
   function updateFileSummary() {
@@ -749,6 +1009,7 @@
     sourceMode = "local";
     remoteUrl = "";
     sourceName = nextFile.name;
+    activeQueueId = null;
     regions = [];
     activeRegionId = null;
     objectUrl = URL.createObjectURL(nextFile);
@@ -776,19 +1037,20 @@
 
     video.onerror = function () {
       const message = getDecodeErrorMessage(video);
+      const detail = `${message} ${text("failurePreviewTip")}`;
       previewEmpty.hidden = false;
-      previewEmpty.textContent = message;
+      previewEmpty.textContent = detail;
       setControlsEnabled(false);
-      setStatus(message, "error");
+      setStatus(detail, "error");
     };
   }
 
-  function loadRemotePreview(url) {
+  function loadRemotePreview(url, label) {
     clearObjectUrl();
     file = null;
     sourceMode = "remote";
     remoteUrl = url;
-    sourceName = getUrlFileName(url);
+    sourceName = label || getUrlFileName(url);
     regions = [];
     activeRegionId = null;
     dropzone.classList.remove("is-compact");
@@ -820,10 +1082,11 @@
 
     video.onerror = function () {
       const message = getDecodeErrorMessage(video);
+      const detail = `${message} ${text("failurePreviewTip")}`;
       previewEmpty.hidden = false;
-      previewEmpty.textContent = message;
+      previewEmpty.textContent = detail;
       setControlsEnabled(false);
-      setStatus(message, "error");
+      setStatus(detail, "error");
     };
   }
 
@@ -872,13 +1135,65 @@
       drawPreviewWhenFrameReady();
       return true;
     } catch (error) {
-      setStatus(error.message || text("downloadBlocked"), "error");
+      setStatus(`${error.message || text("downloadBlocked")} ${text("failureDownloadTip")}`, "error");
       return false;
     } finally {
       isDownloadingOriginal = false;
       exportProgress.hidden = true;
       exportProgress.value = 0;
       setControlsEnabled(hasSource());
+    }
+  }
+
+  async function scanAddressForVideos(address) {
+    let parsed;
+
+    try {
+      parsed = new URL(address);
+    } catch (error) {
+      setStatus(text("pickUrl"), "error");
+      renderDiscoveryFailure(text("pickUrl"), text("failureInputTip"));
+      return;
+    }
+
+    if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+      setStatus(text("unsupportedUrl"), "error");
+      renderDiscoveryFailure(text("unsupportedUrl"), text("failureInputTip"));
+      return;
+    }
+
+    discoveredVideos = [];
+    renderDiscoveredVideos();
+    setStatus(text("scanningPage"));
+
+    if (isLikelyVideoUrl(parsed.href)) {
+      discoveredVideos = [createCandidate(parsed.href, getUrlFileName(parsed.href), text("directVideo"))];
+      renderDiscoveredVideos();
+      setStatus(`${text("scanFound")}：1`, "success");
+      return;
+    }
+
+    try {
+      const response = await fetch(parsed.href, { mode: "cors" });
+      if (!response.ok) {
+        throw new Error(`${text("scanBlocked")} (${response.status})`);
+      }
+
+      const html = await response.text();
+      discoveredVideos = extractVideoCandidatesFromHtml(html, parsed.href);
+      renderDiscoveredVideos();
+
+      if (!discoveredVideos.length) {
+        setStatus(text("scanEmpty"), "error");
+        renderDiscoveryFailure(text("scanEmpty"), text("failureScanTip"));
+        return;
+      }
+
+      setStatus(`${text("scanFound")}：${discoveredVideos.length}`, "success");
+    } catch (error) {
+      const message = error.message || text("scanBlocked");
+      setStatus(message, "error");
+      renderDiscoveryFailure(message, text("failureScanTip"));
     }
   }
 
@@ -1090,17 +1405,10 @@
     event.preventDefault();
     const value = urlInput.value.trim();
 
-    try {
-      const parsed = new URL(value);
-      if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
-        setStatus(text("unsupportedUrl"), "error");
-        return;
-      }
-      loadRemotePreview(parsed.href);
-    } catch (error) {
-      setStatus(text("pickUrl"), "error");
-    }
+    scanAddressForVideos(value);
   });
+
+  addDiscoveredButton.addEventListener("click", queueSelectedVideos);
 
   ["dragenter", "dragover"].forEach(function (eventName) {
     dropzone.addEventListener(eventName, function (event) {
@@ -1282,4 +1590,10 @@
   setControlsEnabled(false);
   setPlayIcon(false);
   applyTranslations();
+
+  const initialSource = new URLSearchParams(window.location.search).get("source");
+  if (initialSource) {
+    urlInput.value = initialSource;
+    scanAddressForVideos(initialSource);
+  }
 })();

@@ -80,17 +80,38 @@
 
           <form class="video-url-panel" id="video-url-form">
             <label class="video-url-field" for="video-url-input">
-              <span data-video-text="urlLabel">视频网址</span>
+              <span data-video-text="urlLabel">网页或视频地址</span>
               <input
                 id="video-url-input"
                 type="url"
                 inputmode="url"
                 autocomplete="url"
-                placeholder="https://example.com/video.mp4"
+                placeholder="https://example.com/page-or-video"
               >
             </label>
-            <button class="video-secondary-button" id="preview-url" type="submit" data-video-text="urlPreviewAction">获取预览图</button>
+            <button class="video-secondary-button" id="preview-url" type="submit" data-video-text="urlPreviewAction">扫描视频</button>
           </form>
+
+          <div class="video-discovery-panel" id="video-discovery-panel" hidden>
+            <div class="video-discovery-head">
+              <div>
+                <h2 data-video-text="discoveryTitle">发现的视频</h2>
+                <p id="video-discovery-count">0</p>
+              </div>
+              <button class="video-secondary-button" id="add-discovered-videos" type="button" disabled data-video-text="addSelectedVideos">加入选中视频</button>
+            </div>
+            <div class="video-discovery-list" id="video-discovery-list"></div>
+          </div>
+
+          <div class="video-queue-panel" id="video-queue-panel" hidden>
+            <div class="video-discovery-head">
+              <div>
+                <h2 data-video-text="queueTitle">已选视频队列</h2>
+                <p id="video-queue-count">0</p>
+              </div>
+            </div>
+            <div class="video-queue-list" id="video-queue-list"></div>
+          </div>
 
           <div class="video-preview-shell" id="preview-shell" hidden>
             <video id="source-video" playsinline preload="metadata"></video>

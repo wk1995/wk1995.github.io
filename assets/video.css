@@ -249,6 +249,125 @@ html[data-theme="light"] body {
   border-color: rgba(57, 197, 182, 0.55);
 }
 
+.video-discovery-panel,
+.video-queue-panel {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  border: 1px solid var(--video-border);
+  border-radius: 8px;
+  background: var(--video-panel-strong);
+}
+
+.video-discovery-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.video-discovery-head h2,
+.video-discovery-head p {
+  margin: 0;
+}
+
+.video-discovery-head h2 {
+  font-size: 1rem;
+}
+
+.video-discovery-head p {
+  color: var(--video-muted);
+  font-size: 0.86rem;
+}
+
+.video-discovery-list,
+.video-queue-list {
+  display: grid;
+  gap: 0.55rem;
+  max-height: 320px;
+  overflow: auto;
+}
+
+.video-candidate-card,
+.video-queue-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.75rem;
+  border: 1px solid var(--video-border);
+  border-radius: 8px;
+  background: var(--video-control);
+}
+
+.video-queue-card {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.video-queue-card.is-active {
+  border-color: rgba(57, 197, 182, 0.58);
+  box-shadow: inset 0 0 0 1px rgba(57, 197, 182, 0.18);
+}
+
+.video-candidate-card input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--video-accent);
+}
+
+.video-candidate-copy,
+.video-queue-copy {
+  min-width: 0;
+  display: grid;
+  gap: 0.24rem;
+}
+
+.video-candidate-copy strong,
+.video-queue-copy strong {
+  color: var(--video-text);
+  overflow-wrap: anywhere;
+}
+
+.video-candidate-copy span,
+.video-queue-copy span {
+  color: var(--video-muted);
+  font-size: 0.82rem;
+  overflow-wrap: anywhere;
+}
+
+.video-candidate-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 28px;
+  padding: 0.24rem 0.55rem;
+  border: 1px solid rgba(57, 197, 182, 0.24);
+  border-radius: 999px;
+  color: var(--video-accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.video-failure-card {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.85rem;
+  border: 1px solid rgba(227, 107, 95, 0.26);
+  border-radius: 8px;
+  background: rgba(227, 107, 95, 0.08);
+}
+
+.video-failure-card strong {
+  color: var(--video-danger);
+}
+
+.video-failure-card span,
+.video-failure-card small {
+  color: var(--video-muted);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
 .video-drop-icon {
   width: 58px;
   height: 58px;
@@ -656,6 +775,17 @@ html[data-theme="light"] body {
 
   .video-url-panel {
     grid-template-columns: 1fr;
+  }
+
+  .video-discovery-head,
+  .video-candidate-card,
+  .video-queue-card {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+  }
+
+  .video-discovery-head {
+    flex-direction: column;
   }
 
   .video-secondary-button {
