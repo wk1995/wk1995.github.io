@@ -210,6 +210,45 @@ html[data-theme="light"] body {
   display: none;
 }
 
+.video-url-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: end;
+  padding: 0.85rem;
+  border: 1px solid var(--video-border);
+  border-radius: 8px;
+  background: var(--video-panel-strong);
+}
+
+.video-url-field {
+  display: grid;
+  gap: 0.42rem;
+}
+
+.video-url-field span {
+  color: var(--video-muted);
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.video-url-field input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.64rem 0.78rem;
+  border: 1px solid var(--video-control-border);
+  border-radius: 8px;
+  background: var(--video-control);
+  color: var(--video-text);
+  outline: none;
+}
+
+.video-url-field input:focus {
+  border-color: rgba(57, 197, 182, 0.55);
+}
+
 .video-drop-icon {
   width: 58px;
   height: 58px;
@@ -310,7 +349,8 @@ html[data-theme="light"] body {
   accent-color: var(--video-accent);
 }
 
-.video-file-summary {
+.video-file-summary,
+.video-path-summary {
   display: grid;
   gap: 0.24rem;
   padding: 0.95rem;
@@ -320,7 +360,9 @@ html[data-theme="light"] body {
 }
 
 .video-file-summary span,
+.video-path-summary span,
 .video-file-summary small,
+.video-path-summary small,
 .video-status,
 .video-number-field span,
 .video-range-field span,
@@ -332,6 +374,7 @@ html[data-theme="light"] body {
 }
 
 .video-file-summary span,
+.video-path-summary span,
 .video-number-field span,
 .video-range-field span,
 .video-select-field span {
@@ -340,11 +383,21 @@ html[data-theme="light"] body {
   text-transform: uppercase;
 }
 
-.video-file-summary strong {
+.video-file-summary strong,
+.video-path-summary strong,
+.video-path-summary small {
   overflow: hidden;
   color: var(--video-text);
+  overflow-wrap: anywhere;
+}
+
+.video-file-summary strong {
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.video-path-summary small {
+  color: var(--video-muted);
 }
 
 .video-tool-section {
@@ -599,6 +652,10 @@ html[data-theme="light"] body {
   .video-section-head {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .video-url-panel {
+    grid-template-columns: 1fr;
   }
 
   .video-secondary-button {

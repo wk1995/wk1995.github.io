@@ -1,6 +1,9 @@
 (function () {
   const input = document.getElementById("video-input");
   const dropzone = document.getElementById("video-dropzone");
+  const urlForm = document.getElementById("video-url-form");
+  const urlInput = document.getElementById("video-url-input");
+  const previewUrlButton = document.getElementById("preview-url");
   const previewShell = document.getElementById("preview-shell");
   const previewEmpty = document.getElementById("preview-empty");
   const video = document.getElementById("source-video");
@@ -13,6 +16,9 @@
   const duration = document.getElementById("duration");
   const fileSummary = document.getElementById("file-summary");
   const fileMeta = document.getElementById("file-meta");
+  const pathSummary = document.getElementById("path-summary");
+  const sourcePath = document.getElementById("source-path");
+  const downloadPath = document.getElementById("download-path");
   const status = document.getElementById("video-status");
   const regionList = document.getElementById("region-list");
   const addRegionButton = document.getElementById("add-region");
@@ -41,9 +47,12 @@
       intro: "导入本地视频，框选一个或多个水印区域，实时预览局部修复效果，并按浏览器支持的格式导出。",
       dropTitle: "选择或拖入视频文件",
       dropCopy: "支持 MP4、MOV、WebM、MKV、AVI、OGV、3GP 等常见视频容器；实际解码由当前浏览器决定。",
+      urlLabel: "视频网址",
+      urlPreviewAction: "获取预览图",
       previewEmpty: "正在准备视频预览",
       fileLabel: "当前文件",
       fileEmpty: "尚未选择视频",
+      sourcePathLabel: "资源路径",
       regionTitle: "水印区域",
       addRegion: "新增区域",
       repairTitle: "处理方式",
@@ -68,9 +77,25 @@
       select: "选择",
       delete: "删除",
       loading: "正在读取视频文件...",
+      previewLoading: "正在获取视频预览图...",
       loaded: "视频已载入。可拖拽画面框选水印区域。",
+      remoteLoaded: "已获取远程视频预览图。编辑或导出前会先下载原视频。",
+      downloadOriginal: "正在下载原视频...",
+      downloadReady: "原视频已下载到浏览器临时资源。",
+      downloadPending: "原视频尚未下载；使用编辑或导出功能时会自动下载。",
+      downloadBlocked: "无法下载原视频。请确认视频地址允许跨域访问，或改用本地文件导入。",
+      remotePreview: "远程预览",
+      localSource: "本地文件",
+      tempBlobPath: "临时 Blob 路径",
       decodeError: "当前浏览器无法解码这个视频格式或编码。",
+      formatExtension: "扩展名",
+      formatMime: "MIME",
+      formatUnknown: "未知",
+      formatSourceUrl: "来源 URL",
       pickVideo: "请选择视频文件。",
+      pickUrl: "请输入有效的视频网址。",
+      unsupportedUrl: "仅支持 http 或 https 视频网址。",
+      canvasBlocked: "预览帧受跨域限制，已保留视频元数据；下载原视频后可继续处理。",
       exporting: "正在导出视频",
       exported: "已导出视频：",
       exportFailed: "导出失败。",
@@ -90,9 +115,12 @@
       intro: "Import a local video, mark one or more watermark regions, preview the repair, and export in a format supported by the browser.",
       dropTitle: "Choose or drop a video file",
       dropCopy: "Accepts common containers such as MP4, MOV, WebM, MKV, AVI, OGV, and 3GP. Actual decoding depends on the current browser.",
+      urlLabel: "Video URL",
+      urlPreviewAction: "Get preview",
       previewEmpty: "Preparing video preview",
       fileLabel: "Current file",
       fileEmpty: "No video selected",
+      sourcePathLabel: "Resource path",
       regionTitle: "Watermark regions",
       addRegion: "Add region",
       repairTitle: "Repair mode",
@@ -117,9 +145,25 @@
       select: "Select",
       delete: "Delete",
       loading: "Reading video file...",
+      previewLoading: "Loading video preview...",
       loaded: "Video loaded. Drag on the frame to mark a watermark region.",
+      remoteLoaded: "Remote preview loaded. The original video will be downloaded before editing or export.",
+      downloadOriginal: "Downloading original video...",
+      downloadReady: "Original video downloaded into a temporary browser resource.",
+      downloadPending: "Original video is not downloaded yet. Editing or export will download it automatically.",
+      downloadBlocked: "Could not download the original video. Confirm the video URL allows cross-origin access, or import a local file instead.",
+      remotePreview: "Remote preview",
+      localSource: "Local file",
+      tempBlobPath: "Temporary Blob path",
       decodeError: "This browser cannot decode the selected video format or codec.",
+      formatExtension: "Extension",
+      formatMime: "MIME",
+      formatUnknown: "unknown",
+      formatSourceUrl: "Source URL",
       pickVideo: "Choose a video file.",
+      pickUrl: "Enter a valid video URL.",
+      unsupportedUrl: "Only http or https video URLs are supported.",
+      canvasBlocked: "The preview frame is restricted by cross-origin policy. Download the original video before processing.",
       exporting: "Exporting video",
       exported: "Exported video: ",
       exportFailed: "Export failed.",
@@ -137,6 +181,9 @@
 
   let file = null;
   let objectUrl = "";
+  let sourceMode = "none";
+  let remoteUrl = "";
+  let sourceName = "";
   let regions = [];
   let activeRegionId = null;
   let repairMode = "blur";
@@ -144,6 +191,7 @@
   let dragging = null;
   let supportedFormats = [];
   let isExporting = false;
+  let isDownloadingOriginal = false;
 
   function lang() {
     return window.WKSite && typeof window.WKSite.getLanguage === "function"
@@ -218,6 +266,56 @@
   function isVideoFile(candidate) {
     return candidate
       && (candidate.type.indexOf("video/") === 0 || /\.(mp4|mov|m4v|webm|mkv|avi|ogv|3gp)$/i.test(candidate.name));
+  }
+
+  function hasSource() {
+    return sourceMode === "local" || sourceMode === "remote";
+  }
+
+  function clearObjectUrl() {
+    if (objectUrl) {
+      URL.revokeObjectURL(objectUrl);
+      objectUrl = "";
+    }
+  }
+
+  function getUrlFileName(url) {
+    try {
+      const parsed = new URL(url);
+      const lastPart = parsed.pathname.split("/").filter(Boolean).pop();
+      return lastPart ? decodeURIComponent(lastPart) : "remote-video.mp4";
+    } catch (error) {
+      return "remote-video.mp4";
+    }
+  }
+
+  function getExtensionFromName(name) {
+    const match = /\.([a-z0-9]+)(?:$|[?#])/i.exec(name || "");
+    return match ? `.${match[1].toLowerCase()}` : text("formatUnknown");
+  }
+
+  function getSourceFormatSummary(media) {
+    const name = sourceName || (file && file.name) || remoteUrl || "";
+    const extension = getExtensionFromName(name);
+    const mime = file && file.type ? file.type : text("formatUnknown");
+    const parts = [
+      `${text("formatExtension")} ${extension}`,
+      `${text("formatMime")} ${mime}`,
+    ];
+
+    if (sourceMode === "remote" && remoteUrl) {
+      parts.push(`${text("formatSourceUrl")} ${remoteUrl}`);
+    }
+
+    if (media && media.error && media.error.message) {
+      parts.push(media.error.message);
+    }
+
+    return parts.join(" · ");
+  }
+
+  function getDecodeErrorMessage(media) {
+    return `${text("decodeError")} ${getSourceFormatSummary(media)}`;
   }
 
   function getMediaRecorderFormats() {
@@ -299,30 +397,57 @@
     renderFormatOptions();
     renderRegionControls();
     updateFileSummary();
+    updatePathSummary();
   }
 
   function setControlsEnabled(enabled) {
-    addRegionButton.disabled = !enabled || isExporting;
+    const busy = isExporting || isDownloadingOriginal;
+    addRegionButton.disabled = !enabled || busy;
     Object.keys(regionInputs).forEach(function (key) {
-      regionInputs[key].disabled = !enabled || !getActiveRegion() || isExporting;
+      regionInputs[key].disabled = !enabled || !getActiveRegion() || busy;
     });
-    strengthControl.disabled = !enabled || isExporting;
-    formatSelect.disabled = !enabled || !supportedFormats.length || isExporting;
-    fpsSelect.disabled = !enabled || isExporting;
-    audioToggle.disabled = !enabled || isExporting;
-    exportButton.disabled = !enabled || !supportedFormats.length || isExporting;
+    strengthControl.disabled = !enabled || busy;
+    formatSelect.disabled = !enabled || !supportedFormats.length || busy;
+    fpsSelect.disabled = !enabled || busy;
+    audioToggle.disabled = !enabled || busy;
+    exportButton.disabled = !enabled || !supportedFormats.length || busy;
+    previewUrlButton.disabled = busy;
+    urlInput.disabled = busy;
   }
 
   function updateFileSummary() {
     const label = fileSummary.querySelector("strong");
-    if (!file || !video.videoWidth) {
+    if (!hasSource() || !video.videoWidth) {
       label.textContent = text("fileEmpty");
       fileMeta.textContent = "--";
       return;
     }
 
-    label.textContent = file.name;
-    fileMeta.textContent = `${text("sizeLabel")} ${video.videoWidth}x${video.videoHeight} · ${text("durationLabel")} ${formatTime(video.duration)} · ${formatBytes(file.size)}`;
+    label.textContent = sourceName || (file && file.name) || remoteUrl || text("fileEmpty");
+    const sourceLabel = sourceMode === "remote" && !file ? text("remotePreview") : text("localSource");
+    const sizeCopy = file ? ` · ${formatBytes(file.size)}` : "";
+    fileMeta.textContent = `${sourceLabel} · ${text("sizeLabel")} ${video.videoWidth}x${video.videoHeight} · ${text("durationLabel")} ${formatTime(video.duration)}${sizeCopy}`;
+  }
+
+  function updatePathSummary() {
+    if (!hasSource()) {
+      pathSummary.hidden = true;
+      sourcePath.textContent = "--";
+      downloadPath.textContent = "--";
+      return;
+    }
+
+    pathSummary.hidden = false;
+    if (sourceMode === "remote") {
+      sourcePath.textContent = remoteUrl;
+      downloadPath.textContent = objectUrl
+        ? `${text("tempBlobPath")}: ${objectUrl}`
+        : text("downloadPending");
+      return;
+    }
+
+    sourcePath.textContent = `${text("localSource")}: ${sourceName || (file && file.name) || "--"}`;
+    downloadPath.textContent = objectUrl ? `${text("tempBlobPath")}: ${objectUrl}` : "--";
   }
 
   function normalizeRegion(region) {
@@ -359,7 +484,7 @@
       empty.textContent = text("emptyRegion");
       regionList.append(empty);
       updateRegionInputs();
-      setControlsEnabled(Boolean(file));
+      setControlsEnabled(hasSource());
       return;
     }
 
@@ -406,7 +531,7 @@
     });
 
     updateRegionInputs();
-    setControlsEnabled(Boolean(file));
+    setControlsEnabled(hasSource());
   }
 
   function resizePreviewCanvas() {
@@ -538,8 +663,14 @@
   function drawFrame(targetCanvas, sourceVideo, includeOutlines) {
     const context = targetCanvas.getContext("2d");
     context.clearRect(0, 0, targetCanvas.width, targetCanvas.height);
-    context.drawImage(sourceVideo, 0, 0, targetCanvas.width, targetCanvas.height);
-    applyRepairs(context, targetCanvas.width, targetCanvas.height);
+    try {
+      context.drawImage(sourceVideo, 0, 0, targetCanvas.width, targetCanvas.height);
+      applyRepairs(context, targetCanvas.width, targetCanvas.height);
+    } catch (error) {
+      previewEmpty.hidden = false;
+      previewEmpty.textContent = text("canvasBlocked");
+      return;
+    }
 
     if (includeOutlines) {
       drawRegionOutlines(context, targetCanvas.width, targetCanvas.height);
@@ -551,6 +682,15 @@
       return;
     }
     drawFrame(canvas, video, true);
+  }
+
+  function drawPreviewWhenFrameReady() {
+    if (video.readyState >= 2) {
+      drawPreview();
+      return;
+    }
+
+    video.addEventListener("loadeddata", drawPreview, { once: true });
   }
 
   function requestPreviewFrame() {
@@ -568,17 +708,47 @@
     renderHandle = requestAnimationFrame(loop);
   }
 
+  function resetPlaybackState() {
+    cancelAnimationFrame(renderHandle);
+    video.pause();
+    setPlayIcon(false);
+    currentTime.textContent = "0:00";
+    duration.textContent = "0:00";
+    seekControl.value = "0";
+    seekControl.max = "0";
+  }
+
+  function prepareLoadedSource(options) {
+    const settings = options || {};
+    resizePreviewCanvas();
+    if (settings.createDefaultRegion) {
+      regions = [createDefaultRegion()];
+      activeRegionId = regions[0].id;
+    }
+    seekControl.max = video.duration.toString();
+    duration.textContent = formatTime(video.duration);
+    previewEmpty.hidden = true;
+    dropzone.classList.add("is-compact");
+    setControlsEnabled(true);
+    updateFileSummary();
+    updatePathSummary();
+    renderRegionControls();
+    drawPreviewWhenFrameReady();
+    setStatus(settings.statusMessage || "", settings.statusKind || "success");
+  }
+
   function loadVideo(nextFile) {
     if (!isVideoFile(nextFile)) {
       setStatus(text("pickVideo"), "error");
       return;
     }
 
-    if (objectUrl) {
-      URL.revokeObjectURL(objectUrl);
-    }
+    clearObjectUrl();
 
     file = nextFile;
+    sourceMode = "local";
+    remoteUrl = "";
+    sourceName = nextFile.name;
     regions = [];
     activeRegionId = null;
     objectUrl = URL.createObjectURL(nextFile);
@@ -586,39 +756,130 @@
     previewShell.hidden = false;
     playerBar.hidden = false;
     previewEmpty.hidden = false;
+    previewEmpty.textContent = text("previewEmpty");
+    video.removeAttribute("crossorigin");
     video.src = objectUrl;
     video.muted = false;
-    video.currentTime = 0;
-    currentTime.textContent = "0:00";
-    duration.textContent = "0:00";
-    seekControl.value = "0";
-    seekControl.max = "0";
+    resetPlaybackState();
     setControlsEnabled(false);
     updateFileSummary();
+    updatePathSummary();
     renderRegionControls();
     setStatus(text("loading"));
 
     video.onloadedmetadata = function () {
-      resizePreviewCanvas();
-      regions = [createDefaultRegion()];
-      activeRegionId = regions[0].id;
-      seekControl.max = video.duration.toString();
-      duration.textContent = formatTime(video.duration);
-      previewEmpty.hidden = true;
-      dropzone.classList.add("is-compact");
-      setControlsEnabled(true);
-      updateFileSummary();
-      renderRegionControls();
-      drawPreview();
-      setStatus(text("loaded"), "success");
+      prepareLoadedSource({
+        createDefaultRegion: true,
+        statusMessage: text("loaded"),
+      });
     };
 
     video.onerror = function () {
+      const message = getDecodeErrorMessage(video);
       previewEmpty.hidden = false;
-      previewEmpty.textContent = text("decodeError");
+      previewEmpty.textContent = message;
       setControlsEnabled(false);
-      setStatus(text("decodeError"), "error");
+      setStatus(message, "error");
     };
+  }
+
+  function loadRemotePreview(url) {
+    clearObjectUrl();
+    file = null;
+    sourceMode = "remote";
+    remoteUrl = url;
+    sourceName = getUrlFileName(url);
+    regions = [];
+    activeRegionId = null;
+    dropzone.classList.remove("is-compact");
+    previewShell.hidden = false;
+    playerBar.hidden = false;
+    previewEmpty.hidden = false;
+    previewEmpty.textContent = text("previewEmpty");
+    video.removeAttribute("crossorigin");
+    video.src = url;
+    video.muted = false;
+    resetPlaybackState();
+    setControlsEnabled(false);
+    updateFileSummary();
+    updatePathSummary();
+    renderRegionControls();
+    setStatus(text("previewLoading"));
+
+    video.onloadedmetadata = function () {
+      prepareLoadedSource({
+        createDefaultRegion: false,
+        statusMessage: text("remoteLoaded"),
+      });
+
+      const previewTime = Number.isFinite(video.duration) && video.duration > 0.3 ? 0.1 : 0;
+      if (previewTime > 0) {
+        video.currentTime = previewTime;
+      }
+    };
+
+    video.onerror = function () {
+      const message = getDecodeErrorMessage(video);
+      previewEmpty.hidden = false;
+      previewEmpty.textContent = message;
+      setControlsEnabled(false);
+      setStatus(message, "error");
+    };
+  }
+
+  async function ensureProcessingResource() {
+    if (sourceMode === "local" && file && objectUrl) {
+      return true;
+    }
+
+    if (sourceMode !== "remote" || !remoteUrl) {
+      setStatus(text("pickVideo"), "error");
+      return false;
+    }
+
+    if (file && objectUrl) {
+      return true;
+    }
+
+    isDownloadingOriginal = true;
+    setControlsEnabled(false);
+    exportProgress.hidden = false;
+    exportProgress.removeAttribute("value");
+    setStatus(`${text("downloadOriginal")} ${remoteUrl}`);
+
+    try {
+      const response = await fetch(remoteUrl, { mode: "cors" });
+      if (!response.ok) {
+        throw new Error(`${text("downloadBlocked")} (${response.status})`);
+      }
+
+      const blob = await response.blob();
+      file = new File([blob], sourceName || getUrlFileName(remoteUrl), {
+        type: blob.type || "video/mp4",
+      });
+      clearObjectUrl();
+      objectUrl = URL.createObjectURL(file);
+
+      const current = video.currentTime || 0;
+      video.removeAttribute("crossorigin");
+      video.src = objectUrl;
+      await waitForMetadata(video);
+      video.currentTime = Math.min(current, Math.max(0, video.duration - 0.05));
+      resizePreviewCanvas();
+      updateFileSummary();
+      updatePathSummary();
+      setStatus(text("downloadReady"), "success");
+      drawPreviewWhenFrameReady();
+      return true;
+    } catch (error) {
+      setStatus(error.message || text("downloadBlocked"), "error");
+      return false;
+    } finally {
+      isDownloadingOriginal = false;
+      exportProgress.hidden = true;
+      exportProgress.value = 0;
+      setControlsEnabled(hasSource());
+    }
   }
 
   function getCanvasPoint(event) {
@@ -691,12 +952,16 @@
     await new Promise(function (resolve, reject) {
       media.addEventListener("loadedmetadata", resolve, { once: true });
       media.addEventListener("error", function () {
-        reject(new Error(text("decodeError")));
+        reject(new Error(getDecodeErrorMessage(media)));
       }, { once: true });
     });
   }
 
   async function exportVideo() {
+    if (!(await ensureProcessingResource())) {
+      return;
+    }
+
     const format = getSelectedFormat();
     if (!file || !format) {
       setStatus(text("noFormat"), "error");
@@ -723,7 +988,6 @@
       processingVideo.src = objectUrl;
       processingVideo.preload = "auto";
       processingVideo.playsInline = true;
-      processingVideo.crossOrigin = "anonymous";
       await waitForMetadata(processingVideo);
 
       exportCanvas.width = processingVideo.videoWidth;
@@ -806,7 +1070,7 @@
       processingVideo.removeAttribute("src");
       processingVideo.load();
       isExporting = false;
-      setControlsEnabled(Boolean(file && supportedFormats.length));
+      setControlsEnabled(hasSource() && Boolean(supportedFormats.length));
       window.setTimeout(function () {
         if (!isExporting) {
           exportProgress.hidden = true;
@@ -819,6 +1083,22 @@
     const nextFile = event.target.files && event.target.files[0];
     if (nextFile) {
       loadVideo(nextFile);
+    }
+  });
+
+  urlForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const value = urlInput.value.trim();
+
+    try {
+      const parsed = new URL(value);
+      if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+        setStatus(text("unsupportedUrl"), "error");
+        return;
+      }
+      loadRemotePreview(parsed.href);
+    } catch (error) {
+      setStatus(text("pickUrl"), "error");
     }
   });
 
@@ -844,7 +1124,7 @@
   });
 
   playToggle.addEventListener("click", async function () {
-    if (!file) {
+    if (!hasSource()) {
       return;
     }
 
@@ -879,11 +1159,17 @@
   });
 
   addRegionButton.addEventListener("click", function () {
-    const region = createDefaultRegion();
-    regions.push(region);
-    activeRegionId = region.id;
-    renderRegionControls();
-    drawPreview();
+    ensureProcessingResource().then(function (ready) {
+      if (!ready) {
+        return;
+      }
+
+      const region = createDefaultRegion();
+      regions.push(region);
+      activeRegionId = region.id;
+      renderRegionControls();
+      drawPreview();
+    });
   });
 
   Object.keys(regionInputs).forEach(function (key) {
@@ -906,12 +1192,16 @@
     drawPreview();
   });
 
-  canvas.addEventListener("pointerdown", function (event) {
-    if (!file || isExporting) {
+  canvas.addEventListener("pointerdown", async function (event) {
+    if (!hasSource() || isExporting || isDownloadingOriginal) {
       return;
     }
 
     const point = getCanvasPoint(event);
+    if (!(await ensureProcessingResource())) {
+      return;
+    }
+
     let region = getActiveRegion();
     if (!region) {
       region = createDefaultRegion();
@@ -928,7 +1218,11 @@
     region.y = point.y;
     region.w = 0.01;
     region.h = 0.01;
-    canvas.setPointerCapture(event.pointerId);
+    try {
+      canvas.setPointerCapture(event.pointerId);
+    } catch (error) {
+      dragging = null;
+    }
     renderRegionControls();
     drawPreview();
   });
@@ -963,7 +1257,11 @@
     }
 
     dragging = null;
-    canvas.releasePointerCapture(event.pointerId);
+    try {
+      canvas.releasePointerCapture(event.pointerId);
+    } catch (error) {
+      // Pointer capture may already be gone after a delayed remote download.
+    }
     renderRegionControls();
     drawPreview();
   });
@@ -976,9 +1274,7 @@
   window.addEventListener("resize", drawPreview);
   window.addEventListener("wk:language-change", applyTranslations);
   window.addEventListener("beforeunload", function () {
-    if (objectUrl) {
-      URL.revokeObjectURL(objectUrl);
-    }
+    clearObjectUrl();
   });
 
   renderFormatOptions();

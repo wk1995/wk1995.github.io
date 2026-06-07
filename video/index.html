@@ -78,6 +78,20 @@
             </label>
           </div>
 
+          <form class="video-url-panel" id="video-url-form">
+            <label class="video-url-field" for="video-url-input">
+              <span data-video-text="urlLabel">视频网址</span>
+              <input
+                id="video-url-input"
+                type="url"
+                inputmode="url"
+                autocomplete="url"
+                placeholder="https://example.com/video.mp4"
+              >
+            </label>
+            <button class="video-secondary-button" id="preview-url" type="submit" data-video-text="urlPreviewAction">获取预览图</button>
+          </form>
+
           <div class="video-preview-shell" id="preview-shell" hidden>
             <video id="source-video" playsinline preload="metadata"></video>
             <canvas id="preview-canvas" class="video-preview-canvas" aria-label="视频处理预览"></canvas>
@@ -101,6 +115,12 @@
             <span data-video-text="fileLabel">当前文件</span>
             <strong data-video-text="fileEmpty">尚未选择视频</strong>
             <small id="file-meta">--</small>
+          </div>
+
+          <div class="video-path-summary" id="path-summary" hidden>
+            <span data-video-text="sourcePathLabel">资源路径</span>
+            <strong id="source-path">--</strong>
+            <small id="download-path">--</small>
           </div>
 
           <div class="video-tool-section">
