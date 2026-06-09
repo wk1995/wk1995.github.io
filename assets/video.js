@@ -54,8 +54,9 @@
       intro: "导入本地视频，框选一个或多个水印区域，实时预览局部修复效果，并按浏览器支持的格式导出。",
       dropTitle: "选择或拖入视频文件",
       dropCopy: "支持 MP4、MOV、WebM、MKV、AVI、OGV、3GP 等常见视频容器；实际解码由当前浏览器决定。",
-      urlLabel: "网页或视频地址",
-      urlPreviewAction: "扫描视频",
+      urlLabel: "抖音分享文案、网页或视频地址",
+      urlPlaceholder: "粘贴抖音分享文案、网页地址或视频直链",
+      urlPreviewAction: "解析视频",
       discoveryTitle: "发现的视频",
       addSelectedVideos: "加入选中视频",
       queueTitle: "已选视频队列",
@@ -88,11 +89,16 @@
       delete: "删除",
       loading: "正在读取视频文件...",
       scanningPage: "正在扫描网页中的视频资源...",
+      resolvingDouyin: "正在解析抖音无水印视频链接...",
       scanFound: "已发现视频资源",
       scanEmpty: "没有在这个网页中发现可识别的视频文件。",
       scanBlocked: "无法读取这个网页。目标网站可能不允许跨域读取 HTML；请改用视频直链。",
+      douyinResolved: "已解析抖音无水印视频",
+      douyinSource: "抖音无水印",
+      douyinBlocked: "无法解析抖音视频。请确认已部署 /api/douyin/resolve 代理，或在服务器环境中配置同等接口。",
+      douyinUnavailable: "这个页面需要服务端代理解析抖音分享页；静态 GitHub Pages 不能直接请求抖音页面。",
       failureTitle: "处理失败",
-      failureInputTip: "请粘贴完整的 http 或 https 地址。",
+      failureInputTip: "请粘贴完整的 http 或 https 地址，或包含抖音短链的分享文案。",
       failureScanTip: "可能原因：目标网站禁止跨域读取、页面视频由脚本动态加载、需要登录或存在防盗链。可以打开网页复制视频直链后再扫描。",
       failurePreviewTip: "可能原因：视频编码或容器不被当前浏览器支持、远程服务器禁止跨域媒体加载，或链接不是可直接访问的视频文件。",
       failureDownloadTip: "可能原因：远程服务器禁止跨域下载、需要登录授权、链接已过期或存在防盗链。可改用本地文件导入。",
@@ -141,8 +147,9 @@
       intro: "Import a local video, mark one or more watermark regions, preview the repair, and export in a format supported by the browser.",
       dropTitle: "Choose or drop a video file",
       dropCopy: "Accepts common containers such as MP4, MOV, WebM, MKV, AVI, OGV, and 3GP. Actual decoding depends on the current browser.",
-      urlLabel: "Page or video URL",
-      urlPreviewAction: "Scan videos",
+      urlLabel: "Douyin share text, page, or video URL",
+      urlPlaceholder: "Paste Douyin share text, a page URL, or a direct video link",
+      urlPreviewAction: "Resolve video",
       discoveryTitle: "Discovered videos",
       addSelectedVideos: "Add selected",
       queueTitle: "Selected video queue",
@@ -175,11 +182,16 @@
       delete: "Delete",
       loading: "Reading video file...",
       scanningPage: "Scanning the page for video resources...",
+      resolvingDouyin: "Resolving the Douyin no-watermark video URL...",
       scanFound: "Discovered video resources",
       scanEmpty: "No recognizable video files were found on this page.",
       scanBlocked: "Could not read this page. The target site may block cross-origin HTML access; use a direct video URL instead.",
+      douyinResolved: "Resolved Douyin no-watermark video",
+      douyinSource: "Douyin no-watermark",
+      douyinBlocked: "Could not resolve this Douyin video. Confirm that the /api/douyin/resolve proxy is deployed, or provide an equivalent server endpoint.",
+      douyinUnavailable: "This page needs a server proxy to parse Douyin share pages; static GitHub Pages cannot request Douyin pages directly.",
       failureTitle: "Failed",
-      failureInputTip: "Paste a complete http or https URL.",
+      failureInputTip: "Paste a complete http or https URL, or share text containing a Douyin short link.",
       failureScanTip: "Possible causes: the target site blocks cross-origin HTML reads, loads videos dynamically, requires login, or uses hotlink protection. Open the page and copy a direct video URL instead.",
       failurePreviewTip: "Possible causes: the codec or container is not supported by this browser, the remote server blocks cross-origin media loading, or the link is not a directly playable video file.",
       failureDownloadTip: "Possible causes: the remote server blocks cross-origin downloads, requires authorization, the link expired, or hotlink protection is enabled. Import a local file instead.",
@@ -318,6 +330,32 @@
 
   function isLikelyVideoUrl(url) {
     return /\.(mp4|mov|m4v|webm|mkv|avi|ogv|ogg|3gp)(?:$|[?#])/i.test(url || "");
+  }
+
+  function extractFirstHttpUrl(value) {
+    const match = String(value || "").match(/https?:\/\/[^\s"'<>，。；、)）]+/i);
+    return match ? match[0] : "";
+  }
+
+  function isDouyinUrl(value) {
+    const url = extractFirstHttpUrl(value);
+    if (!url) {
+      return false;
+    }
+
+    try {
+      const hostname = new URL(url).hostname.toLowerCase();
+      return hostname === "v.douyin.com"
+        || hostname.endsWith(".douyin.com")
+        || hostname === "iesdouyin.com"
+        || hostname.endsWith(".iesdouyin.com");
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function getDouyinResolverEndpoint() {
+    return window.WK_DOUYIN_RESOLVER || "/api/douyin/resolve";
   }
 
   function normalizeCandidateUrl(rawUrl, baseUrl) {
@@ -643,6 +681,7 @@
         node.textContent = text(key);
       }
     });
+    urlInput.setAttribute("placeholder", text("urlPlaceholder"));
     document.title = text("metaTitle");
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
@@ -1146,10 +1185,16 @@
   }
 
   async function scanAddressForVideos(address) {
+    if (isDouyinUrl(address)) {
+      await resolveDouyinVideo(address);
+      return;
+    }
+
+    const addressUrl = extractFirstHttpUrl(address) || address;
     let parsed;
 
     try {
-      parsed = new URL(address);
+      parsed = new URL(addressUrl);
     } catch (error) {
       setStatus(text("pickUrl"), "error");
       renderDiscoveryFailure(text("pickUrl"), text("failureInputTip"));
@@ -1194,6 +1239,58 @@
       const message = error.message || text("scanBlocked");
       setStatus(message, "error");
       renderDiscoveryFailure(message, text("failureScanTip"));
+    }
+  }
+
+  async function resolveDouyinVideo(shareText) {
+    const shareUrl = extractFirstHttpUrl(shareText);
+    if (!shareUrl) {
+      setStatus(text("pickUrl"), "error");
+      renderDiscoveryFailure(text("pickUrl"), text("failureInputTip"));
+      return;
+    }
+
+    discoveredVideos = [];
+    renderDiscoveredVideos();
+    setStatus(text("resolvingDouyin"));
+
+    try {
+      const response = await fetch(getDouyinResolverEndpoint(), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ shareText: shareText }),
+      });
+
+      let payload = null;
+      try {
+        payload = await response.json();
+      } catch (error) {
+        payload = null;
+      }
+
+      if (!response.ok || !payload || payload.status !== "success") {
+        const message = payload && payload.error ? payload.error : `${text("douyinBlocked")} (${response.status})`;
+        throw new Error(message);
+      }
+
+      const candidateUrl = payload.proxy_url || payload.download_url;
+      if (!candidateUrl) {
+        throw new Error(text("douyinBlocked"));
+      }
+
+      discoveredVideos = [createCandidate(
+        candidateUrl,
+        payload.title || payload.video_id || getUrlFileName(candidateUrl),
+        text("douyinSource")
+      )];
+      renderDiscoveredVideos();
+      setStatus(`${text("douyinResolved")}：${payload.video_id || ""}`, "success");
+    } catch (error) {
+      const message = error && error.message ? error.message : text("douyinUnavailable");
+      setStatus(message, "error");
+      renderDiscoveryFailure(message, text("douyinUnavailable"));
     }
   }
 

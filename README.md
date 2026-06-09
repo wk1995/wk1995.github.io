@@ -22,6 +22,28 @@
 
 这是纯静态站点，直接在浏览器打开 `index.html` 即可预览。
 
+## 视频工具的抖音解析代理
+
+`video/` 页面支持粘贴抖音分享文案解析无水印视频，但抖音分享页需要由服务端请求并解析，静态 GitHub Pages 不能在浏览器端直接完成这一步。
+
+仓库提供了一个 Node/Vercel 风格的处理器：
+
+`api/douyin/resolve.js`
+
+接口约定：
+
+- `POST /api/douyin/resolve`，JSON body: `{ "shareText": "抖音分享文案或链接" }`
+- 返回 `download_url` 为抖音无水印直链，`proxy_url` 为同源下载代理
+- `GET /api/douyin/resolve?url=<download_url>&filename=<video_id>` 会代理下载 MP4
+
+如果将代理部署在其他域名，可在页面加载前设置：
+
+```html
+<script>
+  window.WK_DOUYIN_RESOLVER = "https://your-domain.example/api/douyin/resolve";
+</script>
+```
+
 ## 联系方式
 
 [kangw1995@gmail.com](mailto:kangw1995@gmail.com)
