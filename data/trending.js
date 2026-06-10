@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-09T05:16:04.729707+00:00",
+  "generated_at": "2026-06-10T05:46:35.741998+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,9 +15,9 @@ window.__TRENDING_DATA__ = {
         "en": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary"
       },
       "language": "Python",
-      "stars_total": 35136,
-      "forks_total": 2873,
-      "stars_today": 3558
+      "stars_total": 37886,
+      "forks_total": 3063,
+      "stars_today": 3191
     },
     {
       "rank": 2,
@@ -31,28 +31,44 @@ window.__TRENDING_DATA__ = {
         "en": "A vector index built on TurboQuant, written in Rust with Python bindings"
       },
       "language": "Python",
-      "stars_total": 9201,
-      "forks_total": 821,
-      "stars_today": 1729
+      "stars_total": 10395,
+      "forks_total": 890,
+      "stars_today": 1801
     },
     {
       "rank": 3,
-      "repo": "google/skills",
-      "owner": "google",
-      "name": "skills",
-      "url": "https://github.com/google/skills",
-      "description": "Agent Skills for Google products and technologies",
+      "repo": "roboflow/supervision",
+      "owner": "roboflow",
+      "name": "supervision",
+      "url": "https://github.com/roboflow/supervision",
+      "description": "We write your reusable computer vision tools. 💜",
       "descriptions": {
-        "zh": "Google 产品和技术的代理技能",
-        "en": "Agent Skills for Google products and technologies"
+        "zh": "我们为您编写可重复使用的计算机视觉工具。 💜",
+        "en": "We write your reusable computer vision tools. 💜"
       },
       "language": "Python",
-      "stars_total": 12581,
-      "forks_total": 976,
-      "stars_today": 461
+      "stars_total": 43163,
+      "forks_total": 3846,
+      "stars_today": 733
     },
     {
       "rank": 4,
+      "repo": "opencv/opencv",
+      "owner": "opencv",
+      "name": "opencv",
+      "url": "https://github.com/opencv/opencv",
+      "description": "Open Source Computer Vision Library",
+      "descriptions": {
+        "zh": "开源计算机视觉库",
+        "en": "Open Source Computer Vision Library"
+      },
+      "language": "C++",
+      "stars_total": 88731,
+      "forks_total": 56631,
+      "stars_today": 102
+    },
+    {
+      "rank": 5,
       "repo": "refactoringhq/tolaria",
       "owner": "refactoringhq",
       "name": "tolaria",
@@ -63,41 +79,25 @@ window.__TRENDING_DATA__ = {
         "en": "Desktop app to manage markdown knowledge bases"
       },
       "language": "TypeScript",
-      "stars_total": 13745,
-      "forks_total": 961,
-      "stars_today": 651
-    },
-    {
-      "rank": 5,
-      "repo": "Panniantong/Agent-Reach",
-      "owner": "Panniantong",
-      "name": "Agent-Reach",
-      "url": "https://github.com/Panniantong/Agent-Reach",
-      "description": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
-      "descriptions": {
-        "zh": "让您的人工智能代理有一双能够看到整个互联网的眼睛。阅读和搜索 Twitter、Reddit、YouTube、GitHub、Bilibili、小红书 — 一个 CLI，零 API 费用。",
-        "en": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees."
-      },
-      "language": "Python",
-      "stars_total": 24535,
-      "forks_total": 2050,
-      "stars_today": 679
+      "stars_total": 14471,
+      "forks_total": 1004,
+      "stars_today": 829
     },
     {
       "rank": 6,
-      "repo": "danielmiessler/Personal_AI_Infrastructure",
-      "owner": "danielmiessler",
-      "name": "Personal_AI_Infrastructure",
-      "url": "https://github.com/danielmiessler/Personal_AI_Infrastructure",
-      "description": "Agentic AI Infrastructure for magnifying HUMAN capabilities.",
+      "repo": "aaif-goose/goose",
+      "owner": "aaif-goose",
+      "name": "goose",
+      "url": "https://github.com/aaif-goose/goose",
+      "description": "an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM",
       "descriptions": {
-        "zh": "用于放大人类能力的代理人工智能基础设施。",
-        "en": "Agentic AI Infrastructure for magnifying HUMAN capabilities."
+        "zh": "开源、可扩展的 AI 代理，超越代码建议 - 使用任何 LLM 安装、执行、编辑和测试",
+        "en": "an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM"
       },
-      "language": "TypeScript",
-      "stars_total": 15522,
-      "forks_total": 2163,
-      "stars_today": 62
+      "language": "Rust",
+      "stars_total": 48574,
+      "forks_total": 5099,
+      "stars_today": 489
     }
   ]
 }
