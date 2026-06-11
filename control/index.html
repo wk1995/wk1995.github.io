@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>控制台 · WK1995</title>
+  <meta name="description" content="WK1995 隐藏控制台，展示当前系统信息与支持环境。">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="stylesheet" href="../assets/catalog-pages.css">
+</head>
+<body data-page="controlPage">
+  <nav class="catalog-topbar">
+    <a class="catalog-brand" href="/" aria-label="返回首页">
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M8 1.25 2 4v4.15c0 2.95 2.43 5.38 6 6.6 3.57-1.22 6-3.65 6-6.6V4L8 1.25Zm0 1.65 4.5 2.06v3.19c0 2.1-1.65 4.08-4.5 5.01-2.85-.93-4.5-2.91-4.5-5.01V4.96L8 2.9Zm2.53 3.57a.75.75 0 0 1 0 1.06L7.78 10.28a.75.75 0 0 1-1.06 0L5.47 9.03a.75.75 0 0 1 1.06-1.06l.72.72 2.22-2.22a.75.75 0 0 1 1.06 0Z"></path>
+      </svg>
+      <span>WK Control</span>
+    </a>
+    <div class="catalog-topbar-actions">
+      <label class="control-group">
+        <span class="control-label" id="language-label" data-i18n="controls.language">语言</span>
+        <select class="language-select" id="language-select" aria-label="语言">
+          <option value="zh">简体中文</option>
+          <option value="en">English</option>
+        </select>
+      </label>
+      <div class="control-group">
+        <span class="control-label" id="theme-caption" data-i18n="controls.theme">主题</span>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换主题">
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path id="theme-icon" d="M9.598 1.591a.75.75 0 0 1 .287.857 6.998 6.998 0 0 0 8.442 8.442.75.75 0 0 1 .857.287.75.75 0 0 1-.131.94A8.5 8.5 0 1 1 8.658.722a.75.75 0 0 1 .94-.131Z"></path>
+          </svg>
+          <span id="theme-label" data-i18n="controls.theme.dark">暗色</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="catalog-shell control-shell">
+    <header class="catalog-page-head control-page-head">
+      <div>
+        <p class="catalog-kicker">System Console</p>
+        <h1>控制台</h1>
+        <p>仅通过主动输入 <code>/control</code> 进入。此页面用于查看当前设备系统信息，并确认 Windows、macOS、Android、iOS 的访问支持情况。</p>
+      </div>
+      <div class="control-current-badge" id="control-current-badge">检测中</div>
+    </header>
+
+    <section class="control-hero-panel" aria-labelledby="current-system-title">
+      <div class="control-system-mark" id="control-system-mark">OS</div>
+      <div>
+        <p class="catalog-kicker">Current System</p>
+        <h2 id="current-system-title">当前系统信息</h2>
+        <p id="control-system-summary">正在读取浏览器暴露的设备与系统信息。</p>
+      </div>
+    </section>
+
+    <section class="control-grid" aria-label="系统详情">
+      <article class="control-info-card">
+        <span>操作系统</span>
+        <strong id="control-os">--</strong>
+      </article>
+      <article class="control-info-card">
+        <span>浏览器</span>
+        <strong id="control-browser">--</strong>
+      </article>
+      <article class="control-info-card">
+        <span>设备类型</span>
+        <strong id="control-device">--</strong>
+      </article>
+      <article class="control-info-card">
+        <span>屏幕窗口</span>
+        <strong id="control-viewport">--</strong>
+      </article>
+      <article class="control-info-card">
+        <span>语言与时区</span>
+        <strong id="control-locale">--</strong>
+      </article>
+      <article class="control-info-card">
+        <span>运行能力</span>
+        <strong id="control-runtime">--</strong>
+      </article>
+    </section>
+
+    <section class="catalog-section control-support-section">
+      <div class="catalog-section-head">
+        <h2>支持的环境</h2>
+        <span id="control-support-count">4</span>
+      </div>
+      <div class="control-support-grid" id="control-support-grid">
+        <article class="control-support-card" data-platform="Windows">
+          <div class="control-support-icon">Win</div>
+          <div>
+            <h3>Windows</h3>
+            <p>支持 Microsoft Edge、Chrome、Firefox 等现代浏览器。</p>
+          </div>
+        </article>
+        <article class="control-support-card" data-platform="macOS">
+          <div class="control-support-icon">mac</div>
+          <div>
+            <h3>macOS</h3>
+            <p>支持 Safari、Chrome、Edge 等现代浏览器。</p>
+          </div>
+        </article>
+        <article class="control-support-card" data-platform="Android">
+          <div class="control-support-icon">And</div>
+          <div>
+            <h3>Android</h3>
+            <p>支持 Chrome、Edge、系统 WebView 环境。</p>
+          </div>
+        </article>
+        <article class="control-support-card" data-platform="iOS">
+          <div class="control-support-icon">iOS</div>
+          <div>
+            <h3>iOS</h3>
+            <p>支持 Safari 与 iOS WebView 环境。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="catalog-status" id="control-status" role="status" aria-live="polite">系统信息会根据浏览器权限和平台能力显示，部分硬件字段可能不可用。</div>
+  </main>
+
+  <script src="../assets/site.js"></script>
+  <script src="../assets/control.js"></script>
+</body>
+</html>

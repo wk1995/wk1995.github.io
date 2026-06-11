@@ -2,6 +2,8 @@
 
 Use this before finishing UI changes, when reviewing pages, and when the user asks for accessibility, responsive, performance, SEO, or design-quality fixes.
 
+For final review responses, use `review-output-format.md`. For concrete commands, use `verification-commands.md`.
+
 ## Review Workflow
 
 1. Confirm the page or scope. For this repository, direct static pages usually live at `index.html`, `blog/`, `apps/`, `models/`, `chat/`, `feedback/`, `music/`, and `apps/packages/`.
@@ -12,6 +14,7 @@ Use this before finishing UI changes, when reviewing pages, and when the user as
    - P2: degraded scanability, weak focus/hover states, inconsistent spacing, poor empty/error/loading states.
    - P3: minor polish, copy consistency, non-blocking visual rhythm issues.
 5. Fix with the smallest change that matches local patterns, then re-check the affected viewport and one nearby page if shared CSS/JS changed.
+6. Run `python3 .codex/skills/wk1995-frontend-design/scripts/check_site_quality.py --root .` unless the change is documentation-only.
 
 ## Interface Checklist
 
@@ -54,3 +57,4 @@ Adapt retrieved guidance to static HTML/CSS/JS and this repository's browser sup
 - If `assets/site.css` changes, sample home/blog and at least one catalog page.
 - If `assets/site.js` changes, verify language switching, theme switching, and all added translation keys in both `zh` and `en`.
 - If catalog CSS/JS changes, verify `apps/index.html`, `models/index.html`, and long model/app/package strings.
+- Treat warnings from `scripts/check_site_quality.py` as review items. Fix them when they are in the touched surface; report them as residual risk when they are existing unrelated issues.
