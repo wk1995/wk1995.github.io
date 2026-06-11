@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>视频水印移除 | WK1995</title>
+  <meta name="description" content="上传视频文件，框选水印区域，预览局部修复效果并导出处理后的视频。">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="stylesheet" href="../assets/video.css">
+</head>
+<body data-page="videoPage">
+  <div class="video-page">
+    <header class="video-header">
+      <div class="video-container">
+        <div class="site-topbar">
+          <a
+            class="brand-link"
+            href="https://github.com/wk1995"
+            target="_blank"
+            rel="noopener"
+            data-i18n-aria="brand.aria"
+            aria-label="打开 WK1995 的 GitHub 主页"
+          >
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82a7.56 7.56 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path>
+            </svg>
+          </a>
+
+          <div class="topbar-right">
+            <div class="control-row">
+              <a class="video-back-link" href="../index.html" data-video-text="backHome">返回首页</a>
+              <label class="control-group" for="language-select">
+                <span class="control-label" id="language-label" data-i18n="controls.language">语言</span>
+                <select class="language-select" id="language-select" aria-label="语言">
+                  <option value="zh">简体中文</option>
+                  <option value="en">English</option>
+                </select>
+              </label>
+              <div class="control-group">
+                <span class="control-label" id="theme-caption" data-i18n="controls.theme">主题</span>
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换主题">
+                  <svg viewBox="0 0 16 16" aria-hidden="true">
+                    <path id="theme-icon" d="M9.598 1.591a.75.75 0 0 1 .287.857 6.998 6.998 0 0 0 8.442 8.442.75.75 0 0 1 .857.287.75.75 0 0 1-.131.94A8.5 8.5 0 1 1 8.658.722a.75.75 0 0 1 .94-.131Z"></path>
+                  </svg>
+                  <span id="theme-label" data-i18n="controls.theme.dark">暗色</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-hero">
+          <p class="video-kicker">Video Repair Console</p>
+          <h1 data-video-text="title">视频水印移除与导出</h1>
+          <p class="video-intro" data-video-text="intro">导入本地视频，框选一个或多个水印区域，实时预览局部修复效果，并按浏览器支持的格式导出。</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="video-container">
+      <section class="video-workspace" aria-label="视频水印处理工具">
+        <div class="video-stage-panel">
+          <div class="video-dropzone" id="video-dropzone">
+            <input
+              id="video-input"
+              class="sr-only"
+              type="file"
+              accept="video/*,.mp4,.mov,.m4v,.webm,.mkv,.avi,.ogv,.3gp"
+            >
+            <label class="video-drop-label" for="video-input">
+              <span class="video-drop-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 3a1 1 0 0 1 1 1v9.59l2.3-2.29a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42l2.3 2.29V4a1 1 0 0 1 1-1Zm-7 14a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1Z"></path>
+                </svg>
+              </span>
+              <span class="video-drop-title" data-video-text="dropTitle">选择或拖入视频文件</span>
+              <span class="video-drop-copy" data-video-text="dropCopy">支持 MP4、MOV、WebM、MKV、AVI、OGV、3GP 等常见视频容器；实际解码由当前浏览器决定。</span>
+            </label>
+          </div>
+
+          <form class="video-url-panel" id="video-url-form">
+            <label class="video-url-field" for="video-url-input">
+              <span data-video-text="urlLabel">网页或视频地址</span>
+              <input
+                id="video-url-input"
+                type="text"
+                inputmode="url"
+                autocomplete="url"
+                placeholder="粘贴抖音分享文案、网页地址或视频直链"
+              >
+            </label>
+            <button class="video-secondary-button" id="preview-url" type="submit" data-video-text="urlPreviewAction">扫描视频</button>
+          </form>
+
+          <div class="video-discovery-panel" id="video-discovery-panel" hidden>
+            <div class="video-discovery-head">
+              <div>
+                <h2 data-video-text="discoveryTitle">发现的视频</h2>
+                <p id="video-discovery-count">0</p>
+              </div>
+              <button class="video-secondary-button" id="add-discovered-videos" type="button" disabled data-video-text="addSelectedVideos">加入选中视频</button>
+            </div>
+            <div class="video-discovery-list" id="video-discovery-list"></div>
+          </div>
+
+          <div class="video-queue-panel" id="video-queue-panel" hidden>
+            <div class="video-discovery-head">
+              <div>
+                <h2 data-video-text="queueTitle">已选视频队列</h2>
+                <p id="video-queue-count">0</p>
+              </div>
+            </div>
+            <div class="video-queue-list" id="video-queue-list"></div>
+          </div>
+
+          <div class="video-preview-shell" id="preview-shell" hidden>
+            <video id="source-video" playsinline preload="metadata"></video>
+            <canvas id="preview-canvas" class="video-preview-canvas" aria-label="视频处理预览"></canvas>
+            <div class="video-preview-empty" id="preview-empty" data-video-text="previewEmpty">正在准备视频预览</div>
+          </div>
+
+          <div class="video-player-bar" id="player-bar" hidden>
+            <button class="video-icon-button" id="play-toggle" type="button" aria-label="播放">
+              <svg id="play-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 5.8c0-.74.82-1.18 1.43-.77l8.34 5.72a.92.92 0 0 1 0 1.5l-8.34 5.72A.92.92 0 0 1 8 17.2V5.8Z"></path>
+              </svg>
+            </button>
+            <span class="video-time" id="current-time">0:00</span>
+            <input id="seek-control" class="video-seek" type="range" min="0" max="0" step="0.01" value="0" aria-label="播放进度">
+            <span class="video-time" id="duration">0:00</span>
+          </div>
+        </div>
+
+        <aside class="video-tool-panel" aria-label="视频处理设置">
+          <div class="video-file-summary" id="file-summary">
+            <span data-video-text="fileLabel">当前文件</span>
+            <strong data-video-text="fileEmpty">尚未选择视频</strong>
+            <small id="file-meta">--</small>
+          </div>
+
+          <div class="video-path-summary" id="path-summary" hidden>
+            <span data-video-text="sourcePathLabel">资源路径</span>
+            <strong id="source-path">--</strong>
+            <small id="download-path">--</small>
+          </div>
+
+          <div class="video-tool-section">
+            <div class="video-section-head">
+              <h2 data-video-text="regionTitle">水印区域</h2>
+              <button class="video-secondary-button" id="add-region" type="button" disabled data-video-text="addRegion">新增区域</button>
+            </div>
+            <div class="video-region-list" id="region-list"></div>
+            <div class="video-region-grid">
+              <label class="video-number-field">
+                <span>X</span>
+                <input id="region-x" type="number" min="0" max="100" step="0.1" value="0" disabled>
+              </label>
+              <label class="video-number-field">
+                <span>Y</span>
+                <input id="region-y" type="number" min="0" max="100" step="0.1" value="0" disabled>
+              </label>
+              <label class="video-number-field">
+                <span>W</span>
+                <input id="region-w" type="number" min="1" max="100" step="0.1" value="18" disabled>
+              </label>
+              <label class="video-number-field">
+                <span>H</span>
+                <input id="region-h" type="number" min="1" max="100" step="0.1" value="10" disabled>
+              </label>
+            </div>
+          </div>
+
+          <div class="video-tool-section">
+            <h2 data-video-text="repairTitle">处理方式</h2>
+            <div class="video-mode-group" role="group" aria-label="处理方式">
+              <button class="video-mode-button is-active" type="button" data-mode="blur" data-video-text="modeBlur">柔化修复</button>
+              <button class="video-mode-button" type="button" data-mode="mosaic" data-video-text="modeMosaic">马赛克</button>
+              <button class="video-mode-button" type="button" data-mode="fill" data-video-text="modeFill">邻域填充</button>
+            </div>
+            <label class="video-range-field">
+              <span data-video-text="strengthLabel">强度</span>
+              <input id="strength-control" type="range" min="1" max="36" step="1" value="14" disabled>
+              <strong id="strength-value">14</strong>
+            </label>
+          </div>
+
+          <div class="video-tool-section">
+            <h2 data-video-text="exportTitle">导出</h2>
+            <label class="video-select-field">
+              <span data-video-text="formatLabel">格式</span>
+              <select id="format-select" disabled></select>
+            </label>
+            <label class="video-select-field">
+              <span data-video-text="fpsLabel">帧率</span>
+              <select id="fps-select" disabled>
+                <option value="24">24 FPS</option>
+                <option value="30" selected>30 FPS</option>
+                <option value="60">60 FPS</option>
+              </select>
+            </label>
+            <label class="video-check-field">
+              <input id="audio-toggle" type="checkbox" checked disabled>
+              <span data-video-text="audioLabel">保留原视频音频</span>
+            </label>
+            <button class="video-primary-button" id="export-button" type="button" disabled data-video-text="exportAction">导出视频</button>
+            <progress class="video-progress" id="export-progress" max="1" value="0" hidden></progress>
+          </div>
+
+          <p class="video-status" id="video-status" role="status" aria-live="polite"></p>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <script src="../assets/site.js"></script>
+  <script src="../assets/video.js"></script>
+</body>
+</html>
