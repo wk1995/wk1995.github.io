@@ -1,74 +1,42 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-10T05:46:35.741998+00:00",
+  "generated_at": "2026-06-11T06:04:18.045390+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "mvanhorn/last30days-skill",
-      "owner": "mvanhorn",
-      "name": "last30days-skill",
-      "url": "https://github.com/mvanhorn/last30days-skill",
-      "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
+      "repo": "addyosmani/agent-skills",
+      "owner": "addyosmani",
+      "name": "agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "description": "Production-grade engineering skills for AI coding agents.",
       "descriptions": {
-        "zh": "AI 代理技能可研究 Reddit、X、YouTube、HN、Polymarket 和网络上的任何主题，然后综合得出有根据的摘要",
-        "en": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary"
+        "zh": "AI 编码代理的生产级工程技能。",
+        "en": "Production-grade engineering skills for AI coding agents."
       },
-      "language": "Python",
-      "stars_total": 37886,
-      "forks_total": 3063,
-      "stars_today": 3191
+      "language": "Shell",
+      "stars_total": 52527,
+      "forks_total": 5771,
+      "stars_today": 821
     },
     {
       "rank": 2,
-      "repo": "RyanCodrai/turbovec",
-      "owner": "RyanCodrai",
-      "name": "turbovec",
-      "url": "https://github.com/RyanCodrai/turbovec",
-      "description": "A vector index built on TurboQuant, written in Rust with Python bindings",
+      "repo": "phuryn/pm-skills",
+      "owner": "phuryn",
+      "name": "pm-skills",
+      "url": "https://github.com/phuryn/pm-skills",
+      "description": "PM Skills Marketplace: 100+ agentic skills, commands, and plugins — from discovery to strategy, execution, launch, and growth.",
       "descriptions": {
-        "zh": "基于 TurboQuant 构建的向量索引，使用 Rust 编写并结合 Python 绑定",
-        "en": "A vector index built on TurboQuant, written in Rust with Python bindings"
+        "zh": "PM 技能市场：100 多种代理技能、命令和插件 - 从发现到策略、执行、启动和增长。",
+        "en": "PM Skills Marketplace: 100+ agentic skills, commands, and plugins — from discovery to strategy, execution, launch, and growth."
       },
-      "language": "Python",
-      "stars_total": 10395,
-      "forks_total": 890,
-      "stars_today": 1801
+      "language": null,
+      "stars_total": 15375,
+      "forks_total": 1646,
+      "stars_today": 804
     },
     {
       "rank": 3,
-      "repo": "roboflow/supervision",
-      "owner": "roboflow",
-      "name": "supervision",
-      "url": "https://github.com/roboflow/supervision",
-      "description": "We write your reusable computer vision tools. 💜",
-      "descriptions": {
-        "zh": "我们为您编写可重复使用的计算机视觉工具。 💜",
-        "en": "We write your reusable computer vision tools. 💜"
-      },
-      "language": "Python",
-      "stars_total": 43163,
-      "forks_total": 3846,
-      "stars_today": 733
-    },
-    {
-      "rank": 4,
-      "repo": "opencv/opencv",
-      "owner": "opencv",
-      "name": "opencv",
-      "url": "https://github.com/opencv/opencv",
-      "description": "Open Source Computer Vision Library",
-      "descriptions": {
-        "zh": "开源计算机视觉库",
-        "en": "Open Source Computer Vision Library"
-      },
-      "language": "C++",
-      "stars_total": 88731,
-      "forks_total": 56631,
-      "stars_today": 102
-    },
-    {
-      "rank": 5,
       "repo": "refactoringhq/tolaria",
       "owner": "refactoringhq",
       "name": "tolaria",
@@ -79,25 +47,57 @@ window.__TRENDING_DATA__ = {
         "en": "Desktop app to manage markdown knowledge bases"
       },
       "language": "TypeScript",
-      "stars_total": 14471,
-      "forks_total": 1004,
-      "stars_today": 829
+      "stars_total": 15058,
+      "forks_total": 1040,
+      "stars_today": 612
+    },
+    {
+      "rank": 4,
+      "repo": "mvanhorn/last30days-skill",
+      "owner": "mvanhorn",
+      "name": "last30days-skill",
+      "url": "https://github.com/mvanhorn/last30days-skill",
+      "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
+      "descriptions": {
+        "zh": "AI 代理技能可研究 Reddit、X、YouTube、HN、Polymarket 和网络上的任何主题，然后综合得出有根据的摘要",
+        "en": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary"
+      },
+      "language": "Python",
+      "stars_total": 39283,
+      "forks_total": 3166,
+      "stars_today": 2535
+    },
+    {
+      "rank": 5,
+      "repo": "soxoj/maigret",
+      "owner": "soxoj",
+      "name": "maigret",
+      "url": "https://github.com/soxoj/maigret",
+      "description": "🕵️‍♂️ Collect a dossier on a person by username from 3000+ sites",
+      "descriptions": {
+        "zh": "🕵️‍♂️ 从 3000 多个网站按用户名收集某人的档案",
+        "en": "🕵️‍♂️ Collect a dossier on a person by username from 3000+ sites"
+      },
+      "language": "Python",
+      "stars_total": 32168,
+      "forks_total": 2361,
+      "stars_today": 318
     },
     {
       "rank": 6,
-      "repo": "aaif-goose/goose",
-      "owner": "aaif-goose",
-      "name": "goose",
-      "url": "https://github.com/aaif-goose/goose",
-      "description": "an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM",
+      "repo": "x1xhlol/system-prompts-and-models-of-ai-tools",
+      "owner": "x1xhlol",
+      "name": "system-prompts-and-models-of-ai-tools",
+      "url": "https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools",
+      "description": "FULL Augment Code, Claude Code, Cluely, CodeBuddy, Comet, Cursor, Devin AI, Junie, Kiro, Leap.new, Lovable, Manus, NotionAI, Orchids.app, Perplexity, Poke, Qoder, Replit, Same.dev, Trae, Traycer AI, VSCode Agent, Warp.dev, Windsurf, Xcode, Z.ai Code, Dia & v0. (And other Open Sourced) System Prompts, Internal Tools & AI Models",
       "descriptions": {
-        "zh": "开源、可扩展的 AI 代理，超越代码建议 - 使用任何 LLM 安装、执行、编辑和测试",
-        "en": "an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM"
+        "zh": "完整增强代码、Claude Code、Cluely、CodeBuddy、Comet、Cursor、Devin AI、Junie、Kiro、Leap.new、Lovable、Manus、NotionAI、Orchids.app、Perplexity、Poke、Qoder、Replit、Same.dev、Trae、Traycer AI、VSCode Agent、Warp.dev、Windsurf、Xcode、Z.ai Code、Dia 和 v0。 （和其他开源）系统提示、内部工具和人工智能模型",
+        "en": "FULL Augment Code, Claude Code, Cluely, CodeBuddy, Comet, Cursor, Devin AI, Junie, Kiro, Leap.new, Lovable, Manus, NotionAI, Orchids.app, Perplexity, Poke, Qoder, Replit, Same.dev, Trae, Traycer AI, VSCode Agent, Warp.dev, Windsurf, Xcode, Z.ai Code, Dia & v0. (And other Open Sourced) System Prompts, Internal Tools & AI Models"
       },
-      "language": "Rust",
-      "stars_total": 48574,
-      "forks_total": 5099,
-      "stars_today": 489
+      "language": null,
+      "stars_total": 139615,
+      "forks_total": 34599,
+      "stars_today": 393
     }
   ]
 }
