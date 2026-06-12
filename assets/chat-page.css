@@ -1759,11 +1759,66 @@ html[data-theme="dark"] .chat-composer-wrap {
 }
 
 .chat-settings-form select,
-.chat-settings-form input {
+.chat-settings-form input,
+.chat-key-modal input {
   padding: 0.86rem 0.92rem;
   border: 1px solid var(--border);
   border-radius: 16px;
   background: var(--surface-strong);
+}
+
+.chat-key-modal {
+  width: min(520px, calc(100vw - 2rem));
+  max-height: min(760px, calc(100vh - 2rem));
+  padding: 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: var(--surface-strong);
+  color: var(--fg);
+  box-shadow: var(--shadow);
+}
+
+.chat-key-modal::backdrop {
+  background: rgba(17, 24, 39, 0.34);
+  backdrop-filter: blur(8px);
+}
+
+.chat-key-modal[open] {
+  display: grid;
+  gap: 0.82rem;
+}
+
+.chat-key-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.chat-key-modal-head h2 {
+  margin: 0.2rem 0 0;
+  font-size: 1.35rem;
+}
+
+.chat-key-modal-model {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface-muted);
+}
+
+.chat-key-modal-model strong {
+  font-size: 1rem;
+}
+
+.chat-key-modal input {
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--fg);
+  font: inherit;
+  outline: none;
 }
 
 .chat-selected-model-panel {
@@ -1851,6 +1906,88 @@ html[data-theme="dark"] .chat-composer-wrap {
 
 .chat-saved-model-item strong {
   display: block;
+}
+
+.chat-saved-model-row {
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: center;
+}
+
+.chat-saved-model-item .chat-saved-model-icon {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  box-shadow: var(--shadow-soft);
+}
+
+.chat-saved-model-item .chat-saved-model-icon.is-deepseek {
+  background: linear-gradient(135deg, #102a43, #12a57a);
+}
+
+.chat-saved-model-item .chat-saved-model-icon.is-zhipu {
+  background: linear-gradient(135deg, #5d3fd3, #f5a524);
+}
+
+.chat-saved-model-item .chat-saved-model-icon.is-openai {
+  background: linear-gradient(135deg, #0f766e, #22c55e);
+}
+
+.chat-saved-model-item .chat-saved-model-icon.is-anthropic {
+  background: linear-gradient(135deg, #6f4e37, #d0a86b);
+}
+
+.chat-saved-model-main,
+.chat-saved-model-top,
+.chat-saved-model-bottom {
+  min-width: 0;
+}
+
+.chat-saved-model-main {
+  display: grid;
+  gap: 0.34rem;
+}
+
+.chat-saved-model-top,
+.chat-saved-model-bottom {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.chat-saved-model-item .chat-saved-model-vendor {
+  padding: 0.18rem 0.48rem;
+  border-radius: 999px;
+  background: rgba(77, 107, 255, 0.1);
+  color: var(--primary);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.chat-saved-model-row strong {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--fg);
+}
+
+.chat-saved-model-item .chat-saved-model-key {
+  color: var(--fg);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+
+.chat-saved-model-item .chat-saved-model-priority {
+  color: var(--fg-muted);
 }
 
 @media (max-width: 980px) {

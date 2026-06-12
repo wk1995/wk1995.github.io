@@ -64,6 +64,36 @@
             <a class="chat-secondary-button" id="choose-model-link" href="../../models/?from=chat" data-chat-text="chooseModelAction">选择模型</a>
           </div>
 
+          <div class="chat-settings-actions">
+            <button class="chat-primary-button" id="open-key-modal" type="button" data-chat-text="addKeyAction">新增 Key</button>
+          </div>
+
+          <div class="chat-settings-note" data-chat-text="settingsNote">
+            当前页面会把模型与 Key 保存在本地浏览器中，不会提交到仓库。
+          </div>
+        </div>
+
+        <dialog class="chat-key-modal" id="key-modal" aria-labelledby="key-modal-title">
+          <div class="chat-key-modal-head">
+            <div>
+              <p class="chat-panel-eyebrow" data-chat-text="settingsEyebrow">Settings</p>
+              <h2 id="key-modal-title" data-chat-text="keyModalTitle">保存模型 Key</h2>
+              <p class="chat-settings-helper" data-chat-text="keyModalHelper">
+                为当前模型新增或编辑一个可回退的 API Key。
+              </p>
+            </div>
+            <button class="chat-icon-button" id="close-key-modal" type="button" data-chat-aria="closeKeyModal">
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 1 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 1 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="chat-key-modal-model">
+            <span class="chat-settings-label" data-chat-text="selectedModelTitle">当前模型</span>
+            <strong id="key-modal-model-name">请选择模型</strong>
+          </div>
+
           <label class="chat-settings-label" for="api-key-name" data-chat-text="keyNameLabel">Key 名称</label>
           <input id="api-key-name" type="text" autocomplete="off" placeholder="主账号 / 备用 Key">
 
@@ -80,11 +110,7 @@
             <button class="chat-primary-button" id="save-key" type="button" data-chat-text="saveKey">保存 Key</button>
             <button class="chat-secondary-button" id="clear-key" type="button" data-chat-text="clearKey">删除当前 Key</button>
           </div>
-
-          <div class="chat-settings-note" data-chat-text="settingsNote">
-            当前页面会把模型与 Key 保存在本地浏览器中，不会提交到仓库。
-          </div>
-        </div>
+        </dialog>
 
         <div class="chat-settings-form">
           <div class="chat-panel-subhead">

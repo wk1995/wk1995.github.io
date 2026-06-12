@@ -138,6 +138,13 @@
       keyPriorityLabel: "优先级",
       keyPriorityPlaceholder: "数字越大越优先，例如 100",
       keyPriorityHelp: "数字越大优先级越高。请求时会先使用当前模型里优先级最高的 Key；失败或额度不足时，再尝试下一个已保存模型。",
+      addKeyAction: "新增 Key",
+      editKeyAction: "编辑 Key",
+      keyModalTitle: "保存模型 Key",
+      keyModalHelper: "为当前模型新增或编辑一个可回退的 API Key。",
+      closeKeyModal: "关闭 Key 弹框",
+      modelVendorLabel: "模型厂商",
+      savedKeyLabel: "Key",
       saveKey: "保存 Key",
       clearKey: "删除当前 Key",
       keyPriorityBadge: "优先级",
@@ -329,6 +336,13 @@
       keyPriorityLabel: "Priority",
       keyPriorityPlaceholder: "Higher numbers run first, for example 100",
       keyPriorityHelp: "Higher numbers mean higher priority. Requests use the highest-priority key for the current model first, then fall back to the next saved model if it fails or runs out of quota.",
+      addKeyAction: "Add key",
+      editKeyAction: "Edit key",
+      keyModalTitle: "Save model key",
+      keyModalHelper: "Add or edit a fallback API key for the current model.",
+      closeKeyModal: "Close key modal",
+      modelVendorLabel: "Model vendor",
+      savedKeyLabel: "Key",
       saveKey: "Save key",
       clearKey: "Delete current key",
       keyPriorityBadge: "Priority",
@@ -724,6 +738,28 @@
     }
     const provider = providerMeta(meta.provider).keyLabel[lang()] || providerMeta(meta.provider).keyLabel.zh;
     return provider + " · " + features.join(" / ");
+  }
+
+  function modelDisplayName(id) {
+    const meta = modelMeta(id);
+    if (!meta) {
+      return id || "";
+    }
+    return meta.custom ? meta.model : (meta.labels[lang()] || meta.labels.zh || meta.id);
+  }
+
+  function providerDisplayName(id) {
+    const meta = modelMeta(id);
+    if (!meta) {
+      return "";
+    }
+    if (meta.custom) {
+      return customTypeLabel(meta.type);
+    }
+    const provider = providerMeta(meta.provider);
+    return (provider.company && (provider.company[lang()] || provider.company.zh))
+      || (provider.keyLabel && (provider.keyLabel[lang()] || provider.keyLabel.zh))
+      || meta.provider;
   }
 
   function providerMeta(providerId) {
@@ -1823,6 +1859,9 @@
     if (refs.settingsModelMeta) {
       refs.settingsModelMeta.textContent = current ? modelFeatureText(modelMeta(current)) : t("selectedModelHint");
     }
+    if (refs.keyModalModelName) {
+      refs.keyModalModelName.textContent = current ? modelDisplayName(current) : t("selectModel");
+    }
     if (refs.chooseModel) {
       refs.chooseModel.setAttribute("href", PAGE_MODE === "settings" ? "../../models/?from=chat" : "../models/?from=chat");
     }
@@ -1876,6 +1915,66 @@
     refs.setupBanner.innerHTML = "<strong>" + t("setupTitle") + "</strong><p>" + setupBody() + "</p>";
   }
 
+  function fillKeyForm(entry, index) {
+    const selectedEntry = entry || null;
+    if (refs.keyEntryId) {
+      refs.keyEntryId.value = selectedEntry ? selectedEntry.id : "";
+    }
+    if (refs.keyName) {
+      refs.keyName.value = selectedEntry ? selectedEntry.label : "";
+    }
+    if (refs.keyPriority) {
+      refs.keyPriority.value = selectedEntry ? String(selectedEntry.priority) : "50";
+    }
+    if (refs.keyInput) {
+      refs.keyInput.value = selectedEntry ? selectedEntry.key : "";
+    }
+    if (refs.clearKey) {
+      refs.clearKey.hidden = !selectedEntry;
+    }
+    if (refs.keyModalTitle) {
+      refs.keyModalTitle.textContent = t(selectedEntry ? "editKeyAction" : "keyModalTitle");
+    }
+    if (refs.keyModalModelName) {
+      refs.keyModalModelName.textContent = selectedModel() ? modelDisplayName(selectedModel()) : t("selectModel");
+    }
+  }
+
+  function openKeyModal(entry, index) {
+    if (!selectedModel()) {
+      setStatus("error", "statusSelectModel");
+      if (refs.chooseModel) {
+        refs.chooseModel.focus();
+      }
+      return;
+    }
+    fillKeyForm(entry || null, index || 0);
+    if (!refs.keyModal) {
+      return;
+    }
+    if (typeof refs.keyModal.showModal === "function") {
+      refs.keyModal.showModal();
+    } else {
+      refs.keyModal.setAttribute("open", "");
+    }
+    window.requestAnimationFrame(function () {
+      if (refs.keyName) {
+        refs.keyName.focus();
+      }
+    });
+  }
+
+  function closeKeyModal() {
+    if (!refs.keyModal) {
+      return;
+    }
+    if (typeof refs.keyModal.close === "function" && refs.keyModal.open) {
+      refs.keyModal.close();
+    } else {
+      refs.keyModal.removeAttribute("open");
+    }
+  }
+
   function renderSavedModels() {
     if (!refs.savedList || !refs.savedCount) {
       return;
@@ -1901,14 +2000,37 @@
     items.forEach(function (id) {
       keyEntriesForModel(id).forEach(function (entry, index) {
         const button = document.createElement("button");
+        const avatar = document.createElement("span");
+        const main = document.createElement("span");
+        const top = document.createElement("span");
+        const vendor = document.createElement("span");
         const title = document.createElement("strong");
-        const detail = document.createElement("span");
+        const bottom = document.createElement("span");
+        const keyText = document.createElement("span");
+        const priority = document.createElement("span");
+        const avatarMeta = avatarMetaForModel(id);
         button.type = "button";
-        button.className = "chat-saved-model-item" + (id === selectedModel() && (!refs.keyEntryId || refs.keyEntryId.value === entry.id || (!refs.keyEntryId.value && index === 0)) ? " is-active" : "");
-        title.textContent = label(id) + " · " + credentialLabel(entry, index);
-        detail.textContent = t("keyPriorityBadge") + " " + entry.priority + " · " + maskKey(entry.key);
-        button.appendChild(title);
-        button.appendChild(detail);
+        button.className = "chat-saved-model-item chat-saved-model-row" + (id === selectedModel() && (!refs.keyEntryId || refs.keyEntryId.value === entry.id || (!refs.keyEntryId.value && index === 0)) ? " is-active" : "");
+        avatar.className = "chat-saved-model-icon " + avatarMeta.className;
+        main.className = "chat-saved-model-main";
+        top.className = "chat-saved-model-top";
+        vendor.className = "chat-saved-model-vendor";
+        bottom.className = "chat-saved-model-bottom";
+        keyText.className = "chat-saved-model-key";
+        priority.className = "chat-saved-model-priority";
+        avatar.textContent = avatarMeta.text;
+        vendor.textContent = providerDisplayName(id) || t("modelVendorLabel");
+        title.textContent = modelDisplayName(id);
+        keyText.textContent = t("savedKeyLabel") + " " + maskKey(entry.key);
+        priority.textContent = t("keyPriorityBadge") + " " + entry.priority + " · " + credentialLabel(entry, index);
+        top.appendChild(vendor);
+        top.appendChild(title);
+        bottom.appendChild(keyText);
+        bottom.appendChild(priority);
+        main.appendChild(top);
+        main.appendChild(bottom);
+        button.appendChild(avatar);
+        button.appendChild(main);
         button.addEventListener("click", function () {
           state.config.selectedModel = id;
           if (refs.keyEntryId) {
@@ -1916,20 +2038,8 @@
           }
           saveConfig();
           renderAll();
-          if (refs.keyEntryId) {
-            refs.keyEntryId.value = entry.id;
-          }
-          if (refs.keyInput) {
-            refs.keyInput.value = entry.key;
-            refs.keyInput.focus();
-            refs.keyInput.select();
-          }
-          if (refs.keyName) {
-            refs.keyName.value = entry.label;
-          }
-          if (refs.keyPriority) {
-            refs.keyPriority.value = String(entry.priority);
-          }
+          fillKeyForm(entry, index);
+          openKeyModal(entry);
           setStatus("success", "statusLoaded");
         });
         refs.savedList.appendChild(button);
@@ -3377,6 +3487,7 @@
     disable(refs.keyInput);
     disable(refs.keyName);
     disable(refs.keyPriority);
+    disable(refs.openKeyModal);
     disable(refs.saveKey);
     disable(refs.clearKey);
     disable(refs.customBaseUrl);
@@ -3454,6 +3565,7 @@
     state.config.keys[model] = normalizeKeyEntries(entries);
     saveConfig();
     renderAll();
+    closeKeyModal();
     setStatus("success", "statusSaved");
   }
 
@@ -3485,6 +3597,7 @@
       saveUi();
     }
     renderAll();
+    closeKeyModal();
     setStatus("success", "statusCleared");
   }
 
@@ -3673,6 +3786,24 @@
     if (refs.saveKey) {
       refs.saveKey.addEventListener("click", saveKey);
     }
+    if (refs.openKeyModal) {
+      refs.openKeyModal.addEventListener("click", function () {
+        if (refs.keyEntryId) {
+          refs.keyEntryId.value = "";
+        }
+        openKeyModal(null);
+      });
+    }
+    if (refs.closeKeyModal) {
+      refs.closeKeyModal.addEventListener("click", closeKeyModal);
+    }
+    if (refs.keyModal) {
+      refs.keyModal.addEventListener("click", function (event) {
+        if (event.target === refs.keyModal) {
+          closeKeyModal();
+        }
+      });
+    }
     if (refs.clearKey) {
       refs.clearKey.addEventListener("click", clearKey);
     }
@@ -3849,6 +3980,11 @@
     refs.settingsModelName = document.getElementById("settings-model-name");
     refs.settingsModelMeta = document.getElementById("settings-model-meta");
     refs.chooseModel = document.getElementById("choose-model-link");
+    refs.openKeyModal = document.getElementById("open-key-modal");
+    refs.keyModal = document.getElementById("key-modal");
+    refs.keyModalTitle = document.getElementById("key-modal-title");
+    refs.keyModalModelName = document.getElementById("key-modal-model-name");
+    refs.closeKeyModal = document.getElementById("close-key-modal");
     refs.keyInput = document.getElementById("api-key-input");
     refs.keyEntryId = document.getElementById("api-key-entry-id");
     refs.keyName = document.getElementById("api-key-name");
