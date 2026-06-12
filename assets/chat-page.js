@@ -142,9 +142,12 @@
       editKeyAction: "编辑 Key",
       keyModalTitle: "保存模型 Key",
       keyModalHelper: "为当前模型新增或编辑一个可回退的 API Key。",
-      closeKeyModal: "关闭 Key 弹框",
+      keyModalModelLabel: "选择模型",
+      cancelKeyModal: "取消",
       modelVendorLabel: "模型厂商",
       savedKeyLabel: "Key",
+      confirmDeleteKey: "确定删除这个模型 Key 吗？删除后无法恢复。",
+      statusModelPreferred: "已优先选择该模型。",
       saveKey: "保存 Key",
       clearKey: "删除当前 Key",
       keyPriorityBadge: "优先级",
@@ -340,9 +343,12 @@
       editKeyAction: "Edit key",
       keyModalTitle: "Save model key",
       keyModalHelper: "Add or edit a fallback API key for the current model.",
-      closeKeyModal: "Close key modal",
+      keyModalModelLabel: "Choose model",
+      cancelKeyModal: "Cancel",
       modelVendorLabel: "Model vendor",
       savedKeyLabel: "Key",
+      confirmDeleteKey: "Delete this model key? This cannot be undone.",
+      statusModelPreferred: "This model is now preferred.",
       saveKey: "Save key",
       clearKey: "Delete current key",
       keyPriorityBadge: "Priority",
@@ -512,6 +518,7 @@
     composerAttachments: [],
     dragDepth: 0,
     scrollPinned: true,
+    editingKeyModelId: "",
   };
   let streamingRenderQueued = false;
 
@@ -760,6 +767,24 @@
     return (provider.company && (provider.company[lang()] || provider.company.zh))
       || (provider.keyLabel && (provider.keyLabel[lang()] || provider.keyLabel.zh))
       || meta.provider;
+  }
+
+  function modelSortName(id) {
+    const meta = modelMeta(id);
+    if (!meta) {
+      return id || "";
+    }
+    return meta.custom ? meta.model : (meta.labels.en || meta.labels.zh || meta.id);
+  }
+
+  function sortedModelOptions() {
+    return MODELS.concat(customModels()).slice().sort(function (a, b) {
+      return modelSortName(a.id).localeCompare(
+        modelSortName(b.id),
+        "en-US",
+        { sensitivity: "base" }
+      );
+    });
   }
 
   function providerMeta(providerId) {
@@ -1859,9 +1884,6 @@
     if (refs.settingsModelMeta) {
       refs.settingsModelMeta.textContent = current ? modelFeatureText(modelMeta(current)) : t("selectedModelHint");
     }
-    if (refs.keyModalModelName) {
-      refs.keyModalModelName.textContent = current ? modelDisplayName(current) : t("selectModel");
-    }
     if (refs.chooseModel) {
       refs.chooseModel.setAttribute("href", PAGE_MODE === "settings" ? "../../models/?from=chat" : "../models/?from=chat");
     }
@@ -1917,6 +1939,8 @@
 
   function fillKeyForm(entry, index) {
     const selectedEntry = entry || null;
+    const modalModel = refs.keyModalModelSelect ? refs.keyModalModelSelect.value : selectedModel();
+    state.editingKeyModelId = selectedEntry ? selectedModel() : "";
     if (refs.keyEntryId) {
       refs.keyEntryId.value = selectedEntry ? selectedEntry.id : "";
     }
@@ -1935,19 +1959,38 @@
     if (refs.keyModalTitle) {
       refs.keyModalTitle.textContent = t(selectedEntry ? "editKeyAction" : "keyModalTitle");
     }
-    if (refs.keyModalModelName) {
-      refs.keyModalModelName.textContent = selectedModel() ? modelDisplayName(selectedModel()) : t("selectModel");
+    if (refs.keyModalModelSelect) {
+      refs.keyModalModelSelect.value = selectedEntry && selectedModel() ? selectedModel() : (modalModel || selectedModel() || "");
+    }
+  }
+
+  function renderKeyModalModelSelect(targetModelId) {
+    if (!refs.keyModalModelSelect) {
+      return;
+    }
+    const currentValue = targetModelId || refs.keyModalModelSelect.value || selectedModel();
+    refs.keyModalModelSelect.innerHTML = "";
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = t("selectModel");
+    refs.keyModalModelSelect.appendChild(placeholder);
+    sortedModelOptions().forEach(function (model) {
+      const option = document.createElement("option");
+      option.value = model.id;
+      option.textContent = modelDisplayName(model.id);
+      refs.keyModalModelSelect.appendChild(option);
+    });
+    refs.keyModalModelSelect.value = modelMeta(currentValue) ? currentValue : "";
+  }
+
+  function applyModalModelSelection(modelId) {
+    if (refs.keyModalModelSelect) {
+      refs.keyModalModelSelect.value = modelMeta(modelId) ? modelId : "";
     }
   }
 
   function openKeyModal(entry, index) {
-    if (!selectedModel()) {
-      setStatus("error", "statusSelectModel");
-      if (refs.chooseModel) {
-        refs.chooseModel.focus();
-      }
-      return;
-    }
+    renderKeyModalModelSelect(selectedModel());
     fillKeyForm(entry || null, index || 0);
     if (!refs.keyModal) {
       return;
@@ -1958,8 +2001,8 @@
       refs.keyModal.setAttribute("open", "");
     }
     window.requestAnimationFrame(function () {
-      if (refs.keyName) {
-        refs.keyName.focus();
+      if (refs.keyModalModelSelect) {
+        refs.keyModalModelSelect.focus();
       }
     });
   }
@@ -1973,6 +2016,7 @@
     } else {
       refs.keyModal.removeAttribute("open");
     }
+    state.editingKeyModelId = "";
   }
 
   function renderSavedModels() {
@@ -1999,7 +2043,9 @@
     }
     items.forEach(function (id) {
       keyEntriesForModel(id).forEach(function (entry, index) {
-        const button = document.createElement("button");
+        const item = document.createElement("article");
+        const selectButton = document.createElement("button");
+        const editButton = document.createElement("button");
         const avatar = document.createElement("span");
         const main = document.createElement("span");
         const top = document.createElement("span");
@@ -2009,8 +2055,14 @@
         const keyText = document.createElement("span");
         const priority = document.createElement("span");
         const avatarMeta = avatarMetaForModel(id);
-        button.type = "button";
-        button.className = "chat-saved-model-item chat-saved-model-row" + (id === selectedModel() && (!refs.keyEntryId || refs.keyEntryId.value === entry.id || (!refs.keyEntryId.value && index === 0)) ? " is-active" : "");
+        item.className = "chat-saved-model-item chat-saved-model-row" + (id === selectedModel() ? " is-active" : "");
+        selectButton.type = "button";
+        selectButton.className = "chat-saved-model-select";
+        editButton.type = "button";
+        editButton.className = "chat-saved-model-edit";
+        editButton.setAttribute("aria-label", t("editKeyAction"));
+        editButton.setAttribute("title", t("editKeyAction"));
+        editButton.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true">' + icon("edit") + "</svg>";
         avatar.className = "chat-saved-model-icon " + avatarMeta.className;
         main.className = "chat-saved-model-main";
         top.className = "chat-saved-model-top";
@@ -2029,9 +2081,15 @@
         bottom.appendChild(priority);
         main.appendChild(top);
         main.appendChild(bottom);
-        button.appendChild(avatar);
-        button.appendChild(main);
-        button.addEventListener("click", function () {
+        selectButton.appendChild(avatar);
+        selectButton.appendChild(main);
+        selectButton.addEventListener("click", function () {
+          state.config.selectedModel = id;
+          saveConfig();
+          renderAll();
+          setStatus("success", "statusModelPreferred");
+        });
+        editButton.addEventListener("click", function () {
           state.config.selectedModel = id;
           if (refs.keyEntryId) {
             refs.keyEntryId.value = entry.id;
@@ -2042,7 +2100,9 @@
           openKeyModal(entry);
           setStatus("success", "statusLoaded");
         });
-        refs.savedList.appendChild(button);
+        item.appendChild(selectButton);
+        item.appendChild(editButton);
+        refs.savedList.appendChild(item);
       });
     });
   }
@@ -3487,6 +3547,8 @@
     disable(refs.keyInput);
     disable(refs.keyName);
     disable(refs.keyPriority);
+    disable(refs.keyModalModelSelect);
+    disable(refs.cancelKeyModal);
     disable(refs.openKeyModal);
     disable(refs.saveKey);
     disable(refs.clearKey);
@@ -3536,7 +3598,7 @@
   }
 
   function saveKey() {
-    const model = refs.modelSelect.value;
+    const model = refs.keyModalModelSelect ? refs.keyModalModelSelect.value : refs.modelSelect.value;
     const value = refs.keyInput.value.trim();
     const labelText = refs.keyName ? refs.keyName.value.trim() : "";
     const priorityValue = refs.keyPriority ? Number(refs.keyPriority.value) : 50;
@@ -3552,6 +3614,19 @@
       return;
     }
     state.config.selectedModel = model;
+    if (refs.modelSelect) {
+      refs.modelSelect.value = model;
+    }
+    if (entryId && state.editingKeyModelId && state.editingKeyModelId !== model) {
+      const originalEntries = keyEntriesForModel(state.editingKeyModelId).filter(function (entry) {
+        return entry.id !== entryId;
+      });
+      if (originalEntries.length) {
+        state.config.keys[state.editingKeyModelId] = originalEntries;
+      } else {
+        delete state.config.keys[state.editingKeyModelId];
+      }
+    }
     const entries = keyEntriesForModel(model).filter(function (entry) {
       return entry.id !== entryId;
     });
@@ -3570,13 +3645,19 @@
   }
 
   function clearKey() {
-    const model = refs.modelSelect.value;
+    const model = state.editingKeyModelId || (refs.keyModalModelSelect ? refs.keyModalModelSelect.value : refs.modelSelect.value);
     if (!model) {
       setStatus("error", "statusSelectModel");
       return;
     }
     const entryId = refs.keyEntryId ? refs.keyEntryId.value : "";
     const currentValue = refs.keyInput ? refs.keyInput.value.trim() : "";
+    if (!entryId && !currentValue) {
+      return;
+    }
+    if (!window.confirm(t("confirmDeleteKey"))) {
+      return;
+    }
     const entries = keyEntriesForModel(model).filter(function (entry, index) {
       if (entryId) {
         return entry.id !== entryId;
@@ -3794,14 +3875,19 @@
         openKeyModal(null);
       });
     }
-    if (refs.closeKeyModal) {
-      refs.closeKeyModal.addEventListener("click", closeKeyModal);
+    if (refs.cancelKeyModal) {
+      refs.cancelKeyModal.addEventListener("click", function () {
+        closeKeyModal();
+      });
+    }
+    if (refs.keyModalModelSelect) {
+      refs.keyModalModelSelect.addEventListener("change", function () {
+        applyModalModelSelection(refs.keyModalModelSelect.value);
+      });
     }
     if (refs.keyModal) {
-      refs.keyModal.addEventListener("click", function (event) {
-        if (event.target === refs.keyModal) {
-          closeKeyModal();
-        }
+      refs.keyModal.addEventListener("cancel", function (event) {
+        event.preventDefault();
       });
     }
     if (refs.clearKey) {
@@ -3983,8 +4069,8 @@
     refs.openKeyModal = document.getElementById("open-key-modal");
     refs.keyModal = document.getElementById("key-modal");
     refs.keyModalTitle = document.getElementById("key-modal-title");
-    refs.keyModalModelName = document.getElementById("key-modal-model-name");
-    refs.closeKeyModal = document.getElementById("close-key-modal");
+    refs.keyModalModelSelect = document.getElementById("key-modal-model-select");
+    refs.cancelKeyModal = document.getElementById("cancel-key-modal");
     refs.keyInput = document.getElementById("api-key-input");
     refs.keyEntryId = document.getElementById("api-key-entry-id");
     refs.keyName = document.getElementById("api-key-name");

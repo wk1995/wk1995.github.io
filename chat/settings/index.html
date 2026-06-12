@@ -82,16 +82,11 @@
                 为当前模型新增或编辑一个可回退的 API Key。
               </p>
             </div>
-            <button class="chat-icon-button" id="close-key-modal" type="button" data-chat-aria="closeKeyModal">
-              <svg viewBox="0 0 16 16" aria-hidden="true">
-                <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 1 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 1 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
-              </svg>
-            </button>
           </div>
 
           <div class="chat-key-modal-model">
-            <span class="chat-settings-label" data-chat-text="selectedModelTitle">当前模型</span>
-            <strong id="key-modal-model-name">请选择模型</strong>
+            <label class="chat-settings-label" for="key-modal-model-select" data-chat-text="keyModalModelLabel">选择模型</label>
+            <select id="key-modal-model-select"></select>
           </div>
 
           <label class="chat-settings-label" for="api-key-name" data-chat-text="keyNameLabel">Key 名称</label>
@@ -108,6 +103,7 @@
 
           <div class="chat-settings-actions">
             <button class="chat-primary-button" id="save-key" type="button" data-chat-text="saveKey">保存 Key</button>
+            <button class="chat-secondary-button" id="cancel-key-modal" type="button" data-chat-text="cancelKeyModal">取消</button>
             <button class="chat-secondary-button" id="clear-key" type="button" data-chat-text="clearKey">删除当前 Key</button>
           </div>
         </dialog>
