@@ -236,9 +236,9 @@
     const customModels = normalizeCustomModels(raw.customModels);
     const keys = {};
     Object.keys(raw.keys || {}).forEach(function (id) {
-      const value = typeof raw.keys[id] === "string" ? raw.keys[id].trim() : "";
-      if (value && modelMeta(id, customModels)) {
-        keys[id] = value;
+      const entries = normalizeKeyEntries(raw.keys[id]);
+      if (entries.length && modelMeta(id, customModels)) {
+        keys[id] = entries;
       }
     });
     return {
@@ -251,9 +251,51 @@
   function saveConfig(config, paths) {
     localStorage.setItem(storageKey("modelApi", paths), JSON.stringify({
       selectedModel: config && typeof config.selectedModel === "string" ? config.selectedModel : "",
-      keys: config && config.keys && typeof config.keys === "object" ? config.keys : {},
+      keys: normalizeKeys(config && config.keys),
       customModels: normalizeCustomModels(config && config.customModels),
     }));
+  }
+
+  function normalizeKeyEntries(value) {
+    const rawItems = Array.isArray(value)
+      ? value
+      : typeof value === "string" && value.trim()
+        ? [{ key: value }]
+        : [];
+    return rawItems
+      .map(function (item, index) {
+        const key = typeof item === "string"
+          ? item.trim()
+          : typeof item.key === "string"
+            ? item.key.trim()
+            : "";
+        if (!key) {
+          return null;
+        }
+        const priority = Number(item && item.priority);
+        return {
+          id: item && typeof item.id === "string" && item.id ? item.id : "key_" + Date.now() + "_" + index,
+          label: item && typeof item.label === "string" ? item.label.trim() : "",
+          key: key,
+          priority: Number.isFinite(priority) ? priority : 50,
+          createdAt: item && Number(item.createdAt) > 0 ? Number(item.createdAt) : Date.now() + index,
+        };
+      })
+      .filter(Boolean)
+      .sort(function (a, b) {
+        return b.priority - a.priority || a.createdAt - b.createdAt;
+      });
+  }
+
+  function normalizeKeys(rawKeys) {
+    const keys = {};
+    Object.keys(rawKeys || {}).forEach(function (id) {
+      const entries = normalizeKeyEntries(rawKeys[id]);
+      if (entries.length) {
+        keys[id] = entries;
+      }
+    });
+    return keys;
   }
 
   function providerMeta(providerId) {
@@ -288,5 +330,7 @@
     labelForModel: labelForModel,
     loadConfig: loadConfig,
     saveConfig: saveConfig,
+    normalizeKeyEntries: normalizeKeyEntries,
+    normalizeKeys: normalizeKeys,
   };
 })();

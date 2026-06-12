@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Chat Settings · WK1995</title>
+  <meta name="description" content="AI Chat model, API key, cache path, and backup settings for WK1995.">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../assets/chat-page.css">
+</head>
+<body data-page="chatSettingsPage">
+  <main class="chat-settings-page">
+    <div class="chat-settings-shell">
+      <header class="chat-settings-page-head">
+        <a class="chat-brand" href="../">
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M8 0 1.4 3.2v5.2c0 3.2 2.7 6.2 6.6 7.6 3.9-1.4 6.6-4.4 6.6-7.6V3.2L8 0Zm0 1.7 5.1 2.5v4.2c0 2.3-1.9 4.7-5.1 5.9-3.2-1.2-5.1-3.6-5.1-5.9V4.2L8 1.7Z"></path>
+          </svg>
+          <span>WK AI</span>
+        </a>
+        <div class="chat-sidebar-control">
+          <div>
+            <label class="sr-only" for="language-select" data-i18n="controls.language">语言</label>
+            <span class="control-label" id="language-label" data-i18n="controls.language">语言</span>
+          </div>
+          <select id="language-select" class="language-select" aria-label="语言">
+            <option value="zh">简体中文</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+        <div class="chat-sidebar-control">
+          <span class="control-label" id="theme-caption" data-i18n="controls.theme">主题</span>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切换主题">
+            <svg id="theme-icon" viewBox="0 0 16 16" aria-hidden="true"></svg>
+            <span id="theme-label">Dark</span>
+          </button>
+        </div>
+      </header>
+
+      <section class="chat-settings-page-title">
+        <p class="chat-panel-eyebrow" data-chat-text="settingsEyebrow">Settings</p>
+        <h1 data-chat-text="settingsTitle">参数设置</h1>
+        <p class="chat-settings-helper" data-chat-text="settingsHelper">
+          选择模型并保存当前浏览器的 API Key。
+        </p>
+        <a class="chat-secondary-button" href="../" data-chat-text="chatEyebrow">Conversation</a>
+      </section>
+
+      <div class="chat-main-status" id="chat-status" role="status" aria-live="polite"></div>
+      <div class="chat-setup-banner" id="setup-banner"></div>
+
+      <section class="chat-settings-grid">
+        <div class="chat-settings-form">
+          <input id="model-select" type="hidden">
+          <input id="api-key-entry-id" type="hidden">
+          <div class="chat-selected-model-panel">
+            <div>
+              <span class="chat-settings-label" data-chat-text="selectedModelTitle">当前模型</span>
+              <strong id="settings-model-name">请选择模型</strong>
+              <p id="settings-model-meta" data-chat-text="selectedModelHint">
+                从大模型列表页选择一个模型后，这里会自动带回模型属性。
+              </p>
+            </div>
+            <a class="chat-secondary-button" id="choose-model-link" href="../../models/?from=chat" data-chat-text="chooseModelAction">选择模型</a>
+          </div>
+
+          <label class="chat-settings-label" for="api-key-name" data-chat-text="keyNameLabel">Key 名称</label>
+          <input id="api-key-name" type="text" autocomplete="off" placeholder="主账号 / 备用 Key">
+
+          <label class="chat-settings-label" for="api-key-priority" data-chat-text="keyPriorityLabel">优先级</label>
+          <input id="api-key-priority" type="number" inputmode="numeric" min="0" max="999" step="1" value="50" placeholder="100">
+          <div class="chat-settings-note" data-chat-text="keyPriorityHelp">
+            数字越大优先级越高。请求时会先使用当前模型里优先级最高的 Key；失败或额度不足时，再尝试下一个已保存模型。
+          </div>
+
+          <label class="chat-settings-label" for="api-key-input" data-chat-text="keyLabel">Model API Key</label>
+          <input id="api-key-input" type="password" autocomplete="off" placeholder="粘贴当前模型对应的 API Key">
+
+          <div class="chat-settings-actions">
+            <button class="chat-primary-button" id="save-key" type="button" data-chat-text="saveKey">保存 Key</button>
+            <button class="chat-secondary-button" id="clear-key" type="button" data-chat-text="clearKey">删除当前 Key</button>
+          </div>
+
+          <div class="chat-settings-note" data-chat-text="settingsNote">
+            当前页面会把模型与 Key 保存在本地浏览器中，不会提交到仓库。
+          </div>
+        </div>
+
+        <div class="chat-settings-form">
+          <div class="chat-panel-subhead">
+            <h3 data-chat-text="customModelTitle">Custom model</h3>
+            <p class="chat-settings-helper" data-chat-text="customModelHelper">
+              Add any OpenAI-compatible or Anthropic-compatible endpoint.
+            </p>
+          </div>
+
+          <label class="chat-settings-label" for="custom-model-base-url" data-chat-text="customBaseUrlLabel">Base URL</label>
+          <input id="custom-model-base-url" type="url" autocomplete="off" placeholder="https://api.openai.com/v1">
+
+          <label class="chat-settings-label" for="custom-model-name" data-chat-text="customModelNameLabel">Model name</label>
+          <input id="custom-model-name" type="text" autocomplete="off" placeholder="gpt-4.1-mini">
+
+          <label class="chat-settings-label" for="custom-model-type" data-chat-text="customModelTypeLabel">API type</label>
+          <select id="custom-model-type">
+            <option value="openai">OpenAI</option>
+            <option value="anthropic">Anthropic</option>
+          </select>
+
+          <label class="chat-settings-label" for="custom-api-key-input" data-chat-text="customApiKeyLabel">API Key</label>
+          <input id="custom-api-key-input" type="password" autocomplete="off" placeholder="Paste the API key for this endpoint">
+
+          <div class="chat-settings-actions">
+            <button class="chat-primary-button" id="save-custom-model" type="button" data-chat-text="saveCustomModel">Save custom model</button>
+            <button class="chat-secondary-button" id="delete-custom-model" type="button" data-chat-text="deleteCustomModel">Delete selected custom model</button>
+          </div>
+
+          <div class="chat-settings-note" data-chat-text="customModelNote">
+            OpenAI uses /chat/completions. Anthropic uses /messages with the anthropic-version header.
+          </div>
+        </div>
+
+        <div class="chat-saved-models">
+          <div class="chat-panel-subhead">
+            <h3 data-chat-text="savedModelsTitle">已保存模型</h3>
+            <span id="saved-model-count">0</span>
+          </div>
+          <div class="chat-saved-model-list" id="saved-model-list"></div>
+        </div>
+
+        <div class="chat-saved-models">
+          <div class="chat-panel-subhead">
+            <h3 data-chat-text="storageSectionTitle">缓存路径</h3>
+          </div>
+          <div class="chat-settings-form">
+            <label class="chat-settings-label" for="storage-chat-list" data-chat-text="storageListLabel">聊天列表缓存路径</label>
+            <div class="chat-storage-row">
+              <input id="storage-chat-list" type="text" placeholder="wk1995/cache/chat-list">
+              <button class="chat-secondary-button chat-inline-button" id="export-chat-list" type="button" data-chat-text="exportModule">导出</button>
+            </div>
+
+            <label class="chat-settings-label" for="storage-chat-records" data-chat-text="storageRecordsLabel">聊天记录缓存路径</label>
+            <div class="chat-storage-row">
+              <input id="storage-chat-records" type="text" placeholder="wk1995/cache/chat-records">
+              <button class="chat-secondary-button chat-inline-button" id="export-chat-records" type="button" data-chat-text="exportModule">导出</button>
+            </div>
+
+            <label class="chat-settings-label" for="storage-model-api" data-chat-text="storageApiLabel">大模型 API 缓存路径</label>
+            <div class="chat-storage-row">
+              <input id="storage-model-api" type="text" placeholder="wk1995/cache/model-api">
+              <button class="chat-secondary-button chat-inline-button" id="export-model-api" type="button" data-chat-text="exportModule">导出</button>
+            </div>
+
+            <div class="chat-settings-actions">
+              <button class="chat-primary-button" id="save-storage-paths" type="button" data-chat-text="saveStoragePaths">保存路径</button>
+              <button class="chat-secondary-button" id="reset-storage-paths" type="button" data-chat-text="resetStoragePaths">恢复默认</button>
+            </div>
+
+            <div class="chat-settings-note" data-chat-text="storagePathNote">
+              这里的“路径”是浏览器本地缓存命名空间，不是真实磁盘目录。
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-saved-models">
+          <div class="chat-panel-subhead">
+            <h3 data-chat-text="backupSectionTitle">备份与恢复</h3>
+          </div>
+          <div class="chat-settings-form">
+            <input id="backup-import-input" type="file" accept="application/json" hidden>
+            <div class="chat-settings-actions">
+              <button class="chat-primary-button" id="export-backup" type="button" data-chat-text="exportBackup">导出整包备份</button>
+              <button class="chat-secondary-button" id="import-backup" type="button" data-chat-text="importBackup">恢复备份</button>
+            </div>
+            <div class="chat-settings-note" data-chat-text="backupNote">
+              备份文件会包含三组缓存路径，以及聊天列表、聊天记录和模型 API 配置，方便换设备恢复。
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="../../assets/site.js"></script>
+  <script src="../../assets/model-catalog.js"></script>
+  <script src="../../assets/feedback-entry.js"></script>
+  <script src="../../assets/chat-page.js"></script>
+</body>
+</html>

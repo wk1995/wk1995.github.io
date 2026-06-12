@@ -71,11 +71,12 @@
         </div>
         <div class="chat-stage-actions">
           <a class="github-auth-button github-auth-button-secondary" href="https://github.com/wk1995/wk1995.github.io/issues/new" data-feedback-entry>反馈</a>
-          <button class="chat-icon-button" id="open-settings" type="button" data-chat-aria="openSettings">
+          <div class="chat-token-summary" id="chat-token-summary" hidden></div>
+          <a class="chat-icon-button" id="open-settings" href="settings/" data-chat-aria="openSettings">
             <svg viewBox="0 0 16 16" aria-hidden="true">
               <path d="M9.596 1.303a1 1 0 0 0-1.192 0l-.792.602a1 1 0 0 1-1.127.083l-.92-.49a1 1 0 0 0-1.167.242l-.77.87a1 1 0 0 0-.19 1.174l.39.978a1 1 0 0 1-.252 1.104l-.712.712a1 1 0 0 0-.242 1.167l.49.92a1 1 0 0 1-.083 1.127l-.602.792a1 1 0 0 0 0 1.192l.602.792a1 1 0 0 1 .083 1.127l-.49.92a1 1 0 0 0 .242 1.167l.87.77a1 1 0 0 0 1.174.19l.978-.39a1 1 0 0 1 1.104.252l.712.712a1 1 0 0 0 1.167.242l.92-.49a1 1 0 0 1 1.127.083l.792.602a1 1 0 0 0 1.192 0l.792-.602a1 1 0 0 1 1.127-.083l.92.49a1 1 0 0 0 1.167-.242l.77-.87a1 1 0 0 0 .19-1.174l-.39-.978a1 1 0 0 1 .252-1.104l.712-.712a1 1 0 0 0 .242-1.167l-.49-.92a1 1 0 0 1 .083-1.127l.602-.792a1 1 0 0 0 0-1.192l-.602-.792a1 1 0 0 1-.083-1.127l.49-.92a1 1 0 0 0-.242-1.167l-.87-.77a1 1 0 0 0-1.174-.19l-.978.39a1 1 0 0 1-1.104-.252l-.712-.712a1 1 0 0 0-1.167-.242l-.92.49a1 1 0 0 1-1.127-.083l-.792-.602ZM8 10.75a2.75 2.75 0 1 0 0-5.5 2.75 2.75 0 0 0 0 5.5Z"></path>
             </svg>
-          </button>
+          </a>
         </div>
       </div>
 
@@ -233,144 +234,6 @@
         </aside>
       </div>
     </main>
-
-    <div class="chat-settings-backdrop" id="settings-backdrop"></div>
-
-    <aside class="chat-settings-drawer" id="settings-drawer" aria-hidden="true">
-      <div class="chat-settings-drawer-head">
-        <div>
-          <p class="chat-panel-eyebrow" data-chat-text="settingsEyebrow">Settings</p>
-          <h2 data-chat-text="settingsTitle">参数设置</h2>
-          <p class="chat-settings-helper" data-chat-text="settingsHelper">
-            选择模型并保存当前浏览器的 API Key。
-          </p>
-        </div>
-        <button class="chat-icon-button" id="close-settings" type="button" data-chat-aria="closeSettings">
-          <svg viewBox="0 0 16 16" aria-hidden="true">
-            <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 1 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 1 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
-          </svg>
-        </button>
-      </div>
-
-      <div class="chat-setup-banner" id="setup-banner"></div>
-
-      <div class="chat-settings-form">
-        <input id="model-select" type="hidden">
-        <div class="chat-selected-model-panel">
-          <div>
-            <span class="chat-settings-label" data-chat-text="selectedModelTitle">当前模型</span>
-            <strong id="settings-model-name">请选择模型</strong>
-            <p id="settings-model-meta" data-chat-text="selectedModelHint">
-              从大模型列表页选择一个模型后，这里会自动带回模型属性。
-            </p>
-          </div>
-          <a class="chat-secondary-button" id="choose-model-link" href="../models/?from=chat" data-chat-text="chooseModelAction">选择模型</a>
-        </div>
-
-        <label class="chat-settings-label" for="api-key-input" data-chat-text="keyLabel">Model API Key</label>
-        <input id="api-key-input" type="password" autocomplete="off" placeholder="粘贴当前模型对应的 API Key">
-
-        <div class="chat-settings-actions">
-          <button class="chat-primary-button" id="save-key" type="button" data-chat-text="saveKey">保存 Key</button>
-          <button class="chat-secondary-button" id="clear-key" type="button" data-chat-text="clearKey">删除当前 Key</button>
-        </div>
-
-        <div class="chat-settings-note" data-chat-text="settingsNote">
-          当前页面会把模型与 Key 保存在本地浏览器中，不会提交到仓库。
-        </div>
-      </div>
-
-      <div class="chat-settings-form">
-        <div class="chat-panel-subhead">
-          <h3 data-chat-text="customModelTitle">Custom model</h3>
-          <p class="chat-settings-helper" data-chat-text="customModelHelper">
-            Add any OpenAI-compatible or Anthropic-compatible endpoint.
-          </p>
-        </div>
-
-        <label class="chat-settings-label" for="custom-model-base-url" data-chat-text="customBaseUrlLabel">Base URL</label>
-        <input id="custom-model-base-url" type="url" autocomplete="off" placeholder="https://api.openai.com/v1">
-
-        <label class="chat-settings-label" for="custom-model-name" data-chat-text="customModelNameLabel">Model name</label>
-        <input id="custom-model-name" type="text" autocomplete="off" placeholder="gpt-4.1-mini">
-
-        <label class="chat-settings-label" for="custom-model-type" data-chat-text="customModelTypeLabel">API type</label>
-        <select id="custom-model-type">
-          <option value="openai">OpenAI</option>
-          <option value="anthropic">Anthropic</option>
-        </select>
-
-        <label class="chat-settings-label" for="custom-api-key-input" data-chat-text="customApiKeyLabel">API Key</label>
-        <input id="custom-api-key-input" type="password" autocomplete="off" placeholder="Paste the API key for this endpoint">
-
-        <div class="chat-settings-actions">
-          <button class="chat-primary-button" id="save-custom-model" type="button" data-chat-text="saveCustomModel">Save custom model</button>
-          <button class="chat-secondary-button" id="delete-custom-model" type="button" data-chat-text="deleteCustomModel">Delete selected custom model</button>
-        </div>
-
-        <div class="chat-settings-note" data-chat-text="customModelNote">
-          OpenAI uses /chat/completions. Anthropic uses /messages with the anthropic-version header.
-        </div>
-      </div>
-
-      <div class="chat-saved-models">
-        <div class="chat-panel-subhead">
-          <h3 data-chat-text="storageSectionTitle">缓存路径</h3>
-        </div>
-        <div class="chat-settings-form">
-          <label class="chat-settings-label" for="storage-chat-list" data-chat-text="storageListLabel">聊天列表缓存路径</label>
-          <div class="chat-storage-row">
-            <input id="storage-chat-list" type="text" placeholder="wk1995/cache/chat-list">
-            <button class="chat-secondary-button chat-inline-button" id="export-chat-list" type="button" data-chat-text="exportModule">导出</button>
-          </div>
-
-          <label class="chat-settings-label" for="storage-chat-records" data-chat-text="storageRecordsLabel">聊天记录缓存路径</label>
-          <div class="chat-storage-row">
-            <input id="storage-chat-records" type="text" placeholder="wk1995/cache/chat-records">
-            <button class="chat-secondary-button chat-inline-button" id="export-chat-records" type="button" data-chat-text="exportModule">导出</button>
-          </div>
-
-          <label class="chat-settings-label" for="storage-model-api" data-chat-text="storageApiLabel">大模型 API 缓存路径</label>
-          <div class="chat-storage-row">
-            <input id="storage-model-api" type="text" placeholder="wk1995/cache/model-api">
-            <button class="chat-secondary-button chat-inline-button" id="export-model-api" type="button" data-chat-text="exportModule">导出</button>
-          </div>
-
-          <div class="chat-settings-actions">
-            <button class="chat-primary-button" id="save-storage-paths" type="button" data-chat-text="saveStoragePaths">保存路径</button>
-            <button class="chat-secondary-button" id="reset-storage-paths" type="button" data-chat-text="resetStoragePaths">恢复默认</button>
-          </div>
-
-          <div class="chat-settings-note" data-chat-text="storagePathNote">
-            这里的“路径”是浏览器本地缓存命名空间，不是真实磁盘目录。
-          </div>
-        </div>
-      </div>
-
-      <div class="chat-saved-models">
-        <div class="chat-panel-subhead">
-          <h3 data-chat-text="savedModelsTitle">已保存模型</h3>
-          <span id="saved-model-count">0</span>
-        </div>
-        <div class="chat-saved-model-list" id="saved-model-list"></div>
-      </div>
-
-      <div class="chat-saved-models">
-        <div class="chat-panel-subhead">
-          <h3 data-chat-text="backupSectionTitle">备份与恢复</h3>
-        </div>
-        <div class="chat-settings-form">
-          <input id="backup-import-input" type="file" accept="application/json" hidden>
-          <div class="chat-settings-actions">
-            <button class="chat-primary-button" id="export-backup" type="button" data-chat-text="exportBackup">导出整包备份</button>
-            <button class="chat-secondary-button" id="import-backup" type="button" data-chat-text="importBackup">恢复备份</button>
-          </div>
-          <div class="chat-settings-note" data-chat-text="backupNote">
-            备份文件会包含三组缓存路径，以及聊天列表、聊天记录和模型 API 配置，方便换设备恢复。
-          </div>
-        </div>
-      </div>
-    </aside>
   </div>
 
   <script src="../assets/site.js"></script>

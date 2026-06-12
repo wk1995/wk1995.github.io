@@ -133,8 +133,17 @@
       modelFeatureLegacy: "旧入口",
       keyLabel: "模型 API Key",
       keyPlaceholder: "粘贴当前模型对应的 API Key",
+      keyNameLabel: "Key 名称",
+      keyNamePlaceholder: "例如 主账号 / 备用 Key",
+      keyPriorityLabel: "优先级",
+      keyPriorityPlaceholder: "数字越大越优先，例如 100",
+      keyPriorityHelp: "数字越大优先级越高。请求时会先使用当前模型里优先级最高的 Key；失败或额度不足时，再尝试下一个已保存模型。",
       saveKey: "保存 Key",
       clearKey: "删除当前 Key",
+      keyPriorityBadge: "优先级",
+      fallbackNotice: "当前凭证不可用，已切换到下一个可用模型。",
+      noFallback: "所有已保存模型都请求失败。",
+      tokenSummaryTitle: "最近 Token 用量",
       settingsNote: "模型与 Key 只保存在当前浏览器本地，不会提交到仓库。",
       savedModelsTitle: "已保存模型",
       composerHint: "Enter 发送，Shift + Enter 换行",
@@ -315,8 +324,17 @@
       modelFeatureLegacy: "Legacy",
       keyLabel: "Model API Key",
       keyPlaceholder: "Paste the API key for the selected model",
+      keyNameLabel: "Key name",
+      keyNamePlaceholder: "For example Primary / Backup key",
+      keyPriorityLabel: "Priority",
+      keyPriorityPlaceholder: "Higher numbers run first, for example 100",
+      keyPriorityHelp: "Higher numbers mean higher priority. Requests use the highest-priority key for the current model first, then fall back to the next saved model if it fails or runs out of quota.",
       saveKey: "Save key",
       clearKey: "Delete current key",
+      keyPriorityBadge: "Priority",
+      fallbackNotice: "The current credential failed, so the next saved model is being tried.",
+      noFallback: "Every saved model failed.",
+      tokenSummaryTitle: "Latest token usage",
       settingsNote: "Model choices and API keys stay only in this browser and are never committed.",
       savedModelsTitle: "Saved models",
       composerHint: "Enter to send, Shift + Enter for a new line",
@@ -424,6 +442,7 @@
   };
 
   const refs = {};
+  const PAGE_MODE = document.body && document.body.dataset.page === "chatSettingsPage" ? "settings" : "chat";
   const MAX_ATTACHMENTS = 6;
   const MAX_ATTACHMENT_BYTES = 2 * 1024 * 1024;
   const INLINE_ATTACHMENT_TEXT_LIMIT = 12000;
@@ -619,6 +638,51 @@
       .filter(Boolean);
   }
 
+  function normalizeKeyEntries(value) {
+    if (MODEL_CATALOG && typeof MODEL_CATALOG.normalizeKeyEntries === "function") {
+      return MODEL_CATALOG.normalizeKeyEntries(value);
+    }
+    const rawItems = Array.isArray(value)
+      ? value
+      : typeof value === "string" && value.trim()
+        ? [{ key: value }]
+        : [];
+    return rawItems
+      .map(function (item, index) {
+        const key = typeof item === "string"
+          ? item.trim()
+          : typeof item.key === "string"
+            ? item.key.trim()
+            : "";
+        if (!key) {
+          return null;
+        }
+        const priority = Number(item && item.priority);
+        return {
+          id: item && typeof item.id === "string" && item.id ? item.id : "key_" + now() + "_" + index,
+          label: item && typeof item.label === "string" ? item.label.trim() : "",
+          key: key,
+          priority: Number.isFinite(priority) ? priority : 50,
+          createdAt: item && Number(item.createdAt) > 0 ? Number(item.createdAt) : now() + index,
+        };
+      })
+      .filter(Boolean)
+      .sort(function (a, b) {
+        return b.priority - a.priority || a.createdAt - b.createdAt;
+      });
+  }
+
+  function normalizeKeys(rawKeys, customModelItems) {
+    const keys = {};
+    Object.keys(rawKeys || {}).forEach(function (id) {
+      const entries = normalizeKeyEntries(rawKeys[id]);
+      if (entries.length && modelMeta(id, customModelItems)) {
+        keys[id] = entries;
+      }
+    });
+    return keys;
+  }
+
   function customModels() {
     return Array.isArray(state.config.customModels) ? state.config.customModels : [];
   }
@@ -766,6 +830,27 @@
     if (!usage || typeof usage !== "object") {
       return null;
     }
+    if (
+      usage.promptTokens >= 0 ||
+      usage.completionTokens >= 0 ||
+      usage.totalTokens >= 0
+    ) {
+      const promptTokens = normalizeTokenCount(usage.promptTokens);
+      const completionTokens = normalizeTokenCount(usage.completionTokens);
+      const totalTokens = normalizeTokenCount(usage.totalTokens) || promptTokens + completionTokens;
+      if (!promptTokens && !completionTokens && !totalTokens) {
+        return null;
+      }
+      return {
+        promptTokens: promptTokens,
+        completionTokens: completionTokens,
+        totalTokens: totalTokens,
+        cachedPromptTokens: normalizeTokenCount(usage.cachedPromptTokens),
+        freshPromptTokens: normalizeTokenCount(usage.freshPromptTokens),
+        reasoningTokens: normalizeTokenCount(usage.reasoningTokens),
+        answerTokens: normalizeTokenCount(usage.answerTokens),
+      };
+    }
     const promptDetails = usage.prompt_tokens_details && typeof usage.prompt_tokens_details === "object"
       ? usage.prompt_tokens_details
       : {};
@@ -828,6 +913,8 @@
       answerMs: message && Number(message.answerMs) > 0 ? Number(message.answerMs) : 0,
       totalMs: message && Number(message.totalMs) > 0 ? Number(message.totalMs) : 0,
       tokenUsage: normalizeTokenUsage(message && message.tokenUsage),
+      modelId: message && typeof message.modelId === "string" ? message.modelId : "",
+      credentialLabel: message && typeof message.credentialLabel === "string" ? message.credentialLabel : "",
     };
   }
 
@@ -837,13 +924,7 @@
       raw = loadJson(LEGACY_CONFIG_KEY);
     }
     const customModelItems = normalizeCustomModels(raw.customModels);
-    const keys = {};
-    Object.keys(raw.keys || {}).forEach(function (id) {
-      const value = typeof raw.keys[id] === "string" ? raw.keys[id].trim() : "";
-      if (value && modelMeta(id, customModelItems)) {
-        keys[id] = value;
-      }
-    });
+    const keys = normalizeKeys(raw.keys, customModelItems);
     return {
       selectedModel: modelMeta(raw.selectedModel, customModelItems) ? raw.selectedModel : (Object.keys(keys)[0] || ""),
       keys: keys,
@@ -852,7 +933,11 @@
   }
 
   function saveConfig() {
-    localStorage.setItem(storageKey("modelApi"), JSON.stringify(state.config));
+    localStorage.setItem(storageKey("modelApi"), JSON.stringify({
+      selectedModel: state.config.selectedModel || "",
+      keys: normalizeKeys(state.config.keys, state.config.customModels),
+      customModels: normalizeCustomModels(state.config.customModels),
+    }));
   }
 
   function loadUi() {
@@ -948,23 +1033,33 @@
 
   function keyForModel(id) {
     const target = id || selectedModel();
-    return target ? state.config.keys[target] || "" : "";
+    const entries = keyEntriesForModel(target);
+    return entries[0] ? entries[0].key : "";
+  }
+
+  function keyEntriesForModel(id) {
+    const target = id || selectedModel();
+    return target ? normalizeKeyEntries(state.config.keys[target]) : [];
+  }
+
+  function modelHasKey(id) {
+    return keyEntriesForModel(id).length > 0;
   }
 
   function needsSetup() {
-    return !selectedModel() || !keyForModel();
+    return !selectedModel() || !credentialQueue(selectedModel()).length;
   }
 
   function statusKey() {
     if (!selectedModel()) {
       return "statusSelectModel";
     }
-    return keyForModel() ? "statusReady" : "statusNeedSetup";
+    return credentialQueue(selectedModel()).length ? "statusReady" : "statusNeedSetup";
   }
 
   function savedModels() {
     return Object.keys(state.config.keys).filter(function (id) {
-      return state.config.keys[id] && modelMeta(id);
+      return modelHasKey(id) && modelMeta(id);
     });
   }
 
@@ -1213,6 +1308,45 @@
       return value;
     }
     return value.slice(0, 4) + "..." + value.slice(-4);
+  }
+
+  function credentialLabel(entry, index) {
+    return entry && entry.label ? entry.label : "Key " + (index + 1);
+  }
+
+  function credentialQueue(preferredModelId) {
+    const preferred = preferredModelId || selectedModel();
+    const items = [];
+    savedModels().forEach(function (modelId) {
+      keyEntriesForModel(modelId).forEach(function (entry, index) {
+        items.push({
+          modelId: modelId,
+          entry: entry,
+          label: credentialLabel(entry, index),
+          preferred: modelId === preferred,
+        });
+      });
+    });
+    return items.sort(function (a, b) {
+      if (a.preferred !== b.preferred) {
+        return a.preferred ? -1 : 1;
+      }
+      return b.entry.priority - a.entry.priority || a.entry.createdAt - b.entry.createdAt;
+    });
+  }
+
+  function latestTokenUsage() {
+    const conversation = activeConversation();
+    if (!conversation || !Array.isArray(conversation.messages)) {
+      return null;
+    }
+    for (let index = conversation.messages.length - 1; index >= 0; index -= 1) {
+      const message = conversation.messages[index];
+      if (message.role === "assistant" && !message.pending && !message.failed && message.tokenUsage) {
+        return message.tokenUsage;
+      }
+    }
+    return null;
   }
 
   async function fileToAttachment(file, source) {
@@ -1570,7 +1704,7 @@
   function initState() {
     const raw = loadConversationState(state.storage);
     applyConversationState(raw);
-    if (needsSetup()) {
+    if (PAGE_MODE === "settings" && needsSetup()) {
       state.ui.settingsOpen = true;
     }
   }
@@ -1601,6 +1735,10 @@
   }
 
   function openSettings(focusTarget) {
+    if (PAGE_MODE === "chat") {
+      window.location.href = "settings/";
+      return;
+    }
     setSettingsOpen(true);
     if (focusTarget === "model") {
       if (refs.chooseModel) {
@@ -1633,22 +1771,52 @@
       node.setAttribute("aria-label", t(key));
       node.setAttribute("title", t(key));
     });
-    refs.keyInput.setAttribute("placeholder", t("keyPlaceholder"));
-    refs.customBaseUrl.setAttribute("placeholder", t("customBaseUrlPlaceholder"));
-    refs.customModelName.setAttribute("placeholder", t("customModelNamePlaceholder"));
-    refs.customApiKey.setAttribute("placeholder", t("customApiKeyPlaceholder"));
-    refs.storageChatList.setAttribute("placeholder", t("storagePathPlaceholder"));
-    refs.storageChatRecords.setAttribute("placeholder", t("storagePathPlaceholder"));
-    refs.storageModelApi.setAttribute("placeholder", t("storagePathPlaceholder"));
-    refs.input.setAttribute("placeholder", needsSetup() ? t("placeholderMissing") : t("placeholderReady"));
-    refs.editingTitle.textContent = t("editingTitle");
-    refs.editingDescription.textContent = t("editingDescription");
-    refs.cancelEdit.textContent = t("cancelEdit");
+    if (refs.keyInput) {
+      refs.keyInput.setAttribute("placeholder", t("keyPlaceholder"));
+    }
+    if (refs.keyName) {
+      refs.keyName.setAttribute("placeholder", t("keyNamePlaceholder"));
+    }
+    if (refs.keyPriority) {
+      refs.keyPriority.setAttribute("placeholder", t("keyPriorityPlaceholder"));
+    }
+    if (refs.customBaseUrl) {
+      refs.customBaseUrl.setAttribute("placeholder", t("customBaseUrlPlaceholder"));
+    }
+    if (refs.customModelName) {
+      refs.customModelName.setAttribute("placeholder", t("customModelNamePlaceholder"));
+    }
+    if (refs.customApiKey) {
+      refs.customApiKey.setAttribute("placeholder", t("customApiKeyPlaceholder"));
+    }
+    if (refs.storageChatList) {
+      refs.storageChatList.setAttribute("placeholder", t("storagePathPlaceholder"));
+    }
+    if (refs.storageChatRecords) {
+      refs.storageChatRecords.setAttribute("placeholder", t("storagePathPlaceholder"));
+    }
+    if (refs.storageModelApi) {
+      refs.storageModelApi.setAttribute("placeholder", t("storagePathPlaceholder"));
+    }
+    if (refs.input) {
+      refs.input.setAttribute("placeholder", needsSetup() ? t("placeholderMissing") : t("placeholderReady"));
+    }
+    if (refs.editingTitle) {
+      refs.editingTitle.textContent = t("editingTitle");
+    }
+    if (refs.editingDescription) {
+      refs.editingDescription.textContent = t("editingDescription");
+    }
+    if (refs.cancelEdit) {
+      refs.cancelEdit.textContent = t("cancelEdit");
+    }
   }
 
   function renderModelSelect() {
     const current = selectedModel();
-    refs.modelSelect.value = current;
+    if (refs.modelSelect) {
+      refs.modelSelect.value = current;
+    }
     if (refs.settingsModelName) {
       refs.settingsModelName.textContent = current ? label(current) : t("selectModel");
     }
@@ -1656,12 +1824,34 @@
       refs.settingsModelMeta.textContent = current ? modelFeatureText(modelMeta(current)) : t("selectedModelHint");
     }
     if (refs.chooseModel) {
-      refs.chooseModel.setAttribute("href", "../models/?from=chat");
+      refs.chooseModel.setAttribute("href", PAGE_MODE === "settings" ? "../../models/?from=chat" : "../models/?from=chat");
+    }
+    if (!refs.keyInput) {
+      return;
     }
     refs.keyInput.value = keyForModel();
+    const entries = keyEntriesForModel(current);
+    const selectedEntryId = refs.keyEntryId ? refs.keyEntryId.value : "";
+    const entry = entries.find(function (item) {
+      return item.id === selectedEntryId;
+    }) || entries[0] || null;
+    if (refs.keyEntryId) {
+      refs.keyEntryId.value = entry ? entry.id : "";
+    }
+    if (refs.keyName) {
+      refs.keyName.value = entry ? entry.label : "";
+      refs.keyName.setAttribute("placeholder", t("keyNamePlaceholder"));
+    }
+    if (refs.keyPriority) {
+      refs.keyPriority.value = entry ? String(entry.priority) : "50";
+      refs.keyPriority.setAttribute("placeholder", t("keyPriorityPlaceholder"));
+    }
   }
 
   function renderCustomModelForm() {
+    if (!refs.customBaseUrl) {
+      return;
+    }
     const custom = customModelMeta(selectedModel());
     refs.customBaseUrl.value = custom ? custom.baseUrl : "";
     refs.customModelName.value = custom ? custom.model : "";
@@ -1674,6 +1864,9 @@
   }
 
   function renderSetupBanner() {
+    if (!refs.setupBanner) {
+      return;
+    }
     const required = needsSetup();
     refs.setupBanner.hidden = !required;
     if (!required) {
@@ -1684,8 +1877,14 @@
   }
 
   function renderSavedModels() {
+    if (!refs.savedList || !refs.savedCount) {
+      return;
+    }
     const items = savedModels();
-    refs.savedCount.textContent = String(items.length);
+    const totalEntries = items.reduce(function (total, id) {
+      return total + keyEntriesForModel(id).length;
+    }, 0);
+    refs.savedCount.textContent = String(totalEntries);
     refs.savedList.innerHTML = "";
     if (!items.length) {
       const empty = document.createElement("div");
@@ -1700,28 +1899,48 @@
       return;
     }
     items.forEach(function (id) {
-      const button = document.createElement("button");
-      const title = document.createElement("strong");
-      const detail = document.createElement("span");
-      button.type = "button";
-      button.className = "chat-saved-model-item" + (id === selectedModel() ? " is-active" : "");
-      title.textContent = label(id);
-      detail.textContent = maskKey(state.config.keys[id]);
-      button.appendChild(title);
-      button.appendChild(detail);
-      button.addEventListener("click", function () {
-        state.config.selectedModel = id;
-        saveConfig();
-        renderAll();
-        setStatus(keyForModel() ? "success" : "error", keyForModel() ? "statusLoaded" : "statusMissing");
-        refs.keyInput.focus();
-        refs.keyInput.select();
+      keyEntriesForModel(id).forEach(function (entry, index) {
+        const button = document.createElement("button");
+        const title = document.createElement("strong");
+        const detail = document.createElement("span");
+        button.type = "button";
+        button.className = "chat-saved-model-item" + (id === selectedModel() && (!refs.keyEntryId || refs.keyEntryId.value === entry.id || (!refs.keyEntryId.value && index === 0)) ? " is-active" : "");
+        title.textContent = label(id) + " · " + credentialLabel(entry, index);
+        detail.textContent = t("keyPriorityBadge") + " " + entry.priority + " · " + maskKey(entry.key);
+        button.appendChild(title);
+        button.appendChild(detail);
+        button.addEventListener("click", function () {
+          state.config.selectedModel = id;
+          if (refs.keyEntryId) {
+            refs.keyEntryId.value = entry.id;
+          }
+          saveConfig();
+          renderAll();
+          if (refs.keyEntryId) {
+            refs.keyEntryId.value = entry.id;
+          }
+          if (refs.keyInput) {
+            refs.keyInput.value = entry.key;
+            refs.keyInput.focus();
+            refs.keyInput.select();
+          }
+          if (refs.keyName) {
+            refs.keyName.value = entry.label;
+          }
+          if (refs.keyPriority) {
+            refs.keyPriority.value = String(entry.priority);
+          }
+          setStatus("success", "statusLoaded");
+        });
+        refs.savedList.appendChild(button);
       });
-      refs.savedList.appendChild(button);
     });
   }
 
   function renderHistory() {
+    if (!refs.history) {
+      return;
+    }
     refs.history.innerHTML = "";
     let currentGroup = "";
     state.conversations
@@ -2178,6 +2397,27 @@
     });
   }
 
+  function avatarMetaForModel(modelId) {
+    const meta = modelMeta(modelId) || modelMeta(selectedModel());
+    if (!meta) {
+      return { text: t("aiAvatar"), className: "is-ai" };
+    }
+    if (meta.custom) {
+      return {
+        text: normalizeCustomModelType(meta.type) === "anthropic" ? "A" : "O",
+        className: normalizeCustomModelType(meta.type) === "anthropic" ? "is-anthropic" : "is-openai",
+      };
+    }
+    const provider = providerIdForModel(meta.id);
+    if (provider === "deepseek") {
+      return { text: "D", className: "is-deepseek" };
+    }
+    if (provider === "zhipu") {
+      return { text: "Z", className: "is-zhipu" };
+    }
+    return { text: label(meta.id).slice(0, 1).toUpperCase() || t("aiAvatar"), className: "is-ai" };
+  }
+
   function renderMessage(message, index, messages) {
     const article = document.createElement("article");
     const shell = document.createElement("div");
@@ -2207,10 +2447,18 @@
     answerBlock.className = "chat-answer-block";
     attachments.className = "chat-message-attachments";
 
-    avatar.textContent = message.role === "user" ? t("userAvatar") : t("aiAvatar");
+    if (message.role === "user") {
+      avatar.textContent = t("userAvatar");
+    } else {
+      const avatarMeta = avatarMetaForModel(message.modelId);
+      avatar.textContent = avatarMeta.text;
+      avatar.classList.add(avatarMeta.className);
+    }
     avatar.setAttribute("aria-label", message.role === "user" ? t("userRole") : t("assistantRole"));
 
-    name.textContent = message.role === "user" ? t("you") : t("ai");
+    name.textContent = message.role === "user"
+      ? t("you")
+      : (message.modelId ? label(message.modelId) : t("ai"));
     meta.textContent = formatTime(message.timestamp) + (message.role === "user" && message.editedAt ? " · " + t("editedMark") : "");
     header.appendChild(name);
     header.appendChild(meta);
@@ -2340,12 +2588,17 @@
   }
 
   function renderConversation() {
+    if (!refs.messages || !refs.title) {
+      return;
+    }
     const conversation = activeConversation();
     const preserveScrollTop = state.scrollPinned ? null : refs.messages.scrollTop;
     refs.title.textContent = conversationTitle(conversation);
     refs.modelChip.textContent = selectedModel() ? label(selectedModel()) : t("selectModel");
-    refs.connectionChip.textContent = !selectedModel() ? t("modelRequired") : (keyForModel() ? t("ready") : t("missing"));
-    refs.openSettings.classList.toggle("has-alert", needsSetup());
+    refs.connectionChip.textContent = !selectedModel() ? t("modelRequired") : (credentialQueue(selectedModel()).length ? t("ready") : t("missing"));
+    if (refs.openSettings) {
+      refs.openSettings.classList.toggle("has-alert", needsSetup());
+    }
     refs.messages.innerHTML = "";
     refs.messages.classList.toggle("is-empty", !conversation.messages.length);
     if (!conversation.messages.length) {
@@ -2387,6 +2640,9 @@
   }
 
   function renderStatus() {
+    if (!refs.status) {
+      return;
+    }
     refs.status.className = "chat-main-status";
     if (state.status.type) {
       refs.status.classList.add("is-" + state.status.type);
@@ -2394,7 +2650,31 @@
     refs.status.textContent = state.status.raw || t(state.status.key || statusKey());
   }
 
+  function renderTokenSummary() {
+    if (!refs.tokenSummary) {
+      return;
+    }
+    const usage = latestTokenUsage();
+    refs.tokenSummary.hidden = !usage;
+    refs.tokenSummary.innerHTML = "";
+    if (!usage) {
+      return;
+    }
+    const title = document.createElement("span");
+    const total = document.createElement("strong");
+    const detail = document.createElement("small");
+    title.textContent = t("tokenSummaryTitle");
+    total.textContent = formatTokenValue(usage.totalTokens);
+    detail.textContent = t("tokenPrompt") + " " + formatTokenCount(usage.promptTokens) + " / " + t("tokenCompletion") + " " + formatTokenCount(usage.completionTokens);
+    refs.tokenSummary.appendChild(title);
+    refs.tokenSummary.appendChild(total);
+    refs.tokenSummary.appendChild(detail);
+  }
+
   function renderComposerState() {
+    if (!refs.editingBanner || !refs.send) {
+      return;
+    }
     const editing = activeEditingMessage();
     refs.editingBanner.hidden = !editing;
     refs.send.textContent = editing ? t("resend") : t("send");
@@ -2405,9 +2685,11 @@
   }
 
   function syncSettingsPanel() {
+    if (PAGE_MODE !== "chat" || !refs.openSettings) {
+      return;
+    }
     const open = state.ui.settingsOpen;
     document.body.classList.toggle("chat-settings-open", open);
-    refs.drawer.setAttribute("aria-hidden", open ? "false" : "true");
     refs.openSettings.setAttribute("aria-expanded", open ? "true" : "false");
   }
 
@@ -2421,8 +2703,11 @@
     renderHistory();
     renderConversation();
     renderStatus();
+    renderTokenSummary();
     renderComposerState();
-    resizeInput();
+    if (refs.input) {
+      resizeInput();
+    }
     syncSettingsPanel();
   }
 
@@ -2449,6 +2734,7 @@
       reasoning: "",
       pending: true,
       timestamp: now(),
+      modelId: selectedModel(),
     });
   }
 
@@ -2790,18 +3076,19 @@
     };
   }
 
-  function requestHeaders(modelId) {
+  function requestHeaders(modelId, apiKey) {
+    const key = apiKey || keyForModel(modelId);
     if (isAnthropicModel(modelId)) {
       return {
         "Content-Type": "application/json",
-        "x-api-key": keyForModel(modelId),
+        "x-api-key": key,
         "anthropic-version": "2023-06-01",
         "anthropic-dangerous-direct-browser-access": "true",
       };
     }
     return {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + keyForModel(modelId),
+      Authorization: "Bearer " + key,
     };
   }
 
@@ -2809,12 +3096,105 @@
     return JSON.stringify(isAnthropicModel(modelId) ? buildAnthropicPayload(modelId) : buildStreamPayload(modelId));
   }
 
+  async function requestWithCredential(credential, conversation, pending, startedAt) {
+    const modelId = credential.modelId;
+    replaceMessage(conversation, pending.id, {
+      role: "assistant",
+      pending: true,
+      failed: false,
+      content: "",
+      reasoning: "",
+      modelId: modelId,
+      credentialLabel: credential.label,
+      totalMs: now() - startedAt,
+    });
+    renderConversation();
+    const response = await fetch(requestApiUrl(modelId), {
+      method: "POST",
+      headers: requestHeaders(modelId, credential.entry.key),
+      body: modelRequestBody(modelId),
+    });
+    if (!response.ok) {
+      throw new Error(await readErrorResponse(response));
+    }
+    if (isAnthropicModel(modelId)) {
+      const payload = await response.json();
+      const reasoning = responseReasoning(payload);
+      const content = (responseContent(payload) || reasoning).trim();
+      if (!content) {
+        throw new Error(t("invalid"));
+      }
+      return {
+        content: content,
+        reasoning: content === reasoning ? "" : reasoning,
+        tokenUsage: responseTokenUsage(payload),
+        modelId: modelId,
+        credentialLabel: credential.label,
+      };
+    }
+    const streamState = {
+      content: "",
+      reasoning: "",
+      tokenUsage: null,
+    };
+    await consumeSseResponse(response, function (payload) {
+      const nextReasoning = streamReasoningDelta(payload);
+      const nextContent = streamContentDelta(payload);
+      const nextUsage = responseTokenUsage(payload);
+      let changed = false;
+
+      if (nextReasoning) {
+        streamState.reasoning += nextReasoning;
+        changed = true;
+      }
+      if (nextContent) {
+        streamState.content += nextContent;
+        changed = true;
+      }
+      if (nextUsage) {
+        streamState.tokenUsage = nextUsage;
+      }
+      if (!changed) {
+        return;
+      }
+      replaceMessage(conversation, pending.id, {
+        role: "assistant",
+        pending: true,
+        failed: false,
+        content: streamState.content,
+        reasoning: streamState.reasoning,
+        modelId: modelId,
+        credentialLabel: credential.label,
+        totalMs: now() - startedAt,
+      });
+      queueStreamingConversationRender();
+    });
+
+    const reasoning = streamState.reasoning.trim();
+    const content = (streamState.content.trim() || reasoning).trim();
+    if (!content) {
+      throw new Error(t("invalid"));
+    }
+    return {
+      content: content,
+      reasoning: content === reasoning ? "" : reasoning,
+      tokenUsage: streamState.tokenUsage,
+      modelId: modelId,
+      credentialLabel: credential.label,
+    };
+  }
+
   async function runAssistantReply(statusMessageKey) {
     const conversation = activeConversation();
     const pending = createPendingAssistant();
     const startedAt = now();
     const modelId = selectedModel();
+    const queue = credentialQueue(modelId);
     state.scrollPinned = true;
+    if (!queue.length) {
+      setStatus("error", "statusNeedSetup");
+      return;
+    }
     conversation.messages.push(pending);
     touchConversation(conversation);
     renderAll();
@@ -2822,100 +3202,42 @@
     syncBusy();
     setStatus("success", statusMessageKey || "statusSending");
     try {
-      const response = await fetch(requestApiUrl(modelId), {
-        method: "POST",
-        headers: requestHeaders(modelId),
-        body: modelRequestBody(modelId),
-      });
-      if (!response.ok) {
-        throw new Error(await readErrorResponse(response));
-      }
-      if (isAnthropicModel(modelId)) {
-        const payload = await response.json();
-        const reasoning = responseReasoning(payload);
-        const content = (responseContent(payload) || reasoning).trim();
-        if (!content) {
-          throw new Error(t("invalid"));
-        }
-        const durations = splitDurations(now() - startedAt, reasoning, content);
-        replaceMessage(conversation, pending.id, {
-          role: "assistant",
-          content: content,
-          reasoning: content === reasoning ? "" : reasoning,
-          pending: false,
-          failed: false,
-          timestamp: now(),
-          thinkingMs: durations.thinkingMs,
-          answerMs: durations.answerMs,
-          totalMs: durations.totalMs,
-          tokenUsage: responseTokenUsage(payload),
-        });
-        touchConversation(conversation);
-        renderAll();
-        setStatus("success", "statusReady");
-        return;
-      }
-      const streamState = {
-        content: "",
-        reasoning: "",
-        tokenUsage: null,
-      };
-      await consumeSseResponse(response, function (payload) {
-        const nextReasoning = streamReasoningDelta(payload);
-        const nextContent = streamContentDelta(payload);
-        const nextUsage = responseTokenUsage(payload);
-        let changed = false;
-
-        if (nextReasoning) {
-          streamState.reasoning += nextReasoning;
-          changed = true;
-        }
-        if (nextContent) {
-          streamState.content += nextContent;
-          changed = true;
-        }
-        if (nextUsage) {
-          streamState.tokenUsage = nextUsage;
-        }
-        if (!changed) {
+      let lastError = null;
+      for (let index = 0; index < queue.length; index += 1) {
+        const credential = queue[index];
+        try {
+          const result = await requestWithCredential(credential, conversation, pending, startedAt);
+          const durations = splitDurations(now() - startedAt, result.reasoning, result.content);
+          replaceMessage(conversation, pending.id, {
+            role: "assistant",
+            content: result.content,
+            reasoning: result.reasoning,
+            pending: false,
+            failed: false,
+            timestamp: now(),
+            thinkingMs: durations.thinkingMs,
+            answerMs: durations.answerMs,
+            totalMs: durations.totalMs,
+            tokenUsage: result.tokenUsage,
+            modelId: result.modelId,
+            credentialLabel: result.credentialLabel,
+          });
+          touchConversation(conversation);
+          renderAll();
+          setStatus("success", "statusReady");
           return;
+        } catch (error) {
+          lastError = error;
+          if (index < queue.length - 1) {
+            setStatus("error", "fallbackNotice");
+          }
         }
-        replaceMessage(conversation, pending.id, {
-          role: "assistant",
-          pending: true,
-          failed: false,
-          content: streamState.content,
-          reasoning: streamState.reasoning,
-          totalMs: now() - startedAt,
-        });
-        queueStreamingConversationRender();
-      });
-
-      const reasoning = streamState.reasoning.trim();
-      const content = (streamState.content.trim() || reasoning).trim();
-      if (!content) {
-        throw new Error(t("invalid"));
       }
-      const durations = splitDurations(now() - startedAt, reasoning, content);
-      replaceMessage(conversation, pending.id, {
-        role: "assistant",
-        content: content,
-        reasoning: content === reasoning ? "" : reasoning,
-        pending: false,
-        failed: false,
-        timestamp: now(),
-        thinkingMs: durations.thinkingMs,
-        answerMs: durations.answerMs,
-        totalMs: durations.totalMs,
-        tokenUsage: streamState.tokenUsage,
-      });
-      touchConversation(conversation);
-      renderAll();
-      setStatus("success", "statusReady");
+      throw lastError || new Error(t("noFallback"));
     } catch (error) {
       replaceMessage(conversation, pending.id, {
         role: "assistant",
-        content: t("failed") + " " + (error && error.message ? error.message : "Unknown error"),
+        content: t("failed") + " " + (error && error.message ? error.message : t("noFallback")),
         reasoning: "",
         pending: false,
         failed: true,
@@ -2924,10 +3246,11 @@
         answerMs: 0,
         totalMs: Math.max(now() - startedAt, 0),
         tokenUsage: null,
+        modelId: modelId,
       });
       touchConversation(conversation);
       renderAll();
-      setStatus("error", "", t("failed") + " " + (error && error.message ? error.message : "Unknown error"));
+      setStatus("error", "", t("failed") + " " + (error && error.message ? error.message : t("noFallback")));
     } finally {
       state.busy = false;
       syncBusy();
@@ -2953,7 +3276,7 @@
       setStatus("error", "statusSelectModel");
       return;
     }
-    if (!keyForModel()) {
+    if (!credentialQueue(selectedModel()).length) {
       openSettings("key");
       setStatus("error", "statusNeedSetup");
       return;
@@ -3013,7 +3336,7 @@
       setStatus("error", "statusSelectModel");
       return;
     }
-    if (!keyForModel()) {
+    if (!credentialQueue(selectedModel()).length) {
       openSettings("key");
       setStatus("error", "statusNeedSetup");
       return;
@@ -3034,38 +3357,47 @@
   }
 
   function syncBusy() {
-    refs.send.disabled = state.busy;
-    refs.newChat.disabled = state.busy;
-    refs.clearChat.disabled = state.busy;
-    refs.cancelEdit.disabled = state.busy;
-    refs.pickAttachments.disabled = state.busy;
-    refs.attachmentInput.disabled = state.busy;
-    refs.input.disabled = state.busy;
-    refs.modelSelect.disabled = state.busy;
+    function disable(ref) {
+      if (ref) {
+        ref.disabled = state.busy;
+      }
+    }
+    disable(refs.send);
+    disable(refs.newChat);
+    disable(refs.clearChat);
+    disable(refs.cancelEdit);
+    disable(refs.pickAttachments);
+    disable(refs.attachmentInput);
+    disable(refs.input);
+    disable(refs.modelSelect);
     if (refs.chooseModel) {
       refs.chooseModel.setAttribute("aria-disabled", state.busy ? "true" : "false");
       refs.chooseModel.classList.toggle("is-disabled", state.busy);
     }
-    refs.keyInput.disabled = state.busy;
-    refs.saveKey.disabled = state.busy;
-    refs.clearKey.disabled = state.busy;
-    refs.customBaseUrl.disabled = state.busy;
-    refs.customModelName.disabled = state.busy;
-    refs.customType.disabled = state.busy;
-    refs.customApiKey.disabled = state.busy;
-    refs.saveCustomModel.disabled = state.busy;
-    refs.deleteCustomModel.disabled = state.busy || !customModelMeta(selectedModel());
-    refs.storageChatList.disabled = state.busy;
-    refs.storageChatRecords.disabled = state.busy;
-    refs.storageModelApi.disabled = state.busy;
-    refs.saveStoragePaths.disabled = state.busy;
-    refs.resetStoragePaths.disabled = state.busy;
-    refs.exportChatList.disabled = state.busy;
-    refs.exportChatRecords.disabled = state.busy;
-    refs.exportModelApi.disabled = state.busy;
-    refs.exportBackup.disabled = state.busy;
-    refs.importBackup.disabled = state.busy;
-    refs.backupImportInput.disabled = state.busy;
+    disable(refs.keyInput);
+    disable(refs.keyName);
+    disable(refs.keyPriority);
+    disable(refs.saveKey);
+    disable(refs.clearKey);
+    disable(refs.customBaseUrl);
+    disable(refs.customModelName);
+    disable(refs.customType);
+    disable(refs.customApiKey);
+    disable(refs.saveCustomModel);
+    if (refs.deleteCustomModel) {
+      refs.deleteCustomModel.disabled = state.busy || !customModelMeta(selectedModel());
+    }
+    disable(refs.storageChatList);
+    disable(refs.storageChatRecords);
+    disable(refs.storageModelApi);
+    disable(refs.saveStoragePaths);
+    disable(refs.resetStoragePaths);
+    disable(refs.exportChatList);
+    disable(refs.exportChatRecords);
+    disable(refs.exportModelApi);
+    disable(refs.exportBackup);
+    disable(refs.importBackup);
+    disable(refs.backupImportInput);
   }
 
   function createConversation() {
@@ -3095,6 +3427,9 @@
   function saveKey() {
     const model = refs.modelSelect.value;
     const value = refs.keyInput.value.trim();
+    const labelText = refs.keyName ? refs.keyName.value.trim() : "";
+    const priorityValue = refs.keyPriority ? Number(refs.keyPriority.value) : 50;
+    const entryId = refs.keyEntryId ? refs.keyEntryId.value : "";
     if (!model) {
       openSettings("model");
       setStatus("error", "statusSelectModel");
@@ -3106,7 +3441,17 @@
       return;
     }
     state.config.selectedModel = model;
-    state.config.keys[model] = value;
+    const entries = keyEntriesForModel(model).filter(function (entry) {
+      return entry.id !== entryId;
+    });
+    entries.push({
+      id: entryId || "key_" + now() + "_" + Math.random().toString(16).slice(2, 8),
+      label: labelText,
+      key: value,
+      priority: Number.isFinite(priorityValue) ? priorityValue : 50,
+      createdAt: now(),
+    });
+    state.config.keys[model] = normalizeKeyEntries(entries);
     saveConfig();
     renderAll();
     setStatus("success", "statusSaved");
@@ -3118,10 +3463,27 @@
       setStatus("error", "statusSelectModel");
       return;
     }
-    delete state.config.keys[model];
+    const entryId = refs.keyEntryId ? refs.keyEntryId.value : "";
+    const currentValue = refs.keyInput ? refs.keyInput.value.trim() : "";
+    const entries = keyEntriesForModel(model).filter(function (entry, index) {
+      if (entryId) {
+        return entry.id !== entryId;
+      }
+      if (currentValue) {
+        return entry.key !== currentValue;
+      }
+      return index !== 0;
+    });
+    if (entries.length) {
+      state.config.keys[model] = entries;
+    } else {
+      delete state.config.keys[model];
+    }
     saveConfig();
-    state.ui.settingsOpen = true;
-    saveUi();
+    if (PAGE_MODE === "settings") {
+      state.ui.settingsOpen = true;
+      saveUi();
+    }
     renderAll();
     setStatus("success", "statusCleared");
   }
@@ -3137,7 +3499,7 @@
 
   function nextSelectedConfiguredModel() {
     return Object.keys(state.config.keys).find(function (id) {
-      return state.config.keys[id] && modelMeta(id);
+      return modelHasKey(id) && modelMeta(id);
     }) || "";
   }
 
@@ -3166,7 +3528,15 @@
       .filter(function (item) { return item.id !== next.id; })
       .concat(next);
     state.config.selectedModel = next.id;
-    state.config.keys[next.id] = apiKey;
+    const customEntries = keyEntriesForModel(next.id);
+    customEntries.push({
+      id: "key_" + now() + "_" + Math.random().toString(16).slice(2, 8),
+      label: "",
+      key: apiKey,
+      priority: 50,
+      createdAt: now(),
+    });
+    state.config.keys[next.id] = normalizeKeyEntries(customEntries);
     saveConfig();
     renderAll();
     setStatus("success", "statusCustomSaved");
@@ -3197,6 +3567,9 @@
   }
 
   function renderStorageSettings() {
+    if (!refs.storageChatList) {
+      return;
+    }
     refs.storageChatList.value = storageKey("chatList");
     refs.storageChatRecords.value = storageKey("chatRecords");
     refs.storageModelApi.value = storageKey("modelApi");
@@ -3273,60 +3646,107 @@
   }
 
   function bind() {
-    refs.newChat.addEventListener("click", createConversation);
-    refs.clearChat.addEventListener("click", clearConversation);
-    refs.send.addEventListener("click", sendMessage);
-    refs.pickAttachments.addEventListener("click", function () {
-      refs.attachmentInput.click();
-    });
-    refs.cancelEdit.addEventListener("click", function () {
-      cancelEditing();
-    });
-    refs.attachmentInput.addEventListener("change", function (event) {
-      addComposerFiles(event.target.files, "upload");
-    });
-    refs.saveKey.addEventListener("click", saveKey);
-    refs.clearKey.addEventListener("click", clearKey);
-    refs.saveCustomModel.addEventListener("click", saveCustomModel);
-    refs.deleteCustomModel.addEventListener("click", deleteCustomModel);
-    refs.saveStoragePaths.addEventListener("click", saveStoragePaths);
-    refs.resetStoragePaths.addEventListener("click", resetStoragePaths);
-    refs.exportChatList.addEventListener("click", function () {
-      exportModuleBackup("chatList");
-    });
-    refs.exportChatRecords.addEventListener("click", function () {
-      exportModuleBackup("chatRecords");
-    });
-    refs.exportModelApi.addEventListener("click", function () {
-      exportModuleBackup("modelApi");
-    });
-    refs.exportBackup.addEventListener("click", exportFullBackup);
-    refs.importBackup.addEventListener("click", function () {
-      refs.backupImportInput.click();
-    });
-    refs.backupImportInput.addEventListener("change", function (event) {
-      const file = event.target.files && event.target.files[0];
-      if (file) {
-        importBackupFile(file);
-      }
-    });
-    refs.scrollToBottom.addEventListener("click", function () {
-      scrollMessagesToBottom("smooth");
-    });
-    refs.openSettings.addEventListener("click", function () {
-      openSettings();
-    });
-    refs.chooseModel.addEventListener("click", function (event) {
-      if (state.busy) {
-        event.preventDefault();
-      }
-    });
-    refs.closeSettings.addEventListener("click", closeSettings);
-    refs.backdrop.addEventListener("click", closeSettings);
-    refs.modelSelect.addEventListener("change", function () {
+    if (refs.newChat) {
+      refs.newChat.addEventListener("click", createConversation);
+    }
+    if (refs.clearChat) {
+      refs.clearChat.addEventListener("click", clearConversation);
+    }
+    if (refs.send) {
+      refs.send.addEventListener("click", sendMessage);
+    }
+    if (refs.pickAttachments) {
+      refs.pickAttachments.addEventListener("click", function () {
+        refs.attachmentInput.click();
+      });
+    }
+    if (refs.cancelEdit) {
+      refs.cancelEdit.addEventListener("click", function () {
+        cancelEditing();
+      });
+    }
+    if (refs.attachmentInput) {
+      refs.attachmentInput.addEventListener("change", function (event) {
+        addComposerFiles(event.target.files, "upload");
+      });
+    }
+    if (refs.saveKey) {
+      refs.saveKey.addEventListener("click", saveKey);
+    }
+    if (refs.clearKey) {
+      refs.clearKey.addEventListener("click", clearKey);
+    }
+    if (refs.saveCustomModel) {
+      refs.saveCustomModel.addEventListener("click", saveCustomModel);
+    }
+    if (refs.deleteCustomModel) {
+      refs.deleteCustomModel.addEventListener("click", deleteCustomModel);
+    }
+    if (refs.saveStoragePaths) {
+      refs.saveStoragePaths.addEventListener("click", saveStoragePaths);
+    }
+    if (refs.resetStoragePaths) {
+      refs.resetStoragePaths.addEventListener("click", resetStoragePaths);
+    }
+    if (refs.exportChatList) {
+      refs.exportChatList.addEventListener("click", function () {
+        exportModuleBackup("chatList");
+      });
+    }
+    if (refs.exportChatRecords) {
+      refs.exportChatRecords.addEventListener("click", function () {
+        exportModuleBackup("chatRecords");
+      });
+    }
+    if (refs.exportModelApi) {
+      refs.exportModelApi.addEventListener("click", function () {
+        exportModuleBackup("modelApi");
+      });
+    }
+    if (refs.exportBackup) {
+      refs.exportBackup.addEventListener("click", exportFullBackup);
+    }
+    if (refs.importBackup) {
+      refs.importBackup.addEventListener("click", function () {
+        refs.backupImportInput.click();
+      });
+    }
+    if (refs.backupImportInput) {
+      refs.backupImportInput.addEventListener("change", function (event) {
+        const file = event.target.files && event.target.files[0];
+        if (file) {
+          importBackupFile(file);
+        }
+      });
+    }
+    if (refs.scrollToBottom) {
+      refs.scrollToBottom.addEventListener("click", function () {
+        scrollMessagesToBottom("smooth");
+      });
+    }
+    if (refs.openSettings) {
+      refs.openSettings.addEventListener("click", function (event) {
+        if (refs.openSettings.tagName !== "A") {
+          event.preventDefault();
+          openSettings();
+        }
+      });
+    }
+    if (refs.chooseModel) {
+      refs.chooseModel.addEventListener("click", function (event) {
+        if (state.busy) {
+          event.preventDefault();
+        }
+      });
+    }
+    if (refs.closeSettings) {
+      refs.closeSettings.addEventListener("click", closeSettings);
+    }
+    if (refs.modelSelect) {
+      refs.modelSelect.addEventListener("change", function () {
       state.config.selectedModel = refs.modelSelect.value;
       saveConfig();
-      if (!selectedModel() || !keyForModel()) {
+      if (PAGE_MODE === "settings" && (!selectedModel() || !keyForModel())) {
         state.ui.settingsOpen = true;
         saveUi();
       }
@@ -3336,32 +3756,38 @@
       } else {
         setStatus(keyForModel() ? "success" : "error", keyForModel() ? "statusLoaded" : "statusMissing");
       }
-    });
-    refs.input.addEventListener("input", resizeInput);
-    refs.input.addEventListener("paste", function (event) {
+      });
+    }
+    if (refs.input) {
+      refs.input.addEventListener("input", resizeInput);
+      refs.input.addEventListener("paste", function (event) {
       const files = extractFilesFromItems(event.clipboardData && event.clipboardData.items);
       if (files.length) {
         event.preventDefault();
         addComposerFiles(files, "paste");
       }
-    });
-    refs.messages.addEventListener("scroll", handleMessageScroll);
-    refs.input.addEventListener("keydown", function (event) {
+      });
+      refs.input.addEventListener("keydown", function (event) {
       if (event.key === "Enter" && !event.shiftKey) {
         event.preventDefault();
         sendMessage();
       }
-    });
-    refs.composer.addEventListener("dragenter", function (event) {
+      });
+    }
+    if (refs.messages) {
+      refs.messages.addEventListener("scroll", handleMessageScroll);
+    }
+    if (refs.composer) {
+      refs.composer.addEventListener("dragenter", function (event) {
       event.preventDefault();
       state.dragDepth += 1;
       setDropzoneActive(true);
-    });
-    refs.composer.addEventListener("dragover", function (event) {
+      });
+      refs.composer.addEventListener("dragover", function (event) {
       event.preventDefault();
       setDropzoneActive(true);
-    });
-    refs.composer.addEventListener("dragleave", function (event) {
+      });
+      refs.composer.addEventListener("dragleave", function (event) {
       event.preventDefault();
       if (event.target === refs.composer || !refs.composer.contains(event.relatedTarget)) {
         state.dragDepth = Math.max(state.dragDepth - 1, 0);
@@ -3369,25 +3795,26 @@
       if (!state.dragDepth) {
         setDropzoneActive(false);
       }
-    });
-    refs.composer.addEventListener("drop", function (event) {
+      });
+      refs.composer.addEventListener("drop", function (event) {
       event.preventDefault();
       state.dragDepth = 0;
       setDropzoneActive(false);
       addComposerFiles(event.dataTransfer && event.dataTransfer.files, "drop");
-    });
-    window.addEventListener("dragover", function (event) {
-      if (event.dataTransfer && Array.from(event.dataTransfer.types || []).indexOf("Files") !== -1) {
-        event.preventDefault();
-      }
-    });
-    window.addEventListener("drop", function (event) {
-      if (!refs.composer.contains(event.target)) {
-        event.preventDefault();
-        state.dragDepth = 0;
-        setDropzoneActive(false);
-      }
-    });
+      });
+      window.addEventListener("dragover", function (event) {
+        if (event.dataTransfer && Array.from(event.dataTransfer.types || []).indexOf("Files") !== -1) {
+          event.preventDefault();
+        }
+      });
+      window.addEventListener("drop", function (event) {
+        if (!refs.composer.contains(event.target)) {
+          event.preventDefault();
+          state.dragDepth = 0;
+          setDropzoneActive(false);
+        }
+      });
+    }
     window.addEventListener("keydown", function (event) {
       if (event.key === "Escape" && state.ui.settingsOpen) {
         closeSettings();
@@ -3402,6 +3829,7 @@
     refs.title = document.getElementById("conversation-title");
     refs.modelChip = document.getElementById("active-model-chip");
     refs.connectionChip = document.getElementById("connection-chip");
+    refs.tokenSummary = document.getElementById("chat-token-summary");
     refs.status = document.getElementById("chat-status");
     refs.messages = document.getElementById("message-list");
     refs.scrollToBottom = document.getElementById("scroll-to-bottom");
@@ -3422,6 +3850,9 @@
     refs.settingsModelMeta = document.getElementById("settings-model-meta");
     refs.chooseModel = document.getElementById("choose-model-link");
     refs.keyInput = document.getElementById("api-key-input");
+    refs.keyEntryId = document.getElementById("api-key-entry-id");
+    refs.keyName = document.getElementById("api-key-name");
+    refs.keyPriority = document.getElementById("api-key-priority");
     refs.saveKey = document.getElementById("save-key");
     refs.clearKey = document.getElementById("clear-key");
     refs.customBaseUrl = document.getElementById("custom-model-base-url");
