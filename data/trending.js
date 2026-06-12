@@ -1,10 +1,26 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-11T06:04:18.045390+00:00",
+  "generated_at": "2026-06-12T05:59:42.540896+00:00",
   "items": [
     {
       "rank": 1,
+      "repo": "apple/container",
+      "owner": "apple",
+      "name": "container",
+      "url": "https://github.com/apple/container",
+      "description": "A tool for creating and running Linux containers using lightweight virtual machines on a Mac. It is written in Swift, and optimized for Apple silicon.",
+      "descriptions": {
+        "zh": "一种在 Mac 上使用轻量级虚拟机创建和运行 Linux 容器的工具。它是用 Swift 编写的，并针对 Apple 芯片进行了优化。",
+        "en": "A tool for creating and running Linux containers using lightweight virtual machines on a Mac. It is written in Swift, and optimized for Apple silicon."
+      },
+      "language": "Swift",
+      "stars_total": 33306,
+      "forks_total": 924,
+      "stars_today": 2430
+    },
+    {
+      "rank": 2,
       "repo": "addyosmani/agent-skills",
       "owner": "addyosmani",
       "name": "agent-skills",
@@ -15,12 +31,28 @@ window.__TRENDING_DATA__ = {
         "en": "Production-grade engineering skills for AI coding agents."
       },
       "language": "Shell",
-      "stars_total": 52527,
-      "forks_total": 5771,
-      "stars_today": 821
+      "stars_total": 55325,
+      "forks_total": 6001,
+      "stars_today": 3278
     },
     {
-      "rank": 2,
+      "rank": 3,
+      "repo": "maziyarpanahi/openmed",
+      "owner": "maziyarpanahi",
+      "name": "openmed",
+      "url": "https://github.com/maziyarpanahi/openmed",
+      "description": "open-source healthcare ai",
+      "descriptions": {
+        "zh": "开源医疗保健人工智能",
+        "en": "open-source healthcare ai"
+      },
+      "language": "Python",
+      "stars_total": 2883,
+      "forks_total": 282,
+      "stars_today": 426
+    },
+    {
+      "rank": 4,
       "repo": "phuryn/pm-skills",
       "owner": "phuryn",
       "name": "pm-skills",
@@ -31,44 +63,28 @@ window.__TRENDING_DATA__ = {
         "en": "PM Skills Marketplace: 100+ agentic skills, commands, and plugins — from discovery to strategy, execution, launch, and growth."
       },
       "language": null,
-      "stars_total": 15375,
-      "forks_total": 1646,
-      "stars_today": 804
-    },
-    {
-      "rank": 3,
-      "repo": "refactoringhq/tolaria",
-      "owner": "refactoringhq",
-      "name": "tolaria",
-      "url": "https://github.com/refactoringhq/tolaria",
-      "description": "Desktop app to manage markdown knowledge bases",
-      "descriptions": {
-        "zh": "用于管理 Markdown 知识库的桌面应用程序",
-        "en": "Desktop app to manage markdown knowledge bases"
-      },
-      "language": "TypeScript",
-      "stars_total": 15058,
-      "forks_total": 1040,
-      "stars_today": 612
-    },
-    {
-      "rank": 4,
-      "repo": "mvanhorn/last30days-skill",
-      "owner": "mvanhorn",
-      "name": "last30days-skill",
-      "url": "https://github.com/mvanhorn/last30days-skill",
-      "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
-      "descriptions": {
-        "zh": "AI 代理技能可研究 Reddit、X、YouTube、HN、Polymarket 和网络上的任何主题，然后综合得出有根据的摘要",
-        "en": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary"
-      },
-      "language": "Python",
-      "stars_total": 39283,
-      "forks_total": 3166,
-      "stars_today": 2535
+      "stars_total": 16441,
+      "forks_total": 1705,
+      "stars_today": 1978
     },
     {
       "rank": 5,
+      "repo": "NVIDIA/SkillSpector",
+      "owner": "NVIDIA",
+      "name": "SkillSpector",
+      "url": "https://github.com/NVIDIA/SkillSpector",
+      "description": "Security scanner for AI agent skills. Detect vulnerabilities, malicious patterns, and security risks.",
+      "descriptions": {
+        "zh": "AI 代理技能的安全扫描器。检测漏洞、恶意模式和安全风险。",
+        "en": "Security scanner for AI agent skills. Detect vulnerabilities, malicious patterns, and security risks."
+      },
+      "language": "Python",
+      "stars_total": 2869,
+      "forks_total": 222,
+      "stars_today": 319
+    },
+    {
+      "rank": 6,
       "repo": "soxoj/maigret",
       "owner": "soxoj",
       "name": "maigret",
@@ -79,25 +95,9 @@ window.__TRENDING_DATA__ = {
         "en": "🕵️‍♂️ Collect a dossier on a person by username from 3000+ sites"
       },
       "language": "Python",
-      "stars_total": 32168,
-      "forks_total": 2361,
-      "stars_today": 318
-    },
-    {
-      "rank": 6,
-      "repo": "x1xhlol/system-prompts-and-models-of-ai-tools",
-      "owner": "x1xhlol",
-      "name": "system-prompts-and-models-of-ai-tools",
-      "url": "https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools",
-      "description": "FULL Augment Code, Claude Code, Cluely, CodeBuddy, Comet, Cursor, Devin AI, Junie, Kiro, Leap.new, Lovable, Manus, NotionAI, Orchids.app, Perplexity, Poke, Qoder, Replit, Same.dev, Trae, Traycer AI, VSCode Agent, Warp.dev, Windsurf, Xcode, Z.ai Code, Dia & v0. (And other Open Sourced) System Prompts, Internal Tools & AI Models",
-      "descriptions": {
-        "zh": "完整增强代码、Claude Code、Cluely、CodeBuddy、Comet、Cursor、Devin AI、Junie、Kiro、Leap.new、Lovable、Manus、NotionAI、Orchids.app、Perplexity、Poke、Qoder、Replit、Same.dev、Trae、Traycer AI、VSCode Agent、Warp.dev、Windsurf、Xcode、Z.ai Code、Dia 和 v0。 （和其他开源）系统提示、内部工具和人工智能模型",
-        "en": "FULL Augment Code, Claude Code, Cluely, CodeBuddy, Comet, Cursor, Devin AI, Junie, Kiro, Leap.new, Lovable, Manus, NotionAI, Orchids.app, Perplexity, Poke, Qoder, Replit, Same.dev, Trae, Traycer AI, VSCode Agent, Warp.dev, Windsurf, Xcode, Z.ai Code, Dia & v0. (And other Open Sourced) System Prompts, Internal Tools & AI Models"
-      },
-      "language": null,
-      "stars_total": 139615,
-      "forks_total": 34599,
-      "stars_today": 393
+      "stars_total": 32742,
+      "forks_total": 2398,
+      "stars_today": 661
     }
   ]
 }
