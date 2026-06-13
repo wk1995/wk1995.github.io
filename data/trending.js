@@ -1,26 +1,10 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-12T05:59:42.540896+00:00",
+  "generated_at": "2026-06-13T05:44:53.916299+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "apple/container",
-      "owner": "apple",
-      "name": "container",
-      "url": "https://github.com/apple/container",
-      "description": "A tool for creating and running Linux containers using lightweight virtual machines on a Mac. It is written in Swift, and optimized for Apple silicon.",
-      "descriptions": {
-        "zh": "一种在 Mac 上使用轻量级虚拟机创建和运行 Linux 容器的工具。它是用 Swift 编写的，并针对 Apple 芯片进行了优化。",
-        "en": "A tool for creating and running Linux containers using lightweight virtual machines on a Mac. It is written in Swift, and optimized for Apple silicon."
-      },
-      "language": "Swift",
-      "stars_total": 33306,
-      "forks_total": 924,
-      "stars_today": 2430
-    },
-    {
-      "rank": 2,
       "repo": "addyosmani/agent-skills",
       "owner": "addyosmani",
       "name": "agent-skills",
@@ -31,73 +15,89 @@ window.__TRENDING_DATA__ = {
         "en": "Production-grade engineering skills for AI coding agents."
       },
       "language": "Shell",
-      "stars_total": 55325,
-      "forks_total": 6001,
-      "stars_today": 3278
+      "stars_total": 57088,
+      "forks_total": 6165,
+      "stars_today": 2656
+    },
+    {
+      "rank": 2,
+      "repo": "music-assistant/server",
+      "owner": "music-assistant",
+      "name": "server",
+      "url": "https://github.com/music-assistant/server",
+      "description": "Music Assistant is a free, opensource Media library manager that connects to your streaming services and a wide range of connected speakers. The server is the beating heart, the core of Music Assistant and must run on an always-on device like a Raspberry Pi, a NAS or an Intel NUC or alike.",
+      "descriptions": {
+        "zh": "音乐助手是一款免费的开源媒体库管理器，可连接到您的流媒体服务和各种连接的扬声器。服务器是跳动的心脏，是音乐助手的核心，必须在始终在线的设备上运行，例如 Raspberry Pi、NAS 或 Intel NUC 等。",
+        "en": "Music Assistant is a free, opensource Media library manager that connects to your streaming services and a wide range of connected speakers. The server is the beating heart, the core of Music Assistant and must run on an always-on device like a Raspberry Pi, a NAS or an Intel NUC or alike."
+      },
+      "language": "Python",
+      "stars_total": 1832,
+      "forks_total": 424,
+      "stars_today": 20
     },
     {
       "rank": 3,
-      "repo": "maziyarpanahi/openmed",
-      "owner": "maziyarpanahi",
-      "name": "openmed",
-      "url": "https://github.com/maziyarpanahi/openmed",
-      "description": "open-source healthcare ai",
+      "repo": "mattermost/mattermost",
+      "owner": "mattermost",
+      "name": "mattermost",
+      "url": "https://github.com/mattermost/mattermost",
+      "description": "Mattermost is an open source platform for secure collaboration across the entire software development lifecycle..",
       "descriptions": {
-        "zh": "开源医疗保健人工智能",
-        "en": "open-source healthcare ai"
+        "zh": "Mattermost 是一个开源平台，用于在整个软件开发生命周期中进行安全协作。",
+        "en": "Mattermost is an open source platform for secure collaboration across the entire software development lifecycle.."
       },
-      "language": "Python",
-      "stars_total": 2883,
-      "forks_total": 282,
-      "stars_today": 426
+      "language": "TypeScript",
+      "stars_total": 37677,
+      "forks_total": 8718,
+      "stars_today": 388
     },
     {
       "rank": 4,
-      "repo": "phuryn/pm-skills",
-      "owner": "phuryn",
-      "name": "pm-skills",
-      "url": "https://github.com/phuryn/pm-skills",
-      "description": "PM Skills Marketplace: 100+ agentic skills, commands, and plugins — from discovery to strategy, execution, launch, and growth.",
+      "repo": "apple/container",
+      "owner": "apple",
+      "name": "container",
+      "url": "https://github.com/apple/container",
+      "description": "A tool for creating and running Linux containers using lightweight virtual machines on a Mac. It is written in Swift, and optimized for Apple silicon.",
       "descriptions": {
-        "zh": "PM 技能市场：100 多种代理技能、命令和插件 - 从发现到策略、执行、启动和增长。",
-        "en": "PM Skills Marketplace: 100+ agentic skills, commands, and plugins — from discovery to strategy, execution, launch, and growth."
+        "zh": "一种在 Mac 上使用轻量级虚拟机创建和运行 Linux 容器的工具。它是用 Swift 编写的，并针对 Apple 芯片进行了优化。",
+        "en": "A tool for creating and running Linux containers using lightweight virtual machines on a Mac. It is written in Swift, and optimized for Apple silicon."
       },
-      "language": null,
-      "stars_total": 16441,
-      "forks_total": 1705,
-      "stars_today": 1978
+      "language": "Swift",
+      "stars_total": 35361,
+      "forks_total": 990,
+      "stars_today": 3504
     },
     {
       "rank": 5,
-      "repo": "NVIDIA/SkillSpector",
-      "owner": "NVIDIA",
-      "name": "SkillSpector",
-      "url": "https://github.com/NVIDIA/SkillSpector",
-      "description": "Security scanner for AI agent skills. Detect vulnerabilities, malicious patterns, and security risks.",
+      "repo": "iptv-org/iptv",
+      "owner": "iptv-org",
+      "name": "iptv",
+      "url": "https://github.com/iptv-org/iptv",
+      "description": "Collection of publicly available IPTV channels from all over the world",
       "descriptions": {
-        "zh": "AI 代理技能的安全扫描器。检测漏洞、恶意模式和安全风险。",
-        "en": "Security scanner for AI agent skills. Detect vulnerabilities, malicious patterns, and security risks."
+        "zh": "来自世界各地的公开 IPTV 频道集合",
+        "en": "Collection of publicly available IPTV channels from all over the world"
       },
-      "language": "Python",
-      "stars_total": 2869,
-      "forks_total": 222,
-      "stars_today": 319
+      "language": "TypeScript",
+      "stars_total": 118127,
+      "forks_total": 6309,
+      "stars_today": 179
     },
     {
       "rank": 6,
-      "repo": "soxoj/maigret",
-      "owner": "soxoj",
-      "name": "maigret",
-      "url": "https://github.com/soxoj/maigret",
-      "description": "🕵️‍♂️ Collect a dossier on a person by username from 3000+ sites",
+      "repo": "obra/superpowers",
+      "owner": "obra",
+      "name": "superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
       "descriptions": {
-        "zh": "🕵️‍♂️ 从 3000 多个网站按用户名收集某人的档案",
-        "en": "🕵️‍♂️ Collect a dossier on a person by username from 3000+ sites"
+        "zh": "有效的代理技能框架和软件开发方法。",
+        "en": "An agentic skills framework & software development methodology that works."
       },
-      "language": "Python",
-      "stars_total": 32742,
-      "forks_total": 2398,
-      "stars_today": 661
+      "language": "Shell",
+      "stars_total": 226194,
+      "forks_total": 20104,
+      "stars_today": 1275
     }
   ]
 }
