@@ -1,13 +1,13 @@
 {
   "schemaVersion": 2,
   "version": 2,
-  "versionName": "main-20260603120154",
-  "versionNumber": "20260603120154",
+  "versionName": "main-20260614215424",
+  "versionNumber": "20260614215424",
   "release": {
-    "versionName": "main-20260603120154",
-    "versionNumber": "20260603120154"
+    "versionName": "main-20260614215424",
+    "versionNumber": "20260614215424"
   },
-  "updatedAt": "2026-06-02",
+  "updatedAt": "2026-06-14",
   "basePath": "packages/",
   "basePaths": {
     "android": "packages/android/",
@@ -30,20 +30,20 @@
       "readme": "",
       "readmeFile": "",
       "latest": {
-        "version": "6(1.00.05)",
-        "basePath": "packages/android/cn.wk.android.body.os/6(1.00.05)/",
-        "file": "BodyOS-1.00.05-20260602001.apk",
+        "version": "7(1.00.06)",
+        "basePath": "packages/android/cn.wk.android.body.os/7(1.00.06)/",
+        "file": "BodyOS-1.00.06-20260614001.apk",
         "files": [
           {
-            "file": "BodyOS-1.00.05-20260602001.apk",
+            "file": "BodyOS-1.00.06-20260614001.apk",
             "type": "apk",
             "size": "43.2 MB",
-            "updatedAt": "2026-06-02"
+            "updatedAt": "2026-06-14"
           }
         ],
         "readme": "",
         "readmeFile": "",
-        "updatedAt": "2026-06-02"
+        "updatedAt": "2026-06-14"
       },
       "versions": [
         {
@@ -109,10 +109,26 @@
           "readme": "",
           "readmeFile": "",
           "updatedAt": "2026-06-02"
+        },
+        {
+          "version": "7(1.00.06)",
+          "basePath": "packages/android/cn.wk.android.body.os/7(1.00.06)/",
+          "file": "BodyOS-1.00.06-20260614001.apk",
+          "files": [
+            {
+              "file": "BodyOS-1.00.06-20260614001.apk",
+              "type": "apk",
+              "size": "43.2 MB",
+              "updatedAt": "2026-06-14"
+            }
+          ],
+          "readme": "",
+          "readmeFile": "",
+          "updatedAt": "2026-06-14"
         }
       ],
       "hasHistory": true,
-      "updatedAt": "2026-06-02"
+      "updatedAt": "2026-06-14"
     }
   ],
   "platforms": {
