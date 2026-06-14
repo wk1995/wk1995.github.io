@@ -1,74 +1,10 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-13T05:44:53.916299+00:00",
+  "generated_at": "2026-06-14T06:03:27.664605+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "addyosmani/agent-skills",
-      "owner": "addyosmani",
-      "name": "agent-skills",
-      "url": "https://github.com/addyosmani/agent-skills",
-      "description": "Production-grade engineering skills for AI coding agents.",
-      "descriptions": {
-        "zh": "AI 编码代理的生产级工程技能。",
-        "en": "Production-grade engineering skills for AI coding agents."
-      },
-      "language": "Shell",
-      "stars_total": 57088,
-      "forks_total": 6165,
-      "stars_today": 2656
-    },
-    {
-      "rank": 2,
-      "repo": "music-assistant/server",
-      "owner": "music-assistant",
-      "name": "server",
-      "url": "https://github.com/music-assistant/server",
-      "description": "Music Assistant is a free, opensource Media library manager that connects to your streaming services and a wide range of connected speakers. The server is the beating heart, the core of Music Assistant and must run on an always-on device like a Raspberry Pi, a NAS or an Intel NUC or alike.",
-      "descriptions": {
-        "zh": "音乐助手是一款免费的开源媒体库管理器，可连接到您的流媒体服务和各种连接的扬声器。服务器是跳动的心脏，是音乐助手的核心，必须在始终在线的设备上运行，例如 Raspberry Pi、NAS 或 Intel NUC 等。",
-        "en": "Music Assistant is a free, opensource Media library manager that connects to your streaming services and a wide range of connected speakers. The server is the beating heart, the core of Music Assistant and must run on an always-on device like a Raspberry Pi, a NAS or an Intel NUC or alike."
-      },
-      "language": "Python",
-      "stars_total": 1832,
-      "forks_total": 424,
-      "stars_today": 20
-    },
-    {
-      "rank": 3,
-      "repo": "mattermost/mattermost",
-      "owner": "mattermost",
-      "name": "mattermost",
-      "url": "https://github.com/mattermost/mattermost",
-      "description": "Mattermost is an open source platform for secure collaboration across the entire software development lifecycle..",
-      "descriptions": {
-        "zh": "Mattermost 是一个开源平台，用于在整个软件开发生命周期中进行安全协作。",
-        "en": "Mattermost is an open source platform for secure collaboration across the entire software development lifecycle.."
-      },
-      "language": "TypeScript",
-      "stars_total": 37677,
-      "forks_total": 8718,
-      "stars_today": 388
-    },
-    {
-      "rank": 4,
-      "repo": "apple/container",
-      "owner": "apple",
-      "name": "container",
-      "url": "https://github.com/apple/container",
-      "description": "A tool for creating and running Linux containers using lightweight virtual machines on a Mac. It is written in Swift, and optimized for Apple silicon.",
-      "descriptions": {
-        "zh": "一种在 Mac 上使用轻量级虚拟机创建和运行 Linux 容器的工具。它是用 Swift 编写的，并针对 Apple 芯片进行了优化。",
-        "en": "A tool for creating and running Linux containers using lightweight virtual machines on a Mac. It is written in Swift, and optimized for Apple silicon."
-      },
-      "language": "Swift",
-      "stars_total": 35361,
-      "forks_total": 990,
-      "stars_today": 3504
-    },
-    {
-      "rank": 5,
       "repo": "iptv-org/iptv",
       "owner": "iptv-org",
       "name": "iptv",
@@ -79,12 +15,44 @@ window.__TRENDING_DATA__ = {
         "en": "Collection of publicly available IPTV channels from all over the world"
       },
       "language": "TypeScript",
-      "stars_total": 118127,
-      "forks_total": 6309,
-      "stars_today": 179
+      "stars_total": 119399,
+      "forks_total": 6385,
+      "stars_today": 530
     },
     {
-      "rank": 6,
+      "rank": 2,
+      "repo": "addyosmani/agent-skills",
+      "owner": "addyosmani",
+      "name": "agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "description": "Production-grade engineering skills for AI coding agents.",
+      "descriptions": {
+        "zh": "AI 编码代理的生产级工程技能。",
+        "en": "Production-grade engineering skills for AI coding agents."
+      },
+      "language": "Shell",
+      "stars_total": 58675,
+      "forks_total": 6342,
+      "stars_today": 1514
+    },
+    {
+      "rank": 3,
+      "repo": "chatwoot/chatwoot",
+      "owner": "chatwoot",
+      "name": "chatwoot",
+      "url": "https://github.com/chatwoot/chatwoot",
+      "description": "Open-source live-chat, email support, omni-channel desk. An alternative to Intercom, Zendesk, Salesforce Service Cloud etc. 🔥💬",
+      "descriptions": {
+        "zh": "开源实时聊天、电子邮件支持、全渠道服务台。 Intercom、Zendesk、Salesforce Service Cloud 等的替代品。🔥💬",
+        "en": "Open-source live-chat, email support, omni-channel desk. An alternative to Intercom, Zendesk, Salesforce Service Cloud etc. 🔥💬"
+      },
+      "language": "Ruby",
+      "stars_total": 30937,
+      "forks_total": 7558,
+      "stars_today": 83
+    },
+    {
+      "rank": 4,
       "repo": "obra/superpowers",
       "owner": "obra",
       "name": "superpowers",
@@ -95,9 +63,41 @@ window.__TRENDING_DATA__ = {
         "en": "An agentic skills framework & software development methodology that works."
       },
       "language": "Shell",
-      "stars_total": 226194,
-      "forks_total": 20104,
-      "stars_today": 1275
+      "stars_total": 227140,
+      "forks_total": 20201,
+      "stars_today": 924
+    },
+    {
+      "rank": 5,
+      "repo": "apple/container",
+      "owner": "apple",
+      "name": "container",
+      "url": "https://github.com/apple/container",
+      "description": "A tool for creating and running Linux containers using lightweight virtual machines on a Mac. It is written in Swift, and optimized for Apple silicon.",
+      "descriptions": {
+        "zh": "一种在 Mac 上使用轻量级虚拟机创建和运行 Linux 容器的工具。它是用 Swift 编写的，并针对 Apple 芯片进行了优化。",
+        "en": "A tool for creating and running Linux containers using lightweight virtual machines on a Mac. It is written in Swift, and optimized for Apple silicon."
+      },
+      "language": "Swift",
+      "stars_total": 36472,
+      "forks_total": 1039,
+      "stars_today": 1487
+    },
+    {
+      "rank": 6,
+      "repo": "music-assistant/server",
+      "owner": "music-assistant",
+      "name": "server",
+      "url": "https://github.com/music-assistant/server",
+      "description": "Music Assistant is a free, opensource Media library manager that connects to your streaming services and a wide range of connected speakers. The server is the beating heart, the core of Music Assistant and must run on an always-on device like a Raspberry Pi, a NAS or an Intel NUC or alike.",
+      "descriptions": {
+        "zh": "音乐助手是一款免费的开源媒体库管理器，可连接到您的流媒体服务和各种连接的扬声器。服务器是跳动的心脏，是音乐助手的核心，必须在始终在线的设备上运行，例如 Raspberry Pi、NAS 或 Intel NUC 等。",
+        "en": "Music Assistant is a free, opensource Media library manager that connects to your streaming services and a wide range of connected speakers. The server is the beating heart, the core of Music Assistant and must run on an always-on device like a Raspberry Pi, a NAS or an Intel NUC or alike."
+      },
+      "language": "Python",
+      "stars_total": 2039,
+      "forks_total": 431,
+      "stars_today": 270
     }
   ]
 }
