@@ -1,0 +1,10 @@
+{
+  "app": "adbPilot",
+  "platform": "mac",
+  "version": "0.0.3",
+  "systemos": "x86_64",
+  "sourceRunId": "27501034752",
+  "files": [
+    "AdbPilot-mac-0.0.3-x86_64.zip"
+  ]
+}
