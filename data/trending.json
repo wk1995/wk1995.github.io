@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-14T06:03:27.664605+00:00",
+  "generated_at": "2026-06-15T06:36:41.911211+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,28 +15,60 @@
         "en": "Collection of publicly available IPTV channels from all over the world"
       },
       "language": "TypeScript",
-      "stars_total": 119399,
-      "forks_total": 6385,
-      "stars_today": 530
+      "stars_total": 121648,
+      "forks_total": 6521,
+      "stars_today": 1528
     },
     {
       "rank": 2,
-      "repo": "addyosmani/agent-skills",
-      "owner": "addyosmani",
-      "name": "agent-skills",
-      "url": "https://github.com/addyosmani/agent-skills",
-      "description": "Production-grade engineering skills for AI coding agents.",
+      "repo": "freeCodeCamp/freeCodeCamp",
+      "owner": "freeCodeCamp",
+      "name": "freeCodeCamp",
+      "url": "https://github.com/freeCodeCamp/freeCodeCamp",
+      "description": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.",
       "descriptions": {
-        "zh": "AI 编码代理的生产级工程技能。",
-        "en": "Production-grade engineering skills for AI coding agents."
+        "zh": "freeCodeCamp.org 的开源代码库和课程。免费学习数学、编程和计算机科学。",
+        "en": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free."
       },
-      "language": "Shell",
-      "stars_total": 58675,
-      "forks_total": 6342,
-      "stars_today": 1514
+      "language": "TypeScript",
+      "stars_total": 447408,
+      "forks_total": 44964,
+      "stars_today": 146
     },
     {
       "rank": 3,
+      "repo": "pytest-dev/pytest",
+      "owner": "pytest-dev",
+      "name": "pytest",
+      "url": "https://github.com/pytest-dev/pytest",
+      "description": "The pytest framework makes it easy to write small tests, yet scales to support complex functional testing",
+      "descriptions": {
+        "zh": "pytest 框架可以轻松编写小型测试，并可扩展以支持复杂的功能测试",
+        "en": "The pytest framework makes it easy to write small tests, yet scales to support complex functional testing"
+      },
+      "language": "Python",
+      "stars_total": 14091,
+      "forks_total": 3181,
+      "stars_today": 14
+    },
+    {
+      "rank": 4,
+      "repo": "swc-project/swc",
+      "owner": "swc-project",
+      "name": "swc",
+      "url": "https://github.com/swc-project/swc",
+      "description": "Rust-based platform for the Web",
+      "descriptions": {
+        "zh": "基于 Rust 的 Web 平台",
+        "en": "Rust-based platform for the Web"
+      },
+      "language": "Rust",
+      "stars_total": 33826,
+      "forks_total": 1403,
+      "stars_today": 163
+    },
+    {
+      "rank": 5,
       "repo": "chatwoot/chatwoot",
       "owner": "chatwoot",
       "name": "chatwoot",
@@ -47,57 +79,25 @@
         "en": "Open-source live-chat, email support, omni-channel desk. An alternative to Intercom, Zendesk, Salesforce Service Cloud etc. 🔥💬"
       },
       "language": "Ruby",
-      "stars_total": 30937,
-      "forks_total": 7558,
-      "stars_today": 83
-    },
-    {
-      "rank": 4,
-      "repo": "obra/superpowers",
-      "owner": "obra",
-      "name": "superpowers",
-      "url": "https://github.com/obra/superpowers",
-      "description": "An agentic skills framework & software development methodology that works.",
-      "descriptions": {
-        "zh": "有效的代理技能框架和软件开发方法。",
-        "en": "An agentic skills framework & software development methodology that works."
-      },
-      "language": "Shell",
-      "stars_total": 227140,
-      "forks_total": 20201,
-      "stars_today": 924
-    },
-    {
-      "rank": 5,
-      "repo": "apple/container",
-      "owner": "apple",
-      "name": "container",
-      "url": "https://github.com/apple/container",
-      "description": "A tool for creating and running Linux containers using lightweight virtual machines on a Mac. It is written in Swift, and optimized for Apple silicon.",
-      "descriptions": {
-        "zh": "一种在 Mac 上使用轻量级虚拟机创建和运行 Linux 容器的工具。它是用 Swift 编写的，并针对 Apple 芯片进行了优化。",
-        "en": "A tool for creating and running Linux containers using lightweight virtual machines on a Mac. It is written in Swift, and optimized for Apple silicon."
-      },
-      "language": "Swift",
-      "stars_total": 36472,
-      "forks_total": 1039,
-      "stars_today": 1487
+      "stars_total": 31353,
+      "forks_total": 7603,
+      "stars_today": 400
     },
     {
       "rank": 6,
-      "repo": "music-assistant/server",
-      "owner": "music-assistant",
-      "name": "server",
-      "url": "https://github.com/music-assistant/server",
-      "description": "Music Assistant is a free, opensource Media library manager that connects to your streaming services and a wide range of connected speakers. The server is the beating heart, the core of Music Assistant and must run on an always-on device like a Raspberry Pi, a NAS or an Intel NUC or alike.",
+      "repo": "NVIDIA/SkillSpector",
+      "owner": "NVIDIA",
+      "name": "SkillSpector",
+      "url": "https://github.com/NVIDIA/SkillSpector",
+      "description": "Security scanner for AI agent skills. Detect vulnerabilities, malicious patterns, and security risks.",
       "descriptions": {
-        "zh": "音乐助手是一款免费的开源媒体库管理器，可连接到您的流媒体服务和各种连接的扬声器。服务器是跳动的心脏，是音乐助手的核心，必须在始终在线的设备上运行，例如 Raspberry Pi、NAS 或 Intel NUC 等。",
-        "en": "Music Assistant is a free, opensource Media library manager that connects to your streaming services and a wide range of connected speakers. The server is the beating heart, the core of Music Assistant and must run on an always-on device like a Raspberry Pi, a NAS or an Intel NUC or alike."
+        "zh": "AI 代理技能的安全扫描器。检测漏洞、恶意模式和安全风险。",
+        "en": "Security scanner for AI agent skills. Detect vulnerabilities, malicious patterns, and security risks."
       },
       "language": "Python",
-      "stars_total": 2039,
-      "forks_total": 431,
-      "stars_today": 270
+      "stars_total": 5619,
+      "forks_total": 426,
+      "stars_today": 964
     }
   ]
 }
