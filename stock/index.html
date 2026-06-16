@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A 股资金流向 · WK1995</title>
+  <meta name="description" content="A 股当日板块主力资金流入流出看板。">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="stylesheet" href="../assets/stock.css">
+</head>
+<body data-page="stockPage">
+  <nav class="stock-topbar">
+    <a class="stock-brand" href="/" aria-label="返回首页">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4.5 19.5a1 1 0 0 1-1-1v-13a1 1 0 1 1 2 0v12h14a1 1 0 1 1 0 2h-15Zm3.9-4.65a1 1 0 0 1-.72-1.69l3.5-3.66a1 1 0 0 1 1.38-.06l2.18 1.92 3.78-5.28a1 1 0 1 1 1.62 1.16l-4.42 6.18a1 1 0 0 1-1.47.18l-2.27-2-2.86 2.99a1 1 0 0 1-.72.31Z"></path>
+      </svg>
+      <span>Stock</span>
+    </a>
+    <div class="stock-topbar-actions">
+      <label class="control-group" for="language-select">
+        <span class="control-label" id="language-label" data-i18n="controls.language">语言</span>
+        <select class="language-select" id="language-select" aria-label="语言">
+          <option value="zh">简体中文</option>
+          <option value="en">English</option>
+        </select>
+      </label>
+      <div class="control-group">
+        <span class="control-label" id="theme-caption" data-i18n="controls.theme">主题</span>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换主题">
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path id="theme-icon" d="M9.598 1.591a.75.75 0 0 1 .287.857 6.998 6.998 0 0 0 8.442 8.442.75.75 0 0 1 .857.287.75.75 0 0 1-.131.94A8.5 8.5 0 1 1 8.658.722a.75.75 0 0 1 .94-.131Z"></path>
+          </svg>
+          <span id="theme-label" data-i18n="controls.theme.dark">暗色</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="stock-shell">
+    <header class="stock-header">
+      <div>
+        <p class="stock-kicker" data-stock-text="eyebrow">A-SHARE FLOW</p>
+        <h1 data-stock-text="title">A 股板块资金流向</h1>
+        <p data-stock-text="intro">追踪当日行业与概念板块主力资金净流入、净流出，资金单位按亿元展示。</p>
+      </div>
+      <div class="stock-market-pill">
+        <span data-stock-text="marketLabel">市场</span>
+        <strong>A 股</strong>
+      </div>
+    </header>
+
+    <section class="stock-toolbar" aria-label="资金流向控制">
+      <div class="stock-segments" role="tablist" aria-label="板块类型">
+        <button class="stock-segment is-active" type="button" data-board-type="industry" role="tab" aria-selected="true" data-stock-text="industry">行业板块</button>
+        <button class="stock-segment" type="button" data-board-type="concept" role="tab" aria-selected="false" data-stock-text="concept">概念板块</button>
+      </div>
+      <div class="stock-actions">
+        <span class="stock-updated" id="stock-updated">--</span>
+        <button class="stock-refresh" id="stock-refresh" type="button" data-stock-text="refresh">刷新</button>
+      </div>
+    </section>
+
+    <section class="stock-summary" aria-label="资金概览">
+      <div class="stock-stat">
+        <span data-stock-text="topInflow">最大净流入</span>
+        <strong id="stock-top-inflow">--</strong>
+      </div>
+      <div class="stock-stat">
+        <span data-stock-text="topOutflow">最大净流出</span>
+        <strong id="stock-top-outflow">--</strong>
+      </div>
+      <div class="stock-stat">
+        <span data-stock-text="flowSpread">头部流向差</span>
+        <strong id="stock-flow-spread">--</strong>
+      </div>
+      <div class="stock-stat">
+        <span data-stock-text="boardCount">覆盖板块</span>
+        <strong id="stock-board-count">--</strong>
+      </div>
+    </section>
+
+    <section class="stock-flow-map" aria-label="板块资金气泡图">
+      <div class="stock-map-head">
+        <div>
+          <p class="stock-section-label" data-stock-text="mapLabel">资金气泡图</p>
+          <h2 id="stock-map-title">--</h2>
+        </div>
+        <div class="stock-legend" aria-label="图例">
+          <span><i class="legend-dot inflow"></i><span data-stock-text="legendInflow">主力净流入</span></span>
+          <span><i class="legend-dot outflow"></i><span data-stock-text="legendOutflow">主力净流出</span></span>
+        </div>
+      </div>
+
+      <div class="stock-bubble-board" id="stock-bubble-board" aria-live="polite">
+        <div class="stock-loading" data-stock-text="loading">正在读取当日板块资金流向...</div>
+      </div>
+    </section>
+
+    <section class="stock-rank-grid" aria-label="板块排行">
+      <div class="stock-rank-panel">
+        <div class="stock-rank-head">
+          <h2 data-stock-text="inflowRank">主力净流入排行</h2>
+          <span class="stock-rank-badge inflow">TOP 12</span>
+        </div>
+        <div class="stock-rank-list" id="stock-inflow-list"></div>
+      </div>
+      <div class="stock-rank-panel">
+        <div class="stock-rank-head">
+          <h2 data-stock-text="outflowRank">主力净流出排行</h2>
+          <span class="stock-rank-badge outflow">TOP 12</span>
+        </div>
+        <div class="stock-rank-list" id="stock-outflow-list"></div>
+      </div>
+    </section>
+
+    <p class="stock-disclaimer" data-stock-text="disclaimer">数据来自东方财富公开行情接口，仅用于信息展示，不构成投资建议。交易日盘中数据会随行情刷新。</p>
+  </main>
+
+  <script src="../assets/site.js"></script>
+  <script src="../assets/stock.js"></script>
+</body>
+</html>
