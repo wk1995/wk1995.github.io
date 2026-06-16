@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-15T06:36:41.911211+00:00",
+  "generated_at": "2026-06-16T06:42:26.835997+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,57 +15,57 @@ window.__TRENDING_DATA__ = {
         "en": "Collection of publicly available IPTV channels from all over the world"
       },
       "language": "TypeScript",
-      "stars_total": 121648,
-      "forks_total": 6521,
-      "stars_today": 1528
+      "stars_total": 123224,
+      "forks_total": 6620,
+      "stars_today": 2657
     },
     {
       "rank": 2,
-      "repo": "freeCodeCamp/freeCodeCamp",
-      "owner": "freeCodeCamp",
-      "name": "freeCodeCamp",
-      "url": "https://github.com/freeCodeCamp/freeCodeCamp",
-      "description": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.",
+      "repo": "teslamate-org/teslamate",
+      "owner": "teslamate-org",
+      "name": "teslamate",
+      "url": "https://github.com/teslamate-org/teslamate",
+      "description": "A self-hosted data logger for your Tesla 🚘 [main maintainer= @JakobLichterfeld ]",
       "descriptions": {
-        "zh": "freeCodeCamp.org 的开源代码库和课程。免费学习数学、编程和计算机科学。",
-        "en": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free."
+        "zh": "特斯拉的自托管数据记录器 🚘 [主要维护者= @JakobLichterfeld ]",
+        "en": "A self-hosted data logger for your Tesla 🚘 [main maintainer= @JakobLichterfeld ]"
       },
-      "language": "TypeScript",
-      "stars_total": 447408,
-      "forks_total": 44964,
-      "stars_today": 146
+      "language": "Elixir",
+      "stars_total": 8299,
+      "forks_total": 949,
+      "stars_today": 33
     },
     {
       "rank": 3,
-      "repo": "pytest-dev/pytest",
-      "owner": "pytest-dev",
-      "name": "pytest",
-      "url": "https://github.com/pytest-dev/pytest",
-      "description": "The pytest framework makes it easy to write small tests, yet scales to support complex functional testing",
+      "repo": "Panniantong/Agent-Reach",
+      "owner": "Panniantong",
+      "name": "Agent-Reach",
+      "url": "https://github.com/Panniantong/Agent-Reach",
+      "description": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
       "descriptions": {
-        "zh": "pytest 框架可以轻松编写小型测试，并可扩展以支持复杂的功能测试",
-        "en": "The pytest framework makes it easy to write small tests, yet scales to support complex functional testing"
+        "zh": "让您的人工智能代理有一双能够看到整个互联网的眼睛。阅读和搜索 Twitter、Reddit、YouTube、GitHub、Bilibili、小红书 — 一个 CLI，零 API 费用。",
+        "en": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees."
       },
       "language": "Python",
-      "stars_total": 14091,
-      "forks_total": 3181,
-      "stars_today": 14
+      "stars_total": 30851,
+      "forks_total": 2491,
+      "stars_today": 1100
     },
     {
       "rank": 4,
-      "repo": "swc-project/swc",
-      "owner": "swc-project",
-      "name": "swc",
-      "url": "https://github.com/swc-project/swc",
-      "description": "Rust-based platform for the Web",
+      "repo": "meshery/meshery",
+      "owner": "meshery",
+      "name": "meshery",
+      "url": "https://github.com/meshery/meshery",
+      "description": "Meshery, the cloud native manager",
       "descriptions": {
-        "zh": "基于 Rust 的 Web 平台",
-        "en": "Rust-based platform for the Web"
+        "zh": "Meshery，云原生管理器",
+        "en": "Meshery, the cloud native manager"
       },
-      "language": "Rust",
-      "stars_total": 33826,
-      "forks_total": 1403,
-      "stars_today": 163
+      "language": "TypeScript",
+      "stars_total": 10691,
+      "forks_total": 3439,
+      "stars_today": 228
     },
     {
       "rank": 5,
@@ -79,25 +79,25 @@ window.__TRENDING_DATA__ = {
         "en": "Open-source live-chat, email support, omni-channel desk. An alternative to Intercom, Zendesk, Salesforce Service Cloud etc. 🔥💬"
       },
       "language": "Ruby",
-      "stars_total": 31353,
-      "forks_total": 7603,
-      "stars_today": 400
+      "stars_total": 31800,
+      "forks_total": 7639,
+      "stars_today": 431
     },
     {
       "rank": 6,
-      "repo": "NVIDIA/SkillSpector",
-      "owner": "NVIDIA",
-      "name": "SkillSpector",
-      "url": "https://github.com/NVIDIA/SkillSpector",
-      "description": "Security scanner for AI agent skills. Detect vulnerabilities, malicious patterns, and security risks.",
+      "repo": "krahets/hello-algo",
+      "owner": "krahets",
+      "name": "hello-algo",
+      "url": "https://github.com/krahets/hello-algo",
+      "description": "《Hello 算法》：动画图解、一键运行的数据结构与算法教程。支持简中、繁中、English、日本語，提供 Python, Java, C++, C, C#, JS, Go, Swift, Rust, Ruby, Kotlin, TS, Dart 等代码实现",
       "descriptions": {
-        "zh": "AI 代理技能的安全扫描器。检测漏洞、恶意模式和安全风险。",
-        "en": "Security scanner for AI agent skills. Detect vulnerabilities, malicious patterns, and security risks."
+        "zh": "《Hello 算法》：动画图解、一键运行的数据结构与算法教程。支持简中、繁中、English、日本语，提供 Python, Java, C++, C, C#, JS, Go, Swift, Rust, Ruby, Kotlin, TS, Dart 等代码实现",
+        "en": "\"Hello Algorithm\": animated illustrations, one-click operation of data structure and algorithm tutorials. Supports Simplified Chinese, Traditional Chinese, English, and Japanese, and provides code implementation in Python, Java, C++, C, C#, JS, Go, Swift, Rust, Ruby, Kotlin, TS, Dart, etc."
       },
-      "language": "Python",
-      "stars_total": 5619,
-      "forks_total": 426,
-      "stars_today": 964
+      "language": "Java",
+      "stars_total": 127123,
+      "forks_total": 15158,
+      "stars_today": 71
     }
   ]
 }
