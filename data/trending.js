@@ -1,90 +1,58 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-17T06:26:01.006332+00:00",
+  "generated_at": "2026-06-18T06:07:42.427604+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "freeCodeCamp/freeCodeCamp",
-      "owner": "freeCodeCamp",
-      "name": "freeCodeCamp",
-      "url": "https://github.com/freeCodeCamp/freeCodeCamp",
-      "description": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.",
+      "repo": "DeusData/codebase-memory-mcp",
+      "owner": "DeusData",
+      "name": "codebase-memory-mcp",
+      "url": "https://github.com/DeusData/codebase-memory-mcp",
+      "description": "High-performance code intelligence MCP server. Indexes codebases into a persistent knowledge graph — average repo in milliseconds. 158 languages, sub-ms queries, 99% fewer tokens. Single static binary, zero dependencies.",
       "descriptions": {
-        "zh": "freeCodeCamp.org 的开源代码库和课程。免费学习数学、编程和计算机科学。",
-        "en": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free."
+        "zh": "高性能代码智能MCP服务器。将代码库索引到持久知识图谱中——以毫秒为单位的平均存储库。 158 种语言，亚毫秒级查询，标记减少 99%。单个静态二进制文件，零依赖性。",
+        "en": "High-performance code intelligence MCP server. Indexes codebases into a persistent knowledge graph — average repo in milliseconds. 158 languages, sub-ms queries, 99% fewer tokens. Single static binary, zero dependencies."
       },
-      "language": "TypeScript",
-      "stars_total": 448743,
-      "forks_total": 45054,
-      "stars_today": 633
+      "language": "C",
+      "stars_total": 5833,
+      "forks_total": 504,
+      "stars_today": 371
     },
     {
       "rank": 2,
-      "repo": "swc-project/swc",
-      "owner": "swc-project",
-      "name": "swc",
-      "url": "https://github.com/swc-project/swc",
-      "description": "Rust-based platform for the Web",
+      "repo": "n0-computer/iroh",
+      "owner": "n0-computer",
+      "name": "iroh",
+      "url": "https://github.com/n0-computer/iroh",
+      "description": "IP addresses break, dial keys instead. Modular networking stack in Rust.",
       "descriptions": {
-        "zh": "基于 Rust 的 Web 平台",
-        "en": "Rust-based platform for the Web"
+        "zh": "IP 地址中断，请改为拨号键。 Rust 中的模块化网络堆栈。",
+        "en": "IP addresses break, dial keys instead. Modular networking stack in Rust."
       },
       "language": "Rust",
-      "stars_total": 34004,
-      "forks_total": 1419,
-      "stars_today": 20
+      "stars_total": 9735,
+      "forks_total": 456,
+      "stars_today": 421
     },
     {
       "rank": 3,
-      "repo": "teslamate-org/teslamate",
-      "owner": "teslamate-org",
-      "name": "teslamate",
-      "url": "https://github.com/teslamate-org/teslamate",
-      "description": "A self-hosted data logger for your Tesla 🚘 [main maintainer= @JakobLichterfeld ]",
+      "repo": "Panniantong/Agent-Reach",
+      "owner": "Panniantong",
+      "name": "Agent-Reach",
+      "url": "https://github.com/Panniantong/Agent-Reach",
+      "description": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
       "descriptions": {
-        "zh": "特斯拉的自托管数据记录器 🚘 [主要维护者= @JakobLichterfeld ]",
-        "en": "A self-hosted data logger for your Tesla 🚘 [main maintainer= @JakobLichterfeld ]"
+        "zh": "让您的人工智能代理有一双能够看到整个互联网的眼睛。阅读和搜索 Twitter、Reddit、YouTube、GitHub、Bilibili、小红书 — 一个 CLI，零 API 费用。",
+        "en": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees."
       },
-      "language": "Elixir",
-      "stars_total": 8440,
-      "forks_total": 961,
-      "stars_today": 215
+      "language": "Python",
+      "stars_total": 33554,
+      "forks_total": 2690,
+      "stars_today": 1161
     },
     {
       "rank": 4,
-      "repo": "iptv-org/iptv",
-      "owner": "iptv-org",
-      "name": "iptv",
-      "url": "https://github.com/iptv-org/iptv",
-      "description": "Collection of publicly available IPTV channels from all over the world",
-      "descriptions": {
-        "zh": "来自世界各地的公开 IPTV 频道集合",
-        "en": "Collection of publicly available IPTV channels from all over the world"
-      },
-      "language": "TypeScript",
-      "stars_total": 124427,
-      "forks_total": 6731,
-      "stars_today": 1197
-    },
-    {
-      "rank": 5,
-      "repo": "puppeteer/puppeteer",
-      "owner": "puppeteer",
-      "name": "puppeteer",
-      "url": "https://github.com/puppeteer/puppeteer",
-      "description": "JavaScript API for Chrome and Firefox",
-      "descriptions": {
-        "zh": "适用于 Chrome 和 Firefox 的 JavaScript API",
-        "en": "JavaScript API for Chrome and Firefox"
-      },
-      "language": "TypeScript",
-      "stars_total": 94951,
-      "forks_total": 9452,
-      "stars_today": 56
-    },
-    {
-      "rank": 6,
       "repo": "meshery/meshery",
       "owner": "meshery",
       "name": "meshery",
@@ -95,9 +63,41 @@ window.__TRENDING_DATA__ = {
         "en": "Meshery, the cloud native manager"
       },
       "language": "TypeScript",
-      "stars_total": 10900,
-      "forks_total": 3450,
-      "stars_today": 228
+      "stars_total": 11062,
+      "forks_total": 3459,
+      "stars_today": 196
+    },
+    {
+      "rank": 5,
+      "repo": "obra/superpowers",
+      "owner": "obra",
+      "name": "superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "descriptions": {
+        "zh": "有效的代理技能框架和软件开发方法。",
+        "en": "An agentic skills framework & software development methodology that works."
+      },
+      "language": "Shell",
+      "stars_total": 231401,
+      "forks_total": 20569,
+      "stars_today": 1129
+    },
+    {
+      "rank": 6,
+      "repo": "google-research/timesfm",
+      "owner": "google-research",
+      "name": "timesfm",
+      "url": "https://github.com/google-research/timesfm",
+      "description": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting.",
+      "descriptions": {
+        "zh": "TimesFM（时间序列基础模型）是 Google Research 开发的用于时间序列预测的预训练时间序列基础模型。",
+        "en": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting."
+      },
+      "language": "Python",
+      "stars_total": 22065,
+      "forks_total": 2144,
+      "stars_today": 606
     }
   ]
 }
