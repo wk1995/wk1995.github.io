@@ -1,23 +1,23 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-18T06:07:42.427604+00:00",
+  "generated_at": "2026-06-19T06:29:42.377271+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "DeusData/codebase-memory-mcp",
-      "owner": "DeusData",
-      "name": "codebase-memory-mcp",
-      "url": "https://github.com/DeusData/codebase-memory-mcp",
-      "description": "High-performance code intelligence MCP server. Indexes codebases into a persistent knowledge graph — average repo in milliseconds. 158 languages, sub-ms queries, 99% fewer tokens. Single static binary, zero dependencies.",
+      "repo": "google-research/timesfm",
+      "owner": "google-research",
+      "name": "timesfm",
+      "url": "https://github.com/google-research/timesfm",
+      "description": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting.",
       "descriptions": {
-        "zh": "高性能代码智能MCP服务器。将代码库索引到持久知识图谱中——以毫秒为单位的平均存储库。 158 种语言，亚毫秒级查询，标记减少 99%。单个静态二进制文件，零依赖性。",
-        "en": "High-performance code intelligence MCP server. Indexes codebases into a persistent knowledge graph — average repo in milliseconds. 158 languages, sub-ms queries, 99% fewer tokens. Single static binary, zero dependencies."
+        "zh": "TimesFM（时间序列基础模型）是 Google Research 开发的用于时间序列预测的预训练时间序列基础模型。",
+        "en": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting."
       },
-      "language": "C",
-      "stars_total": 5833,
-      "forks_total": 504,
-      "stars_today": 371
+      "language": "Python",
+      "stars_total": 23469,
+      "forks_total": 2231,
+      "stars_today": 844
     },
     {
       "rank": 2,
@@ -31,44 +31,28 @@
         "en": "IP addresses break, dial keys instead. Modular networking stack in Rust."
       },
       "language": "Rust",
-      "stars_total": 9735,
-      "forks_total": 456,
-      "stars_today": 421
+      "stars_total": 10066,
+      "forks_total": 464,
+      "stars_today": 369
     },
     {
       "rank": 3,
-      "repo": "Panniantong/Agent-Reach",
-      "owner": "Panniantong",
-      "name": "Agent-Reach",
-      "url": "https://github.com/Panniantong/Agent-Reach",
-      "description": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
+      "repo": "freeCodeCamp/freeCodeCamp",
+      "owner": "freeCodeCamp",
+      "name": "freeCodeCamp",
+      "url": "https://github.com/freeCodeCamp/freeCodeCamp",
+      "description": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.",
       "descriptions": {
-        "zh": "让您的人工智能代理有一双能够看到整个互联网的眼睛。阅读和搜索 Twitter、Reddit、YouTube、GitHub、Bilibili、小红书 — 一个 CLI，零 API 费用。",
-        "en": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees."
+        "zh": "freeCodeCamp.org 的开源代码库和课程。免费学习数学、编程和计算机科学。",
+        "en": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free."
       },
-      "language": "Python",
-      "stars_total": 33554,
-      "forks_total": 2690,
-      "stars_today": 1161
+      "language": "TypeScript",
+      "stars_total": 449632,
+      "forks_total": 45140,
+      "stars_today": 417
     },
     {
       "rank": 4,
-      "repo": "meshery/meshery",
-      "owner": "meshery",
-      "name": "meshery",
-      "url": "https://github.com/meshery/meshery",
-      "description": "Meshery, the cloud native manager",
-      "descriptions": {
-        "zh": "Meshery，云原生管理器",
-        "en": "Meshery, the cloud native manager"
-      },
-      "language": "TypeScript",
-      "stars_total": 11062,
-      "forks_total": 3459,
-      "stars_today": 196
-    },
-    {
-      "rank": 5,
       "repo": "obra/superpowers",
       "owner": "obra",
       "name": "superpowers",
@@ -79,25 +63,41 @@
         "en": "An agentic skills framework & software development methodology that works."
       },
       "language": "Shell",
-      "stars_total": 231401,
-      "forks_total": 20569,
-      "stars_today": 1129
+      "stars_total": 232617,
+      "forks_total": 20659,
+      "stars_today": 1429
+    },
+    {
+      "rank": 5,
+      "repo": "zai-org/GLM-5",
+      "owner": "zai-org",
+      "name": "GLM-5",
+      "url": "https://github.com/zai-org/GLM-5",
+      "description": "GLM-5: From Vibe Coding to Agentic Engineering",
+      "descriptions": {
+        "zh": "GLM-5：从 Vibe 编码到代理工程",
+        "en": "GLM-5: From Vibe Coding to Agentic Engineering"
+      },
+      "language": null,
+      "stars_total": 4244,
+      "forks_total": 436,
+      "stars_today": 202
     },
     {
       "rank": 6,
-      "repo": "google-research/timesfm",
-      "owner": "google-research",
-      "name": "timesfm",
-      "url": "https://github.com/google-research/timesfm",
-      "description": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting.",
+      "repo": "DeusData/codebase-memory-mcp",
+      "owner": "DeusData",
+      "name": "codebase-memory-mcp",
+      "url": "https://github.com/DeusData/codebase-memory-mcp",
+      "description": "High-performance code intelligence MCP server. Indexes codebases into a persistent knowledge graph — average repo in milliseconds. 158 languages, sub-ms queries, 99% fewer tokens. Single static binary, zero dependencies.",
       "descriptions": {
-        "zh": "TimesFM（时间序列基础模型）是 Google Research 开发的用于时间序列预测的预训练时间序列基础模型。",
-        "en": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting."
+        "zh": "高性能代码智能MCP服务器。将代码库索引到持久知识图谱中——以毫秒为单位的平均存储库。 158 种语言，亚毫秒级查询，标记减少 99%。单个静态二进制文件，零依赖性。",
+        "en": "High-performance code intelligence MCP server. Indexes codebases into a persistent knowledge graph — average repo in milliseconds. 158 languages, sub-ms queries, 99% fewer tokens. Single static binary, zero dependencies."
       },
-      "language": "Python",
-      "stars_total": 22065,
-      "forks_total": 2144,
-      "stars_today": 606
+      "language": "C",
+      "stars_total": 7283,
+      "forks_total": 575,
+      "stars_today": 2322
     }
   ]
 }
