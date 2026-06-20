@@ -1,90 +1,10 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-19T06:29:42.377271+00:00",
+  "generated_at": "2026-06-20T05:42:01.472506+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "google-research/timesfm",
-      "owner": "google-research",
-      "name": "timesfm",
-      "url": "https://github.com/google-research/timesfm",
-      "description": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting.",
-      "descriptions": {
-        "zh": "TimesFM（时间序列基础模型）是 Google Research 开发的用于时间序列预测的预训练时间序列基础模型。",
-        "en": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting."
-      },
-      "language": "Python",
-      "stars_total": 23469,
-      "forks_total": 2231,
-      "stars_today": 844
-    },
-    {
-      "rank": 2,
-      "repo": "n0-computer/iroh",
-      "owner": "n0-computer",
-      "name": "iroh",
-      "url": "https://github.com/n0-computer/iroh",
-      "description": "IP addresses break, dial keys instead. Modular networking stack in Rust.",
-      "descriptions": {
-        "zh": "IP 地址中断，请改为拨号键。 Rust 中的模块化网络堆栈。",
-        "en": "IP addresses break, dial keys instead. Modular networking stack in Rust."
-      },
-      "language": "Rust",
-      "stars_total": 10066,
-      "forks_total": 464,
-      "stars_today": 369
-    },
-    {
-      "rank": 3,
-      "repo": "freeCodeCamp/freeCodeCamp",
-      "owner": "freeCodeCamp",
-      "name": "freeCodeCamp",
-      "url": "https://github.com/freeCodeCamp/freeCodeCamp",
-      "description": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.",
-      "descriptions": {
-        "zh": "freeCodeCamp.org 的开源代码库和课程。免费学习数学、编程和计算机科学。",
-        "en": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free."
-      },
-      "language": "TypeScript",
-      "stars_total": 449632,
-      "forks_total": 45140,
-      "stars_today": 417
-    },
-    {
-      "rank": 4,
-      "repo": "obra/superpowers",
-      "owner": "obra",
-      "name": "superpowers",
-      "url": "https://github.com/obra/superpowers",
-      "description": "An agentic skills framework & software development methodology that works.",
-      "descriptions": {
-        "zh": "有效的代理技能框架和软件开发方法。",
-        "en": "An agentic skills framework & software development methodology that works."
-      },
-      "language": "Shell",
-      "stars_total": 232617,
-      "forks_total": 20659,
-      "stars_today": 1429
-    },
-    {
-      "rank": 5,
-      "repo": "zai-org/GLM-5",
-      "owner": "zai-org",
-      "name": "GLM-5",
-      "url": "https://github.com/zai-org/GLM-5",
-      "description": "GLM-5: From Vibe Coding to Agentic Engineering",
-      "descriptions": {
-        "zh": "GLM-5：从 Vibe 编码到代理工程",
-        "en": "GLM-5: From Vibe Coding to Agentic Engineering"
-      },
-      "language": null,
-      "stars_total": 4244,
-      "forks_total": 436,
-      "stars_today": 202
-    },
-    {
-      "rank": 6,
       "repo": "DeusData/codebase-memory-mcp",
       "owner": "DeusData",
       "name": "codebase-memory-mcp",
@@ -95,9 +15,89 @@
         "en": "High-performance code intelligence MCP server. Indexes codebases into a persistent knowledge graph — average repo in milliseconds. 158 languages, sub-ms queries, 99% fewer tokens. Single static binary, zero dependencies."
       },
       "language": "C",
-      "stars_total": 7283,
-      "forks_total": 575,
-      "stars_today": 2322
+      "stars_total": 8458,
+      "forks_total": 646,
+      "stars_today": 1058
+    },
+    {
+      "rank": 2,
+      "repo": "google-research/timesfm",
+      "owner": "google-research",
+      "name": "timesfm",
+      "url": "https://github.com/google-research/timesfm",
+      "description": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting.",
+      "descriptions": {
+        "zh": "TimesFM（时间序列基础模型）是 Google Research 开发的用于时间序列预测的预训练时间序列基础模型。",
+        "en": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting."
+      },
+      "language": "Python",
+      "stars_total": 24153,
+      "forks_total": 2277,
+      "stars_today": 1510
+    },
+    {
+      "rank": 3,
+      "repo": "palmier-io/palmier-pro",
+      "owner": "palmier-io",
+      "name": "palmier-pro",
+      "url": "https://github.com/palmier-io/palmier-pro",
+      "description": "macOS video editor built for AI",
+      "descriptions": {
+        "zh": "专为 AI 打造的 macOS 视频编辑器",
+        "en": "macOS video editor built for AI"
+      },
+      "language": "Swift",
+      "stars_total": 2063,
+      "forks_total": 201,
+      "stars_today": 756
+    },
+    {
+      "rank": 4,
+      "repo": "koala73/worldmonitor",
+      "owner": "koala73",
+      "name": "worldmonitor",
+      "url": "https://github.com/koala73/worldmonitor",
+      "description": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface",
+      "descriptions": {
+        "zh": "实时全球情报仪表板。在统一的态势感知界面中进行人工智能驱动的新闻聚合、地缘政治监控和基础设施跟踪",
+        "en": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface"
+      },
+      "language": "TypeScript",
+      "stars_total": 57390,
+      "forks_total": 9151,
+      "stars_today": 156
+    },
+    {
+      "rank": 5,
+      "repo": "aishwaryanr/awesome-generative-ai-guide",
+      "owner": "aishwaryanr",
+      "name": "awesome-generative-ai-guide",
+      "url": "https://github.com/aishwaryanr/awesome-generative-ai-guide",
+      "description": "A one stop repository for generative AI research updates, interview resources, notebooks and much more!",
+      "descriptions": {
+        "zh": "生成式人工智能研究更新、访谈资源、笔记本等的一站式存储库！",
+        "en": "A one stop repository for generative AI research updates, interview resources, notebooks and much more!"
+      },
+      "language": "HTML",
+      "stars_total": 27701,
+      "forks_total": 5742,
+      "stars_today": 107
+    },
+    {
+      "rank": 6,
+      "repo": "BuilderIO/agent-native",
+      "owner": "BuilderIO",
+      "name": "agent-native",
+      "url": "https://github.com/BuilderIO/agent-native",
+      "description": "A framework for building agent-native applications.",
+      "descriptions": {
+        "zh": "用于构建代理本机应用程序的框架。",
+        "en": "A framework for building agent-native applications."
+      },
+      "language": "TypeScript",
+      "stars_total": 1112,
+      "forks_total": 119,
+      "stars_today": 147
     }
   ]
 }
