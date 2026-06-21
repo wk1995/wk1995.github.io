@@ -1,42 +1,10 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-20T05:42:01.472506+00:00",
+  "generated_at": "2026-06-21T06:16:24.618468+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "DeusData/codebase-memory-mcp",
-      "owner": "DeusData",
-      "name": "codebase-memory-mcp",
-      "url": "https://github.com/DeusData/codebase-memory-mcp",
-      "description": "High-performance code intelligence MCP server. Indexes codebases into a persistent knowledge graph — average repo in milliseconds. 158 languages, sub-ms queries, 99% fewer tokens. Single static binary, zero dependencies.",
-      "descriptions": {
-        "zh": "高性能代码智能MCP服务器。将代码库索引到持久知识图谱中——以毫秒为单位的平均存储库。 158 种语言，亚毫秒级查询，标记减少 99%。单个静态二进制文件，零依赖性。",
-        "en": "High-performance code intelligence MCP server. Indexes codebases into a persistent knowledge graph — average repo in milliseconds. 158 languages, sub-ms queries, 99% fewer tokens. Single static binary, zero dependencies."
-      },
-      "language": "C",
-      "stars_total": 8458,
-      "forks_total": 646,
-      "stars_today": 1058
-    },
-    {
-      "rank": 2,
-      "repo": "google-research/timesfm",
-      "owner": "google-research",
-      "name": "timesfm",
-      "url": "https://github.com/google-research/timesfm",
-      "description": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting.",
-      "descriptions": {
-        "zh": "TimesFM（时间序列基础模型）是 Google Research 开发的用于时间序列预测的预训练时间序列基础模型。",
-        "en": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting."
-      },
-      "language": "Python",
-      "stars_total": 24153,
-      "forks_total": 2277,
-      "stars_today": 1510
-    },
-    {
-      "rank": 3,
       "repo": "palmier-io/palmier-pro",
       "owner": "palmier-io",
       "name": "palmier-pro",
@@ -47,57 +15,89 @@ window.__TRENDING_DATA__ = {
         "en": "macOS video editor built for AI"
       },
       "language": "Swift",
-      "stars_total": 2063,
-      "forks_total": 201,
-      "stars_today": 756
+      "stars_total": 3717,
+      "forks_total": 297,
+      "stars_today": 902
+    },
+    {
+      "rank": 2,
+      "repo": "penpot/penpot",
+      "owner": "penpot",
+      "name": "penpot",
+      "url": "https://github.com/penpot/penpot",
+      "description": "Penpot: The open-source design tool for design and code collaboration",
+      "descriptions": {
+        "zh": "Penpot：用于设计和代码协作的开源设计工具",
+        "en": "Penpot: The open-source design tool for design and code collaboration"
+      },
+      "language": "Clojure",
+      "stars_total": 51647,
+      "forks_total": 3309,
+      "stars_today": 420
+    },
+    {
+      "rank": 3,
+      "repo": "calesthio/OpenMontage",
+      "owner": "calesthio",
+      "name": "OpenMontage",
+      "url": "https://github.com/calesthio/OpenMontage",
+      "description": "World's first open-source, agentic video production system. 12 pipelines, 52 tools, 500+ agent skills. Turn your AI coding assistant into a full video production studio.",
+      "descriptions": {
+        "zh": "世界上第一个开源的代理视频制作系统。 12条管道、52种工具、500+座席技能。将您的人工智能编码助手变成一个完整的视频制作工作室。",
+        "en": "World's first open-source, agentic video production system. 12 pipelines, 52 tools, 500+ agent skills. Turn your AI coding assistant into a full video production studio."
+      },
+      "language": "Python",
+      "stars_total": 7251,
+      "forks_total": 1170,
+      "stars_today": 677
     },
     {
       "rank": 4,
-      "repo": "koala73/worldmonitor",
-      "owner": "koala73",
-      "name": "worldmonitor",
-      "url": "https://github.com/koala73/worldmonitor",
-      "description": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface",
+      "repo": "tursodatabase/turso",
+      "owner": "tursodatabase",
+      "name": "turso",
+      "url": "https://github.com/tursodatabase/turso",
+      "description": "Turso is an in-process SQL database, compatible with SQLite.",
       "descriptions": {
-        "zh": "实时全球情报仪表板。在统一的态势感知界面中进行人工智能驱动的新闻聚合、地缘政治监控和基础设施跟踪",
-        "en": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface"
+        "zh": "Turso 是一个进程内 SQL 数据库，与 SQLite 兼容。",
+        "en": "Turso is an in-process SQL database, compatible with SQLite."
       },
-      "language": "TypeScript",
-      "stars_total": 57390,
-      "forks_total": 9151,
-      "stars_today": 156
+      "language": "Rust",
+      "stars_total": 20423,
+      "forks_total": 1043,
+      "stars_today": 801
     },
     {
       "rank": 5,
-      "repo": "aishwaryanr/awesome-generative-ai-guide",
-      "owner": "aishwaryanr",
-      "name": "awesome-generative-ai-guide",
-      "url": "https://github.com/aishwaryanr/awesome-generative-ai-guide",
-      "description": "A one stop repository for generative AI research updates, interview resources, notebooks and much more!",
+      "repo": "DeusData/codebase-memory-mcp",
+      "owner": "DeusData",
+      "name": "codebase-memory-mcp",
+      "url": "https://github.com/DeusData/codebase-memory-mcp",
+      "description": "High-performance code intelligence MCP server. Indexes codebases into a persistent knowledge graph — average repo in milliseconds. 158 languages, sub-ms queries, 99% fewer tokens. Single static binary, zero dependencies.",
       "descriptions": {
-        "zh": "生成式人工智能研究更新、访谈资源、笔记本等的一站式存储库！",
-        "en": "A one stop repository for generative AI research updates, interview resources, notebooks and much more!"
+        "zh": "高性能代码智能MCP服务器。将代码库索引到持久知识图谱中——以毫秒为单位的平均存储库。 158 种语言，亚毫秒级查询，标记减少 99%。单个静态二进制文件，零依赖性。",
+        "en": "High-performance code intelligence MCP server. Indexes codebases into a persistent knowledge graph — average repo in milliseconds. 158 languages, sub-ms queries, 99% fewer tokens. Single static binary, zero dependencies."
       },
-      "language": "HTML",
-      "stars_total": 27701,
-      "forks_total": 5742,
-      "stars_today": 107
+      "language": "C",
+      "stars_total": 9560,
+      "forks_total": 724,
+      "stars_today": 1271
     },
     {
       "rank": 6,
-      "repo": "BuilderIO/agent-native",
-      "owner": "BuilderIO",
-      "name": "agent-native",
-      "url": "https://github.com/BuilderIO/agent-native",
-      "description": "A framework for building agent-native applications.",
+      "repo": "google-research/timesfm",
+      "owner": "google-research",
+      "name": "timesfm",
+      "url": "https://github.com/google-research/timesfm",
+      "description": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting.",
       "descriptions": {
-        "zh": "用于构建代理本机应用程序的框架。",
-        "en": "A framework for building agent-native applications."
+        "zh": "TimesFM（时间序列基础模型）是 Google Research 开发的用于时间序列预测的预训练时间序列基础模型。",
+        "en": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting."
       },
-      "language": "TypeScript",
-      "stars_total": 1112,
-      "forks_total": 119,
-      "stars_today": 147
+      "language": "Python",
+      "stars_total": 24630,
+      "forks_total": 2337,
+      "stars_today": 433
     }
   ]
 }
