@@ -1,0 +1,4 @@
+interface:
+  display_name: "Publish wk1995.github.io"
+  short_description: "Create GitHub Actions workflows that publish app artifacts to wk1995.github.io."
+  default_prompt: "Use $publish-wk1995-github-io to publish my app artifacts to wk1995.github.io."
