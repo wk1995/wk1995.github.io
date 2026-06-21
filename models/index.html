@@ -36,22 +36,43 @@
     </div>
   </nav>
 
-  <main class="catalog-shell">
-    <header class="catalog-page-head">
+  <main class="catalog-shell model-workbench-shell">
+    <header class="catalog-page-head model-workbench-head">
       <div>
         <p class="catalog-kicker" data-model-text="eyebrow">Model Catalog</p>
-        <h1 data-model-text="title">大模型列表</h1>
-        <p data-model-text="intro">选择具体模型后会写入 Chat 的本地配置；公司与接口属性跟随模型，不需要单独选择。</p>
+        <h1 data-model-text="title">模型选择工作台</h1>
+        <p data-model-text="intro">按运行位置、能力和密钥状态筛选模型，选择后会写入 Chat 的本地配置。</p>
       </div>
-      <a class="catalog-primary-link" href="../chat/" data-model-text="chatAction">进入 Chat</a>
+      <div class="model-current-panel">
+        <a class="catalog-primary-link" href="../chat/" data-model-text="chatAction">进入 Chat</a>
+        <div class="catalog-current" id="model-current"></div>
+      </div>
     </header>
 
-    <section class="catalog-toolbar" aria-label="模型筛选">
+    <section class="model-bench-stats" id="model-stats" aria-label="模型概览"></section>
+
+    <section class="catalog-toolbar model-toolbar" aria-label="模型筛选">
       <label class="catalog-search">
         <span data-model-text="searchLabel">搜索模型</span>
-        <input id="model-search" type="search" autocomplete="off" placeholder="DeepSeek / GLM / vision">
+        <input id="model-search" type="search" autocomplete="off" placeholder="DeepSeek / GLM / 本地">
       </label>
-      <div class="catalog-current" id="model-current"></div>
+      <fieldset class="model-filter-group">
+        <legend data-model-text="deploymentFilter">运行位置</legend>
+        <div class="model-segmented" id="model-deployment-filter">
+          <button type="button" data-model-deployment="all" aria-pressed="true" data-model-text="filterAll">全部</button>
+          <button type="button" data-model-deployment="cloud" aria-pressed="false" data-model-text="cloud">云端</button>
+          <button type="button" data-model-deployment="offline" aria-pressed="false" data-model-text="offline">离线</button>
+        </div>
+      </fieldset>
+      <fieldset class="model-filter-group">
+        <legend data-model-text="capabilityFilter">能力</legend>
+        <div class="model-segmented" id="model-capability-filter">
+          <button type="button" data-model-capability="all" aria-pressed="true" data-model-text="filterAll">全部</button>
+          <button type="button" data-model-capability="reasoning" aria-pressed="false" data-model-text="reasoning">推理</button>
+          <button type="button" data-model-capability="vision" aria-pressed="false" data-model-text="vision">视觉</button>
+          <button type="button" data-model-capability="text" aria-pressed="false" data-model-text="textOnly">文本</button>
+        </div>
+      </fieldset>
     </section>
 
     <section class="catalog-section">

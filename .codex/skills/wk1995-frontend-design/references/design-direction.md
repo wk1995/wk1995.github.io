@@ -2,6 +2,8 @@
 
 Use this when creating a new page, refreshing a visual surface, polishing a hero, or turning a functional layout into a distinctive interface.
 
+For concrete page-family structures, also read `page-patterns.md`. For colors, spacing, radii, and motion values, read `design-tokens.md`.
+
 ## Direction Before Details
 
 - Choose a specific creative direction before touching CSS: editorial lab notebook, Android device console, model observability cockpit, technical magazine, package registry, or conversation workbench.
