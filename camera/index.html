@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Camera Recorder | WK1995</title>
+  <meta name="description" content="打开摄像头预览画面，录制包含摄像头与麦克风声音的视频，并选择格式和保存位置。">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="stylesheet" href="../assets/camera.css">
+</head>
+<body data-page="camera">
+  <div class="camera-page">
+    <header class="camera-header">
+      <div class="camera-container">
+        <div class="site-topbar">
+          <a
+            class="brand-link"
+            href="https://github.com/wk1995"
+            target="_blank"
+            rel="noopener"
+            data-i18n-aria="brand.aria"
+            aria-label="打开 WK1995 的 GitHub 主页"
+          >
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82a7.56 7.56 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path>
+            </svg>
+          </a>
+
+          <div class="topbar-right">
+            <div class="control-row">
+              <label class="control-group" for="language-select">
+                <span class="control-label" id="language-label" data-i18n="controls.language">语言</span>
+                <select class="language-select" id="language-select" aria-label="语言">
+                  <option value="zh">简体中文</option>
+                  <option value="en">English</option>
+                </select>
+              </label>
+              <div class="control-group">
+                <span class="control-label" id="theme-caption" data-i18n="controls.theme">主题</span>
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换主题">
+                  <svg viewBox="0 0 16 16" aria-hidden="true">
+                    <path id="theme-icon" d="M9.598 1.591a.75.75 0 0 1 .287.857 6.998 6.998 0 0 0 8.442 8.442.75.75 0 0 1 .857.287.75.75 0 0 1-.131.94A8.5 8.5 0 1 1 8.658.722a.75.75 0 0 1 .94-.131Z"></path>
+                  </svg>
+                  <span id="theme-label" data-i18n="controls.theme.dark">暗色</span>
+                </button>
+              </div>
+            </div>
+            <nav class="nav-links" aria-label="页面导航">
+              <a href="../index.html">首页</a>
+              <a href="../music/">音频工具</a>
+              <a href="../feedback/">反馈</a>
+            </nav>
+          </div>
+        </div>
+
+        <div class="camera-hero">
+          <p class="camera-kicker">Camera Console</p>
+          <h1>摄像头录像录音</h1>
+          <p class="camera-intro">预览本机摄像头画面，录制包含麦克风声音的视频，并在录制完成后选择保存地址与文件格式。</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="camera-container">
+      <section class="camera-workspace" aria-label="摄像头录像工具">
+        <div class="camera-preview-panel">
+          <div class="camera-preview-shell">
+            <video id="camera-preview" class="camera-preview" autoplay playsinline muted></video>
+            <img id="android-preview" class="camera-android-preview" alt="Android 手机摄像头实时画面" hidden>
+            <div class="camera-empty" id="camera-empty">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h7A2.5 2.5 0 0 1 16 6.5V8l3.42-2.05A1 1 0 0 1 21 6.81v10.38a1 1 0 0 1-1.58.86L16 16v1.5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 4 17.5v-11Zm2.5-.5A.5.5 0 0 0 6 6.5v11a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-11a.5.5 0 0 0-.5-.5h-7Zm9.5 4.33v3.34l3 1.8V8.53l-3 1.8Z"></path>
+              </svg>
+              <strong>等待摄像头授权</strong>
+              <span>点击“打开摄像头”后浏览器会请求摄像头与麦克风权限。</span>
+            </div>
+            <div class="camera-record-badge" id="record-badge" hidden>
+              <span></span>
+              <strong>REC</strong>
+            </div>
+          </div>
+
+          <div class="camera-meter-row">
+            <span id="recording-time">00:00</span>
+            <span id="recording-size">未录制</span>
+          </div>
+        </div>
+
+        <aside class="camera-control-panel" aria-label="录像控制">
+          <div class="camera-status" id="camera-status" role="status" aria-live="polite">摄像头尚未打开。</div>
+
+          <div class="camera-form-grid">
+            <label class="camera-field">
+              <span>摄像头</span>
+              <select id="camera-device" disabled>
+                <option value="">默认摄像头</option>
+              </select>
+            </label>
+
+            <label class="camera-field">
+              <span>文件格式</span>
+              <select id="record-format"></select>
+            </label>
+
+            <label class="camera-check">
+              <input id="record-audio" type="checkbox" checked>
+              <span>录制麦克风声音</span>
+            </label>
+          </div>
+
+          <div class="camera-actions">
+            <button class="camera-button camera-button-primary" id="start-camera" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h7A2.5 2.5 0 0 1 16 6.5V8l3.42-2.05A1 1 0 0 1 21 6.81v10.38a1 1 0 0 1-1.58.86L16 16v1.5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 4 17.5v-11Z"></path>
+              </svg>
+              打开摄像头
+            </button>
+            <button class="camera-button" id="stop-camera" type="button" disabled>关闭摄像头</button>
+            <button class="camera-button camera-button-record" id="start-recording" type="button" disabled>开始录像</button>
+            <button class="camera-button" id="stop-recording" type="button" disabled>停止录制</button>
+            <button class="camera-button" id="discard-recording" type="button" disabled>丢弃录像</button>
+            <button class="camera-button camera-button-save" id="save-recording" type="button" disabled>选择地址并保存</button>
+          </div>
+
+          <dl class="camera-facts">
+            <div>
+              <dt>文件名</dt>
+              <dd id="file-name-preview">record_video_时间</dd>
+            </div>
+            <div>
+              <dt>保存方式</dt>
+              <dd id="save-support">检测中</dd>
+            </div>
+            <div>
+              <dt>权限状态</dt>
+              <dd id="permission-state">未请求</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <script src="../assets/site.js"></script>
+  <script src="../assets/camera.js"></script>
+</body>
+</html>
