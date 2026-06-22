@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-21T06:16:24.618468+00:00",
+  "generated_at": "2026-06-22T06:39:35.475749+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,28 +15,12 @@ window.__TRENDING_DATA__ = {
         "en": "macOS video editor built for AI"
       },
       "language": "Swift",
-      "stars_total": 3717,
-      "forks_total": 297,
-      "stars_today": 902
+      "stars_total": 5862,
+      "forks_total": 428,
+      "stars_today": 1834
     },
     {
       "rank": 2,
-      "repo": "penpot/penpot",
-      "owner": "penpot",
-      "name": "penpot",
-      "url": "https://github.com/penpot/penpot",
-      "description": "Penpot: The open-source design tool for design and code collaboration",
-      "descriptions": {
-        "zh": "Penpot：用于设计和代码协作的开源设计工具",
-        "en": "Penpot: The open-source design tool for design and code collaboration"
-      },
-      "language": "Clojure",
-      "stars_total": 51647,
-      "forks_total": 3309,
-      "stars_today": 420
-    },
-    {
-      "rank": 3,
       "repo": "calesthio/OpenMontage",
       "owner": "calesthio",
       "name": "OpenMontage",
@@ -47,9 +31,25 @@ window.__TRENDING_DATA__ = {
         "en": "World's first open-source, agentic video production system. 12 pipelines, 52 tools, 500+ agent skills. Turn your AI coding assistant into a full video production studio."
       },
       "language": "Python",
-      "stars_total": 7251,
-      "forks_total": 1170,
-      "stars_today": 677
+      "stars_total": 9564,
+      "forks_total": 1361,
+      "stars_today": 987
+    },
+    {
+      "rank": 3,
+      "repo": "chopratejas/headroom",
+      "owner": "chopratejas",
+      "name": "headroom",
+      "url": "https://github.com/chopratejas/headroom",
+      "description": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, MCP server.",
+      "descriptions": {
+        "zh": "在工具输出、日志、文件和 RAG 块到达 LLM 之前对其进行压缩。减少 60-95% 的标记，答案相同。库、代理、MCP 服务器。",
+        "en": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, MCP server."
+      },
+      "language": "Python",
+      "stars_total": 45240,
+      "forks_total": 3148,
+      "stars_today": 2624
     },
     {
       "rank": 4,
@@ -63,41 +63,41 @@ window.__TRENDING_DATA__ = {
         "en": "Turso is an in-process SQL database, compatible with SQLite."
       },
       "language": "Rust",
-      "stars_total": 20423,
-      "forks_total": 1043,
-      "stars_today": 801
+      "stars_total": 20949,
+      "forks_total": 1070,
+      "stars_today": 548
     },
     {
       "rank": 5,
-      "repo": "DeusData/codebase-memory-mcp",
-      "owner": "DeusData",
-      "name": "codebase-memory-mcp",
-      "url": "https://github.com/DeusData/codebase-memory-mcp",
-      "description": "High-performance code intelligence MCP server. Indexes codebases into a persistent knowledge graph — average repo in milliseconds. 158 languages, sub-ms queries, 99% fewer tokens. Single static binary, zero dependencies.",
+      "repo": "penpot/penpot",
+      "owner": "penpot",
+      "name": "penpot",
+      "url": "https://github.com/penpot/penpot",
+      "description": "Penpot: The open-source design tool for design and code collaboration",
       "descriptions": {
-        "zh": "高性能代码智能MCP服务器。将代码库索引到持久知识图谱中——以毫秒为单位的平均存储库。 158 种语言，亚毫秒级查询，标记减少 99%。单个静态二进制文件，零依赖性。",
-        "en": "High-performance code intelligence MCP server. Indexes codebases into a persistent knowledge graph — average repo in milliseconds. 158 languages, sub-ms queries, 99% fewer tokens. Single static binary, zero dependencies."
+        "zh": "Penpot：用于设计和代码协作的开源设计工具",
+        "en": "Penpot: The open-source design tool for design and code collaboration"
       },
-      "language": "C",
-      "stars_total": 9560,
-      "forks_total": 724,
-      "stars_today": 1271
+      "language": "Clojure",
+      "stars_total": 52447,
+      "forks_total": 3356,
+      "stars_today": 1135
     },
     {
       "rank": 6,
-      "repo": "google-research/timesfm",
-      "owner": "google-research",
-      "name": "timesfm",
-      "url": "https://github.com/google-research/timesfm",
-      "description": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting.",
+      "repo": "ZhuLinsen/daily_stock_analysis",
+      "owner": "ZhuLinsen",
+      "name": "daily_stock_analysis",
+      "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
+      "description": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
       "descriptions": {
-        "zh": "TimesFM（时间序列基础模型）是 Google Research 开发的用于时间序列预测的预训练时间序列基础模型。",
-        "en": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting."
+        "zh": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
+        "en": "LLM-driven multi-market stock intelligent analysis system: multi-source quotes, real-time news, decision-making boards and automatic push, supporting zero-cost scheduled operation. LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs."
       },
       "language": "Python",
-      "stars_total": 24630,
-      "forks_total": 2337,
-      "stars_today": 433
+      "stars_total": 44965,
+      "forks_total": 41601,
+      "stars_today": 568
     }
   ]
 }
