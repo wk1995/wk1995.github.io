@@ -20,8 +20,9 @@ function setCorsHeaders(res) {
 }
 
 function getRequestOrigin(req) {
-  const proto = req.headers["x-forwarded-proto"] || "https";
   const host = req.headers["x-forwarded-host"] || req.headers.host;
+  const proto = req.headers["x-forwarded-proto"]
+    || (req.socket && req.socket.encrypted ? "https" : "http");
   return host ? `${proto}://${host}` : "";
 }
 
