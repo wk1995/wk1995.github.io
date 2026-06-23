@@ -97,6 +97,12 @@
       douyinSource: "抖音无水印",
       douyinBlocked: "无法解析抖音视频。请确认已部署 /api/douyin/resolve 代理，或在服务器环境中配置同等接口。",
       douyinUnavailable: "这个页面需要服务端代理解析抖音分享页；静态 GitHub Pages 不能直接请求抖音页面。",
+      douyinResolverMissingTitle: "抖音解析处理器未启动",
+      douyinResolverMissingBody: "检测到抖音分享链接，但当前网页无法访问 /api/douyin/resolve 服务端处理器。",
+      douyinResolverMissingTip: "请在项目根目录运行 Windows 启动脚本；如果提示没有 node，请先安装 Node.js LTS。",
+      douyinResolverCommandLabel: "Windows 本地启动命令",
+      douyinResolverCommand: "scripts\\start-video-preview.cmd",
+      nodeDownloadTip: "没有 Node.js 环境时，请安装 Node.js LTS：https://nodejs.org/",
       failureTitle: "处理失败",
       failureInputTip: "请粘贴完整的 http 或 https 地址，或包含抖音短链的分享文案。",
       failureScanTip: "可能原因：目标网站禁止跨域读取、页面视频由脚本动态加载、需要登录或存在防盗链。可以打开网页复制视频直链后再扫描。",
@@ -190,6 +196,12 @@
       douyinSource: "Douyin no-watermark",
       douyinBlocked: "Could not resolve this Douyin video. Confirm that the /api/douyin/resolve proxy is deployed, or provide an equivalent server endpoint.",
       douyinUnavailable: "This page needs a server proxy to parse Douyin share pages; static GitHub Pages cannot request Douyin pages directly.",
+      douyinResolverMissingTitle: "Douyin resolver is not running",
+      douyinResolverMissingBody: "A Douyin share link was detected, but this page cannot reach the /api/douyin/resolve server-side handler.",
+      douyinResolverMissingTip: "Run the Windows launcher from the project root. If it reports that node is missing, install Node.js LTS first.",
+      douyinResolverCommandLabel: "Windows local launch command",
+      douyinResolverCommand: "scripts\\start-video-preview.cmd",
+      nodeDownloadTip: "If Node.js is not installed, install the Node.js LTS release from https://nodejs.org/.",
       failureTitle: "Failed",
       failureInputTip: "Paste a complete http or https URL, or share text containing a Douyin short link.",
       failureScanTip: "Possible causes: the target site blocks cross-origin HTML reads, loads videos dynamically, requires login, or uses hotlink protection. Open the page and copy a direct video URL instead.",
@@ -539,6 +551,48 @@
     const hint = document.createElement("small");
     hint.textContent = tip;
     card.append(title, body, hint);
+    discoveryList.append(card);
+  }
+
+  function renderDouyinResolverMissing(error) {
+    discoveredVideos = [];
+    discoveryPanel.hidden = false;
+    discoveryList.innerHTML = "";
+    discoveryCount.textContent = `0 ${text("candidateCount")}`;
+    addDiscoveredButton.disabled = true;
+
+    const card = document.createElement("div");
+    card.className = "video-failure-card video-failure-card--resolver";
+
+    const title = document.createElement("strong");
+    title.textContent = text("douyinResolverMissingTitle");
+
+    const body = document.createElement("span");
+    body.textContent = text("douyinResolverMissingBody");
+
+    const hint = document.createElement("small");
+    hint.textContent = text("douyinResolverMissingTip");
+
+    const commandLabel = document.createElement("small");
+    commandLabel.className = "video-command-label";
+    commandLabel.textContent = text("douyinResolverCommandLabel");
+
+    const command = document.createElement("code");
+    command.className = "video-local-command";
+    command.textContent = text("douyinResolverCommand");
+
+    const nodeTip = document.createElement("small");
+    nodeTip.textContent = text("nodeDownloadTip");
+
+    if (error && error.message) {
+      const detail = document.createElement("small");
+      detail.textContent = error.message;
+      card.append(title, body, hint, commandLabel, command, nodeTip, detail);
+      discoveryList.append(card);
+      return;
+    }
+
+    card.append(title, body, hint, commandLabel, command, nodeTip);
     discoveryList.append(card);
   }
 
@@ -1242,6 +1296,18 @@
     }
   }
 
+  function isDouyinResolverUnavailable(response, payload, error) {
+    if (response && (response.status === 404 || response.status === 405 || response.status === 501)) {
+      return true;
+    }
+
+    if (payload && typeof payload === "string" && /not found|cannot\s+(get|post)|method not allowed/i.test(payload)) {
+      return true;
+    }
+
+    return Boolean(error && /failed to fetch|networkerror|load failed/i.test(error.message || ""));
+  }
+
   async function resolveDouyinVideo(shareText) {
     const shareUrl = extractFirstHttpUrl(shareText);
     if (!shareUrl) {
@@ -1267,7 +1333,15 @@
       try {
         payload = await response.json();
       } catch (error) {
-        payload = null;
+        payload = await response.text().catch(function () {
+          return null;
+        });
+      }
+
+      if (isDouyinResolverUnavailable(response, payload, null)) {
+        renderDouyinResolverMissing(new Error(`${response.status} ${response.statusText || ""}`.trim()));
+        setStatus(text("douyinResolverMissingTitle"), "error");
+        return;
       }
 
       if (!response.ok || !payload || payload.status !== "success") {
@@ -1288,6 +1362,12 @@
       renderDiscoveredVideos();
       setStatus(`${text("douyinResolved")}：${payload.video_id || ""}`, "success");
     } catch (error) {
+      if (isDouyinResolverUnavailable(null, null, error)) {
+        renderDouyinResolverMissing(error);
+        setStatus(text("douyinResolverMissingTitle"), "error");
+        return;
+      }
+
       const message = error && error.message ? error.message : text("douyinUnavailable");
       setStatus(message, "error");
       renderDiscoveryFailure(message, text("douyinUnavailable"));
