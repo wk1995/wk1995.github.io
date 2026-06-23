@@ -1,26 +1,10 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-22T06:39:35.475749+00:00",
+  "generated_at": "2026-06-23T05:13:24.872272+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "palmier-io/palmier-pro",
-      "owner": "palmier-io",
-      "name": "palmier-pro",
-      "url": "https://github.com/palmier-io/palmier-pro",
-      "description": "macOS video editor built for AI",
-      "descriptions": {
-        "zh": "专为 AI 打造的 macOS 视频编辑器",
-        "en": "macOS video editor built for AI"
-      },
-      "language": "Swift",
-      "stars_total": 5862,
-      "forks_total": 428,
-      "stars_today": 1834
-    },
-    {
-      "rank": 2,
       "repo": "calesthio/OpenMontage",
       "owner": "calesthio",
       "name": "OpenMontage",
@@ -31,41 +15,57 @@ window.__TRENDING_DATA__ = {
         "en": "World's first open-source, agentic video production system. 12 pipelines, 52 tools, 500+ agent skills. Turn your AI coding assistant into a full video production studio."
       },
       "language": "Python",
-      "stars_total": 9564,
-      "forks_total": 1361,
-      "stars_today": 987
+      "stars_total": 12801,
+      "forks_total": 1602,
+      "stars_today": 2938
+    },
+    {
+      "rank": 2,
+      "repo": "palmier-io/palmier-pro",
+      "owner": "palmier-io",
+      "name": "palmier-pro",
+      "url": "https://github.com/palmier-io/palmier-pro",
+      "description": "macOS video editor built for AI",
+      "descriptions": {
+        "zh": "专为 AI 打造的 macOS 视频编辑器",
+        "en": "macOS video editor built for AI"
+      },
+      "language": "Swift",
+      "stars_total": 7687,
+      "forks_total": 517,
+      "stars_today": 2463
     },
     {
       "rank": 3,
-      "repo": "chopratejas/headroom",
-      "owner": "chopratejas",
-      "name": "headroom",
-      "url": "https://github.com/chopratejas/headroom",
-      "description": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, MCP server.",
+      "repo": "jamiepine/voicebox",
+      "owner": "jamiepine",
+      "name": "voicebox",
+      "url": "https://github.com/jamiepine/voicebox",
+      "description": "The open-source AI voice studio. Clone, dictate, create.",
       "descriptions": {
-        "zh": "在工具输出、日志、文件和 RAG 块到达 LLM 之前对其进行压缩。减少 60-95% 的标记，答案相同。库、代理、MCP 服务器。",
-        "en": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, MCP server."
+        "zh": "开源人工智能语音工作室。克隆、指令、创造。",
+        "en": "The open-source AI voice studio. Clone, dictate, create."
       },
-      "language": "Python",
-      "stars_total": 45240,
-      "forks_total": 3148,
-      "stars_today": 2624
+      "language": "TypeScript",
+      "stars_total": 32468,
+      "forks_total": 3947,
+      "stars_today": 529
     },
     {
       "rank": 4,
-      "repo": "tursodatabase/turso",
-      "owner": "tursodatabase",
-      "name": "turso",
-      "url": "https://github.com/tursodatabase/turso",
-      "description": "Turso is an in-process SQL database, compatible with SQLite.",
+      "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+      "owner": "mukul975",
+      "name": "Anthropic-Cybersecurity-Skills",
+      "url": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills",
+      "description": "817 structured cybersecurity skills for AI agents · Mapped to 6 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND, NIST AI RMF & MITRE F3 (Fight Fraud) · agentskills.io standard · Works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI & 20+ platforms · 29 security domains · Apache 2.0",
       "descriptions": {
-        "zh": "Turso 是一个进程内 SQL 数据库，与 SQLite 兼容。",
-        "en": "Turso is an in-process SQL database, compatible with SQLite."
+        "zh": "AI 代理的 817 项结构化网络安全技能 · 映射到 6 个框架：MITRE ATT&CK、NIST CSF 2.0、MITRE ATLAS、D3FEND、NIST AI RMF 和 MITRE F3（打击欺诈） · Agentskills.io 标准 · 可与 Claude Code、GitHub Copilot、Codex CLI、Cursor、Gemini CLI 和 20 多个平台配合使用 · 29 个安全域 · Apache 2.0",
+        "en": "817 structured cybersecurity skills for AI agents · Mapped to 6 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND, NIST AI RMF & MITRE F3 (Fight Fraud) · agentskills.io standard · Works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI & 20+ platforms · 29 security domains · Apache 2.0"
       },
-      "language": "Rust",
-      "stars_total": 20949,
-      "forks_total": 1070,
-      "stars_today": 548
+      "language": "Python",
+      "stars_total": 18903,
+      "forks_total": 2229,
+      "stars_today": 956
     },
     {
       "rank": 5,
@@ -79,25 +79,25 @@ window.__TRENDING_DATA__ = {
         "en": "Penpot: The open-source design tool for design and code collaboration"
       },
       "language": "Clojure",
-      "stars_total": 52447,
-      "forks_total": 3356,
-      "stars_today": 1135
+      "stars_total": 52976,
+      "forks_total": 3389,
+      "stars_today": 728
     },
     {
       "rank": 6,
-      "repo": "ZhuLinsen/daily_stock_analysis",
-      "owner": "ZhuLinsen",
-      "name": "daily_stock_analysis",
-      "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
-      "description": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
+      "repo": "Stirling-Tools/Stirling-PDF",
+      "owner": "Stirling-Tools",
+      "name": "Stirling-PDF",
+      "url": "https://github.com/Stirling-Tools/Stirling-PDF",
+      "description": "#1 PDF Application on GitHub that lets you edit PDFs on any device anywhere",
       "descriptions": {
-        "zh": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
-        "en": "LLM-driven multi-market stock intelligent analysis system: multi-source quotes, real-time news, decision-making boards and automatic push, supporting zero-cost scheduled operation. LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs."
+        "zh": "GitHub 上排名第一的 PDF 应用程序，可让您在任何地方的任何设备上编辑 PDF",
+        "en": "#1 PDF Application on GitHub that lets you edit PDFs on any device anywhere"
       },
-      "language": "Python",
-      "stars_total": 44965,
-      "forks_total": 41601,
-      "stars_today": 568
+      "language": "TypeScript",
+      "stars_total": 83175,
+      "forks_total": 7248,
+      "stars_today": 547
     }
   ]
 }
