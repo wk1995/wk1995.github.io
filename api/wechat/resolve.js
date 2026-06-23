@@ -1,3 +1,6 @@
+const fs = require("fs");
+const path = require("path");
+
 const HEADERS = {
   "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 MicroMessenger/8.0.47 Safari/604.1",
   "Referer": "https://mp.weixin.qq.com/",
@@ -11,6 +14,7 @@ const PLAYER_HOST_PATTERN = /(?:^|\.)mp\.weixin\.qq\.com$/i;
 const FETCH_TIMEOUT_MS = 12000;
 const MAX_IFRAMES = 16;
 const MAX_CANDIDATES = 40;
+const CONFIG_PATH = path.resolve(process.cwd(), ".video-resolver-env.json");
 
 function setCorsHeaders(res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -36,6 +40,19 @@ function getRequestOrigin(req) {
 function getFirstUrl(text) {
   const match = String(text || "").match(URL_PATTERN);
   return match ? match[0] : "";
+}
+
+function requireResolverConfigured() {
+  try {
+    const config = JSON.parse(fs.readFileSync(CONFIG_PATH, "utf8"));
+    if (config && config.configured) {
+      return;
+    }
+  } catch (error) {
+    // Missing local config means the resolver environment has not been enabled.
+  }
+
+  throw new Error("Node 解析环境未配置，请先在视频页执行一键配置");
 }
 
 function sanitizeTitle(title, fallback) {
@@ -583,6 +600,7 @@ module.exports = async function handler(req, res) {
     }
 
     const body = await readJsonBody(req);
+    requireResolverConfigured();
     const result = await resolveWechatArticle(body.shareText || body.share_link || body.url || "");
     const candidates = attachProxyUrls(req, result.candidates);
     const first = candidates[0];

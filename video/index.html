@@ -144,6 +144,15 @@
             <small id="download-path">--</small>
           </div>
 
+          <div class="video-env-panel" id="video-env-panel">
+            <div class="video-env-copy">
+              <span data-video-text="envTitle">解析环境</span>
+              <strong id="video-env-state" data-video-text="envChecking">正在检测解析环境</strong>
+              <small id="video-env-detail" data-video-text="envDetail">抖音与微信公众号解析需要本地 Node 解析服务。</small>
+            </div>
+            <button class="video-danger-button" id="clear-env-button" type="button" data-video-text="envClearAction">一键清除配置</button>
+          </div>
+
           <div class="video-tool-section">
             <div class="video-section-head">
               <h2 data-video-text="regionTitle">水印区域</h2>
@@ -210,6 +219,19 @@
         </aside>
       </section>
     </main>
+  </div>
+
+  <div class="video-env-modal" id="video-env-modal" hidden>
+    <div class="video-env-modal-card" role="dialog" aria-modal="true" aria-labelledby="video-env-modal-title">
+      <strong class="video-env-warning" data-video-text="envWarning">强提醒：解析环境未就绪</strong>
+      <h2 id="video-env-modal-title" data-video-text="envModalTitle">需要配置本地 Node 解析环境</h2>
+      <p id="video-env-modal-message" data-video-text="envModalCopy">抖音分享链接和微信公众号文章需要服务端代理读取页面。当前环境无法执行解析接口。</p>
+      <pre id="video-env-command" class="video-env-command" hidden></pre>
+      <div class="video-env-actions">
+        <button class="video-primary-button" id="setup-env-button" type="button" data-video-text="envSetupAction">一键配置并刷新</button>
+        <button class="video-secondary-button" id="dismiss-env-button" type="button" data-video-text="envDismissAction">暂不配置</button>
+      </div>
+    </div>
   </div>
 
   <script src="../assets/site.js"></script>

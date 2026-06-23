@@ -43,6 +43,15 @@
   const audioToggle = document.getElementById("audio-toggle");
   const exportButton = document.getElementById("export-button");
   const exportProgress = document.getElementById("export-progress");
+  const envPanel = document.getElementById("video-env-panel");
+  const envState = document.getElementById("video-env-state");
+  const envDetail = document.getElementById("video-env-detail");
+  const clearEnvButton = document.getElementById("clear-env-button");
+  const envModal = document.getElementById("video-env-modal");
+  const envModalMessage = document.getElementById("video-env-modal-message");
+  const envCommand = document.getElementById("video-env-command");
+  const setupEnvButton = document.getElementById("setup-env-button");
+  const dismissEnvButton = document.getElementById("dismiss-env-button");
 
   const scratch = document.createElement("canvas");
   const scratchContext = scratch.getContext("2d");
@@ -145,6 +154,25 @@
       formatMp4: "MP4",
       sizeLabel: "尺寸",
       durationLabel: "时长",
+      envTitle: "解析环境",
+      envChecking: "正在检测解析环境",
+      envReady: "Node 解析环境已就绪",
+      envMissing: "Node 解析环境未就绪",
+      envConfigured: "解析环境配置成功，正在刷新页面...",
+      envCleared: "解析环境配置已清除",
+      envDetail: "抖音与微信公众号解析需要本地 Node 解析服务。",
+      envDetailReady: "可解析抖音分享链接与微信公众号文章。",
+      envDetailMissing: "当前页面无法执行服务端解析接口，请先配置本地 Node 解析服务。",
+      envClearAction: "一键清除配置",
+      envSetupAction: "一键配置并刷新",
+      envDismissAction: "暂不配置",
+      envWarning: "强提醒：解析环境未就绪",
+      envModalTitle: "需要配置本地 Node 解析环境",
+      envModalCopy: "抖音分享链接和微信公众号文章需要服务端代理读取页面。当前环境无法执行解析接口。",
+      envSetupFailed: "一键配置失败。请使用下方命令启动带 API 的本地预览服务。",
+      envCleanupConfirm: "强提醒：清除后抖音和微信公众号解析会立即不可用。确认清除配置？",
+      envCleanupFailed: "清除配置失败。",
+      envCommandHint: "在项目根目录运行：",
     },
     en: {
       backHome: "Back home",
@@ -243,6 +271,25 @@
       formatMp4: "MP4",
       sizeLabel: "Size",
       durationLabel: "Duration",
+      envTitle: "Resolver environment",
+      envChecking: "Checking resolver environment",
+      envReady: "Node resolver environment is ready",
+      envMissing: "Node resolver environment is not ready",
+      envConfigured: "Resolver environment configured. Refreshing...",
+      envCleared: "Resolver environment configuration was cleared",
+      envDetail: "Douyin and WeChat resolution require a local Node resolver service.",
+      envDetailReady: "Douyin share links and WeChat articles can be resolved.",
+      envDetailMissing: "This page cannot run the server resolver API yet. Configure the local Node resolver service first.",
+      envClearAction: "Clear configuration",
+      envSetupAction: "Configure and refresh",
+      envDismissAction: "Not now",
+      envWarning: "Important: resolver environment is not ready",
+      envModalTitle: "Local Node resolver environment required",
+      envModalCopy: "Douyin share links and WeChat articles require a server proxy. The current environment cannot execute the resolver API.",
+      envSetupFailed: "One-click configuration failed. Run the command below from the project root to start the API-enabled local preview.",
+      envCleanupConfirm: "Important: clearing this will immediately disable Douyin and WeChat resolution. Clear configuration?",
+      envCleanupFailed: "Could not clear configuration.",
+      envCommandHint: "Run from the project root:",
     },
   };
 
@@ -262,6 +309,14 @@
   let discoveredVideos = [];
   let queuedVideos = [];
   let activeQueueId = null;
+  let envStatus = {
+    checked: false,
+    ready: false,
+    message: "",
+    command: "node scripts/video-resolver-server.cjs",
+  };
+  let pendingResolverPlatform = "";
+  let pendingResolverInput = "";
 
   function lang() {
     return window.WKSite && typeof window.WKSite.getLanguage === "function"
@@ -307,6 +362,181 @@
     status.textContent = message || "";
     status.classList.toggle("is-error", kind === "error");
     status.classList.toggle("is-success", kind === "success");
+  }
+
+  function renderEnvState() {
+    if (!envPanel || !envState || !envDetail) {
+      return;
+    }
+
+    envPanel.classList.toggle("is-ready", Boolean(envStatus.ready));
+    envState.textContent = envStatus.ready ? text("envReady") : (envStatus.checked ? text("envMissing") : text("envChecking"));
+    envDetail.textContent = envStatus.ready ? text("envDetailReady") : (envStatus.message || text("envDetailMissing"));
+    if (clearEnvButton) {
+      clearEnvButton.disabled = !envStatus.ready;
+    }
+  }
+
+  function showEnvModal(platform, message, command) {
+    pendingResolverPlatform = platform || pendingResolverPlatform;
+    pendingResolverInput = urlInput.value.trim() || pendingResolverInput;
+    if (!envModal) {
+      setStatus(message || text("envModalCopy"), "error");
+      return;
+    }
+
+    envModal.hidden = false;
+    if (envModalMessage) {
+      envModalMessage.textContent = message || text("envModalCopy");
+    }
+    if (envCommand) {
+      const commandText = command || getLocalResolverCommand();
+      envCommand.hidden = false;
+      envCommand.textContent = `${text("envCommandHint")}\n${commandText}`;
+    }
+  }
+
+  function hideEnvModal() {
+    if (envModal) {
+      envModal.hidden = true;
+    }
+  }
+
+  async function readJsonResponse(response) {
+    const textBody = await response.text();
+    try {
+      return textBody ? JSON.parse(textBody) : {};
+    } catch (error) {
+      throw new Error(`not json (${response.status})`);
+    }
+  }
+
+  async function checkResolverEnvironment(platform) {
+    try {
+      const endpoint = new URL(getResolverEnvEndpoint(), window.location.href);
+      if (platform) {
+        endpoint.searchParams.set("platform", platform);
+      }
+      const response = await fetch(endpoint.href, {
+        method: "GET",
+        headers: {
+          "Accept": "application/json",
+        },
+      });
+      const payload = await readJsonResponse(response);
+      if (!response.ok || payload.status !== "success" || !payload.ready) {
+        throw new Error(payload && payload.error ? payload.error : `${text("envMissing")} (${response.status})`);
+      }
+
+      envStatus = {
+        checked: true,
+        ready: true,
+        message: payload.message || text("envDetailReady"),
+        command: payload.command || getLocalResolverCommand(),
+      };
+      renderEnvState();
+      return true;
+    } catch (error) {
+      envStatus = {
+        checked: true,
+        ready: false,
+        message: text("envDetailMissing"),
+        command: getLocalResolverCommand(),
+      };
+      renderEnvState();
+      return false;
+    }
+  }
+
+  async function ensureResolverEnvironment(platform, shareText) {
+    pendingResolverPlatform = platform;
+    pendingResolverInput = shareText;
+    if (await checkResolverEnvironment(platform)) {
+      return true;
+    }
+
+    showEnvModal(platform, text("envModalCopy"), getLocalResolverCommand());
+    setStatus(text("envMissing"), "error");
+    return false;
+  }
+
+  async function setupResolverEnvironment() {
+    if (setupEnvButton) {
+      setupEnvButton.disabled = true;
+    }
+    setStatus(text("envChecking"));
+
+    try {
+      const response = await fetch(getResolverEnvEndpoint("setup"), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          platform: pendingResolverPlatform || "video",
+        }),
+      });
+      const payload = await readJsonResponse(response);
+      if (!response.ok || payload.status !== "success" || !payload.ready) {
+        throw new Error(payload && payload.error ? payload.error : `${text("envSetupFailed")} (${response.status})`);
+      }
+
+      sessionStorage.setItem("wk-video-pending-resolve", JSON.stringify({
+        platform: pendingResolverPlatform,
+        value: pendingResolverInput || urlInput.value.trim(),
+      }));
+      setStatus(text("envConfigured"), "success");
+      window.setTimeout(function () {
+        window.location.reload();
+      }, 500);
+    } catch (error) {
+      const command = getLocalResolverCommand();
+      showEnvModal(pendingResolverPlatform, `${text("envSetupFailed")} ${error.message || ""}`, command);
+      setStatus(text("envSetupFailed"), "error");
+    } finally {
+      if (setupEnvButton) {
+        setupEnvButton.disabled = false;
+      }
+    }
+  }
+
+  async function clearResolverEnvironment() {
+    if (!window.confirm(text("envCleanupConfirm"))) {
+      return;
+    }
+
+    if (clearEnvButton) {
+      clearEnvButton.disabled = true;
+    }
+
+    try {
+      const response = await fetch(getResolverEnvEndpoint("cleanup"), {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+        },
+      });
+      const payload = await readJsonResponse(response);
+      if (!response.ok || payload.status !== "success") {
+        throw new Error(payload && payload.error ? payload.error : `${text("envCleanupFailed")} (${response.status})`);
+      }
+
+      envStatus = {
+        checked: true,
+        ready: false,
+        message: text("envCleared"),
+        command: payload.command || getLocalResolverCommand(),
+      };
+      renderEnvState();
+      setStatus(text("envCleared"), "success");
+    } catch (error) {
+      setStatus(`${text("envCleanupFailed")} ${error.message || ""}`, "error");
+    } finally {
+      if (clearEnvButton) {
+        clearEnvButton.disabled = !envStatus.ready;
+      }
+    }
   }
 
   function setPlayIcon(isPlaying) {
@@ -385,6 +615,20 @@
 
   function getWechatResolverEndpoint() {
     return window.WK_WECHAT_RESOLVER || "/api/wechat/resolve";
+  }
+
+  function getResolverEnvEndpoint(action) {
+    const base = window.WK_VIDEO_ENV_ENDPOINT || "/api/video/env";
+    return action ? `${base}/${action}` : base;
+  }
+
+  function getLocalResolverCommand() {
+    return envStatus.command || "node scripts/video-resolver-server.cjs";
+  }
+
+  function isResolverEnvironmentError(error) {
+    const message = String(error && error.message ? error.message : error || "");
+    return /501|404|405|Failed to fetch|Unexpected token|not json|resolver environment|Node resolver/i.test(message);
   }
 
   function normalizeCandidateUrl(rawUrl, baseUrl) {
@@ -723,6 +967,7 @@
     updatePathSummary();
     renderDiscoveredVideos();
     renderVideoQueue();
+    renderEnvState();
   }
 
   function setControlsEnabled(enabled) {
@@ -738,6 +983,12 @@
     exportButton.disabled = !enabled || !supportedFormats.length || busy;
     previewUrlButton.disabled = busy;
     urlInput.disabled = busy;
+    if (setupEnvButton) {
+      setupEnvButton.disabled = busy;
+    }
+    if (clearEnvButton) {
+      clearEnvButton.disabled = busy || !envStatus.ready;
+    }
     addDiscoveredButton.disabled = busy || !discoveredVideos.some(function (candidate) {
       return candidate.selected;
     });
@@ -1284,6 +1535,10 @@
       return;
     }
 
+    if (!(await ensureResolverEnvironment("douyin", shareText))) {
+      return;
+    }
+
     discoveredVideos = [];
     renderDiscoveredVideos();
     setStatus(text("resolvingDouyin"));
@@ -1325,6 +1580,9 @@
       const message = error && error.message ? error.message : text("douyinUnavailable");
       setStatus(message, "error");
       renderDiscoveryFailure(message, text("douyinUnavailable"));
+      if (isResolverEnvironmentError(error)) {
+        showEnvModal("douyin", message, getLocalResolverCommand());
+      }
     }
   }
 
@@ -1333,6 +1591,10 @@
     if (!shareUrl) {
       setStatus(text("pickUrl"), "error");
       renderDiscoveryFailure(text("pickUrl"), text("failureInputTip"));
+      return;
+    }
+
+    if (!(await ensureResolverEnvironment("wechat", shareText))) {
       return;
     }
 
@@ -1390,6 +1652,9 @@
       const message = error && error.message ? error.message : text("wechatUnavailable");
       setStatus(message, "error");
       renderDiscoveryFailure(message, text("wechatUnavailable"));
+      if (isResolverEnvironmentError(error)) {
+        showEnvModal("wechat", message, getLocalResolverCommand());
+      }
     }
   }
 
@@ -1597,6 +1862,18 @@
     }
   });
 
+  if (setupEnvButton) {
+    setupEnvButton.addEventListener("click", setupResolverEnvironment);
+  }
+
+  if (dismissEnvButton) {
+    dismissEnvButton.addEventListener("click", hideEnvModal);
+  }
+
+  if (clearEnvButton) {
+    clearEnvButton.addEventListener("click", clearResolverEnvironment);
+  }
+
   urlForm.addEventListener("submit", function (event) {
     event.preventDefault();
     const value = urlInput.value.trim();
@@ -1786,10 +2063,24 @@
   setControlsEnabled(false);
   setPlayIcon(false);
   applyTranslations();
+  checkResolverEnvironment("").then(function () {
+    renderEnvState();
+  });
 
   const initialSource = new URLSearchParams(window.location.search).get("source");
   if (initialSource) {
     urlInput.value = initialSource;
     scanAddressForVideos(initialSource);
+  } else {
+    try {
+      const pending = JSON.parse(sessionStorage.getItem("wk-video-pending-resolve") || "null");
+      sessionStorage.removeItem("wk-video-pending-resolve");
+      if (pending && pending.value) {
+        urlInput.value = pending.value;
+        scanAddressForVideos(pending.value);
+      }
+    } catch (error) {
+      sessionStorage.removeItem("wk-video-pending-resolve");
+    }
   }
 })();
