@@ -21,8 +21,8 @@ function setCorsHeaders(res) {
 
 function getRequestOrigin(req) {
   const host = req.headers["x-forwarded-host"] || req.headers.host;
-  const proto = req.headers["x-forwarded-proto"]
-    || (req.socket && req.socket.encrypted ? "https" : "http");
+  const isLocalHost = /^(localhost|127\.0\.0\.1|\[::1\])(?::\d+)?$/i.test(host || "");
+  const proto = req.headers["x-forwarded-proto"] || (isLocalHost ? "http" : "https");
   return host ? `${proto}://${host}` : "";
 }
 

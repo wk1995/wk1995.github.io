@@ -54,8 +54,8 @@
       intro: "导入本地视频，框选一个或多个水印区域，实时预览局部修复效果，并按浏览器支持的格式导出。",
       dropTitle: "选择或拖入视频文件",
       dropCopy: "支持 MP4、MOV、WebM、MKV、AVI、OGV、3GP 等常见视频容器；实际解码由当前浏览器决定。",
-      urlLabel: "抖音分享文案、网页或视频地址",
-      urlPlaceholder: "粘贴抖音分享文案、网页地址或视频直链",
+      urlLabel: "抖音分享文案、微信公众号文章、网页或视频地址",
+      urlPlaceholder: "粘贴抖音分享文案、微信公众号文章、网页地址或视频直链",
       urlPreviewAction: "解析视频",
       discoveryTitle: "发现的视频",
       addSelectedVideos: "加入选中视频",
@@ -90,6 +90,7 @@
       loading: "正在读取视频文件...",
       scanningPage: "正在扫描网页中的视频资源...",
       resolvingDouyin: "正在解析抖音无水印视频链接...",
+      resolvingWechat: "正在解析微信公众号文章中的视频资源...",
       scanFound: "已发现视频资源",
       scanEmpty: "没有在这个网页中发现可识别的视频文件。",
       scanBlocked: "无法读取这个网页。目标网站可能不允许跨域读取 HTML；请改用视频直链。",
@@ -97,14 +98,12 @@
       douyinSource: "抖音无水印",
       douyinBlocked: "无法解析抖音视频。请确认已部署 /api/douyin/resolve 代理，或在服务器环境中配置同等接口。",
       douyinUnavailable: "这个页面需要服务端代理解析抖音分享页；静态 GitHub Pages 不能直接请求抖音页面。",
-      douyinResolverMissingTitle: "抖音解析处理器未启动",
-      douyinResolverMissingBody: "检测到抖音分享链接，但当前网页无法访问 /api/douyin/resolve 服务端处理器。",
-      douyinResolverMissingTip: "请在项目根目录运行 Windows 启动脚本；如果提示没有 node，请先安装 Node.js LTS。",
-      douyinResolverCommandLabel: "Windows 本地启动命令",
-      douyinResolverCommand: "scripts\\start-video-preview.cmd",
-      nodeDownloadTip: "没有 Node.js 环境时，请安装 Node.js LTS：https://nodejs.org/",
+      wechatResolved: "已解析微信公众号视频资源",
+      wechatSource: "微信公众号视频",
+      wechatBlocked: "无法解析微信公众号文章。请确认已部署 /api/wechat/resolve 代理，或在服务器环境中配置同等接口。",
+      wechatUnavailable: "这个页面需要服务端代理读取微信公众号文章；静态 GitHub Pages 不能直接请求微信文章页。",
       failureTitle: "处理失败",
-      failureInputTip: "请粘贴完整的 http 或 https 地址，或包含抖音短链的分享文案。",
+      failureInputTip: "请粘贴完整的 http 或 https 地址，或包含抖音短链、微信公众号文章链接的分享文案。",
       failureScanTip: "可能原因：目标网站禁止跨域读取、页面视频由脚本动态加载、需要登录或存在防盗链。可以打开网页复制视频直链后再扫描。",
       failurePreviewTip: "可能原因：视频编码或容器不被当前浏览器支持、远程服务器禁止跨域媒体加载，或链接不是可直接访问的视频文件。",
       failureDownloadTip: "可能原因：远程服务器禁止跨域下载、需要登录授权、链接已过期或存在防盗链。可改用本地文件导入。",
@@ -153,8 +152,8 @@
       intro: "Import a local video, mark one or more watermark regions, preview the repair, and export in a format supported by the browser.",
       dropTitle: "Choose or drop a video file",
       dropCopy: "Accepts common containers such as MP4, MOV, WebM, MKV, AVI, OGV, and 3GP. Actual decoding depends on the current browser.",
-      urlLabel: "Douyin share text, page, or video URL",
-      urlPlaceholder: "Paste Douyin share text, a page URL, or a direct video link",
+      urlLabel: "Douyin share text, WeChat article, page, or video URL",
+      urlPlaceholder: "Paste Douyin share text, a WeChat article, a page URL, or a direct video link",
       urlPreviewAction: "Resolve video",
       discoveryTitle: "Discovered videos",
       addSelectedVideos: "Add selected",
@@ -189,6 +188,7 @@
       loading: "Reading video file...",
       scanningPage: "Scanning the page for video resources...",
       resolvingDouyin: "Resolving the Douyin no-watermark video URL...",
+      resolvingWechat: "Resolving video resources from the WeChat article...",
       scanFound: "Discovered video resources",
       scanEmpty: "No recognizable video files were found on this page.",
       scanBlocked: "Could not read this page. The target site may block cross-origin HTML access; use a direct video URL instead.",
@@ -196,14 +196,12 @@
       douyinSource: "Douyin no-watermark",
       douyinBlocked: "Could not resolve this Douyin video. Confirm that the /api/douyin/resolve proxy is deployed, or provide an equivalent server endpoint.",
       douyinUnavailable: "This page needs a server proxy to parse Douyin share pages; static GitHub Pages cannot request Douyin pages directly.",
-      douyinResolverMissingTitle: "Douyin resolver is not running",
-      douyinResolverMissingBody: "A Douyin share link was detected, but this page cannot reach the /api/douyin/resolve server-side handler.",
-      douyinResolverMissingTip: "Run the Windows launcher from the project root. If it reports that node is missing, install Node.js LTS first.",
-      douyinResolverCommandLabel: "Windows local launch command",
-      douyinResolverCommand: "scripts\\start-video-preview.cmd",
-      nodeDownloadTip: "If Node.js is not installed, install the Node.js LTS release from https://nodejs.org/.",
+      wechatResolved: "Resolved WeChat article videos",
+      wechatSource: "WeChat article video",
+      wechatBlocked: "Could not resolve this WeChat article. Confirm that the /api/wechat/resolve proxy is deployed, or provide an equivalent server endpoint.",
+      wechatUnavailable: "This page needs a server proxy to read WeChat article pages; static GitHub Pages cannot request WeChat article pages directly.",
       failureTitle: "Failed",
-      failureInputTip: "Paste a complete http or https URL, or share text containing a Douyin short link.",
+      failureInputTip: "Paste a complete http or https URL, or share text containing a Douyin short link or WeChat article URL.",
       failureScanTip: "Possible causes: the target site blocks cross-origin HTML reads, loads videos dynamically, requires login, or uses hotlink protection. Open the page and copy a direct video URL instead.",
       failurePreviewTip: "Possible causes: the codec or container is not supported by this browser, the remote server blocks cross-origin media loading, or the link is not a directly playable video file.",
       failureDownloadTip: "Possible causes: the remote server blocks cross-origin downloads, requires authorization, the link expired, or hotlink protection is enabled. Import a local file instead.",
@@ -368,6 +366,25 @@
 
   function getDouyinResolverEndpoint() {
     return window.WK_DOUYIN_RESOLVER || "/api/douyin/resolve";
+  }
+
+  function isWechatArticleUrl(value) {
+    const url = extractFirstHttpUrl(value);
+    if (!url) {
+      return false;
+    }
+
+    try {
+      const parsed = new URL(url);
+      const hostname = parsed.hostname.toLowerCase();
+      return hostname === "mp.weixin.qq.com" || hostname.endsWith(".mp.weixin.qq.com");
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function getWechatResolverEndpoint() {
+    return window.WK_WECHAT_RESOLVER || "/api/wechat/resolve";
   }
 
   function normalizeCandidateUrl(rawUrl, baseUrl) {
@@ -551,48 +568,6 @@
     const hint = document.createElement("small");
     hint.textContent = tip;
     card.append(title, body, hint);
-    discoveryList.append(card);
-  }
-
-  function renderDouyinResolverMissing(error) {
-    discoveredVideos = [];
-    discoveryPanel.hidden = false;
-    discoveryList.innerHTML = "";
-    discoveryCount.textContent = `0 ${text("candidateCount")}`;
-    addDiscoveredButton.disabled = true;
-
-    const card = document.createElement("div");
-    card.className = "video-failure-card video-failure-card--resolver";
-
-    const title = document.createElement("strong");
-    title.textContent = text("douyinResolverMissingTitle");
-
-    const body = document.createElement("span");
-    body.textContent = text("douyinResolverMissingBody");
-
-    const hint = document.createElement("small");
-    hint.textContent = text("douyinResolverMissingTip");
-
-    const commandLabel = document.createElement("small");
-    commandLabel.className = "video-command-label";
-    commandLabel.textContent = text("douyinResolverCommandLabel");
-
-    const command = document.createElement("code");
-    command.className = "video-local-command";
-    command.textContent = text("douyinResolverCommand");
-
-    const nodeTip = document.createElement("small");
-    nodeTip.textContent = text("nodeDownloadTip");
-
-    if (error && error.message) {
-      const detail = document.createElement("small");
-      detail.textContent = error.message;
-      card.append(title, body, hint, commandLabel, command, nodeTip, detail);
-      discoveryList.append(card);
-      return;
-    }
-
-    card.append(title, body, hint, commandLabel, command, nodeTip);
     discoveryList.append(card);
   }
 
@@ -1244,6 +1219,11 @@
       return;
     }
 
+    if (isWechatArticleUrl(address)) {
+      await resolveWechatVideo(address);
+      return;
+    }
+
     const addressUrl = extractFirstHttpUrl(address) || address;
     let parsed;
 
@@ -1296,18 +1276,6 @@
     }
   }
 
-  function isDouyinResolverUnavailable(response, payload, error) {
-    if (response && (response.status === 404 || response.status === 405 || response.status === 501)) {
-      return true;
-    }
-
-    if (payload && typeof payload === "string" && /not found|cannot\s+(get|post)|method not allowed/i.test(payload)) {
-      return true;
-    }
-
-    return Boolean(error && /failed to fetch|networkerror|load failed/i.test(error.message || ""));
-  }
-
   async function resolveDouyinVideo(shareText) {
     const shareUrl = extractFirstHttpUrl(shareText);
     if (!shareUrl) {
@@ -1333,15 +1301,7 @@
       try {
         payload = await response.json();
       } catch (error) {
-        payload = await response.text().catch(function () {
-          return null;
-        });
-      }
-
-      if (isDouyinResolverUnavailable(response, payload, null)) {
-        renderDouyinResolverMissing(new Error(`${response.status} ${response.statusText || ""}`.trim()));
-        setStatus(text("douyinResolverMissingTitle"), "error");
-        return;
+        payload = null;
       }
 
       if (!response.ok || !payload || payload.status !== "success") {
@@ -1362,15 +1322,74 @@
       renderDiscoveredVideos();
       setStatus(`${text("douyinResolved")}：${payload.video_id || ""}`, "success");
     } catch (error) {
-      if (isDouyinResolverUnavailable(null, null, error)) {
-        renderDouyinResolverMissing(error);
-        setStatus(text("douyinResolverMissingTitle"), "error");
-        return;
-      }
-
       const message = error && error.message ? error.message : text("douyinUnavailable");
       setStatus(message, "error");
       renderDiscoveryFailure(message, text("douyinUnavailable"));
+    }
+  }
+
+  async function resolveWechatVideo(shareText) {
+    const shareUrl = extractFirstHttpUrl(shareText);
+    if (!shareUrl) {
+      setStatus(text("pickUrl"), "error");
+      renderDiscoveryFailure(text("pickUrl"), text("failureInputTip"));
+      return;
+    }
+
+    discoveredVideos = [];
+    renderDiscoveredVideos();
+    setStatus(text("resolvingWechat"));
+
+    try {
+      const response = await fetch(getWechatResolverEndpoint(), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ shareText: shareText }),
+      });
+
+      let payload = null;
+      try {
+        payload = await response.json();
+      } catch (error) {
+        payload = null;
+      }
+
+      if (!response.ok || !payload || payload.status !== "success") {
+        const message = payload && payload.error ? payload.error : `${text("wechatBlocked")} (${response.status})`;
+        throw new Error(message);
+      }
+
+      const candidates = Array.isArray(payload.candidates) ? payload.candidates : [];
+      discoveredVideos = candidates.map(function (candidate, index) {
+        return createCandidate(
+          candidate.proxy_url || candidate.download_url || candidate.url,
+          candidate.title || candidate.video_id || `${text("wechatSource")} ${index + 1}`,
+          candidate.source || text("wechatSource")
+        );
+      }).filter(function (candidate) {
+        return Boolean(candidate.url);
+      });
+
+      if (!discoveredVideos.length && (payload.proxy_url || payload.download_url)) {
+        discoveredVideos = [createCandidate(
+          payload.proxy_url || payload.download_url,
+          payload.title || payload.video_id || text("wechatSource"),
+          text("wechatSource")
+        )];
+      }
+
+      if (!discoveredVideos.length) {
+        throw new Error(text("wechatBlocked"));
+      }
+
+      renderDiscoveredVideos();
+      setStatus(`${text("wechatResolved")}：${discoveredVideos.length}`, "success");
+    } catch (error) {
+      const message = error && error.message ? error.message : text("wechatUnavailable");
+      setStatus(message, "error");
+      renderDiscoveryFailure(message, text("wechatUnavailable"));
     }
   }
 
