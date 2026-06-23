@@ -22,6 +22,21 @@
 
 这是纯静态站点，直接在浏览器打开 `index.html` 即可预览。
 
+如果要使用 `video/` 页面的抖音分享链接解析，需要启动 Node 本地预览服务，让浏览器能访问 `api/douyin/resolve.js` 服务端处理器：
+
+```bat
+scripts\start-video-preview.cmd
+```
+
+这个 Windows 启动脚本会：
+
+- 检查本机是否安装了 Node.js
+- 如果没有 Node.js，会打开 Node.js 官网提示安装 LTS 版本
+- 如果有 Node.js，会启动本地服务并挂载 `api/douyin/resolve.js`
+- 自动打开 `http://127.0.0.1:8010/video/`
+
+运行期间请保持命令窗口打开；关闭窗口后抖音解析处理器也会停止。
+
 ## 视频工具的抖音解析代理
 
 `video/` 页面支持粘贴抖音分享文案解析无水印视频，但抖音分享页需要由服务端请求并解析，静态 GitHub Pages 不能在浏览器端直接完成这一步。
