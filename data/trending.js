@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-23T05:13:24.872272+00:00",
+  "generated_at": "2026-06-24T05:10:32.184381+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,44 +15,28 @@ window.__TRENDING_DATA__ = {
         "en": "World's first open-source, agentic video production system. 12 pipelines, 52 tools, 500+ agent skills. Turn your AI coding assistant into a full video production studio."
       },
       "language": "Python",
-      "stars_total": 12801,
-      "forks_total": 1602,
-      "stars_today": 2938
+      "stars_total": 16405,
+      "forks_total": 1935,
+      "stars_today": 3592
     },
     {
       "rank": 2,
-      "repo": "palmier-io/palmier-pro",
-      "owner": "palmier-io",
-      "name": "palmier-pro",
-      "url": "https://github.com/palmier-io/palmier-pro",
-      "description": "macOS video editor built for AI",
+      "repo": "ZhuLinsen/daily_stock_analysis",
+      "owner": "ZhuLinsen",
+      "name": "daily_stock_analysis",
+      "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
+      "description": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
       "descriptions": {
-        "zh": "专为 AI 打造的 macOS 视频编辑器",
-        "en": "macOS video editor built for AI"
+        "zh": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
+        "en": "LLM-driven multi-market stock intelligent analysis system: multi-source quotes, real-time news, decision-making boards and automatic push, supporting zero-cost scheduled operation. LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs."
       },
-      "language": "Swift",
-      "stars_total": 7687,
-      "forks_total": 517,
-      "stars_today": 2463
+      "language": "Python",
+      "stars_total": 47421,
+      "forks_total": 42528,
+      "stars_today": 1119
     },
     {
       "rank": 3,
-      "repo": "jamiepine/voicebox",
-      "owner": "jamiepine",
-      "name": "voicebox",
-      "url": "https://github.com/jamiepine/voicebox",
-      "description": "The open-source AI voice studio. Clone, dictate, create.",
-      "descriptions": {
-        "zh": "开源人工智能语音工作室。克隆、指令、创造。",
-        "en": "The open-source AI voice studio. Clone, dictate, create."
-      },
-      "language": "TypeScript",
-      "stars_total": 32468,
-      "forks_total": 3947,
-      "stars_today": 529
-    },
-    {
-      "rank": 4,
       "repo": "mukul975/Anthropic-Cybersecurity-Skills",
       "owner": "mukul975",
       "name": "Anthropic-Cybersecurity-Skills",
@@ -63,41 +47,57 @@ window.__TRENDING_DATA__ = {
         "en": "817 structured cybersecurity skills for AI agents · Mapped to 6 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND, NIST AI RMF & MITRE F3 (Fight Fraud) · agentskills.io standard · Works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI & 20+ platforms · 29 security domains · Apache 2.0"
       },
       "language": "Python",
-      "stars_total": 18903,
-      "forks_total": 2229,
-      "stars_today": 956
+      "stars_total": 19938,
+      "forks_total": 2322,
+      "stars_today": 1041
+    },
+    {
+      "rank": 4,
+      "repo": "garrytan/gstack",
+      "owner": "garrytan",
+      "name": "gstack",
+      "url": "https://github.com/garrytan/gstack",
+      "description": "Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager, Release Manager, Doc Engineer, and QA",
+      "descriptions": {
+        "zh": "使用 Garry Tan 的精确 Claude Code 设置：23 个固执己见的工具，可充当 CEO、设计师、工程经理、发布经理、文档工程师和 QA",
+        "en": "Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager, Release Manager, Doc Engineer, and QA"
+      },
+      "language": "TypeScript",
+      "stars_total": 114299,
+      "forks_total": 16907,
+      "stars_today": 1011
     },
     {
       "rank": 5,
-      "repo": "penpot/penpot",
-      "owner": "penpot",
-      "name": "penpot",
-      "url": "https://github.com/penpot/penpot",
-      "description": "Penpot: The open-source design tool for design and code collaboration",
+      "repo": "bytedance/deer-flow",
+      "owner": "bytedance",
+      "name": "deer-flow",
+      "url": "https://github.com/bytedance/deer-flow",
+      "description": "An open-source long-horizon SuperAgent harness that researches, codes, and creates. With the help of sandboxes, memories, tools, skill, subagents and message gateway, it handles different levels of tasks that could take minutes to hours.",
       "descriptions": {
-        "zh": "Penpot：用于设计和代码协作的开源设计工具",
-        "en": "Penpot: The open-source design tool for design and code collaboration"
+        "zh": "一个开源的长期 SuperAgent 工具，用于研究、编码和创建。借助沙箱、内存、工具、技能、子代理和消息网关，它可以处理可能需要几分钟到几小时的不同级别的任务。",
+        "en": "An open-source long-horizon SuperAgent harness that researches, codes, and creates. With the help of sandboxes, memories, tools, skill, subagents and message gateway, it handles different levels of tasks that could take minutes to hours."
       },
-      "language": "Clojure",
-      "stars_total": 52976,
-      "forks_total": 3389,
-      "stars_today": 728
+      "language": "Python",
+      "stars_total": 74066,
+      "forks_total": 9987,
+      "stars_today": 739
     },
     {
       "rank": 6,
-      "repo": "Stirling-Tools/Stirling-PDF",
-      "owner": "Stirling-Tools",
-      "name": "Stirling-PDF",
-      "url": "https://github.com/Stirling-Tools/Stirling-PDF",
-      "description": "#1 PDF Application on GitHub that lets you edit PDFs on any device anywhere",
+      "repo": "koala73/worldmonitor",
+      "owner": "koala73",
+      "name": "worldmonitor",
+      "url": "https://github.com/koala73/worldmonitor",
+      "description": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface",
       "descriptions": {
-        "zh": "GitHub 上排名第一的 PDF 应用程序，可让您在任何地方的任何设备上编辑 PDF",
-        "en": "#1 PDF Application on GitHub that lets you edit PDFs on any device anywhere"
+        "zh": "实时全球情报仪表板。在统一的态势感知界面中进行人工智能驱动的新闻聚合、地缘政治监控和基础设施跟踪",
+        "en": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface"
       },
       "language": "TypeScript",
-      "stars_total": 83175,
-      "forks_total": 7248,
-      "stars_today": 547
+      "stars_total": 59232,
+      "forks_total": 9294,
+      "stars_today": 294
     }
   ]
 }
