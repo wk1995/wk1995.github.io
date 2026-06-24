@@ -43,6 +43,15 @@
   const audioToggle = document.getElementById("audio-toggle");
   const exportButton = document.getElementById("export-button");
   const exportProgress = document.getElementById("export-progress");
+  const envPanel = document.getElementById("video-env-panel");
+  const envState = document.getElementById("video-env-state");
+  const envDetail = document.getElementById("video-env-detail");
+  const clearEnvButton = document.getElementById("clear-env-button");
+  const envModal = document.getElementById("video-env-modal");
+  const envModalMessage = document.getElementById("video-env-modal-message");
+  const envCommand = document.getElementById("video-env-command");
+  const setupEnvButton = document.getElementById("setup-env-button");
+  const dismissEnvButton = document.getElementById("dismiss-env-button");
 
   const scratch = document.createElement("canvas");
   const scratchContext = scratch.getContext("2d");
@@ -54,8 +63,8 @@
       intro: "导入本地视频，框选一个或多个水印区域，实时预览局部修复效果，并按浏览器支持的格式导出。",
       dropTitle: "选择或拖入视频文件",
       dropCopy: "支持 MP4、MOV、WebM、MKV、AVI、OGV、3GP 等常见视频容器；实际解码由当前浏览器决定。",
-      urlLabel: "抖音分享文案、网页或视频地址",
-      urlPlaceholder: "粘贴抖音分享文案、网页地址或视频直链",
+      urlLabel: "抖音分享文案、微信公众号文章、网页或视频地址",
+      urlPlaceholder: "粘贴抖音分享文案、微信公众号文章、网页地址或视频直链",
       urlPreviewAction: "解析视频",
       discoveryTitle: "发现的视频",
       addSelectedVideos: "加入选中视频",
@@ -90,6 +99,7 @@
       loading: "正在读取视频文件...",
       scanningPage: "正在扫描网页中的视频资源...",
       resolvingDouyin: "正在解析抖音无水印视频链接...",
+      resolvingWechat: "正在解析微信公众号文章中的视频资源...",
       scanFound: "已发现视频资源",
       scanEmpty: "没有在这个网页中发现可识别的视频文件。",
       scanBlocked: "无法读取这个网页。目标网站可能不允许跨域读取 HTML；请改用视频直链。",
@@ -97,14 +107,12 @@
       douyinSource: "抖音无水印",
       douyinBlocked: "无法解析抖音视频。请确认已部署 /api/douyin/resolve 代理，或在服务器环境中配置同等接口。",
       douyinUnavailable: "这个页面需要服务端代理解析抖音分享页；静态 GitHub Pages 不能直接请求抖音页面。",
-      douyinResolverMissingTitle: "抖音解析处理器未启动",
-      douyinResolverMissingBody: "检测到抖音分享链接，但当前网页无法访问 /api/douyin/resolve 服务端处理器。",
-      douyinResolverMissingTip: "请在项目根目录运行 Windows 启动脚本；如果提示没有 node，请先安装 Node.js LTS。",
-      douyinResolverCommandLabel: "Windows 本地启动命令",
-      douyinResolverCommand: "scripts\\start-video-preview.cmd",
-      nodeDownloadTip: "没有 Node.js 环境时，请安装 Node.js LTS：https://nodejs.org/",
+      wechatResolved: "已解析微信公众号视频资源",
+      wechatSource: "微信公众号视频",
+      wechatBlocked: "无法解析微信公众号文章。请确认已部署 /api/wechat/resolve 代理，或在服务器环境中配置同等接口。",
+      wechatUnavailable: "这个页面需要服务端代理读取微信公众号文章；静态 GitHub Pages 不能直接请求微信文章页。",
       failureTitle: "处理失败",
-      failureInputTip: "请粘贴完整的 http 或 https 地址，或包含抖音短链的分享文案。",
+      failureInputTip: "请粘贴完整的 http 或 https 地址，或包含抖音短链、微信公众号文章链接的分享文案。",
       failureScanTip: "可能原因：目标网站禁止跨域读取、页面视频由脚本动态加载、需要登录或存在防盗链。可以打开网页复制视频直链后再扫描。",
       failurePreviewTip: "可能原因：视频编码或容器不被当前浏览器支持、远程服务器禁止跨域媒体加载，或链接不是可直接访问的视频文件。",
       failureDownloadTip: "可能原因：远程服务器禁止跨域下载、需要登录授权、链接已过期或存在防盗链。可改用本地文件导入。",
@@ -146,6 +154,25 @@
       formatMp4: "MP4",
       sizeLabel: "尺寸",
       durationLabel: "时长",
+      envTitle: "解析环境",
+      envChecking: "正在检测解析环境",
+      envReady: "Node 解析环境已就绪",
+      envMissing: "Node 解析环境未就绪",
+      envConfigured: "解析环境配置成功，正在刷新页面...",
+      envCleared: "解析环境配置已清除",
+      envDetail: "抖音与微信公众号解析需要本地 Node 解析服务。",
+      envDetailReady: "可解析抖音分享链接与微信公众号文章。",
+      envDetailMissing: "当前页面无法执行服务端解析接口，请先配置本地 Node 解析服务。",
+      envClearAction: "一键清除配置",
+      envSetupAction: "一键配置并刷新",
+      envDismissAction: "暂不配置",
+      envWarning: "强提醒：解析环境未就绪",
+      envModalTitle: "需要配置本地 Node 解析环境",
+      envModalCopy: "抖音分享链接和微信公众号文章需要服务端代理读取页面。当前环境无法执行解析接口。",
+      envSetupFailed: "一键配置失败。请使用下方命令启动带 API 的本地预览服务。",
+      envCleanupConfirm: "强提醒：清除后抖音和微信公众号解析会立即不可用。确认清除配置？",
+      envCleanupFailed: "清除配置失败。",
+      envCommandHint: "在项目根目录运行：",
     },
     en: {
       backHome: "Back home",
@@ -153,8 +180,8 @@
       intro: "Import a local video, mark one or more watermark regions, preview the repair, and export in a format supported by the browser.",
       dropTitle: "Choose or drop a video file",
       dropCopy: "Accepts common containers such as MP4, MOV, WebM, MKV, AVI, OGV, and 3GP. Actual decoding depends on the current browser.",
-      urlLabel: "Douyin share text, page, or video URL",
-      urlPlaceholder: "Paste Douyin share text, a page URL, or a direct video link",
+      urlLabel: "Douyin share text, WeChat article, page, or video URL",
+      urlPlaceholder: "Paste Douyin share text, a WeChat article, a page URL, or a direct video link",
       urlPreviewAction: "Resolve video",
       discoveryTitle: "Discovered videos",
       addSelectedVideos: "Add selected",
@@ -189,6 +216,7 @@
       loading: "Reading video file...",
       scanningPage: "Scanning the page for video resources...",
       resolvingDouyin: "Resolving the Douyin no-watermark video URL...",
+      resolvingWechat: "Resolving video resources from the WeChat article...",
       scanFound: "Discovered video resources",
       scanEmpty: "No recognizable video files were found on this page.",
       scanBlocked: "Could not read this page. The target site may block cross-origin HTML access; use a direct video URL instead.",
@@ -196,14 +224,12 @@
       douyinSource: "Douyin no-watermark",
       douyinBlocked: "Could not resolve this Douyin video. Confirm that the /api/douyin/resolve proxy is deployed, or provide an equivalent server endpoint.",
       douyinUnavailable: "This page needs a server proxy to parse Douyin share pages; static GitHub Pages cannot request Douyin pages directly.",
-      douyinResolverMissingTitle: "Douyin resolver is not running",
-      douyinResolverMissingBody: "A Douyin share link was detected, but this page cannot reach the /api/douyin/resolve server-side handler.",
-      douyinResolverMissingTip: "Run the Windows launcher from the project root. If it reports that node is missing, install Node.js LTS first.",
-      douyinResolverCommandLabel: "Windows local launch command",
-      douyinResolverCommand: "scripts\\start-video-preview.cmd",
-      nodeDownloadTip: "If Node.js is not installed, install the Node.js LTS release from https://nodejs.org/.",
+      wechatResolved: "Resolved WeChat article videos",
+      wechatSource: "WeChat article video",
+      wechatBlocked: "Could not resolve this WeChat article. Confirm that the /api/wechat/resolve proxy is deployed, or provide an equivalent server endpoint.",
+      wechatUnavailable: "This page needs a server proxy to read WeChat article pages; static GitHub Pages cannot request WeChat article pages directly.",
       failureTitle: "Failed",
-      failureInputTip: "Paste a complete http or https URL, or share text containing a Douyin short link.",
+      failureInputTip: "Paste a complete http or https URL, or share text containing a Douyin short link or WeChat article URL.",
       failureScanTip: "Possible causes: the target site blocks cross-origin HTML reads, loads videos dynamically, requires login, or uses hotlink protection. Open the page and copy a direct video URL instead.",
       failurePreviewTip: "Possible causes: the codec or container is not supported by this browser, the remote server blocks cross-origin media loading, or the link is not a directly playable video file.",
       failureDownloadTip: "Possible causes: the remote server blocks cross-origin downloads, requires authorization, the link expired, or hotlink protection is enabled. Import a local file instead.",
@@ -245,6 +271,25 @@
       formatMp4: "MP4",
       sizeLabel: "Size",
       durationLabel: "Duration",
+      envTitle: "Resolver environment",
+      envChecking: "Checking resolver environment",
+      envReady: "Node resolver environment is ready",
+      envMissing: "Node resolver environment is not ready",
+      envConfigured: "Resolver environment configured. Refreshing...",
+      envCleared: "Resolver environment configuration was cleared",
+      envDetail: "Douyin and WeChat resolution require a local Node resolver service.",
+      envDetailReady: "Douyin share links and WeChat articles can be resolved.",
+      envDetailMissing: "This page cannot run the server resolver API yet. Configure the local Node resolver service first.",
+      envClearAction: "Clear configuration",
+      envSetupAction: "Configure and refresh",
+      envDismissAction: "Not now",
+      envWarning: "Important: resolver environment is not ready",
+      envModalTitle: "Local Node resolver environment required",
+      envModalCopy: "Douyin share links and WeChat articles require a server proxy. The current environment cannot execute the resolver API.",
+      envSetupFailed: "One-click configuration failed. Run the command below from the project root to start the API-enabled local preview.",
+      envCleanupConfirm: "Important: clearing this will immediately disable Douyin and WeChat resolution. Clear configuration?",
+      envCleanupFailed: "Could not clear configuration.",
+      envCommandHint: "Run from the project root:",
     },
   };
 
@@ -264,6 +309,14 @@
   let discoveredVideos = [];
   let queuedVideos = [];
   let activeQueueId = null;
+  let envStatus = {
+    checked: false,
+    ready: false,
+    message: "",
+    command: "node scripts/video-resolver-server.cjs",
+  };
+  let pendingResolverPlatform = "";
+  let pendingResolverInput = "";
 
   function lang() {
     return window.WKSite && typeof window.WKSite.getLanguage === "function"
@@ -309,6 +362,181 @@
     status.textContent = message || "";
     status.classList.toggle("is-error", kind === "error");
     status.classList.toggle("is-success", kind === "success");
+  }
+
+  function renderEnvState() {
+    if (!envPanel || !envState || !envDetail) {
+      return;
+    }
+
+    envPanel.classList.toggle("is-ready", Boolean(envStatus.ready));
+    envState.textContent = envStatus.ready ? text("envReady") : (envStatus.checked ? text("envMissing") : text("envChecking"));
+    envDetail.textContent = envStatus.ready ? text("envDetailReady") : (envStatus.message || text("envDetailMissing"));
+    if (clearEnvButton) {
+      clearEnvButton.disabled = !envStatus.ready;
+    }
+  }
+
+  function showEnvModal(platform, message, command) {
+    pendingResolverPlatform = platform || pendingResolverPlatform;
+    pendingResolverInput = urlInput.value.trim() || pendingResolverInput;
+    if (!envModal) {
+      setStatus(message || text("envModalCopy"), "error");
+      return;
+    }
+
+    envModal.hidden = false;
+    if (envModalMessage) {
+      envModalMessage.textContent = message || text("envModalCopy");
+    }
+    if (envCommand) {
+      const commandText = command || getLocalResolverCommand();
+      envCommand.hidden = false;
+      envCommand.textContent = `${text("envCommandHint")}\n${commandText}`;
+    }
+  }
+
+  function hideEnvModal() {
+    if (envModal) {
+      envModal.hidden = true;
+    }
+  }
+
+  async function readJsonResponse(response) {
+    const textBody = await response.text();
+    try {
+      return textBody ? JSON.parse(textBody) : {};
+    } catch (error) {
+      throw new Error(`not json (${response.status})`);
+    }
+  }
+
+  async function checkResolverEnvironment(platform) {
+    try {
+      const endpoint = new URL(getResolverEnvEndpoint(), window.location.href);
+      if (platform) {
+        endpoint.searchParams.set("platform", platform);
+      }
+      const response = await fetch(endpoint.href, {
+        method: "GET",
+        headers: {
+          "Accept": "application/json",
+        },
+      });
+      const payload = await readJsonResponse(response);
+      if (!response.ok || payload.status !== "success" || !payload.ready) {
+        throw new Error(payload && payload.error ? payload.error : `${text("envMissing")} (${response.status})`);
+      }
+
+      envStatus = {
+        checked: true,
+        ready: true,
+        message: payload.message || text("envDetailReady"),
+        command: payload.command || getLocalResolverCommand(),
+      };
+      renderEnvState();
+      return true;
+    } catch (error) {
+      envStatus = {
+        checked: true,
+        ready: false,
+        message: text("envDetailMissing"),
+        command: getLocalResolverCommand(),
+      };
+      renderEnvState();
+      return false;
+    }
+  }
+
+  async function ensureResolverEnvironment(platform, shareText) {
+    pendingResolverPlatform = platform;
+    pendingResolverInput = shareText;
+    if (await checkResolverEnvironment(platform)) {
+      return true;
+    }
+
+    showEnvModal(platform, text("envModalCopy"), getLocalResolverCommand());
+    setStatus(text("envMissing"), "error");
+    return false;
+  }
+
+  async function setupResolverEnvironment() {
+    if (setupEnvButton) {
+      setupEnvButton.disabled = true;
+    }
+    setStatus(text("envChecking"));
+
+    try {
+      const response = await fetch(getResolverEnvEndpoint("setup"), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          platform: pendingResolverPlatform || "video",
+        }),
+      });
+      const payload = await readJsonResponse(response);
+      if (!response.ok || payload.status !== "success" || !payload.ready) {
+        throw new Error(payload && payload.error ? payload.error : `${text("envSetupFailed")} (${response.status})`);
+      }
+
+      sessionStorage.setItem("wk-video-pending-resolve", JSON.stringify({
+        platform: pendingResolverPlatform,
+        value: pendingResolverInput || urlInput.value.trim(),
+      }));
+      setStatus(text("envConfigured"), "success");
+      window.setTimeout(function () {
+        window.location.reload();
+      }, 500);
+    } catch (error) {
+      const command = getLocalResolverCommand();
+      showEnvModal(pendingResolverPlatform, `${text("envSetupFailed")} ${error.message || ""}`, command);
+      setStatus(text("envSetupFailed"), "error");
+    } finally {
+      if (setupEnvButton) {
+        setupEnvButton.disabled = false;
+      }
+    }
+  }
+
+  async function clearResolverEnvironment() {
+    if (!window.confirm(text("envCleanupConfirm"))) {
+      return;
+    }
+
+    if (clearEnvButton) {
+      clearEnvButton.disabled = true;
+    }
+
+    try {
+      const response = await fetch(getResolverEnvEndpoint("cleanup"), {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+        },
+      });
+      const payload = await readJsonResponse(response);
+      if (!response.ok || payload.status !== "success") {
+        throw new Error(payload && payload.error ? payload.error : `${text("envCleanupFailed")} (${response.status})`);
+      }
+
+      envStatus = {
+        checked: true,
+        ready: false,
+        message: text("envCleared"),
+        command: payload.command || getLocalResolverCommand(),
+      };
+      renderEnvState();
+      setStatus(text("envCleared"), "success");
+    } catch (error) {
+      setStatus(`${text("envCleanupFailed")} ${error.message || ""}`, "error");
+    } finally {
+      if (clearEnvButton) {
+        clearEnvButton.disabled = !envStatus.ready;
+      }
+    }
   }
 
   function setPlayIcon(isPlaying) {
@@ -368,6 +596,39 @@
 
   function getDouyinResolverEndpoint() {
     return window.WK_DOUYIN_RESOLVER || "/api/douyin/resolve";
+  }
+
+  function isWechatArticleUrl(value) {
+    const url = extractFirstHttpUrl(value);
+    if (!url) {
+      return false;
+    }
+
+    try {
+      const parsed = new URL(url);
+      const hostname = parsed.hostname.toLowerCase();
+      return hostname === "mp.weixin.qq.com" || hostname.endsWith(".mp.weixin.qq.com");
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function getWechatResolverEndpoint() {
+    return window.WK_WECHAT_RESOLVER || "/api/wechat/resolve";
+  }
+
+  function getResolverEnvEndpoint(action) {
+    const base = window.WK_VIDEO_ENV_ENDPOINT || "/api/video/env";
+    return action ? `${base}/${action}` : base;
+  }
+
+  function getLocalResolverCommand() {
+    return envStatus.command || "node scripts/video-resolver-server.cjs";
+  }
+
+  function isResolverEnvironmentError(error) {
+    const message = String(error && error.message ? error.message : error || "");
+    return /501|404|405|Failed to fetch|Unexpected token|not json|resolver environment|Node resolver/i.test(message);
   }
 
   function normalizeCandidateUrl(rawUrl, baseUrl) {
@@ -554,48 +815,6 @@
     discoveryList.append(card);
   }
 
-  function renderDouyinResolverMissing(error) {
-    discoveredVideos = [];
-    discoveryPanel.hidden = false;
-    discoveryList.innerHTML = "";
-    discoveryCount.textContent = `0 ${text("candidateCount")}`;
-    addDiscoveredButton.disabled = true;
-
-    const card = document.createElement("div");
-    card.className = "video-failure-card video-failure-card--resolver";
-
-    const title = document.createElement("strong");
-    title.textContent = text("douyinResolverMissingTitle");
-
-    const body = document.createElement("span");
-    body.textContent = text("douyinResolverMissingBody");
-
-    const hint = document.createElement("small");
-    hint.textContent = text("douyinResolverMissingTip");
-
-    const commandLabel = document.createElement("small");
-    commandLabel.className = "video-command-label";
-    commandLabel.textContent = text("douyinResolverCommandLabel");
-
-    const command = document.createElement("code");
-    command.className = "video-local-command";
-    command.textContent = text("douyinResolverCommand");
-
-    const nodeTip = document.createElement("small");
-    nodeTip.textContent = text("nodeDownloadTip");
-
-    if (error && error.message) {
-      const detail = document.createElement("small");
-      detail.textContent = error.message;
-      card.append(title, body, hint, commandLabel, command, nodeTip, detail);
-      discoveryList.append(card);
-      return;
-    }
-
-    card.append(title, body, hint, commandLabel, command, nodeTip);
-    discoveryList.append(card);
-  }
-
   function renderVideoQueue() {
     queueList.innerHTML = "";
     queuePanel.hidden = queuedVideos.length === 0;
@@ -748,6 +967,7 @@
     updatePathSummary();
     renderDiscoveredVideos();
     renderVideoQueue();
+    renderEnvState();
   }
 
   function setControlsEnabled(enabled) {
@@ -763,6 +983,12 @@
     exportButton.disabled = !enabled || !supportedFormats.length || busy;
     previewUrlButton.disabled = busy;
     urlInput.disabled = busy;
+    if (setupEnvButton) {
+      setupEnvButton.disabled = busy;
+    }
+    if (clearEnvButton) {
+      clearEnvButton.disabled = busy || !envStatus.ready;
+    }
     addDiscoveredButton.disabled = busy || !discoveredVideos.some(function (candidate) {
       return candidate.selected;
     });
@@ -1244,6 +1470,11 @@
       return;
     }
 
+    if (isWechatArticleUrl(address)) {
+      await resolveWechatVideo(address);
+      return;
+    }
+
     const addressUrl = extractFirstHttpUrl(address) || address;
     let parsed;
 
@@ -1296,23 +1527,15 @@
     }
   }
 
-  function isDouyinResolverUnavailable(response, payload, error) {
-    if (response && (response.status === 404 || response.status === 405 || response.status === 501)) {
-      return true;
-    }
-
-    if (payload && typeof payload === "string" && /not found|cannot\s+(get|post)|method not allowed/i.test(payload)) {
-      return true;
-    }
-
-    return Boolean(error && /failed to fetch|networkerror|load failed/i.test(error.message || ""));
-  }
-
   async function resolveDouyinVideo(shareText) {
     const shareUrl = extractFirstHttpUrl(shareText);
     if (!shareUrl) {
       setStatus(text("pickUrl"), "error");
       renderDiscoveryFailure(text("pickUrl"), text("failureInputTip"));
+      return;
+    }
+
+    if (!(await ensureResolverEnvironment("douyin", shareText))) {
       return;
     }
 
@@ -1333,15 +1556,7 @@
       try {
         payload = await response.json();
       } catch (error) {
-        payload = await response.text().catch(function () {
-          return null;
-        });
-      }
-
-      if (isDouyinResolverUnavailable(response, payload, null)) {
-        renderDouyinResolverMissing(new Error(`${response.status} ${response.statusText || ""}`.trim()));
-        setStatus(text("douyinResolverMissingTitle"), "error");
-        return;
+        payload = null;
       }
 
       if (!response.ok || !payload || payload.status !== "success") {
@@ -1362,15 +1577,84 @@
       renderDiscoveredVideos();
       setStatus(`${text("douyinResolved")}：${payload.video_id || ""}`, "success");
     } catch (error) {
-      if (isDouyinResolverUnavailable(null, null, error)) {
-        renderDouyinResolverMissing(error);
-        setStatus(text("douyinResolverMissingTitle"), "error");
-        return;
-      }
-
       const message = error && error.message ? error.message : text("douyinUnavailable");
       setStatus(message, "error");
       renderDiscoveryFailure(message, text("douyinUnavailable"));
+      if (isResolverEnvironmentError(error)) {
+        showEnvModal("douyin", message, getLocalResolverCommand());
+      }
+    }
+  }
+
+  async function resolveWechatVideo(shareText) {
+    const shareUrl = extractFirstHttpUrl(shareText);
+    if (!shareUrl) {
+      setStatus(text("pickUrl"), "error");
+      renderDiscoveryFailure(text("pickUrl"), text("failureInputTip"));
+      return;
+    }
+
+    if (!(await ensureResolverEnvironment("wechat", shareText))) {
+      return;
+    }
+
+    discoveredVideos = [];
+    renderDiscoveredVideos();
+    setStatus(text("resolvingWechat"));
+
+    try {
+      const response = await fetch(getWechatResolverEndpoint(), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ shareText: shareText }),
+      });
+
+      let payload = null;
+      try {
+        payload = await response.json();
+      } catch (error) {
+        payload = null;
+      }
+
+      if (!response.ok || !payload || payload.status !== "success") {
+        const message = payload && payload.error ? payload.error : `${text("wechatBlocked")} (${response.status})`;
+        throw new Error(message);
+      }
+
+      const candidates = Array.isArray(payload.candidates) ? payload.candidates : [];
+      discoveredVideos = candidates.map(function (candidate, index) {
+        return createCandidate(
+          candidate.proxy_url || candidate.download_url || candidate.url,
+          candidate.title || candidate.video_id || `${text("wechatSource")} ${index + 1}`,
+          candidate.source || text("wechatSource")
+        );
+      }).filter(function (candidate) {
+        return Boolean(candidate.url);
+      });
+
+      if (!discoveredVideos.length && (payload.proxy_url || payload.download_url)) {
+        discoveredVideos = [createCandidate(
+          payload.proxy_url || payload.download_url,
+          payload.title || payload.video_id || text("wechatSource"),
+          text("wechatSource")
+        )];
+      }
+
+      if (!discoveredVideos.length) {
+        throw new Error(text("wechatBlocked"));
+      }
+
+      renderDiscoveredVideos();
+      setStatus(`${text("wechatResolved")}：${discoveredVideos.length}`, "success");
+    } catch (error) {
+      const message = error && error.message ? error.message : text("wechatUnavailable");
+      setStatus(message, "error");
+      renderDiscoveryFailure(message, text("wechatUnavailable"));
+      if (isResolverEnvironmentError(error)) {
+        showEnvModal("wechat", message, getLocalResolverCommand());
+      }
     }
   }
 
@@ -1578,6 +1862,18 @@
     }
   });
 
+  if (setupEnvButton) {
+    setupEnvButton.addEventListener("click", setupResolverEnvironment);
+  }
+
+  if (dismissEnvButton) {
+    dismissEnvButton.addEventListener("click", hideEnvModal);
+  }
+
+  if (clearEnvButton) {
+    clearEnvButton.addEventListener("click", clearResolverEnvironment);
+  }
+
   urlForm.addEventListener("submit", function (event) {
     event.preventDefault();
     const value = urlInput.value.trim();
@@ -1767,10 +2063,24 @@
   setControlsEnabled(false);
   setPlayIcon(false);
   applyTranslations();
+  checkResolverEnvironment("").then(function () {
+    renderEnvState();
+  });
 
   const initialSource = new URLSearchParams(window.location.search).get("source");
   if (initialSource) {
     urlInput.value = initialSource;
     scanAddressForVideos(initialSource);
+  } else {
+    try {
+      const pending = JSON.parse(sessionStorage.getItem("wk-video-pending-resolve") || "null");
+      sessionStorage.removeItem("wk-video-pending-resolve");
+      if (pending && pending.value) {
+        urlInput.value = pending.value;
+        scanAddressForVideos(pending.value);
+      }
+    } catch (error) {
+      sessionStorage.removeItem("wk-video-pending-resolve");
+    }
   }
 })();

@@ -22,42 +22,20 @@
 
 这是纯静态站点，直接在浏览器打开 `index.html` 即可预览。
 
-如果要使用 `video/` 页面的抖音分享链接解析，需要启动 Node 本地预览服务，让浏览器能访问 `api/douyin/resolve.js` 服务端处理器：
+视频解析页如果需要解析抖音分享链接或微信公众号文章，请使用带 API 的本地 Node 预览服务：
 
-```bat
-scripts\start-video-preview.cmd
+```bash
+node scripts/video-resolver-server.cjs
 ```
 
-这个 Windows 启动脚本会：
+打开 `http://127.0.0.1:8024/video/` 后，页面会检测解析环境，并提供一键配置与一键清除配置入口。
 
-- 检查本机是否安装了 Node.js
-- 如果没有 Node.js，会打开 Node.js 官网提示安装 LTS 版本
-- 如果有 Node.js，会启动本地服务并挂载 `api/douyin/resolve.js`
-- 自动打开 `http://127.0.0.1:8010/video/`
-
-运行期间请保持命令窗口打开；关闭窗口后抖音解析处理器也会停止。
-
-## 视频工具的抖音解析代理
-
-`video/` 页面支持粘贴抖音分享文案解析无水印视频，但抖音分享页需要由服务端请求并解析，静态 GitHub Pages 不能在浏览器端直接完成这一步。
-
-仓库提供了一个 Node/Vercel 风格的处理器：
-
-`api/douyin/resolve.js`
-
-接口约定：
+解析接口约定：
 
 - `POST /api/douyin/resolve`，JSON body: `{ "shareText": "抖音分享文案或链接" }`
-- 返回 `download_url` 为抖音无水印直链，`proxy_url` 为同源下载代理
+- `POST /api/wechat/resolve`，JSON body: `{ "url": "微信公众号文章链接" }`
+- 返回 `download_url` 为视频直链，`proxy_url` 为同源下载代理
 - `GET /api/douyin/resolve?url=<download_url>&filename=<video_id>` 会代理下载 MP4
-
-如果将代理部署在其他域名，可在页面加载前设置：
-
-```html
-<script>
-  window.WK_DOUYIN_RESOLVER = "https://your-domain.example/api/douyin/resolve";
-</script>
-```
 
 ## 联系方式
 

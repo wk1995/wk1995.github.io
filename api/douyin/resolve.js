@@ -1,9 +1,13 @@
+const fs = require("fs");
+const path = require("path");
+
 const HEADERS = {
   "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) EdgiOS/121.0.2277.107 Version/17.0 Mobile/15E148 Safari/604.1",
   "Referer": "https://www.douyin.com/",
 };
 
 const URL_PATTERN = /https?:\/\/[^\s"'<>，。；、)）]+/i;
+const CONFIG_PATH = path.resolve(process.cwd(), ".video-resolver-env.json");
 
 function sendJson(res, statusCode, payload) {
   res.statusCode = statusCode;
@@ -21,14 +25,27 @@ function setCorsHeaders(res) {
 
 function getRequestOrigin(req) {
   const host = req.headers["x-forwarded-host"] || req.headers.host;
-  const proto = req.headers["x-forwarded-proto"]
-    || (req.socket && req.socket.encrypted ? "https" : "http");
+  const isLocalHost = /^(localhost|127\.0\.0\.1|\[::1\])(?::\d+)?$/i.test(host || "");
+  const proto = req.headers["x-forwarded-proto"] || (isLocalHost ? "http" : "https");
   return host ? `${proto}://${host}` : "";
 }
 
 function getFirstUrl(text) {
   const match = String(text || "").match(URL_PATTERN);
   return match ? match[0] : "";
+}
+
+function requireResolverConfigured() {
+  try {
+    const config = JSON.parse(fs.readFileSync(CONFIG_PATH, "utf8"));
+    if (config && config.configured) {
+      return;
+    }
+  } catch (error) {
+    // Missing local config means the resolver environment has not been enabled.
+  }
+
+  throw new Error("Node 解析环境未配置，请先在视频页执行一键配置");
 }
 
 function getVideoIdFromUrl(url) {
@@ -217,6 +234,7 @@ module.exports = async function handler(req, res) {
     }
 
     const body = await readJsonBody(req);
+    requireResolverConfigured();
     const videoInfo = await resolveDouyinShare(body.shareText || body.share_link || body.url || "");
     const origin = getRequestOrigin(req);
     const proxyPath = `/api/douyin/resolve?url=${encodeURIComponent(videoInfo.download_url)}&filename=${encodeURIComponent(videoInfo.video_id)}`;
