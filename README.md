@@ -22,6 +22,21 @@
 
 这是纯静态站点，直接在浏览器打开 `index.html` 即可预览。
 
+视频解析页如果需要解析抖音分享链接或微信公众号文章，请使用带 API 的本地 Node 预览服务：
+
+```bash
+node scripts/video-resolver-server.cjs
+```
+
+打开 `http://127.0.0.1:8024/video/` 后，页面会检测解析环境，并提供一键配置与一键清除配置入口。
+
+解析接口约定：
+
+- `POST /api/douyin/resolve`，JSON body: `{ "shareText": "抖音分享文案或链接" }`
+- `POST /api/wechat/resolve`，JSON body: `{ "url": "微信公众号文章链接" }`
+- 返回 `download_url` 为视频直链，`proxy_url` 为同源下载代理
+- `GET /api/douyin/resolve?url=<download_url>&filename=<video_id>` 会代理下载 MP4
+
 ## 联系方式
 
 [kangw1995@gmail.com](mailto:kangw1995@gmail.com)
