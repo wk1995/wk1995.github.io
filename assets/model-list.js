@@ -149,7 +149,10 @@
   }
 
   function hasKey(id) {
-    return Boolean(state.config.keys && state.config.keys[id]);
+    const value = state.config.keys && state.config.keys[id];
+    return Array.isArray(value) ? value.some(function (item) {
+      return item && item.key;
+    }) : Boolean(value);
   }
 
   function matchesFilter(model) {
