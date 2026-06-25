@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-24T05:10:32.184381+00:00",
+  "generated_at": "2026-06-25T05:14:24.272458+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,9 +15,9 @@
         "en": "World's first open-source, agentic video production system. 12 pipelines, 52 tools, 500+ agent skills. Turn your AI coding assistant into a full video production studio."
       },
       "language": "Python",
-      "stars_total": 16405,
-      "forks_total": 1935,
-      "stars_today": 3592
+      "stars_total": 20116,
+      "forks_total": 2272,
+      "stars_today": 3719
     },
     {
       "rank": 2,
@@ -31,73 +31,73 @@
         "en": "LLM-driven multi-market stock intelligent analysis system: multi-source quotes, real-time news, decision-making boards and automatic push, supporting zero-cost scheduled operation. LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs."
       },
       "language": "Python",
-      "stars_total": 47421,
-      "forks_total": 42528,
-      "stars_today": 1119
+      "stars_total": 48835,
+      "forks_total": 43102,
+      "stars_today": 1468
     },
     {
       "rank": 3,
-      "repo": "mukul975/Anthropic-Cybersecurity-Skills",
-      "owner": "mukul975",
-      "name": "Anthropic-Cybersecurity-Skills",
-      "url": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills",
-      "description": "817 structured cybersecurity skills for AI agents · Mapped to 6 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND, NIST AI RMF & MITRE F3 (Fight Fraud) · agentskills.io standard · Works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI & 20+ platforms · 29 security domains · Apache 2.0",
+      "repo": "apple/container",
+      "owner": "apple",
+      "name": "container",
+      "url": "https://github.com/apple/container",
+      "description": "A tool for creating and running Linux containers using lightweight virtual machines on a Mac. It is written in Swift, and optimized for Apple silicon.",
       "descriptions": {
-        "zh": "AI 代理的 817 项结构化网络安全技能 · 映射到 6 个框架：MITRE ATT&CK、NIST CSF 2.0、MITRE ATLAS、D3FEND、NIST AI RMF 和 MITRE F3（打击欺诈） · Agentskills.io 标准 · 可与 Claude Code、GitHub Copilot、Codex CLI、Cursor、Gemini CLI 和 20 多个平台配合使用 · 29 个安全域 · Apache 2.0",
-        "en": "817 structured cybersecurity skills for AI agents · Mapped to 6 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND, NIST AI RMF & MITRE F3 (Fight Fraud) · agentskills.io standard · Works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI & 20+ platforms · 29 security domains · Apache 2.0"
+        "zh": "一种在 Mac 上使用轻量级虚拟机创建和运行 Linux 容器的工具。它是用 Swift 编写的，并针对 Apple 芯片进行了优化。",
+        "en": "A tool for creating and running Linux containers using lightweight virtual machines on a Mac. It is written in Swift, and optimized for Apple silicon."
       },
-      "language": "Python",
-      "stars_total": 19938,
-      "forks_total": 2322,
-      "stars_today": 1041
+      "language": "Swift",
+      "stars_total": 42492,
+      "forks_total": 1249,
+      "stars_today": 1838
     },
     {
       "rank": 4,
-      "repo": "garrytan/gstack",
-      "owner": "garrytan",
-      "name": "gstack",
-      "url": "https://github.com/garrytan/gstack",
-      "description": "Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager, Release Manager, Doc Engineer, and QA",
+      "repo": "interviewstreet/hiring-agent",
+      "owner": "interviewstreet",
+      "name": "hiring-agent",
+      "url": "https://github.com/interviewstreet/hiring-agent",
+      "description": "AI agent to evaluate and score resumes.",
       "descriptions": {
-        "zh": "使用 Garry Tan 的精确 Claude Code 设置：23 个固执己见的工具，可充当 CEO、设计师、工程经理、发布经理、文档工程师和 QA",
-        "en": "Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager, Release Manager, Doc Engineer, and QA"
+        "zh": "人工智能代理对简历进行评估和评分。",
+        "en": "AI agent to evaluate and score resumes."
       },
-      "language": "TypeScript",
-      "stars_total": 114299,
-      "forks_total": 16907,
-      "stars_today": 1011
+      "language": "Python",
+      "stars_total": 2375,
+      "forks_total": 615,
+      "stars_today": 203
     },
     {
       "rank": 5,
-      "repo": "bytedance/deer-flow",
-      "owner": "bytedance",
-      "name": "deer-flow",
-      "url": "https://github.com/bytedance/deer-flow",
-      "description": "An open-source long-horizon SuperAgent harness that researches, codes, and creates. With the help of sandboxes, memories, tools, skill, subagents and message gateway, it handles different levels of tasks that could take minutes to hours.",
+      "repo": "JCodesMore/ai-website-cloner-template",
+      "owner": "JCodesMore",
+      "name": "ai-website-cloner-template",
+      "url": "https://github.com/JCodesMore/ai-website-cloner-template",
+      "description": "Clone any website with one command using AI coding agents",
       "descriptions": {
-        "zh": "一个开源的长期 SuperAgent 工具，用于研究、编码和创建。借助沙箱、内存、工具、技能、子代理和消息网关，它可以处理可能需要几分钟到几小时的不同级别的任务。",
-        "en": "An open-source long-horizon SuperAgent harness that researches, codes, and creates. With the help of sandboxes, memories, tools, skill, subagents and message gateway, it handles different levels of tasks that could take minutes to hours."
+        "zh": "使用 AI 编码代理通过一个命令克隆任何网站",
+        "en": "Clone any website with one command using AI coding agents"
       },
-      "language": "Python",
-      "stars_total": 74066,
-      "forks_total": 9987,
-      "stars_today": 739
+      "language": "TypeScript",
+      "stars_total": 19545,
+      "forks_total": 2903,
+      "stars_today": 692
     },
     {
       "rank": 6,
-      "repo": "koala73/worldmonitor",
-      "owner": "koala73",
-      "name": "worldmonitor",
-      "url": "https://github.com/koala73/worldmonitor",
-      "description": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface",
+      "repo": "revfactory/harness",
+      "owner": "revfactory",
+      "name": "harness",
+      "url": "https://github.com/revfactory/harness",
+      "description": "A meta-skill that designs domain-specific agent teams, defines specialized agents, and generates the skills they use.",
       "descriptions": {
-        "zh": "实时全球情报仪表板。在统一的态势感知界面中进行人工智能驱动的新闻聚合、地缘政治监控和基础设施跟踪",
-        "en": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface"
+        "zh": "一种元技能，用于设计特定领域的代理团队、定义专业代理并生成他们使用的技能。",
+        "en": "A meta-skill that designs domain-specific agent teams, defines specialized agents, and generates the skills they use."
       },
-      "language": "TypeScript",
-      "stars_total": 59232,
-      "forks_total": 9294,
-      "stars_today": 294
+      "language": "HTML",
+      "stars_total": 7821,
+      "forks_total": 1063,
+      "stars_today": 277
     }
   ]
 }
