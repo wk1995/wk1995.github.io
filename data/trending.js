@@ -1,10 +1,26 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-26T05:20:15.005598+00:00",
+  "generated_at": "2026-06-27T05:02:32.175280+00:00",
   "items": [
     {
       "rank": 1,
+      "repo": "simplex-chat/simplex-chat",
+      "owner": "simplex-chat",
+      "name": "simplex-chat",
+      "url": "https://github.com/simplex-chat/simplex-chat",
+      "description": "SimpleX - the first messaging network operating without user identifiers of any kind - 100% private by design! iOS, Android and desktop apps 📱!",
+      "descriptions": {
+        "zh": "SimpleX - 第一个无需任何类型的用户标识符即可运行的消息传递网络 - 设计为 100% 私密！ iOS、Android 和桌面应用程序📱！",
+        "en": "SimpleX - the first messaging network operating without user identifiers of any kind - 100% private by design! iOS, Android and desktop apps 📱!"
+      },
+      "language": "Haskell",
+      "stars_total": 12788,
+      "forks_total": 725,
+      "stars_today": 432
+    },
+    {
+      "rank": 2,
       "repo": "google-labs-code/design.md",
       "owner": "google-labs-code",
       "name": "design.md",
@@ -15,89 +31,73 @@ window.__TRENDING_DATA__ = {
         "en": "A format specification for describing a visual identity to coding agents. DESIGN.md gives agents a persistent, structured understanding of a design system."
       },
       "language": "TypeScript",
-      "stars_total": 19698,
-      "forks_total": 1671,
-      "stars_today": 1475
-    },
-    {
-      "rank": 2,
-      "repo": "calesthio/OpenMontage",
-      "owner": "calesthio",
-      "name": "OpenMontage",
-      "url": "https://github.com/calesthio/OpenMontage",
-      "description": "World's first open-source, agentic video production system. 12 pipelines, 52 tools, 500+ agent skills. Turn your AI coding assistant into a full video production studio.",
-      "descriptions": {
-        "zh": "世界上第一个开源的代理视频制作系统。 12条管道、52种工具、500+座席技能。将您的人工智能编码助手变成一个完整的视频制作工作室。",
-        "en": "World's first open-source, agentic video production system. 12 pipelines, 52 tools, 500+ agent skills. Turn your AI coding assistant into a full video production studio."
-      },
-      "language": "Python",
-      "stars_total": 22442,
-      "forks_total": 2508,
-      "stars_today": 3434
+      "stars_total": 21507,
+      "forks_total": 1737,
+      "stars_today": 2407
     },
     {
       "rank": 3,
-      "repo": "xbtlin/ai-berkshire",
-      "owner": "xbtlin",
-      "name": "ai-berkshire",
-      "url": "https://github.com/xbtlin/ai-berkshire",
-      "description": "AI 时代的伯克希尔：基于 Claude Code 的价值投资研究框架。巴菲特·芒格·段永平·李录四大师方法论 + 多Agent并行研究。| AI-era Berkshire: a value investing research framework built on Claude Code. 4 masters' methodologies + multi-agent adversarial analysis.",
+      "repo": "commaai/openpilot",
+      "owner": "commaai",
+      "name": "openpilot",
+      "url": "https://github.com/commaai/openpilot",
+      "description": "openpilot is an operating system for robotics. Currently, it upgrades the driver assistance system on 300+ supported cars.",
       "descriptions": {
-        "zh": "AI 时代的伯克希尔：基于 Claude Code 的价值投资研究框架。巴菲特·芒格·段永平·李录四大师方法论 + 多Agent并行研究。| AI-era Berkshire: a value investing research framework built on Claude Code. 4 masters' methodologies + multi-agent adversarial analysis.",
-        "en": "Berkshire in the AI ​​Era: A value investing research framework based on Claude Code. Methodology of the four masters Buffett, Munger, Duan Yongping, and Li Lu + multi-agent parallel research. | AI-era Berkshire: a value investing research framework built on Claude Code. 4 masters' methodologies + multi-agent adversarial analysis."
+        "zh": "openpilot 是一个机器人操作系统。目前，它升级了 300 多辆支持的汽车的驾驶员辅助系统。",
+        "en": "openpilot is an operating system for robotics. Currently, it upgrades the driver assistance system on 300+ supported cars."
       },
       "language": "Python",
-      "stars_total": 2239,
-      "forks_total": 334,
-      "stars_today": 309
+      "stars_total": 61840,
+      "forks_total": 11051,
+      "stars_today": 80
     },
     {
       "rank": 4,
-      "repo": "mauriceboe/TREK",
-      "owner": "mauriceboe",
-      "name": "TREK",
-      "url": "https://github.com/mauriceboe/TREK",
-      "description": "A self-hosted travel/trip planner with real-time collaboration, interactive maps, PWA support, SSO, budgets, packing lists, and more.",
+      "repo": "kunchenguid/no-mistakes",
+      "owner": "kunchenguid",
+      "name": "no-mistakes",
+      "url": "https://github.com/kunchenguid/no-mistakes",
+      "description": "git push no-mistakes",
       "descriptions": {
-        "zh": "自托管旅行/行程规划器，具有实时协作、交互式地图、PWA 支持、SSO、预算、装箱单等功能。",
-        "en": "A self-hosted travel/trip planner with real-time collaboration, interactive maps, PWA support, SSO, budgets, packing lists, and more."
+        "zh": "git推送无错误",
+        "en": "git push no-mistakes"
       },
-      "language": "TypeScript",
-      "stars_total": 6892,
-      "forks_total": 620,
-      "stars_today": 241
+      "language": "Go",
+      "stars_total": 3528,
+      "forks_total": 210,
+      "stars_today": 398
     },
     {
       "rank": 5,
-      "repo": "apple/container",
-      "owner": "apple",
-      "name": "container",
-      "url": "https://github.com/apple/container",
-      "description": "A tool for creating and running Linux containers using lightweight virtual machines on a Mac. It is written in Swift, and optimized for Apple silicon.",
+      "repo": "grafana/grafana",
+      "owner": "grafana",
+      "name": "grafana",
+      "url": "https://github.com/grafana/grafana",
+      "description": "The open and composable observability and data visualization platform. Visualize metrics, logs, and traces from multiple sources like Prometheus, Loki, Elasticsearch, InfluxDB, Postgres and many more.",
       "descriptions": {
-        "zh": "一种在 Mac 上使用轻量级虚拟机创建和运行 Linux 容器的工具。它是用 Swift 编写的，并针对 Apple 芯片进行了优化。",
-        "en": "A tool for creating and running Linux containers using lightweight virtual machines on a Mac. It is written in Swift, and optimized for Apple silicon."
+        "zh": "开放且可组合的可观测性和数据可视化平台。可视化来自 Prometheus、Loki、Elasticsearch、InfluxDB、Postgres 等多个来源的指标、日志和跟踪。",
+        "en": "The open and composable observability and data visualization platform. Visualize metrics, logs, and traces from multiple sources like Prometheus, Loki, Elasticsearch, InfluxDB, Postgres and many more."
       },
-      "language": "Swift",
-      "stars_total": 43323,
-      "forks_total": 1274,
-      "stars_today": 1351
+      "language": "TypeScript",
+      "stars_total": 74966,
+      "forks_total": 14130,
+      "stars_today": 32
     },
     {
       "rank": 6,
-      "repo": "JCodesMore/ai-website-cloner-template",
-      "owner": "JCodesMore",
-      "name": "ai-website-cloner-template",
-      "url": "https://github.com/JCodesMore/ai-website-cloner-template",
-      "description": "Clone any website with one command using AI coding agents",
+      "repo": "ripienaar/free-for-dev",
+      "owner": "ripienaar",
+      "name": "free-for-dev",
+      "url": "https://github.com/ripienaar/free-for-dev",
+      "description": "A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev",
       "descriptions": {
-        "zh": "使用 AI 编码代理通过一个命令克隆任何网站",
-        "en": "Clone any website with one command using AI coding agents"
+        "zh": "具有 devops 和 infradev 感兴趣的免费级别的 SaaS、PaaS 和 IaaS 产品列表",
+        "en": "A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev"
       },
-      "language": "TypeScript",
-      "stars_total": 20681,
-      "forks_total": 3035,
-      "stars_today": 1024
+      "language": "HTML",
+      "stars_total": 123803,
+      "forks_total": 13054,
+      "stars_today": 90
     }
   ]
 }
