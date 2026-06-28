@@ -9,7 +9,8 @@ if ! command -v node >/dev/null 2>&1; then
   echo "https://nodejs.org/"
   echo
   open "https://nodejs.org/" >/dev/null 2>&1
-  read -r -p "Press Enter to exit..."
+  printf "Press Enter to exit..."
+  read -r _
   exit 1
 fi
 
@@ -29,4 +30,5 @@ node scripts/video-resolver-server.cjs "${PORT}"
 
 echo
 echo "[WK1995] Site service stopped."
-read -r -p "Press Enter to exit..."
+printf "Press Enter to exit..."
+read -r _
