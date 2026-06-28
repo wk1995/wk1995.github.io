@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}} · WK1995</title>
+  <meta name="description" content="{{summary}}">
+  <link rel="stylesheet" href="{{assetPrefix}}assets/site.css">
+  <link rel="stylesheet" href="{{assetPrefix}}assets/blog.css">
+</head>
+<body data-page="blogArticle">
+  <div class="blog-shell blog-article-shell">
+    {{topbar}}
+    <header class="blog-article-header">
+      <a class="blog-back" href="{{assetPrefix}}blog/">← 返回博客</a>
+      <div class="blog-article-meta">
+        <time datetime="{{date}}">{{displayDate}}</time>
+        {{updatedHtml}}
+        <span>{{sourceLabel}}</span>
+      </div>
+      <h1>{{title}}</h1>
+      <p>{{summary}}</p>
+      <div class="blog-tags">{{tagsHtml}}</div>
+    </header>
+    <main>
+      <article class="blog-article-body">
+        {{content}}
+      </article>
+      {{channelsHtml}}
+      {{likesHtml}}
+      {{commentsHtml}}
+      <nav class="blog-article-nav" aria-label="文章导航">
+        {{previousHtml}}
+        {{nextHtml}}
+      </nav>
+    </main>
+  </div>
+  <footer class="blog-footer">
+    <p>欢迎通过 <a href="mailto:kangw1995@gmail.com">kangw1995@gmail.com</a> 交流更多想法。</p>
+  </footer>
+  <script src="{{assetPrefix}}assets/site.js"></script>
+  <script src="{{assetPrefix}}assets/feedback-entry.js"></script>
+  <script src="{{assetPrefix}}assets/chat-link.js"></script>
+  <script src="{{assetPrefix}}assets/blog.js"></script>
+</body>
+</html>

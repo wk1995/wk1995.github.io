@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>用 AI 和静态构建维护个人博客 · WK1995</title>
+  <meta name="description" content="这是一篇 demo 文章，用来验证 Markdown 内容源、标签筛选、模糊搜索、详情页模板和多平台发布元数据。">
+  <link rel="stylesheet" href="../../../../assets/site.css">
+  <link rel="stylesheet" href="../../../../assets/blog.css">
+</head>
+<body data-page="blogArticle">
+  <div class="blog-shell blog-article-shell">
+    
+<div class="site-topbar">
+  <a class="brand-link" href="https://github.com/wk1995" target="_blank" rel="noopener" data-i18n-aria="brand.aria" aria-label="打开 WK1995 的 GitHub 主页">
+    <svg viewBox="0 0 16 16" aria-hidden="true">
+      <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82a7.56 7.56 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path>
+    </svg>
+  </a>
+  <div class="topbar-right">
+    <div class="control-row">
+      <a class="github-auth-button github-auth-button-secondary" href="https://github.com/wk1995/wk1995.github.io/issues/new" data-feedback-entry>反馈</a>
+      <label class="control-group" for="language-select">
+        <span class="control-label" id="language-label" data-i18n="controls.language">语言</span>
+        <select class="language-select" id="language-select" aria-label="语言">
+          <option value="zh">简体中文</option>
+          <option value="en">English</option>
+        </select>
+      </label>
+      <div class="control-group">
+        <span class="control-label" id="theme-caption" data-i18n="controls.theme">主题</span>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换主题">
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path id="theme-icon" d="M9.598 1.591a.75.75 0 0 1 .287.857 6.998 6.998 0 0 0 8.442 8.442.75.75 0 0 1 .857.287.75.75 0 0 1-.131.94A8.5 8.5 0 1 1 8.658.722a.75.75 0 0 1 .94-.131Z"></path>
+          </svg>
+          <span id="theme-label" data-i18n="controls.theme.dark">暗色</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+    <header class="blog-article-header">
+      <a class="blog-back" href="../../../../blog/">← 返回博客</a>
+      <div class="blog-article-meta">
+        <time datetime="2026-06-28">2026.06.28</time>
+        <span>更新 2026.06.28</span>
+        <span>ai-assisted</span>
+      </div>
+      <h1>用 AI 和静态构建维护个人博客</h1>
+      <p>这是一篇 demo 文章，用来验证 Markdown 内容源、标签筛选、模糊搜索、详情页模板和多平台发布元数据。</p>
+      <div class="blog-tags"><a class="blog-tag" href="../../../../blog/?tag=AI">AI</a><a class="blog-tag" href="../../../../blog/?tag=Blog">Blog</a><a class="blog-tag" href="../../../../blog/?tag=Automation">Automation</a></div>
+    </header>
+    <main>
+      <article class="blog-article-body">
+        <h1 id="用-ai-和静态构建维护个人博客">用 AI 和静态构建维护个人博客</h1>
+<p>这篇文章是博客系统的第一篇 demo。它的重点不是内容本身，而是验证一条更舒服的写作链路：文章用 Markdown 保存，构建脚本负责生成静态详情页和列表索引，GitHub Pages 负责发布。</p>
+<h2 id="为什么先做内容源">为什么先做内容源</h2>
+<p>手写 HTML 的好处是直观，但文章多起来之后会很难维护。每次新增文章都要复制页面、改标题、改摘要、改列表入口，还要小心链接和样式不要出错。</p>
+<p>把 Markdown 作为内容源之后，写作会变成更自然的动作：</p>
+<ul><li>文章内容只关注标题、段落、列表和代码。</li><li>标签、摘要、来源和渠道状态放在 frontmatter 中。</li><li>构建脚本统一生成详情页、搜索索引和站内链接。</li><li>未来 AI 生成草稿时，也只需要输出一份规范 Markdown。</li></ul>
+<h2 id="标签和搜索">标签和搜索</h2>
+<p>每篇文章必须配置 tags。列表页读取 <code>blog/posts/index.json</code> 后，可以用标签快速筛选，也可以用关键词模糊搜索。第一版搜索不追求复杂评分，只要能覆盖标题、摘要、标签和正文提取文本，就足够日常使用。</p>
+<p>比如这篇文章包含 <code>AI</code>、<code>Blog</code>、<code>Automation</code> 三个标签。搜索 <code>agent</code> 可能不会命中，但搜索 <code>markdown</code>、<code>静态</code>、<code>automation</code> 都应该能找到它。</p>
+<h2 id="多平台发布状态">多平台发布状态</h2>
+<p>文章不一定只停留在个人站，后续也可能同步到掘金、知乎或微信公众号。因此 demo 里加入了 <code>channels</code> 元数据：</p>
+<pre><code>channels:
+  canonical: &quot;site&quot;
+  published:
+    - platform: &quot;site&quot;
+      status: &quot;published&quot;
+    - platform: &quot;juejin&quot;
+      status: &quot;pending&quot;</code></pre>
+<p>详情页只展示已经发布且有 URL 的渠道链接。那些待发布、草稿或跳过的平台，会留给自动化脚本和人工维护使用。</p>
+<h2 id="下一步">下一步</h2>
+<p>这个 demo 跑通之后，后面可以继续补三件事：</p>
+<ul><li>把旧的手写 HTML 文章迁移成 Markdown。</li><li>接入 Codex 定时任务，把草稿写入 <code>content/blog/drafts/</code>。</li><li>配好 Giscus，让每篇文章拥有自己的评论区。</li></ul>
+<p>如果这条链路稳定，写 blog 就会轻很多：你负责判断和表达，系统负责重复劳动。</p>
+      </article>
+      <section class="blog-article-panel"><h2>发布渠道</h2><div class="blog-channel-list"><a href="/blog/posts/2026/ai-blog-pipeline-demo/">site · 主版本</a></div></section>
+      <section class="blog-article-panel blog-interactions" data-blog-likes data-provider="giscus-reactions">
+    <div>
+      <h2>互动</h2>
+      <p data-blog-interaction-copy>点赞通过 GitHub Discussions reactions 承载；评论区配置 Giscus 后即可登录 GitHub 互动。</p>
+    </div>
+    <div class="blog-interaction-actions">
+      <button type="button" data-blog-action="like">点赞</button>
+      <button type="button" data-blog-action="comment">发表评论</button>
+    </div>
+  </section>
+      <section class="blog-article-panel blog-comments" id="blog-comments" data-blog-comments data-provider="giscus">
+    <h2>评论</h2>
+    <div class="blog-comments-placeholder" data-blog-comments-status>评论区已预留。配置 <code>window.WK_BLOG_COMMENTS</code> 后，这里会加载 Giscus。</div>
+  </section>
+      <nav class="blog-article-nav" aria-label="文章导航">
+        
+        
+      </nav>
+    </main>
+  </div>
+  <footer class="blog-footer">
+    <p>欢迎通过 <a href="mailto:kangw1995@gmail.com">kangw1995@gmail.com</a> 交流更多想法。</p>
+  </footer>
+  <script src="../../../../assets/site.js"></script>
+  <script src="../../../../assets/feedback-entry.js"></script>
+  <script src="../../../../assets/chat-link.js"></script>
+  <script src="../../../../assets/blog.js"></script>
+</body>
+</html>

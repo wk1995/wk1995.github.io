@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "blog:build": "node scripts/blog/build-blog.mjs"
+  }
+}

@@ -355,6 +355,75 @@
       justify-content: center;
     }
 
+    .home-post-grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .home-post-card {
+      min-height: 245px;
+      border-radius: 14px;
+      background:
+        linear-gradient(180deg, rgba(19, 28, 40, 0.9), rgba(11, 16, 24, 0.95)),
+        radial-gradient(circle at top right, rgba(25, 195, 125, 0.16), transparent 42%);
+    }
+
+    html[data-theme="light"] .home-post-card {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(238, 244, 255, 0.94)),
+        radial-gradient(circle at top right, rgba(8, 127, 91, 0.1), transparent 42%);
+    }
+
+    .home-post-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      align-items: center;
+      margin-bottom: 0.85rem;
+      color: var(--fg-muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .home-post-card h3 {
+      margin: 0 0 0.75rem;
+      line-height: 1.32;
+    }
+
+    .home-post-card h3 a {
+      color: var(--fg);
+      text-decoration: none;
+    }
+
+    .home-post-card h3 a:hover,
+    .home-post-card h3 a:focus {
+      color: var(--accent);
+    }
+
+    .home-post-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.5rem;
+    }
+
+    .home-post-tag {
+      padding: 0.28rem 0.65rem;
+      border: 1px solid rgba(25, 195, 125, 0.24);
+      border-radius: 999px;
+      color: var(--fg-muted);
+      font-size: 0.76rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .home-post-link {
+      margin-top: auto;
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
     footer {
       padding: 3rem 0;
       border-top: 1px solid var(--border);
@@ -393,6 +462,10 @@
 
       .card {
         min-height: 200px;
+      }
+
+      .home-post-card {
+        min-height: 220px;
       }
     }
   </style>
@@ -477,6 +550,30 @@
               · 大模型在移动端的裁剪与蒸馏策略<br>· Android AI 功能的最佳体验模式<br>· 生成式 AI 在生产力工具中的落地方案
             </p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="writing">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-eyebrow" data-i18n="homePosts.eyebrow">Writing</p>
+            <h2 data-i18n="homePosts.title">最近文章</h2>
+            <p class="section-copy" data-i18n="homePosts.copy">
+              从博客内容源中自动挑选精选或最新文章，快速进入完整的技术记录。
+            </p>
+          </div>
+          <a class="trend-link" href="/blog/" data-i18n="homePosts.all">查看全部博客</a>
+        </div>
+        <div class="grid home-post-grid" id="home-post-list">
+          <article class="card home-post-card">
+            <div class="home-post-meta">
+              <span data-i18n="homePosts.loading">加载中</span>
+            </div>
+            <h3 data-i18n="homePosts.loadingTitle">正在读取博客文章</h3>
+            <p data-i18n="homePosts.loadingCopy">首页会展示精选文章，不足时用最新文章补齐。</p>
+          </article>
         </div>
       </div>
     </section>
