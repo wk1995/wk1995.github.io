@@ -4,169 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>博客 · WK · AI x Android</title>
-  <meta name="description" content="WK1995 的博客，分享人工智能与 Android 开发的实践、思考与案例。">
+  <meta name="description" content="WK1995 的博客，记录 AI、Android、自动化和个人技术写作。">
   <link rel="stylesheet" href="../assets/site.css">
-  <style>
-    :root {
-      --bg: #0b1018;
-      --bg-glow: #182034;
-      --fg: #f2f5ff;
-      --fg-muted: #a6afc5;
-      --primary: #6c63ff;
-      --accent: #1e90ff;
-      --border: rgba(255, 255, 255, 0.08);
-      --card-bg: rgba(18, 24, 36, 0.85);
-      --control-bg: rgba(15, 22, 33, 0.72);
-      --control-border: rgba(255, 255, 255, 0.08);
-      font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
-    }
-
-    html[data-theme="light"] {
-      --bg: #eff4ff;
-      --bg-glow: #d6e4ff;
-      --fg: #162033;
-      --fg-muted: #5a6880;
-      --primary: #245fdd;
-      --accent: #1177ee;
-      --border: rgba(15, 23, 42, 0.1);
-      --card-bg: rgba(255, 255, 255, 0.84);
-      --control-bg: rgba(255, 255, 255, 0.82);
-      --control-border: rgba(15, 23, 42, 0.12);
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: radial-gradient(circle at 20% 20%, var(--bg-glow), var(--bg) 60%);
-      color: var(--fg);
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    .container {
-      width: min(100%, 960px);
-      margin: 0 auto;
-      padding: 0 1.5rem 4rem;
-    }
-
-    header {
-      padding: 2rem 0 1rem;
-    }
-
-    .back {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      color: var(--fg-muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-top: 1.5rem;
-    }
-
-    .back:hover,
-    .back:focus {
-      color: var(--fg);
-    }
-
-    h1 {
-      margin: 1.5rem 0 0.5rem;
-      font-size: clamp(2rem, 4vw, 2.8rem);
-    }
-
-    .intro {
-      max-width: 680px;
-      color: var(--fg-muted);
-    }
-
-    main {
-      margin-top: 3rem;
-    }
-
-    .post-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 1.75rem;
-      margin-bottom: 1.75rem;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-      backdrop-filter: blur(12px);
-    }
-
-    .post-card:hover,
-    .post-card:focus-within {
-      transform: translateY(-3px);
-      border-color: rgba(108, 99, 255, 0.5);
-    }
-
-    .post-card time {
-      display: block;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--fg-muted);
-      margin-bottom: 0.75rem;
-    }
-
-    .post-card h2 {
-      margin: 0 0 0.75rem;
-      font-size: 1.6rem;
-    }
-
-    .post-card p {
-      margin: 0 0 1.25rem;
-      color: var(--fg-muted);
-    }
-
-    .read-more {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      font-weight: 600;
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.25rem 0.75rem;
-      border-radius: 999px;
-      background: rgba(108, 99, 255, 0.18);
-      color: var(--fg);
-      font-size: 0.75rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-right: 0.5rem;
-    }
-
-    footer {
-      padding: 3rem 0 2rem;
-      text-align: center;
-      color: var(--fg-muted);
-      font-size: 0.9rem;
-    }
-
-    footer a {
-      color: var(--fg);
-      text-decoration: none;
-    }
-
-    @media (max-width: 720px) {
-      .post-card {
-        padding: 1.5rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="../assets/blog.css">
 </head>
 <body data-page="blogIndex">
-  <div class="container">
-    <header>
+  <div class="blog-shell">
+    <header class="blog-hero">
       <div class="site-topbar">
         <a
           class="brand-link"
@@ -202,44 +46,30 @@
           </div>
         </div>
       </div>
-      <a class="back" href="../index.html" data-i18n="back.home">← 返回主页</a>
-      <h1 data-i18n="header.title">AI × Android 博客</h1>
-      <p class="intro" data-i18n="header.intro">
-        记录落地经验、技术方案与设计理念，帮助更多开发者把人工智能带到移动终端。
+      <a class="blog-back" href="../index.html" data-i18n="back.home">← 返回主页</a>
+      <span class="blog-kicker" data-i18n="blog.kicker">Writing System</span>
+      <h1 data-i18n="header.title">博客</h1>
+      <p data-i18n="header.intro">
+        用 Markdown 记录技术、产品和 AI 自动化实验。这里的文章支持标签筛选、关键词搜索和多平台发布状态。
       </p>
     </header>
+
     <main>
-      <article class="post-card">
-        <time datetime="2025-09-15">2025.09.15</time>
-        <h2><a href="ai-on-android-roadmap.html" data-i18n="post.1.title">AI on Android：端侧推理落地路线图</a></h2>
-        <p data-i18n="post.1.summary">
-          如何从数据集准备、模型裁剪到部署验证，全链路打造高性能的 Android AI 功能。
-        </p>
-        <div>
-          <span class="tag">AI</span>
-          <span class="tag">Android</span>
+      <section class="blog-toolbar" aria-label="博客筛选">
+        <div class="blog-search-field">
+          <label for="blog-search" data-i18n="blog.search.label">搜索文章</label>
+          <input id="blog-search" type="search" placeholder="搜索标题、标签、摘要或正文关键词" autocomplete="off" data-blog-search data-i18n-placeholder="blog.search.placeholder">
         </div>
-        <p style="margin-top: 1.5rem;">
-          <a class="read-more" href="ai-on-android-roadmap.html" data-i18n="post.1.read">阅读全文 →</a>
-        </p>
-      </article>
-      <article class="post-card">
-        <time datetime="2025-06-02">2025.06.02</time>
-        <h2><a href="designing-ai-experiences.html" data-i18n="post.2.title">设计有温度的 AI 体验</a></h2>
-        <p data-i18n="post.2.summary">
-          从场景分析到交互细节，反思在移动端塑造可信赖 AI 助手的五项原则。
-        </p>
-        <div>
-          <span class="tag">UX</span>
-          <span class="tag">Android</span>
-        </div>
-        <p style="margin-top: 1.5rem;">
-          <a class="read-more" href="designing-ai-experiences.html" data-i18n="post.2.read">阅读全文 →</a>
-        </p>
-      </article>
+        <div class="blog-count" data-blog-count data-i18n="blog.loading">加载中</div>
+      </section>
+
+      <section class="blog-filter-row" aria-label="标签筛选" data-blog-tags></section>
+      <section class="blog-list" aria-live="polite" data-blog-list>
+        <div class="blog-empty" data-i18n="blog.loadingIndex">正在加载文章索引...</div>
+      </section>
     </main>
   </div>
-  <footer>
+  <footer class="blog-footer">
     <p data-i18n-html="footer.html">
       欢迎通过 <a href="mailto:kangw1995@gmail.com">kangw1995@gmail.com</a> 交流更多想法。
     </p>
@@ -247,5 +77,6 @@
   <script src="../assets/site.js"></script>
   <script src="../assets/feedback-entry.js"></script>
   <script src="../assets/chat-link.js"></script>
+  <script src="../assets/blog.js"></script>
 </body>
 </html>
