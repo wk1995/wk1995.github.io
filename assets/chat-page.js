@@ -1656,7 +1656,7 @@
       refs.settingsModelMeta.textContent = current ? modelFeatureText(modelMeta(current)) : t("selectedModelHint");
     }
     if (refs.chooseModel) {
-      refs.chooseModel.setAttribute("href", "../models/?from=chat");
+      refs.chooseModel.hidden = true;
     }
     refs.keyInput.value = keyForModel();
   }

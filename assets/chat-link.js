@@ -1,4 +1,8 @@
 (function () {
+  if (document.body.dataset.showChatLauncher !== "true") {
+    return;
+  }
+
   if (document.body.dataset.page === "chatPage") {
     return;
   }

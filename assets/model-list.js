@@ -7,18 +7,18 @@
   const text = {
     zh: {
       eyebrow: "Model Catalog",
-      title: "大模型列表",
-      intro: "选择具体模型后会写入 Chat 的本地配置；公司与接口属性跟随模型，不需要单独选择。",
+      title: "模型选择工作台",
+      intro: "按运行位置、能力和密钥状态筛选模型，选择后会写入 Chat 的本地配置。",
       chatAction: "进入 Chat",
       searchLabel: "搜索模型",
-      searchPlaceholder: "DeepSeek / GLM / vision",
+      searchPlaceholder: "DeepSeek / GLM / 本地",
       builtInTitle: "内置大模型",
       customTitle: "自定义模型",
       currentTitle: "当前模型",
       currentEmpty: "尚未选择模型",
       selected: "当前使用",
       choose: "设为当前",
-      chooseBack: "选中并返回 Chat",
+      chooseBack: "设为当前",
       chatWith: "用它聊天",
       saved: "已选择：",
       noResults: "没有匹配的模型",
@@ -31,22 +31,39 @@
       vision: "视觉",
       reasoning: "推理",
       textOnly: "文本",
-      customHint: "自定义模型可在 Chat 设置中维护。",
+      deploymentFilter: "运行位置",
+      capabilityFilter: "能力",
+      filterAll: "全部",
+      cloud: "云端",
+      offline: "离线",
+      cloudDetail: "由服务商接口处理，需要网络和 API Key。",
+      offlineDetail: "指向本机或内网 Base URL，可用于本地推理服务。",
+      totalModels: "可选模型",
+      cloudModels: "云端",
+      offlineModels: "离线",
+      readyModels: "已配置",
+      matchSuffix: "匹配",
+      apiKeyLabel: "密钥",
+      locationLabel: "位置",
+      capabilityLabel: "能力",
+      scoreLabel: "观察值",
+      endpointLabel: "接口",
+      customHint: "自定义模型可在 Chat 设置中维护；本机或内网地址会标为离线。",
     },
     en: {
       eyebrow: "Model Catalog",
-      title: "AI model list",
-      intro: "Pick a concrete model for Chat. Provider and endpoint attributes travel with the selected model.",
+      title: "Model selection workbench",
+      intro: "Filter models by runtime, capability, and key state. The selected model is saved into Chat's local config.",
       chatAction: "Open Chat",
       searchLabel: "Search models",
-      searchPlaceholder: "DeepSeek / GLM / vision",
+      searchPlaceholder: "DeepSeek / GLM / local",
       builtInTitle: "Built-in models",
       customTitle: "Custom models",
       currentTitle: "Current model",
       currentEmpty: "No model selected",
       selected: "Current",
       choose: "Set current",
-      chooseBack: "Select and return",
+      chooseBack: "Set current",
       chatWith: "Chat with it",
       saved: "Selected: ",
       noResults: "No matching models",
@@ -59,7 +76,24 @@
       vision: "Vision",
       reasoning: "Reasoning",
       textOnly: "Text",
-      customHint: "Custom models can be managed in Chat settings.",
+      deploymentFilter: "Runtime",
+      capabilityFilter: "Capability",
+      filterAll: "All",
+      cloud: "Cloud",
+      offline: "Offline",
+      cloudDetail: "Runs through a provider endpoint and requires network plus an API key.",
+      offlineDetail: "Targets localhost or private-network Base URL for local inference.",
+      totalModels: "Available",
+      cloudModels: "Cloud",
+      offlineModels: "Offline",
+      readyModels: "Configured",
+      matchSuffix: "matched",
+      apiKeyLabel: "Key",
+      locationLabel: "Location",
+      capabilityLabel: "Capability",
+      scoreLabel: "Signal",
+      endpointLabel: "Endpoint",
+      customHint: "Custom models can be managed in Chat settings; localhost and private-network URLs are marked offline.",
     },
   };
 
@@ -70,6 +104,8 @@
     storage: catalog.loadStorageConfig(),
     config: null,
     filter: "",
+    deployment: "all",
+    capability: "all",
   };
 
   function lang() {
@@ -99,6 +135,44 @@
 
   function customTypeLabel(type) {
     return type === "anthropic" ? "Anthropic" : "OpenAI";
+  }
+
+  function localEndpointHost(hostname) {
+    if (!hostname) {
+      return false;
+    }
+    const host = hostname.toLowerCase();
+    if (host === "localhost" || host === "127.0.0.1" || host === "::1" || host.endsWith(".local")) {
+      return true;
+    }
+    const match = host.match(/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/);
+    if (!match) {
+      return false;
+    }
+    const first = Number(match[1]);
+    const second = Number(match[2]);
+    return first === 10
+      || (first === 172 && second >= 16 && second <= 31)
+      || (first === 192 && second === 168);
+  }
+
+  function deploymentForModel(model) {
+    if (model.custom) {
+      try {
+        return localEndpointHost(new URL(model.baseUrl).hostname) ? "offline" : "cloud";
+      } catch (error) {
+        return "cloud";
+      }
+    }
+    return model.deployment === "offline" ? "offline" : "cloud";
+  }
+
+  function deploymentLabel(model) {
+    return t(deploymentForModel(model));
+  }
+
+  function deploymentDetail(model) {
+    return deploymentForModel(model) === "offline" ? t("offlineDetail") : t("cloudDetail");
   }
 
   function modelChips(model) {
@@ -144,6 +218,10 @@
     return Array.isArray(state.config.customModels) ? state.config.customModels : [];
   }
 
+  function allModels() {
+    return allBuiltInModels().concat(customModels());
+  }
+
   function getModelById(id) {
     return catalog.modelMeta(id, customModels());
   }
@@ -152,20 +230,50 @@
     return Boolean(state.config.keys && state.config.keys[id]);
   }
 
+  function capabilityForModel(model) {
+    if (model.vision) {
+      return "vision";
+    }
+    if (model.thinking) {
+      return "reasoning";
+    }
+    return "text";
+  }
+
+  function matchesCapability(model) {
+    if (state.capability === "all") {
+      return true;
+    }
+    if (state.capability === "vision") {
+      return Boolean(model.vision);
+    }
+    if (state.capability === "reasoning") {
+      return Boolean(model.thinking);
+    }
+    return !model.vision;
+  }
+
+  function matchesActiveFilters(model) {
+    const deployment = deploymentForModel(model);
+    return (state.deployment === "all" || state.deployment === deployment) && matchesCapability(model);
+  }
+
   function matchesFilter(model) {
     const value = state.filter.trim().toLowerCase();
     if (!value) {
-      return true;
+      return matchesActiveFilters(model);
     }
     const haystack = [
       model.id,
       label(model),
       providerName(model),
+      deploymentLabel(model),
+      deploymentDetail(model),
       modelSummary(model),
       modelChips(model).join(" "),
       modelStrengths(model).join(" "),
     ].join(" ").toLowerCase();
-    return haystack.indexOf(value) !== -1;
+    return matchesActiveFilters(model) && haystack.indexOf(value) !== -1;
   }
 
   function saveSelection(id, goChat) {
@@ -177,9 +285,7 @@
     render();
     refs.status.className = "catalog-status is-success";
     refs.status.textContent = t("saved") + label(getModelById(id));
-    if (goChat) {
-      window.location.href = "../chat/";
-    }
+    void goChat;
   }
 
   function createChip(labelText) {
@@ -189,6 +295,18 @@
     return chip;
   }
 
+  function createMetaItem(termText, valueText, modifier) {
+    const item = document.createElement("div");
+    const term = document.createElement("dt");
+    const value = document.createElement("dd");
+    item.className = "model-meta-item" + (modifier ? " " + modifier : "");
+    term.textContent = termText;
+    value.textContent = valueText;
+    item.appendChild(term);
+    item.appendChild(value);
+    return item;
+  }
+
   function createModelCard(model, options) {
     const card = document.createElement("article");
     const head = document.createElement("div");
@@ -196,32 +314,41 @@
     const title = document.createElement("div");
     const heading = document.createElement("h3");
     const provider = document.createElement("p");
+    const deployment = document.createElement("span");
     const summary = document.createElement("p");
+    const meta = document.createElement("dl");
     const chips = document.createElement("div");
     const strengths = document.createElement("div");
     const actions = document.createElement("div");
     const choose = document.createElement("button");
-    const chat = document.createElement("button");
     const active = state.config.selectedModel === model.id;
+    const modelDeployment = deploymentForModel(model);
 
-    card.className = "model-card" + (active ? " is-active" : "");
+    card.className = "model-card model-card--" + modelDeployment + (active ? " is-active" : "");
     head.className = "model-card-head";
     mark.className = "model-mark";
     title.className = "model-title";
+    deployment.className = "model-deployment model-deployment--" + modelDeployment;
+    summary.className = "model-summary";
+    meta.className = "model-meta";
     chips.className = "catalog-chip-row";
     strengths.className = "catalog-chip-row";
     actions.className = "catalog-action-row";
     choose.className = "catalog-action";
-    chat.className = "catalog-secondary-action";
     choose.type = "button";
-    chat.type = "button";
 
     mark.textContent = modelInitial(model);
     heading.textContent = label(model);
-    provider.textContent = t("provider") + " · " + providerName(model) + " · " + (hasKey(model.id) ? t("hasKey") : t("noKey"));
+    provider.textContent = t("endpointLabel") + " · " + providerName(model);
+    deployment.textContent = deploymentLabel(model);
     summary.textContent = modelSummary(model);
     choose.textContent = fromChat ? t("chooseBack") : t("choose");
-    chat.textContent = t("chatWith");
+    meta.appendChild(createMetaItem(t("locationLabel"), deploymentDetail(model), "model-meta-item--wide"));
+    meta.appendChild(createMetaItem(t("apiKeyLabel"), hasKey(model.id) ? t("hasKey") : t("noKey"), hasKey(model.id) ? "is-ready" : ""));
+    meta.appendChild(createMetaItem(t("capabilityLabel"), t(capabilityForModel(model))));
+    if (typeof model.score === "number") {
+      meta.appendChild(createMetaItem(t("scoreLabel"), String(model.score)));
+    }
 
     modelChips(model).forEach(function (item) {
       chips.appendChild(createChip(item));
@@ -232,14 +359,12 @@
     choose.addEventListener("click", function () {
       saveSelection(model.id, fromChat);
     });
-    chat.addEventListener("click", function () {
-      saveSelection(model.id, true);
-    });
 
     title.appendChild(heading);
     title.appendChild(provider);
     head.appendChild(mark);
     head.appendChild(title);
+    head.appendChild(deployment);
     if (active) {
       const badge = document.createElement("span");
       badge.className = "catalog-badge";
@@ -247,9 +372,9 @@
       head.appendChild(badge);
     }
     actions.appendChild(choose);
-    actions.appendChild(chat);
     card.appendChild(head);
     card.appendChild(summary);
+    card.appendChild(meta);
     card.appendChild(chips);
     if (strengths.childNodes.length) {
       card.appendChild(strengths);
@@ -283,6 +408,32 @@
     });
   }
 
+  function renderStats() {
+    const models = allModels();
+    const visible = models.filter(matchesFilter);
+    const stats = [
+      { label: t("totalModels"), value: visible.length + " / " + models.length, detail: t("matchSuffix") },
+      { label: t("cloudModels"), value: models.filter(function (model) { return deploymentForModel(model) === "cloud"; }).length, detail: t("cloudDetail") },
+      { label: t("offlineModels"), value: models.filter(function (model) { return deploymentForModel(model) === "offline"; }).length, detail: t("offlineDetail") },
+      { label: t("readyModels"), value: models.filter(function (model) { return hasKey(model.id); }).length, detail: t("hasKey") },
+    ];
+    refs.stats.innerHTML = "";
+    stats.forEach(function (item) {
+      const card = document.createElement("div");
+      const labelNode = document.createElement("span");
+      const valueNode = document.createElement("strong");
+      const detailNode = document.createElement("small");
+      card.className = "model-stat";
+      labelNode.textContent = item.label;
+      valueNode.textContent = String(item.value);
+      detailNode.textContent = item.detail;
+      card.appendChild(labelNode);
+      card.appendChild(valueNode);
+      card.appendChild(detailNode);
+      refs.stats.appendChild(card);
+    });
+  }
+
   function renderCurrent() {
     const current = getModelById(state.config.selectedModel);
     refs.current.innerHTML = "";
@@ -291,7 +442,7 @@
     const detail = document.createElement("small");
     labelNode.textContent = t("currentTitle");
     strong.textContent = current ? label(current) : t("currentEmpty");
-    detail.textContent = current ? providerName(current) + " · " + modelChips(current).join(" / ") : "";
+    detail.textContent = current ? deploymentLabel(current) + " · " + providerName(current) + " · " + modelChips(current).join(" / ") : "";
     refs.current.appendChild(labelNode);
     refs.current.appendChild(strong);
     if (detail.textContent) {
@@ -313,6 +464,7 @@
 
   function render() {
     applyStaticText();
+    renderStats();
     renderCurrent();
     renderModelGroup(refs.grid, refs.count, allBuiltInModels());
     const custom = customModels();
@@ -325,9 +477,33 @@
     }
   }
 
+  function updatePressed(container, value, attribute) {
+    Array.prototype.forEach.call(container.querySelectorAll("button"), function (button) {
+      button.setAttribute("aria-pressed", button.getAttribute(attribute) === value ? "true" : "false");
+    });
+  }
+
   function bind() {
     refs.search.addEventListener("input", function (event) {
       state.filter = event.target.value;
+      render();
+    });
+    refs.deploymentFilter.addEventListener("click", function (event) {
+      const target = event.target.closest("button[data-model-deployment]");
+      if (!target) {
+        return;
+      }
+      state.deployment = target.dataset.modelDeployment || "all";
+      updatePressed(refs.deploymentFilter, state.deployment, "data-model-deployment");
+      render();
+    });
+    refs.capabilityFilter.addEventListener("click", function (event) {
+      const target = event.target.closest("button[data-model-capability]");
+      if (!target) {
+        return;
+      }
+      state.capability = target.dataset.modelCapability || "all";
+      updatePressed(refs.capabilityFilter, state.capability, "data-model-capability");
       render();
     });
     window.addEventListener("wk:language-change", render);
@@ -336,6 +512,9 @@
   function collect() {
     refs.search = document.getElementById("model-search");
     refs.current = document.getElementById("model-current");
+    refs.stats = document.getElementById("model-stats");
+    refs.deploymentFilter = document.getElementById("model-deployment-filter");
+    refs.capabilityFilter = document.getElementById("model-capability-filter");
     refs.grid = document.getElementById("model-grid");
     refs.count = document.getElementById("model-count");
     refs.customSection = document.getElementById("custom-model-section");
