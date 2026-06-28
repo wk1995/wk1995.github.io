@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>USB Android Camera MVP</title>
+  <meta name="description" content="通过 USB ADB、本地桥接和静态网页显示 Android 手机摄像头 MJPEG 画面。">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <section class="panel">
+      <div class="hero">
+        <p class="kicker">USB Android Camera</p>
+        <h1>手机摄像头网页预览</h1>
+        <p>Android App 采集 CameraX 画面，Windows 本地桥接通过 ADB forward 暴露 MJPEG，网页用静态 HTML 直接显示。</p>
+      </div>
+
+      <div class="viewer">
+        <img id="camera-stream" alt="Android 手机摄像头实时画面">
+        <div id="empty-state" class="empty">
+          <strong>等待视频流</strong>
+          <span>先启动 Android App，再运行 Windows bridge，然后点击开始。</span>
+        </div>
+      </div>
+
+      <div class="toolbar" aria-label="摄像头控制">
+        <button id="launch-button" type="button">打开手机 App 并推流</button>
+        <button id="start-button" type="button">开始</button>
+        <button id="stop-button" type="button">停止</button>
+        <button id="switch-button" type="button">切换前后摄像头</button>
+        <button id="snapshot-button" type="button">截图</button>
+      </div>
+
+      <p id="status" class="status" role="status" aria-live="polite">未连接。</p>
+    </section>
+
+    <section class="notes" aria-label="连接状态">
+      <h2>本地地址</h2>
+      <dl>
+        <div>
+          <dt>网页</dt>
+          <dd><code>http://127.0.0.1:18080/</code></dd>
+        </div>
+        <div>
+          <dt>视频</dt>
+          <dd><code>http://127.0.0.1:18080/camera</code></dd>
+        </div>
+        <div>
+          <dt>Android</dt>
+          <dd><code>adb forward tcp:8081 tcp:8081</code></dd>
+        </div>
+      </dl>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
