@@ -77,9 +77,19 @@
 <p>如果这条链路稳定，写 blog 就会轻很多：你负责判断和表达，系统负责重复劳动。</p>
       </article>
       <section class="blog-article-panel"><h2>发布渠道</h2><div class="blog-channel-list"><a href="/blog/posts/2026/ai-blog-pipeline-demo/">site · 主版本</a></div></section>
-      <section class="blog-article-panel blog-comments" data-blog-comments data-provider="giscus">
+      <section class="blog-article-panel blog-interactions" data-blog-likes data-provider="giscus-reactions">
+    <div>
+      <h2>互动</h2>
+      <p data-blog-interaction-copy>点赞通过 GitHub Discussions reactions 承载；评论区配置 Giscus 后即可登录 GitHub 互动。</p>
+    </div>
+    <div class="blog-interaction-actions">
+      <button type="button" data-blog-action="like">点赞</button>
+      <button type="button" data-blog-action="comment">发表评论</button>
+    </div>
+  </section>
+      <section class="blog-article-panel blog-comments" id="blog-comments" data-blog-comments data-provider="giscus">
     <h2>评论</h2>
-    <div class="blog-comments-placeholder">评论区已预留。配置 <code>window.WK_BLOG_COMMENTS</code> 后，这里会加载 Giscus。</div>
+    <div class="blog-comments-placeholder" data-blog-comments-status>评论区已预留。配置 <code>window.WK_BLOG_COMMENTS</code> 后，这里会加载 Giscus。</div>
   </section>
       <nav class="blog-article-nav" aria-label="文章导航">
         

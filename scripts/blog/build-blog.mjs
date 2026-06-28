@@ -302,11 +302,26 @@ function buildChannelsHtml(post) {
   return `<section class="blog-article-panel"><h2>发布渠道</h2><div class="blog-channel-list">${links}</div></section>`;
 }
 
+function buildLikesHtml(post) {
+  const likesEnabled = post.likes?.enabled ?? post.comments?.enabled ?? false;
+  if (!likesEnabled) return "";
+  return `<section class="blog-article-panel blog-interactions" data-blog-likes data-provider="${escapeHtml(post.likes?.provider || "giscus-reactions")}">
+    <div>
+      <h2>互动</h2>
+      <p data-blog-interaction-copy>点赞通过 GitHub Discussions reactions 承载；评论区配置 Giscus 后即可登录 GitHub 互动。</p>
+    </div>
+    <div class="blog-interaction-actions">
+      <button type="button" data-blog-action="like">点赞</button>
+      <button type="button" data-blog-action="comment">发表评论</button>
+    </div>
+  </section>`;
+}
+
 function buildCommentsHtml(post) {
   if (!post.comments?.enabled) return "";
-  return `<section class="blog-article-panel blog-comments" data-blog-comments data-provider="${escapeHtml(post.comments.provider || "giscus")}">
+  return `<section class="blog-article-panel blog-comments" id="blog-comments" data-blog-comments data-provider="${escapeHtml(post.comments.provider || "giscus")}">
     <h2>评论</h2>
-    <div class="blog-comments-placeholder">评论区已预留。配置 <code>window.WK_BLOG_COMMENTS</code> 后，这里会加载 Giscus。</div>
+    <div class="blog-comments-placeholder" data-blog-comments-status>评论区已预留。配置 <code>window.WK_BLOG_COMMENTS</code> 后，这里会加载 Giscus。</div>
   </section>`;
 }
 
@@ -382,6 +397,7 @@ async function build() {
       tagsHtml: buildTagHtml(post.tags, assetPrefix),
       content: post.html,
       channelsHtml: buildChannelsHtml(post),
+      likesHtml: buildLikesHtml(post),
       commentsHtml: buildCommentsHtml(post),
       previousHtml: previous ? `<a href="${escapeHtml(previous.url)}"><span>上一篇</span>${escapeHtml(previous.title)}</a>` : "",
       nextHtml: next ? `<a href="${escapeHtml(next.url)}"><span>下一篇</span>${escapeHtml(next.title)}</a>` : "",
@@ -397,12 +413,39 @@ async function build() {
     tags: post.tags,
     template: post.template || "default",
     source: post.source || "human",
+    featured: Boolean(post.featured),
+    homeRank: Number(post.homeRank || 0),
     channels: post.channels || { canonical: "site", published: [] },
     comments: post.comments || { enabled: false },
+    likes: post.likes || { enabled: Boolean(post.comments?.enabled) },
     searchText: post.searchText,
   }));
 
+  const homeData = [...posts]
+    .sort((a, b) => {
+      const featuredDelta = Number(Boolean(b.featured)) - Number(Boolean(a.featured));
+      if (featuredDelta !== 0) return featuredDelta;
+      if (a.featured && b.featured) {
+        const rankDelta = Number(b.homeRank || 0) - Number(a.homeRank || 0);
+        if (rankDelta !== 0) return rankDelta;
+      }
+      return b.date.localeCompare(a.date) || a.title.localeCompare(b.title);
+    })
+    .filter((post) => post.source !== "ai-generated" || post.featured)
+    .slice(0, 3)
+    .map((post) => ({
+      title: post.title,
+      url: post.url,
+      date: post.date,
+      summary: post.summary,
+      tags: post.tags.slice(0, 3),
+      source: post.source || "human",
+      comments: post.comments || { enabled: false },
+      likes: post.likes || { enabled: Boolean(post.comments?.enabled) },
+    }));
+
   await writeFile(path.join(outputDir, "index.json"), `${JSON.stringify(indexData, null, 2)}\n`, "utf8");
+  await writeFile(path.join(outputDir, "home.json"), `${JSON.stringify(homeData, null, 2)}\n`, "utf8");
   console.log(`Built ${posts.length} blog post(s).`);
 }
 

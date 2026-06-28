@@ -12,9 +12,14 @@ tags:
 template: "default"
 cover: ""
 source: "ai-assisted"
+featured: true
+homeRank: 10
 comments:
   enabled: true
   provider: "giscus"
+likes:
+  enabled: true
+  provider: "giscus-reactions"
 channels:
   canonical: "site"
   published:
