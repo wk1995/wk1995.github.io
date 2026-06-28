@@ -100,6 +100,14 @@ tags:
 template: "note"
 cover: ""
 source: "human"
+featured: true
+homeRank: 10
+comments:
+  enabled: true
+  provider: "giscus"
+likes:
+  enabled: true
+  provider: "giscus-reactions"
 channels:
   canonical: "site"
   published:
@@ -132,6 +140,10 @@ channels:
 - `template`：可选，默认 `default`。
 - `cover`：可选，封面图路径。
 - `source`：可选，建议为 `human`、`ai-assisted` 或 `ai-generated`。
+- `featured`：可选，是否允许进入首页文章区。
+- `homeRank`：可选，首页精选排序权重，数值越大越靠前。
+- `comments`：可选，评论配置，用于控制文章详情页是否加载评论区。
+- `likes`：可选，点赞配置，用于控制文章详情页是否展示点赞/反应能力。
 - `channels`：可选，多平台发布渠道元数据，用于记录文章是否同步到站外平台。
 
 ## 5. 多平台发布标志
@@ -239,7 +251,117 @@ channels:
 
 当文章数量明显增加后，再考虑引入 Fuse.js 生成更细的匹配分数。
 
-## 7. 详情页与模板机制
+## 7. 首页文章关联
+
+首页需要与 blog 功能联动，展示部分文章标题和摘要，作为从首页进入 blog 的轻量入口。首页不应该承担完整文章检索能力，完整搜索和标签筛选仍放在 `/blog/`。
+
+首页文章区建议放在首页已有内容流中靠近“最近文章 / Signal Layer”的位置，展示 3 篇文章。每条展示：
+
+- 标题。
+- 摘要。
+- 发布日期。
+- 1 到 3 个核心标签。
+- 文章链接。
+
+首页展示规则由构建脚本统一决定，避免手动维护首页文章列表。
+
+推荐规则：
+
+1. 仅选择 `status: "published"` 的文章。
+2. 优先选择 `featured: true` 的文章。
+3. 精选文章内部按 `homeRank` 降序排序，`homeRank` 相同则按 `date` 倒序。
+4. 如果精选文章不足 3 篇，则用非精选文章按 `date` 倒序补足。
+5. 默认最多展示 3 篇，后续可通过站点配置调整为 4 篇。
+6. `source: "ai-generated"` 的文章默认不进入首页，除非显式配置 `featured: true`，避免首页被自动生成内容占满。
+7. 如果文章配置了 `channels.canonical`，首页链接仍统一指向站内详情页，站外平台链接只在详情页展示。
+
+frontmatter 示例：
+
+```yaml
+featured: true
+homeRank: 10
+```
+
+构建产物建议：
+
+```text
+blog/posts/home.json
+```
+
+`home.json` 只保留首页需要的轻量字段：
+
+```json
+[
+  {
+    "title": "AI Agent 的个人知识管理实验",
+    "url": "/blog/posts/2026/ai-agent-knowledge-notes/",
+    "date": "2026-06-23",
+    "summary": "记录一次用 AI Agent 整理个人知识库的实验过程。",
+    "tags": ["AI", "Agent", "Knowledge"]
+  }
+]
+```
+
+首页实现方式：
+
+- 第一阶段可以让 `index.html` 通过前端 `fetch("/blog/posts/home.json")` 渲染首页文章区。
+- 如果希望首页在无 JavaScript 时也能看到文章，可由构建脚本直接更新首页中的文章片段。
+- 考虑当前站点已大量使用静态 JS，第一阶段推荐使用 JSON 渲染，保持实现简单。
+- 当 `home.json` 为空或加载失败时，首页文章区显示一个轻量空状态，并保留“查看全部博客”的入口。
+
+## 8. 评论与点赞
+
+GitHub Pages 是静态托管，不能直接保存评论或点赞数据。因此评论和点赞都需要借助外部数据源。推荐第一阶段使用 Giscus，把 GitHub Discussions 作为评论和 reaction 数据源。
+
+推荐方案：
+
+- 评论使用 Giscus。
+- 点赞使用 Giscus / GitHub Discussions reactions。
+- 每篇文章通过稳定 URL 映射到一个 Discussion。
+- 用户需要 GitHub 账号才能评论或点赞。
+- 评论和点赞数据保存在 GitHub Discussions 中，不需要自建数据库。
+
+frontmatter 示例：
+
+```yaml
+comments:
+  enabled: true
+  provider: "giscus"
+likes:
+  enabled: true
+  provider: "giscus-reactions"
+```
+
+Giscus 配置建议：
+
+- 仓库开启 Discussions。
+- 新建 Discussion Category，例如 `Blog Comments`。
+- 映射方式使用 `pathname`，让 `/blog/posts/2026/ai-agent-notes/` 对应唯一讨论串。
+- 开启 reactions，这样文章详情页可以展示点赞、喜欢等 GitHub reaction。
+- 主题跟随站点深浅色主题。
+
+详情页展示规则：
+
+- `comments.enabled: true` 时，在文章尾部加载评论区。
+- `likes.enabled: true` 时，优先展示 Giscus reaction 能力。
+- 如果 `comments.enabled: false`，则不加载 Giscus 脚本，避免无意义的第三方请求。
+- 如果文章是草稿或预览页，不加载评论和点赞。
+
+点赞能力说明：
+
+- 可以支持“点赞”，但在纯静态 GitHub Pages 下，点赞数据不能由站点本身保存。
+- 推荐使用 GitHub Discussions reactions 作为点赞能力，优点是免费、免后端、数据归仓库管理。
+- 缺点是用户需要登录 GitHub，且 UI 会受 Giscus/GitHub reaction 模式限制。
+- 如果后续需要匿名点赞、按设备限流、点赞数自定义展示，则需要引入额外后端，例如 Supabase、Firebase、Cloudflare Workers KV、Waline 或 Twikoo。
+
+后续增强方向：
+
+- 在 `blog/posts/index.json` 中保留 `comments.enabled` 和 `likes.enabled`，用于列表页或首页显示“可评论”标识。
+- 在详情页中通过 `window.WK_BLOG_COMMENTS` 统一配置 Giscus repo、category、mapping 和 theme。
+- 深浅色主题切换时同步更新 Giscus iframe 主题。
+- 如果未来接入匿名点赞服务，保持 `likes.provider` 可切换，例如 `giscus-reactions`、`supabase`、`cloudflare-kv`。
+
+## 9. 详情页与模板机制
 
 详情页生成路径：
 
@@ -252,7 +374,7 @@ channels:
 - 顶部导航：返回首页、返回 Blog、语言/主题控制沿用站点现有能力。
 - 文章头部：标题、日期、更新时间、标签、摘要、来源标识。
 - 正文区域：Markdown 渲染出的 HTML。
-- 文章尾部：发布渠道、上一篇/下一篇、返回列表、可选相关文章。
+- 文章尾部：发布渠道、评论区、点赞/反应、上一篇/下一篇、返回列表、可选相关文章。
 
 模板建议：
 
@@ -268,7 +390,7 @@ template: "note"
 
 构建脚本根据 `template` 字段选择 `scripts/blog/templates/{template}.html`。如果模板不存在，则降级到 `default.html` 并在构建日志中给出警告。
 
-## 8. 构建脚本方案
+## 10. 构建脚本方案
 
 建议使用 Node.js 脚本，适合当前静态仓库，也便于 GitHub Actions 使用。
 
@@ -289,7 +411,8 @@ template: "note"
 6. 读取模板并注入文章数据。
 7. 生成 `blog/posts/index.json`。
 8. 过滤并规范化多平台发布渠道数据。
-9. 可选：生成 `blog/sitemap.json` 或更新站点 sitemap。
+9. 根据首页展示规则生成 `blog/posts/home.json`。
+10. 可选：生成 `blog/sitemap.json` 或更新站点 sitemap。
 
 校验规则：
 
@@ -299,11 +422,15 @@ template: "note"
 - 同一年内 `slug` 不可重复。
 - `date` 必须是 `YYYY-MM-DD`。
 - `template` 不存在时给警告，不阻断构建。
+- `featured` 如未配置，默认 `false`。
+- `homeRank` 如未配置，默认 `0`。
+- `comments.enabled` 如未配置，默认 `false`。
+- `likes.enabled` 如未配置，默认跟随 `comments.enabled`。
 - `channels.canonical` 如未配置，默认使用 `site`。
 - `channels.published[].status` 必须属于 `draft`、`pending`、`published`、`failed`、`skipped`。
 - 详情页只渲染 `status: "published"` 且 `url` 非空的站外渠道链接。
 
-## 9. AI 定时生成文章流程
+## 11. AI 定时生成文章流程
 
 目标是让 Codex 定时围绕感兴趣主题生成文章，并把 Markdown 文件提交到仓库目录中。
 
@@ -363,7 +490,7 @@ content/blog/topics.json
 ]
 ```
 
-## 10. GitHub Actions 方案
+## 12. GitHub Actions 方案
 
 建议保留当前 GitHub Pages 发布方式，在发布前增加 blog 构建步骤。
 
@@ -397,7 +524,7 @@ AI 生成 workflow 可以独立：
 - 如果使用 GitHub Actions 调模型，需要通过 GitHub Secrets 管理密钥。
 - 生成结果默认提交到草稿目录，并创建 PR。
 
-## 11. 迁移计划
+## 13. 迁移计划
 
 第一阶段：方案和内容模型
 
@@ -409,6 +536,7 @@ AI 生成 workflow 可以独立：
 
 - 新增 Node 构建脚本。
 - 生成 `blog/posts/index.json`。
+- 生成 `blog/posts/home.json`。
 - 生成详情页 HTML。
 - 接入现有部署 workflow。
 
@@ -417,12 +545,14 @@ AI 生成 workflow 可以独立：
 - 改造 `blog/index.html`，改为读取 JSON 渲染。
 - 增加搜索框、标签筛选、空状态。
 - 保留主题切换和语言控制。
+- 改造首页文章区，读取 `home.json` 展示精选或最新文章。
 
 第四阶段：模板体系
 
 - 抽出 `default`、`note` 模板。
 - 支持 frontmatter 选择模板。
 - 增加模板缺失降级策略。
+- 接入 Giscus 评论和 GitHub Discussions reactions 点赞。
 
 第五阶段：AI 生成链路
 
@@ -432,16 +562,19 @@ AI 生成 workflow 可以独立：
 - 增加多平台发布状态回写机制。
 - 观察质量后决定是否允许自动发布。
 
-## 12. 风险与约束
+## 14. 风险与约束
 
 - 搜索只在前端进行，文章数量很大时需要优化索引体积。
 - AI 生成内容可能重复、空泛或事实不准确，必须保留人工 review 机制。
 - 多平台发布可能出现内容版本不一致，需要以 `canonical` 字段明确主版本。
+- 首页展示规则需要避免被 AI 自动生成内容刷屏，默认不展示未精选的 `ai-generated` 文章。
+- Giscus 评论和点赞依赖 GitHub 账号，不适合需要匿名互动的场景。
+- 匿名点赞需要额外后端或第三方服务，会增加部署和隐私合规成本。
 - 当前仓库部分中文内容可能存在编码显示问题，实施时需要统一使用 UTF-8。
 - 详情页模板如果过多，会增加维护成本，第一阶段建议只实现 1 到 2 个模板。
 - GitHub Pages 是静态托管，不适合实现服务端搜索或动态权限能力。
 
-## 13. 推荐优先级
+## 15. 推荐优先级
 
 P0：
 
@@ -450,6 +583,8 @@ P0：
 - 多平台发布渠道元数据。
 - 构建脚本生成详情页和索引 JSON。
 - Blog 列表页搜索与标签筛选。
+- 首页文章区读取 `home.json` 展示精选/最新文章。
+- Giscus 评论预留和 GitHub reaction 点赞配置。
 
 P1：
 
@@ -457,6 +592,7 @@ P1：
 - 文章上一篇/下一篇。
 - 主题池和 AI 草稿生成。
 - 站外平台发布状态回写。
+- 匿名点赞服务评估。
 
 P2：
 
