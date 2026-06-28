@@ -100,6 +100,19 @@ tags:
 template: "note"
 cover: ""
 source: "human"
+channels:
+  canonical: "site"
+  published:
+    - platform: "site"
+      url: "/blog/posts/2026/ai-agent-knowledge-notes/"
+      status: "published"
+      publishedAt: "2026-06-23"
+    - platform: "wechat"
+      url: ""
+      status: "draft"
+    - platform: "juejin"
+      url: ""
+      status: "pending"
 ---
 
 # AI Agent 的个人知识管理实验
@@ -119,8 +132,63 @@ source: "human"
 - `template`：可选，默认 `default`。
 - `cover`：可选，封面图路径。
 - `source`：可选，建议为 `human`、`ai-assisted` 或 `ai-generated`。
+- `channels`：可选，多平台发布渠道元数据，用于记录文章是否同步到站外平台。
 
-## 5. 列表页设计
+## 5. 多平台发布标志
+
+Blog 文章可能会同步发布到微信公众号、掘金、知乎、CSDN、Medium、LinkedIn 等平台。为避免多平台链接和状态混乱，建议从一开始在 frontmatter 中维护发布渠道元数据。
+
+字段示例：
+
+```yaml
+channels:
+  canonical: "site"
+  published:
+    - platform: "site"
+      url: "/blog/posts/2026/ai-agent-knowledge-notes/"
+      status: "published"
+      publishedAt: "2026-06-23"
+    - platform: "wechat"
+      url: ""
+      status: "draft"
+    - platform: "zhihu"
+      url: "https://zhuanlan.zhihu.com/p/example"
+      status: "published"
+      publishedAt: "2026-06-24"
+```
+
+字段说明：
+
+- `canonical`：主版本平台，默认建议为 `site`，表示个人站是文章的主版本。
+- `published`：各平台发布记录列表。
+- `platform`：平台标识，例如 `site`、`wechat`、`juejin`、`zhihu`、`csdn`、`medium`、`x`、`linkedin`。
+- `url`：该平台文章地址。尚未发布时可为空。
+- `status`：该平台发布状态。
+- `publishedAt`：该平台实际发布时间，可选。
+
+状态枚举：
+
+- `draft`：未准备发布。
+- `pending`：等待分发或等待人工发布。
+- `published`：已发布。
+- `failed`：分发失败。
+- `skipped`：明确不发布到该平台。
+
+页面展示建议：
+
+- 列表页只展示文章来源 `source` 和核心标签，不展示完整渠道状态，避免信息过载。
+- 详情页可以在文章头部或尾部展示“发布渠道”。
+- 只有 `status: "published"` 且 `url` 非空的平台才显示为可点击链接。
+- `canonical` 平台可以显示为“主版本”或 `Canonical` 标识。
+- 未发布、失败、跳过的平台不在前台展示，只作为自动化和维护数据使用。
+
+自动化用途：
+
+- Codex 或后续分发脚本可以根据 `channels.published[].status` 判断哪些平台还未发布。
+- 站外发布成功后，可以回写对应平台的 `url`、`status` 和 `publishedAt`。
+- 如果未来支持自动同步，分发任务应只处理 `pending` 状态的平台。
+
+## 6. 列表页设计
 
 列表页路径保持为：
 
@@ -171,7 +239,7 @@ source: "human"
 
 当文章数量明显增加后，再考虑引入 Fuse.js 生成更细的匹配分数。
 
-## 6. 详情页与模板机制
+## 7. 详情页与模板机制
 
 详情页生成路径：
 
@@ -184,7 +252,7 @@ source: "human"
 - 顶部导航：返回首页、返回 Blog、语言/主题控制沿用站点现有能力。
 - 文章头部：标题、日期、更新时间、标签、摘要、来源标识。
 - 正文区域：Markdown 渲染出的 HTML。
-- 文章尾部：上一篇/下一篇、返回列表、可选相关文章。
+- 文章尾部：发布渠道、上一篇/下一篇、返回列表、可选相关文章。
 
 模板建议：
 
@@ -200,7 +268,7 @@ template: "note"
 
 构建脚本根据 `template` 字段选择 `scripts/blog/templates/{template}.html`。如果模板不存在，则降级到 `default.html` 并在构建日志中给出警告。
 
-## 7. 构建脚本方案
+## 8. 构建脚本方案
 
 建议使用 Node.js 脚本，适合当前静态仓库，也便于 GitHub Actions 使用。
 
@@ -220,7 +288,8 @@ template: "note"
 5. 根据 `date` 和 `slug` 生成详情页目录。
 6. 读取模板并注入文章数据。
 7. 生成 `blog/posts/index.json`。
-8. 可选：生成 `blog/sitemap.json` 或更新站点 sitemap。
+8. 过滤并规范化多平台发布渠道数据。
+9. 可选：生成 `blog/sitemap.json` 或更新站点 sitemap。
 
 校验规则：
 
@@ -230,8 +299,11 @@ template: "note"
 - 同一年内 `slug` 不可重复。
 - `date` 必须是 `YYYY-MM-DD`。
 - `template` 不存在时给警告，不阻断构建。
+- `channels.canonical` 如未配置，默认使用 `site`。
+- `channels.published[].status` 必须属于 `draft`、`pending`、`published`、`failed`、`skipped`。
+- 详情页只渲染 `status: "published"` 且 `url` 非空的站外渠道链接。
 
-## 8. AI 定时生成文章流程
+## 9. AI 定时生成文章流程
 
 目标是让 Codex 定时围绕感兴趣主题生成文章，并把 Markdown 文件提交到仓库目录中。
 
@@ -259,6 +331,13 @@ Codex 定时任务
 ```yaml
 status: "published"
 source: "ai-assisted"
+channels:
+  canonical: "site"
+  published:
+    - platform: "site"
+      status: "published"
+    - platform: "juejin"
+      status: "pending"
 ```
 
 主题池可以放在：
@@ -284,7 +363,7 @@ content/blog/topics.json
 ]
 ```
 
-## 9. GitHub Actions 方案
+## 10. GitHub Actions 方案
 
 建议保留当前 GitHub Pages 发布方式，在发布前增加 blog 构建步骤。
 
@@ -318,7 +397,7 @@ AI 生成 workflow 可以独立：
 - 如果使用 GitHub Actions 调模型，需要通过 GitHub Secrets 管理密钥。
 - 生成结果默认提交到草稿目录，并创建 PR。
 
-## 10. 迁移计划
+## 11. 迁移计划
 
 第一阶段：方案和内容模型
 
@@ -350,22 +429,25 @@ AI 生成 workflow 可以独立：
 - 新增主题池。
 - 建立 Codex 定时任务生成草稿。
 - 生成 PR，由人工确认后发布。
+- 增加多平台发布状态回写机制。
 - 观察质量后决定是否允许自动发布。
 
-## 11. 风险与约束
+## 12. 风险与约束
 
 - 搜索只在前端进行，文章数量很大时需要优化索引体积。
 - AI 生成内容可能重复、空泛或事实不准确，必须保留人工 review 机制。
+- 多平台发布可能出现内容版本不一致，需要以 `canonical` 字段明确主版本。
 - 当前仓库部分中文内容可能存在编码显示问题，实施时需要统一使用 UTF-8。
 - 详情页模板如果过多，会增加维护成本，第一阶段建议只实现 1 到 2 个模板。
 - GitHub Pages 是静态托管，不适合实现服务端搜索或动态权限能力。
 
-## 12. 推荐优先级
+## 13. 推荐优先级
 
 P0：
 
 - Markdown 文章源目录。
 - frontmatter 规范与校验。
+- 多平台发布渠道元数据。
 - 构建脚本生成详情页和索引 JSON。
 - Blog 列表页搜索与标签筛选。
 
@@ -374,6 +456,7 @@ P1：
 - 多模板详情页。
 - 文章上一篇/下一篇。
 - 主题池和 AI 草稿生成。
+- 站外平台发布状态回写。
 
 P2：
 
