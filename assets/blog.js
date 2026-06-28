@@ -151,7 +151,35 @@
     target.append(script);
   }
 
+  function initArticleInteractions() {
+    const comments = document.querySelector("[data-blog-comments]");
+    const status = document.querySelector("[data-blog-comments-status]");
+    const actions = document.querySelectorAll("[data-blog-action]");
+    if (!actions.length) return;
+
+    function showFallback(action) {
+      if (!comments || !status) return;
+      const isLike = action === "like";
+      status.classList.add("is-active");
+      status.innerHTML = isLike
+        ? '点赞能力需要先配置 Giscus，并在 GitHub Discussions 中开启 reactions。当前只是静态预览入口，还没有连接真实讨论串。'
+        : '评论能力需要先配置 Giscus。配置 <code>window.WK_BLOG_COMMENTS</code> 后，这里会加载 GitHub 登录评论区。';
+      comments.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    actions.forEach((actionButton) => {
+      actionButton.addEventListener("click", () => {
+        if (!window.WK_BLOG_COMMENTS) {
+          showFallback(actionButton.dataset.blogAction);
+          return;
+        }
+        comments?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  }
+
   initIndex();
   initComments();
+  initArticleInteractions();
   window.addEventListener("wk:language-change", renderCurrent);
 })();
