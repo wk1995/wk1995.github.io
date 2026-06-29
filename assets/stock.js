@@ -262,12 +262,19 @@
     return Math.max(52, Math.min(138, Math.round(size)));
   }
 
+  function sectorDetailUrl(item) {
+    const params = new URLSearchParams({
+      type: state.boardType,
+      code: item.code || "",
+      name: item.name || "",
+    });
+    return "detail/?" + params.toString();
+  }
+
   function createBubble(item, maxAbs, type, index) {
     const bubble = document.createElement("a");
     bubble.className = "stock-bubble " + type;
-    bubble.href = "https://quote.eastmoney.com/bk/" + item.code + ".html";
-    bubble.target = "_blank";
-    bubble.rel = "noopener";
+    bubble.href = sectorDetailUrl(item);
     bubble.style.setProperty("--bubble-size", bubbleSize(item, maxAbs, index) + "px");
     bubble.title = item.name + " " + formatAmount(item.netMain) + " / " + formatPercent(item.netRatio);
 
@@ -321,9 +328,7 @@
   function createRankRow(item, index, type) {
     const row = document.createElement("a");
     row.className = "stock-rank-row";
-    row.href = "https://quote.eastmoney.com/bk/" + item.code + ".html";
-    row.target = "_blank";
-    row.rel = "noopener";
+    row.href = sectorDetailUrl(item);
 
     const rank = document.createElement("span");
     rank.className = "stock-rank-index";
