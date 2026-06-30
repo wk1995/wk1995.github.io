@@ -1,0 +1,10 @@
+{
+  "app": "adbPilot",
+  "platform": "windows",
+  "version": "0.0.3",
+  "systemos": "64",
+  "sourceRunId": "28426645781",
+  "files": [
+    "AdbPilot-windows-0.0.3-64.zip"
+  ]
+}
