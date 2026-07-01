@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>股票详情 · WK1995</title>
+  <meta name="description" content="A 股个股详情、公司介绍、资金流与 AI 分析。">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../assets/stock.css">
+</head>
+<body data-page="stockItemDetailPage">
+  <nav class="stock-topbar">
+    <a class="stock-brand" href="../watchlist/index.html" aria-label="返回自选股票">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4.5 19.5a1 1 0 0 1-1-1v-13a1 1 0 1 1 2 0v12h14a1 1 0 1 1 0 2h-15Zm3.9-4.65a1 1 0 0 1-.72-1.69l3.5-3.66a1 1 0 0 1 1.38-.06l2.18 1.92 3.78-5.28a1 1 0 1 1 1.62 1.16l-4.42 6.18a1 1 0 0 1-1.47.18l-2.27-2-2.86 2.99a1 1 0 0 1-.72.31Z"></path>
+      </svg>
+      <span>Stock</span>
+    </a>
+    <div class="stock-topbar-actions">
+      <label class="control-group" for="language-select">
+        <span class="control-label" id="language-label" data-i18n="controls.language">语言</span>
+        <select class="language-select" id="language-select" aria-label="语言">
+          <option value="zh">简体中文</option>
+          <option value="en">English</option>
+        </select>
+      </label>
+      <div class="control-group">
+        <span class="control-label" id="theme-caption" data-i18n="controls.theme">主题</span>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换主题">
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path id="theme-icon" d="M9.598 1.591a.75.75 0 0 1 .287.857 6.998 6.998 0 0 0 8.442 8.442.75.75 0 0 1 .857.287.75.75 0 0 1-.131.94A8.5 8.5 0 1 1 8.658.722a.75.75 0 0 1 .94-.131Z"></path>
+          </svg>
+          <span id="theme-label" data-i18n="controls.theme.dark">暗色</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="stock-shell stock-detail-shell">
+    <header class="stock-detail-hero">
+      <div class="stock-detail-title-block">
+        <a class="stock-back-link" href="../watchlist/index.html" data-stock-item-text="back">返回自选股票</a>
+        <p class="stock-kicker" id="stock-item-market">STOCK DETAIL</p>
+        <h1 id="stock-item-name">--</h1>
+        <div class="stock-detail-tags">
+          <span id="stock-item-code">--</span>
+          <span id="stock-item-updated">--</span>
+          <a id="stock-eastmoney-link" href="#" target="_blank" rel="noopener" data-stock-item-text="eastmoney">东方财富</a>
+        </div>
+      </div>
+      <div class="stock-detail-score">
+        <span data-stock-item-text="price">现价</span>
+        <strong id="stock-item-price">--</strong>
+        <em id="stock-item-change">--</em>
+      </div>
+    </header>
+
+    <section class="stock-summary stock-detail-summary" aria-label="个股指标">
+      <div class="stock-stat">
+        <span data-stock-item-text="turnover">成交额</span>
+        <strong id="stock-item-turnover">--</strong>
+      </div>
+      <div class="stock-stat">
+        <span data-stock-item-text="turnoverRate">换手率</span>
+        <strong id="stock-item-turnover-rate">--</strong>
+      </div>
+      <div class="stock-stat">
+        <span data-stock-item-text="marketValue">总市值</span>
+        <strong id="stock-item-market-value">--</strong>
+      </div>
+      <div class="stock-stat">
+        <span data-stock-item-text="mainFlow">主力净流入</span>
+        <strong id="stock-item-main-flow">--</strong>
+      </div>
+    </section>
+
+    <section class="stock-detail-panel stock-item-tabs-panel">
+      <div class="stock-detail-tabs stock-item-tabs" role="tablist" aria-label="股票详情标签">
+        <button class="stock-detail-tab is-active" type="button" data-stock-tab="consult" data-stock-item-text="consultTab">咨询</button>
+        <button class="stock-detail-tab" type="button" data-stock-tab="profile" data-stock-item-text="profileTab">公司介绍</button>
+        <button class="stock-detail-tab" type="button" data-stock-tab="flow" data-stock-item-text="flowTab">资金</button>
+      </div>
+
+      <section class="stock-tab-panel is-active" id="stock-tab-consult">
+        <div class="stock-detail-layout stock-item-consult-layout">
+          <div class="stock-detail-main">
+            <section class="stock-detail-panel stock-news-panel">
+              <div class="stock-detail-panel-head">
+                <div>
+                  <p class="stock-section-label" data-stock-item-text="newsLabel">相关新闻</p>
+                  <h2 data-stock-item-text="newsTitle">个股消息</h2>
+                </div>
+                <button class="stock-refresh stock-news-refresh" id="stock-news-refresh" type="button" data-stock-item-text="refreshNews">刷新</button>
+              </div>
+              <div class="stock-news-list" id="stock-news-list"></div>
+            </section>
+          </div>
+          <aside class="stock-detail-side">
+            <section class="stock-detail-panel stock-ai-panel">
+              <div class="stock-detail-panel-head">
+                <div>
+                  <p class="stock-section-label" data-stock-item-text="aiLabel">AI 分析</p>
+                  <h2 data-stock-item-text="aiTitle">单股研判</h2>
+                </div>
+                <span class="stock-model-chip" id="stock-ai-model">--</span>
+              </div>
+              <button class="stock-ai-button" id="stock-ai-run" type="button" data-stock-item-text="runAi">分析当前股票</button>
+              <div class="stock-ai-status" id="stock-ai-status" role="status" aria-live="polite"></div>
+              <div class="stock-ai-result" id="stock-ai-result"></div>
+            </section>
+          </aside>
+        </div>
+      </section>
+
+      <section class="stock-tab-panel" id="stock-tab-profile">
+        <div class="stock-profile-grid" id="stock-profile-grid"></div>
+        <div class="stock-concept-list" id="stock-concept-list"></div>
+      </section>
+
+      <section class="stock-tab-panel" id="stock-tab-flow">
+        <div class="stock-flow-bars" id="stock-flow-bars"></div>
+        <div class="stock-flow-history" id="stock-flow-history"></div>
+      </section>
+    </section>
+
+    <p class="stock-disclaimer" data-stock-item-text="disclaimer">行情、资金与新闻来自公开接口，AI 内容仅用于辅助梳理，不构成投资建议。</p>
+  </main>
+
+  <script src="../../assets/site.js"></script>
+  <script src="../../assets/model-catalog.js"></script>
+  <script src="../../assets/stock-news-config.js"></script>
+  <script src="../../assets/stock-common.js"></script>
+  <script src="../../assets/stock-item-detail.js"></script>
+</body>
+</html>

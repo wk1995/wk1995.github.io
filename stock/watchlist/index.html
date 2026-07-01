@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>自选股票 · WK1995</title>
+  <meta name="description" content="A 股自选股票本地看板，支持行情跟踪和 AI 分析。">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../assets/stock.css">
+</head>
+<body data-page="stockWatchlistPage">
+  <nav class="stock-topbar">
+    <a class="stock-brand" href="../index.html" aria-label="返回股票看板">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4.5 19.5a1 1 0 0 1-1-1v-13a1 1 0 1 1 2 0v12h14a1 1 0 1 1 0 2h-15Zm3.9-4.65a1 1 0 0 1-.72-1.69l3.5-3.66a1 1 0 0 1 1.38-.06l2.18 1.92 3.78-5.28a1 1 0 1 1 1.62 1.16l-4.42 6.18a1 1 0 0 1-1.47.18l-2.27-2-2.86 2.99a1 1 0 0 1-.72.31Z"></path>
+      </svg>
+      <span>Stock</span>
+    </a>
+    <div class="stock-topbar-actions">
+      <label class="control-group" for="language-select">
+        <span class="control-label" id="language-label" data-i18n="controls.language">语言</span>
+        <select class="language-select" id="language-select" aria-label="语言">
+          <option value="zh">简体中文</option>
+          <option value="en">English</option>
+        </select>
+      </label>
+      <div class="control-group">
+        <span class="control-label" id="theme-caption" data-i18n="controls.theme">主题</span>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换主题">
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path id="theme-icon" d="M9.598 1.591a.75.75 0 0 1 .287.857 6.998 6.998 0 0 0 8.442 8.442.75.75 0 0 1 .857.287.75.75 0 0 1-.131.94A8.5 8.5 0 1 1 8.658.722a.75.75 0 0 1 .94-.131Z"></path>
+          </svg>
+          <span id="theme-label" data-i18n="controls.theme.dark">暗色</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="stock-shell stock-watch-shell">
+    <header class="stock-header">
+      <div>
+        <p class="stock-kicker" data-watch-text="eyebrow">WATCHLIST</p>
+        <h1 data-watch-text="title">自选股票</h1>
+        <p data-watch-text="intro">自选数据保存在当前浏览器本地，下次打开会自动恢复，行情刷新来自东方财富公开接口。</p>
+      </div>
+      <a class="stock-page-link" href="../index.html" data-watch-text="flowBoard">资金看板</a>
+    </header>
+
+    <section class="stock-watch-add" aria-label="添加自选股">
+      <form class="stock-watch-search" id="watch-search-form">
+        <label class="sr-only" for="watch-search-input" data-watch-text="searchLabel">搜索股票</label>
+        <input id="watch-search-input" type="search" autocomplete="off" placeholder="输入股票代码或名称，例如 600519 / 贵州茅台">
+        <button class="stock-refresh" id="watch-search-submit" type="submit" data-watch-text="search">搜索</button>
+      </form>
+      <div class="stock-search-results" id="watch-search-results"></div>
+    </section>
+
+    <section class="stock-summary stock-watch-summary" aria-label="自选概览">
+      <div class="stock-stat">
+        <span data-watch-text="count">自选数量</span>
+        <strong id="watch-count">--</strong>
+      </div>
+      <div class="stock-stat">
+        <span data-watch-text="upDown">上涨 / 下跌</span>
+        <strong id="watch-up-down">--</strong>
+      </div>
+      <div class="stock-stat">
+        <span data-watch-text="topGainer">最强表现</span>
+        <strong id="watch-top-gainer">--</strong>
+      </div>
+      <div class="stock-stat">
+        <span data-watch-text="mainFlow">主力净流入</span>
+        <strong id="watch-main-flow">--</strong>
+      </div>
+    </section>
+
+    <section class="stock-detail-layout stock-watch-layout">
+      <div class="stock-detail-main">
+        <section class="stock-detail-panel">
+          <div class="stock-detail-panel-head">
+            <div>
+              <p class="stock-section-label" data-watch-text="listLabel">LIST</p>
+              <h2 data-watch-text="listTitle">自选列表</h2>
+            </div>
+            <div class="stock-actions">
+              <span class="stock-updated" id="watch-updated">--</span>
+              <button class="stock-refresh" id="watch-refresh" type="button" data-watch-text="refresh">刷新</button>
+            </div>
+          </div>
+          <div class="stock-watch-list" id="watch-list"></div>
+        </section>
+      </div>
+
+      <aside class="stock-detail-side">
+        <section class="stock-detail-panel stock-ai-panel">
+          <div class="stock-detail-panel-head">
+            <div>
+              <p class="stock-section-label" data-watch-text="aiLabel">AI 分析</p>
+              <h2 data-watch-text="aiTitle">自选组合研判</h2>
+            </div>
+            <span class="stock-model-chip" id="watch-ai-model">--</span>
+          </div>
+          <button class="stock-ai-button" id="watch-ai-run" type="button" data-watch-text="runAi">分析自选组合</button>
+          <div class="stock-ai-status" id="watch-ai-status" role="status" aria-live="polite"></div>
+          <div class="stock-ai-result" id="watch-ai-result"></div>
+        </section>
+      </aside>
+    </section>
+
+    <p class="stock-disclaimer" data-watch-text="disclaimer">自选股票和 AI 内容仅用于信息整理，不构成投资建议。</p>
+  </main>
+
+  <script src="../../assets/site.js"></script>
+  <script src="../../assets/model-catalog.js"></script>
+  <script src="../../assets/stock-news-config.js"></script>
+  <script src="../../assets/stock-common.js"></script>
+  <script src="../../assets/stock-watchlist.js"></script>
+</body>
+</html>

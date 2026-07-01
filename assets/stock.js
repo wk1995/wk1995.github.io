@@ -35,6 +35,7 @@
       marketLabel: "市场",
       industry: "行业板块",
       concept: "概念板块",
+      watchlist: "自选股票",
       refresh: "刷新",
       refreshing: "刷新中",
       topInflow: "最大净流入",
@@ -64,6 +65,7 @@
       marketLabel: "Market",
       industry: "Industries",
       concept: "Concepts",
+      watchlist: "Watchlist",
       refresh: "Refresh",
       refreshing: "Refreshing",
       topInflow: "Top inflow",
@@ -268,7 +270,7 @@
       code: item.code || "",
       name: item.name || "",
     });
-    return "detail/?" + params.toString();
+    return "detail/index.html?" + params.toString();
   }
 
   function createBubble(item, maxAbs, type, index) {
