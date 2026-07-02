@@ -74,7 +74,37 @@
       </div>
     </section>
 
-    <section class="stock-detail-panel stock-item-tabs-panel">
+    <section class="stock-detail-panel stock-kline-panel" aria-label="日线 K 线">
+      <div class="stock-detail-panel-head">
+        <div>
+          <p class="stock-section-label" data-stock-item-text="klineLabel">DAILY K</p>
+          <h2 data-stock-item-text="klineTitle">日线 K 线</h2>
+        </div>
+        <div class="stock-kline-legend" id="stock-kline-legend"></div>
+      </div>
+      <div class="stock-kline-canvas-wrap">
+        <canvas id="stock-kline-canvas" aria-label="日线 K 线与成交量图"></canvas>
+      </div>
+      <div class="stock-indicator-grid" id="stock-indicator-grid"></div>
+    </section>
+
+    <section class="stock-detail-panel stock-indicator-detail-panel" id="stock-indicator-detail" hidden>
+      <div class="stock-detail-panel-head">
+        <div>
+          <p class="stock-section-label" data-stock-item-text="indicatorDetailLabel">指标说明</p>
+          <h2 id="stock-indicator-detail-title">--</h2>
+        </div>
+        <button class="stock-mini-button" id="stock-indicator-clear" type="button" data-stock-item-text="backToTabs">返回详情</button>
+      </div>
+      <div class="stock-indicator-detail-body">
+        <strong id="stock-indicator-detail-value">--</strong>
+        <p id="stock-indicator-detail-purpose">--</p>
+        <p id="stock-indicator-detail-use">--</p>
+        <p id="stock-indicator-detail-risk">--</p>
+      </div>
+    </section>
+
+    <section class="stock-detail-panel stock-item-tabs-panel" id="stock-item-tabs-panel">
       <div class="stock-detail-tabs stock-item-tabs" role="tablist" aria-label="股票详情标签">
         <button class="stock-detail-tab is-active" type="button" data-stock-tab="consult" data-stock-item-text="consultTab">咨询</button>
         <button class="stock-detail-tab" type="button" data-stock-tab="profile" data-stock-item-text="profileTab">公司介绍</button>

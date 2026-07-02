@@ -2,6 +2,7 @@
   const SUGGEST_URL = "https://searchapi.eastmoney.com/api/suggest/get";
   const QUOTE_URL = "https://push2.eastmoney.com/api/qt/stock/get";
   const FLOW_URL = "https://push2.eastmoney.com/api/qt/stock/fflow/daykline/get";
+  const KLINE_URL = "https://push2his.eastmoney.com/api/qt/stock/kline/get";
   const SUGGEST_TOKEN = "D43BF722C8E33BDC906FB84D85E326E8";
   const QUOTE_FIELDS = [
     "f43",
@@ -254,6 +255,40 @@
       ? payload.data.klines
       : [];
     return rows.map(normalizeFlowRow);
+  }
+
+  function normalizeDailyKline(row) {
+    const parts = String(row || "").split(",");
+    return {
+      date: parts[0] || "",
+      open: Number(parts[1]),
+      close: Number(parts[2]),
+      high: Number(parts[3]),
+      low: Number(parts[4]),
+      volume: Number(parts[5]),
+      turnover: Number(parts[6]),
+      amplitude: Number(parts[7]),
+      changePercent: Number(parts[8]),
+      change: Number(parts[9]),
+      turnoverRate: Number(parts[10]),
+    };
+  }
+
+  async function fetchDailyKlines(stock, limit) {
+    const params = new URLSearchParams({
+      secid: securityId(stock),
+      fields1: "f1,f2,f3,f4,f5,f6",
+      fields2: "f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61",
+      klt: "101",
+      fqt: "1",
+      end: "20500101",
+      lmt: String(limit || 120),
+    });
+    const payload = await fetchJson(KLINE_URL + "?" + params.toString());
+    const rows = payload && payload.data && Array.isArray(payload.data.klines)
+      ? payload.data.klines
+      : [];
+    return rows.map(normalizeDailyKline);
   }
 
   function newsConfig() {
@@ -510,6 +545,7 @@
     searchStocks: searchStocks,
     fetchQuote: fetchQuote,
     fetchMoneyFlow: fetchMoneyFlow,
+    fetchDailyKlines: fetchDailyKlines,
     fetchNews: fetchNews,
     securityId: securityId,
     inferMarket: inferMarket,
