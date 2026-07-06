@@ -7,19 +7,15 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
+  pull-requests: write
 
 concurrency:
-  group: pages
+  group: refresh-trending
   cancel-in-progress: true
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,26 +28,19 @@ jobs:
       - name: Update trending data
         run: python scripts/update_trending.py --since daily --limit 6
 
-      - name: Commit refreshed data
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/trending.json data/trending.js
-          if git diff --cached --quiet; then
-            echo "No trending changes to commit."
-            exit 0
-          fi
-          git commit -m "【codex】更新 GitHub Trending 数据"
-          git push
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v8
         with:
-          path: .
+          commit-message: "【codex】更新 GitHub Trending 数据"
+          branch: automated/refresh-github-trending
+          delete-branch: true
+          title: "【codex】更新 GitHub Trending 数据"
+          body: |
+            自动刷新 GitHub Trending 数据。
 
-      - name: Deploy Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+            更新文件：
+            - `data/trending.json`
+            - `data/trending.js`
+          add-paths: |
+            data/trending.json
+            data/trending.js
