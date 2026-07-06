@@ -1,103 +1,103 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-07-01T05:52:19.787948+00:00",
+  "generated_at": "2026-07-06T13:38:37.971837+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "hasaneyldrm/exercises-dataset",
-      "owner": "hasaneyldrm",
-      "name": "exercises-dataset",
-      "url": "https://github.com/hasaneyldrm/exercises-dataset",
-      "description": "A comprehensive dataset of 433 fitness exercises. Each entry includes name, category, target muscle group, equipment, instructions, thumbnail image, and animation video.",
+      "repo": "asgeirtj/system_prompts_leaks",
+      "owner": "asgeirtj",
+      "name": "system_prompts_leaks",
+      "url": "https://github.com/asgeirtj/system_prompts_leaks",
+      "description": "Extracted system prompts from Anthropic - Claude Fable 5, Opus 4.8, Claude Code, Claude Design. OpenAI - ChatGPT 5.5 Thinking, GPT 5.5 Instant, Codex. Google - Gemini 3.5 Flash, 3.1 Pro, Antigravity. xAI - Grok, Cursor, Copilot, VS Code, Perplexity, and more. Updated regularly.",
       "descriptions": {
-        "zh": "包含 433 项健身练习的综合数据集。每个条目包括名称、类别、目标肌肉群、设备、说明、缩略图和动画视频。",
-        "en": "A comprehensive dataset of 433 fitness exercises. Each entry includes name, category, target muscle group, equipment, instructions, thumbnail image, and animation video."
+        "zh": "从 Anthropic 中提取的系统提示 - Claude Fable 5、Opus 4.8、Claude Code、Claude Design。 OpenAI - ChatGPT 5.5 思维、GPT 5.5 即时、Codex。 Google - Gemini 3.5 Flash、3.1 Pro、反重力。 xAI - Grok、Cursor、Copilot、VS Code、Perplexity 等。定期更新。",
+        "en": "Extracted system prompts from Anthropic - Claude Fable 5, Opus 4.8, Claude Code, Claude Design. OpenAI - ChatGPT 5.5 Thinking, GPT 5.5 Instant, Codex. Google - Gemini 3.5 Flash, 3.1 Pro, Antigravity. xAI - Grok, Cursor, Copilot, VS Code, Perplexity, and more. Updated regularly."
       },
-      "language": "HTML",
-      "stars_total": 7215,
-      "forks_total": 845,
-      "stars_today": 1343
+      "language": "JavaScript",
+      "stars_total": 50838,
+      "forks_total": 8288,
+      "stars_today": 1386
     },
     {
       "rank": 2,
-      "repo": "usestrix/strix",
-      "owner": "usestrix",
-      "name": "strix",
-      "url": "https://github.com/usestrix/strix",
-      "description": "Open-source AI penetration testing tool to find and fix your app’s vulnerabilities.",
+      "repo": "addyosmani/agent-skills",
+      "owner": "addyosmani",
+      "name": "agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "description": "Production-grade engineering skills for AI coding agents.",
       "descriptions": {
-        "zh": "开源人工智能渗透测试工具，用于查找并修复应用程序的漏洞。",
-        "en": "Open-source AI penetration testing tool to find and fix your app’s vulnerabilities."
+        "zh": "AI 编码代理的生产级工程技能。",
+        "en": "Production-grade engineering skills for AI coding agents."
       },
-      "language": "Python",
-      "stars_total": 28339,
-      "forks_total": 3135,
-      "stars_today": 515
+      "language": "Shell",
+      "stars_total": 70355,
+      "forks_total": 7623,
+      "stars_today": 1114
     },
     {
       "rank": 3,
-      "repo": "msitarzewski/agency-agents",
-      "owner": "msitarzewski",
-      "name": "agency-agents",
-      "url": "https://github.com/msitarzewski/agency-agents",
-      "description": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.",
+      "repo": "Zackriya-Solutions/meetily",
+      "owner": "Zackriya-Solutions",
+      "name": "meetily",
+      "url": "https://github.com/Zackriya-Solutions/meetily",
+      "description": "Privacy first, AI meeting assistant with 4x faster Parakeet/Whisper live transcription, speaker diarization, and Ollama summarization built on Rust. 100% local processing. no cloud required. Meetily (Meetly Ai - https://meetily.ai ) is the #1 Self-hosted, Open-source Ai meeting note taker for macOS & Windows.",
       "descriptions": {
-        "zh": "触手可及的完整人工智能机构 - 从前端向导到 Reddit 社区忍者，从奇思妙想的注入者到现实检查者。每个代理都是一位具有个性、流程和经过验证的可交付成果的专业专家。",
-        "en": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables."
+        "zh": "隐私第一，AI 会议助手具有 4 倍快的 Parakeet/Whisper 实时转录、发言者分类和基于 Rust 构建的 Ollama 摘要。 100%本地加工。无需云。 Meetily（Meetly Ai - https://meetily.ai）是适用于 macOS 和 Windows 的排名第一的自托管开源人工智能会议记录工具。",
+        "en": "Privacy first, AI meeting assistant with 4x faster Parakeet/Whisper live transcription, speaker diarization, and Ollama summarization built on Rust. 100% local processing. no cloud required. Meetily (Meetly Ai - https://meetily.ai ) is the #1 Self-hosted, Open-source Ai meeting note taker for macOS & Windows."
       },
-      "language": "Shell",
-      "stars_total": 121326,
-      "forks_total": 19812,
-      "stars_today": 1791
+      "language": "Rust",
+      "stars_total": 18466,
+      "forks_total": 1890,
+      "stars_today": 2493
     },
     {
       "rank": 4,
-      "repo": "altic-dev/FluidVoice",
-      "owner": "altic-dev",
-      "name": "FluidVoice",
-      "url": "https://github.com/altic-dev/FluidVoice",
-      "description": "Fastest and only macOS Dictation app with on-device STT and custom trained AI enhancement model - Local Wispr Flow alternative. One ⭐ takes us a long way :)) Windows, iOS and Linux coming soon.",
+      "repo": "ruvnet/RuView",
+      "owner": "ruvnet",
+      "name": "RuView",
+      "url": "https://github.com/ruvnet/RuView",
+      "description": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video.",
       "descriptions": {
-        "zh": "最快且唯一的 macOS 听写应用程序，具有设备上 STT 和自定义训练的 AI 增强模型 - 本地 Wispr Flow 替代方案。 One ⭐ 让我们走了很长一段路:)) Windows、iOS 和 Linux 即将推出。",
-        "en": "Fastest and only macOS Dictation app with on-device STT and custom trained AI enhancement model - Local Wispr Flow alternative. One ⭐ takes us a long way :)) Windows, iOS and Linux coming soon."
+        "zh": "π RuView 将商用 WiFi 信号转化为实时空间智能、生命体征监测和存在检测 - 所有这些都无需视频像素。",
+        "en": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video."
       },
-      "language": "Swift",
-      "stars_total": 5063,
-      "forks_total": 307,
-      "stars_today": 588
+      "language": "Rust",
+      "stars_total": 77052,
+      "forks_total": 10329,
+      "stars_today": 471
     },
     {
       "rank": 5,
-      "repo": "diegosouzapw/OmniRoute",
-      "owner": "diegosouzapw",
-      "name": "OmniRoute",
-      "url": "https://github.com/diegosouzapw/OmniRoute",
-      "description": "Never stop coding. Free AI gateway: one endpoint, 231+ providers (50+ free), connect Claude Code, Codex, Cursor, Cline & Copilot to FREE Claude/GPT/Gemini. RTK+Caveman stacked compression saves 15-95% tokens, smart auto-fallback, MCP/A2A, multimodal APIs, Desktop/PWA.",
+      "repo": "Leonxlnx/taste-skill",
+      "owner": "Leonxlnx",
+      "name": "taste-skill",
+      "url": "https://github.com/Leonxlnx/taste-skill",
+      "description": "Taste-Skill - gives your AI good taste. stops the AI from generating boring, generic slop",
       "descriptions": {
-        "zh": "永远不要停止编码。免费 AI 网关：一个端点、231 多个提供商（50 多个免费），将 Claude Code、Codex、Cursor、Cline 和 Copilot 连接到免费的 Claude/GPT/Gemini。 RTK+Caveman 堆叠压缩可节省 15-95% 的令牌、智能自动回退、MCP/A2A、多模式 API、桌面/PWA。",
-        "en": "Never stop coding. Free AI gateway: one endpoint, 231+ providers (50+ free), connect Claude Code, Codex, Cursor, Cline & Copilot to FREE Claude/GPT/Gemini. RTK+Caveman stacked compression saves 15-95% tokens, smart auto-fallback, MCP/A2A, multimodal APIs, Desktop/PWA."
+        "zh": "品味技能 - 给你的人工智能良好的品味。阻止人工智能产生无聊的、通用的斜坡",
+        "en": "Taste-Skill - gives your AI good taste. stops the AI from generating boring, generic slop"
       },
-      "language": "TypeScript",
-      "stars_total": 8772,
-      "forks_total": 1408,
-      "stars_today": 387
+      "language": "JavaScript",
+      "stars_total": 58394,
+      "forks_total": 3982,
+      "stars_today": 1453
     },
     {
       "rank": 6,
-      "repo": "browser-use/video-use",
-      "owner": "browser-use",
-      "name": "video-use",
-      "url": "https://github.com/browser-use/video-use",
-      "description": "Edit videos with coding agents",
+      "repo": "alirezarezvani/claude-skills",
+      "owner": "alirezarezvani",
+      "name": "claude-skills",
+      "url": "https://github.com/alirezarezvani/claude-skills",
+      "description": "337 Claude Code skills & agent skills & plugins (30+ Agents, 70+ custom commands, 330+ skills, customizable references, scripts)for Claude Code, Codex, Gemini CLI, Cursor, and 8 more coding agents — engineering, marketing, product, compliance, C-level advisory, research, business operations, commercial & finance, and your daily productivity skills.",
       "descriptions": {
-        "zh": "使用编码代理编辑视频",
-        "en": "Edit videos with coding agents"
+        "zh": "337 个 Claude Code 技能和代理技能和插件（30 多个代理、70 多个自定义命令、330 多个技能、可自定义参考、脚本），适用于 Claude Code、Codex、Gemini CLI、Cursor 和另外 8 个编码代理 — 工程、营销、产品、合规性、C 级咨询、研究、业务运营、商业和财务以及您的日常生产力技能。",
+        "en": "337 Claude Code skills & agent skills & plugins (30+ Agents, 70+ custom commands, 330+ skills, customizable references, scripts)for Claude Code, Codex, Gemini CLI, Cursor, and 8 more coding agents — engineering, marketing, product, compliance, C-level advisory, research, business operations, commercial & finance, and your daily productivity skills."
       },
       "language": "Python",
-      "stars_total": 12780,
-      "forks_total": 1620,
-      "stars_today": 721
+      "stars_total": 20945,
+      "forks_total": 2819,
+      "stars_today": 611
     }
   ]
 }
