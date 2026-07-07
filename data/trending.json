@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-07-06T13:38:37.971837+00:00",
+  "generated_at": "2026-07-07T05:04:04.911618+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,9 +15,9 @@
         "en": "Extracted system prompts from Anthropic - Claude Fable 5, Opus 4.8, Claude Code, Claude Design. OpenAI - ChatGPT 5.5 Thinking, GPT 5.5 Instant, Codex. Google - Gemini 3.5 Flash, 3.1 Pro, Antigravity. xAI - Grok, Cursor, Copilot, VS Code, Perplexity, and more. Updated regularly."
       },
       "language": "JavaScript",
-      "stars_total": 50838,
-      "forks_total": 8288,
-      "stars_today": 1386
+      "stars_total": 51864,
+      "forks_total": 8455,
+      "stars_today": 1378
     },
     {
       "rank": 2,
@@ -30,10 +30,10 @@
         "zh": "AI 编码代理的生产级工程技能。",
         "en": "Production-grade engineering skills for AI coding agents."
       },
-      "language": "Shell",
-      "stars_total": 70355,
-      "forks_total": 7623,
-      "stars_today": 1114
+      "language": "JavaScript",
+      "stars_total": 71076,
+      "forks_total": 7694,
+      "stars_today": 1112
     },
     {
       "rank": 3,
@@ -47,9 +47,9 @@
         "en": "Privacy first, AI meeting assistant with 4x faster Parakeet/Whisper live transcription, speaker diarization, and Ollama summarization built on Rust. 100% local processing. no cloud required. Meetily (Meetly Ai - https://meetily.ai ) is the #1 Self-hosted, Open-source Ai meeting note taker for macOS & Windows."
       },
       "language": "Rust",
-      "stars_total": 18466,
-      "forks_total": 1890,
-      "stars_today": 2493
+      "stars_total": 19652,
+      "forks_total": 1987,
+      "stars_today": 2494
     },
     {
       "rank": 4,
@@ -63,9 +63,9 @@
         "en": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video."
       },
       "language": "Rust",
-      "stars_total": 77052,
-      "forks_total": 10329,
-      "stars_today": 471
+      "stars_total": 77702,
+      "forks_total": 10436,
+      "stars_today": 470
     },
     {
       "rank": 5,
@@ -79,9 +79,9 @@
         "en": "Taste-Skill - gives your AI good taste. stops the AI from generating boring, generic slop"
       },
       "language": "JavaScript",
-      "stars_total": 58394,
-      "forks_total": 3982,
-      "stars_today": 1453
+      "stars_total": 59250,
+      "forks_total": 4033,
+      "stars_today": 1458
     },
     {
       "rank": 6,
@@ -89,15 +89,15 @@
       "owner": "alirezarezvani",
       "name": "claude-skills",
       "url": "https://github.com/alirezarezvani/claude-skills",
-      "description": "337 Claude Code skills & agent skills & plugins (30+ Agents, 70+ custom commands, 330+ skills, customizable references, scripts)for Claude Code, Codex, Gemini CLI, Cursor, and 8 more coding agents — engineering, marketing, product, compliance, C-level advisory, research, business operations, commercial & finance, and your daily productivity skills.",
+      "description": "345 Claude Code skills & agent skills & plugins (30+ Agents, 70+ custom commands, 330+ skills, customizable references, scripts)for Claude Code, Codex, Gemini CLI, Cursor, and 8 more coding agents — engineering, marketing, product, compliance, C-level advisory, research, business operations, commercial & finance, and your daily productivity skills.",
       "descriptions": {
-        "zh": "337 个 Claude Code 技能和代理技能和插件（30 多个代理、70 多个自定义命令、330 多个技能、可自定义参考、脚本），适用于 Claude Code、Codex、Gemini CLI、Cursor 和另外 8 个编码代理 — 工程、营销、产品、合规性、C 级咨询、研究、业务运营、商业和财务以及您的日常生产力技能。",
-        "en": "337 Claude Code skills & agent skills & plugins (30+ Agents, 70+ custom commands, 330+ skills, customizable references, scripts)for Claude Code, Codex, Gemini CLI, Cursor, and 8 more coding agents — engineering, marketing, product, compliance, C-level advisory, research, business operations, commercial & finance, and your daily productivity skills."
+        "zh": "345 个 Claude Code 技能和代理技能和插件（30 多个代理、70 多个自定义命令、330 多个技能、可自定义参考、脚本），适用于 Claude Code、Codex、Gemini CLI、Cursor 和另外 8 个编码代理 — 工程、营销、产品、合规性、C 级咨询、研究、业务运营、商业和财务以及您的日常生产力技能。",
+        "en": "345 Claude Code skills & agent skills & plugins (30+ Agents, 70+ custom commands, 330+ skills, customizable references, scripts)for Claude Code, Codex, Gemini CLI, Cursor, and 8 more coding agents — engineering, marketing, product, compliance, C-level advisory, research, business operations, commercial & finance, and your daily productivity skills."
       },
       "language": "Python",
-      "stars_total": 20945,
-      "forks_total": 2819,
-      "stars_today": 611
+      "stars_total": 21262,
+      "forks_total": 2849,
+      "stars_today": 610
     }
   ]
 }
