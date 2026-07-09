@@ -1,42 +1,10 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-07-08T04:27:31.420110+00:00",
+  "generated_at": "2026-07-09T05:03:29.210777+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "MadsLorentzen/ai-job-search",
-      "owner": "MadsLorentzen",
-      "name": "ai-job-search",
-      "url": "https://github.com/MadsLorentzen/ai-job-search",
-      "description": "AI-powered job application framework built on Claude Code. Fork it, fill in your profile, and let Claude evaluate jobs, tailor CVs, write cover letters, and prepare you for interviews.",
-      "descriptions": {
-        "zh": "基于 Claude Code 构建的人工智能驱动的职位申请框架。叉开它，填写你的个人资料，让克劳德评估工作，定制简历，写求职信，并为你的面试做好准备。",
-        "en": "AI-powered job application framework built on Claude Code. Fork it, fill in your profile, and let Claude evaluate jobs, tailor CVs, write cover letters, and prepare you for interviews."
-      },
-      "language": "TypeScript",
-      "stars_total": 11641,
-      "forks_total": 3805,
-      "stars_today": 2514
-    },
-    {
-      "rank": 2,
-      "repo": "Zackriya-Solutions/meetily",
-      "owner": "Zackriya-Solutions",
-      "name": "meetily",
-      "url": "https://github.com/Zackriya-Solutions/meetily",
-      "description": "Privacy first, AI meeting assistant with 4x faster Parakeet/Whisper live transcription, speaker diarization, and Ollama summarization built on Rust. 100% local processing. no cloud required. Meetily (Meetly Ai - https://meetily.ai ) is the #1 Self-hosted, Open-source Ai meeting note taker for macOS & Windows.",
-      "descriptions": {
-        "zh": "隐私第一，AI 会议助手具有 4 倍快的 Parakeet/Whisper 实时转录、发言者分类和基于 Rust 构建的 Ollama 摘要。 100%本地加工。无需云。 Meetily（Meetly Ai - https://meetily.ai）是适用于 macOS 和 Windows 的排名第一的自托管开源人工智能会议记录工具。",
-        "en": "Privacy first, AI meeting assistant with 4x faster Parakeet/Whisper live transcription, speaker diarization, and Ollama summarization built on Rust. 100% local processing. no cloud required. Meetily (Meetly Ai - https://meetily.ai ) is the #1 Self-hosted, Open-source Ai meeting note taker for macOS & Windows."
-      },
-      "language": "Rust",
-      "stars_total": 20951,
-      "forks_total": 2090,
-      "stars_today": 1777
-    },
-    {
-      "rank": 3,
       "repo": "addyosmani/agent-skills",
       "owner": "addyosmani",
       "name": "agent-skills",
@@ -47,12 +15,12 @@
         "en": "Production-grade engineering skills for AI coding agents."
       },
       "language": "JavaScript",
-      "stars_total": 72340,
-      "forks_total": 7830,
-      "stars_today": 1317
+      "stars_total": 74588,
+      "forks_total": 8043,
+      "stars_today": 1297
     },
     {
-      "rank": 4,
+      "rank": 2,
       "repo": "ruvnet/RuView",
       "owner": "ruvnet",
       "name": "RuView",
@@ -63,41 +31,73 @@
         "en": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video."
       },
       "language": "Rust",
-      "stars_total": 78608,
-      "forks_total": 10580,
-      "stars_today": 1129
+      "stars_total": 79264,
+      "forks_total": 10661,
+      "stars_today": 799
+    },
+    {
+      "rank": 3,
+      "repo": "TencentCloud/TencentDB-Agent-Memory",
+      "owner": "TencentCloud",
+      "name": "TencentDB-Agent-Memory",
+      "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory",
+      "description": "TencentDB Agent Memory delivers fully local long-term memory for AI Agents via a 4-tier progressive pipeline, with zero external API dependencies.",
+      "descriptions": {
+        "zh": "腾讯数据库代理内存通过 4 层渐进式管道为 AI 代理提供完全本地的长期内存，且外部 API 依赖性为零。",
+        "en": "TencentDB Agent Memory delivers fully local long-term memory for AI Agents via a 4-tier progressive pipeline, with zero external API dependencies."
+      },
+      "language": "TypeScript",
+      "stars_total": 7780,
+      "forks_total": 719,
+      "stars_today": 318
+    },
+    {
+      "rank": 4,
+      "repo": "prisma/prisma",
+      "owner": "prisma",
+      "name": "prisma",
+      "url": "https://github.com/prisma/prisma",
+      "description": "Next-generation ORM for Node.js & TypeScript | PostgreSQL, MySQL, MariaDB, SQL Server, SQLite, MongoDB and CockroachDB",
+      "descriptions": {
+        "zh": "Node.js 和 TypeScript 的下一代 ORM | PostgreSQL、MySQL、MariaDB、SQL Server、SQLite、MongoDB 和 CockroachDB",
+        "en": "Next-generation ORM for Node.js & TypeScript | PostgreSQL, MySQL, MariaDB, SQL Server, SQLite, MongoDB and CockroachDB"
+      },
+      "language": "TypeScript",
+      "stars_total": 46634,
+      "forks_total": 2286,
+      "stars_today": 46
     },
     {
       "rank": 5,
-      "repo": "asgeirtj/system_prompts_leaks",
-      "owner": "asgeirtj",
-      "name": "system_prompts_leaks",
-      "url": "https://github.com/asgeirtj/system_prompts_leaks",
-      "description": "Extracted system prompts from Anthropic - Claude Fable 5, Opus 4.8, Claude Code, Claude Design. OpenAI - ChatGPT 5.5 Thinking, GPT 5.5 Instant, Codex. Google - Gemini 3.5 Flash, 3.1 Pro, Antigravity. xAI - Grok, Cursor, Copilot, VS Code, Perplexity, and more. Updated regularly.",
+      "repo": "mvanhorn/last30days-skill",
+      "owner": "mvanhorn",
+      "name": "last30days-skill",
+      "url": "https://github.com/mvanhorn/last30days-skill",
+      "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
       "descriptions": {
-        "zh": "从 Anthropic 中提取的系统提示 - Claude Fable 5、Opus 4.8、Claude Code、Claude Design。 OpenAI - ChatGPT 5.5 思维、GPT 5.5 即时、Codex。 Google - Gemini 3.5 Flash、3.1 Pro、反重力。 xAI - Grok、Cursor、Copilot、VS Code、Perplexity 等。定期更新。",
-        "en": "Extracted system prompts from Anthropic - Claude Fable 5, Opus 4.8, Claude Code, Claude Design. OpenAI - ChatGPT 5.5 Thinking, GPT 5.5 Instant, Codex. Google - Gemini 3.5 Flash, 3.1 Pro, Antigravity. xAI - Grok, Cursor, Copilot, VS Code, Perplexity, and more. Updated regularly."
+        "zh": "AI 代理技能可研究 Reddit、X、YouTube、HN、Polymarket 和网络上的任何主题，然后综合得出有依据的摘要",
+        "en": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary"
       },
-      "language": "JavaScript",
-      "stars_total": 53210,
-      "forks_total": 8670,
-      "stars_today": 1691
+      "language": "Python",
+      "stars_total": 50903,
+      "forks_total": 4251,
+      "stars_today": 352
     },
     {
       "rank": 6,
-      "repo": "TencentCloud/CubeSandbox",
-      "owner": "TencentCloud",
-      "name": "CubeSandbox",
-      "url": "https://github.com/TencentCloud/CubeSandbox",
-      "description": "Instant, Concurrent, Secure & Lightweight Sandbox for AI Agents.",
+      "repo": "argoproj/argo-cd",
+      "owner": "argoproj",
+      "name": "argo-cd",
+      "url": "https://github.com/argoproj/argo-cd",
+      "description": "Declarative Continuous Deployment for Kubernetes",
       "descriptions": {
-        "zh": "适用于 AI 代理的即时、并发、安全和轻量级沙箱。",
-        "en": "Instant, Concurrent, Secure & Lightweight Sandbox for AI Agents."
+        "zh": "Kubernetes 声明式持续部署",
+        "en": "Declarative Continuous Deployment for Kubernetes"
       },
-      "language": "Rust",
-      "stars_total": 8542,
-      "forks_total": 716,
-      "stars_today": 664
+      "language": "Go",
+      "stars_total": 23464,
+      "forks_total": 7427,
+      "stars_today": 29
     }
   ]
 }
