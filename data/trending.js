@@ -1,10 +1,42 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-07-09T05:03:29.210777+00:00",
+  "generated_at": "2026-07-10T05:04:15.370410+00:00",
   "items": [
     {
       "rank": 1,
+      "repo": "MadsLorentzen/ai-job-search",
+      "owner": "MadsLorentzen",
+      "name": "ai-job-search",
+      "url": "https://github.com/MadsLorentzen/ai-job-search",
+      "description": "AI-powered job application framework built on Claude Code. Fork it, fill in your profile, and let Claude evaluate jobs, tailor CVs, write cover letters, and prepare you for interviews.",
+      "descriptions": {
+        "zh": "基于 Claude Code 构建的人工智能驱动的职位申请框架。叉开它，填写你的个人资料，让克劳德评估工作，定制简历，写求职信，并为你的面试做好准备。",
+        "en": "AI-powered job application framework built on Claude Code. Fork it, fill in your profile, and let Claude evaluate jobs, tailor CVs, write cover letters, and prepare you for interviews."
+      },
+      "language": "TypeScript",
+      "stars_total": 19545,
+      "forks_total": 5600,
+      "stars_today": 3716
+    },
+    {
+      "rank": 2,
+      "repo": "SmartlyDressedGames/U3-SDK",
+      "owner": "SmartlyDressedGames",
+      "name": "U3-SDK",
+      "url": "https://github.com/SmartlyDressedGames/U3-SDK",
+      "description": "Source code for Unturned, a free open-world zombie survival sandbox game.",
+      "descriptions": {
+        "zh": "Unturned 的源代码，一款免费的开放世界僵尸生存沙盒游戏。",
+        "en": "Source code for Unturned, a free open-world zombie survival sandbox game."
+      },
+      "language": "C#",
+      "stars_total": 2125,
+      "forks_total": 269,
+      "stars_today": 524
+    },
+    {
+      "rank": 3,
       "repo": "addyosmani/agent-skills",
       "owner": "addyosmani",
       "name": "agent-skills",
@@ -15,89 +47,57 @@ window.__TRENDING_DATA__ = {
         "en": "Production-grade engineering skills for AI coding agents."
       },
       "language": "JavaScript",
-      "stars_total": 74588,
-      "forks_total": 8043,
-      "stars_today": 1297
-    },
-    {
-      "rank": 2,
-      "repo": "ruvnet/RuView",
-      "owner": "ruvnet",
-      "name": "RuView",
-      "url": "https://github.com/ruvnet/RuView",
-      "description": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video.",
-      "descriptions": {
-        "zh": "π RuView 将商用 WiFi 信号转化为实时空间智能、生命体征监测和存在检测 - 所有这些都无需视频像素。",
-        "en": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video."
-      },
-      "language": "Rust",
-      "stars_total": 79264,
-      "forks_total": 10661,
-      "stars_today": 799
-    },
-    {
-      "rank": 3,
-      "repo": "TencentCloud/TencentDB-Agent-Memory",
-      "owner": "TencentCloud",
-      "name": "TencentDB-Agent-Memory",
-      "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory",
-      "description": "TencentDB Agent Memory delivers fully local long-term memory for AI Agents via a 4-tier progressive pipeline, with zero external API dependencies.",
-      "descriptions": {
-        "zh": "腾讯数据库代理内存通过 4 层渐进式管道为 AI 代理提供完全本地的长期内存，且外部 API 依赖性为零。",
-        "en": "TencentDB Agent Memory delivers fully local long-term memory for AI Agents via a 4-tier progressive pipeline, with zero external API dependencies."
-      },
-      "language": "TypeScript",
-      "stars_total": 7780,
-      "forks_total": 719,
-      "stars_today": 318
+      "stars_total": 76094,
+      "forks_total": 8180,
+      "stars_today": 2554
     },
     {
       "rank": 4,
-      "repo": "prisma/prisma",
-      "owner": "prisma",
-      "name": "prisma",
-      "url": "https://github.com/prisma/prisma",
-      "description": "Next-generation ORM for Node.js & TypeScript | PostgreSQL, MySQL, MariaDB, SQL Server, SQLite, MongoDB and CockroachDB",
+      "repo": "VoltAgent/awesome-design-md",
+      "owner": "VoltAgent",
+      "name": "awesome-design-md",
+      "url": "https://github.com/VoltAgent/awesome-design-md",
+      "description": "A collection of DESIGN.md files analysis by popular brand design systems. Drop one into your project and let coding agents generate a matching UI.",
       "descriptions": {
-        "zh": "Node.js 和 TypeScript 的下一代 ORM | PostgreSQL、MySQL、MariaDB、SQL Server、SQLite、MongoDB 和 CockroachDB",
-        "en": "Next-generation ORM for Node.js & TypeScript | PostgreSQL, MySQL, MariaDB, SQL Server, SQLite, MongoDB and CockroachDB"
+        "zh": "流行品牌设计系统的 DESIGN.md 文件分析集合。将一个项目放入您的项目中，让编码代理生成匹配的 UI。",
+        "en": "A collection of DESIGN.md files analysis by popular brand design systems. Drop one into your project and let coding agents generate a matching UI."
       },
-      "language": "TypeScript",
-      "stars_total": 46634,
-      "forks_total": 2286,
-      "stars_today": 46
+      "language": null,
+      "stars_total": 99994,
+      "forks_total": 11590,
+      "stars_today": 1391
     },
     {
       "rank": 5,
-      "repo": "mvanhorn/last30days-skill",
-      "owner": "mvanhorn",
-      "name": "last30days-skill",
-      "url": "https://github.com/mvanhorn/last30days-skill",
-      "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
+      "repo": "iOfficeAI/OfficeCLI",
+      "owner": "iOfficeAI",
+      "name": "OfficeCLI",
+      "url": "https://github.com/iOfficeAI/OfficeCLI",
+      "description": "OfficeCLI is the first and best Office suite purpose-built for AI agents to read, edit, and automate Word, Excel, and PowerPoint files. Free, open-source, single binary, no Office installation required.",
       "descriptions": {
-        "zh": "AI 代理技能可研究 Reddit、X、YouTube、HN、Polymarket 和网络上的任何主题，然后综合得出有依据的摘要",
-        "en": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary"
+        "zh": "OfficeCLI 是第一个也是最好的 Office 套件，专为 AI 代理构建，用于读取、编辑和自动化 Word、Excel 和 PowerPoint 文件。免费、开源、单一二进制文件，无需安装 Office。",
+        "en": "OfficeCLI is the first and best Office suite purpose-built for AI agents to read, edit, and automate Word, Excel, and PowerPoint files. Free, open-source, single binary, no Office installation required."
       },
-      "language": "Python",
-      "stars_total": 50903,
-      "forks_total": 4251,
-      "stars_today": 352
+      "language": "C#",
+      "stars_total": 13697,
+      "forks_total": 930,
+      "stars_today": 1929
     },
     {
       "rank": 6,
-      "repo": "argoproj/argo-cd",
-      "owner": "argoproj",
-      "name": "argo-cd",
-      "url": "https://github.com/argoproj/argo-cd",
-      "description": "Declarative Continuous Deployment for Kubernetes",
+      "repo": "wonderwhy-er/DesktopCommanderMCP",
+      "owner": "wonderwhy-er",
+      "name": "DesktopCommanderMCP",
+      "url": "https://github.com/wonderwhy-er/DesktopCommanderMCP",
+      "description": "This is MCP server for Claude that gives it terminal control, file system search and diff file editing capabilities",
       "descriptions": {
-        "zh": "Kubernetes 声明式持续部署",
-        "en": "Declarative Continuous Deployment for Kubernetes"
+        "zh": "这是 Claude 的 MCP 服务器，为其提供终端控制、文件系统搜索和 diff 文件编辑功能",
+        "en": "This is MCP server for Claude that gives it terminal control, file system search and diff file editing capabilities"
       },
-      "language": "Go",
-      "stars_total": 23464,
-      "forks_total": 7427,
-      "stars_today": 29
+      "language": "TypeScript",
+      "stars_total": 6608,
+      "forks_total": 782,
+      "stars_today": 185
     }
   ]
 }
