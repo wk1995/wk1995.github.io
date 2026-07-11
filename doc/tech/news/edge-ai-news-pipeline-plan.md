@@ -1,8 +1,8 @@
-# 端侧 AI 资讯抓取与自动成文方案
+# 端侧 AI 资讯抓取与自动成文专项方案
 
 ## 1. 目标
 
-建设一套面向端侧 AI 方向的资讯抓取与自动成文流水线。它可以按固定主题自动收集指定时间范围内的新闻、热点、论文、产品动态和 GitHub 仓库，也可以接受临时关键词输入，整理成一篇可人工 review 的 Markdown 草稿，最终进入本站 blog 和微信公众号分发流程。
+本方案是端侧 AI 方向的专项方案，基于 [通用资讯抓取与自动成文方案](general-news-draft-pipeline-plan.md) 实现。通用方案负责关键词检索、多来源抓取、去重、评分、来源注释和 Markdown 草稿生成；本方案只定义端侧 AI 的主题边界、关键词扩展、来源优先级、评分权重和文章模板。
 
 目标不是生成泛泛的 AI 新闻摘要，而是持续沉淀与端侧 AI 有关的有效信息：
 
@@ -15,15 +15,42 @@
 - 手机、IoT、车机、可穿戴、PC 上的 AI 能力。
 - 相关 SDK、框架、芯片、系统 API、开源仓库。
 
-## 2. 使用场景
+## 2. 与通用方案的关系
 
-### 2.1 定时资讯文章
+端侧 AI 专项方案不重复实现抓取流水线，而是复用通用方案：
 
-每周自动生成一篇端侧 AI 周报草稿。
+```text
+通用资讯抓取与自动成文方案
+  -> 关键词输入
+  -> 多来源抓取
+  -> 去重与评分
+  -> 来源注释
+  -> Markdown 草稿生成
+
+端侧 AI 专项方案
+  -> 端侧 AI 主题池
+  -> 端侧 AI 关键词扩展
+  -> 端侧 AI 来源优先级
+  -> 端侧 AI 评分权重
+  -> 端侧 AI 文章模板
+```
+
+因此，脚本入口仍建议使用通用脚本：
+
+```bash
+node scripts/news/build-news-draft.mjs \
+  --topic-config content/blog/topics/edge-ai-news.json \
+  --range 7d \
+  --mode weekly
+```
+
+## 3. 使用场景
+
+端侧 AI 周报：
 
 ```text
 每周定时任务
-  -> 读取默认主题池
+  -> 读取端侧 AI 主题池
   -> 抓取最近 7 天资讯
   -> 去重和评分
   -> 生成 Markdown 周报草稿
@@ -31,11 +58,7 @@
   -> 人工 review 后发布
 ```
 
-### 2.2 指定关键词研究
-
-手动输入关键词和时间范围，生成专题文章草稿。
-
-示例：
+端侧 AI 专题：
 
 ```text
 关键词：Android on-device LLM, MediaPipe, Gemini Nano
@@ -43,11 +66,7 @@
 输出类型：专题综述
 ```
 
-### 2.3 GitHub 仓库雷达
-
-按主题抓取 GitHub 仓库、release、star 增长和 README 摘要，整理成工具/项目观察文章。
-
-示例：
+GitHub 仓库雷达：
 
 ```text
 关键词：on-device-ai, llama.cpp android, mnn llm, onnxruntime mobile
@@ -55,34 +74,9 @@
 输出类型：GitHub 项目雷达
 ```
 
-## 3. 输入参数
+## 4. 专项主题池
 
-脚本建议支持命令行参数。
-
-```bash
-node scripts/news/build-edge-ai-news.mjs \
-  --keywords "on-device AI, Android AI, local LLM" \
-  --from 2026-07-01 \
-  --to 2026-07-11 \
-  --mode weekly \
-  --limit 30
-```
-
-参数设计：
-
-- `--keywords`：关键词列表，逗号分隔。
-- `--from`：开始日期。
-- `--to`：结束日期。
-- `--range`：相对时间范围，例如 `7d`、`14d`、`30d`。如果配置了 `from/to`，优先使用显式日期。
-- `--mode`：输出模式，例如 `weekly`、`topic`、`github-radar`。
-- `--limit`：每类来源最大保留数量。
-- `--output`：输出目录，默认 `content/blog/drafts/`。
-- `--publish-status`：默认 `draft`，不建议自动发布。
-- `--language`：输出语言，默认 `zh-CN`。
-
-## 4. 默认主题池
-
-主题池建议放在：
+端侧 AI 主题池建议放在：
 
 ```text
 content/blog/topics/edge-ai-news.json
@@ -95,31 +89,25 @@ content/blog/topics/edge-ai-news.json
   {
     "name": "Android 端侧 AI",
     "keywords": ["Android AI", "on-device AI", "Gemini Nano", "MediaPipe", "ML Kit"],
+    "expandedKeywords": ["Android on-device model", "Android local inference", "mobile AI SDK"],
     "tags": ["Android", "AI", "On-device"],
+    "mode": "weekly",
     "cadence": "weekly"
   },
   {
     "name": "本地大模型与移动推理",
     "keywords": ["local LLM", "mobile LLM", "llama.cpp android", "MNN LLM", "ONNX Runtime mobile"],
+    "expandedKeywords": ["on-device LLM", "edge inference", "mobile inference"],
     "tags": ["LLM", "Mobile", "Inference"],
+    "mode": "weekly",
     "cadence": "weekly"
   }
 ]
 ```
 
-## 5. 数据来源
-
-### 5.1 新闻与官网动态
+## 5. 专项来源优先级
 
 优先来源：
-
-- 官方博客。
-- 开发者文档。
-- 产品 release note。
-- 可信科技媒体。
-- 公司工程博客。
-
-重点站点类型：
 
 - Google / Android Developers。
 - Apple Developer。
@@ -127,29 +115,8 @@ content/blog/topics/edge-ai-news.json
 - Microsoft / ONNX Runtime。
 - TensorFlow / MediaPipe。
 - Hugging Face。
+- MNN、ncnn、llama.cpp、ONNX Runtime、ExecuTorch 等开源项目。
 - 主要 AI 公司官方博客。
-
-### 5.2 GitHub
-
-抓取内容：
-
-- 仓库名称。
-- 描述。
-- README 摘要。
-- star / fork。
-- 最近 release。
-- 最近更新时间。
-- 主要语言。
-- 与关键词的匹配原因。
-
-数据来源：
-
-- GitHub Search API。
-- GitHub Trending 页面。
-- 仓库 releases。
-- 仓库 topics。
-
-### 5.3 社区热点
 
 可选来源：
 
@@ -157,109 +124,46 @@ content/blog/topics/edge-ai-news.json
 - Reddit。
 - X / Twitter。
 - YouTube。
-- 技术社区文章。
 - 掘金、知乎、CSDN 等中文技术平台。
+- arXiv。
+- Hugging Face Papers / Models。
 
 社区来源不直接作为事实依据，需要标记为“社区讨论”或“趋势信号”。
 
-### 5.4 论文与模型
+## 6. 专项关键词扩展
 
-可选来源：
-
-- arXiv。
-- Hugging Face Papers。
-- Hugging Face Models。
-- Papers with Code。
-
-重点关注：
-
-- 小模型。
-- 多模态端侧模型。
-- 量化、蒸馏、剪枝。
-- 手机/边缘设备部署。
-
-## 6. 抓取流程
+英文关键词：
 
 ```text
-读取参数 / 主题池
-  -> 扩展关键词
-  -> 多来源搜索
-  -> 拉取详情页 / README / release
-  -> 结构化解析
-  -> 去重
-  -> 相关性评分
-  -> 分组归类
-  -> 生成摘要
-  -> 生成 Markdown 草稿
-  -> 写入 content/blog/drafts/
+on-device AI
+edge AI
+local AI
+mobile AI
+Android AI
+on-device LLM
+local LLM
+mobile inference
+edge inference
+model quantization
+AI on Android
 ```
 
-关键词扩展示例：
+中文关键词：
 
 ```text
 端侧 AI
-  -> on-device AI
-  -> edge AI
-  -> local AI
-  -> mobile AI
-  -> Android AI
-  -> on-device LLM
-  -> local LLM
+本地大模型
+移动端推理
+模型量化
+端云协同
+Android AI
+边缘推理
+小模型部署
 ```
 
-## 7. 数据结构
+## 7. 专项评分规则
 
-中间数据建议统一成 JSON。
-
-```json
-{
-  "id": "source-url-hash",
-  "type": "news",
-  "title": "Example title",
-  "url": "https://example.com/article",
-  "source": "Google Developers Blog",
-  "publishedAt": "2026-07-10",
-  "fetchedAt": "2026-07-11T08:00:00+08:00",
-  "summary": "Short extracted summary",
-  "keywords": ["Android AI", "on-device AI"],
-  "tags": ["Android", "AI"],
-  "score": 82,
-  "reason": "Mentions Android on-device model runtime and recent API update."
-}
-```
-
-GitHub 仓库结构：
-
-```json
-{
-  "id": "github-owner-repo",
-  "type": "github",
-  "repo": "owner/name",
-  "url": "https://github.com/owner/name",
-  "description": "Repository description",
-  "language": "C++",
-  "stars": 12000,
-  "forks": 800,
-  "updatedAt": "2026-07-09",
-  "release": "v1.2.0",
-  "summary": "README-based summary",
-  "score": 88,
-  "reason": "Supports mobile inference and Android build instructions."
-}
-```
-
-## 8. 去重与评分
-
-### 8.1 去重规则
-
-- URL 完全相同则合并。
-- 标题高度相似则合并。
-- 同一个 GitHub repo 多次出现则合并。
-- 同一公司同一 release 被多个媒体报道时，优先保留官方来源。
-
-### 8.2 评分维度
-
-满分 100。
+在通用评分基础上，端侧 AI 文章调整权重：
 
 - 主题相关性：40 分。
 - 来源可信度：20 分。
@@ -272,17 +176,41 @@ GitHub 仓库结构：
 - 明确涉及端侧部署、移动推理、Android / iOS / 边缘设备。
 - 有代码、SDK、API、release、benchmark 或真实产品信息。
 - 来自官方或一手项目仓库。
+- 直接说明模型体积、推理速度、功耗、设备适配或部署方式。
 
 低优先级内容：
 
 - 泛 AI 观点文。
 - 只讲云端大模型能力。
+- 不涉及设备、运行时或真实产品。
 - 标题党新闻。
 - 无来源或事实不清的社区转述。
 
-## 9. 生成文章结构
+## 8. 专项来源注释要求
 
-### 9.1 周报模板
+端侧 AI 专项文章必须遵守 [通用方案的来源注释要求](general-news-draft-pipeline-plan.md#9-来源注释要求)，并且优先使用官方来源和一手工程资料。
+
+端侧 AI 来源优先级：
+
+1. 官方文档 / 官方博客 / release note。
+2. GitHub 仓库、release、README、issue。
+3. 论文、模型卡、benchmark。
+4. 公司工程博客。
+5. 技术媒体。
+6. 社区讨论。
+
+端侧 AI 文章中以下内容必须带来源：
+
+- 新 API / SDK / 系统能力。
+- 模型参数、体积、速度、benchmark。
+- GitHub star、release、活跃度。
+- 芯片、NPU、设备支持信息。
+- 公司产品发布。
+- 论文结论或模型能力描述。
+
+## 9. 专项文章模板
+
+端侧 AI 周报模板：
 
 ```markdown
 ---
@@ -315,12 +243,14 @@ channels:
 
 ## 模型与论文
 
+## 对 Android / 端侧产品的影响
+
 ## 值得继续跟踪
 
 ## 参考链接
 ```
 
-### 9.2 专题综述模板
+端侧 AI 专题模板：
 
 ```markdown
 # {topic} 最近 {range} 天观察
@@ -335,30 +265,18 @@ channels:
 
 ## 对 Android / 端侧产品的影响
 
+## 工程落地建议
+
 ## 后续观察清单
 
 ## 参考链接
 ```
 
-## 10. 输出位置
+## 10. 与 Blog / 微信公众号联动
 
-默认输出到草稿目录：
+端侧 AI 专项文章沿用 [通用方案的 Blog / 微信公众号联动流程](general-news-draft-pipeline-plan.md#13-与-blog--微信公众号联动)。
 
-```text
-content/blog/drafts/
-```
-
-示例：
-
-```text
-content/blog/drafts/2026-07-11-edge-ai-weekly.md
-```
-
-不建议脚本直接写入 `content/blog/posts/`。发布前应人工 review。
-
-## 11. 与 Blog / 微信公众号联动
-
-生成草稿后进入现有内容链路：
+推荐链路：
 
 ```text
 生成 Markdown 草稿
@@ -371,123 +289,54 @@ content/blog/drafts/2026-07-11-edge-ai-weekly.md
   -> 回写 channels.wechat
 ```
 
-站内文章作为主版本：
+## 11. 自动化任务
 
-```yaml
-channels:
-  canonical: "site"
-  published:
-    - platform: "site"
-      status: "published"
-    - platform: "wechat"
-      status: "pending"
-```
-
-公众号发布后回写：
-
-```yaml
-    - platform: "wechat"
-      url: "https://mp.weixin.qq.com/s/example"
-      status: "published"
-      publishedAt: "2026-07-12"
-```
-
-## 12. 自动化任务
-
-### 12.1 本地脚本
-
-建议脚本路径：
-
-```text
-scripts/news/build-edge-ai-news.mjs
-```
-
-配套目录：
-
-```text
-scripts/news/
-  build-edge-ai-news.mjs
-  providers/
-    github.mjs
-    web-search.mjs
-    rss.mjs
-  prompts/
-    weekly.md
-    topic.md
-```
-
-### 12.2 Codex 定时任务
-
-建议每周一上午生成草稿：
+端侧 AI 专项任务：
 
 ```text
 每周一 09:00
+  -> content/blog/topics/edge-ai-news.json
   -> 最近 7 天
-  -> 默认主题池
-  -> 生成周报草稿
+  -> 生成端侧 AI 周报草稿
 ```
 
-### 12.3 GitHub Actions
-
-如果放到 GitHub Actions，需要注意：
+如果放到 GitHub Actions，需要遵守通用方案的约束：
 
 - 搜索 API key 使用 GitHub Secrets。
 - 不直接自动发布。
 - 默认创建 PR 或提交到草稿分支。
-- 避免使用不稳定或违规抓取来源。
+- 生成内容必须保留参考链接。
+- PR 中需要能看到新增草稿引用的来源列表，方便 review。
 
-## 13. 搜索工具与 API 选择
+## 12. 风险与约束
 
-可选方案：
-
-- GitHub API：仓库搜索、release、README。
-- RSS：官方博客和技术媒体。
-- 搜索 API：用于新闻和网页检索。
-- Hugging Face API：模型、论文、数据集。
-- arXiv API：论文搜索。
-
-第一阶段建议：
-
-```text
-RSS + GitHub API + 手动关键词搜索
-```
-
-第二阶段再加入：
-
-```text
-搜索 API + Hugging Face + arXiv
-```
-
-## 14. 风险与约束
-
-- 新闻内容可能存在版权限制，文章中只做摘要和链接，不大段复制原文。
-- 社区热点可能不准确，需要标注来源类型。
-- AI 自动总结可能出现事实错误，必须人工 review。
-- 搜索结果可能受关键词偏差影响，需要维护主题池。
+- 端侧 AI 专项必须排除只讲云端大模型、但不涉及设备落地的内容。
+- 未带来源的事实性表述不能自动进入正文。
 - GitHub star 不等于项目质量，需要结合 README、release 和活跃度判断。
+- 社区热点可能不准确，需要标注来源类型。
 - 微信公众号发布前需要改写，不能直接搬运站内长文。
 
-## 15. 第一阶段落地范围
+## 13. 第一阶段落地范围
 
 P0：
 
-- 新增主题池 JSON。
-- 新增本地脚本入口。
-- 支持关键词、时间范围、mode 参数。
-- 支持 GitHub 仓库搜索。
-- 支持 RSS / 手工配置来源。
-- 输出 Markdown 草稿到 `content/blog/drafts/`。
+- 新增端侧 AI 专项主题池 JSON。
+- 复用通用脚本入口 `scripts/news/build-news-draft.mjs`。
+- 支持端侧 AI 关键词扩展。
+- 支持端侧 AI 来源优先级。
+- 输出端侧 AI Markdown 草稿到 `content/blog/drafts/`。
+- 输出文章必须包含“参考链接”章节。
 
 P1：
 
-- 接入搜索 API。
-- 自动评分和去重。
-- 生成参考链接列表。
-- 生成周报和专题两种模板。
+- 端侧 AI 专项评分权重。
+- 端侧 AI 周报模板。
+- 端侧 AI 专题模板。
+- GitHub 项目雷达模板。
 
 P2：
 
-- Codex 定时任务。
+- Codex 定时生成端侧 AI 周报。
 - GitHub Actions 草稿 PR。
 - Hugging Face / arXiv 来源。
 - 公众号版本自动改写。
