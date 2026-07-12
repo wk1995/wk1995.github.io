@@ -1,0 +1,4 @@
+interface:
+  display_name: "WK News Article Drafter"
+  short_description: "Draft sourced topic articles for this site"
+  default_prompt: "Use $wk-news-article-drafter to gather a topic over a date range and draft a sourced article."
