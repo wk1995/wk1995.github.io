@@ -1,42 +1,26 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-07-11T04:23:52.141034+00:00",
+  "generated_at": "2026-07-12T04:34:13.228233+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "wonderwhy-er/DesktopCommanderMCP",
-      "owner": "wonderwhy-er",
-      "name": "DesktopCommanderMCP",
-      "url": "https://github.com/wonderwhy-er/DesktopCommanderMCP",
-      "description": "This is MCP server for Claude that gives it terminal control, file system search and diff file editing capabilities",
+      "repo": "catchorg/Catch2",
+      "owner": "catchorg",
+      "name": "Catch2",
+      "url": "https://github.com/catchorg/Catch2",
+      "description": "A modern, C++-native, test framework for unit-tests, TDD and BDD - using C++14, C++17 and later (C++11 support is in v2.x branch, and C++03 on the Catch1.x branch)",
       "descriptions": {
-        "zh": "这是 Claude 的 MCP 服务器，为其提供终端控制、文件系统搜索和 diff 文件编辑功能",
-        "en": "This is MCP server for Claude that gives it terminal control, file system search and diff file editing capabilities"
+        "zh": "用于单元测试、TDD 和 BDD 的现代 C++ 原生测试框架 - 使用 C++14、C++17 及更高版本（C++11 支持位于 v2.x 分支，C++03 支持 Catch1.x 分支）",
+        "en": "A modern, C++-native, test framework for unit-tests, TDD and BDD - using C++14, C++17 and later (C++11 support is in v2.x branch, and C++03 on the Catch1.x branch)"
       },
-      "language": "TypeScript",
-      "stars_total": 7395,
-      "forks_total": 935,
-      "stars_today": 328
+      "language": "C++",
+      "stars_total": 21115,
+      "forks_total": 3428,
+      "stars_today": 113
     },
     {
       "rank": 2,
-      "repo": "oven-sh/bun",
-      "owner": "oven-sh",
-      "name": "bun",
-      "url": "https://github.com/oven-sh/bun",
-      "description": "Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one",
-      "descriptions": {
-        "zh": "令人难以置信的快速 JavaScript 运行时、捆绑器、测试运行器和包管理器 – 全部合而为一",
-        "en": "Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one"
-      },
-      "language": "Rust",
-      "stars_total": 94308,
-      "forks_total": 4940,
-      "stars_today": 209
-    },
-    {
-      "rank": 3,
       "repo": "abseil/abseil-cpp",
       "owner": "abseil",
       "name": "abseil-cpp",
@@ -47,57 +31,73 @@
         "en": "Abseil Common Libraries (C++)"
       },
       "language": "C++",
-      "stars_total": 17539,
-      "forks_total": 3195,
-      "stars_today": 89
+      "stars_total": 17840,
+      "forks_total": 3209,
+      "stars_today": 118
+    },
+    {
+      "rank": 3,
+      "repo": "davila7/claude-code-templates",
+      "owner": "davila7",
+      "name": "claude-code-templates",
+      "url": "https://github.com/davila7/claude-code-templates",
+      "description": "CLI tool for configuring and monitoring Claude Code",
+      "descriptions": {
+        "zh": "用于配置和监控 Claude Code 的 CLI 工具",
+        "en": "CLI tool for configuring and monitoring Claude Code"
+      },
+      "language": "Python",
+      "stars_total": 29060,
+      "forks_total": 3187,
+      "stars_today": 232
     },
     {
       "rank": 4,
-      "repo": "addyosmani/agent-skills",
-      "owner": "addyosmani",
-      "name": "agent-skills",
-      "url": "https://github.com/addyosmani/agent-skills",
-      "description": "Production-grade engineering skills for AI coding agents.",
+      "repo": "google-labs-code/stitch-skills",
+      "owner": "google-labs-code",
+      "name": "stitch-skills",
+      "url": "https://github.com/google-labs-code/stitch-skills",
+      "description": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor.",
       "descriptions": {
-        "zh": "AI 编码代理的生产级工程技能。",
-        "en": "Production-grade engineering skills for AI coding agents."
+        "zh": "旨在与 Stitch MCP 服务器配合使用的代理技能库。每个技能都遵循 Agent Skills 开放标准，以便与 Antigravity、Gemini CLI、Claude Code、Cursor 等编码代理兼容。",
+        "en": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor."
       },
-      "language": "JavaScript",
-      "stars_total": 76919,
-      "forks_total": 8263,
-      "stars_today": 1116
+      "language": "TypeScript",
+      "stars_total": 7118,
+      "forks_total": 947,
+      "stars_today": 340
     },
     {
       "rank": 5,
-      "repo": "jbeder/yaml-cpp",
-      "owner": "jbeder",
-      "name": "yaml-cpp",
-      "url": "https://github.com/jbeder/yaml-cpp",
-      "description": "A YAML parser and emitter in C++",
+      "repo": "hashicorp/terraform",
+      "owner": "hashicorp",
+      "name": "terraform",
+      "url": "https://github.com/hashicorp/terraform",
+      "description": "Terraform enables you to safely and predictably create, change, and improve infrastructure. It is a source-available tool that codifies APIs into declarative configuration files that can be shared amongst team members, treated as code, edited, reviewed, and versioned.",
       "descriptions": {
-        "zh": "C++ 中的 YAML 解析器和发射器",
-        "en": "A YAML parser and emitter in C++"
+        "zh": "Terraform 使您能够安全且可预测地创建、更改和改进基础设施。它是一个源可用的工具，可将 API 编码为声明性配置文件，这些文件可以在团队成员之间共享、视为代码、进行编辑、审查和版本控制。",
+        "en": "Terraform enables you to safely and predictably create, change, and improve infrastructure. It is a source-available tool that codifies APIs into declarative configuration files that can be shared amongst team members, treated as code, edited, reviewed, and versioned."
       },
-      "language": "C++",
-      "stars_total": 6093,
-      "forks_total": 2257,
-      "stars_today": 69
+      "language": "Go",
+      "stars_total": 49389,
+      "forks_total": 10682,
+      "stars_today": 229
     },
     {
       "rank": 6,
-      "repo": "mattpocock/skills",
-      "owner": "mattpocock",
-      "name": "skills",
-      "url": "https://github.com/mattpocock/skills",
-      "description": "Skills for Real Engineers. Straight from my .claude directory.",
+      "repo": "zeux/meshoptimizer",
+      "owner": "zeux",
+      "name": "meshoptimizer",
+      "url": "https://github.com/zeux/meshoptimizer",
+      "description": "Mesh optimization library that makes meshes smaller and faster to render",
       "descriptions": {
-        "zh": "真正工程师的技能。直接来自我的 .claude 目录。",
-        "en": "Skills for Real Engineers. Straight from my .claude directory."
+        "zh": "网格优化库，使网格更小、渲染速度更快",
+        "en": "Mesh optimization library that makes meshes smaller and faster to render"
       },
-      "language": "Shell",
-      "stars_total": 164815,
-      "forks_total": 14178,
-      "stars_today": 1712
+      "language": "C++",
+      "stars_total": 8153,
+      "forks_total": 786,
+      "stars_today": 110
     }
   ]
 }
