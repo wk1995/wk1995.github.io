@@ -47,6 +47,7 @@ node scripts/news/build-news-draft.mjs \
 参数设计：
 
 - `--topic`：文章主题。
+- `--topic-config`：主题配置文件路径。如果提供该参数，脚本优先读取配置文件中的 `name`、`keywords`、`expandedKeywords`、`tags`、`mode` 和 `sources`。
 - `--keywords`：关键词列表，逗号分隔。
 - `--from`：开始日期。
 - `--to`：结束日期。
@@ -57,6 +58,19 @@ node scripts/news/build-news-draft.mjs \
 - `--output`：输出目录，默认 `content/blog/drafts/`。
 - `--publish-status`：默认 `draft`，不建议自动发布。
 - `--language`：输出语言，默认 `zh-CN`。
+
+参数优先级：
+
+1. `--topic-config` 优先级最高，适合固定主题池和专项方案。
+2. 命令行显式传入的 `--topic`、`--keywords`、`--mode` 可以覆盖主题配置中的同名字段。
+3. 如果同时提供 `--from/to` 和 `--range`，优先使用 `--from/to`。
+
+时间范围约定：
+
+- 第一版统一按 `Asia/Shanghai` 计算日期。
+- `from` 为包含边界，`to` 为包含边界。
+- `--range 7d` 表示从当前日期往前 7 天到当前日期结束。
+- 无发布时间的内容默认降权，不进入高优先级列表；如果来源特别重要，可进入“待确认”分组。
 
 ## 4. 主题池
 
@@ -104,6 +118,33 @@ content/blog/topics/news-topics.json
 - 社区热点只作为趋势信号，不直接作为事实依据。
 - 论文和模型信息需要保留原始链接。
 
+第一版数据来源范围：
+
+- 第一版倾向本地脚本手动运行，不依赖 GitHub Actions 定时任务。
+- P0 不强绑定搜索 API，优先实现 RSS、GitHub API、手工配置来源。
+- Web 搜索作为可插拔 provider 预留接口，等确定具体服务后接入。
+- 如果没有搜索 API，任意主题的覆盖范围取决于主题配置中的 RSS 和手工来源。
+
+手工来源配置示例：
+
+```json
+{
+  "name": "开发者工具",
+  "sources": [
+    {
+      "type": "rss",
+      "name": "GitHub Blog",
+      "url": "https://github.blog/feed/"
+    },
+    {
+      "type": "site",
+      "name": "OpenAI Blog",
+      "url": "https://openai.com/news/"
+    }
+  ]
+}
+```
+
 ## 6. 抓取流程
 
 ```text
@@ -142,13 +183,21 @@ content/blog/topics/news-topics.json
   "url": "https://example.com/article",
   "source": "Example Blog",
   "sourceType": "official",
+  "sourceId": "S1",
+  "citationLabel": "Example Blog",
   "publishedAt": "2026-07-10",
   "fetchedAt": "2026-07-11T08:00:00+08:00",
   "summary": "Short extracted summary",
   "keywords": ["AI coding", "developer tools"],
   "tags": ["AI", "Tools"],
   "score": 82,
-  "reason": "Matches topic keywords and includes product release details."
+  "reason": "Matches topic keywords and includes product release details.",
+  "claims": [
+    {
+      "text": "The article describes a new developer tool release.",
+      "sourceId": "S1"
+    }
+  ]
 }
 ```
 
@@ -168,7 +217,9 @@ GitHub 仓库结构：
   "release": "v1.2.0",
   "summary": "README-based summary",
   "score": 88,
-  "reason": "Recently updated and directly matches the topic."
+  "reason": "Recently updated and directly matches the topic.",
+  "sourceId": "S2",
+  "citationLabel": "GitHub owner/name"
 }
 ```
 
@@ -190,6 +241,36 @@ GitHub 仓库结构：
 - 信息密度：15 分。
 - 讨论热度：10 分。
 - 可写作价值：5 分。
+
+评分细则：
+
+- 主题相关性 35 分：
+  - 标题命中核心关键词：15 分。
+  - 正文 / README 命中核心关键词：10 分。
+  - 命中扩展关键词或同义词：5 分。
+  - 与主题应用场景直接相关：5 分。
+- 来源可信度 20 分：
+  - 官方博客 / 官方文档 / release note：20 分。
+  - GitHub 仓库 / release / README：18 分。
+  - 论文 / 模型卡 / 项目主页：16 分。
+  - 可信媒体 / 工程博客：12 分。
+  - 社区讨论：6 分。
+- 时间新鲜度 15 分：
+  - 时间范围内 7 天以内：15 分。
+  - 8 到 30 天：10 分。
+  - 超过 30 天但仍与主题强相关：5 分。
+  - 无发布时间：3 分。
+- 信息密度 15 分：
+  - 包含 API、release、数据、代码、benchmark 或明确案例：15 分。
+  - 有具体产品 / 项目变化：10 分。
+  - 只有观点、缺少细节：4 分。
+- 讨论热度 10 分：
+  - GitHub star / issue / release 活跃，或社区多源讨论：10 分。
+  - 单一社区讨论：5 分。
+  - 无讨论信号：0 分。
+- 可写作价值 5 分：
+  - 能形成明确判断或行动建议：5 分。
+  - 只能作为参考链接：1 到 2 分。
 
 低优先级内容：
 
@@ -216,10 +297,10 @@ GitHub 仓库结构：
 正文注释方式建议：
 
 ```markdown
-某公司发布了新的开发者工具能力。[来源：官方博客](https://example.com)
+某公司发布了新的开发者工具能力。[S1]
 ```
 
-也可以使用脚注风格：
+第一版统一使用编号来源 `[S1]`，便于 review 和后续公众号改写。脚注风格可作为后续增强：
 
 ```markdown
 某公司发布了新的开发者工具能力。[^tool-update]
@@ -227,18 +308,16 @@ GitHub 仓库结构：
 [^tool-update]: 官方博客, https://example.com
 ```
 
-第一阶段推荐使用行内链接，便于公众号改写和复制。
-
 参考链接结构：
 
 ```markdown
 ## 参考链接
 
-- [官方] 官方博客: 标题
+- [S1] [官方] 官方博客: 标题
   https://example.com
-- [GitHub] owner/repo: README / release
+- [S2] [GitHub] owner/repo: README / release
   https://github.com/owner/repo
-- [社区讨论] Hacker News: 标题
+- [S3] [社区讨论] Hacker News: 标题
   https://news.ycombinator.com/item?id=example
 ```
 
@@ -258,12 +337,13 @@ GitHub 仓库结构：
   "url": "https://example.com/article",
   "source": "Example Blog",
   "sourceType": "official",
+  "sourceId": "S1",
   "citationLabel": "Example Blog",
   "publishedAt": "2026-07-10"
 }
 ```
 
-生成文章时，AI 只能基于已采集的结构化来源进行总结；如果某个判断没有来源支撑，需要标记为“推测”或移除。
+生成文章时，AI 只能基于已采集的结构化来源进行总结；如果某个判断没有来源支撑，需要标记为“推测”或移除。每个关键段落至少关联一个 `sourceId`，正文中使用 `[S1]`、`[S2]` 这类编号引用。
 
 ## 10. 输出文章结构
 
@@ -367,7 +447,27 @@ scripts/news/
     dedupe.mjs
 ```
 
-## 13. 与 Blog / 微信公众号联动
+## 13. 第一版运行方式
+
+第一版优先本地手动运行，不做自动定时。
+
+推荐命令：
+
+```bash
+node scripts/news/build-news-draft.mjs \
+  --topic-config content/blog/topics/news-topics.json \
+  --range 7d \
+  --mode weekly
+```
+
+本地运行的好处：
+
+- 方便观察抓取质量。
+- 方便调整关键词和来源。
+- 避免搜索 API、GitHub Actions、公众号发布流程同时引入复杂度。
+- 生成草稿后由人工 review，再决定是否发布。
+
+## 14. 与 Blog / 微信公众号联动
 
 生成后进入同一条内容链路：
 
@@ -394,7 +494,7 @@ channels:
       status: "pending"
 ```
 
-## 14. 风险与约束
+## 15. 风险与约束
 
 - 新闻内容可能存在版权限制，文章中只做摘要和链接，不大段复制原文。
 - 未带来源的事实性表述不能自动进入正文。
@@ -404,25 +504,28 @@ channels:
 - GitHub star 不等于项目质量，需要结合 README、release 和活跃度判断。
 - 微信公众号发布前需要改写，不能直接搬运站内长文。
 - 通用主题过宽时容易生成空泛文章，需要明确主题边界和评分规则。
+- 第一版没有搜索 API 时，覆盖范围有限，需要靠 RSS 和手工来源保证质量。
 
-## 15. 第一阶段落地范围
+## 16. 第一阶段落地范围
 
 P0：
 
 - 新增通用主题池 JSON。
 - 新增通用脚本入口 `scripts/news/build-news-draft.mjs`。
+- 支持 `--topic-config` 参数。
 - 支持关键词、时间范围、mode 参数。
 - 支持 GitHub 仓库搜索。
 - 支持 RSS / 手工配置来源。
 - 输出 Markdown 草稿到 `content/blog/drafts/`。
 - 输出文章必须包含“参考链接”章节。
+- 正文引用统一使用 `[S1]` 编号来源。
 
 P1：
 
 - 接入搜索 API。
 - 自动评分和去重。
 - 生成参考链接列表。
-- 支持行内来源链接或脚注来源。
+- 支持脚注来源。
 - 生成周报、专题、GitHub 雷达三种模板。
 
 P2：
@@ -432,4 +535,3 @@ P2：
 - Hugging Face / arXiv 来源。
 - 公众号版本自动改写。
 - 多主题批量生成草稿。
-

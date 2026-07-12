@@ -44,6 +44,8 @@ node scripts/news/build-news-draft.mjs \
   --mode weekly
 ```
 
+第一版同样优先本地手动运行，不启用自动定时。先通过本地脚本观察来源质量、关键词召回和生成文章质量，再考虑 Codex 定时任务或 GitHub Actions。
+
 ## 3. 使用场景
 
 端侧 AI 周报：
@@ -163,13 +165,37 @@ Android AI
 
 ## 7. 专项评分规则
 
-在通用评分基础上，端侧 AI 文章调整权重：
+在通用评分基础上，端侧 AI 文章使用专项评分覆盖通用评分权重。也就是说，评分流程、去重流程和字段结构复用通用方案，但各项分值和判断条件按本节执行。
 
 - 主题相关性：40 分。
 - 来源可信度：20 分。
 - 时间新鲜度：15 分。
 - 工程落地价值：15 分。
 - 讨论热度：10 分。
+
+专项评分细则：
+
+- 主题相关性 40 分：
+  - 标题直接命中端侧 AI / Android AI / on-device / mobile inference：15 分。
+  - 正文或 README 明确涉及设备端运行、移动推理、本地模型：15 分。
+  - 命中扩展关键词，例如 quantization、local LLM、edge inference：5 分。
+  - 与 Android、手机、IoT、车机、可穿戴或 PC 本地能力直接相关：5 分。
+- 来源可信度 20 分：
+  - 官方文档 / 官方博客 / release note：20 分。
+  - GitHub 仓库 / release / README：18 分。
+  - 论文 / 模型卡 / benchmark：16 分。
+  - 公司工程博客：14 分。
+  - 技术媒体：10 分。
+  - 社区讨论：6 分。
+- 时间新鲜度 15 分：沿用通用方案。
+- 工程落地价值 15 分：
+  - 包含 SDK、API、代码、benchmark、设备适配或部署路径：15 分。
+  - 包含产品能力但缺少工程细节：8 分。
+  - 只有趋势讨论：3 分。
+- 讨论热度 10 分：
+  - GitHub 活跃、release 频繁或多社区讨论：10 分。
+  - 单一来源讨论：5 分。
+  - 无讨论信号：0 分。
 
 高优先级内容：
 
@@ -188,7 +214,7 @@ Android AI
 
 ## 8. 专项来源注释要求
 
-端侧 AI 专项文章必须遵守 [通用方案的来源注释要求](general-news-draft-pipeline-plan.md#9-来源注释要求)，并且优先使用官方来源和一手工程资料。
+端侧 AI 专项文章必须遵守 [通用方案的来源注释要求](general-news-draft-pipeline-plan.md#9-来源注释要求)，正文统一使用 `[S1]` 编号来源，并且优先使用官方来源和一手工程资料。
 
 端侧 AI 来源优先级：
 
@@ -300,7 +326,16 @@ channels:
   -> 生成端侧 AI 周报草稿
 ```
 
-如果放到 GitHub Actions，需要遵守通用方案的约束：
+第一版运行方式：
+
+```bash
+node scripts/news/build-news-draft.mjs \
+  --topic-config content/blog/topics/edge-ai-news.json \
+  --range 7d \
+  --mode weekly
+```
+
+如果后续放到 GitHub Actions，需要遵守通用方案的约束：
 
 - 搜索 API key 使用 GitHub Secrets。
 - 不直接自动发布。
@@ -326,6 +361,7 @@ P0：
 - 支持端侧 AI 来源优先级。
 - 输出端侧 AI Markdown 草稿到 `content/blog/drafts/`。
 - 输出文章必须包含“参考链接”章节。
+- 正文引用统一使用 `[S1]` 编号来源。
 
 P1：
 
@@ -340,4 +376,3 @@ P2：
 - GitHub Actions 草稿 PR。
 - Hugging Face / arXiv 来源。
 - 公众号版本自动改写。
-
