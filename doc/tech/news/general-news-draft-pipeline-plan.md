@@ -124,6 +124,7 @@ content/blog/topics/news-topics.json
 - P0 不强绑定搜索 API，优先实现 RSS、GitHub API、手工配置来源。
 - Web 搜索作为可插拔 provider 预留接口，等确定具体服务后接入。
 - 如果没有搜索 API，任意主题的覆盖范围取决于主题配置中的 RSS 和手工来源。
+- 通用方案不单独配置 workflow；具体主题方案可以复用本方案的 workflow 接口规范，通过固定主题配置触发生成草稿。
 
 手工来源配置示例：
 
@@ -467,7 +468,79 @@ node scripts/news/build-news-draft.mjs \
 - 避免搜索 API、GitHub Actions、公众号发布流程同时引入复杂度。
 - 生成草稿后由人工 review，再决定是否发布。
 
-## 14. 与 Blog / 微信公众号联动
+## 14. Workflow 接口规范
+
+通用方案不建议单独设置 GitHub Actions workflow。原因是通用方案没有固定主题边界，如果直接暴露 workflow，容易生成方向不明确、质量不可控的内容。
+
+本节只定义可复用的 workflow 接口规范，供端侧 AI、开发者工具、产品观察等具体主题方案引用。真正的 workflow 应由具体主题方案提供默认 `topic_config`。
+
+主题方案可复用的 workflow 文件：
+
+```text
+.github/workflows/build-news-draft.yml
+```
+
+触发方式：
+
+```yaml
+on:
+  workflow_dispatch:
+    inputs:
+      topic_config:
+        description: "主题配置文件路径"
+        required: true
+      topic:
+        description: "临时主题"
+        required: false
+      keywords:
+        description: "临时关键词，逗号分隔"
+        required: false
+      range:
+        description: "时间范围，例如 7d / 14d / 30d"
+        required: true
+        default: "7d"
+      mode:
+        description: "weekly / topic / github-radar"
+        required: true
+        default: "weekly"
+```
+
+执行流程：
+
+```text
+workflow_dispatch
+  -> checkout
+  -> setup node
+  -> 运行 scripts/news/build-news-draft.mjs
+  -> 输出 Markdown 到 content/blog/drafts/
+  -> 创建草稿分支
+  -> 提交生成的草稿
+  -> 创建 draft PR
+```
+
+约束：
+
+- workflow 必须由具体主题方案提供默认 `topic_config`，不建议以空主题运行。
+- workflow 只生成 `status: "draft"` 的 Markdown。
+- workflow 不移动文件到 `content/blog/posts/`。
+- workflow 不执行正式 blog 发布。
+- workflow PR 必须包含“参考链接”章节，方便 review。
+- 如果使用搜索 API，key 必须放在 GitHub Secrets。
+- 如果未配置搜索 API，workflow 只使用 RSS、GitHub API 和手工来源。
+
+建议分支命名：
+
+```text
+codex/news-draft/{yyyyMMdd-HHmmss}
+```
+
+建议 PR 标题：
+
+```text
+[draft] 生成资讯草稿：{topic} {dateRange}
+```
+
+## 15. 与 Blog / 微信公众号联动
 
 生成后进入同一条内容链路：
 
@@ -494,7 +567,7 @@ channels:
       status: "pending"
 ```
 
-## 15. 风险与约束
+## 16. 风险与约束
 
 - 新闻内容可能存在版权限制，文章中只做摘要和链接，不大段复制原文。
 - 未带来源的事实性表述不能自动进入正文。
@@ -505,8 +578,9 @@ channels:
 - 微信公众号发布前需要改写，不能直接搬运站内长文。
 - 通用主题过宽时容易生成空泛文章，需要明确主题边界和评分规则。
 - 第一版没有搜索 API 时，覆盖范围有限，需要靠 RSS 和手工来源保证质量。
+- workflow 远程运行时更难观察抓取质量，因此只作为生成草稿入口，不自动发布。
 
-## 16. 第一阶段落地范围
+## 17. 第一阶段落地范围
 
 P0：
 
@@ -527,11 +601,12 @@ P1：
 - 生成参考链接列表。
 - 支持脚注来源。
 - 生成周报、专题、GitHub 雷达三种模板。
+- 定义可供具体主题方案复用的 GitHub Actions `workflow_dispatch` 接口规范。
 
 P2：
 
 - Codex 定时任务。
-- GitHub Actions 草稿 PR。
+- 具体主题方案可按需实现 GitHub Actions 手动或定时草稿 PR。
 - Hugging Face / arXiv 来源。
 - 公众号版本自动改写。
 - 多主题批量生成草稿。

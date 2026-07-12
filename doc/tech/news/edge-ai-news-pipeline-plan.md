@@ -44,7 +44,7 @@ node scripts/news/build-news-draft.mjs \
   --mode weekly
 ```
 
-第一版同样优先本地手动运行，不启用自动定时。先通过本地脚本观察来源质量、关键词召回和生成文章质量，再考虑 Codex 定时任务或 GitHub Actions。
+第一版同样优先本地手动运行，不启用自动定时。先通过本地脚本观察来源质量、关键词召回和生成文章质量，再考虑 Codex 定时任务或 GitHub Actions。P1 可增加 GitHub Actions `workflow_dispatch` 手动触发，用来远程生成端侧 AI 草稿 PR。
 
 ## 3. 使用场景
 
@@ -335,6 +335,20 @@ node scripts/news/build-news-draft.mjs \
   --mode weekly
 ```
 
+Workflow 手动触发示例：
+
+```yaml
+on:
+  workflow_dispatch:
+    inputs:
+      topic_config:
+        default: "content/blog/topics/edge-ai-news.json"
+      range:
+        default: "7d"
+      mode:
+        default: "weekly"
+```
+
 如果后续放到 GitHub Actions，需要遵守通用方案的约束：
 
 - 搜索 API key 使用 GitHub Secrets。
@@ -342,6 +356,7 @@ node scripts/news/build-news-draft.mjs \
 - 默认创建 PR 或提交到草稿分支。
 - 生成内容必须保留参考链接。
 - PR 中需要能看到新增草稿引用的来源列表，方便 review。
+- 默认主题配置为 `content/blog/topics/edge-ai-news.json`。
 
 ## 12. 风险与约束
 
@@ -369,10 +384,11 @@ P1：
 - 端侧 AI 周报模板。
 - 端侧 AI 专题模板。
 - GitHub 项目雷达模板。
+- 支持 GitHub Actions `workflow_dispatch` 手动触发端侧 AI 草稿生成。
 
 P2：
 
 - Codex 定时生成端侧 AI 周报。
-- GitHub Actions 草稿 PR。
+- GitHub Actions 定时生成端侧 AI 草稿 PR。
 - Hugging Face / arXiv 来源。
 - 公众号版本自动改写。
