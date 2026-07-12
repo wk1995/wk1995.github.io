@@ -337,6 +337,11 @@ node scripts/news/build-news-draft.mjs \
 
 Workflow 手动触发示例：
 
+当前落地文件：
+```text
+.github/workflows/build-edge-ai-news-draft.yml
+```
+
 ```yaml
 on:
   workflow_dispatch:
