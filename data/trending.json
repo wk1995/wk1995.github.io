@@ -1,103 +1,103 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-07-12T04:34:13.228233+00:00",
+  "generated_at": "2026-07-13T04:39:54.288308+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "catchorg/Catch2",
-      "owner": "catchorg",
-      "name": "Catch2",
-      "url": "https://github.com/catchorg/Catch2",
-      "description": "A modern, C++-native, test framework for unit-tests, TDD and BDD - using C++14, C++17 and later (C++11 support is in v2.x branch, and C++03 on the Catch1.x branch)",
+      "repo": "Dicklesworthstone/destructive_command_guard",
+      "owner": "Dicklesworthstone",
+      "name": "destructive_command_guard",
+      "url": "https://github.com/Dicklesworthstone/destructive_command_guard",
+      "description": "The Destructive Command Guard (dcg) is for blocking dangerous git and shell commands from being executed by agents.",
       "descriptions": {
-        "zh": "用于单元测试、TDD 和 BDD 的现代 C++ 原生测试框架 - 使用 C++14、C++17 及更高版本（C++11 支持位于 v2.x 分支，C++03 支持 Catch1.x 分支）",
-        "en": "A modern, C++-native, test framework for unit-tests, TDD and BDD - using C++14, C++17 and later (C++11 support is in v2.x branch, and C++03 on the Catch1.x branch)"
+        "zh": "破坏性命令防护 (dcg) 用于阻止代理执行危险的 git 和 shell 命令。",
+        "en": "The Destructive Command Guard (dcg) is for blocking dangerous git and shell commands from being executed by agents."
       },
-      "language": "C++",
-      "stars_total": 21115,
-      "forks_total": 3428,
-      "stars_today": 113
+      "language": "Rust",
+      "stars_total": 3132,
+      "forks_total": 113,
+      "stars_today": 444
     },
     {
       "rank": 2,
-      "repo": "abseil/abseil-cpp",
-      "owner": "abseil",
-      "name": "abseil-cpp",
-      "url": "https://github.com/abseil/abseil-cpp",
-      "description": "Abseil Common Libraries (C++)",
+      "repo": "wonderwhy-er/DesktopCommanderMCP",
+      "owner": "wonderwhy-er",
+      "name": "DesktopCommanderMCP",
+      "url": "https://github.com/wonderwhy-er/DesktopCommanderMCP",
+      "description": "This is MCP server for Claude that gives it terminal control, file system search and diff file editing capabilities",
       "descriptions": {
-        "zh": "Abseil 通用库 (C++)",
-        "en": "Abseil Common Libraries (C++)"
+        "zh": "这是 Claude 的 MCP 服务器，为其提供终端控制、文件系统搜索和 diff 文件编辑功能",
+        "en": "This is MCP server for Claude that gives it terminal control, file system search and diff file editing capabilities"
       },
-      "language": "C++",
-      "stars_total": 17840,
-      "forks_total": 3209,
-      "stars_today": 118
+      "language": "TypeScript",
+      "stars_total": 8036,
+      "forks_total": 991,
+      "stars_today": 210
     },
     {
       "rank": 3,
-      "repo": "davila7/claude-code-templates",
-      "owner": "davila7",
-      "name": "claude-code-templates",
-      "url": "https://github.com/davila7/claude-code-templates",
-      "description": "CLI tool for configuring and monitoring Claude Code",
+      "repo": "HKUDS/Vibe-Trading",
+      "owner": "HKUDS",
+      "name": "Vibe-Trading",
+      "url": "https://github.com/HKUDS/Vibe-Trading",
+      "description": "\"Vibe-Trading: Your Personal Trading Agent\"",
       "descriptions": {
-        "zh": "用于配置和监控 Claude Code 的 CLI 工具",
-        "en": "CLI tool for configuring and monitoring Claude Code"
+        "zh": "“Vibe-Trading：您的个人交易代理”",
+        "en": "\"Vibe-Trading: Your Personal Trading Agent\""
       },
       "language": "Python",
-      "stars_total": 29060,
-      "forks_total": 3187,
-      "stars_today": 232
+      "stars_total": 20760,
+      "forks_total": 3621,
+      "stars_today": 768
     },
     {
       "rank": 4,
-      "repo": "google-labs-code/stitch-skills",
-      "owner": "google-labs-code",
-      "name": "stitch-skills",
-      "url": "https://github.com/google-labs-code/stitch-skills",
-      "description": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor.",
+      "repo": "PrefectHQ/prefect",
+      "owner": "PrefectHQ",
+      "name": "prefect",
+      "url": "https://github.com/PrefectHQ/prefect",
+      "description": "Prefect is a workflow orchestration framework for building resilient data pipelines in Python.",
       "descriptions": {
-        "zh": "旨在与 Stitch MCP 服务器配合使用的代理技能库。每个技能都遵循 Agent Skills 开放标准，以便与 Antigravity、Gemini CLI、Claude Code、Cursor 等编码代理兼容。",
-        "en": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor."
+        "zh": "Prefect 是一个工作流程编排框架，用于在 Python 中构建弹性数据管道。",
+        "en": "Prefect is a workflow orchestration framework for building resilient data pipelines in Python."
       },
-      "language": "TypeScript",
-      "stars_total": 7118,
-      "forks_total": 947,
-      "stars_today": 340
+      "language": "Python",
+      "stars_total": 23215,
+      "forks_total": 2398,
+      "stars_today": 66
     },
     {
       "rank": 5,
-      "repo": "hashicorp/terraform",
-      "owner": "hashicorp",
-      "name": "terraform",
-      "url": "https://github.com/hashicorp/terraform",
-      "description": "Terraform enables you to safely and predictably create, change, and improve infrastructure. It is a source-available tool that codifies APIs into declarative configuration files that can be shared amongst team members, treated as code, edited, reviewed, and versioned.",
+      "repo": "Shubhamsaboo/awesome-llm-apps",
+      "owner": "Shubhamsaboo",
+      "name": "awesome-llm-apps",
+      "url": "https://github.com/Shubhamsaboo/awesome-llm-apps",
+      "description": "100+ AI Agent & RAG apps you can actually run — clone, customize, ship.",
       "descriptions": {
-        "zh": "Terraform 使您能够安全且可预测地创建、更改和改进基础设施。它是一个源可用的工具，可将 API 编码为声明性配置文件，这些文件可以在团队成员之间共享、视为代码、进行编辑、审查和版本控制。",
-        "en": "Terraform enables you to safely and predictably create, change, and improve infrastructure. It is a source-available tool that codifies APIs into declarative configuration files that can be shared amongst team members, treated as code, edited, reviewed, and versioned."
+        "zh": "您可以实际运行 100 多个 AI Agent 和 RAG 应用程序 — 克隆、自定义、发布。",
+        "en": "100+ AI Agent & RAG apps you can actually run — clone, customize, ship."
       },
-      "language": "Go",
-      "stars_total": 49389,
-      "forks_total": 10682,
-      "stars_today": 229
+      "language": "Python",
+      "stars_total": 118772,
+      "forks_total": 17653,
+      "stars_today": 408
     },
     {
       "rank": 6,
-      "repo": "zeux/meshoptimizer",
-      "owner": "zeux",
-      "name": "meshoptimizer",
-      "url": "https://github.com/zeux/meshoptimizer",
-      "description": "Mesh optimization library that makes meshes smaller and faster to render",
+      "repo": "anthropics/claude-cookbooks",
+      "owner": "anthropics",
+      "name": "claude-cookbooks",
+      "url": "https://github.com/anthropics/claude-cookbooks",
+      "description": "A collection of notebooks/recipes showcasing some fun and effective ways of using Claude.",
       "descriptions": {
-        "zh": "网格优化库，使网格更小、渲染速度更快",
-        "en": "Mesh optimization library that makes meshes smaller and faster to render"
+        "zh": "一系列笔记本/食谱展示了一些有趣且有效的使用克劳德的方法。",
+        "en": "A collection of notebooks/recipes showcasing some fun and effective ways of using Claude."
       },
-      "language": "C++",
-      "stars_total": 8153,
-      "forks_total": 786,
-      "stars_today": 110
+      "language": "Jupyter Notebook",
+      "stars_total": 48538,
+      "forks_total": 5740,
+      "stars_today": 459
     }
   ]
 }
