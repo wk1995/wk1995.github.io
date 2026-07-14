@@ -1,42 +1,26 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-07-13T04:39:54.288308+00:00",
+  "generated_at": "2026-07-14T04:13:30.709309+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "Dicklesworthstone/destructive_command_guard",
-      "owner": "Dicklesworthstone",
-      "name": "destructive_command_guard",
-      "url": "https://github.com/Dicklesworthstone/destructive_command_guard",
-      "description": "The Destructive Command Guard (dcg) is for blocking dangerous git and shell commands from being executed by agents.",
+      "repo": "OpenCut-app/OpenCut",
+      "owner": "OpenCut-app",
+      "name": "OpenCut",
+      "url": "https://github.com/OpenCut-app/OpenCut",
+      "description": "The open-source CapCut alternative",
       "descriptions": {
-        "zh": "破坏性命令防护 (dcg) 用于阻止代理执行危险的 git 和 shell 命令。",
-        "en": "The Destructive Command Guard (dcg) is for blocking dangerous git and shell commands from being executed by agents."
+        "zh": "开源 CapCut 替代方案",
+        "en": "The open-source CapCut alternative"
       },
-      "language": "Rust",
-      "stars_total": 3132,
-      "forks_total": 113,
-      "stars_today": 444
+      "language": "TypeScript",
+      "stars_total": 67110,
+      "forks_total": 7067,
+      "stars_today": 1229
     },
     {
       "rank": 2,
-      "repo": "wonderwhy-er/DesktopCommanderMCP",
-      "owner": "wonderwhy-er",
-      "name": "DesktopCommanderMCP",
-      "url": "https://github.com/wonderwhy-er/DesktopCommanderMCP",
-      "description": "This is MCP server for Claude that gives it terminal control, file system search and diff file editing capabilities",
-      "descriptions": {
-        "zh": "这是 Claude 的 MCP 服务器，为其提供终端控制、文件系统搜索和 diff 文件编辑功能",
-        "en": "This is MCP server for Claude that gives it terminal control, file system search and diff file editing capabilities"
-      },
-      "language": "TypeScript",
-      "stars_total": 8036,
-      "forks_total": 991,
-      "stars_today": 210
-    },
-    {
-      "rank": 3,
       "repo": "HKUDS/Vibe-Trading",
       "owner": "HKUDS",
       "name": "Vibe-Trading",
@@ -47,28 +31,28 @@ window.__TRENDING_DATA__ = {
         "en": "\"Vibe-Trading: Your Personal Trading Agent\""
       },
       "language": "Python",
-      "stars_total": 20760,
-      "forks_total": 3621,
-      "stars_today": 768
+      "stars_total": 22003,
+      "forks_total": 3811,
+      "stars_today": 1153
+    },
+    {
+      "rank": 3,
+      "repo": "moeru-ai/airi",
+      "owner": "moeru-ai",
+      "name": "airi",
+      "url": "https://github.com/moeru-ai/airi",
+      "description": "💖🧸 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported.",
+      "descriptions": {
+        "zh": "💖🧸 自托管，您拥有的 Grok Companion，一个 waifu 灵魂的容器，网络生命体，将他们带入我们的世界，希望达到 Neuro-sama 的高度。能够实时语音聊天、玩《我的世界》、《异星工厂》。支持网络/macOS/Windows。",
+        "en": "💖🧸 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported."
+      },
+      "language": "TypeScript",
+      "stars_total": 42033,
+      "forks_total": 4226,
+      "stars_today": 78
     },
     {
       "rank": 4,
-      "repo": "PrefectHQ/prefect",
-      "owner": "PrefectHQ",
-      "name": "prefect",
-      "url": "https://github.com/PrefectHQ/prefect",
-      "description": "Prefect is a workflow orchestration framework for building resilient data pipelines in Python.",
-      "descriptions": {
-        "zh": "Prefect 是一个工作流程编排框架，用于在 Python 中构建弹性数据管道。",
-        "en": "Prefect is a workflow orchestration framework for building resilient data pipelines in Python."
-      },
-      "language": "Python",
-      "stars_total": 23215,
-      "forks_total": 2398,
-      "stars_today": 66
-    },
-    {
-      "rank": 5,
       "repo": "Shubhamsaboo/awesome-llm-apps",
       "owner": "Shubhamsaboo",
       "name": "awesome-llm-apps",
@@ -79,25 +63,41 @@ window.__TRENDING_DATA__ = {
         "en": "100+ AI Agent & RAG apps you can actually run — clone, customize, ship."
       },
       "language": "Python",
-      "stars_total": 118772,
-      "forks_total": 17653,
-      "stars_today": 408
+      "stars_total": 119861,
+      "forks_total": 17790,
+      "stars_today": 996
+    },
+    {
+      "rank": 5,
+      "repo": "Nutlope/hallmark",
+      "owner": "Nutlope",
+      "name": "hallmark",
+      "url": "https://github.com/Nutlope/hallmark",
+      "description": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
+      "descriptions": {
+        "zh": "Claude Code、Cursor、Codex 的防 AI 设计技巧。",
+        "en": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex."
+      },
+      "language": "CSS",
+      "stars_total": 5345,
+      "forks_total": 317,
+      "stars_today": 794
     },
     {
       "rank": 6,
-      "repo": "anthropics/claude-cookbooks",
-      "owner": "anthropics",
-      "name": "claude-cookbooks",
-      "url": "https://github.com/anthropics/claude-cookbooks",
-      "description": "A collection of notebooks/recipes showcasing some fun and effective ways of using Claude.",
+      "repo": "Raphire/Win11Debloat",
+      "owner": "Raphire",
+      "name": "Win11Debloat",
+      "url": "https://github.com/Raphire/Win11Debloat",
+      "description": "A simple, lightweight PowerShell script that allows you to remove pre-installed apps, disable telemetry, as well as perform various other changes to declutter and customize your Windows experience. Win11Debloat works for both Windows 10 and Windows 11.",
       "descriptions": {
-        "zh": "一系列笔记本/食谱展示了一些有趣且有效的使用克劳德的方法。",
-        "en": "A collection of notebooks/recipes showcasing some fun and effective ways of using Claude."
+        "zh": "一个简单、轻量级的 PowerShell 脚本，允许您删除预安装的应用程序、禁用遥测以及执行各种其他更改以整理和自定义您的 Windows 体验。 Win11Debloat 适用于 Windows 10 和 Windows 11。",
+        "en": "A simple, lightweight PowerShell script that allows you to remove pre-installed apps, disable telemetry, as well as perform various other changes to declutter and customize your Windows experience. Win11Debloat works for both Windows 10 and Windows 11."
       },
-      "language": "Jupyter Notebook",
-      "stars_total": 48538,
-      "forks_total": 5740,
-      "stars_today": 459
+      "language": "PowerShell",
+      "stars_total": 51008,
+      "forks_total": 2099,
+      "stars_today": 118
     }
   ]
 }
