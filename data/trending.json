@@ -1,58 +1,10 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-07-14T04:13:30.709309+00:00",
+  "generated_at": "2026-07-15T04:15:19.778634+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "OpenCut-app/OpenCut",
-      "owner": "OpenCut-app",
-      "name": "OpenCut",
-      "url": "https://github.com/OpenCut-app/OpenCut",
-      "description": "The open-source CapCut alternative",
-      "descriptions": {
-        "zh": "开源 CapCut 替代方案",
-        "en": "The open-source CapCut alternative"
-      },
-      "language": "TypeScript",
-      "stars_total": 67110,
-      "forks_total": 7067,
-      "stars_today": 1229
-    },
-    {
-      "rank": 2,
-      "repo": "HKUDS/Vibe-Trading",
-      "owner": "HKUDS",
-      "name": "Vibe-Trading",
-      "url": "https://github.com/HKUDS/Vibe-Trading",
-      "description": "\"Vibe-Trading: Your Personal Trading Agent\"",
-      "descriptions": {
-        "zh": "“Vibe-Trading：您的个人交易代理”",
-        "en": "\"Vibe-Trading: Your Personal Trading Agent\""
-      },
-      "language": "Python",
-      "stars_total": 22003,
-      "forks_total": 3811,
-      "stars_today": 1153
-    },
-    {
-      "rank": 3,
-      "repo": "moeru-ai/airi",
-      "owner": "moeru-ai",
-      "name": "airi",
-      "url": "https://github.com/moeru-ai/airi",
-      "description": "💖🧸 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported.",
-      "descriptions": {
-        "zh": "💖🧸 自托管，您拥有的 Grok Companion，一个 waifu 灵魂的容器，网络生命体，将他们带入我们的世界，希望达到 Neuro-sama 的高度。能够实时语音聊天、玩《我的世界》、《异星工厂》。支持网络/macOS/Windows。",
-        "en": "💖🧸 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported."
-      },
-      "language": "TypeScript",
-      "stars_total": 42033,
-      "forks_total": 4226,
-      "stars_today": 78
-    },
-    {
-      "rank": 4,
       "repo": "Shubhamsaboo/awesome-llm-apps",
       "owner": "Shubhamsaboo",
       "name": "awesome-llm-apps",
@@ -63,12 +15,76 @@
         "en": "100+ AI Agent & RAG apps you can actually run — clone, customize, ship."
       },
       "language": "Python",
-      "stars_total": 119861,
-      "forks_total": 17790,
-      "stars_today": 996
+      "stars_total": 121063,
+      "forks_total": 17906,
+      "stars_today": 1106
+    },
+    {
+      "rank": 2,
+      "repo": "mattpocock/skills",
+      "owner": "mattpocock",
+      "name": "skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .claude directory.",
+      "descriptions": {
+        "zh": "真正工程师的技能。直接来自我的 .claude 目录。",
+        "en": "Skills for Real Engineers. Straight from my .claude directory."
+      },
+      "language": "Shell",
+      "stars_total": 170677,
+      "forks_total": 14683,
+      "stars_today": 1679
+    },
+    {
+      "rank": 3,
+      "repo": "Dicklesworthstone/destructive_command_guard",
+      "owner": "Dicklesworthstone",
+      "name": "destructive_command_guard",
+      "url": "https://github.com/Dicklesworthstone/destructive_command_guard",
+      "description": "The Destructive Command Guard (dcg) is for blocking dangerous git and shell commands from being executed by agents.",
+      "descriptions": {
+        "zh": "破坏性命令防护 (dcg) 用于阻止代理执行危险的 git 和 shell 命令。",
+        "en": "The Destructive Command Guard (dcg) is for blocking dangerous git and shell commands from being executed by agents."
+      },
+      "language": "Rust",
+      "stars_total": 4482,
+      "forks_total": 167,
+      "stars_today": 473
+    },
+    {
+      "rank": 4,
+      "repo": "OpenCut-app/OpenCut",
+      "owner": "OpenCut-app",
+      "name": "OpenCut",
+      "url": "https://github.com/OpenCut-app/OpenCut",
+      "description": "The open-source CapCut alternative",
+      "descriptions": {
+        "zh": "开源 CapCut 替代方案",
+        "en": "The open-source CapCut alternative"
+      },
+      "language": "TypeScript",
+      "stars_total": 69417,
+      "forks_total": 7222,
+      "stars_today": 4276
     },
     {
       "rank": 5,
+      "repo": "virattt/ai-hedge-fund",
+      "owner": "virattt",
+      "name": "ai-hedge-fund",
+      "url": "https://github.com/virattt/ai-hedge-fund",
+      "description": "An AI Hedge Fund Team",
+      "descriptions": {
+        "zh": "人工智能对冲基金团队",
+        "en": "An AI Hedge Fund Team"
+      },
+      "language": "Python",
+      "stars_total": 61946,
+      "forks_total": 10918,
+      "stars_today": 109
+    },
+    {
+      "rank": 6,
       "repo": "Nutlope/hallmark",
       "owner": "Nutlope",
       "name": "hallmark",
@@ -79,25 +95,9 @@
         "en": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex."
       },
       "language": "CSS",
-      "stars_total": 5345,
-      "forks_total": 317,
-      "stars_today": 794
-    },
-    {
-      "rank": 6,
-      "repo": "Raphire/Win11Debloat",
-      "owner": "Raphire",
-      "name": "Win11Debloat",
-      "url": "https://github.com/Raphire/Win11Debloat",
-      "description": "A simple, lightweight PowerShell script that allows you to remove pre-installed apps, disable telemetry, as well as perform various other changes to declutter and customize your Windows experience. Win11Debloat works for both Windows 10 and Windows 11.",
-      "descriptions": {
-        "zh": "一个简单、轻量级的 PowerShell 脚本，允许您删除预安装的应用程序、禁用遥测以及执行各种其他更改以整理和自定义您的 Windows 体验。 Win11Debloat 适用于 Windows 10 和 Windows 11。",
-        "en": "A simple, lightweight PowerShell script that allows you to remove pre-installed apps, disable telemetry, as well as perform various other changes to declutter and customize your Windows experience. Win11Debloat works for both Windows 10 and Windows 11."
-      },
-      "language": "PowerShell",
-      "stars_total": 51008,
-      "forks_total": 2099,
-      "stars_today": 118
+      "stars_total": 6295,
+      "forks_total": 358,
+      "stars_today": 1015
     }
   ]
 }
