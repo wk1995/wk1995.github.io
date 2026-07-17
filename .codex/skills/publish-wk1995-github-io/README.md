@@ -1,23 +1,37 @@
 # Publish wk1995.github.io Skill
 
-This repository includes a Codex skill for creating GitHub Actions workflows that publish software build artifacts into `wk1995/wk1995.github.io`.
+This repository includes a Codex skill for creating GitHub Actions workflows
+that publish software build artifacts or blog articles into
+`wk1995/wk1995.github.io`.
 
-Use it when another project needs to publish release packages into this site, including:
+Use it when another project needs to publish into this site, including:
 
 - Android APK packages
 - Windows desktop packages
 - macOS desktop packages
 - Linux desktop packages
+- Markdown blog articles
 
 ## What This Skill Does
 
-The skill helps Codex generate or update source-project workflows that:
+For software packages, the skill helps Codex generate or update source-project
+workflows that:
 
 1. Wait for a release/build workflow to finish.
 2. Download the selected build artifacts.
 3. Check out `wk1995/wk1995.github.io`.
 4. Copy artifacts into the correct package directory.
 5. Commit and push the published files.
+
+For blog articles, the skill helps Codex generate or update source-project
+workflows that:
+
+1. Locate Markdown articles in the source repository.
+2. Validate that an article path exists.
+3. Base64 encode the Markdown article.
+4. Send a `repository_dispatch` event to `wk1995/wk1995.github.io`.
+5. Let the target repository receiver write the Markdown and rebuild the blog
+   index, home feed, and article HTML.
 
 The publish target is fixed to:
 
@@ -57,14 +71,28 @@ Then ask Codex from the source software repository:
 Use $publish-wk1995-github-io to create a publish workflow for this app.
 ```
 
+For a source article repository, ask:
+
+```text
+Use $publish-wk1995-github-io to create a blog article publish workflow for this repo.
+```
+
 Codex will inspect the source project, adapt the workflow template, and tell the user which GitHub secret and target publish paths are required.
 
 ## Required GitHub Secret
 
-Each source project must create an app-specific repository secret:
+Each source project that publishes app artifacts must create an app-specific
+repository secret:
 
 ```text
 PUBLISH_APP_FROM_<APP_NAME>_TO_GITHUB_IO
+```
+
+Each source project that publishes blog articles must create a source-specific
+repository secret:
+
+```text
+PUBLISH_BLOG_FROM_<SOURCE_NAME>_TO_GITHUB_IO
 ```
 
 The secret value must be a fine-grained GitHub Personal Access Token with write access to `wk1995/wk1995.github.io`.
@@ -94,9 +122,32 @@ apps/packages/linux/<appName>/<version>/<systemos>
 
 The target directory must already exist before the workflow runs.
 
+Blog article workflows publish Markdown into:
+
+```text
+content/blog/posts/<year>/<yyyy-mm-dd-slug>.md
+```
+
+Draft article workflows publish Markdown into:
+
+```text
+content/blog/drafts/<yyyy-mm-dd-slug>.md
+```
+
+The target repository receiver rebuilds:
+
+```text
+blog/posts/<year>/<slug>/index.html
+blog/posts/index.json
+blog/posts/home.json
+```
+
 ## Included Templates
 
 - `assets/publish-apk-artifact.yml`
 - `assets/publish-desktop-artifact.yml`
+- `assets/publish-blog-article.yml`
 
-These templates are starting points. Codex should adapt artifact names, app names, metadata files, version lookup, and secret names for each source project while keeping the target repository fixed.
+These templates are starting points. Codex should adapt artifact names, app
+names, source article paths, metadata files, version lookup, and secret names
+for each source project while keeping the target repository fixed.
