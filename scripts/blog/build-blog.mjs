@@ -5,6 +5,7 @@ const rootDir = process.cwd();
 const postsDir = path.join(rootDir, "content", "blog", "posts");
 const outputDir = path.join(rootDir, "blog", "posts");
 const templateDir = path.join(rootDir, "scripts", "blog", "templates");
+const includePreviewPosts = process.argv.includes("--include-preview") || process.env.BLOG_INCLUDE_PREVIEW === "1";
 
 const topbarHtml = `
 <div class="site-topbar">
@@ -337,6 +338,7 @@ async function build() {
     const markdown = await readFile(file, "utf8");
     const { data, body } = parseFrontmatter(markdown, file);
     if (data.status !== "published") continue;
+    if (data.previewOnly && !includePreviewPosts) continue;
     validatePost(data, file);
     const year = data.date.slice(0, 4);
     const url = `/blog/posts/${year}/${data.slug}/`;
