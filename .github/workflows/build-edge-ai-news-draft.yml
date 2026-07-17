@@ -1,0 +1,74 @@
+name: Build Edge AI News Draft
+
+on:
+  workflow_dispatch:
+    inputs:
+      topic_config:
+        description: "主题配置文件路径"
+        required: true
+        default: "content/blog/topics/edge-ai-news.json"
+      range:
+        description: "时间范围，例如 7d / 14d / 30d"
+        required: true
+        default: "7d"
+      mode:
+        description: "weekly / topic / github-radar"
+        required: true
+        default: "weekly"
+      keywords:
+        description: "可选临时关键词，逗号分隔"
+        required: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  build-draft:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Build news draft
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TOPIC_CONFIG: ${{ inputs.topic_config }}
+          NEWS_RANGE: ${{ inputs.range }}
+          NEWS_MODE: ${{ inputs.mode }}
+          NEWS_KEYWORDS: ${{ inputs.keywords }}
+        run: |
+          CMD=(node scripts/news/build-news-draft.mjs \
+            --topic-config "$TOPIC_CONFIG" \
+            --range "$NEWS_RANGE" \
+            --mode "$NEWS_MODE")
+          if [ -n "$NEWS_KEYWORDS" ]; then
+            CMD+=(--keywords "$NEWS_KEYWORDS")
+          fi
+          "${CMD[@]}"
+
+      - name: Create draft pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: codex/news-draft/edge-ai-${{ github.run_id }}
+          title: "[draft] 生成端侧 AI 资讯草稿"
+          body: |
+            ## Summary
+
+            - Generated an Edge AI news draft from `${{ inputs.topic_config }}`.
+            - Range: `${{ inputs.range }}`
+            - Mode: `${{ inputs.mode }}`
+
+            ## Review notes
+
+            - This workflow only creates a draft under `content/blog/drafts/`.
+            - Review all `[S1]` style citations before moving the draft into `content/blog/posts/`.
+          draft: true
+          add-paths: |
+            content/blog/drafts/*.md

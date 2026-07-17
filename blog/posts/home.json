@@ -1,0 +1,22 @@
+[
+  {
+    "title": "用 AI 和静态构建维护个人博客",
+    "url": "/blog/posts/2026/ai-blog-pipeline-demo/",
+    "date": "2026-06-28",
+    "summary": "这是一篇 demo 文章，用来验证 Markdown 内容源、标签筛选、模糊搜索、详情页模板和多平台发布元数据。",
+    "tags": [
+      "AI",
+      "Blog",
+      "Automation"
+    ],
+    "source": "ai-assisted",
+    "comments": {
+      "enabled": true,
+      "provider": "giscus"
+    },
+    "likes": {
+      "enabled": true,
+      "provider": "giscus-reactions"
+    }
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "blog:build": "node scripts/blog/build-blog.mjs",
+    "blog:build:preview": "node scripts/blog/build-blog.mjs --include-preview",
+    "news:draft": "node scripts/news/build-news-draft.mjs",
+    "news:edge": "node scripts/news/build-news-draft.mjs --topic-config content/blog/topics/edge-ai-news.json --range 7d --mode weekly"
+  }
+}

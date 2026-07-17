@@ -18,7 +18,7 @@
       currentEmpty: "尚未选择模型",
       selected: "当前使用",
       choose: "设为当前",
-      chooseBack: "选中并返回 Chat",
+      chooseBack: "设为当前",
       chatWith: "用它聊天",
       saved: "已选择：",
       noResults: "没有匹配的模型",
@@ -63,7 +63,7 @@
       currentEmpty: "No model selected",
       selected: "Current",
       choose: "Set current",
-      chooseBack: "Select and return",
+      chooseBack: "Set current",
       chatWith: "Chat with it",
       saved: "Selected: ",
       noResults: "No matching models",
@@ -285,9 +285,7 @@
     render();
     refs.status.className = "catalog-status is-success";
     refs.status.textContent = t("saved") + label(getModelById(id));
-    if (goChat) {
-      window.location.href = "../chat/";
-    }
+    void goChat;
   }
 
   function createChip(labelText) {
@@ -323,7 +321,6 @@
     const strengths = document.createElement("div");
     const actions = document.createElement("div");
     const choose = document.createElement("button");
-    const chat = document.createElement("button");
     const active = state.config.selectedModel === model.id;
     const modelDeployment = deploymentForModel(model);
 
@@ -338,9 +335,7 @@
     strengths.className = "catalog-chip-row";
     actions.className = "catalog-action-row";
     choose.className = "catalog-action";
-    chat.className = "catalog-secondary-action";
     choose.type = "button";
-    chat.type = "button";
 
     mark.textContent = modelInitial(model);
     heading.textContent = label(model);
@@ -348,7 +343,6 @@
     deployment.textContent = deploymentLabel(model);
     summary.textContent = modelSummary(model);
     choose.textContent = fromChat ? t("chooseBack") : t("choose");
-    chat.textContent = t("chatWith");
     meta.appendChild(createMetaItem(t("locationLabel"), deploymentDetail(model), "model-meta-item--wide"));
     meta.appendChild(createMetaItem(t("apiKeyLabel"), hasKey(model.id) ? t("hasKey") : t("noKey"), hasKey(model.id) ? "is-ready" : ""));
     meta.appendChild(createMetaItem(t("capabilityLabel"), t(capabilityForModel(model))));
@@ -365,9 +359,6 @@
     choose.addEventListener("click", function () {
       saveSelection(model.id, fromChat);
     });
-    chat.addEventListener("click", function () {
-      saveSelection(model.id, true);
-    });
 
     title.appendChild(heading);
     title.appendChild(provider);
@@ -381,7 +372,6 @@
       head.appendChild(badge);
     }
     actions.appendChild(choose);
-    actions.appendChild(chat);
     card.appendChild(head);
     card.appendChild(summary);
     card.appendChild(meta);

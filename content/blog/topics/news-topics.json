@@ -1,0 +1,26 @@
+{
+  "name": "开发者工具周报",
+  "description": "跟踪 AI 编程工具、开发者效率工具和本地优先软件动态。",
+  "keywords": ["AI coding tools", "Codex", "GitHub Copilot", "developer productivity"],
+  "expandedKeywords": ["developer tools", "agentic coding", "coding assistant", "local-first software"],
+  "tags": ["Developer Tools", "AI", "Productivity"],
+  "mode": "weekly",
+  "cadence": "weekly",
+  "sources": [
+    {
+      "type": "rss",
+      "name": "GitHub Blog",
+      "url": "https://github.blog/feed/"
+    },
+    {
+      "type": "rss",
+      "name": "OpenAI News",
+      "url": "https://openai.com/news/rss.xml"
+    },
+    {
+      "type": "github",
+      "name": "GitHub AI coding search",
+      "query": "AI coding tools OR coding assistant"
+    }
+  ]
+}

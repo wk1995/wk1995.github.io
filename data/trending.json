@@ -1,103 +1,103 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-06-02T06:00:51.993747+00:00",
+  "generated_at": "2026-07-01T05:52:19.787948+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "microsoft/markitdown",
-      "owner": "microsoft",
-      "name": "markitdown",
-      "url": "https://github.com/microsoft/markitdown",
-      "description": "Python tool for converting files and office documents to Markdown.",
+      "repo": "hasaneyldrm/exercises-dataset",
+      "owner": "hasaneyldrm",
+      "name": "exercises-dataset",
+      "url": "https://github.com/hasaneyldrm/exercises-dataset",
+      "description": "A comprehensive dataset of 433 fitness exercises. Each entry includes name, category, target muscle group, equipment, instructions, thumbnail image, and animation video.",
       "descriptions": {
-        "zh": "用于将文件和 Office 文档转换为 Markdown 的 Python 工具。",
-        "en": "Python tool for converting files and office documents to Markdown."
+        "zh": "包含 433 项健身练习的综合数据集。每个条目包括名称、类别、目标肌肉群、设备、说明、缩略图和动画视频。",
+        "en": "A comprehensive dataset of 433 fitness exercises. Each entry includes name, category, target muscle group, equipment, instructions, thumbnail image, and animation video."
       },
-      "language": "Python",
-      "stars_total": 139194,
-      "forks_total": 9474,
-      "stars_today": 3034
+      "language": "HTML",
+      "stars_total": 7215,
+      "forks_total": 845,
+      "stars_today": 1343
     },
     {
       "rank": 2,
-      "repo": "nesquena/hermes-webui",
-      "owner": "nesquena",
-      "name": "hermes-webui",
-      "url": "https://github.com/nesquena/hermes-webui",
-      "description": "Hermes WebUI: The best way to use Hermes Agent from the web or from your phone!",
+      "repo": "usestrix/strix",
+      "owner": "usestrix",
+      "name": "strix",
+      "url": "https://github.com/usestrix/strix",
+      "description": "Open-source AI penetration testing tool to find and fix your app’s vulnerabilities.",
       "descriptions": {
-        "zh": "Hermes WebUI：从网络或手机使用 Hermes Agent 的最佳方式！",
-        "en": "Hermes WebUI: The best way to use Hermes Agent from the web or from your phone!"
+        "zh": "开源人工智能渗透测试工具，用于查找并修复应用程序的漏洞。",
+        "en": "Open-source AI penetration testing tool to find and fix your app’s vulnerabilities."
       },
       "language": "Python",
-      "stars_total": 11642,
-      "forks_total": 1475,
-      "stars_today": 945
+      "stars_total": 28339,
+      "forks_total": 3135,
+      "stars_today": 515
     },
     {
       "rank": 3,
-      "repo": "supermemoryai/supermemory",
-      "owner": "supermemoryai",
-      "name": "supermemory",
-      "url": "https://github.com/supermemoryai/supermemory",
-      "description": "Memory engine and app that is extremely fast, scalable. The Memory API for the AI era.",
+      "repo": "msitarzewski/agency-agents",
+      "owner": "msitarzewski",
+      "name": "agency-agents",
+      "url": "https://github.com/msitarzewski/agency-agents",
+      "description": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.",
       "descriptions": {
-        "zh": "内存引擎和应用程序速度极快，可扩展。 AI时代的内存API。",
-        "en": "Memory engine and app that is extremely fast, scalable. The Memory API for the AI era."
+        "zh": "触手可及的完整人工智能机构 - 从前端向导到 Reddit 社区忍者，从奇思妙想的注入者到现实检查者。每个代理都是一位具有个性、流程和经过验证的可交付成果的专业专家。",
+        "en": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables."
       },
-      "language": "TypeScript",
-      "stars_total": 24136,
-      "forks_total": 2158,
-      "stars_today": 647
+      "language": "Shell",
+      "stars_total": 121326,
+      "forks_total": 19812,
+      "stars_today": 1791
     },
     {
       "rank": 4,
-      "repo": "harry0703/MoneyPrinterTurbo",
-      "owner": "harry0703",
-      "name": "MoneyPrinterTurbo",
-      "url": "https://github.com/harry0703/MoneyPrinterTurbo",
-      "description": "利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.",
+      "repo": "altic-dev/FluidVoice",
+      "owner": "altic-dev",
+      "name": "FluidVoice",
+      "url": "https://github.com/altic-dev/FluidVoice",
+      "description": "Fastest and only macOS Dictation app with on-device STT and custom trained AI enhancement model - Local Wispr Flow alternative. One ⭐ takes us a long way :)) Windows, iOS and Linux coming soon.",
       "descriptions": {
-        "zh": "利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.",
-        "en": "Generate short videos with one click using AI LLM."
+        "zh": "最快且唯一的 macOS 听写应用程序，具有设备上 STT 和自定义训练的 AI 增强模型 - 本地 Wispr Flow 替代方案。 One ⭐ 让我们走了很长一段路:)) Windows、iOS 和 Linux 即将推出。",
+        "en": "Fastest and only macOS Dictation app with on-device STT and custom trained AI enhancement model - Local Wispr Flow alternative. One ⭐ takes us a long way :)) Windows, iOS and Linux coming soon."
       },
-      "language": "Python",
-      "stars_total": 77182,
-      "forks_total": 10951,
-      "stars_today": 3375
+      "language": "Swift",
+      "stars_total": 5063,
+      "forks_total": 307,
+      "stars_today": 588
     },
     {
       "rank": 5,
-      "repo": "D4Vinci/Scrapling",
-      "owner": "D4Vinci",
-      "name": "Scrapling",
-      "url": "https://github.com/D4Vinci/Scrapling",
-      "description": "🕷️ An adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl!",
+      "repo": "diegosouzapw/OmniRoute",
+      "owner": "diegosouzapw",
+      "name": "OmniRoute",
+      "url": "https://github.com/diegosouzapw/OmniRoute",
+      "description": "Never stop coding. Free AI gateway: one endpoint, 231+ providers (50+ free), connect Claude Code, Codex, Cursor, Cline & Copilot to FREE Claude/GPT/Gemini. RTK+Caveman stacked compression saves 15-95% tokens, smart auto-fallback, MCP/A2A, multimodal APIs, Desktop/PWA.",
       "descriptions": {
-        "zh": "🕷️ 一个自适应网页抓取框架，可以处理从单个请求到全面抓取的所有内容！",
-        "en": "🕷️ An adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl!"
+        "zh": "永远不要停止编码。免费 AI 网关：一个端点、231 多个提供商（50 多个免费），将 Claude Code、Codex、Cursor、Cline 和 Copilot 连接到免费的 Claude/GPT/Gemini。 RTK+Caveman 堆叠压缩可节省 15-95% 的令牌、智能自动回退、MCP/A2A、多模式 API、桌面/PWA。",
+        "en": "Never stop coding. Free AI gateway: one endpoint, 231+ providers (50+ free), connect Claude Code, Codex, Cursor, Cline & Copilot to FREE Claude/GPT/Gemini. RTK+Caveman stacked compression saves 15-95% tokens, smart auto-fallback, MCP/A2A, multimodal APIs, Desktop/PWA."
       },
-      "language": "Python",
-      "stars_total": 58346,
-      "forks_total": 5654,
-      "stars_today": 1486
+      "language": "TypeScript",
+      "stars_total": 8772,
+      "forks_total": 1408,
+      "stars_today": 387
     },
     {
       "rank": 6,
-      "repo": "pbakaus/impeccable",
-      "owner": "pbakaus",
-      "name": "impeccable",
-      "url": "https://github.com/pbakaus/impeccable",
-      "description": "The design language that makes your AI harness better at design.",
+      "repo": "browser-use/video-use",
+      "owner": "browser-use",
+      "name": "video-use",
+      "url": "https://github.com/browser-use/video-use",
+      "description": "Edit videos with coding agents",
       "descriptions": {
-        "zh": "使您的 AI 线束在设计上更加出色的设计语言。",
-        "en": "The design language that makes your AI harness better at design."
+        "zh": "使用编码代理编辑视频",
+        "en": "Edit videos with coding agents"
       },
-      "language": "JavaScript",
-      "stars_total": 32978,
-      "forks_total": 1792,
-      "stars_today": 485
+      "language": "Python",
+      "stars_total": 12780,
+      "forks_total": 1620,
+      "stars_today": 721
     }
   ]
 }

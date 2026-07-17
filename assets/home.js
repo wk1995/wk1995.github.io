@@ -2,6 +2,7 @@
   const trendingList = document.getElementById("trending-list");
   const trendingUpdated = document.getElementById("trending-updated");
   const trendingPeriod = document.getElementById("trending-period");
+  const homePostList = document.getElementById("home-post-list");
 
   if (!trendingList || !trendingUpdated || !trendingPeriod) {
     return;
@@ -22,6 +23,13 @@
       localMissing: "本地直接打开文件时未找到预生成数据，请确认 data/trending.js 已加载。",
       syncFailed: "自动同步数据失败，稍后再试。",
       summaryPrefix: "GitHub Trending · ",
+      postLoading: "加载文章",
+      postUnavailable: "博客文章暂时不可用",
+      postEmpty: "暂时没有可展示在首页的文章。",
+      postFailed: "首页文章加载失败，稍后再试。",
+      postRead: "阅读全文",
+      postComments: "评论",
+      postLikes: "点赞",
     },
     en: {
       locale: "en-US",
@@ -37,6 +45,13 @@
       localMissing: "Pre-generated data was not found when opening this file locally. Make sure data/trending.js is loaded.",
       syncFailed: "Automatic sync failed. Please try again later.",
       summaryPrefix: "GitHub Trending · ",
+      postLoading: "Loading posts",
+      postUnavailable: "Blog posts are temporarily unavailable",
+      postEmpty: "No homepage posts are available yet.",
+      postFailed: "Unable to load homepage posts.",
+      postRead: "Read article",
+      postComments: "Comments",
+      postLikes: "Reactions",
     },
   };
 
@@ -84,6 +99,19 @@
       minute: "2-digit",
       timeZone: "Asia/Shanghai",
     }).format(date);
+  }
+
+  function formatPostDate(value) {
+    return String(value || "").replaceAll("-", ".");
+  }
+
+  function escapeHtml(value) {
+    return String(value || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;");
   }
 
   function createMetric(label, value) {
@@ -218,6 +246,83 @@
     trendingList.appendChild(fragment);
   }
 
+  function createHomePostCard(post) {
+    const currentCopy = getCopy();
+    const article = document.createElement("article");
+    article.className = "card home-post-card";
+    const badges = [];
+
+    if (post.comments && post.comments.enabled) {
+      badges.push(currentCopy.postComments);
+    }
+    if (post.likes && post.likes.enabled) {
+      badges.push(currentCopy.postLikes);
+    }
+
+    article.innerHTML = `
+      <div>
+        <div class="home-post-meta">
+          <time datetime="${escapeHtml(post.date)}">${escapeHtml(formatPostDate(post.date))}</time>
+          ${badges.map((badge) => `<span>${escapeHtml(badge)}</span>`).join("")}
+        </div>
+        <h3><a href="${escapeHtml(post.url)}">${escapeHtml(post.title)}</a></h3>
+        <p>${escapeHtml(post.summary)}</p>
+        <div class="home-post-tags">
+          ${(post.tags || []).slice(0, 3).map((tag) => `<span class="home-post-tag">${escapeHtml(tag)}</span>`).join("")}
+        </div>
+      </div>
+      <a class="home-post-link" href="${escapeHtml(post.url)}">${escapeHtml(currentCopy.postRead)} →</a>
+    `;
+
+    return article;
+  }
+
+  function renderHomePostEmpty(message) {
+    if (!homePostList) return;
+    const currentCopy = getCopy();
+    const allPosts = window.WKSite?.message?.("homePosts.all") || "查看全部博客";
+
+    homePostList.innerHTML = `
+      <article class="card home-post-card">
+        <div class="home-post-meta"><span>${escapeHtml(currentCopy.postLoading)}</span></div>
+        <h3>${escapeHtml(currentCopy.postUnavailable)}</h3>
+        <p>${escapeHtml(message)}</p>
+        <a class="home-post-link" href="/blog/">${escapeHtml(allPosts)} →</a>
+      </article>
+    `;
+  }
+
+  function renderHomePosts(posts) {
+    if (!homePostList) return;
+    if (!Array.isArray(posts) || posts.length === 0) {
+      renderHomePostEmpty(getCopy().postEmpty);
+      return;
+    }
+
+    homePostList.innerHTML = "";
+    const fragment = document.createDocumentFragment();
+    posts.slice(0, 3).forEach(function (post) {
+      fragment.appendChild(createHomePostCard(post));
+    });
+    homePostList.appendChild(fragment);
+  }
+
+  let homePosts = null;
+
+  async function loadHomePosts() {
+    if (!homePostList) return;
+    try {
+      const response = await fetch("blog/posts/home.json", { cache: "no-store" });
+      if (!response.ok) {
+        throw new Error("Unable to fetch home.json");
+      }
+      homePosts = await response.json();
+      renderHomePosts(homePosts);
+    } catch (error) {
+      renderHomePostEmpty(getCopy().postFailed);
+    }
+  }
+
   async function loadFallback() {
     if (window.location.protocol === "file:") {
       renderEmpty("localMissing");
@@ -243,6 +348,9 @@
     if (state.mode === "empty" && state.errorKey) {
       renderEmpty(state.errorKey);
     }
+    if (homePosts) {
+      renderHomePosts(homePosts);
+    }
   }
 
   window.addEventListener("wk:language-change", rerender);
@@ -252,4 +360,6 @@
   } else {
     loadFallback();
   }
+
+  loadHomePosts();
 })();
