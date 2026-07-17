@@ -1,23 +1,23 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-07-16T04:20:47.396973+00:00",
+  "generated_at": "2026-07-17T04:19:22.904576+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "OpenCut-app/OpenCut",
-      "owner": "OpenCut-app",
-      "name": "OpenCut",
-      "url": "https://github.com/OpenCut-app/OpenCut",
-      "description": "The open-source CapCut alternative",
+      "repo": "apache/ossie",
+      "owner": "apache",
+      "name": "ossie",
+      "url": "https://github.com/apache/ossie",
+      "description": "Apache Ossie, industry wide specification effort to standardize how we exchange semantic metadata across analytics, AI and BI platforms, providing a vendor neutral, single source of truth for semantic data",
       "descriptions": {
-        "zh": "开源 CapCut 替代方案",
-        "en": "The open-source CapCut alternative"
+        "zh": "Apache Ossie，行业范围内的规范工作，旨在标准化我们在分析、AI 和 BI 平台之间交换语义元数据的方式，为语义数据提供供应商中立的单一事实来源",
+        "en": "Apache Ossie, industry wide specification effort to standardize how we exchange semantic metadata across analytics, AI and BI platforms, providing a vendor neutral, single source of truth for semantic data"
       },
-      "language": "TypeScript",
-      "stars_total": 72265,
-      "forks_total": 7379,
-      "stars_today": 1664
+      "language": "Python",
+      "stars_total": 974,
+      "forks_total": 138,
+      "stars_today": 60
     },
     {
       "rank": 2,
@@ -31,73 +31,73 @@
         "en": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex."
       },
       "language": "CSS",
-      "stars_total": 8992,
-      "forks_total": 461,
-      "stars_today": 1277
+      "stars_total": 11125,
+      "forks_total": 552,
+      "stars_today": 3372
     },
     {
       "rank": 3,
-      "repo": "mattpocock/skills",
-      "owner": "mattpocock",
-      "name": "skills",
-      "url": "https://github.com/mattpocock/skills",
-      "description": "Skills for Real Engineers. Straight from my .claude directory.",
+      "repo": "OpenCut-app/OpenCut",
+      "owner": "OpenCut-app",
+      "name": "OpenCut",
+      "url": "https://github.com/OpenCut-app/OpenCut",
+      "description": "The open-source CapCut alternative",
       "descriptions": {
-        "zh": "真正工程师的技能。直接来自我的 .claude 目录。",
-        "en": "Skills for Real Engineers. Straight from my .claude directory."
+        "zh": "开源 CapCut 替代方案",
+        "en": "The open-source CapCut alternative"
       },
-      "language": "Shell",
-      "stars_total": 172618,
-      "forks_total": 14820,
-      "stars_today": 2130
+      "language": "TypeScript",
+      "stars_total": 74179,
+      "forks_total": 7495,
+      "stars_today": 3537
     },
     {
       "rank": 4,
-      "repo": "moeru-ai/airi",
-      "owner": "moeru-ai",
-      "name": "airi",
-      "url": "https://github.com/moeru-ai/airi",
-      "description": "💖🧸 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported.",
+      "repo": "PostHog/posthog",
+      "owner": "PostHog",
+      "name": "posthog",
+      "url": "https://github.com/PostHog/posthog",
+      "description": "🦔 PostHog is the leading platform for building self-driving products. Our developer tools – AI observability, analytics, session replay, flags, experiments, error tracking, logs, and more – capture all the context agents need to diagnose problems, uncover opportunities, and ship fixes. Steer it all from Slack, web, desktop, or the MCP.",
       "descriptions": {
-        "zh": "💖🧸 自托管，您拥有的 Grok Companion，一个 waifu 灵魂的容器，网络生命体，将他们带入我们的世界，希望达到 Neuro-sama 的高度。能够实时语音聊天、玩《我的世界》、《异星工厂》。支持网络/macOS/Windows。",
-        "en": "💖🧸 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported."
+        "zh": "🦔 PostHog 是构建自动驾驶产品的领先平台。我们的开发人员工具——人工智能可观察性、分析、会话重放、标记、实验、错误跟踪、日志等——捕获代理诊断问题、发现机会和发布修复所需的所有上下文。从 Slack、Web、桌面或 MCP 掌控一切。",
+        "en": "🦔 PostHog is the leading platform for building self-driving products. Our developer tools – AI observability, analytics, session replay, flags, experiments, error tracking, logs, and more – capture all the context agents need to diagnose problems, uncover opportunities, and ship fixes. Steer it all from Slack, web, desktop, or the MCP."
       },
-      "language": "TypeScript",
-      "stars_total": 42593,
-      "forks_total": 4252,
-      "stars_today": 110
+      "language": "Python",
+      "stars_total": 35912,
+      "forks_total": 2996,
+      "stars_today": 77
     },
     {
       "rank": 5,
-      "repo": "Dicklesworthstone/destructive_command_guard",
-      "owner": "Dicklesworthstone",
-      "name": "destructive_command_guard",
-      "url": "https://github.com/Dicklesworthstone/destructive_command_guard",
-      "description": "The Destructive Command Guard (dcg) is for blocking dangerous git and shell commands from being executed by agents.",
+      "repo": "openinterpreter/openinterpreter",
+      "owner": "openinterpreter",
+      "name": "openinterpreter",
+      "url": "https://github.com/openinterpreter/openinterpreter",
+      "description": "A coding agent for open models like Kimi K3",
       "descriptions": {
-        "zh": "破坏性命令防护 (dcg) 用于阻止代理执行危险的 git 和 shell 命令。",
-        "en": "The Destructive Command Guard (dcg) is for blocking dangerous git and shell commands from being executed by agents."
+        "zh": "适用于 Kimi K3 等开放模型的编码代理",
+        "en": "A coding agent for open models like Kimi K3"
       },
       "language": "Rust",
-      "stars_total": 4826,
-      "forks_total": 181,
-      "stars_today": 471
+      "stars_total": 66047,
+      "forks_total": 5677,
+      "stars_today": 661
     },
     {
       "rank": 6,
-      "repo": "HKUDS/Vibe-Trading",
-      "owner": "HKUDS",
-      "name": "Vibe-Trading",
-      "url": "https://github.com/HKUDS/Vibe-Trading",
-      "description": "\"Vibe-Trading: Your Personal Trading Agent\"",
+      "repo": "PrismML-Eng/Bonsai-demo",
+      "owner": "PrismML-Eng",
+      "name": "Bonsai-demo",
+      "url": "https://github.com/PrismML-Eng/Bonsai-demo",
+      "description": "Bonsai Demo",
       "descriptions": {
-        "zh": "“Vibe-Trading：您的个人交易代理”",
-        "en": "\"Vibe-Trading: Your Personal Trading Agent\""
+        "zh": "盆景演示",
+        "en": "Bonsai Demo"
       },
-      "language": "Python",
-      "stars_total": 23819,
-      "forks_total": 4051,
-      "stars_today": 915
+      "language": "Shell",
+      "stars_total": 1564,
+      "forks_total": 156,
+      "stars_today": 196
     }
   ]
 }
