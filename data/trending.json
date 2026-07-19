@@ -1,26 +1,42 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-07-18T04:10:51.421079+00:00",
+  "generated_at": "2026-07-19T04:30:29.580920+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "codecrafters-io/build-your-own-x",
-      "owner": "codecrafters-io",
-      "name": "build-your-own-x",
-      "url": "https://github.com/codecrafters-io/build-your-own-x",
-      "description": "Master programming by recreating your favorite technologies from scratch.",
+      "repo": "Robbyant/lingbot-map",
+      "owner": "Robbyant",
+      "name": "lingbot-map",
+      "url": "https://github.com/Robbyant/lingbot-map",
+      "description": "A feed-forward 3D foundation model for reconstructing scenes from streaming data",
       "descriptions": {
-        "zh": "通过从头开始重新创建您最喜欢的技术来掌握编程。",
-        "en": "Master programming by recreating your favorite technologies from scratch."
+        "zh": "用于从流数据重建场景的前馈 3D 基础模型",
+        "en": "A feed-forward 3D foundation model for reconstructing scenes from streaming data"
       },
-      "language": "Markdown",
-      "stars_total": 527530,
-      "forks_total": 49919,
-      "stars_today": 1068
+      "language": "Python",
+      "stars_total": 13063,
+      "forks_total": 1353,
+      "stars_today": 831
     },
     {
       "rank": 2,
+      "repo": "apache/ossie",
+      "owner": "apache",
+      "name": "ossie",
+      "url": "https://github.com/apache/ossie",
+      "description": "Apache Ossie, industry wide specification effort to standardize how we exchange semantic metadata across analytics, AI and BI platforms, providing a vendor neutral, single source of truth for semantic data",
+      "descriptions": {
+        "zh": "Apache Ossie，行业范围内的规范工作，旨在标准化我们在分析、AI 和 BI 平台之间交换语义元数据的方式，为语义数据提供供应商中立的单一事实来源",
+        "en": "Apache Ossie, industry wide specification effort to standardize how we exchange semantic metadata across analytics, AI and BI platforms, providing a vendor neutral, single source of truth for semantic data"
+      },
+      "language": "Python",
+      "stars_total": 1307,
+      "forks_total": 156,
+      "stars_today": 47
+    },
+    {
+      "rank": 3,
       "repo": "PostHog/posthog",
       "owner": "PostHog",
       "name": "posthog",
@@ -31,70 +47,57 @@
         "en": "🦔 PostHog is the leading platform for building self-driving products. Our developer tools – AI observability, analytics, session replay, flags, experiments, error tracking, logs, and more – capture all the context agents need to diagnose problems, uncover opportunities, and ship fixes. Steer it all from Slack, web, desktop, or the MCP."
       },
       "language": "Python",
-      "stars_total": 36248,
-      "forks_total": 3010,
-      "stars_today": 438
-    },
-    {
-      "rank": 3,
-      "repo": "HenryNdubuaku/maths-cs-ai-compendium",
-      "owner": "HenryNdubuaku",
-      "name": "maths-cs-ai-compendium",
-      "url": "https://github.com/HenryNdubuaku/maths-cs-ai-compendium",
-      "description": "Become a cracked AI/ML Research Engineer",
-      "descriptions": {
-        "zh": "成为一名出色的 AI/ML 研究工程师",
-        "en": "Become a cracked AI/ML Research Engineer"
-      },
-      "language": "TypeScript",
-      "stars_total": 6688,
-      "forks_total": 812,
-      "stars_today": 200
+      "stars_total": 36643,
+      "forks_total": 3032,
+      "stars_today": 338
     },
     {
       "rank": 4,
-      "repo": "Nutlope/hallmark",
-      "owner": "Nutlope",
-      "name": "hallmark",
-      "url": "https://github.com/Nutlope/hallmark",
-      "description": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
+      "repo": "ibelick/ui-skills",
+      "owner": "ibelick",
+      "name": "ui-skills",
+      "url": "https://github.com/ibelick/ui-skills",
+      "description": "Skills for Design Engineers",
       "descriptions": {
-        "zh": "Claude Code、Cursor、Codex 的防 AI 设计技巧。",
-        "en": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex."
+        "zh": "设计工程师的技能",
+        "en": "Skills for Design Engineers"
       },
-      "language": "CSS",
-      "stars_total": 12164,
-      "forks_total": 609,
-      "stars_today": 1485
+      "language": "TypeScript",
+      "stars_total": 5112,
+      "forks_total": 220,
+      "stars_today": 123
     },
     {
       "rank": 5,
-      "repo": "github/copilot-sdk",
-      "owner": "github",
-      "name": "copilot-sdk",
-      "url": "https://github.com/github/copilot-sdk",
-      "description": "Multi-platform SDK for integrating GitHub Copilot Agent into apps and services",
+      "repo": "rohitg00/ai-engineering-from-scratch",
+      "owner": "rohitg00",
+      "name": "ai-engineering-from-scratch",
+      "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
+      "description": "Learn it. Build it. Ship it for others.",
       "descriptions": {
-        "zh": "用于将 GitHub Copilot Agent 集成到应用程序和服务中的多平台 SDK",
-        "en": "Multi-platform SDK for integrating GitHub Copilot Agent into apps and services"
+        "zh": "学习它。建造它。寄给别人。",
+        "en": "Learn it. Build it. Ship it for others."
       },
-      "language": "Java",
-      "stars_total": 9818,
-      "forks_total": 1332,
-      "stars_today": 233
+      "language": "Python",
+      "stars_total": 39178,
+      "forks_total": 6556,
+      "stars_today": 191
     },
     {
       "rank": 6,
-      "repo": "anthropics/cwc-workshops",
-      "owner": "anthropics",
-      "name": "cwc-workshops",
-      "url": "https://github.com/anthropics/cwc-workshops",
-      "description": null,
-      "descriptions": null,
-      "language": "TypeScript",
-      "stars_total": 1615,
-      "forks_total": 490,
-      "stars_today": 45
+      "repo": "tirth8205/code-review-graph",
+      "owner": "tirth8205",
+      "name": "code-review-graph",
+      "url": "https://github.com/tirth8205/code-review-graph",
+      "description": "Local-first code intelligence graph for MCP and CLI. Builds a persistent map of your codebase so AI coding tools read only what matters, with benchmarked context reductions on reviews and large-repo workflows.",
+      "descriptions": {
+        "zh": "MCP 和 CLI 的本地优先代码智能图。构建代码库的持久地图，以便 AI 编码工具仅读取重要内容，并在评论和大型存储库工作流程上进行基准上下文缩减。",
+        "en": "Local-first code intelligence graph for MCP and CLI. Builds a persistent map of your codebase so AI coding tools read only what matters, with benchmarked context reductions on reviews and large-repo workflows."
+      },
+      "language": "Python",
+      "stars_total": 20261,
+      "forks_total": 2129,
+      "stars_today": 355
     }
   ]
 }
