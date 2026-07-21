@@ -1,26 +1,10 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-07-20T04:48:12.295531+00:00",
+  "generated_at": "2026-07-21T04:26:33.838090+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "bojieli/ai-agent-book",
-      "owner": "bojieli",
-      "name": "ai-agent-book",
-      "url": "https://github.com/bojieli/ai-agent-book",
-      "description": "《深入理解 AI Agent：设计原理与工程实践》（李博杰 著）开源主仓库：全书正文、编译版 PDF 与按章配套代码",
-      "descriptions": {
-        "zh": "《深入理解 AI Agent：设计原理与工程实践》（李博杰 着）开源主仓库：全书正文、编译版 PDF 与按章配套代码",
-        "en": "\"In-depth Understanding of AI Agent: Design Principles and Engineering Practice\" (authored by Li Bojie) Open source main repository: full text of the book, compiled PDF and chapter-by-chapter supporting code"
-      },
-      "language": "Python",
-      "stars_total": 6801,
-      "forks_total": 625,
-      "stars_today": 1734
-    },
-    {
-      "rank": 2,
       "repo": "tirth8205/code-review-graph",
       "owner": "tirth8205",
       "name": "code-review-graph",
@@ -31,25 +15,41 @@
         "en": "Local-first code intelligence graph for MCP and CLI. Builds a persistent map of your codebase so AI coding tools read only what matters, with benchmarked context reductions on reviews and large-repo workflows."
       },
       "language": "Python",
-      "stars_total": 21603,
-      "forks_total": 2198,
-      "stars_today": 663
+      "stars_total": 23555,
+      "forks_total": 2289,
+      "stars_today": 1833
+    },
+    {
+      "rank": 2,
+      "repo": "1jehuang/jcode",
+      "owner": "1jehuang",
+      "name": "jcode",
+      "url": "https://github.com/1jehuang/jcode",
+      "description": "The most intelligent agent harness for code",
+      "descriptions": {
+        "zh": "最智能的代码代理工具",
+        "en": "The most intelligent agent harness for code"
+      },
+      "language": "Rust",
+      "stars_total": 9775,
+      "forks_total": 1089,
+      "stars_today": 568
     },
     {
       "rank": 3,
-      "repo": "kvcache-ai/ktransformers",
-      "owner": "kvcache-ai",
-      "name": "ktransformers",
-      "url": "https://github.com/kvcache-ai/ktransformers",
-      "description": "A Flexible Framework for Experiencing Heterogeneous LLM Inference/Fine-tune Optimizations",
+      "repo": "diegosouzapw/OmniRoute",
+      "owner": "diegosouzapw",
+      "name": "OmniRoute",
+      "url": "https://github.com/diegosouzapw/OmniRoute",
+      "description": "Never stop coding. Free MIT AI gateway: one endpoint, 268+ providers (50+ free), 500+ models — Claude, GPT, Gemini, Kimi K3, GLM, DeepSeek. Works with Claude Code, Codex, Cursor, Cline & Copilot. Quota-aware auto-fallback, RTK+Caveman compression saves 15-95% tokens, MCP/A2A, multimodal, Desktop/PWA. Built by 500+ contributors.",
       "descriptions": {
-        "zh": "用于体验异构 LLM 推理/微调优化的灵活框架",
-        "en": "A Flexible Framework for Experiencing Heterogeneous LLM Inference/Fine-tune Optimizations"
+        "zh": "永远不要停止编码。免费 MIT AI 网关：一个端点、268 多个提供商（50 多个免费）、500 多个模型 — Claude、GPT、Gemini、Kimi K3、GLM、DeepSeek。适用于 Claude Code、Codex、Cursor、Cline 和 Copilot。配额感知自动回退、RTK+Caveman 压缩可节省 15-95% 的令牌、MCP/A2A、多模式、桌面/PWA。由 500 多名贡献者构建。",
+        "en": "Never stop coding. Free MIT AI gateway: one endpoint, 268+ providers (50+ free), 500+ models — Claude, GPT, Gemini, Kimi K3, GLM, DeepSeek. Works with Claude Code, Codex, Cursor, Cline & Copilot. Quota-aware auto-fallback, RTK+Caveman compression saves 15-95% tokens, MCP/A2A, multimodal, Desktop/PWA. Built by 500+ contributors."
       },
-      "language": "Python",
-      "stars_total": 18457,
-      "forks_total": 1456,
-      "stars_today": 360
+      "language": "TypeScript",
+      "stars_total": 22139,
+      "forks_total": 2992,
+      "stars_today": 1107
     },
     {
       "rank": 4,
@@ -63,41 +63,41 @@
         "en": "Learn it. Build it. Ship it for others."
       },
       "language": "Python",
-      "stars_total": 39858,
-      "forks_total": 6643,
-      "stars_today": 501
+      "stars_total": 40720,
+      "forks_total": 6752,
+      "stars_today": 823
     },
     {
       "rank": 5,
-      "repo": "jamiepine/voicebox",
-      "owner": "jamiepine",
-      "name": "voicebox",
-      "url": "https://github.com/jamiepine/voicebox",
-      "description": "The open-source AI voice studio. Clone, dictate, create.",
+      "repo": "msitarzewski/agency-agents",
+      "owner": "msitarzewski",
+      "name": "agency-agents",
+      "url": "https://github.com/msitarzewski/agency-agents",
+      "description": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.",
       "descriptions": {
-        "zh": "开源人工智能语音工作室。克隆、指令、创造。",
-        "en": "The open-source AI voice studio. Clone, dictate, create."
+        "zh": "触手可及的完整人工智能机构 - 从前端向导到 Reddit 社区忍者，从奇思妙想的注入者到现实检查者。每个代理都是一位具有个性、流程和经过验证的可交付成果的专业专家。",
+        "en": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables."
       },
-      "language": "TypeScript",
-      "stars_total": 43526,
-      "forks_total": 5309,
-      "stars_today": 610
+      "language": "Shell",
+      "stars_total": 134871,
+      "forks_total": 21983,
+      "stars_today": 862
     },
     {
       "rank": 6,
-      "repo": "KnockOutEZ/wigolo",
-      "owner": "KnockOutEZ",
-      "name": "wigolo",
-      "url": "https://github.com/KnockOutEZ/wigolo",
-      "description": "The go-to web for your AI coding agent — local-first search, fetch, crawl & research over MCP. No API keys, no cloud, $0/query. Public beta.",
+      "repo": "kvcache-ai/ktransformers",
+      "owner": "kvcache-ai",
+      "name": "ktransformers",
+      "url": "https://github.com/kvcache-ai/ktransformers",
+      "description": "A Flexible Framework for Experiencing Heterogeneous LLM Inference/Fine-tune Optimizations",
       "descriptions": {
-        "zh": "AI 编码代理的首选网络 — 通过 MCP 进行本地优先搜索、获取、爬网和研究。没有 API 密钥，没有云，每次查询 0 美元。公开测试版。",
-        "en": "The go-to web for your AI coding agent — local-first search, fetch, crawl & research over MCP. No API keys, no cloud, $0/query. Public beta."
+        "zh": "用于体验异构 LLM 推理/微调优化的灵活框架",
+        "en": "A Flexible Framework for Experiencing Heterogeneous LLM Inference/Fine-tune Optimizations"
       },
-      "language": "TypeScript",
-      "stars_total": 1984,
-      "forks_total": 122,
-      "stars_today": 595
+      "language": "Python",
+      "stars_total": 18770,
+      "forks_total": 1463,
+      "stars_today": 458
     }
   ]
 }
