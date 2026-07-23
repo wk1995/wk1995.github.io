@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-07-22T04:29:01.790305+00:00",
+  "generated_at": "2026-07-23T04:27:49.899655+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,44 +15,28 @@
         "en": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface"
       },
       "language": "TypeScript",
-      "stars_total": 66048,
-      "forks_total": 10254,
-      "stars_today": 1295
+      "stars_total": 69456,
+      "forks_total": 10597,
+      "stars_today": 4139
     },
     {
       "rank": 2,
-      "repo": "bojieli/ai-agent-book",
-      "owner": "bojieli",
-      "name": "ai-agent-book",
-      "url": "https://github.com/bojieli/ai-agent-book",
-      "description": "《深入理解 AI Agent：设计原理与工程实践》（李博杰 著）开源主仓库：全书正文、编译版 PDF 与按章配套代码",
+      "repo": "ruvnet/RuView",
+      "owner": "ruvnet",
+      "name": "RuView",
+      "url": "https://github.com/ruvnet/RuView",
+      "description": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video.",
       "descriptions": {
-        "zh": "《深入理解 AI Agent：设计原理与工程实践》（李博杰 着）开源主仓库：全书正文、编译版 PDF 与按章配套代码",
-        "en": "\"In-depth Understanding of AI Agent: Design Principles and Engineering Practice\" (authored by Li Bojie) Open source main repository: full text of the book, compiled PDF and chapter-by-chapter supporting code"
+        "zh": "π RuView 将商用 WiFi 信号转化为实时空间智能、生命体征监测和存在检测 - 所有这些都无需视频像素。",
+        "en": "π RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and presence detection — all without a single pixel of video."
       },
-      "language": "Python",
-      "stars_total": 15395,
-      "forks_total": 1449,
-      "stars_today": 4624
+      "language": "Rust",
+      "stars_total": 84039,
+      "forks_total": 11252,
+      "stars_today": 741
     },
     {
       "rank": 3,
-      "repo": "tirth8205/code-review-graph",
-      "owner": "tirth8205",
-      "name": "code-review-graph",
-      "url": "https://github.com/tirth8205/code-review-graph",
-      "description": "Local-first code intelligence graph for MCP and CLI. Builds a persistent map of your codebase so AI coding tools read only what matters, with benchmarked context reductions on reviews and large-repo workflows.",
-      "descriptions": {
-        "zh": "MCP 和 CLI 的本地优先代码智能图。构建代码库的持久地图，以便 AI 编码工具仅读取重要内容，并在评论和大型存储库工作流程上进行基准上下文缩减。",
-        "en": "Local-first code intelligence graph for MCP and CLI. Builds a persistent map of your codebase so AI coding tools read only what matters, with benchmarked context reductions on reviews and large-repo workflows."
-      },
-      "language": "Python",
-      "stars_total": 24746,
-      "forks_total": 2364,
-      "stars_today": 1925
-    },
-    {
-      "rank": 4,
       "repo": "ayghri/i-have-adhd",
       "owner": "ayghri",
       "name": "i-have-adhd",
@@ -62,42 +46,58 @@
         "zh": "您的编码代理可以阻止其隐藏答案的技能。多动症友好的输出。",
         "en": "A skill for your coding agent to stop it from burying the answer. ADHD-friendly output."
       },
-      "language": null,
-      "stars_total": 7132,
-      "forks_total": 302,
-      "stars_today": 1866
+      "language": "Python",
+      "stars_total": 8493,
+      "forks_total": 390,
+      "stars_today": 1699
+    },
+    {
+      "rank": 4,
+      "repo": "schollz/croc",
+      "owner": "schollz",
+      "name": "croc",
+      "url": "https://github.com/schollz/croc",
+      "description": "Easily and securely send things from one computer to another 🐊 📦",
+      "descriptions": {
+        "zh": "轻松安全地将内容从一台计算机发送到另一台计算机🐊📦",
+        "en": "Easily and securely send things from one computer to another 🐊 📦"
+      },
+      "language": "Go",
+      "stars_total": 37754,
+      "forks_total": 1491,
+      "stars_today": 739
     },
     {
       "rank": 5,
-      "repo": "earthtojake/text-to-cad",
-      "owner": "earthtojake",
-      "name": "text-to-cad",
-      "url": "https://github.com/earthtojake/text-to-cad",
-      "description": "A collection of agent skills for CAD, robotics and hardware design",
+      "repo": "likec4/likec4",
+      "owner": "likec4",
+      "name": "likec4",
+      "url": "https://github.com/likec4/likec4",
+      "description": "Visualize, collaborate, and evolve the software architecture with always actual and live diagrams from your code",
       "descriptions": {
-        "zh": "CAD、机器人和硬件设计的代理技能集合",
-        "en": "A collection of agent skills for CAD, robotics and hardware design"
+        "zh": "使用代码中始终真实的实时图表来可视化、协作和发展软件架构",
+        "en": "Visualize, collaborate, and evolve the software architecture with always actual and live diagrams from your code"
       },
-      "language": "JavaScript",
-      "stars_total": 9255,
-      "forks_total": 1033,
-      "stars_today": 291
+      "language": "TypeScript",
+      "stars_total": 4374,
+      "forks_total": 305,
+      "stars_today": 80
     },
     {
       "rank": 6,
-      "repo": "1jehuang/jcode",
-      "owner": "1jehuang",
-      "name": "jcode",
-      "url": "https://github.com/1jehuang/jcode",
-      "description": "The most intelligent agent harness for code",
+      "repo": "chrislgarry/Apollo-11",
+      "owner": "chrislgarry",
+      "name": "Apollo-11",
+      "url": "https://github.com/chrislgarry/Apollo-11",
+      "description": "Original Apollo 11 Guidance Computer (AGC) source code for the command and lunar modules.",
       "descriptions": {
-        "zh": "最智能的代码代理工具",
-        "en": "The most intelligent agent harness for code"
+        "zh": "用于命令和登月舱的原始阿波罗 11 号制导计算机 (AGC) 源代码。",
+        "en": "Original Apollo 11 Guidance Computer (AGC) source code for the command and lunar modules."
       },
-      "language": "Rust",
-      "stars_total": 10430,
-      "forks_total": 1144,
-      "stars_today": 843
+      "language": "Assembly",
+      "stars_total": 70696,
+      "forks_total": 7889,
+      "stars_today": 768
     }
   ]
 }
