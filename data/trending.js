@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-07-24T04:26:50.135329+00:00",
+  "generated_at": "2026-07-25T04:22:32.885569+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,9 +15,9 @@ window.__TRENDING_DATA__ = {
         "en": "A hive mind communication platform"
       },
       "language": "Rust",
-      "stars_total": 7366,
-      "forks_total": 591,
-      "stars_today": 2162
+      "stars_total": 10238,
+      "forks_total": 807,
+      "stars_today": 3270
     },
     {
       "rank": 2,
@@ -31,25 +31,25 @@ window.__TRENDING_DATA__ = {
         "en": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface"
       },
       "language": "TypeScript",
-      "stars_total": 71941,
-      "forks_total": 10823,
-      "stars_today": 3175
+      "stars_total": 73456,
+      "forks_total": 11021,
+      "stars_today": 2184
     },
     {
       "rank": 3,
-      "repo": "shiyu-coder/Kronos",
-      "owner": "shiyu-coder",
-      "name": "Kronos",
-      "url": "https://github.com/shiyu-coder/Kronos",
-      "description": "Kronos: A Foundation Model for the Language of Financial Markets",
+      "repo": "ComposioHQ/awesome-claude-skills",
+      "owner": "ComposioHQ",
+      "name": "awesome-claude-skills",
+      "url": "https://github.com/ComposioHQ/awesome-claude-skills",
+      "description": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows",
       "descriptions": {
-        "zh": "Kronos：金融市场语言的基础模型",
-        "en": "Kronos: A Foundation Model for the Language of Financial Markets"
+        "zh": "用于定制 Claude AI 工作流程的精彩 Claude 技能、资源和工具的精选列表",
+        "en": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows"
       },
       "language": "Python",
-      "stars_total": 33166,
-      "forks_total": 5655,
-      "stars_today": 401
+      "stars_total": 70150,
+      "forks_total": 7908,
+      "stars_today": 663
     },
     {
       "rank": 4,
@@ -63,41 +63,41 @@ window.__TRENDING_DATA__ = {
         "en": "Empowering everyone to host fast and efficient Minecraft servers."
       },
       "language": "Rust",
-      "stars_total": 8997,
-      "forks_total": 618,
-      "stars_today": 565
+      "stars_total": 9390,
+      "forks_total": 634,
+      "stars_today": 473
     },
     {
       "rank": 5,
-      "repo": "citrolabs/ego-lite",
-      "owner": "citrolabs",
-      "name": "ego-lite",
-      "url": "https://github.com/citrolabs/ego-lite",
-      "description": "The best browser for both you and your AI agents work in parallel.",
+      "repo": "shiyu-coder/Kronos",
+      "owner": "shiyu-coder",
+      "name": "Kronos",
+      "url": "https://github.com/shiyu-coder/Kronos",
+      "description": "Kronos: A Foundation Model for the Language of Financial Markets",
       "descriptions": {
-        "zh": "最适合您和您的 AI 代理并行工作的浏览器。",
-        "en": "The best browser for both you and your AI agents work in parallel."
+        "zh": "Kronos：金融市场语言的基础模型",
+        "en": "Kronos: A Foundation Model for the Language of Financial Markets"
       },
-      "language": "JavaScript",
-      "stars_total": 1804,
-      "forks_total": 99,
-      "stars_today": 247
+      "language": "Python",
+      "stars_total": 33541,
+      "forks_total": 5682,
+      "stars_today": 499
     },
     {
       "rank": 6,
-      "repo": "chrislgarry/Apollo-11",
-      "owner": "chrislgarry",
-      "name": "Apollo-11",
-      "url": "https://github.com/chrislgarry/Apollo-11",
-      "description": "Original Apollo 11 Guidance Computer (AGC) source code for the command and lunar modules.",
+      "repo": "Automattic/harper",
+      "owner": "Automattic",
+      "name": "harper",
+      "url": "https://github.com/Automattic/harper",
+      "description": "Offline, privacy-first grammar checker. Fast, open-source, Rust-powered",
       "descriptions": {
-        "zh": "用于命令和登月舱的原始阿波罗 11 号制导计算机 (AGC) 源代码。",
-        "en": "Original Apollo 11 Guidance Computer (AGC) source code for the command and lunar modules."
+        "zh": "离线、隐私优先的语法检查器。快速、开源、由 Rust 驱动",
+        "en": "Offline, privacy-first grammar checker. Fast, open-source, Rust-powered"
       },
-      "language": "Assembly",
-      "stars_total": 71161,
-      "forks_total": 7924,
-      "stars_today": 592
+      "language": "Rust",
+      "stars_total": 13087,
+      "forks_total": 484,
+      "stars_today": 876
     }
   ]
 }
