@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-07-25T04:22:32.885569+00:00",
+  "generated_at": "2026-07-26T04:36:17.963937+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,28 +15,44 @@ window.__TRENDING_DATA__ = {
         "en": "A hive mind communication platform"
       },
       "language": "Rust",
-      "stars_total": 10238,
-      "forks_total": 807,
-      "stars_today": 3270
+      "stars_total": 12138,
+      "forks_total": 975,
+      "stars_today": 2491
     },
     {
       "rank": 2,
-      "repo": "koala73/worldmonitor",
-      "owner": "koala73",
-      "name": "worldmonitor",
-      "url": "https://github.com/koala73/worldmonitor",
-      "description": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface",
+      "repo": "alibaba/open-code-review",
+      "owner": "alibaba",
+      "name": "open-code-review",
+      "url": "https://github.com/alibaba/open-code-review",
+      "description": "Open-source & free — Battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in fine-tuned ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
       "descriptions": {
-        "zh": "实时全球情报仪表板。在统一的态势感知界面中进行人工智能驱动的新闻聚合、地缘政治监控和基础设施跟踪",
-        "en": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface"
+        "zh": "开源且免费——经过阿里巴巴规模的实战考验。混合架构代码审查工具：确定性管道 + LLM Agent、精确的行级注释、内置微调规则集（NPE、线程安全、XSS、SQL 注入）、OpenAI 和 Anthropic 兼容。",
+        "en": "Open-source & free — Battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in fine-tuned ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible."
       },
-      "language": "TypeScript",
-      "stars_total": 73456,
-      "forks_total": 11021,
-      "stars_today": 2184
+      "language": "Go",
+      "stars_total": 13085,
+      "forks_total": 891,
+      "stars_today": 431
     },
     {
       "rank": 3,
+      "repo": "citrolabs/ego-lite",
+      "owner": "citrolabs",
+      "name": "ego-lite",
+      "url": "https://github.com/citrolabs/ego-lite",
+      "description": "The fastest browser for AI agents to run web automation, built for sharing your logged-in browser state with your AI agents, like Codex or Claude Code, without disturbing you. Zero cost, zero config.",
+      "descriptions": {
+        "zh": "AI 代理运行 Web 自动化最快的浏览器，专为与您的 AI 代理（如 Codex 或 Claude Code）共享您登录的浏览器状态而构建，而不会打扰您。零成本，零配置。",
+        "en": "The fastest browser for AI agents to run web automation, built for sharing your logged-in browser state with your AI agents, like Codex or Claude Code, without disturbing you. Zero cost, zero config."
+      },
+      "language": "JavaScript",
+      "stars_total": 3711,
+      "forks_total": 183,
+      "stars_today": 986
+    },
+    {
+      "rank": 4,
       "repo": "ComposioHQ/awesome-claude-skills",
       "owner": "ComposioHQ",
       "name": "awesome-claude-skills",
@@ -47,41 +63,25 @@ window.__TRENDING_DATA__ = {
         "en": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows"
       },
       "language": "Python",
-      "stars_total": 70150,
-      "forks_total": 7908,
-      "stars_today": 663
-    },
-    {
-      "rank": 4,
-      "repo": "Pumpkin-MC/Pumpkin",
-      "owner": "Pumpkin-MC",
-      "name": "Pumpkin",
-      "url": "https://github.com/Pumpkin-MC/Pumpkin",
-      "description": "Empowering everyone to host fast and efficient Minecraft servers.",
-      "descriptions": {
-        "zh": "使每个人都能托管快速高效的 Minecraft 服务器。",
-        "en": "Empowering everyone to host fast and efficient Minecraft servers."
-      },
-      "language": "Rust",
-      "stars_total": 9390,
-      "forks_total": 634,
-      "stars_today": 473
+      "stars_total": 70661,
+      "forks_total": 7946,
+      "stars_today": 577
     },
     {
       "rank": 5,
-      "repo": "shiyu-coder/Kronos",
-      "owner": "shiyu-coder",
-      "name": "Kronos",
-      "url": "https://github.com/shiyu-coder/Kronos",
-      "description": "Kronos: A Foundation Model for the Language of Financial Markets",
+      "repo": "anthropics/claude-cookbooks",
+      "owner": "anthropics",
+      "name": "claude-cookbooks",
+      "url": "https://github.com/anthropics/claude-cookbooks",
+      "description": "A collection of notebooks/recipes showcasing some fun and effective ways of using Claude.",
       "descriptions": {
-        "zh": "Kronos：金融市场语言的基础模型",
-        "en": "Kronos: A Foundation Model for the Language of Financial Markets"
+        "zh": "一系列笔记本/食谱展示了一些有趣且有效的使用克劳德的方法。",
+        "en": "A collection of notebooks/recipes showcasing some fun and effective ways of using Claude."
       },
-      "language": "Python",
-      "stars_total": 33541,
-      "forks_total": 5682,
-      "stars_today": 499
+      "language": "Jupyter Notebook",
+      "stars_total": 49939,
+      "forks_total": 5899,
+      "stars_today": 132
     },
     {
       "rank": 6,
@@ -95,9 +95,9 @@ window.__TRENDING_DATA__ = {
         "en": "Offline, privacy-first grammar checker. Fast, open-source, Rust-powered"
       },
       "language": "Rust",
-      "stars_total": 13087,
-      "forks_total": 484,
-      "stars_today": 876
+      "stars_total": 13470,
+      "forks_total": 512,
+      "stars_today": 503
     }
   ]
 }
