@@ -1,42 +1,26 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-07-26T04:36:17.963937+00:00",
+  "generated_at": "2026-07-27T04:49:14.889361+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "block/buzz",
-      "owner": "block",
-      "name": "buzz",
-      "url": "https://github.com/block/buzz",
-      "description": "A hive mind communication platform",
+      "repo": "permissionlesstech/bitchat",
+      "owner": "permissionlesstech",
+      "name": "bitchat",
+      "url": "https://github.com/permissionlesstech/bitchat",
+      "description": "bluetooth mesh chat, IRC vibes",
       "descriptions": {
-        "zh": "蜂巢思维交流平台",
-        "en": "A hive mind communication platform"
+        "zh": "蓝牙网状聊天、IRC 氛围",
+        "en": "bluetooth mesh chat, IRC vibes"
       },
-      "language": "Rust",
-      "stars_total": 12138,
-      "forks_total": 975,
-      "stars_today": 2491
+      "language": "Swift",
+      "stars_total": 30713,
+      "forks_total": 4799,
+      "stars_today": 1166
     },
     {
       "rank": 2,
-      "repo": "alibaba/open-code-review",
-      "owner": "alibaba",
-      "name": "open-code-review",
-      "url": "https://github.com/alibaba/open-code-review",
-      "description": "Open-source & free — Battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in fine-tuned ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
-      "descriptions": {
-        "zh": "开源且免费——经过阿里巴巴规模的实战考验。混合架构代码审查工具：确定性管道 + LLM Agent、精确的行级注释、内置微调规则集（NPE、线程安全、XSS、SQL 注入）、OpenAI 和 Anthropic 兼容。",
-        "en": "Open-source & free — Battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in fine-tuned ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible."
-      },
-      "language": "Go",
-      "stars_total": 13085,
-      "forks_total": 891,
-      "stars_today": 431
-    },
-    {
-      "rank": 3,
       "repo": "citrolabs/ego-lite",
       "owner": "citrolabs",
       "name": "ego-lite",
@@ -47,57 +31,70 @@
         "en": "The fastest browser for AI agents to run web automation, built for sharing your logged-in browser state with your AI agents, like Codex or Claude Code, without disturbing you. Zero cost, zero config."
       },
       "language": "JavaScript",
-      "stars_total": 3711,
-      "forks_total": 183,
-      "stars_today": 986
+      "stars_total": 4852,
+      "forks_total": 233,
+      "stars_today": 900
+    },
+    {
+      "rank": 3,
+      "repo": "block/buzz",
+      "owner": "block",
+      "name": "buzz",
+      "url": "https://github.com/block/buzz",
+      "description": "A hive mind communication platform",
+      "descriptions": {
+        "zh": "蜂巢思维交流平台",
+        "en": "A hive mind communication platform"
+      },
+      "language": "Rust",
+      "stars_total": 13561,
+      "forks_total": 1122,
+      "stars_today": 1710
     },
     {
       "rank": 4,
-      "repo": "ComposioHQ/awesome-claude-skills",
-      "owner": "ComposioHQ",
-      "name": "awesome-claude-skills",
-      "url": "https://github.com/ComposioHQ/awesome-claude-skills",
-      "description": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows",
-      "descriptions": {
-        "zh": "用于定制 Claude AI 工作流程的精彩 Claude 技能、资源和工具的精选列表",
-        "en": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows"
-      },
-      "language": "Python",
-      "stars_total": 70661,
-      "forks_total": 7946,
-      "stars_today": 577
+      "repo": "pingdotgg/t3code",
+      "owner": "pingdotgg",
+      "name": "t3code",
+      "url": "https://github.com/pingdotgg/t3code",
+      "description": null,
+      "descriptions": null,
+      "language": "TypeScript",
+      "stars_total": 15111,
+      "forks_total": 3313,
+      "stars_today": 149
     },
     {
       "rank": 5,
-      "repo": "anthropics/claude-cookbooks",
-      "owner": "anthropics",
-      "name": "claude-cookbooks",
-      "url": "https://github.com/anthropics/claude-cookbooks",
-      "description": "A collection of notebooks/recipes showcasing some fun and effective ways of using Claude.",
+      "repo": "CoreBunch/Instatic",
+      "owner": "CoreBunch",
+      "name": "Instatic",
+      "url": "https://github.com/CoreBunch/Instatic",
+      "description": "The open-source alternative to Webflow, Framer and WordPress. Agentic self-hosted visual CMS outputting clean static pages. Users, roles, plugins, content, database, it's all there.",
       "descriptions": {
-        "zh": "一系列笔记本/食谱展示了一些有趣且有效的使用克劳德的方法。",
-        "en": "A collection of notebooks/recipes showcasing some fun and effective ways of using Claude."
+        "zh": "Webflow、Framer 和 WordPress 的开源替代品。代理自托管可视化 CMS，输出干净的静态页面。用户、角色、插件、内容、数据库，一切都在那里。",
+        "en": "The open-source alternative to Webflow, Framer and WordPress. Agentic self-hosted visual CMS outputting clean static pages. Users, roles, plugins, content, database, it's all there."
       },
-      "language": "Jupyter Notebook",
-      "stars_total": 49939,
-      "forks_total": 5899,
-      "stars_today": 132
+      "language": "TypeScript",
+      "stars_total": 5793,
+      "forks_total": 524,
+      "stars_today": 888
     },
     {
       "rank": 6,
-      "repo": "Automattic/harper",
-      "owner": "Automattic",
-      "name": "harper",
-      "url": "https://github.com/Automattic/harper",
-      "description": "Offline, privacy-first grammar checker. Fast, open-source, Rust-powered",
+      "repo": "yorukot/superfile",
+      "owner": "yorukot",
+      "name": "superfile",
+      "url": "https://github.com/yorukot/superfile",
+      "description": "Pretty fancy and modern terminal file manager",
       "descriptions": {
-        "zh": "离线、隐私优先的语法检查器。快速、开源、由 Rust 驱动",
-        "en": "Offline, privacy-first grammar checker. Fast, open-source, Rust-powered"
+        "zh": "非常漂亮和现代的终端文件管理器",
+        "en": "Pretty fancy and modern terminal file manager"
       },
-      "language": "Rust",
-      "stars_total": 13470,
-      "forks_total": 512,
-      "stars_today": 503
+      "language": "Go",
+      "stars_total": 20354,
+      "forks_total": 640,
+      "stars_today": 131
     }
   ]
 }
