@@ -1,39 +1,39 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-07-28T04:22:27.104263+00:00",
+  "generated_at": "2026-07-29T04:26:11.603565+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "permissionlesstech/bitchat",
-      "owner": "permissionlesstech",
-      "name": "bitchat",
-      "url": "https://github.com/permissionlesstech/bitchat",
-      "description": "bluetooth mesh chat, IRC vibes",
+      "repo": "pascalorg/editor",
+      "owner": "pascalorg",
+      "name": "editor",
+      "url": "https://github.com/pascalorg/editor",
+      "description": "Create and share 3D architectural projects.",
       "descriptions": {
-        "zh": "蓝牙网状聊天、IRC 氛围",
-        "en": "bluetooth mesh chat, IRC vibes"
+        "zh": "创建和共享 3D 建筑项目。",
+        "en": "Create and share 3D architectural projects."
       },
-      "language": "Swift",
-      "stars_total": 32467,
-      "forks_total": 5085,
-      "stars_today": 2346
+      "language": "TypeScript",
+      "stars_total": 18895,
+      "forks_total": 2541,
+      "stars_today": 341
     },
     {
       "rank": 2,
-      "repo": "amnezia-vpn/amnezia-client",
-      "owner": "amnezia-vpn",
-      "name": "amnezia-client",
-      "url": "https://github.com/amnezia-vpn/amnezia-client",
-      "description": "Amnezia VPN Client (Desktop+Mobile)",
+      "repo": "jenkinsci/jenkins",
+      "owner": "jenkinsci",
+      "name": "jenkins",
+      "url": "https://github.com/jenkinsci/jenkins",
+      "description": "Jenkins automation server",
       "descriptions": {
-        "zh": "Amnesia VPN 客户端（桌面+移动）",
-        "en": "Amnesia VPN Client (Desktop+Mobile)"
+        "zh": "Jenkins 自动化服务器",
+        "en": "Jenkins automation server"
       },
-      "language": "C++",
-      "stars_total": 13933,
-      "forks_total": 1036,
-      "stars_today": 515
+      "language": "Java",
+      "stars_total": 26112,
+      "forks_total": 9689,
+      "stars_today": 180
     },
     {
       "rank": 3,
@@ -47,57 +47,57 @@
         "en": "💖🧸 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported."
       },
       "language": "TypeScript",
-      "stars_total": 44193,
-      "forks_total": 4407,
-      "stars_today": 572
+      "stars_total": 44898,
+      "forks_total": 4456,
+      "stars_today": 797
     },
     {
       "rank": 4,
-      "repo": "opengeos/GeoLibre",
-      "owner": "opengeos",
-      "name": "GeoLibre",
-      "url": "https://github.com/opengeos/GeoLibre",
-      "description": "A lightweight, cloud-native GIS platform for visualizing, exploring, and analyzing geospatial data. It runs in the web browser, on the desktop, on mobile, and inside Jupyter notebooks.",
+      "repo": "andrewyng/aisuite",
+      "owner": "andrewyng",
+      "name": "aisuite",
+      "url": "https://github.com/andrewyng/aisuite",
+      "description": "Simple, unified interface to multiple Generative AI providers",
       "descriptions": {
-        "zh": "一个轻量级的云原生 GIS 平台，用于可视化、探索和分析地理空间数据。它可以在 Web 浏览器、桌面、移动设备和 Jupyter 笔记本中运行。",
-        "en": "A lightweight, cloud-native GIS platform for visualizing, exploring, and analyzing geospatial data. It runs in the web browser, on the desktop, on mobile, and inside Jupyter notebooks."
+        "zh": "与多个生成人工智能提供商的简单、统一的接口",
+        "en": "Simple, unified interface to multiple Generative AI providers"
       },
-      "language": "TypeScript",
-      "stars_total": 2830,
-      "forks_total": 363,
-      "stars_today": 420
+      "language": "Python",
+      "stars_total": 15730,
+      "forks_total": 1658,
+      "stars_today": 62
     },
     {
       "rank": 5,
-      "repo": "yorukot/superfile",
-      "owner": "yorukot",
-      "name": "superfile",
-      "url": "https://github.com/yorukot/superfile",
-      "description": "Pretty fancy and modern terminal file manager",
+      "repo": "affaan-m/ECC",
+      "owner": "affaan-m",
+      "name": "ECC",
+      "url": "https://github.com/affaan-m/ECC",
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
       "descriptions": {
-        "zh": "非常漂亮和现代的终端文件管理器",
-        "en": "Pretty fancy and modern terminal file manager"
+        "zh": "代理利用性能优化系统。 Claude Code、Codex、Opencode、Cursor 等的技能、直觉、记忆、安全性和研究优先的开发。",
+        "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
       },
-      "language": "Go",
-      "stars_total": 21006,
-      "forks_total": 678,
-      "stars_today": 600
+      "language": "JavaScript",
+      "stars_total": 234967,
+      "forks_total": 35800,
+      "stars_today": 636
     },
     {
       "rank": 6,
-      "repo": "NanmiCoder/MediaCrawler",
-      "owner": "NanmiCoder",
-      "name": "MediaCrawler",
-      "url": "https://github.com/NanmiCoder/MediaCrawler",
-      "description": "小红书笔记 | 评论爬虫、抖音视频 | 评论爬虫、快手视频 | 评论爬虫、B 站视频 ｜ 评论爬虫、微博帖子 ｜ 评论爬虫、百度贴吧帖子 ｜ 百度贴吧评论回复爬虫 | 知乎问答文章｜评论爬虫",
+      "repo": "hello245m/free-stockdb",
+      "owner": "hello245m",
+      "name": "free-stockdb",
+      "url": "https://github.com/hello245m/free-stockdb",
+      "description": "面向 A 股日K、分钟K与ETF分钟数据的本地量化引擎，集成增量同步、本地缓存、复权、批量查询、回测与指标计算。",
       "descriptions": {
-        "zh": "小红书笔记 | 评论爬虫、抖音视频 | 评论爬虫、快手视频 | 评论爬虫、B 站视频 ｜ 评论爬虫、微博帖子 ｜ 评论爬虫、百度贴吧帖子 ｜ 百度贴吧评论回复爬虫 | 知乎问答文章｜评论爬虫",
-        "en": "Xiaohongshu Notes | Comment crawler, Douyin video | Comment crawler, Kuaishou video | Comment crawler, Bilibili video | Comment crawler, Weibo post | Comment crawler, Baidu Tieba post | Baidu Tieba comment reply crawler | Zhihu question and answer article | Comment crawler"
+        "zh": "面向 A 股日K、分钟K与ETF分钟数据的本地量化引擎，集成增量同步、本地缓存、复权、批量查询、回测与指标计算。",
+        "en": "A local quantitative engine for A-share daily K, minute K and ETF minute data, integrating incremental synchronization, local caching, weight restoration, batch query, backtesting and indicator calculation."
       },
-      "language": "Python",
-      "stars_total": 58431,
-      "forks_total": 11614,
-      "stars_today": 362
+      "language": "HTML",
+      "stars_total": 1431,
+      "forks_total": 215,
+      "stars_today": 50
     }
   ]
 }
