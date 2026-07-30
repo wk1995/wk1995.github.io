@@ -1,42 +1,26 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-07-29T04:26:11.603565+00:00",
+  "generated_at": "2026-07-30T04:15:46.764644+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "pascalorg/editor",
-      "owner": "pascalorg",
-      "name": "editor",
-      "url": "https://github.com/pascalorg/editor",
-      "description": "Create and share 3D architectural projects.",
+      "repo": "opengeos/GeoLibre",
+      "owner": "opengeos",
+      "name": "GeoLibre",
+      "url": "https://github.com/opengeos/GeoLibre",
+      "description": "A lightweight, cloud-native GIS platform for visualizing, exploring, and analyzing geospatial data. It runs in the web browser, on the desktop, on mobile, and inside Jupyter notebooks.",
       "descriptions": {
-        "zh": "创建和共享 3D 建筑项目。",
-        "en": "Create and share 3D architectural projects."
+        "zh": "一个轻量级的云原生 GIS 平台，用于可视化、探索和分析地理空间数据。它可以在 Web 浏览器、桌面、移动设备和 Jupyter 笔记本中运行。",
+        "en": "A lightweight, cloud-native GIS platform for visualizing, exploring, and analyzing geospatial data. It runs in the web browser, on the desktop, on mobile, and inside Jupyter notebooks."
       },
       "language": "TypeScript",
-      "stars_total": 18895,
-      "forks_total": 2541,
-      "stars_today": 341
+      "stars_total": 4166,
+      "forks_total": 439,
+      "stars_today": 671
     },
     {
       "rank": 2,
-      "repo": "jenkinsci/jenkins",
-      "owner": "jenkinsci",
-      "name": "jenkins",
-      "url": "https://github.com/jenkinsci/jenkins",
-      "description": "Jenkins automation server",
-      "descriptions": {
-        "zh": "Jenkins 自动化服务器",
-        "en": "Jenkins automation server"
-      },
-      "language": "Java",
-      "stars_total": 26112,
-      "forks_total": 9689,
-      "stars_today": 180
-    },
-    {
-      "rank": 3,
       "repo": "moeru-ai/airi",
       "owner": "moeru-ai",
       "name": "airi",
@@ -47,28 +31,12 @@ window.__TRENDING_DATA__ = {
         "en": "💖🧸 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported."
       },
       "language": "TypeScript",
-      "stars_total": 44898,
-      "forks_total": 4456,
-      "stars_today": 797
+      "stars_total": 45492,
+      "forks_total": 4493,
+      "stars_today": 682
     },
     {
-      "rank": 4,
-      "repo": "andrewyng/aisuite",
-      "owner": "andrewyng",
-      "name": "aisuite",
-      "url": "https://github.com/andrewyng/aisuite",
-      "description": "Simple, unified interface to multiple Generative AI providers",
-      "descriptions": {
-        "zh": "与多个生成人工智能提供商的简单、统一的接口",
-        "en": "Simple, unified interface to multiple Generative AI providers"
-      },
-      "language": "Python",
-      "stars_total": 15730,
-      "forks_total": 1658,
-      "stars_today": 62
-    },
-    {
-      "rank": 5,
+      "rank": 3,
       "repo": "affaan-m/ECC",
       "owner": "affaan-m",
       "name": "ECC",
@@ -79,25 +47,57 @@ window.__TRENDING_DATA__ = {
         "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
       },
       "language": "JavaScript",
-      "stars_total": 234967,
-      "forks_total": 35800,
-      "stars_today": 636
+      "stars_total": 235706,
+      "forks_total": 35884,
+      "stars_today": 857
+    },
+    {
+      "rank": 4,
+      "repo": "huggingface/speech-to-speech",
+      "owner": "huggingface",
+      "name": "speech-to-speech",
+      "url": "https://github.com/huggingface/speech-to-speech",
+      "description": "Build local voice agents with open-source models",
+      "descriptions": {
+        "zh": "使用开源模型构建本地语音代理",
+        "en": "Build local voice agents with open-source models"
+      },
+      "language": "Python",
+      "stars_total": 7984,
+      "forks_total": 1008,
+      "stars_today": 827
+    },
+    {
+      "rank": 5,
+      "repo": "1jehuang/jcode",
+      "owner": "1jehuang",
+      "name": "jcode",
+      "url": "https://github.com/1jehuang/jcode",
+      "description": "The most RAM efficient harness",
+      "descriptions": {
+        "zh": "RAM 效率最高的线束",
+        "en": "The most RAM efficient harness"
+      },
+      "language": "Rust",
+      "stars_total": 13572,
+      "forks_total": 1488,
+      "stars_today": 640
     },
     {
       "rank": 6,
-      "repo": "hello245m/free-stockdb",
-      "owner": "hello245m",
-      "name": "free-stockdb",
-      "url": "https://github.com/hello245m/free-stockdb",
-      "description": "面向 A 股日K、分钟K与ETF分钟数据的本地量化引擎，集成增量同步、本地缓存、复权、批量查询、回测与指标计算。",
+      "repo": "grokability/snipe-it",
+      "owner": "grokability",
+      "name": "snipe-it",
+      "url": "https://github.com/grokability/snipe-it",
+      "description": "A free open source IT asset/license management system",
       "descriptions": {
-        "zh": "面向 A 股日K、分钟K与ETF分钟数据的本地量化引擎，集成增量同步、本地缓存、复权、批量查询、回测与指标计算。",
-        "en": "A local quantitative engine for A-share daily K, minute K and ETF minute data, integrating incremental synchronization, local caching, weight restoration, batch query, backtesting and indicator calculation."
+        "zh": "免费的开源 IT 资产/许可证管理系统",
+        "en": "A free open source IT asset/license management system"
       },
-      "language": "HTML",
-      "stars_total": 1431,
-      "forks_total": 215,
-      "stars_today": 50
+      "language": "PHP",
+      "stars_total": 14504,
+      "forks_total": 3904,
+      "stars_today": 164
     }
   ]
 }
