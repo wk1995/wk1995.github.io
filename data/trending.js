@@ -1,58 +1,10 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-07-30T04:15:46.764644+00:00",
+  "generated_at": "2026-07-31T04:33:50.662011+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "opengeos/GeoLibre",
-      "owner": "opengeos",
-      "name": "GeoLibre",
-      "url": "https://github.com/opengeos/GeoLibre",
-      "description": "A lightweight, cloud-native GIS platform for visualizing, exploring, and analyzing geospatial data. It runs in the web browser, on the desktop, on mobile, and inside Jupyter notebooks.",
-      "descriptions": {
-        "zh": "一个轻量级的云原生 GIS 平台，用于可视化、探索和分析地理空间数据。它可以在 Web 浏览器、桌面、移动设备和 Jupyter 笔记本中运行。",
-        "en": "A lightweight, cloud-native GIS platform for visualizing, exploring, and analyzing geospatial data. It runs in the web browser, on the desktop, on mobile, and inside Jupyter notebooks."
-      },
-      "language": "TypeScript",
-      "stars_total": 4166,
-      "forks_total": 439,
-      "stars_today": 671
-    },
-    {
-      "rank": 2,
-      "repo": "moeru-ai/airi",
-      "owner": "moeru-ai",
-      "name": "airi",
-      "url": "https://github.com/moeru-ai/airi",
-      "description": "💖🧸 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported.",
-      "descriptions": {
-        "zh": "💖🧸 自托管，您拥有的 Grok Companion，一个 waifu 灵魂的容器，网络生命体，将他们带入我们的世界，希望达到 Neuro-sama 的高度。能够实时语音聊天、玩《我的世界》、《异星工厂》。支持网络/macOS/Windows。",
-        "en": "💖🧸 Self hosted, you-owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported."
-      },
-      "language": "TypeScript",
-      "stars_total": 45492,
-      "forks_total": 4493,
-      "stars_today": 682
-    },
-    {
-      "rank": 3,
-      "repo": "affaan-m/ECC",
-      "owner": "affaan-m",
-      "name": "ECC",
-      "url": "https://github.com/affaan-m/ECC",
-      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
-      "descriptions": {
-        "zh": "代理利用性能优化系统。 Claude Code、Codex、Opencode、Cursor 等的技能、直觉、记忆、安全性和研究优先的开发。",
-        "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
-      },
-      "language": "JavaScript",
-      "stars_total": 235706,
-      "forks_total": 35884,
-      "stars_today": 857
-    },
-    {
-      "rank": 4,
       "repo": "huggingface/speech-to-speech",
       "owner": "huggingface",
       "name": "speech-to-speech",
@@ -63,41 +15,89 @@ window.__TRENDING_DATA__ = {
         "en": "Build local voice agents with open-source models"
       },
       "language": "Python",
-      "stars_total": 7984,
-      "forks_total": 1008,
-      "stars_today": 827
+      "stars_total": 9127,
+      "forks_total": 1120,
+      "stars_today": 628
+    },
+    {
+      "rank": 2,
+      "repo": "microsoft/AI-For-Beginners",
+      "owner": "microsoft",
+      "name": "AI-For-Beginners",
+      "url": "https://github.com/microsoft/AI-For-Beginners",
+      "description": "12 Weeks, 24 Lessons, AI for All!",
+      "descriptions": {
+        "zh": "12 周，24 节课，全民人工智能！",
+        "en": "12 Weeks, 24 Lessons, AI for All!"
+      },
+      "language": "Jupyter Notebook",
+      "stars_total": 54291,
+      "forks_total": 10997,
+      "stars_today": 155
+    },
+    {
+      "rank": 3,
+      "repo": "paperswithbacktest/awesome-systematic-trading",
+      "owner": "paperswithbacktest",
+      "name": "awesome-systematic-trading",
+      "url": "https://github.com/paperswithbacktest/awesome-systematic-trading",
+      "description": "A curated list of awesome libraries, packages, strategies, books, blogs, tutorials for systematic trading.",
+      "descriptions": {
+        "zh": "一系列很棒的库、软件包、策略、书籍、博客、系统交易教程。",
+        "en": "A curated list of awesome libraries, packages, strategies, books, blogs, tutorials for systematic trading."
+      },
+      "language": "Python",
+      "stars_total": 11186,
+      "forks_total": 1427,
+      "stars_today": 621
+    },
+    {
+      "rank": 4,
+      "repo": "different-ai/openwork",
+      "owner": "different-ai",
+      "name": "openwork",
+      "url": "https://github.com/different-ai/openwork",
+      "description": "The open-source alternative to Claude Cowork (powered by opencode)",
+      "descriptions": {
+        "zh": "Claude Cowork 的开源替代方案（由 opencode 提供支持）",
+        "en": "The open-source alternative to Claude Cowork (powered by opencode)"
+      },
+      "language": "TypeScript",
+      "stars_total": 18877,
+      "forks_total": 1919,
+      "stars_today": 915
     },
     {
       "rank": 5,
-      "repo": "1jehuang/jcode",
-      "owner": "1jehuang",
-      "name": "jcode",
-      "url": "https://github.com/1jehuang/jcode",
-      "description": "The most RAM efficient harness",
+      "repo": "WhiskeySockets/Baileys",
+      "owner": "WhiskeySockets",
+      "name": "Baileys",
+      "url": "https://github.com/WhiskeySockets/Baileys",
+      "description": "Socket-based TS/JavaScript API for WhatsApp Web",
       "descriptions": {
-        "zh": "RAM 效率最高的线束",
-        "en": "The most RAM efficient harness"
+        "zh": "用于 WhatsApp Web 的基于套接字的 TS/JavaScript API",
+        "en": "Socket-based TS/JavaScript API for WhatsApp Web"
       },
-      "language": "Rust",
-      "stars_total": 13572,
-      "forks_total": 1488,
-      "stars_today": 640
+      "language": "JavaScript",
+      "stars_total": 10469,
+      "forks_total": 3255,
+      "stars_today": 19
     },
     {
       "rank": 6,
-      "repo": "grokability/snipe-it",
-      "owner": "grokability",
-      "name": "snipe-it",
-      "url": "https://github.com/grokability/snipe-it",
-      "description": "A free open source IT asset/license management system",
+      "repo": "pascalorg/editor",
+      "owner": "pascalorg",
+      "name": "editor",
+      "url": "https://github.com/pascalorg/editor",
+      "description": "Create and share 3D architectural projects.",
       "descriptions": {
-        "zh": "免费的开源 IT 资产/许可证管理系统",
-        "en": "A free open source IT asset/license management system"
+        "zh": "创建和共享 3D 建筑项目。",
+        "en": "Create and share 3D architectural projects."
       },
-      "language": "PHP",
-      "stars_total": 14504,
-      "forks_total": 3904,
-      "stars_today": 164
+      "language": "TypeScript",
+      "stars_total": 20200,
+      "forks_total": 2623,
+      "stars_today": 625
     }
   ]
 }
