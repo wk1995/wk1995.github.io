@@ -1,23 +1,23 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-04T04:26:05.905638+00:00",
+  "generated_at": "2026-08-05T04:23:59.183204+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "lyogavin/airllm",
-      "owner": "lyogavin",
-      "name": "airllm",
-      "url": "https://github.com/lyogavin/airllm",
-      "description": "AirLLM 70B inference with single 4GB GPU",
+      "repo": "TencentCloud/TencentDB-Agent-Memory",
+      "owner": "TencentCloud",
+      "name": "TencentDB-Agent-Memory",
+      "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory",
+      "description": "TencentDB Agent Memory is a team-level memory hub for AI Agents — turning conversations, docs, and code into four reusable memory assets (Chat Memory, Skill, LLM-Wiki, Code-Graph) that are governed, shared, and equipped across agents and frameworks.",
       "descriptions": {
-        "zh": "使用单个 4GB GPU 进行 AirLLM 70B 推理",
-        "en": "AirLLM 70B inference with single 4GB GPU"
+        "zh": "TangentDB Agent Memory 是 AI Agent 的团队级内存中心，将对话、文档和代码转化为四种可重用的内存资产（聊天内存、技能、LLM-Wiki、代码图），并在代理和框架之间进行管理、共享和配备。",
+        "en": "TencentDB Agent Memory is a team-level memory hub for AI Agents — turning conversations, docs, and code into four reusable memory assets (Chat Memory, Skill, LLM-Wiki, Code-Graph) that are governed, shared, and equipped across agents and frameworks."
       },
-      "language": "Jupyter Notebook",
-      "stars_total": 27385,
-      "forks_total": 2987,
-      "stars_today": 1085
+      "language": "TypeScript",
+      "stars_total": 13969,
+      "forks_total": 1298,
+      "stars_today": 1111
     },
     {
       "rank": 2,
@@ -31,9 +31,9 @@
         "en": "Reverse Engineering / Authorized Penetration Testing / Security Research Skill Router Pack AI-powered routing + On-demand toolchain bootstrapping + Self-evolving knowledge base Supports Claude Code, Kiro, Cursor, Cline, and other AI coding clients"
       },
       "language": "PowerShell",
-      "stars_total": 16204,
-      "forks_total": 2275,
-      "stars_today": 2446
+      "stars_total": 18187,
+      "forks_total": 2490,
+      "stars_today": 2297
     },
     {
       "rank": 3,
@@ -47,57 +47,57 @@
         "en": "Fast Rust library for PDF inspection, classification, and text extraction. Intelligently detects scanned vs text-based PDFs to enable smart routing decisions."
       },
       "language": "Rust",
-      "stars_total": 8611,
-      "forks_total": 569,
-      "stars_today": 1699
+      "stars_total": 10280,
+      "forks_total": 671,
+      "stars_today": 2540
     },
     {
       "rank": 4,
-      "repo": "esengine/DeepSeek-Reasonix",
-      "owner": "esengine",
-      "name": "DeepSeek-Reasonix",
-      "url": "https://github.com/esengine/DeepSeek-Reasonix",
-      "description": "DeepSeek-native AI coding agent for your terminal. Engineered around prefix-cache stability — leave it running.",
+      "repo": "uber/ADR",
+      "owner": "uber",
+      "name": "ADR",
+      "url": "https://github.com/uber/ADR",
+      "description": "ADR secures enterprise AI agents through observability, security benchmarking, and threat detection. Deployed at Uber.",
       "descriptions": {
-        "zh": "DeepSeek-适用于您终端的原生 AI 编码代理。围绕前缀缓存稳定性进行设计 - 让它运行。",
-        "en": "DeepSeek-native AI coding agent for your terminal. Engineered around prefix-cache stability — leave it running."
+        "zh": "ADR 通过可观察性、安全基准测试和威胁检测来保护企业 AI 代理。部署在 Uber。",
+        "en": "ADR secures enterprise AI agents through observability, security benchmarking, and threat detection. Deployed at Uber."
       },
-      "language": "Go",
-      "stars_total": 30125,
-      "forks_total": 1939,
-      "stars_today": 883
+      "language": "Python",
+      "stars_total": 744,
+      "forks_total": 71,
+      "stars_today": 148
     },
     {
       "rank": 5,
-      "repo": "TencentCloud/TencentDB-Agent-Memory",
-      "owner": "TencentCloud",
-      "name": "TencentDB-Agent-Memory",
-      "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory",
-      "description": "TencentDB Agent Memory is a team-level memory hub for AI Agents — turning conversations, docs, and code into four reusable memory assets (Chat Memory, Skill, LLM-Wiki, Code-Graph) that are governed, shared, and equipped across agents and frameworks.",
+      "repo": "obra/superpowers",
+      "owner": "obra",
+      "name": "superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
       "descriptions": {
-        "zh": "TangentDB Agent Memory 是 AI Agent 的团队级内存中心，将对话、文档和代码转化为四种可重用的内存资产（聊天内存、技能、LLM-Wiki、代码图），并在代理和框架之间进行管理、共享和配备。",
-        "en": "TencentDB Agent Memory is a team-level memory hub for AI Agents — turning conversations, docs, and code into four reusable memory assets (Chat Memory, Skill, LLM-Wiki, Code-Graph) that are governed, shared, and equipped across agents and frameworks."
+        "zh": "有效的代理技能框架和软件开发方法。",
+        "en": "An agentic skills framework & software development methodology that works."
       },
-      "language": "TypeScript",
-      "stars_total": 12343,
-      "forks_total": 1166,
-      "stars_today": 1090
+      "language": "Shell",
+      "stars_total": 266635,
+      "forks_total": 23837,
+      "stars_today": 653
     },
     {
       "rank": 6,
-      "repo": "microsoft/AI-For-Beginners",
+      "repo": "microsoft/generative-ai-for-beginners",
       "owner": "microsoft",
-      "name": "AI-For-Beginners",
-      "url": "https://github.com/microsoft/AI-For-Beginners",
-      "description": "12 Weeks, 24 Lessons, AI for All!",
+      "name": "generative-ai-for-beginners",
+      "url": "https://github.com/microsoft/generative-ai-for-beginners",
+      "description": "21 Lessons, Get Started Building with Generative AI",
       "descriptions": {
-        "zh": "12 周，24 节课，全民人工智能！",
-        "en": "12 Weeks, 24 Lessons, AI for All!"
+        "zh": "21 节课程，开始使用生成式 AI 进行构建",
+        "en": "21 Lessons, Get Started Building with Generative AI"
       },
       "language": "Jupyter Notebook",
-      "stars_total": 61001,
-      "forks_total": 11864,
-      "stars_today": 1902
+      "stars_total": 116365,
+      "forks_total": 61575,
+      "stars_today": 783
     }
   ]
 }
