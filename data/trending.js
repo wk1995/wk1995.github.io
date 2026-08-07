@@ -1,42 +1,10 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-06T04:25:40.947494+00:00",
+  "generated_at": "2026-08-07T04:01:45.689563+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "cloudflare/computer",
-      "owner": "cloudflare",
-      "name": "computer",
-      "url": "https://github.com/cloudflare/computer",
-      "description": "Give your agent a computer 👾",
-      "descriptions": {
-        "zh": "给你的代理人一台电脑👾",
-        "en": "Give your agent a computer 👾"
-      },
-      "language": "TypeScript",
-      "stars_total": 3429,
-      "forks_total": 158,
-      "stars_today": 891
-    },
-    {
-      "rank": 2,
-      "repo": "huangruiteng/loopx",
-      "owner": "huangruiteng",
-      "name": "loopx",
-      "url": "https://github.com/huangruiteng/loopx",
-      "description": "Lightweight loop engineering state kernel for long-running AI agent teams. Agent-loop agnostic across Codex, Claude Code, and other coding agents, with durable goals, quota-aware auto-wake, executable todos, evidence logs, and verifiable handoffs.",
-      "descriptions": {
-        "zh": "适用于长期运行的 AI 代理团队的轻量级循环工程状态内核。跨 Codex、Claude Code 和其他编码代理的代理循环不可知，具有持久目标、配额感知自动唤醒、可执行待办事项、证据日志和可验证的切换。",
-        "en": "Lightweight loop engineering state kernel for long-running AI agent teams. Agent-loop agnostic across Codex, Claude Code, and other coding agents, with durable goals, quota-aware auto-wake, executable todos, evidence logs, and verifiable handoffs."
-      },
-      "language": "Python",
-      "stars_total": 2319,
-      "forks_total": 171,
-      "stars_today": 326
-    },
-    {
-      "rank": 3,
       "repo": "TencentCloud/TencentDB-Agent-Memory",
       "owner": "TencentCloud",
       "name": "TencentDB-Agent-Memory",
@@ -47,57 +15,89 @@ window.__TRENDING_DATA__ = {
         "en": "TencentDB Agent Memory is a team-level memory hub for AI Agents — turning conversations, docs, and code into four reusable memory assets (Chat Memory, Skill, LLM-Wiki, Code-Graph) that are governed, shared, and equipped across agents and frameworks."
       },
       "language": "TypeScript",
-      "stars_total": 15248,
-      "forks_total": 1388,
-      "stars_today": 1892
+      "stars_total": 16615,
+      "forks_total": 1496,
+      "stars_today": 1057
+    },
+    {
+      "rank": 2,
+      "repo": "addyosmani/agent-skills",
+      "owner": "addyosmani",
+      "name": "agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "description": "Production-grade engineering skills for AI coding agents.",
+      "descriptions": {
+        "zh": "AI 编码代理的生产级工程技能。",
+        "en": "Production-grade engineering skills for AI coding agents."
+      },
+      "language": "JavaScript",
+      "stars_total": 83068,
+      "forks_total": 8899,
+      "stars_today": 593
+    },
+    {
+      "rank": 3,
+      "repo": "cloudflare/computer",
+      "owner": "cloudflare",
+      "name": "computer",
+      "url": "https://github.com/cloudflare/computer",
+      "description": "Give your agent a computer 👾",
+      "descriptions": {
+        "zh": "给你的代理人一台电脑👾",
+        "en": "Give your agent a computer 👾"
+      },
+      "language": "TypeScript",
+      "stars_total": 4932,
+      "forks_total": 246,
+      "stars_today": 2802
     },
     {
       "rank": 4,
-      "repo": "donnemartin/system-design-primer",
-      "owner": "donnemartin",
-      "name": "system-design-primer",
-      "url": "https://github.com/donnemartin/system-design-primer",
-      "description": "Learn how to design large-scale systems. Prep for the system design interview. Includes Anki flashcards.",
+      "repo": "mattpocock/skills",
+      "owner": "mattpocock",
+      "name": "skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
       "descriptions": {
-        "zh": "了解如何设计大型系统。准备系统设计面试。包括 Anki 抽认卡。",
-        "en": "Learn how to design large-scale systems. Prep for the system design interview. Includes Anki flashcards."
+        "zh": "真正工程师的技能。直接来自我的 .agents 目录。",
+        "en": "Skills for Real Engineers. Straight from my .agents directory."
       },
-      "language": "Python",
-      "stars_total": 361673,
-      "forks_total": 57659,
-      "stars_today": 303
+      "language": "Shell",
+      "stars_total": 207363,
+      "forks_total": 17909,
+      "stars_today": 1873
     },
     {
       "rank": 5,
-      "repo": "firecrawl/pdf-inspector",
-      "owner": "firecrawl",
-      "name": "pdf-inspector",
-      "url": "https://github.com/firecrawl/pdf-inspector",
-      "description": "Fast Rust library for PDF inspection, classification, and text extraction. Intelligently detects scanned vs text-based PDFs to enable smart routing decisions.",
+      "repo": "goauthentik/authentik",
+      "owner": "goauthentik",
+      "name": "authentik",
+      "url": "https://github.com/goauthentik/authentik",
+      "description": "The authentication glue you need.",
       "descriptions": {
-        "zh": "用于 PDF 检查、分类和文本提取的快速 Rust 库。智能检测扫描 PDF 与基于文本的 PDF，以实现智能路由决策。",
-        "en": "Fast Rust library for PDF inspection, classification, and text extraction. Intelligently detects scanned vs text-based PDFs to enable smart routing decisions."
+        "zh": "您需要的认证胶水。",
+        "en": "The authentication glue you need."
       },
-      "language": "Rust",
-      "stars_total": 11634,
-      "forks_total": 783,
-      "stars_today": 1582
+      "language": "Python",
+      "stars_total": 23193,
+      "forks_total": 1777,
+      "stars_today": 138
     },
     {
       "rank": 6,
-      "repo": "esengine/DeepSeek-Reasonix",
-      "owner": "esengine",
-      "name": "DeepSeek-Reasonix",
-      "url": "https://github.com/esengine/DeepSeek-Reasonix",
-      "description": "DeepSeek-native AI coding agent for your terminal. Engineered around prefix-cache stability — leave it running.",
+      "repo": "huangruiteng/loopx",
+      "owner": "huangruiteng",
+      "name": "loopx",
+      "url": "https://github.com/huangruiteng/loopx",
+      "description": "Lightweight loop engineering state kernel for long-running AI agent teams. Agent-loop agnostic across Codex, Claude Code, and other coding agents, with durable goals, quota-aware auto-wake, executable todos, evidence logs, and verifiable handoffs.",
       "descriptions": {
-        "zh": "DeepSeek-适用于您终端的原生 AI 编码代理。围绕前缀缓存稳定性进行设计 - 让它运行。",
-        "en": "DeepSeek-native AI coding agent for your terminal. Engineered around prefix-cache stability — leave it running."
+        "zh": "适用于长期运行的 AI 代理团队的轻量级循环工程状态内核。跨 Codex、Claude Code 和其他编码代理的代理循环不可知，具有持久目标、配额感知自动唤醒、可执行待办事项、证据日志和可验证的切换。",
+        "en": "Lightweight loop engineering state kernel for long-running AI agent teams. Agent-loop agnostic across Codex, Claude Code, and other coding agents, with durable goals, quota-aware auto-wake, executable todos, evidence logs, and verifiable handoffs."
       },
-      "language": "Go",
-      "stars_total": 31785,
-      "forks_total": 2047,
-      "stars_today": 747
+      "language": "Python",
+      "stars_total": 2981,
+      "forks_total": 221,
+      "stars_today": 847
     }
   ]
 }
