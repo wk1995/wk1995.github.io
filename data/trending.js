@@ -1,23 +1,23 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-07T04:01:45.689563+00:00",
+  "generated_at": "2026-08-08T02:59:42.897443+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "TencentCloud/TencentDB-Agent-Memory",
-      "owner": "TencentCloud",
-      "name": "TencentDB-Agent-Memory",
-      "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory",
-      "description": "TencentDB Agent Memory is a team-level memory hub for AI Agents — turning conversations, docs, and code into four reusable memory assets (Chat Memory, Skill, LLM-Wiki, Code-Graph) that are governed, shared, and equipped across agents and frameworks.",
+      "repo": "PrimeIntellect-ai/prime-agent",
+      "owner": "PrimeIntellect-ai",
+      "name": "prime-agent",
+      "url": "https://github.com/PrimeIntellect-ai/prime-agent",
+      "description": "A self-improving RLM agent for coding workflows and long-running autonomous tasks.",
       "descriptions": {
-        "zh": "TangentDB Agent Memory 是 AI Agent 的团队级内存中心，将对话、文档和代码转化为四种可重用的内存资产（聊天内存、技能、LLM-Wiki、代码图），并在代理和框架之间进行管理、共享和配备。",
-        "en": "TencentDB Agent Memory is a team-level memory hub for AI Agents — turning conversations, docs, and code into four reusable memory assets (Chat Memory, Skill, LLM-Wiki, Code-Graph) that are governed, shared, and equipped across agents and frameworks."
+        "zh": "用于编码工作流程和长时间运行的自主任务的自我改进 RLM 代理。",
+        "en": "A self-improving RLM agent for coding workflows and long-running autonomous tasks."
       },
       "language": "TypeScript",
-      "stars_total": 16615,
-      "forks_total": 1496,
-      "stars_today": 1057
+      "stars_total": 6726,
+      "forks_total": 539,
+      "stars_today": 2293
     },
     {
       "rank": 2,
@@ -31,9 +31,9 @@ window.__TRENDING_DATA__ = {
         "en": "Production-grade engineering skills for AI coding agents."
       },
       "language": "JavaScript",
-      "stars_total": 83068,
-      "forks_total": 8899,
-      "stars_today": 593
+      "stars_total": 83954,
+      "forks_total": 8972,
+      "stars_today": 1131
     },
     {
       "rank": 3,
@@ -47,9 +47,9 @@ window.__TRENDING_DATA__ = {
         "en": "Give your agent a computer 👾"
       },
       "language": "TypeScript",
-      "stars_total": 4932,
-      "forks_total": 246,
-      "stars_today": 2802
+      "stars_total": 5820,
+      "forks_total": 293,
+      "stars_today": 872
     },
     {
       "rank": 4,
@@ -63,12 +63,28 @@ window.__TRENDING_DATA__ = {
         "en": "Skills for Real Engineers. Straight from my .agents directory."
       },
       "language": "Shell",
-      "stars_total": 207363,
-      "forks_total": 17909,
-      "stars_today": 1873
+      "stars_total": 208937,
+      "forks_total": 18037,
+      "stars_today": 2152
     },
     {
       "rank": 5,
+      "repo": "obra/superpowers",
+      "owner": "obra",
+      "name": "superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "descriptions": {
+        "zh": "有效的代理技能框架和软件开发方法。",
+        "en": "An agentic skills framework & software development methodology that works."
+      },
+      "language": "Shell",
+      "stars_total": 268790,
+      "forks_total": 24003,
+      "stars_today": 782
+    },
+    {
+      "rank": 6,
       "repo": "goauthentik/authentik",
       "owner": "goauthentik",
       "name": "authentik",
@@ -79,25 +95,9 @@ window.__TRENDING_DATA__ = {
         "en": "The authentication glue you need."
       },
       "language": "Python",
-      "stars_total": 23193,
-      "forks_total": 1777,
-      "stars_today": 138
-    },
-    {
-      "rank": 6,
-      "repo": "huangruiteng/loopx",
-      "owner": "huangruiteng",
-      "name": "loopx",
-      "url": "https://github.com/huangruiteng/loopx",
-      "description": "Lightweight loop engineering state kernel for long-running AI agent teams. Agent-loop agnostic across Codex, Claude Code, and other coding agents, with durable goals, quota-aware auto-wake, executable todos, evidence logs, and verifiable handoffs.",
-      "descriptions": {
-        "zh": "适用于长期运行的 AI 代理团队的轻量级循环工程状态内核。跨 Codex、Claude Code 和其他编码代理的代理循环不可知，具有持久目标、配额感知自动唤醒、可执行待办事项、证据日志和可验证的切换。",
-        "en": "Lightweight loop engineering state kernel for long-running AI agent teams. Agent-loop agnostic across Codex, Claude Code, and other coding agents, with durable goals, quota-aware auto-wake, executable todos, evidence logs, and verifiable handoffs."
-      },
-      "language": "Python",
-      "stars_total": 2981,
-      "forks_total": 221,
-      "stars_today": 847
+      "stars_total": 23641,
+      "forks_total": 1810,
+      "stars_today": 530
     }
   ]
 }
