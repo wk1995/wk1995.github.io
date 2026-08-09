@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-08T02:59:42.897443+00:00",
+  "generated_at": "2026-08-09T03:06:42.484593+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,9 +15,9 @@
         "en": "A self-improving RLM agent for coding workflows and long-running autonomous tasks."
       },
       "language": "TypeScript",
-      "stars_total": 6726,
-      "forks_total": 539,
-      "stars_today": 2293
+      "stars_total": 9121,
+      "forks_total": 881,
+      "stars_today": 2483
     },
     {
       "rank": 2,
@@ -31,28 +31,44 @@
         "en": "Production-grade engineering skills for AI coding agents."
       },
       "language": "JavaScript",
-      "stars_total": 83954,
-      "forks_total": 8972,
-      "stars_today": 1131
+      "stars_total": 84631,
+      "forks_total": 9114,
+      "stars_today": 779
     },
     {
       "rank": 3,
-      "repo": "cloudflare/computer",
-      "owner": "cloudflare",
-      "name": "computer",
-      "url": "https://github.com/cloudflare/computer",
-      "description": "Give your agent a computer 👾",
+      "repo": "TapXWorld/ChinaTextbook",
+      "owner": "TapXWorld",
+      "name": "ChinaTextbook",
+      "url": "https://github.com/TapXWorld/ChinaTextbook",
+      "description": "所有小初高、大学PDF教材。",
       "descriptions": {
-        "zh": "给你的代理人一台电脑👾",
-        "en": "Give your agent a computer 👾"
+        "zh": "所有小初高、大学PDF教材。",
+        "en": "All elementary, middle, high school and university PDF textbooks."
       },
-      "language": "TypeScript",
-      "stars_total": 5820,
-      "forks_total": 293,
-      "stars_today": 872
+      "language": "Roff",
+      "stars_total": 77979,
+      "forks_total": 17665,
+      "stars_today": 118
     },
     {
       "rank": 4,
+      "repo": "google/skills",
+      "owner": "google",
+      "name": "skills",
+      "url": "https://github.com/google/skills",
+      "description": "Agent Skills for Google products and technologies",
+      "descriptions": {
+        "zh": "Google 产品和技术的代理技能",
+        "en": "Agent Skills for Google products and technologies"
+      },
+      "language": "Python",
+      "stars_total": 16785,
+      "forks_total": 1372,
+      "stars_today": 481
+    },
+    {
+      "rank": 5,
       "repo": "mattpocock/skills",
       "owner": "mattpocock",
       "name": "skills",
@@ -63,25 +79,9 @@
         "en": "Skills for Real Engineers. Straight from my .agents directory."
       },
       "language": "Shell",
-      "stars_total": 208937,
-      "forks_total": 18037,
-      "stars_today": 2152
-    },
-    {
-      "rank": 5,
-      "repo": "obra/superpowers",
-      "owner": "obra",
-      "name": "superpowers",
-      "url": "https://github.com/obra/superpowers",
-      "description": "An agentic skills framework & software development methodology that works.",
-      "descriptions": {
-        "zh": "有效的代理技能框架和软件开发方法。",
-        "en": "An agentic skills framework & software development methodology that works."
-      },
-      "language": "Shell",
-      "stars_total": 268790,
-      "forks_total": 24003,
-      "stars_today": 782
+      "stars_total": 210131,
+      "forks_total": 18155,
+      "stars_today": 1359
     },
     {
       "rank": 6,
@@ -95,9 +95,9 @@
         "en": "The authentication glue you need."
       },
       "language": "Python",
-      "stars_total": 23641,
-      "forks_total": 1810,
-      "stars_today": 530
+      "stars_total": 24003,
+      "forks_total": 1839,
+      "stars_today": 467
     }
   ]
 }
