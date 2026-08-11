@@ -1,42 +1,26 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-10T03:17:31.323019+00:00",
+  "generated_at": "2026-08-11T03:08:56.605599+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "PrimeIntellect-ai/prime-agent",
-      "owner": "PrimeIntellect-ai",
-      "name": "prime-agent",
-      "url": "https://github.com/PrimeIntellect-ai/prime-agent",
-      "description": "A self-improving RLM agent for coding workflows and long-running autonomous tasks.",
+      "repo": "semantica-agi/semantica",
+      "owner": "semantica-agi",
+      "name": "semantica",
+      "url": "https://github.com/semantica-agi/semantica",
+      "description": "Graph-Native Infrastructure for Context and Accountable AI Systems",
       "descriptions": {
-        "zh": "用于编码工作流程和长时间运行的自主任务的自我改进 RLM 代理。",
-        "en": "A self-improving RLM agent for coding workflows and long-running autonomous tasks."
+        "zh": "用于上下文和负责任的人工智能系统的图本机基础设施",
+        "en": "Graph-Native Infrastructure for Context and Accountable AI Systems"
       },
-      "language": "TypeScript",
-      "stars_total": 11471,
-      "forks_total": 1177,
-      "stars_today": 2356
+      "language": "Python",
+      "stars_total": 4233,
+      "forks_total": 485,
+      "stars_today": 970
     },
     {
       "rank": 2,
-      "repo": "vitali87/code-graph-rag",
-      "owner": "vitali87",
-      "name": "code-graph-rag",
-      "url": "https://github.com/vitali87/code-graph-rag",
-      "description": "The ultimate RAG for your monorepo. Query, understand, and edit multi-language codebases with the power of AI and knowledge graphs",
-      "descriptions": {
-        "zh": "适合您的单一存储库的终极 RAG。借助人工智能和知识图的力量查询、理解和编辑多语言代码库",
-        "en": "The ultimate RAG for your monorepo. Query, understand, and edit multi-language codebases with the power of AI and knowledge graphs"
-      },
-      "language": "Python",
-      "stars_total": 3104,
-      "forks_total": 527,
-      "stars_today": 96
-    },
-    {
-      "rank": 3,
       "repo": "msitarzewski/agency-agents",
       "owner": "msitarzewski",
       "name": "agency-agents",
@@ -47,41 +31,28 @@
         "en": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables."
       },
       "language": "Shell",
-      "stars_total": 140913,
-      "forks_total": 23006,
-      "stars_today": 858
+      "stars_total": 141910,
+      "forks_total": 23146,
+      "stars_today": 1349
+    },
+    {
+      "rank": 3,
+      "repo": "NanmiCoder/MediaCrawler",
+      "owner": "NanmiCoder",
+      "name": "MediaCrawler",
+      "url": "https://github.com/NanmiCoder/MediaCrawler",
+      "description": "小红书笔记 | 评论爬虫、抖音视频 | 评论爬虫、快手视频 | 评论爬虫、B 站视频 ｜ 评论爬虫、微博帖子 ｜ 评论爬虫、百度贴吧帖子 ｜ 百度贴吧评论回复爬虫 | 知乎问答文章｜评论爬虫",
+      "descriptions": {
+        "zh": "小红书笔记 | 评论爬虫、抖音视频 | 评论爬虫、快手视频 | 评论爬虫、B 站视频 ｜ 评论爬虫、微博帖子 ｜ 评论爬虫、百度贴吧帖子 ｜ 百度贴吧评论回复爬虫 | 知乎问答文章｜评论爬虫",
+        "en": "Xiaohongshu Notes | Comment crawler, Douyin video | Comment crawler, Kuaishou video | Comment crawler, Bilibili video | Comment crawler, Weibo post | Comment crawler, Baidu Tieba post | Baidu Tieba comment reply crawler | Zhihu question and answer article | Comment crawler"
+      },
+      "language": "Python",
+      "stars_total": 61194,
+      "forks_total": 12028,
+      "stars_today": 259
     },
     {
       "rank": 4,
-      "repo": "pranshuparmar/witr",
-      "owner": "pranshuparmar",
-      "name": "witr",
-      "url": "https://github.com/pranshuparmar/witr",
-      "description": "Why is this running? Trace any process, port, container, or file back to what started it - CLI + TUI.",
-      "descriptions": {
-        "zh": "这是为什么运行？跟踪任何进程、端口、容器或文件到启动它的地方 - CLI + TUI。",
-        "en": "Why is this running? Trace any process, port, container, or file back to what started it - CLI + TUI."
-      },
-      "language": "Go",
-      "stars_total": 20782,
-      "forks_total": 729,
-      "stars_today": 210
-    },
-    {
-      "rank": 5,
-      "repo": "google-deepmind/weathernext",
-      "owner": "google-deepmind",
-      "name": "weathernext",
-      "url": "https://github.com/google-deepmind/weathernext",
-      "description": null,
-      "descriptions": null,
-      "language": "Python",
-      "stars_total": 7122,
-      "forks_total": 941,
-      "stars_today": 86
-    },
-    {
-      "rank": 6,
       "repo": "addyosmani/agent-skills",
       "owner": "addyosmani",
       "name": "agent-skills",
@@ -92,9 +63,41 @@
         "en": "Production-grade engineering skills for AI coding agents."
       },
       "language": "JavaScript",
-      "stars_total": 85234,
-      "forks_total": 9169,
-      "stars_today": 680
+      "stars_total": 85812,
+      "forks_total": 9236,
+      "stars_today": 659
+    },
+    {
+      "rank": 5,
+      "repo": "paperclipai/paperclip",
+      "owner": "paperclipai",
+      "name": "paperclip",
+      "url": "https://github.com/paperclipai/paperclip",
+      "description": "The open-source app everyone uses to manage agents at work",
+      "descriptions": {
+        "zh": "每个人都用它来管理工作中的座席的开源应用程序",
+        "en": "The open-source app everyone uses to manage agents at work"
+      },
+      "language": "TypeScript",
+      "stars_total": 76590,
+      "forks_total": 14213,
+      "stars_today": 198
+    },
+    {
+      "rank": 6,
+      "repo": "PrimeIntellect-ai/prime-agent",
+      "owner": "PrimeIntellect-ai",
+      "name": "prime-agent",
+      "url": "https://github.com/PrimeIntellect-ai/prime-agent",
+      "description": "A self-improving RLM agent for coding workflows and long-running autonomous tasks.",
+      "descriptions": {
+        "zh": "用于编码工作流程和长时间运行的自主任务的自我改进 RLM 代理。",
+        "en": "A self-improving RLM agent for coding workflows and long-running autonomous tasks."
+      },
+      "language": "TypeScript",
+      "stars_total": 13209,
+      "forks_total": 1341,
+      "stars_today": 2642
     }
   ]
 }
