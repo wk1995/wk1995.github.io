@@ -1,26 +1,10 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-11T03:08:56.605599+00:00",
+  "generated_at": "2026-08-12T03:28:45.332050+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "semantica-agi/semantica",
-      "owner": "semantica-agi",
-      "name": "semantica",
-      "url": "https://github.com/semantica-agi/semantica",
-      "description": "Graph-Native Infrastructure for Context and Accountable AI Systems",
-      "descriptions": {
-        "zh": "用于上下文和负责任的人工智能系统的图本机基础设施",
-        "en": "Graph-Native Infrastructure for Context and Accountable AI Systems"
-      },
-      "language": "Python",
-      "stars_total": 4233,
-      "forks_total": 485,
-      "stars_today": 970
-    },
-    {
-      "rank": 2,
       "repo": "msitarzewski/agency-agents",
       "owner": "msitarzewski",
       "name": "agency-agents",
@@ -31,25 +15,41 @@ window.__TRENDING_DATA__ = {
         "en": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables."
       },
       "language": "Shell",
-      "stars_total": 141910,
-      "forks_total": 23146,
-      "stars_today": 1349
+      "stars_total": 143478,
+      "forks_total": 23305,
+      "stars_today": 958
+    },
+    {
+      "rank": 2,
+      "repo": "semantica-agi/semantica",
+      "owner": "semantica-agi",
+      "name": "semantica",
+      "url": "https://github.com/semantica-agi/semantica",
+      "description": "Graph-Native Infrastructure for Context and Accountable AI Systems",
+      "descriptions": {
+        "zh": "用于上下文和负责任的人工智能系统的图本机基础设施",
+        "en": "Graph-Native Infrastructure for Context and Accountable AI Systems"
+      },
+      "language": "Python",
+      "stars_total": 5006,
+      "forks_total": 541,
+      "stars_today": 893
     },
     {
       "rank": 3,
-      "repo": "NanmiCoder/MediaCrawler",
-      "owner": "NanmiCoder",
-      "name": "MediaCrawler",
-      "url": "https://github.com/NanmiCoder/MediaCrawler",
-      "description": "小红书笔记 | 评论爬虫、抖音视频 | 评论爬虫、快手视频 | 评论爬虫、B 站视频 ｜ 评论爬虫、微博帖子 ｜ 评论爬虫、百度贴吧帖子 ｜ 百度贴吧评论回复爬虫 | 知乎问答文章｜评论爬虫",
+      "repo": "nvm-sh/nvm",
+      "owner": "nvm-sh",
+      "name": "nvm",
+      "url": "https://github.com/nvm-sh/nvm",
+      "description": "Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions",
       "descriptions": {
-        "zh": "小红书笔记 | 评论爬虫、抖音视频 | 评论爬虫、快手视频 | 评论爬虫、B 站视频 ｜ 评论爬虫、微博帖子 ｜ 评论爬虫、百度贴吧帖子 ｜ 百度贴吧评论回复爬虫 | 知乎问答文章｜评论爬虫",
-        "en": "Xiaohongshu Notes | Comment crawler, Douyin video | Comment crawler, Kuaishou video | Comment crawler, Bilibili video | Comment crawler, Weibo post | Comment crawler, Baidu Tieba post | Baidu Tieba comment reply crawler | Zhihu question and answer article | Comment crawler"
+        "zh": "Node Version Manager - 符合 POSIX 标准的 bash 脚本，用于管理多个活动的 Node.js 版本",
+        "en": "Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions"
       },
-      "language": "Python",
-      "stars_total": 61194,
-      "forks_total": 12028,
-      "stars_today": 259
+      "language": "Shell",
+      "stars_total": 94508,
+      "forks_total": 10355,
+      "stars_today": 22
     },
     {
       "rank": 4,
@@ -63,41 +63,41 @@ window.__TRENDING_DATA__ = {
         "en": "Production-grade engineering skills for AI coding agents."
       },
       "language": "JavaScript",
-      "stars_total": 85812,
-      "forks_total": 9236,
-      "stars_today": 659
+      "stars_total": 86290,
+      "forks_total": 9270,
+      "stars_today": 578
     },
     {
       "rank": 5,
-      "repo": "paperclipai/paperclip",
-      "owner": "paperclipai",
-      "name": "paperclip",
-      "url": "https://github.com/paperclipai/paperclip",
-      "description": "The open-source app everyone uses to manage agents at work",
+      "repo": "ZhuLinsen/daily_stock_analysis",
+      "owner": "ZhuLinsen",
+      "name": "daily_stock_analysis",
+      "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
+      "description": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
       "descriptions": {
-        "zh": "每个人都用它来管理工作中的座席的开源应用程序",
-        "en": "The open-source app everyone uses to manage agents at work"
+        "zh": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
+        "en": "LLM-driven multi-market stock intelligent analysis system: multi-source quotes, real-time news, decision-making boards and automatic push, supporting zero-cost scheduled operation. LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs."
       },
-      "language": "TypeScript",
-      "stars_total": 76590,
-      "forks_total": 14213,
-      "stars_today": 198
+      "language": "Python",
+      "stars_total": 62238,
+      "forks_total": 52466,
+      "stars_today": 243
     },
     {
       "rank": 6,
-      "repo": "PrimeIntellect-ai/prime-agent",
-      "owner": "PrimeIntellect-ai",
-      "name": "prime-agent",
-      "url": "https://github.com/PrimeIntellect-ai/prime-agent",
-      "description": "A self-improving RLM agent for coding workflows and long-running autonomous tasks.",
+      "repo": "vitali87/code-graph-rag",
+      "owner": "vitali87",
+      "name": "code-graph-rag",
+      "url": "https://github.com/vitali87/code-graph-rag",
+      "description": "The ultimate RAG for your monorepo. Query, understand, and edit multi-language codebases with the power of AI and knowledge graphs",
       "descriptions": {
-        "zh": "用于编码工作流程和长时间运行的自主任务的自我改进 RLM 代理。",
-        "en": "A self-improving RLM agent for coding workflows and long-running autonomous tasks."
+        "zh": "适合您的单一存储库的终极 RAG。借助人工智能和知识图的力量查询、理解和编辑多语言代码库",
+        "en": "The ultimate RAG for your monorepo. Query, understand, and edit multi-language codebases with the power of AI and knowledge graphs"
       },
-      "language": "TypeScript",
-      "stars_total": 13209,
-      "forks_total": 1341,
-      "stars_today": 2642
+      "language": "Python",
+      "stars_total": 3876,
+      "forks_total": 566,
+      "stars_today": 341
     }
   ]
 }
