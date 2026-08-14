@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-13T03:31:44.733516+00:00",
+  "generated_at": "2026-08-14T03:29:01.980072+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,28 +15,12 @@ window.__TRENDING_DATA__ = {
         "en": "29 editorial diagram types for Claude Code. Self-contained HTML + SVG. No shadows, no Mermaid-slop."
       },
       "language": "HTML",
-      "stars_total": 11087,
-      "forks_total": 701,
-      "stars_today": 2855
+      "stars_total": 15003,
+      "forks_total": 904,
+      "stars_today": 4475
     },
     {
       "rank": 2,
-      "repo": "macro-inc/macro",
-      "owner": "macro-inc",
-      "name": "macro",
-      "url": "https://github.com/macro-inc/macro",
-      "description": "Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory.",
-      "descriptions": {
-        "zh": "Macro 是一个面向团队的统一工作空间：电子邮件、聊天、文档、任务、代理、呼叫和 CRM — 通过共享 AI 内存 @ 链接在一起。",
-        "en": "Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory."
-      },
-      "language": "Rust",
-      "stars_total": 1970,
-      "forks_total": 233,
-      "stars_today": 227
-    },
-    {
-      "rank": 3,
       "repo": "semantica-agi/semantica",
       "owner": "semantica-agi",
       "name": "semantica",
@@ -47,57 +31,73 @@ window.__TRENDING_DATA__ = {
         "en": "Graph-Native Infrastructure for Context and Accountable AI Systems"
       },
       "language": "Python",
-      "stars_total": 5828,
-      "forks_total": 633,
-      "stars_today": 845
+      "stars_total": 6820,
+      "forks_total": 713,
+      "stars_today": 713
+    },
+    {
+      "rank": 3,
+      "repo": "anthropics/skills",
+      "owner": "anthropics",
+      "name": "skills",
+      "url": "https://github.com/anthropics/skills",
+      "description": "Public repository for Agent Skills",
+      "descriptions": {
+        "zh": "代理技能的公共存储库",
+        "en": "Public repository for Agent Skills"
+      },
+      "language": "Python",
+      "stars_total": 169109,
+      "forks_total": 20137,
+      "stars_today": 312
     },
     {
       "rank": 4,
-      "repo": "stablyai/orca",
-      "owner": "stablyai",
-      "name": "orca",
-      "url": "https://github.com/stablyai/orca",
-      "description": "Orca is the ADE for working with a fleet of parallel agents. Run any coding agent with your own subscription. Available on desktop, mobile and VPS.",
+      "repo": "cactus-compute/needle",
+      "owner": "cactus-compute",
+      "name": "needle",
+      "url": "https://github.com/cactus-compute/needle",
+      "description": "14MB foundation model for tiny devices; phones, wearables, smart home, and robots.",
       "descriptions": {
-        "zh": "Orca 是与一组并行代理一起工作的 ADE。使用您自己的订阅运行任何编码代理。可在桌面、移动和 VPS 上使用。",
-        "en": "Orca is the ADE for working with a fleet of parallel agents. Run any coding agent with your own subscription. Available on desktop, mobile and VPS."
+        "zh": "适用于微型设备的 14MB 基础模型；手机、可穿戴设备、智能家居和机器人。",
+        "en": "14MB foundation model for tiny devices; phones, wearables, smart home, and robots."
       },
-      "language": "TypeScript",
-      "stars_total": 44062,
-      "forks_total": 3066,
-      "stars_today": 1235
+      "language": "Python",
+      "stars_total": 5030,
+      "forks_total": 334,
+      "stars_today": 769
     },
     {
       "rank": 5,
-      "repo": "msitarzewski/agency-agents",
-      "owner": "msitarzewski",
-      "name": "agency-agents",
-      "url": "https://github.com/msitarzewski/agency-agents",
-      "description": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.",
+      "repo": "altic-dev/FluidVoice",
+      "owner": "altic-dev",
+      "name": "FluidVoice",
+      "url": "https://github.com/altic-dev/FluidVoice",
+      "description": "Fastest and only macOS Dictation app with on-device STT and custom trained AI enhancement model. A local Wispr Flow alternative. ⭐ helps a ton :) Windows & iOS waitlist open. Linux soon.",
       "descriptions": {
-        "zh": "触手可及的完整人工智能机构 - 从前端向导到 Reddit 社区忍者，从奇思妙想的注入者到现实检查者。每个代理都是一位具有个性、流程和经过验证的可交付成果的专业专家。",
-        "en": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables."
+        "zh": "最快且唯一具有设备上 STT 和自定义训练的 AI 增强模型的 macOS 听写应用程序。本地 Wispr Flow 替代方案。 ⭐ 帮助很大 :) Windows 和 iOS 候补名单开放。很快就会有Linux了。",
+        "en": "Fastest and only macOS Dictation app with on-device STT and custom trained AI enhancement model. A local Wispr Flow alternative. ⭐ helps a ton :) Windows & iOS waitlist open. Linux soon."
       },
-      "language": "Shell",
-      "stars_total": 144670,
-      "forks_total": 23428,
-      "stars_today": 1873
+      "language": "Swift",
+      "stars_total": 9910,
+      "forks_total": 664,
+      "stars_today": 76
     },
     {
       "rank": 6,
-      "repo": "shiyu-coder/Kronos",
-      "owner": "shiyu-coder",
-      "name": "Kronos",
-      "url": "https://github.com/shiyu-coder/Kronos",
-      "description": "Kronos: A Foundation Model for the Language of Financial Markets",
+      "repo": "unslothai/unsloth",
+      "owner": "unslothai",
+      "name": "unsloth",
+      "url": "https://github.com/unslothai/unsloth",
+      "description": "Local UI to run and train LLMs and diffusion models, including Qwen3.8, Kimi K3, MiniMax-H3, Gemma 4, DeepSeek-V4, FLUX and more.",
       "descriptions": {
-        "zh": "Kronos：金融市场语言的基础模型",
-        "en": "Kronos: A Foundation Model for the Language of Financial Markets"
+        "zh": "用于运行和训练 LLM 和扩散模型的本地 UI，包括 Qwen3.8、Kimi K3、MiniMax-H3、Gemma 4、DeepSeek-V4、FLUX 等。",
+        "en": "Local UI to run and train LLMs and diffusion models, including Qwen3.8, Kimi K3, MiniMax-H3, Gemma 4, DeepSeek-V4, FLUX and more."
       },
       "language": "Python",
-      "stars_total": 36972,
-      "forks_total": 6149,
-      "stars_today": 266
+      "stars_total": 71123,
+      "forks_total": 6411,
+      "stars_today": 328
     }
   ]
 }
