@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-14T03:29:01.980072+00:00",
+  "generated_at": "2026-08-15T02:18:17.826895+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,44 +15,12 @@ window.__TRENDING_DATA__ = {
         "en": "29 editorial diagram types for Claude Code. Self-contained HTML + SVG. No shadows, no Mermaid-slop."
       },
       "language": "HTML",
-      "stars_total": 15003,
-      "forks_total": 904,
-      "stars_today": 4475
+      "stars_total": 17327,
+      "forks_total": 1038,
+      "stars_today": 3646
     },
     {
       "rank": 2,
-      "repo": "semantica-agi/semantica",
-      "owner": "semantica-agi",
-      "name": "semantica",
-      "url": "https://github.com/semantica-agi/semantica",
-      "description": "Graph-Native Infrastructure for Context and Accountable AI Systems",
-      "descriptions": {
-        "zh": "用于上下文和负责任的人工智能系统的图本机基础设施",
-        "en": "Graph-Native Infrastructure for Context and Accountable AI Systems"
-      },
-      "language": "Python",
-      "stars_total": 6820,
-      "forks_total": 713,
-      "stars_today": 713
-    },
-    {
-      "rank": 3,
-      "repo": "anthropics/skills",
-      "owner": "anthropics",
-      "name": "skills",
-      "url": "https://github.com/anthropics/skills",
-      "description": "Public repository for Agent Skills",
-      "descriptions": {
-        "zh": "代理技能的公共存储库",
-        "en": "Public repository for Agent Skills"
-      },
-      "language": "Python",
-      "stars_total": 169109,
-      "forks_total": 20137,
-      "stars_today": 312
-    },
-    {
-      "rank": 4,
       "repo": "cactus-compute/needle",
       "owner": "cactus-compute",
       "name": "needle",
@@ -63,41 +31,73 @@ window.__TRENDING_DATA__ = {
         "en": "14MB foundation model for tiny devices; phones, wearables, smart home, and robots."
       },
       "language": "Python",
-      "stars_total": 5030,
-      "forks_total": 334,
-      "stars_today": 769
+      "stars_total": 5634,
+      "forks_total": 374,
+      "stars_today": 662
+    },
+    {
+      "rank": 3,
+      "repo": "megadose/holehe",
+      "owner": "megadose",
+      "name": "holehe",
+      "url": "https://github.com/megadose/holehe",
+      "description": "holehe allows you to check if the mail is used on different sites like twitter, instagram and will retrieve information on sites with the forgotten password function.",
+      "descriptions": {
+        "zh": "holehe 允许您检查邮件是否在 Twitter、Instagram 等不同网站上使用，并且会通过忘记密码功能检索网站上的信息。",
+        "en": "holehe allows you to check if the mail is used on different sites like twitter, instagram and will retrieve information on sites with the forgotten password function."
+      },
+      "language": "Python",
+      "stars_total": 12869,
+      "forks_total": 1717,
+      "stars_today": 427
+    },
+    {
+      "rank": 4,
+      "repo": "macro-inc/macro",
+      "owner": "macro-inc",
+      "name": "macro",
+      "url": "https://github.com/macro-inc/macro",
+      "description": "Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory.",
+      "descriptions": {
+        "zh": "Macro 是一个面向团队的统一工作空间：电子邮件、聊天、文档、任务、代理、呼叫和 CRM — 通过共享 AI 内存 @ 链接在一起。",
+        "en": "Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory."
+      },
+      "language": "Rust",
+      "stars_total": 3045,
+      "forks_total": 307,
+      "stars_today": 436
     },
     {
       "rank": 5,
-      "repo": "altic-dev/FluidVoice",
-      "owner": "altic-dev",
-      "name": "FluidVoice",
-      "url": "https://github.com/altic-dev/FluidVoice",
-      "description": "Fastest and only macOS Dictation app with on-device STT and custom trained AI enhancement model. A local Wispr Flow alternative. ⭐ helps a ton :) Windows & iOS waitlist open. Linux soon.",
+      "repo": "smicallef/spiderfoot",
+      "owner": "smicallef",
+      "name": "spiderfoot",
+      "url": "https://github.com/smicallef/spiderfoot",
+      "description": "SpiderFoot automates OSINT for threat intelligence and mapping your attack surface.",
       "descriptions": {
-        "zh": "最快且唯一具有设备上 STT 和自定义训练的 AI 增强模型的 macOS 听写应用程序。本地 Wispr Flow 替代方案。 ⭐ 帮助很大 :) Windows 和 iOS 候补名单开放。很快就会有Linux了。",
-        "en": "Fastest and only macOS Dictation app with on-device STT and custom trained AI enhancement model. A local Wispr Flow alternative. ⭐ helps a ton :) Windows & iOS waitlist open. Linux soon."
+        "zh": "SpiderFoot 自动化 OSINT 以获取威胁情报并绘制攻击面图。",
+        "en": "SpiderFoot automates OSINT for threat intelligence and mapping your attack surface."
       },
-      "language": "Swift",
-      "stars_total": 9910,
-      "forks_total": 664,
-      "stars_today": 76
+      "language": "Python",
+      "stars_total": 20958,
+      "forks_total": 3342,
+      "stars_today": 293
     },
     {
       "rank": 6,
-      "repo": "unslothai/unsloth",
-      "owner": "unslothai",
-      "name": "unsloth",
-      "url": "https://github.com/unslothai/unsloth",
-      "description": "Local UI to run and train LLMs and diffusion models, including Qwen3.8, Kimi K3, MiniMax-H3, Gemma 4, DeepSeek-V4, FLUX and more.",
+      "repo": "citrolabs/ego-lite",
+      "owner": "citrolabs",
+      "name": "ego-lite",
+      "url": "https://github.com/citrolabs/ego-lite",
+      "description": "The fastest browser for AI agents to run browser automation, built for sharing your logged-in browser state with your AI agents, like Codex or Claude Code, without disturbing you. Zero cost, zero config.",
       "descriptions": {
-        "zh": "用于运行和训练 LLM 和扩散模型的本地 UI，包括 Qwen3.8、Kimi K3、MiniMax-H3、Gemma 4、DeepSeek-V4、FLUX 等。",
-        "en": "Local UI to run and train LLMs and diffusion models, including Qwen3.8, Kimi K3, MiniMax-H3, Gemma 4, DeepSeek-V4, FLUX and more."
+        "zh": "AI 代理运行浏览器自动化的最快浏览器，专为与您的 AI 代理（如 Codex 或 Claude Code）共享您登录的浏览器状态而构建，而不会打扰您。零成本，零配置。",
+        "en": "The fastest browser for AI agents to run browser automation, built for sharing your logged-in browser state with your AI agents, like Codex or Claude Code, without disturbing you. Zero cost, zero config."
       },
-      "language": "Python",
-      "stars_total": 71123,
-      "forks_total": 6411,
-      "stars_today": 328
+      "language": "JavaScript",
+      "stars_total": 10392,
+      "forks_total": 528,
+      "stars_today": 165
     }
   ]
 }
