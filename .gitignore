@@ -1,2 +1,5 @@
 .video-resolver-env.json
 preview-*.log
+
+# macOS AppleDouble metadata files
+._*
