@@ -1,10 +1,26 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-15T02:18:17.826895+00:00",
+  "generated_at": "2026-08-16T02:33:37.927272+00:00",
   "items": [
     {
       "rank": 1,
+      "repo": "cordiverse/cordis",
+      "owner": "cordiverse",
+      "name": "cordis",
+      "url": "https://github.com/cordiverse/cordis",
+      "description": "Meta-Framework of Spatiotemporal Composability",
+      "descriptions": {
+        "zh": "时空可组合性元框架",
+        "en": "Meta-Framework of Spatiotemporal Composability"
+      },
+      "language": "TypeScript",
+      "stars_total": 4109,
+      "forks_total": 203,
+      "stars_today": 599
+    },
+    {
+      "rank": 2,
       "repo": "cathrynlavery/diagram-design",
       "owner": "cathrynlavery",
       "name": "diagram-design",
@@ -15,12 +31,28 @@ window.__TRENDING_DATA__ = {
         "en": "29 editorial diagram types for Claude Code. Self-contained HTML + SVG. No shadows, no Mermaid-slop."
       },
       "language": "HTML",
-      "stars_total": 17327,
-      "forks_total": 1038,
-      "stars_today": 3646
+      "stars_total": 18683,
+      "forks_total": 1128,
+      "stars_today": 1607
     },
     {
-      "rank": 2,
+      "rank": 3,
+      "repo": "cursor/plugins",
+      "owner": "cursor",
+      "name": "plugins",
+      "url": "https://github.com/cursor/plugins",
+      "description": "Cursor plugin specification and official plugins",
+      "descriptions": {
+        "zh": "光标插件规范和官方插件",
+        "en": "Cursor plugin specification and official plugins"
+      },
+      "language": "TypeScript",
+      "stars_total": 2959,
+      "forks_total": 234,
+      "stars_today": 149
+    },
+    {
+      "rank": 4,
       "repo": "cactus-compute/needle",
       "owner": "cactus-compute",
       "name": "needle",
@@ -31,73 +63,41 @@ window.__TRENDING_DATA__ = {
         "en": "14MB foundation model for tiny devices; phones, wearables, smart home, and robots."
       },
       "language": "Python",
-      "stars_total": 5634,
-      "forks_total": 374,
-      "stars_today": 662
-    },
-    {
-      "rank": 3,
-      "repo": "megadose/holehe",
-      "owner": "megadose",
-      "name": "holehe",
-      "url": "https://github.com/megadose/holehe",
-      "description": "holehe allows you to check if the mail is used on different sites like twitter, instagram and will retrieve information on sites with the forgotten password function.",
-      "descriptions": {
-        "zh": "holehe 允许您检查邮件是否在 Twitter、Instagram 等不同网站上使用，并且会通过忘记密码功能检索网站上的信息。",
-        "en": "holehe allows you to check if the mail is used on different sites like twitter, instagram and will retrieve information on sites with the forgotten password function."
-      },
-      "language": "Python",
-      "stars_total": 12869,
-      "forks_total": 1717,
-      "stars_today": 427
-    },
-    {
-      "rank": 4,
-      "repo": "macro-inc/macro",
-      "owner": "macro-inc",
-      "name": "macro",
-      "url": "https://github.com/macro-inc/macro",
-      "description": "Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory.",
-      "descriptions": {
-        "zh": "Macro 是一个面向团队的统一工作空间：电子邮件、聊天、文档、任务、代理、呼叫和 CRM — 通过共享 AI 内存 @ 链接在一起。",
-        "en": "Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory."
-      },
-      "language": "Rust",
-      "stars_total": 3045,
-      "forks_total": 307,
-      "stars_today": 436
+      "stars_total": 6089,
+      "forks_total": 407,
+      "stars_today": 547
     },
     {
       "rank": 5,
-      "repo": "smicallef/spiderfoot",
-      "owner": "smicallef",
-      "name": "spiderfoot",
-      "url": "https://github.com/smicallef/spiderfoot",
-      "description": "SpiderFoot automates OSINT for threat intelligence and mapping your attack surface.",
+      "repo": "unslothai/unsloth",
+      "owner": "unslothai",
+      "name": "unsloth",
+      "url": "https://github.com/unslothai/unsloth",
+      "description": "Local UI to run and train LLMs and diffusion models, including Qwen3.8, Kimi K3, MiniMax-H3, Gemma 4, DeepSeek-V4, FLUX and more.",
       "descriptions": {
-        "zh": "SpiderFoot 自动化 OSINT 以获取威胁情报并绘制攻击面图。",
-        "en": "SpiderFoot automates OSINT for threat intelligence and mapping your attack surface."
+        "zh": "用于运行和训练 LLM 和扩散模型的本地 UI，包括 Qwen3.8、Kimi K3、MiniMax-H3、Gemma 4、DeepSeek-V4、FLUX 等。",
+        "en": "Local UI to run and train LLMs and diffusion models, including Qwen3.8, Kimi K3, MiniMax-H3, Gemma 4, DeepSeek-V4, FLUX and more."
       },
       "language": "Python",
-      "stars_total": 20958,
-      "forks_total": 3342,
-      "stars_today": 293
+      "stars_total": 72080,
+      "forks_total": 6495,
+      "stars_today": 434
     },
     {
       "rank": 6,
-      "repo": "citrolabs/ego-lite",
-      "owner": "citrolabs",
-      "name": "ego-lite",
-      "url": "https://github.com/citrolabs/ego-lite",
-      "description": "The fastest browser for AI agents to run browser automation, built for sharing your logged-in browser state with your AI agents, like Codex or Claude Code, without disturbing you. Zero cost, zero config.",
+      "repo": "public-apis/public-apis",
+      "owner": "public-apis",
+      "name": "public-apis",
+      "url": "https://github.com/public-apis/public-apis",
+      "description": "A collective list of free APIs",
       "descriptions": {
-        "zh": "AI 代理运行浏览器自动化的最快浏览器，专为与您的 AI 代理（如 Codex 或 Claude Code）共享您登录的浏览器状态而构建，而不会打扰您。零成本，零配置。",
-        "en": "The fastest browser for AI agents to run browser automation, built for sharing your logged-in browser state with your AI agents, like Codex or Claude Code, without disturbing you. Zero cost, zero config."
+        "zh": "免费 API 集合列表",
+        "en": "A collective list of free APIs"
       },
-      "language": "JavaScript",
-      "stars_total": 10392,
-      "forks_total": 528,
-      "stars_today": 165
+      "language": "Python",
+      "stars_total": 460242,
+      "forks_total": 50857,
+      "stars_today": 2260
     }
   ]
 }
