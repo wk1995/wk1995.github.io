@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-16T16:44:38.989640+00:00",
+  "generated_at": "2026-08-16T16:45:20.872266+00:00",
   "items": [
     {
       "rank": 1,
@@ -79,7 +79,7 @@
         "en": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors"
       },
       "language": "Rust",
-      "stars_total": 1671,
+      "stars_total": 1672,
       "forks_total": 169,
       "stars_today": 41
     },
