@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-16T02:33:37.927272+00:00",
+  "generated_at": "2026-08-16T16:43:20.519057+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,60 +15,28 @@ window.__TRENDING_DATA__ = {
         "en": "Meta-Framework of Spatiotemporal Composability"
       },
       "language": "TypeScript",
-      "stars_total": 4109,
-      "forks_total": 203,
-      "stars_today": 599
+      "stars_total": 4576,
+      "forks_total": 236,
+      "stars_today": 719
     },
     {
       "rank": 2,
-      "repo": "cathrynlavery/diagram-design",
-      "owner": "cathrynlavery",
-      "name": "diagram-design",
-      "url": "https://github.com/cathrynlavery/diagram-design",
-      "description": "29 editorial diagram types for Claude Code. Self-contained HTML + SVG. No shadows, no Mermaid-slop.",
+      "repo": "basecamp/omarchy",
+      "owner": "basecamp",
+      "name": "omarchy",
+      "url": "https://github.com/basecamp/omarchy",
+      "description": "Beautiful, Modern & Opinionated Linux",
       "descriptions": {
-        "zh": "Claude Code 的 29 种编辑图表类型。独立的 HTML + SVG。没有阴影，没有美人鱼的污迹。",
-        "en": "29 editorial diagram types for Claude Code. Self-contained HTML + SVG. No shadows, no Mermaid-slop."
+        "zh": "美丽、现代、有主见的 Linux",
+        "en": "Beautiful, Modern & Opinionated Linux"
       },
-      "language": "HTML",
-      "stars_total": 18683,
-      "forks_total": 1128,
-      "stars_today": 1607
+      "language": "Shell",
+      "stars_total": 25210,
+      "forks_total": 2571,
+      "stars_today": 225
     },
     {
       "rank": 3,
-      "repo": "cursor/plugins",
-      "owner": "cursor",
-      "name": "plugins",
-      "url": "https://github.com/cursor/plugins",
-      "description": "Cursor plugin specification and official plugins",
-      "descriptions": {
-        "zh": "光标插件规范和官方插件",
-        "en": "Cursor plugin specification and official plugins"
-      },
-      "language": "TypeScript",
-      "stars_total": 2959,
-      "forks_total": 234,
-      "stars_today": 149
-    },
-    {
-      "rank": 4,
-      "repo": "cactus-compute/needle",
-      "owner": "cactus-compute",
-      "name": "needle",
-      "url": "https://github.com/cactus-compute/needle",
-      "description": "14MB foundation model for tiny devices; phones, wearables, smart home, and robots.",
-      "descriptions": {
-        "zh": "适用于微型设备的 14MB 基础模型；手机、可穿戴设备、智能家居和机器人。",
-        "en": "14MB foundation model for tiny devices; phones, wearables, smart home, and robots."
-      },
-      "language": "Python",
-      "stars_total": 6089,
-      "forks_total": 407,
-      "stars_today": 547
-    },
-    {
-      "rank": 5,
       "repo": "unslothai/unsloth",
       "owner": "unslothai",
       "name": "unsloth",
@@ -79,9 +47,41 @@ window.__TRENDING_DATA__ = {
         "en": "Local UI to run and train LLMs and diffusion models, including Qwen3.8, Kimi K3, MiniMax-H3, Gemma 4, DeepSeek-V4, FLUX and more."
       },
       "language": "Python",
-      "stars_total": 72080,
-      "forks_total": 6495,
-      "stars_today": 434
+      "stars_total": 72389,
+      "forks_total": 6527,
+      "stars_today": 580
+    },
+    {
+      "rank": 4,
+      "repo": "OpenCut-app/OpenCut",
+      "owner": "OpenCut-app",
+      "name": "OpenCut",
+      "url": "https://github.com/OpenCut-app/OpenCut",
+      "description": "The open-source CapCut alternative",
+      "descriptions": {
+        "zh": "开源 CapCut 替代方案",
+        "en": "The open-source CapCut alternative"
+      },
+      "language": "TypeScript",
+      "stars_total": 83675,
+      "forks_total": 8271,
+      "stars_today": 134
+    },
+    {
+      "rank": 5,
+      "repo": "akitaonrails/ai-memory",
+      "owner": "akitaonrails",
+      "name": "ai-memory",
+      "url": "https://github.com/akitaonrails/ai-memory",
+      "description": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors",
+      "descriptions": {
+        "zh": "用于代理编码 CLI 的长期记忆解决方案，并促进不同代理供应商之间的切换",
+        "en": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors"
+      },
+      "language": "Rust",
+      "stars_total": 1671,
+      "forks_total": 169,
+      "stars_today": 41
     },
     {
       "rank": 6,
@@ -95,9 +95,9 @@ window.__TRENDING_DATA__ = {
         "en": "A collective list of free APIs"
       },
       "language": "Python",
-      "stars_total": 460242,
-      "forks_total": 50857,
-      "stars_today": 2260
+      "stars_total": 461213,
+      "forks_total": 50956,
+      "stars_today": 1583
     }
   ]
 }
