@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-16T16:43:20.519057+00:00",
+  "generated_at": "2026-08-16T16:44:38.989640+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,7 +15,7 @@ window.__TRENDING_DATA__ = {
         "en": "Meta-Framework of Spatiotemporal Composability"
       },
       "language": "TypeScript",
-      "stars_total": 4576,
+      "stars_total": 4577,
       "forks_total": 236,
       "stars_today": 719
     },
@@ -47,7 +47,7 @@ window.__TRENDING_DATA__ = {
         "en": "Local UI to run and train LLMs and diffusion models, including Qwen3.8, Kimi K3, MiniMax-H3, Gemma 4, DeepSeek-V4, FLUX and more."
       },
       "language": "Python",
-      "stars_total": 72389,
+      "stars_total": 72390,
       "forks_total": 6527,
       "stars_today": 580
     },
@@ -63,7 +63,7 @@ window.__TRENDING_DATA__ = {
         "en": "The open-source CapCut alternative"
       },
       "language": "TypeScript",
-      "stars_total": 83675,
+      "stars_total": 83676,
       "forks_total": 8271,
       "stars_today": 134
     },
@@ -95,7 +95,7 @@ window.__TRENDING_DATA__ = {
         "en": "A collective list of free APIs"
       },
       "language": "Python",
-      "stars_total": 461213,
+      "stars_total": 461214,
       "forks_total": 50956,
       "stars_today": 1583
     }
