@@ -1,6 +1,8 @@
 ---
 name: publish-wk1995-github-io
 description: Create or update GitHub Actions workflows that publish build artifacts to wk1995.github.io / wk1995/wk1995.github.io, with artifact paths selected by application type such as Android APK, Windows desktop, macOS desktop, or Linux desktop.
+metadata:
+  version: "0.0.1"
 ---
 
 # Publish wk1995.github.io
