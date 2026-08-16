@@ -2,7 +2,7 @@
 name: publish-wk1995-github-io
 description: Create or update GitHub Actions workflows that publish build artifacts to wk1995.github.io / wk1995/wk1995.github.io, with artifact paths selected by application type such as Android APK, Windows desktop, macOS desktop, or Linux desktop.
 metadata:
-  version: "0.0.1"
+  version: "0.0.2"
 ---
 
 # Publish wk1995.github.io
@@ -134,11 +134,19 @@ tell the user:
 
 Choose the target directory by published program type.
 
-The target publish directory must already exist in `wk1995/wk1995.github.io`.
-Do not create publish directories in the publish workflow. After resolving the
-exact target path and checking out `target-site`, validate the directory exists
-before copying files. If the directory is missing, print a clear error that
-includes the target path and fail the workflow with a non-zero exit code.
+Require only the platform root directory to exist in
+`wk1995/wk1995.github.io`, for example `apps/packages/android`,
+`apps/packages/windows`, `apps/packages/macos`, or `apps/packages/linux`.
+
+Allow the publish workflow to create the app and version directories on first
+publish. Before calling `mkdir -p` or `Path.mkdir`, validate every dynamic path
+segment and reject empty values, `.`, `..`, path separators, traversal
+sequences, and characters outside the format expected for that segment. Resolve
+the final target and confirm it remains inside the selected platform root.
+
+Keep repeated publication idempotent: copy the selected files into the same
+version directory, and skip the final Git commit when no tracked content
+changed.
 
 ### Android APK
 
@@ -166,7 +174,7 @@ apps/packages/android/com.example.app/42(1.2.3)
 Use this path:
 
 ```text
-apps/packages/window/<appName>/<version>/<systemos>
+apps/packages/windows/<appName>/<version>/<systemos>
 ```
 
 Rules:
@@ -181,7 +189,7 @@ Rules:
 Example:
 
 ```text
-apps/packages/window/adbPilot/0.0.2/64
+apps/packages/windows/adbPilot/0.0.2/64
 ```
 
 ### macOS Desktop
@@ -189,7 +197,7 @@ apps/packages/window/adbPilot/0.0.2/64
 Use this path:
 
 ```text
-apps/packages/mac/<appName>/<version>/<systemos>
+apps/packages/macos/<appName>/<version>/<systemos>
 ```
 
 Rules:
@@ -205,7 +213,7 @@ Rules:
 Example:
 
 ```text
-apps/packages/mac/adbPilot/0.0.2/arm64
+apps/packages/macos/adbPilot/0.0.2/arm64
 ```
 
 ### Linux Desktop
@@ -218,6 +226,13 @@ apps/packages/linux/<appName>/<version>/<systemos>
 
 Recommended `<systemos>` values include `x86_64`, `arm64`, `deb-x86_64`, or
 `appimage-x86_64`, depending on the artifact format the project publishes.
+
+## Manifest Refresh
+
+After the publish workflow pushes package files, rely on the target repository's
+`Update App Manifest` workflow to regenerate `apps/packages/manifest.json`.
+Confirm that the target workflow still watches `apps/**`. Do not generate or
+commit the target repository's global manifest from the source repository.
 
 ## Templates
 
@@ -245,10 +260,12 @@ After writing or updating the workflow:
   workflow.
 - Confirm the publish paths match the program type:
   - Android: `apps/packages/android/<packageName>/<version>`.
-  - Windows: `apps/packages/window/<appName>/<version>/<systemos>`.
-  - macOS: `apps/packages/mac/<appName>/<version>/<systemos>`.
+  - Windows: `apps/packages/windows/<appName>/<version>/<systemos>`.
+  - macOS: `apps/packages/macos/<appName>/<version>/<systemos>`.
   - Linux: `apps/packages/linux/<appName>/<version>/<systemos>`.
-- Confirm every publish step fails with a clear error if the resolved target
-  publish directory does not already exist in `target-site`.
+- Confirm the platform root must already exist but the workflow creates missing
+  app/version directories after validating path segments and containment.
+- Confirm the target repository's manifest workflow watches `apps/**` and will
+  refresh the Apps catalog after the package commit.
 - Confirm the final response names the required secret and describes the
   required secret value permissions.

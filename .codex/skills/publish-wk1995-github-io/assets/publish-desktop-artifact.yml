@@ -146,8 +146,28 @@ jobs:
           source_run_id = os.environ["SOURCE_RUN_ID"]
           app_name = os.environ["APP_NAME"]
           pattern = re.compile(
-              r"^.+-(window|mac|linux)-(\d+\.\d+\.\d+)-(32|64|arm64|x86_64|universal2|appimage-x86_64|deb-x86_64)\.zip$"
+              r"^.+-(window|windows|mac|macos|linux)-(\d+\.\d+\.\d+)-(32|64|arm64|x86_64|universal2|appimage-x86_64|deb-x86_64)\.zip$"
           )
+          platform_aliases = {
+              "window": "windows",
+              "windows": "windows",
+              "mac": "macos",
+              "macos": "macos",
+              "linux": "linux",
+          }
+
+          def validate_segment(label, value, allowed):
+              if (
+                  not value
+                  or value in {".", ".."}
+                  or "/" in value
+                  or "\\" in value
+                  or ".." in value
+                  or not re.fullmatch(allowed, value)
+              ):
+                  raise SystemExit(f"Unsafe {label} path segment: {value}")
+
+          validate_segment("app name", app_name, r"[A-Za-z0-9][A-Za-z0-9._-]*")
 
           readme_file = next(
               (
@@ -164,14 +184,26 @@ jobs:
               if not match:
                   raise SystemExit(f"Unsupported desktop package name: {package_file.name}")
 
-              platform, version, systemos = match.groups()
+              platform_alias, version, systemos = match.groups()
+              platform = platform_aliases[platform_alias]
+              validate_segment("version", version, r"[A-Za-z0-9][A-Za-z0-9._+-]*")
+              validate_segment("system architecture", systemos, r"[A-Za-z0-9][A-Za-z0-9._-]*")
+
+              platform_root = target_site / "apps" / "packages" / platform
+              if not platform_root.is_dir():
+                  raise SystemExit(
+                      f"Target platform root does not exist: apps/packages/{platform}"
+                  )
+
               target_path = Path("apps") / "packages" / platform / app_name / version / systemos
               target_dir = target_site / target_path
-              if not target_dir.is_dir():
+              resolved_root = platform_root.resolve()
+              resolved_target = target_dir.resolve()
+              if resolved_root not in resolved_target.parents:
                   raise SystemExit(
-                      f"Target publish directory does not exist: {target_path}\n"
-                      "Create this directory in wk1995/wk1995.github.io before running the publish workflow."
+                      f"Resolved target escapes the {platform} platform root: {target_path}"
                   )
+              target_dir.mkdir(parents=True, exist_ok=True)
 
               shutil.copy2(package_file, target_dir / package_file.name)
               if readme_file:
@@ -209,7 +241,7 @@ jobs:
 
           git config user.name "github-publish-actions[bot]"
           git config user.email "41898282+github-publish-actions[bot]@users.noreply.github.com"
-          git add apps/packages/window apps/packages/mac apps/packages/linux
+          git add apps/packages/windows apps/packages/macos apps/packages/linux
 
           if git diff --cached --quiet; then
             echo "No package file changes to commit."
