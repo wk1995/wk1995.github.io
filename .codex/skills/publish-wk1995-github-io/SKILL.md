@@ -2,7 +2,7 @@
 name: publish-wk1995-github-io
 description: Create or update GitHub Actions workflows that publish build artifacts to wk1995.github.io / wk1995/wk1995.github.io, with artifact paths selected by application type such as Android APK, Windows desktop, macOS desktop, or Linux desktop.
 metadata:
-  version: "0.0.2"
+  version: "0.0.3"
 ---
 
 # Publish wk1995.github.io
@@ -233,6 +233,9 @@ After the publish workflow pushes package files, rely on the target repository's
 `Update App Manifest` workflow to regenerate `apps/packages/manifest.json`.
 Confirm that the target workflow still watches `apps/**`. Do not generate or
 commit the target repository's global manifest from the source repository.
+For desktop packages, confirm the target manifest generator recognizes archive
+files nested under `<version>/<systemos>` so every published architecture is
+included in the Apps catalog.
 
 ## Templates
 
@@ -267,5 +270,7 @@ After writing or updating the workflow:
   app/version directories after validating path segments and containment.
 - Confirm the target repository's manifest workflow watches `apps/**` and will
   refresh the Apps catalog after the package commit.
+- Confirm desktop archives under `<version>/<systemos>` are included in the
+  generated manifest.
 - Confirm the final response names the required secret and describes the
   required secret value permissions.

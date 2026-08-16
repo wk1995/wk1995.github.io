@@ -1379,6 +1379,7 @@ body[data-page="personalAppsPage"] {
   --app-primary: var(--primary);
   --app-secondary: var(--accent);
   --app-status: #6ecb96;
+  --app-error: #ff7b8a;
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
     linear-gradient(180deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
@@ -1390,6 +1391,7 @@ body[data-page="personalAppsPage"] {
 
 html[data-theme="light"] body[data-page="personalAppsPage"] {
   --app-status: #238957;
+  --app-error: #c23e50;
 }
 
 body[data-page="personalAppsPage"] .catalog-topbar,
@@ -1539,6 +1541,20 @@ body[data-page="personalAppsPage"] .apps-hero p:not(.catalog-kicker) {
   border-radius: 50%;
   background: var(--app-status);
   box-shadow: 0 0 0 5px color-mix(in srgb, var(--app-status) 12%, transparent);
+}
+
+.apps-overview-signal.is-loading .apps-signal-dot {
+  background: var(--app-secondary);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--app-secondary) 12%, transparent);
+}
+
+.apps-overview-signal.is-error {
+  color: var(--app-error);
+}
+
+.apps-overview-signal.is-error .apps-signal-dot {
+  background: var(--app-error);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--app-error) 12%, transparent);
 }
 
 .apps-workbench {

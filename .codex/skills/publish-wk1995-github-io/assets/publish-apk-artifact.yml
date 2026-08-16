@@ -188,17 +188,22 @@ jobs:
 
           target_dir="$platform_root/$package_name/$app_version"
           target_path="apps/packages/android/$package_name/$app_version"
-          mkdir -p "$target_dir"
+          python - "$platform_root" "$target_dir" "$target_path" <<'PY'
+          import pathlib
+          import sys
 
-          resolved_root="$(realpath "$platform_root")"
-          resolved_target="$(realpath "$target_dir")"
-          case "$resolved_target/" in
-            "$resolved_root/"*) ;;
-            *)
-              echo "Resolved target escapes the Android platform root: $target_path" >&2
-              exit 1
-              ;;
-          esac
+          platform_root = pathlib.Path(sys.argv[1]).resolve(strict=True)
+          target_dir = pathlib.Path(sys.argv[2]).resolve(strict=False)
+          target_path = sys.argv[3]
+          if platform_root not in target_dir.parents:
+              print(
+                  f"Resolved target escapes the Android platform root: {target_path}",
+                  file=sys.stderr,
+              )
+              raise SystemExit(1)
+          PY
+
+          mkdir -p "$target_dir"
 
           find "$GITHUB_WORKSPACE/apk-artifacts" -type f -name '*.apk' -print0 |
             while IFS= read -r -d '' apk_file; do

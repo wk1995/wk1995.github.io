@@ -8,7 +8,9 @@
       publishedApps: "已发布应用",
       activePlatforms: "覆盖平台",
       availableBuilds: "可用版本",
-      syncStatus: "清单自动同步",
+      syncLoading: "正在读取清单",
+      syncSuccess: "清单已同步",
+      syncFailed: "清单同步失败",
       platformFilter: "平台筛选",
       searchLabel: "搜索应用",
       searchPlaceholder: "名称 / 包名 / 版本",
@@ -52,7 +54,9 @@
       publishedApps: "Published apps",
       activePlatforms: "Platforms",
       availableBuilds: "Available builds",
-      syncStatus: "Manifest auto-synced",
+      syncLoading: "Loading manifest",
+      syncSuccess: "Manifest synced",
+      syncFailed: "Manifest sync failed",
       platformFilter: "Filter by platform",
       searchLabel: "Search apps",
       searchPlaceholder: "Name / package / version",
@@ -143,6 +147,7 @@
     manifest: { basePath: "packages/", apps: [] },
     filter: "",
     platform: "all",
+    loadState: "loading",
     error: "",
   };
 
@@ -304,7 +309,8 @@
 
   function productNameFromFile(value) {
     const fileName = String(value || "").split(/[\\/]/).pop().replace(/\.[^.]+$/, "");
-    const match = fileName.match(/^(.+?)(?:[-_ ]v?\d[\d._-]*)$/i);
+    const platformBuild = fileName.match(/^(.+?)[-_ ](?:windows?|mac(?:os)?|linux)[-_ ]v?\d.*$/i);
+    const match = platformBuild || fileName.match(/^(.+?)(?:[-_ ]v?\d[\d._-]*)$/i);
     return (match ? match[1] : fileName).replace(/[-_]+/g, " ").trim();
   }
 
@@ -952,6 +958,14 @@
     refs.releaseStat.textContent = String(releaseCount);
   }
 
+  function renderSyncStatus() {
+    const stateKey = state.loadState === "success"
+      ? "syncSuccess"
+      : (state.loadState === "error" ? "syncFailed" : "syncLoading");
+    refs.syncStatus.className = "apps-overview-signal is-" + state.loadState;
+    refs.syncLabel.textContent = t(stateKey);
+  }
+
   function appsForCurrentView() {
     return state.manifest.apps.filter(function (app) {
       const platformMatch = state.platform === "all" || app.platformId === state.platform;
@@ -1073,6 +1087,7 @@
   function render() {
     applyStaticText();
     renderOverview();
+    renderSyncStatus();
     renderSource();
     renderPlatformNav();
     renderApps();
@@ -1092,9 +1107,11 @@
         throw new Error("HTTP " + response.status);
       }
       state.manifest = normalizeManifest(await response.json());
+      state.loadState = "success";
       state.error = "";
     } catch (error) {
       state.manifest = normalizeManifest({});
+      state.loadState = "error";
       state.error = t("loadFailed");
     }
     render();
@@ -1122,6 +1139,8 @@
     refs.totalStat = document.getElementById("app-total-stat");
     refs.platformStat = document.getElementById("app-platform-stat");
     refs.releaseStat = document.getElementById("app-release-stat");
+    refs.syncStatus = document.getElementById("app-sync-status");
+    refs.syncLabel = document.getElementById("app-sync-label");
   }
 
   function init() {

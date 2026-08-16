@@ -17,6 +17,7 @@
       releaseState: "持续发布",
       scanDownload: "扫码下载",
       packageName: "包名",
+      platform: "平台",
       packageSize: "安装包大小",
       availableBuilds: "可用版本",
       buildUnit: " 个版本",
@@ -50,6 +51,7 @@
       releaseState: "Continuously published",
       scanDownload: "Scan to download",
       packageName: "Package",
+      platform: "Platform",
       packageSize: "Package size",
       availableBuilds: "Available builds",
       buildUnit: " builds",
@@ -213,7 +215,8 @@
 
   function productNameFromFile(value) {
     const fileName = String(value || "").split(/[\\/]/).pop().replace(/\.[^.]+$/, "");
-    const match = fileName.match(/^(.+?)(?:[-_ ]v?\d[\d._-]*)$/i);
+    const platformBuild = fileName.match(/^(.+?)[-_ ](?:windows?|mac(?:os)?|linux)[-_ ]v?\d.*$/i);
+    const match = platformBuild || fileName.match(/^(.+?)(?:[-_ ]v?\d[\d._-]*)$/i);
     return (match ? match[1] : fileName).replace(/[-_]+/g, " ").trim();
   }
 
