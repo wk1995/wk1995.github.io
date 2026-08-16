@@ -34,11 +34,13 @@ jobs:
 
       - name: Update page branch from main
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
           if git ls-remote --exit-code --heads origin "$PAGE_BRANCH" >/dev/null 2>&1; then
             git fetch origin "$PAGE_BRANCH"
             git switch --force-create "$PAGE_BRANCH" "origin/$PAGE_BRANCH"
-            git merge --no-edit origin/main
+            git merge origin/main -m "[home][mac-min] 同步 main 到 page"
           else
             git switch --force-create "$PAGE_BRANCH" origin/main
           fi
@@ -53,13 +55,11 @@ jobs:
 
       - name: Commit and publish page branch
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/trending.json data/trending.js
           if git diff --cached --quiet; then
             echo "No trending changes to commit."
           else
-            git commit -m "【codex】更新 GitHub Trending 数据"
+            git commit -m "[home][mac-min] 【codex】更新 GitHub Trending 数据"
           fi
           git push origin "$PAGE_BRANCH"
 
