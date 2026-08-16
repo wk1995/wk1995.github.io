@@ -31,18 +31,18 @@ PLATFORMS = {
     },
     "windows": {
         "label": "Windows",
-        "extensions": {".exe", ".msi", ".msix", ".appx"},
-        "order": [".exe", ".msi", ".msix", ".appx"],
+        "extensions": {".exe", ".msi", ".msix", ".appx", ".zip"},
+        "order": [".exe", ".msi", ".msix", ".appx", ".zip"],
     },
     "macos": {
         "label": "macOS",
-        "extensions": {".dmg", ".pkg"},
-        "order": [".dmg", ".pkg"],
+        "extensions": {".dmg", ".pkg", ".zip"},
+        "order": [".dmg", ".pkg", ".zip"],
     },
     "linux": {
         "label": "Linux",
-        "extensions": {".deb", ".rpm", ".appimage"},
-        "order": [".deb", ".rpm", ".appimage"],
+        "extensions": {".deb", ".rpm", ".appimage", ".zip"},
+        "order": [".deb", ".rpm", ".appimage", ".zip"],
     },
     "web": {
         "label": "Web",
@@ -78,7 +78,7 @@ def git_date(path: Path) -> str:
         result = None
     value = result.stdout.strip() if result else ""
     if value:
-        return datetime.fromisoformat(value).astimezone(DISPLAY_TIMEZONE).date().isoformat()
+        return datetime.fromisoformat(value.replace("Z", "+00:00")).astimezone(DISPLAY_TIMEZONE).date().isoformat()
     return iso_from_timestamp(path.stat().st_mtime)
 
 
@@ -98,6 +98,8 @@ def slug(value: str) -> str:
 
 
 def display_name(value: str) -> str:
+    if re.search(r"[a-z][A-Z]", value):
+        return value.strip()
     return re.sub(r"[-_]+", " ", value).strip().title() or value
 
 
@@ -162,8 +164,9 @@ def read_text_file(path: Path) -> str:
     return path.read_text(errors="ignore").strip()
 
 
-def find_readme(directory: Path):
-    candidates = [item for item in directory.iterdir() if item.is_file() and item.name.lower().startswith("readme")]
+def find_readme(directory: Path, recursive: bool = False):
+    entries = directory.rglob("*") if recursive else directory.iterdir()
+    candidates = [item for item in entries if item.is_file() and item.name.lower().startswith("readme")]
     if not candidates:
         return None
     candidates.sort(key=lambda item: (item.name.lower() not in {"readme.md", "readme.txt"}, item.name.lower()))
@@ -179,11 +182,12 @@ def summary_from_readme(content: str) -> str:
     return ""
 
 
-def install_files(directory: Path, platform: str):
+def install_files(directory: Path, platform: str, recursive: bool = False):
     extensions = PLATFORMS[platform]["extensions"]
     order = PLATFORMS[platform]["order"]
     files = []
-    for item in sorted(directory.iterdir(), key=lambda path: path.name.lower()):
+    entries = directory.rglob("*") if recursive else directory.iterdir()
+    for item in sorted(entries, key=lambda path: posix(path.relative_to(directory)).lower()):
         if not item.is_file() or item.name.startswith("."):
             continue
         suffix = item.suffix.lower()
@@ -194,7 +198,7 @@ def install_files(directory: Path, platform: str):
         stat = item.stat()
         files.append(
             {
-                "file": item.name,
+                "file": posix(item.relative_to(directory)),
                 "type": suffix.lstrip(".") or "file",
                 "size": human_size(stat.st_size),
                 "updatedAt": git_date(item),
@@ -214,11 +218,11 @@ def relative_base_path(directory: Path) -> str:
     return posix(relative) + "/"
 
 
-def release_from_directory(directory: Path, platform: str, version: str):
-    files = install_files(directory, platform)
+def release_from_directory(directory: Path, platform: str, version: str, recursive: bool = False):
+    files = install_files(directory, platform, recursive=recursive)
     if not files:
         return None
-    readme_path = find_readme(directory)
+    readme_path = find_readme(directory, recursive=recursive)
     readme = read_text_file(readme_path) if readme_path else ""
     latest_date = max(item["updatedAt"] for item in files if item.get("updatedAt"))
     return {
@@ -240,7 +244,7 @@ def package_record(platform: str, package_dir: Path):
     for child in sorted(package_dir.iterdir(), key=lambda path: path.name.lower()):
         if not child.is_dir() or child.name.startswith("."):
             continue
-        release = release_from_directory(child, platform, child.name)
+        release = release_from_directory(child, platform, child.name, recursive=True)
         if release:
             version_releases.append(release)
 

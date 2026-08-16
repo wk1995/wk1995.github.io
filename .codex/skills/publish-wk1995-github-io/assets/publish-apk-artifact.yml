@@ -166,14 +166,44 @@ jobs:
           PY
           )"
 
-          target_dir="$GITHUB_WORKSPACE/target-site/apps/packages/android/$package_name/$app_version"
-          target_path="apps/packages/android/$package_name/$app_version"
+          validate_path_segment() {
+            local label="$1"
+            local value="$2"
+            if [ -z "$value" ] || [ "$value" = "." ] || [ "$value" = ".." ] || \
+              [[ "$value" == *"/"* ]] || [[ "$value" == *"\\"* ]] || [[ "$value" == *".."* ]] || \
+              [[ ! "$value" =~ ^[A-Za-z0-9][A-Za-z0-9._()+-]*$ ]]; then
+              echo "Unsafe $label path segment: $value" >&2
+              exit 1
+            fi
+          }
 
-          if [ ! -d "$target_dir" ]; then
-            echo "Target publish directory does not exist: $target_path" >&2
-            echo "Create this directory in wk1995/wk1995.github.io before running the publish workflow." >&2
+          validate_path_segment "package name" "$package_name"
+          validate_path_segment "app version" "$app_version"
+
+          platform_root="$GITHUB_WORKSPACE/target-site/apps/packages/android"
+          if [ ! -d "$platform_root" ]; then
+            echo "Target platform root does not exist: apps/packages/android" >&2
             exit 1
           fi
+
+          target_dir="$platform_root/$package_name/$app_version"
+          target_path="apps/packages/android/$package_name/$app_version"
+          python - "$platform_root" "$target_dir" "$target_path" <<'PY'
+          import pathlib
+          import sys
+
+          platform_root = pathlib.Path(sys.argv[1]).resolve(strict=True)
+          target_dir = pathlib.Path(sys.argv[2]).resolve(strict=False)
+          target_path = sys.argv[3]
+          if platform_root not in target_dir.parents:
+              print(
+                  f"Resolved target escapes the Android platform root: {target_path}",
+                  file=sys.stderr,
+              )
+              raise SystemExit(1)
+          PY
+
+          mkdir -p "$target_dir"
 
           find "$GITHUB_WORKSPACE/apk-artifacts" -type f -name '*.apk' -print0 |
             while IFS= read -r -d '' apk_file; do
