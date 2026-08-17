@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-16T16:45:20.872266+00:00",
+  "generated_at": "2026-08-17T00:02:50.961063+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,9 +15,9 @@ window.__TRENDING_DATA__ = {
         "en": "Meta-Framework of Spatiotemporal Composability"
       },
       "language": "TypeScript",
-      "stars_total": 4577,
-      "forks_total": 236,
-      "stars_today": 719
+      "stars_total": 4703,
+      "forks_total": 246,
+      "stars_today": 720
     },
     {
       "rank": 2,
@@ -31,9 +31,9 @@ window.__TRENDING_DATA__ = {
         "en": "Beautiful, Modern & Opinionated Linux"
       },
       "language": "Shell",
-      "stars_total": 25210,
-      "forks_total": 2571,
-      "stars_today": 225
+      "stars_total": 25361,
+      "forks_total": 2588,
+      "stars_today": 270
     },
     {
       "rank": 3,
@@ -47,9 +47,9 @@ window.__TRENDING_DATA__ = {
         "en": "Local UI to run and train LLMs and diffusion models, including Qwen3.8, Kimi K3, MiniMax-H3, Gemma 4, DeepSeek-V4, FLUX and more."
       },
       "language": "Python",
-      "stars_total": 72390,
-      "forks_total": 6527,
-      "stars_today": 580
+      "stars_total": 72554,
+      "forks_total": 6543,
+      "stars_today": 572
     },
     {
       "rank": 4,
@@ -63,28 +63,12 @@ window.__TRENDING_DATA__ = {
         "en": "The open-source CapCut alternative"
       },
       "language": "TypeScript",
-      "stars_total": 83676,
-      "forks_total": 8271,
-      "stars_today": 134
+      "stars_total": 83868,
+      "forks_total": 8281,
+      "stars_today": 150
     },
     {
       "rank": 5,
-      "repo": "akitaonrails/ai-memory",
-      "owner": "akitaonrails",
-      "name": "ai-memory",
-      "url": "https://github.com/akitaonrails/ai-memory",
-      "description": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors",
-      "descriptions": {
-        "zh": "用于代理编码 CLI 的长期记忆解决方案，并促进不同代理供应商之间的切换",
-        "en": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors"
-      },
-      "language": "Rust",
-      "stars_total": 1672,
-      "forks_total": 169,
-      "stars_today": 41
-    },
-    {
-      "rank": 6,
       "repo": "public-apis/public-apis",
       "owner": "public-apis",
       "name": "public-apis",
@@ -95,9 +79,25 @@ window.__TRENDING_DATA__ = {
         "en": "A collective list of free APIs"
       },
       "language": "Python",
-      "stars_total": 461214,
-      "forks_total": 50956,
-      "stars_today": 1583
+      "stars_total": 461712,
+      "forks_total": 50999,
+      "stars_today": 1588
+    },
+    {
+      "rank": 6,
+      "repo": "ToolJet/ToolJet",
+      "owner": "ToolJet",
+      "name": "ToolJet",
+      "url": "https://github.com/ToolJet/ToolJet",
+      "description": "ToolJet is the open-source foundation of ToolJet AI - the enterprise app generation platform for building internal tools, dashboard, business applications, workflows and AI agents 🚀",
+      "descriptions": {
+        "zh": "ToolJet 是 ToolJet AI 的开源基础 - ToolJet AI 是用于构建内部工具、仪表板、业务应用程序、工作流程和 AI 代理的企业应用程序生成平台 🚀",
+        "en": "ToolJet is the open-source foundation of ToolJet AI - the enterprise app generation platform for building internal tools, dashboard, business applications, workflows and AI agents 🚀"
+      },
+      "language": "JavaScript",
+      "stars_total": 40009,
+      "forks_total": 5329,
+      "stars_today": 452
     }
   ]
 }
