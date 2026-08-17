@@ -121,6 +121,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: wk1995/wk1995.github.io
+          ref: main
           token: ${{ secrets.PUBLISH_APP_FROM_ADB_PILOT_TO_GITHUB_IO }}
           path: target-site
 
