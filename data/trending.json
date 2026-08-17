@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-17T00:02:50.961063+00:00",
+  "generated_at": "2026-08-17T02:23:44.303455+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,8 +15,8 @@
         "en": "Meta-Framework of Spatiotemporal Composability"
       },
       "language": "TypeScript",
-      "stars_total": 4703,
-      "forks_total": 246,
+      "stars_total": 4857,
+      "forks_total": 264,
       "stars_today": 720
     },
     {
@@ -31,8 +31,8 @@
         "en": "Beautiful, Modern & Opinionated Linux"
       },
       "language": "Shell",
-      "stars_total": 25361,
-      "forks_total": 2588,
+      "stars_total": 25457,
+      "forks_total": 2596,
       "stars_today": 270
     },
     {
@@ -47,8 +47,8 @@
         "en": "Local UI to run and train LLMs and diffusion models, including Qwen3.8, Kimi K3, MiniMax-H3, Gemma 4, DeepSeek-V4, FLUX and more."
       },
       "language": "Python",
-      "stars_total": 72554,
-      "forks_total": 6543,
+      "stars_total": 72664,
+      "forks_total": 6552,
       "stars_today": 572
     },
     {
@@ -63,8 +63,8 @@
         "en": "The open-source CapCut alternative"
       },
       "language": "TypeScript",
-      "stars_total": 83868,
-      "forks_total": 8281,
+      "stars_total": 83962,
+      "forks_total": 8290,
       "stars_today": 150
     },
     {
@@ -79,8 +79,8 @@
         "en": "A collective list of free APIs"
       },
       "language": "Python",
-      "stars_total": 461712,
-      "forks_total": 50999,
+      "stars_total": 461893,
+      "forks_total": 51021,
       "stars_today": 1588
     },
     {
@@ -95,8 +95,8 @@
         "en": "ToolJet is the open-source foundation of ToolJet AI - the enterprise app generation platform for building internal tools, dashboard, business applications, workflows and AI agents 🚀"
       },
       "language": "JavaScript",
-      "stars_total": 40009,
-      "forks_total": 5329,
+      "stars_total": 40088,
+      "forks_total": 5332,
       "stars_today": 452
     }
   ]
