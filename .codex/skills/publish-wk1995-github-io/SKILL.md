@@ -2,7 +2,7 @@
 name: publish-wk1995-github-io
 description: Create or update GitHub Actions workflows that publish build artifacts to wk1995.github.io / wk1995/wk1995.github.io, with artifact paths selected by application type such as Android APK, Windows desktop, macOS desktop, or Linux desktop.
 metadata:
-  version: "0.0.3"
+  version: "0.0.4"
 ---
 
 # Publish wk1995.github.io
@@ -26,6 +26,19 @@ wk1995/wk1995.github.io
 
 Do not replace this repository unless the user explicitly changes the publish
 target away from this skill.
+
+## Target Branch
+
+Publish package files to the fixed source branch:
+
+```text
+main
+```
+
+The target repository synchronizes accepted changes from `main` to the
+production `page` branch. The `Update App Manifest and Deploy Pages` workflow
+runs only on `page`, generates the global manifest there, and deploys that
+branch. Never copy or merge files generated on `page` back into `main`.
 
 ## Workflow Location
 
@@ -115,6 +128,7 @@ Then use the same secret to checkout the target repository:
 - uses: actions/checkout@v4
   with:
     repository: wk1995/wk1995.github.io
+    ref: main
     token: ${{ secrets.PUBLISH_APP_FROM_ADB_PILOT_TO_GITHUB_IO }}
     path: target-site
 ```
@@ -227,15 +241,16 @@ apps/packages/linux/<appName>/<version>/<systemos>
 Recommended `<systemos>` values include `x86_64`, `arm64`, `deb-x86_64`, or
 `appimage-x86_64`, depending on the artifact format the project publishes.
 
-## Manifest Refresh
+## Manifest Refresh and Pages Deployment
 
-After the publish workflow pushes package files, rely on the target repository's
-`Update App Manifest` workflow to regenerate `apps/packages/manifest.json`.
-Confirm that the target workflow still watches `apps/**`. Do not generate or
-commit the target repository's global manifest from the source repository.
-For desktop packages, confirm the target manifest generator recognizes archive
-files nested under `<version>/<systemos>` so every published architecture is
-included in the Apps catalog.
+After package files are accepted into `main`, rely on the target repository to
+synchronize `main` to `page`. Its `Update App Manifest and Deploy Pages`
+workflow regenerates `apps/packages/manifest.json`, commits it only to `page`,
+and deploys the updated site. Do not generate or commit the target repository's
+global manifest from the source repository. Never copy or merge files generated
+on `page` back into `main`. For desktop packages, confirm the target manifest
+generator recognizes archive files nested under `<version>/<systemos>` so every
+published architecture is included in the Apps catalog.
 
 ## Templates
 
@@ -254,6 +269,8 @@ After writing or updating the workflow:
 
 - Check YAML syntax and indentation.
 - Confirm the workflow contains `repository: wk1995/wk1995.github.io`.
+- Confirm the target checkout uses `ref: main`; package files must first enter
+  `main` and must not be published directly to `page`.
 - Confirm it references the app-specific secret name.
 - Confirm the secret name matches `PUBLISH_APP_FROM_<APP_NAME>_TO_GITHUB_IO`.
 - Confirm the workflow has a token validation step before checking out the
@@ -268,8 +285,9 @@ After writing or updating the workflow:
   - Linux: `apps/packages/linux/<appName>/<version>/<systemos>`.
 - Confirm the platform root must already exist but the workflow creates missing
   app/version directories after validating path segments and containment.
-- Confirm the target repository's manifest workflow watches `apps/**` and will
-  refresh the Apps catalog after the package commit.
+- Confirm the target repository synchronizes accepted package changes from
+  `main` to `page`, then regenerates the global manifest and deploys the Apps
+  catalog from `page`.
 - Confirm desktop archives under `<version>/<systemos>` are included in the
   generated manifest.
 - Confirm the final response names the required secret and describes the

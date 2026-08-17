@@ -1,39 +1,37 @@
-name: Update App Manifest
+name: Update App Manifest and Deploy Pages
 
 on:
   push:
     branches:
-      - main
-    paths:
-      - "apps/**"
-      - "scripts/generate_app_manifest.py"
-      - ".github/workflows/update-app-manifest.yml"
+      - page
   workflow_dispatch:
 
 permissions:
-  actions: write
   contents: write
-  pull-requests: write
+  pages: write
+  id-token: write
 
 concurrency:
-  group: app-manifest-main
+  group: page-publish
   cancel-in-progress: false
 
 jobs:
-  update:
-    if: github.actor != 'github-actions[bot]'
+  update-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
+      - name: Checkout page
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: page
           fetch-depth: 0
 
       - name: Prepare page version
         run: |
           VERSION_NUMBER="$(TZ=Asia/Shanghai date +'%Y%m%d%H%M%S')"
-          echo "APP_MANIFEST_VERSION_NAME=main-${VERSION_NUMBER}" >> "$GITHUB_ENV"
+          echo "APP_MANIFEST_VERSION_NAME=page-${VERSION_NUMBER}" >> "$GITHUB_ENV"
           echo "APP_MANIFEST_VERSION_NUMBER=${VERSION_NUMBER}" >> "$GITHUB_ENV"
 
       - name: Set up Python
@@ -44,9 +42,7 @@ jobs:
       - name: Generate app manifest
         run: python scripts/generate_app_manifest.py
 
-      - name: Publish manifest through pull request
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Commit manifest to page
         run: |
           set -euo pipefail
 
@@ -55,27 +51,19 @@ jobs:
           git add apps/packages/manifest.json
           if git diff --cached --quiet; then
             echo "No app manifest changes to commit."
-            exit 0
+          else
+            git commit -m "【codex】更新 App manifest"
+            git push origin HEAD:page
           fi
 
-          manifest_branch="automation/update-app-manifest-${GITHUB_RUN_ID}"
-          git switch --create "$manifest_branch"
-          git commit -m "[home][mac-min] 【codex】更新 App manifest"
-          git push --set-upstream origin "$manifest_branch"
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
 
-          pr_url="$(gh pr create \
-            --repo "$GITHUB_REPOSITORY" \
-            --base main \
-            --head "$manifest_branch" \
-            --title "[home][mac-min] 【codex】更新 App manifest" \
-            --body "Automatically refreshes the Apps catalog after package files changed.")"
-          gh pr merge "$pr_url" \
-            --repo "$GITHUB_REPOSITORY" \
-            --squash \
-            --delete-branch
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
 
-          # GITHUB_TOKEN-authored merges do not emit another workflow run.
-          # Dispatch the page refresh explicitly so the merged manifest is deployed.
-          gh workflow run refresh-trending.yml \
-            --repo "$GITHUB_REPOSITORY" \
-            --ref main
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
