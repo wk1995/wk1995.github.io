@@ -1,103 +1,103 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-17T02:23:44.303455+00:00",
+  "generated_at": "2026-08-18T02:19:54.386811+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "cordiverse/cordis",
-      "owner": "cordiverse",
-      "name": "cordis",
-      "url": "https://github.com/cordiverse/cordis",
-      "description": "Meta-Framework of Spatiotemporal Composability",
+      "repo": "harry0703/MoneyPrinterTurbo",
+      "owner": "harry0703",
+      "name": "MoneyPrinterTurbo",
+      "url": "https://github.com/harry0703/MoneyPrinterTurbo",
+      "description": "利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow.",
       "descriptions": {
-        "zh": "时空可组合性元框架",
-        "en": "Meta-Framework of Spatiotemporal Composability"
+        "zh": "利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow.",
+        "en": "Use AI large models and automated workflows to generate high-definition short videos based on topics or keywords with one click. Generate HD short videos from a topic or keyword with an automated AI workflow."
       },
-      "language": "TypeScript",
-      "stars_total": 4857,
-      "forks_total": 264,
-      "stars_today": 720
+      "language": "Python",
+      "stars_total": 106242,
+      "forks_total": 16138,
+      "stars_today": 1189
     },
     {
       "rank": 2,
-      "repo": "basecamp/omarchy",
-      "owner": "basecamp",
-      "name": "omarchy",
-      "url": "https://github.com/basecamp/omarchy",
-      "description": "Beautiful, Modern & Opinionated Linux",
+      "repo": "usestrix/strix",
+      "owner": "usestrix",
+      "name": "strix",
+      "url": "https://github.com/usestrix/strix",
+      "description": "Open-source AI penetration testing tool to find and fix your app’s vulnerabilities.",
       "descriptions": {
-        "zh": "美丽、现代、有主见的 Linux",
-        "en": "Beautiful, Modern & Opinionated Linux"
+        "zh": "开源人工智能渗透测试工具，用于查找并修复应用程序的漏洞。",
+        "en": "Open-source AI penetration testing tool to find and fix your app’s vulnerabilities."
       },
-      "language": "Shell",
-      "stars_total": 25457,
-      "forks_total": 2596,
-      "stars_today": 270
+      "language": "Python",
+      "stars_total": 54274,
+      "forks_total": 5804,
+      "stars_today": 598
     },
     {
       "rank": 3,
-      "repo": "unslothai/unsloth",
-      "owner": "unslothai",
-      "name": "unsloth",
-      "url": "https://github.com/unslothai/unsloth",
-      "description": "Local UI to run and train LLMs and diffusion models, including Qwen3.8, Kimi K3, MiniMax-H3, Gemma 4, DeepSeek-V4, FLUX and more.",
+      "repo": "nautechsystems/nautilus_trader",
+      "owner": "nautechsystems",
+      "name": "nautilus_trader",
+      "url": "https://github.com/nautechsystems/nautilus_trader",
+      "description": "Production-grade Rust-native trading engine with deterministic event-driven architecture",
       "descriptions": {
-        "zh": "用于运行和训练 LLM 和扩散模型的本地 UI，包括 Qwen3.8、Kimi K3、MiniMax-H3、Gemma 4、DeepSeek-V4、FLUX 等。",
-        "en": "Local UI to run and train LLMs and diffusion models, including Qwen3.8, Kimi K3, MiniMax-H3, Gemma 4, DeepSeek-V4, FLUX and more."
+        "zh": "具有确定性事件驱动架构的生产级 Rust 原生交易引擎",
+        "en": "Production-grade Rust-native trading engine with deterministic event-driven architecture"
       },
-      "language": "Python",
-      "stars_total": 72664,
-      "forks_total": 6552,
-      "stars_today": 572
+      "language": "Rust",
+      "stars_total": 25969,
+      "forks_total": 3375,
+      "stars_today": 120
     },
     {
       "rank": 4,
-      "repo": "OpenCut-app/OpenCut",
-      "owner": "OpenCut-app",
-      "name": "OpenCut",
-      "url": "https://github.com/OpenCut-app/OpenCut",
-      "description": "The open-source CapCut alternative",
+      "repo": "akitaonrails/ai-memory",
+      "owner": "akitaonrails",
+      "name": "ai-memory",
+      "url": "https://github.com/akitaonrails/ai-memory",
+      "description": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors",
       "descriptions": {
-        "zh": "开源 CapCut 替代方案",
-        "en": "The open-source CapCut alternative"
+        "zh": "用于代理编码 CLI 的长期记忆解决方案，并促进不同代理供应商之间的切换",
+        "en": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors"
       },
-      "language": "TypeScript",
-      "stars_total": 83962,
-      "forks_total": 8290,
-      "stars_today": 150
+      "language": "Rust",
+      "stars_total": 2136,
+      "forks_total": 199,
+      "stars_today": 207
     },
     {
       "rank": 5,
-      "repo": "public-apis/public-apis",
-      "owner": "public-apis",
-      "name": "public-apis",
-      "url": "https://github.com/public-apis/public-apis",
-      "description": "A collective list of free APIs",
+      "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+      "owner": "mukul975",
+      "name": "Anthropic-Cybersecurity-Skills",
+      "url": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills",
+      "description": "817 structured cybersecurity skills for AI agents · Mapped to 6 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND, NIST AI RMF & MITRE F3 (Fight Fraud) · agentskills.io standard · Works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI & 20+ platforms · 29 security domains · Apache 2.0",
       "descriptions": {
-        "zh": "免费 API 集合列表",
-        "en": "A collective list of free APIs"
+        "zh": "AI 代理的 817 项结构化网络安全技能 · 映射到 6 个框架：MITRE ATT&CK、NIST CSF 2.0、MITRE ATLAS、D3FEND、NIST AI RMF 和 MITRE F3（打击欺诈） · Agentskills.io 标准 · 可与 Claude Code、GitHub Copilot、Codex CLI、Cursor、Gemini CLI 和 20 多个平台配合使用 · 29 个安全域 · Apache 2.0",
+        "en": "817 structured cybersecurity skills for AI agents · Mapped to 6 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND, NIST AI RMF & MITRE F3 (Fight Fraud) · agentskills.io standard · Works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI & 20+ platforms · 29 security domains · Apache 2.0"
       },
       "language": "Python",
-      "stars_total": 461893,
-      "forks_total": 51021,
-      "stars_today": 1588
+      "stars_total": 28489,
+      "forks_total": 3451,
+      "stars_today": 198
     },
     {
       "rank": 6,
-      "repo": "ToolJet/ToolJet",
-      "owner": "ToolJet",
-      "name": "ToolJet",
-      "url": "https://github.com/ToolJet/ToolJet",
-      "description": "ToolJet is the open-source foundation of ToolJet AI - the enterprise app generation platform for building internal tools, dashboard, business applications, workflows and AI agents 🚀",
+      "repo": "AlexsJones/llmfit",
+      "owner": "AlexsJones",
+      "name": "llmfit",
+      "url": "https://github.com/AlexsJones/llmfit",
+      "description": "Hundreds of models & providers. One command to find what runs on your hardware.",
       "descriptions": {
-        "zh": "ToolJet 是 ToolJet AI 的开源基础 - ToolJet AI 是用于构建内部工具、仪表板、业务应用程序、工作流程和 AI 代理的企业应用程序生成平台 🚀",
-        "en": "ToolJet is the open-source foundation of ToolJet AI - the enterprise app generation platform for building internal tools, dashboard, business applications, workflows and AI agents 🚀"
+        "zh": "数百个模型和提供商。一个命令即可查找您的硬件上运行的内容。",
+        "en": "Hundreds of models & providers. One command to find what runs on your hardware."
       },
-      "language": "JavaScript",
-      "stars_total": 40088,
-      "forks_total": 5332,
-      "stars_today": 452
+      "language": "Rust",
+      "stars_total": 32338,
+      "forks_total": 2003,
+      "stars_today": 198
     }
   ]
 }
