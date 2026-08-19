@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-18T02:19:54.386811+00:00",
+  "generated_at": "2026-08-19T02:27:50.536594+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,44 +15,28 @@ window.__TRENDING_DATA__ = {
         "en": "Use AI large models and automated workflows to generate high-definition short videos based on topics or keywords with one click. Generate HD short videos from a topic or keyword with an automated AI workflow."
       },
       "language": "Python",
-      "stars_total": 106242,
-      "forks_total": 16138,
-      "stars_today": 1189
+      "stars_total": 108702,
+      "forks_total": 16503,
+      "stars_today": 2304
     },
     {
       "rank": 2,
-      "repo": "usestrix/strix",
-      "owner": "usestrix",
-      "name": "strix",
-      "url": "https://github.com/usestrix/strix",
-      "description": "Open-source AI penetration testing tool to find and fix your app’s vulnerabilities.",
+      "repo": "chaitanyagiri/munder-difflin",
+      "owner": "chaitanyagiri",
+      "name": "munder-difflin",
+      "url": "https://github.com/chaitanyagiri/munder-difflin",
+      "description": "local multi-agent harness",
       "descriptions": {
-        "zh": "开源人工智能渗透测试工具，用于查找并修复应用程序的漏洞。",
-        "en": "Open-source AI penetration testing tool to find and fix your app’s vulnerabilities."
+        "zh": "本地多智能体利用",
+        "en": "local multi-agent harness"
       },
-      "language": "Python",
-      "stars_total": 54274,
-      "forks_total": 5804,
-      "stars_today": 598
+      "language": "TypeScript",
+      "stars_total": 2099,
+      "forks_total": 246,
+      "stars_today": 306
     },
     {
       "rank": 3,
-      "repo": "nautechsystems/nautilus_trader",
-      "owner": "nautechsystems",
-      "name": "nautilus_trader",
-      "url": "https://github.com/nautechsystems/nautilus_trader",
-      "description": "Production-grade Rust-native trading engine with deterministic event-driven architecture",
-      "descriptions": {
-        "zh": "具有确定性事件驱动架构的生产级 Rust 原生交易引擎",
-        "en": "Production-grade Rust-native trading engine with deterministic event-driven architecture"
-      },
-      "language": "Rust",
-      "stars_total": 25969,
-      "forks_total": 3375,
-      "stars_today": 120
-    },
-    {
-      "rank": 4,
       "repo": "akitaonrails/ai-memory",
       "owner": "akitaonrails",
       "name": "ai-memory",
@@ -63,9 +47,25 @@ window.__TRENDING_DATA__ = {
         "en": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors"
       },
       "language": "Rust",
-      "stars_total": 2136,
-      "forks_total": 199,
-      "stars_today": 207
+      "stars_total": 2779,
+      "forks_total": 240,
+      "stars_today": 648
+    },
+    {
+      "rank": 4,
+      "repo": "volcengine/OpenViking",
+      "owner": "volcengine",
+      "name": "OpenViking",
+      "url": "https://github.com/volcengine/OpenViking",
+      "description": "Self-evolving Context Database for AI Agents. Unify Agent Memory, Knowledge RAG and Skills.",
+      "descriptions": {
+        "zh": "人工智能代理的自我进化上下文数据库。统一代理记忆、知识 RAG 和技能。",
+        "en": "Self-evolving Context Database for AI Agents. Unify Agent Memory, Knowledge RAG and Skills."
+      },
+      "language": "Python",
+      "stars_total": 29477,
+      "forks_total": 2310,
+      "stars_today": 213
     },
     {
       "rank": 5,
@@ -79,25 +79,25 @@ window.__TRENDING_DATA__ = {
         "en": "817 structured cybersecurity skills for AI agents · Mapped to 6 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND, NIST AI RMF & MITRE F3 (Fight Fraud) · agentskills.io standard · Works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI & 20+ platforms · 29 security domains · Apache 2.0"
       },
       "language": "Python",
-      "stars_total": 28489,
-      "forks_total": 3451,
-      "stars_today": 198
+      "stars_total": 29246,
+      "forks_total": 3497,
+      "stars_today": 730
     },
     {
       "rank": 6,
-      "repo": "AlexsJones/llmfit",
-      "owner": "AlexsJones",
-      "name": "llmfit",
-      "url": "https://github.com/AlexsJones/llmfit",
-      "description": "Hundreds of models & providers. One command to find what runs on your hardware.",
+      "repo": "public-apis/public-apis",
+      "owner": "public-apis",
+      "name": "public-apis",
+      "url": "https://github.com/public-apis/public-apis",
+      "description": "A collective list of free APIs",
       "descriptions": {
-        "zh": "数百个模型和提供商。一个命令即可查找您的硬件上运行的内容。",
-        "en": "Hundreds of models & providers. One command to find what runs on your hardware."
+        "zh": "免费 API 集合列表",
+        "en": "A collective list of free APIs"
       },
-      "language": "Rust",
-      "stars_total": 32338,
-      "forks_total": 2003,
-      "stars_today": 198
+      "language": "Python",
+      "stars_total": 464664,
+      "forks_total": 51328,
+      "stars_today": 1005
     }
   ]
 }
