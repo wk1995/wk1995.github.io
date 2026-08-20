@@ -1,9 +1,6 @@
 name: Update App Manifest and Deploy Pages
 
 on:
-  push:
-    branches:
-      - page
   workflow_dispatch:
 
 permissions:
@@ -17,6 +14,7 @@ concurrency:
 
 jobs:
   update-and-deploy:
+    if: github.ref_name == 'main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

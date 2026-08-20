@@ -36,9 +36,10 @@ main
 ```
 
 The target repository synchronizes accepted changes from `main` to the
-production `page` branch. The `Update App Manifest and Deploy Pages` workflow
-runs only on `page`, generates the global manifest there, and deploys that
-branch. Never copy or merge files generated on `page` back into `main`.
+production `page` branch. To satisfy the `github-pages` environment's branch
+policy, the `Update App Manifest and Deploy Pages` workflow is invoked from
+`main`; it checks out `page`, generates the global manifest there, and deploys
+that branch. Never copy or merge files generated on `page` back into `main`.
 
 ## Workflow Location
 
@@ -245,12 +246,13 @@ Recommended `<systemos>` values include `x86_64`, `arm64`, `deb-x86_64`, or
 
 After package files are accepted into `main`, rely on the target repository to
 synchronize `main` to `page`. Its `Update App Manifest and Deploy Pages`
-workflow regenerates `apps/packages/manifest.json`, commits it only to `page`,
-and deploys the updated site. Do not generate or commit the target repository's
-global manifest from the source repository. Never copy or merge files generated
-on `page` back into `main`. For desktop packages, confirm the target manifest
-generator recognizes archive files nested under `<version>/<systemos>` so every
-published architecture is included in the Apps catalog.
+workflow is invoked from `main`, checks out `page`, regenerates
+`apps/packages/manifest.json`, commits it only to `page`, and deploys the updated
+site. Do not generate or commit the target repository's global manifest from the
+source repository. Never copy or merge files generated on `page` back into
+`main`. For desktop packages, confirm the target manifest generator recognizes
+archive files nested under `<version>/<systemos>` so every published
+architecture is included in the Apps catalog.
 
 ## Templates
 
@@ -286,8 +288,9 @@ After writing or updating the workflow:
 - Confirm the platform root must already exist but the workflow creates missing
   app/version directories after validating path segments and containment.
 - Confirm the target repository synchronizes accepted package changes from
-  `main` to `page`, then regenerates the global manifest and deploys the Apps
-  catalog from `page`.
+  `main` to `page`, invokes the deploy workflow from `main`, then regenerates the
+  global manifest and deploys the Apps catalog from the checked-out `page`
+  branch.
 - Confirm desktop archives under `<version>/<systemos>` are included in the
   generated manifest.
 - Confirm the final response names the required secret and describes the
