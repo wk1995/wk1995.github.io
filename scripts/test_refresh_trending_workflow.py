@@ -29,18 +29,19 @@ class RefreshTrendingWorkflowTest(unittest.TestCase):
         )
         self.assertIn("python scripts/update_trending.py --since daily --limit 6", workflow)
         self.assertIn("git push origin \"$PAGE_BRANCH\"", workflow)
-        self.assertIn("gh workflow run update-app-manifest.yml --ref page", workflow)
+        self.assertIn("gh workflow run update-app-manifest.yml --ref main", workflow)
         self.assertNotIn("git push --force", workflow)
         self.assertNotIn("pull-requests: write", workflow)
         self.assertNotIn("peter-evans/create-pull-request@", workflow)
         self.assertNotIn("actions/upload-pages-artifact@", workflow)
         self.assertNotIn("actions/deploy-pages@", workflow)
 
-    def test_manifest_is_generated_and_deployed_only_from_page(self):
+    def test_manifest_uses_page_content_but_deploys_from_allowed_main_ref(self):
         workflow = MANIFEST_WORKFLOW.read_text(encoding="utf-8")
 
-        self.assertIn("branches:\n      - page", workflow)
-        self.assertNotIn("branches:\n      - main", workflow)
+        self.assertIn("on:\n  workflow_dispatch:", workflow)
+        self.assertNotIn("push:", workflow)
+        self.assertIn("if: github.ref_name == 'main'", workflow)
         self.assertIn("ref: page", workflow)
         self.assertIn("APP_MANIFEST_VERSION_NAME=page-", workflow)
         self.assertIn("python scripts/generate_app_manifest.py", workflow)
@@ -58,7 +59,8 @@ class RefreshTrendingWorkflowTest(unittest.TestCase):
 
         self.assertIn("Publish package files to the fixed source branch", skill)
         self.assertIn("main", skill)
-        self.assertIn("runs only on `page`", skill)
+        self.assertIn("invoked from `main`", skill)
+        self.assertIn("checks out `page`", skill)
         self.assertIn("Never copy or merge files generated on `page` back into `main`", skill)
         for asset_path in PUBLISH_ASSETS:
             asset = asset_path.read_text(encoding="utf-8")
