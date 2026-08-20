@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-19T02:27:50.536594+00:00",
+  "generated_at": "2026-08-20T02:21:46.894197+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,44 +15,12 @@ window.__TRENDING_DATA__ = {
         "en": "Use AI large models and automated workflows to generate high-definition short videos based on topics or keywords with one click. Generate HD short videos from a topic or keyword with an automated AI workflow."
       },
       "language": "Python",
-      "stars_total": 108702,
-      "forks_total": 16503,
-      "stars_today": 2304
+      "stars_total": 110912,
+      "forks_total": 16809,
+      "stars_today": 2221
     },
     {
       "rank": 2,
-      "repo": "chaitanyagiri/munder-difflin",
-      "owner": "chaitanyagiri",
-      "name": "munder-difflin",
-      "url": "https://github.com/chaitanyagiri/munder-difflin",
-      "description": "local multi-agent harness",
-      "descriptions": {
-        "zh": "本地多智能体利用",
-        "en": "local multi-agent harness"
-      },
-      "language": "TypeScript",
-      "stars_total": 2099,
-      "forks_total": 246,
-      "stars_today": 306
-    },
-    {
-      "rank": 3,
-      "repo": "akitaonrails/ai-memory",
-      "owner": "akitaonrails",
-      "name": "ai-memory",
-      "url": "https://github.com/akitaonrails/ai-memory",
-      "description": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors",
-      "descriptions": {
-        "zh": "用于代理编码 CLI 的长期记忆解决方案，并促进不同代理供应商之间的切换",
-        "en": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors"
-      },
-      "language": "Rust",
-      "stars_total": 2779,
-      "forks_total": 240,
-      "stars_today": 648
-    },
-    {
-      "rank": 4,
       "repo": "volcengine/OpenViking",
       "owner": "volcengine",
       "name": "OpenViking",
@@ -63,12 +31,28 @@ window.__TRENDING_DATA__ = {
         "en": "Self-evolving Context Database for AI Agents. Unify Agent Memory, Knowledge RAG and Skills."
       },
       "language": "Python",
-      "stars_total": 29477,
-      "forks_total": 2310,
-      "stars_today": 213
+      "stars_total": 30277,
+      "forks_total": 2339,
+      "stars_today": 804
     },
     {
-      "rank": 5,
+      "rank": 3,
+      "repo": "chaitanyagiri/munder-difflin",
+      "owner": "chaitanyagiri",
+      "name": "munder-difflin",
+      "url": "https://github.com/chaitanyagiri/munder-difflin",
+      "description": "local multi-agent harness",
+      "descriptions": {
+        "zh": "本地多智能体利用",
+        "en": "local multi-agent harness"
+      },
+      "language": "TypeScript",
+      "stars_total": 2727,
+      "forks_total": 323,
+      "stars_today": 795
+    },
+    {
+      "rank": 4,
       "repo": "mukul975/Anthropic-Cybersecurity-Skills",
       "owner": "mukul975",
       "name": "Anthropic-Cybersecurity-Skills",
@@ -79,25 +63,41 @@ window.__TRENDING_DATA__ = {
         "en": "817 structured cybersecurity skills for AI agents · Mapped to 6 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND, NIST AI RMF & MITRE F3 (Fight Fraud) · agentskills.io standard · Works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI & 20+ platforms · 29 security domains · Apache 2.0"
       },
       "language": "Python",
-      "stars_total": 29246,
-      "forks_total": 3497,
-      "stars_today": 730
+      "stars_total": 29881,
+      "forks_total": 3542,
+      "stars_today": 766
+    },
+    {
+      "rank": 5,
+      "repo": "nautechsystems/nautilus_trader",
+      "owner": "nautechsystems",
+      "name": "nautilus_trader",
+      "url": "https://github.com/nautechsystems/nautilus_trader",
+      "description": "Production-grade Rust-native trading engine with deterministic event-driven architecture",
+      "descriptions": {
+        "zh": "具有确定性事件驱动架构的生产级 Rust 原生交易引擎",
+        "en": "Production-grade Rust-native trading engine with deterministic event-driven architecture"
+      },
+      "language": "Rust",
+      "stars_total": 26463,
+      "forks_total": 3422,
+      "stars_today": 80
     },
     {
       "rank": 6,
-      "repo": "public-apis/public-apis",
-      "owner": "public-apis",
-      "name": "public-apis",
-      "url": "https://github.com/public-apis/public-apis",
-      "description": "A collective list of free APIs",
+      "repo": "mattpocock/skills",
+      "owner": "mattpocock",
+      "name": "skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
       "descriptions": {
-        "zh": "免费 API 集合列表",
-        "en": "A collective list of free APIs"
+        "zh": "真正工程师的技能。直接来自我的 .agents 目录。",
+        "en": "Skills for Real Engineers. Straight from my .agents directory."
       },
-      "language": "Python",
-      "stars_total": 464664,
-      "forks_total": 51328,
-      "stars_today": 1005
+      "language": "Shell",
+      "stars_total": 223927,
+      "forks_total": 19260,
+      "stars_today": 1894
     }
   ]
 }
