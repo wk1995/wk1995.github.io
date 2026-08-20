@@ -1,90 +1,26 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-20T02:21:46.894197+00:00",
+  "generated_at": "2026-08-20T14:22:28.275284+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "harry0703/MoneyPrinterTurbo",
-      "owner": "harry0703",
-      "name": "MoneyPrinterTurbo",
-      "url": "https://github.com/harry0703/MoneyPrinterTurbo",
-      "description": "利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow.",
+      "repo": "modular/modular",
+      "owner": "modular",
+      "name": "modular",
+      "url": "https://github.com/modular/modular",
+      "description": "The Modular Platform (includes MAX & Mojo)",
       "descriptions": {
-        "zh": "利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow.",
-        "en": "Use AI large models and automated workflows to generate high-definition short videos based on topics or keywords with one click. Generate HD short videos from a topic or keyword with an automated AI workflow."
+        "zh": "模块化平台（包括 MAX 和 Mojo）",
+        "en": "The Modular Platform (includes MAX & Mojo)"
       },
-      "language": "Python",
-      "stars_total": 110912,
-      "forks_total": 16809,
-      "stars_today": 2221
+      "language": "Mojo",
+      "stars_total": 27596,
+      "forks_total": 2983,
+      "stars_today": 340
     },
     {
       "rank": 2,
-      "repo": "volcengine/OpenViking",
-      "owner": "volcengine",
-      "name": "OpenViking",
-      "url": "https://github.com/volcengine/OpenViking",
-      "description": "Self-evolving Context Database for AI Agents. Unify Agent Memory, Knowledge RAG and Skills.",
-      "descriptions": {
-        "zh": "人工智能代理的自我进化上下文数据库。统一代理记忆、知识 RAG 和技能。",
-        "en": "Self-evolving Context Database for AI Agents. Unify Agent Memory, Knowledge RAG and Skills."
-      },
-      "language": "Python",
-      "stars_total": 30277,
-      "forks_total": 2339,
-      "stars_today": 804
-    },
-    {
-      "rank": 3,
-      "repo": "chaitanyagiri/munder-difflin",
-      "owner": "chaitanyagiri",
-      "name": "munder-difflin",
-      "url": "https://github.com/chaitanyagiri/munder-difflin",
-      "description": "local multi-agent harness",
-      "descriptions": {
-        "zh": "本地多智能体利用",
-        "en": "local multi-agent harness"
-      },
-      "language": "TypeScript",
-      "stars_total": 2727,
-      "forks_total": 323,
-      "stars_today": 795
-    },
-    {
-      "rank": 4,
-      "repo": "mukul975/Anthropic-Cybersecurity-Skills",
-      "owner": "mukul975",
-      "name": "Anthropic-Cybersecurity-Skills",
-      "url": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills",
-      "description": "817 structured cybersecurity skills for AI agents · Mapped to 6 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND, NIST AI RMF & MITRE F3 (Fight Fraud) · agentskills.io standard · Works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI & 20+ platforms · 29 security domains · Apache 2.0",
-      "descriptions": {
-        "zh": "AI 代理的 817 项结构化网络安全技能 · 映射到 6 个框架：MITRE ATT&CK、NIST CSF 2.0、MITRE ATLAS、D3FEND、NIST AI RMF 和 MITRE F3（打击欺诈） · Agentskills.io 标准 · 可与 Claude Code、GitHub Copilot、Codex CLI、Cursor、Gemini CLI 和 20 多个平台配合使用 · 29 个安全域 · Apache 2.0",
-        "en": "817 structured cybersecurity skills for AI agents · Mapped to 6 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND, NIST AI RMF & MITRE F3 (Fight Fraud) · agentskills.io standard · Works with Claude Code, GitHub Copilot, Codex CLI, Cursor, Gemini CLI & 20+ platforms · 29 security domains · Apache 2.0"
-      },
-      "language": "Python",
-      "stars_total": 29881,
-      "forks_total": 3542,
-      "stars_today": 766
-    },
-    {
-      "rank": 5,
-      "repo": "nautechsystems/nautilus_trader",
-      "owner": "nautechsystems",
-      "name": "nautilus_trader",
-      "url": "https://github.com/nautechsystems/nautilus_trader",
-      "description": "Production-grade Rust-native trading engine with deterministic event-driven architecture",
-      "descriptions": {
-        "zh": "具有确定性事件驱动架构的生产级 Rust 原生交易引擎",
-        "en": "Production-grade Rust-native trading engine with deterministic event-driven architecture"
-      },
-      "language": "Rust",
-      "stars_total": 26463,
-      "forks_total": 3422,
-      "stars_today": 80
-    },
-    {
-      "rank": 6,
       "repo": "mattpocock/skills",
       "owner": "mattpocock",
       "name": "skills",
@@ -95,9 +31,73 @@ window.__TRENDING_DATA__ = {
         "en": "Skills for Real Engineers. Straight from my .agents directory."
       },
       "language": "Shell",
-      "stars_total": 223927,
-      "forks_total": 19260,
-      "stars_today": 1894
+      "stars_total": 225208,
+      "forks_total": 19344,
+      "stars_today": 2267
+    },
+    {
+      "rank": 3,
+      "repo": "AprilNEA/OpenLogi",
+      "owner": "AprilNEA",
+      "name": "OpenLogi",
+      "url": "https://github.com/AprilNEA/OpenLogi",
+      "description": "⚡️A native, local-first alternative to Logitech Options+, written in Rust 🦀 — remap buttons, DPI, and SmartShift over HID++. No account, no telemetry.",
+      "descriptions": {
+        "zh": "⚡️Logitech Options+ 的原生、本地优先替代方案，用 Rust 编写 - 重新映射按钮、DPI 和 HID++ 上的 SmartShift。没有帐户，没有遥测。",
+        "en": "⚡️A native, local-first alternative to Logitech Options+, written in Rust 🦀 — remap buttons, DPI, and SmartShift over HID++. No account, no telemetry."
+      },
+      "language": "Rust",
+      "stars_total": 11265,
+      "forks_total": 308,
+      "stars_today": 1225
+    },
+    {
+      "rank": 4,
+      "repo": "obra/superpowers",
+      "owner": "obra",
+      "name": "superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "descriptions": {
+        "zh": "有效的代理技能框架和软件开发方法。",
+        "en": "An agentic skills framework & software development methodology that works."
+      },
+      "language": "Shell",
+      "stars_total": 274712,
+      "forks_total": 24582,
+      "stars_today": 749
+    },
+    {
+      "rank": 5,
+      "repo": "cursor/plugins",
+      "owner": "cursor",
+      "name": "plugins",
+      "url": "https://github.com/cursor/plugins",
+      "description": "Cursor plugin specification and official plugins",
+      "descriptions": {
+        "zh": "光标插件规范和官方插件",
+        "en": "Cursor plugin specification and official plugins"
+      },
+      "language": "TypeScript",
+      "stars_total": 3902,
+      "forks_total": 319,
+      "stars_today": 473
+    },
+    {
+      "rank": 6,
+      "repo": "santifer/career-ops",
+      "owner": "santifer",
+      "name": "career-ops",
+      "url": "https://github.com/santifer/career-ops",
+      "description": "Open-source AI job search: scan job portals, evaluate listings with a structured A-F rubric into a 1.0-5.0 score, tailor your CV, track applications — runs locally in your AI coding CLI (Claude Code, Codex, OpenCode, Antigravity…)",
+      "descriptions": {
+        "zh": "开源 AI 职位搜索：扫描职位门户，使用结构化 A-F 评分标准将列表评估为 1.0-5.0 分，定制您的简历，跟踪应用程序 — 在您的 AI 编码 CLI 中本地运行（Claude Code、Codex、OpenCode、Antigravity...）",
+        "en": "Open-source AI job search: scan job portals, evaluate listings with a structured A-F rubric into a 1.0-5.0 score, tailor your CV, track applications — runs locally in your AI coding CLI (Claude Code, Codex, OpenCode, Antigravity…)"
+      },
+      "language": "JavaScript",
+      "stars_total": 66308,
+      "forks_total": 12785,
+      "stars_today": 855
     }
   ]
 }
