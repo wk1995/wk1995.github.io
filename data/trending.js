@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-20T14:22:28.275284+00:00",
+  "generated_at": "2026-08-21T02:35:53.882314+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,9 +15,9 @@ window.__TRENDING_DATA__ = {
         "en": "The Modular Platform (includes MAX & Mojo)"
       },
       "language": "Mojo",
-      "stars_total": 27596,
-      "forks_total": 2983,
-      "stars_today": 340
+      "stars_total": 28017,
+      "forks_total": 3001,
+      "stars_today": 268
     },
     {
       "rank": 2,
@@ -31,9 +31,9 @@ window.__TRENDING_DATA__ = {
         "en": "Skills for Real Engineers. Straight from my .agents directory."
       },
       "language": "Shell",
-      "stars_total": 225208,
-      "forks_total": 19344,
-      "stars_today": 2267
+      "stars_total": 226764,
+      "forks_total": 19443,
+      "stars_today": 2192
     },
     {
       "rank": 3,
@@ -47,9 +47,9 @@ window.__TRENDING_DATA__ = {
         "en": "⚡️A native, local-first alternative to Logitech Options+, written in Rust 🦀 — remap buttons, DPI, and SmartShift over HID++. No account, no telemetry."
       },
       "language": "Rust",
-      "stars_total": 11265,
-      "forks_total": 308,
-      "stars_today": 1225
+      "stars_total": 11976,
+      "forks_total": 325,
+      "stars_today": 1545
     },
     {
       "rank": 4,
@@ -63,9 +63,9 @@ window.__TRENDING_DATA__ = {
         "en": "An agentic skills framework & software development methodology that works."
       },
       "language": "Shell",
-      "stars_total": 274712,
-      "forks_total": 24582,
-      "stars_today": 749
+      "stars_total": 274999,
+      "forks_total": 24612,
+      "stars_today": 727
     },
     {
       "rank": 5,
@@ -79,9 +79,9 @@ window.__TRENDING_DATA__ = {
         "en": "Cursor plugin specification and official plugins"
       },
       "language": "TypeScript",
-      "stars_total": 3902,
-      "forks_total": 319,
-      "stars_today": 473
+      "stars_total": 4114,
+      "forks_total": 341,
+      "stars_today": 449
     },
     {
       "rank": 6,
@@ -95,9 +95,9 @@ window.__TRENDING_DATA__ = {
         "en": "Open-source AI job search: scan job portals, evaluate listings with a structured A-F rubric into a 1.0-5.0 score, tailor your CV, track applications — runs locally in your AI coding CLI (Claude Code, Codex, OpenCode, Antigravity…)"
       },
       "language": "JavaScript",
-      "stars_total": 66308,
-      "forks_total": 12785,
-      "stars_today": 855
+      "stars_total": 66765,
+      "forks_total": 12826,
+      "stars_today": 816
     }
   ]
 }
