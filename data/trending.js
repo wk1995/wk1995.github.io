@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-23T02:35:48.455208+00:00",
+  "generated_at": "2026-08-24T02:35:58.121347+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,12 +15,28 @@ window.__TRENDING_DATA__ = {
         "en": "Lightweight coding agent that runs in your terminal"
       },
       "language": "Rust",
-      "stars_total": 113564,
-      "forks_total": 17378,
-      "stars_today": 1544
+      "stars_total": 115503,
+      "forks_total": 17617,
+      "stars_today": 2715
     },
     {
       "rank": 2,
+      "repo": "freestylefly/awesome-gpt-image-2",
+      "owner": "freestylefly",
+      "name": "awesome-gpt-image-2",
+      "url": "https://github.com/freestylefly/awesome-gpt-image-2",
+      "description": "Prompt as Code | GPT-Image2 工业级提示词引擎与模板库，470+ 个案例逆向工程，20+ 套工业级模板，并提炼出Skills，持续更新中",
+      "descriptions": {
+        "zh": "Prompt as Code | GPT-Image2 工业级提示词引擎与模板库，470+ 个案例逆向工程，20+ 套工业级模板，并提炼出Skills，持续更新中",
+        "en": "Prompt as Code | GPT-Image2 工业级提示词引擎与模板库，470+ 个案例逆向工程，20+ 套工业级模板，并提炼出Skills，持续更新中"
+      },
+      "language": "JavaScript",
+      "stars_total": 13000,
+      "forks_total": 1446,
+      "stars_today": 401
+    },
+    {
+      "rank": 3,
       "repo": "mattpocock/skills",
       "owner": "mattpocock",
       "name": "skills",
@@ -31,73 +47,57 @@ window.__TRENDING_DATA__ = {
         "en": "Skills for Real Engineers. Straight from my .agents directory."
       },
       "language": "Shell",
-      "stars_total": 232197,
-      "forks_total": 19815,
-      "stars_today": 2683
-    },
-    {
-      "rank": 3,
-      "repo": "affaan-m/ECC",
-      "owner": "affaan-m",
-      "name": "ECC",
-      "url": "https://github.com/affaan-m/ECC",
-      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
-      "descriptions": {
-        "zh": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
-        "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
-      },
-      "language": "JavaScript",
-      "stars_total": 242199,
-      "forks_total": 36702,
-      "stars_today": 411
+      "stars_total": 233986,
+      "forks_total": 19953,
+      "stars_today": 2447
     },
     {
       "rank": 4,
-      "repo": "obra/superpowers",
-      "owner": "obra",
-      "name": "superpowers",
-      "url": "https://github.com/obra/superpowers",
-      "description": "An agentic skills framework & software development methodology that works.",
+      "repo": "basecamp/omarchy",
+      "owner": "basecamp",
+      "name": "omarchy",
+      "url": "https://github.com/basecamp/omarchy",
+      "description": "Beautiful, Modern & Opinionated Linux",
       "descriptions": {
-        "zh": "An agentic skills framework & software development methodology that works.",
-        "en": "An agentic skills framework & software development methodology that works."
+        "zh": "Beautiful, Modern & Opinionated Linux",
+        "en": "Beautiful, Modern & Opinionated Linux"
       },
       "language": "Shell",
-      "stars_total": 276218,
-      "forks_total": 24705,
-      "stars_today": 592
+      "stars_total": 29204,
+      "forks_total": 2966,
+      "stars_today": 750
     },
     {
       "rank": 5,
-      "repo": "Wei-Shaw/sub2api",
-      "owner": "Wei-Shaw",
-      "name": "sub2api",
-      "url": "https://github.com/Wei-Shaw/sub2api",
-      "description": "Sub2API 一站式开源中转服务，让 Claude、Openai 、Gemini、Grok订阅统一接入，支持拼车共享，更高效分摊成本，原生工具无缝使用。",
+      "repo": "AprilNEA/OpenLogi",
+      "owner": "AprilNEA",
+      "name": "OpenLogi",
+      "url": "https://github.com/AprilNEA/OpenLogi",
+      "description": "⚡️A native, local-first alternative to Logitech Options+, written in Rust 🦀 — remap buttons, DPI, and SmartShift over HID++. No account, no telemetry.",
       "descriptions": {
-        "zh": "Sub2API 一站式开源中转服务，让 Claude、Openai 、Gemini、Grok订阅统一接入，支持拼车共享，更高效分摊成本，原生工具无缝使用。",
-        "en": "Sub2API 一站式开源中转服务，让 Claude、Openai 、Gemini、Grok订阅统一接入，支持拼车共享，更高效分摊成本，原生工具无缝使用。"
+        "zh": "⚡️A native, local-first alternative to Logitech Options+, written in Rust 🦀 — remap buttons, DPI, and SmartShift over HID++. No account, no telemetry.",
+        "en": "⚡️A native, local-first alternative to Logitech Options+, written in Rust 🦀 — remap buttons, DPI, and SmartShift over HID++. No account, no telemetry."
       },
-      "language": "Go",
-      "stars_total": 38808,
-      "forks_total": 8040,
-      "stars_today": 278
+      "language": "Rust",
+      "stars_total": 15035,
+      "forks_total": 406,
+      "stars_today": 1009
     },
     {
       "rank": 6,
-      "repo": "makeplane/plane",
-      "owner": "makeplane",
-      "name": "plane",
-      "url": "https://github.com/makeplane/plane",
-      "description": "🔥🔥🔥 Open-source Jira, Linear, Monday, and ClickUp alternative. Plane is a modern project management platform to manage tasks, sprints, docs, and triage.",
+      "repo": "block/buzz",
+      "owner": "block",
+      "name": "buzz",
+      "url": "https://github.com/block/buzz",
+      "description": "A hive mind communication platform",
       "descriptions": {
-        "zh": "🔥🔥🔥 Open-source Jira, Linear, Monday, and ClickUp alternative. Plane is a modern project management platform to manage tasks, sprints, docs, and triage.",
-        "en": "🔥🔥🔥 Open-source Jira, Linear, Monday, and ClickUp alternative. Plane is a modern project management platform to manage tasks, sprints, docs, and triage."
+        "zh": "A hive mind communication platform",
+        "en": "A hive mind communication platform"
       },
-      "language": "TypeScript",
-      "stars_total": 57248,
-      "forks_total": 5446,
-      "stars_today": 263
+      "language": "Rust",
+      "stars_total": 30152,
+      "forks_total": 3835,
+      "stars_today": 410
     }
   ]
 }
