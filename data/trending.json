@@ -1,10 +1,26 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-24T02:35:58.121347+00:00",
+  "generated_at": "2026-08-25T02:22:19.962121+00:00",
   "items": [
     {
       "rank": 1,
+      "repo": "Alishahryar1/free-claude-code",
+      "owner": "Alishahryar1",
+      "name": "free-claude-code",
+      "url": "https://github.com/Alishahryar1/free-claude-code",
+      "description": "Use Claude Code, Codex, Pi, and OpenCode for free (1.3B+ free tokens) from your terminal, app, IDE, or phone like OpenClaw (voice supported + ToS friendly)",
+      "descriptions": {
+        "zh": "Use Claude Code, Codex, Pi, and OpenCode for free (1.3B+ free tokens) from your terminal, app, IDE, or phone like OpenClaw (voice supported + ToS friendly)",
+        "en": "Use Claude Code, Codex, Pi, and OpenCode for free (1.3B+ free tokens) from your terminal, app, IDE, or phone like OpenClaw (voice supported + ToS friendly)"
+      },
+      "language": "Python",
+      "stars_total": 49066,
+      "forks_total": 8007,
+      "stars_today": 891
+    },
+    {
+      "rank": 2,
       "repo": "openai/codex",
       "owner": "openai",
       "name": "codex",
@@ -15,89 +31,73 @@
         "en": "Lightweight coding agent that runs in your terminal"
       },
       "language": "Rust",
-      "stars_total": 115503,
-      "forks_total": 17617,
-      "stars_today": 2715
-    },
-    {
-      "rank": 2,
-      "repo": "freestylefly/awesome-gpt-image-2",
-      "owner": "freestylefly",
-      "name": "awesome-gpt-image-2",
-      "url": "https://github.com/freestylefly/awesome-gpt-image-2",
-      "description": "Prompt as Code | GPT-Image2 工业级提示词引擎与模板库，470+ 个案例逆向工程，20+ 套工业级模板，并提炼出Skills，持续更新中",
-      "descriptions": {
-        "zh": "Prompt as Code | GPT-Image2 工业级提示词引擎与模板库，470+ 个案例逆向工程，20+ 套工业级模板，并提炼出Skills，持续更新中",
-        "en": "Prompt as Code | GPT-Image2 工业级提示词引擎与模板库，470+ 个案例逆向工程，20+ 套工业级模板，并提炼出Skills，持续更新中"
-      },
-      "language": "JavaScript",
-      "stars_total": 13000,
-      "forks_total": 1446,
-      "stars_today": 401
+      "stars_total": 117171,
+      "forks_total": 17866,
+      "stars_today": 1994
     },
     {
       "rank": 3,
-      "repo": "mattpocock/skills",
-      "owner": "mattpocock",
-      "name": "skills",
-      "url": "https://github.com/mattpocock/skills",
-      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "repo": "MadsLorentzen/ai-job-search",
+      "owner": "MadsLorentzen",
+      "name": "ai-job-search",
+      "url": "https://github.com/MadsLorentzen/ai-job-search",
+      "description": "The job search that runs on your machine. AI job application framework built on Claude Code: evaluate postings, tailor CVs, write cover letters, prep interviews. Fork it and own it.",
       "descriptions": {
-        "zh": "Skills for Real Engineers. Straight from my .agents directory.",
-        "en": "Skills for Real Engineers. Straight from my .agents directory."
+        "zh": "The job search that runs on your machine. AI job application framework built on Claude Code: evaluate postings, tailor CVs, write cover letters, prep interviews. Fork it and own it.",
+        "en": "The job search that runs on your machine. AI job application framework built on Claude Code: evaluate postings, tailor CVs, write cover letters, prep interviews. Fork it and own it."
       },
-      "language": "Shell",
-      "stars_total": 233986,
-      "forks_total": 19953,
-      "stars_today": 2447
+      "language": "Python",
+      "stars_total": 34134,
+      "forks_total": 11910,
+      "stars_today": 434
     },
     {
       "rank": 4,
-      "repo": "basecamp/omarchy",
-      "owner": "basecamp",
-      "name": "omarchy",
-      "url": "https://github.com/basecamp/omarchy",
-      "description": "Beautiful, Modern & Opinionated Linux",
+      "repo": "multica-ai/andrej-karpathy-skills",
+      "owner": "multica-ai",
+      "name": "andrej-karpathy-skills",
+      "url": "https://github.com/multica-ai/andrej-karpathy-skills",
+      "description": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
       "descriptions": {
-        "zh": "Beautiful, Modern & Opinionated Linux",
-        "en": "Beautiful, Modern & Opinionated Linux"
+        "zh": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
+        "en": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls."
       },
-      "language": "Shell",
-      "stars_total": 29204,
-      "forks_total": 2966,
-      "stars_today": 750
+      "language": null,
+      "stars_total": 206582,
+      "forks_total": 21092,
+      "stars_today": 588
     },
     {
       "rank": 5,
-      "repo": "AprilNEA/OpenLogi",
-      "owner": "AprilNEA",
-      "name": "OpenLogi",
-      "url": "https://github.com/AprilNEA/OpenLogi",
-      "description": "⚡️A native, local-first alternative to Logitech Options+, written in Rust 🦀 — remap buttons, DPI, and SmartShift over HID++. No account, no telemetry.",
+      "repo": "makeplane/plane",
+      "owner": "makeplane",
+      "name": "plane",
+      "url": "https://github.com/makeplane/plane",
+      "description": "🔥🔥🔥 Open-source Jira, Linear, Monday, and ClickUp alternative. Plane is a modern project management platform to manage tasks, sprints, docs, and triage.",
       "descriptions": {
-        "zh": "⚡️A native, local-first alternative to Logitech Options+, written in Rust 🦀 — remap buttons, DPI, and SmartShift over HID++. No account, no telemetry.",
-        "en": "⚡️A native, local-first alternative to Logitech Options+, written in Rust 🦀 — remap buttons, DPI, and SmartShift over HID++. No account, no telemetry."
+        "zh": "🔥🔥🔥 Open-source Jira, Linear, Monday, and ClickUp alternative. Plane is a modern project management platform to manage tasks, sprints, docs, and triage.",
+        "en": "🔥🔥🔥 Open-source Jira, Linear, Monday, and ClickUp alternative. Plane is a modern project management platform to manage tasks, sprints, docs, and triage."
       },
-      "language": "Rust",
-      "stars_total": 15035,
-      "forks_total": 406,
-      "stars_today": 1009
+      "language": "TypeScript",
+      "stars_total": 57973,
+      "forks_total": 5492,
+      "stars_today": 243
     },
     {
       "rank": 6,
-      "repo": "block/buzz",
-      "owner": "block",
-      "name": "buzz",
-      "url": "https://github.com/block/buzz",
-      "description": "A hive mind communication platform",
+      "repo": "NousResearch/hermes-agent",
+      "owner": "NousResearch",
+      "name": "hermes-agent",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "description": "The agent that grows with you",
       "descriptions": {
-        "zh": "A hive mind communication platform",
-        "en": "A hive mind communication platform"
+        "zh": "The agent that grows with you",
+        "en": "The agent that grows with you"
       },
-      "language": "Rust",
-      "stars_total": 30152,
-      "forks_total": 3835,
-      "stars_today": 410
+      "language": "Python",
+      "stars_total": 235858,
+      "forks_total": 47590,
+      "stars_today": 896
     }
   ]
 }
