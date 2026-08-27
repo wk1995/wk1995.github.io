@@ -1,10 +1,26 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-26T02:37:45.129113+00:00",
+  "generated_at": "2026-08-27T11:09:41.003630+00:00",
   "items": [
     {
       "rank": 1,
+      "repo": "zedeus/nitter",
+      "owner": "zedeus",
+      "name": "nitter",
+      "url": "https://github.com/zedeus/nitter",
+      "description": "Alternative Twitter front-end",
+      "descriptions": {
+        "zh": "Alternative Twitter front-end",
+        "en": "Alternative Twitter front-end"
+      },
+      "language": "Nim",
+      "stars_total": 13600,
+      "forks_total": 1067,
+      "stars_today": 63
+    },
+    {
+      "rank": 2,
       "repo": "freestylefly/awesome-gpt-image-2",
       "owner": "freestylefly",
       "name": "awesome-gpt-image-2",
@@ -12,92 +28,76 @@ window.__TRENDING_DATA__ = {
       "description": "Prompt as Code | GPT-Image2 工业级提示词引擎与模板库，530+ 个案例逆向工程，20+ 套工业级模板，并提炼出Skills，持续更新中",
       "descriptions": {
         "zh": "Prompt as Code | GPT-Image2 工业级提示词引擎与模板库，530+ 个案例逆向工程，20+ 套工业级模板，并提炼出Skills，持续更新中",
-        "en": "Prompt as Code | GPT-Image2 industrial-grade prompt word engine and template library, 530+ case reverse engineering, 20+ sets of industrial-grade templates, and refined Skills, continuously updated"
+        "en": "Prompt as Code | GPT-Image2 工业级提示词引擎与模板库，530+ 个案例逆向工程，20+ 套工业级模板，并提炼出Skills，持续更新中"
       },
       "language": "JavaScript",
-      "stars_total": 18330,
-      "forks_total": 1883,
-      "stars_today": 1698
-    },
-    {
-      "rank": 2,
-      "repo": "anthropics/claude-plugins-community",
-      "owner": "anthropics",
-      "name": "claude-plugins-community",
-      "url": "https://github.com/anthropics/claude-plugins-community",
-      "description": "Community plugin marketplace for Claude Cowork and Claude Code. Read-only mirror — submit plugins at clau.de/plugin-directory-submission.",
-      "descriptions": {
-        "zh": "Claude Cowork 和 Claude Code 的社区插件市场。只读镜像 — 在 clau.de/plugin-directory-submission 提交插件。",
-        "en": "Community plugin marketplace for Claude Cowork and Claude Code. Read-only mirror — submit plugins at clau.de/plugin-directory-submission."
-      },
-      "language": "Python",
-      "stars_total": 1805,
-      "forks_total": 179,
-      "stars_today": 351
+      "stars_total": 22425,
+      "forks_total": 2237,
+      "stars_today": 4050
     },
     {
       "rank": 3,
-      "repo": "MadsLorentzen/ai-job-search",
-      "owner": "MadsLorentzen",
-      "name": "ai-job-search",
-      "url": "https://github.com/MadsLorentzen/ai-job-search",
-      "description": "The job search that runs on your machine. AI job application framework built on Claude Code: evaluate postings, tailor CVs, write cover letters, prep interviews. Fork it and own it.",
+      "repo": "tt-a1i/archify",
+      "owner": "tt-a1i",
+      "name": "archify",
+      "url": "https://github.com/tt-a1i/archify",
+      "description": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.",
       "descriptions": {
-        "zh": "在您的计算机上运行的职位搜索。基于 Claude Code 构建的人工智能职位申请框架：评估职位、定制简历、撰写求职信、准备面试。分叉并拥有它。",
-        "en": "The job search that runs on your machine. AI job application framework built on Claude Code: evaluate postings, tailor CVs, write cover letters, prep interviews. Fork it and own it."
+        "zh": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.",
+        "en": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export."
       },
-      "language": "Python",
-      "stars_total": 35400,
-      "forks_total": 12163,
-      "stars_today": 1265
+      "language": "JavaScript",
+      "stars_total": 20753,
+      "forks_total": 1361,
+      "stars_today": 1035
     },
     {
       "rank": 4,
-      "repo": "apache/maka",
-      "owner": "apache",
-      "name": "maka",
-      "url": "https://github.com/apache/maka",
-      "description": "Apache Maka (Incubating) is a local-first AI agent workspace. Model messages, tool calls, tool results, permission decisions, and termination events are recorded as an append-only log.",
+      "repo": "JetBrains/go-modern-guidelines",
+      "owner": "JetBrains",
+      "name": "go-modern-guidelines",
+      "url": "https://github.com/JetBrains/go-modern-guidelines",
+      "description": "Help AI coding agents write modern Go",
       "descriptions": {
-        "zh": "Apache Maka（孵化）是本地优先的 AI 代理工作区。模型消息、工具调用、工具结果、权限决策和终止事件都记录为仅附加日志。",
-        "en": "Apache Maka (Incubating) is a local-first AI agent workspace. Model messages, tool calls, tool results, permission decisions, and termination events are recorded as an append-only log."
+        "zh": "Help AI coding agents write modern Go",
+        "en": "Help AI coding agents write modern Go"
       },
-      "language": "TypeScript",
-      "stars_total": 3386,
-      "forks_total": 335,
-      "stars_today": 543
+      "language": "Go",
+      "stars_total": 1829,
+      "forks_total": 53,
+      "stars_today": 314
     },
     {
       "rank": 5,
-      "repo": "TauricResearch/TradingAgents",
-      "owner": "TauricResearch",
-      "name": "TradingAgents",
-      "url": "https://github.com/TauricResearch/TradingAgents",
-      "description": "TradingAgents: Multi-Agents LLM Financial Trading Framework",
+      "repo": "anthropics/claude-plugins-official",
+      "owner": "anthropics",
+      "name": "claude-plugins-official",
+      "url": "https://github.com/anthropics/claude-plugins-official",
+      "description": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
       "descriptions": {
-        "zh": "TradingAgents：多代理LLM金融交易框架",
-        "en": "TradingAgents: Multi-Agents LLM Financial Trading Framework"
+        "zh": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
+        "en": "Official, Anthropic-managed directory of high quality Claude Code Plugins."
       },
       "language": "Python",
-      "stars_total": 100320,
-      "forks_total": 19356,
-      "stars_today": 218
+      "stars_total": 34491,
+      "forks_total": 3897,
+      "stars_today": 308
     },
     {
       "rank": 6,
-      "repo": "AgriciDaniel/claude-obsidian",
-      "owner": "AgriciDaniel",
-      "name": "claude-obsidian",
-      "url": "https://github.com/AgriciDaniel/claude-obsidian",
-      "description": "Self-organizing AI second brain for Obsidian + Claude Code. Drop any source and Claude reads, links, and files it into one connected knowledge graph of plain Markdown you own. AI note-taking, personal knowledge management (PKM), and an open-source Notion alternative. Based on Karpathy's LLM Wiki pattern.",
+      "repo": "K-Dense-AI/scientific-agent-skills",
+      "owner": "K-Dense-AI",
+      "name": "scientific-agent-skills",
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "description": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 175,000+ scientists worldwide. 163 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard.",
       "descriptions": {
-        "zh": "Obsidian + Claude Code 的自组织 AI 第二大脑。放下任何源代码，Claude 就会读取、链接并将其归档到您拥有的纯 Markdown 的连接知识图中。 AI 笔记、个人知识管理 (PKM) 和开源 Notion 替代方案。基于 Karpathy 的 LLM Wiki 模式。",
-        "en": "Self-organizing AI second brain for Obsidian + Claude Code. Drop any source and Claude reads, links, and files it into one connected knowledge graph of plain Markdown you own. AI note-taking, personal knowledge management (PKM), and an open-source Notion alternative. Based on Karpathy's LLM Wiki pattern."
+        "zh": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 175,000+ scientists worldwide. 163 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard.",
+        "en": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 175,000+ scientists worldwide. 163 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard."
       },
       "language": "Python",
-      "stars_total": 12794,
-      "forks_total": 1382,
-      "stars_today": 813
+      "stars_total": 34984,
+      "forks_total": 3376,
+      "stars_today": 138
     }
   ]
 }
