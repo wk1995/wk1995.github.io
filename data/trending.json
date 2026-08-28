@@ -1,42 +1,10 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-27T11:09:41.003630+00:00",
+  "generated_at": "2026-08-28T12:42:39.200933+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "zedeus/nitter",
-      "owner": "zedeus",
-      "name": "nitter",
-      "url": "https://github.com/zedeus/nitter",
-      "description": "Alternative Twitter front-end",
-      "descriptions": {
-        "zh": "Alternative Twitter front-end",
-        "en": "Alternative Twitter front-end"
-      },
-      "language": "Nim",
-      "stars_total": 13600,
-      "forks_total": 1067,
-      "stars_today": 63
-    },
-    {
-      "rank": 2,
-      "repo": "freestylefly/awesome-gpt-image-2",
-      "owner": "freestylefly",
-      "name": "awesome-gpt-image-2",
-      "url": "https://github.com/freestylefly/awesome-gpt-image-2",
-      "description": "Prompt as Code | GPT-Image2 工业级提示词引擎与模板库，530+ 个案例逆向工程，20+ 套工业级模板，并提炼出Skills，持续更新中",
-      "descriptions": {
-        "zh": "Prompt as Code | GPT-Image2 工业级提示词引擎与模板库，530+ 个案例逆向工程，20+ 套工业级模板，并提炼出Skills，持续更新中",
-        "en": "Prompt as Code | GPT-Image2 工业级提示词引擎与模板库，530+ 个案例逆向工程，20+ 套工业级模板，并提炼出Skills，持续更新中"
-      },
-      "language": "JavaScript",
-      "stars_total": 22425,
-      "forks_total": 2237,
-      "stars_today": 4050
-    },
-    {
-      "rank": 3,
       "repo": "tt-a1i/archify",
       "owner": "tt-a1i",
       "name": "archify",
@@ -47,44 +15,12 @@
         "en": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export."
       },
       "language": "JavaScript",
-      "stars_total": 20753,
-      "forks_total": 1361,
-      "stars_today": 1035
+      "stars_total": 25544,
+      "forks_total": 1639,
+      "stars_today": 4561
     },
     {
-      "rank": 4,
-      "repo": "JetBrains/go-modern-guidelines",
-      "owner": "JetBrains",
-      "name": "go-modern-guidelines",
-      "url": "https://github.com/JetBrains/go-modern-guidelines",
-      "description": "Help AI coding agents write modern Go",
-      "descriptions": {
-        "zh": "Help AI coding agents write modern Go",
-        "en": "Help AI coding agents write modern Go"
-      },
-      "language": "Go",
-      "stars_total": 1829,
-      "forks_total": 53,
-      "stars_today": 314
-    },
-    {
-      "rank": 5,
-      "repo": "anthropics/claude-plugins-official",
-      "owner": "anthropics",
-      "name": "claude-plugins-official",
-      "url": "https://github.com/anthropics/claude-plugins-official",
-      "description": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
-      "descriptions": {
-        "zh": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
-        "en": "Official, Anthropic-managed directory of high quality Claude Code Plugins."
-      },
-      "language": "Python",
-      "stars_total": 34491,
-      "forks_total": 3897,
-      "stars_today": 308
-    },
-    {
-      "rank": 6,
+      "rank": 2,
       "repo": "K-Dense-AI/scientific-agent-skills",
       "owner": "K-Dense-AI",
       "name": "scientific-agent-skills",
@@ -95,9 +31,73 @@
         "en": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 175,000+ scientists worldwide. 163 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard."
       },
       "language": "Python",
-      "stars_total": 34984,
-      "forks_total": 3376,
-      "stars_today": 138
+      "stars_total": 35782,
+      "forks_total": 3439,
+      "stars_today": 720
+    },
+    {
+      "rank": 3,
+      "repo": "anthropics/claude-plugins-official",
+      "owner": "anthropics",
+      "name": "claude-plugins-official",
+      "url": "https://github.com/anthropics/claude-plugins-official",
+      "description": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
+      "descriptions": {
+        "zh": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
+        "en": "Official, Anthropic-managed directory of high quality Claude Code Plugins."
+      },
+      "language": "Python",
+      "stars_total": 34854,
+      "forks_total": 3925,
+      "stars_today": 457
+    },
+    {
+      "rank": 4,
+      "repo": "bilawalsidhu/gods-eye-view",
+      "owner": "bilawalsidhu",
+      "name": "gods-eye-view",
+      "url": "https://github.com/bilawalsidhu/gods-eye-view",
+      "description": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe.",
+      "descriptions": {
+        "zh": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe.",
+        "en": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe."
+      },
+      "language": "JavaScript",
+      "stars_total": 10035,
+      "forks_total": 2077,
+      "stars_today": 1984
+    },
+    {
+      "rank": 5,
+      "repo": "abhigyanpatwari/GitNexus",
+      "owner": "abhigyanpatwari",
+      "name": "GitNexus",
+      "url": "https://github.com/abhigyanpatwari/GitNexus",
+      "description": "GitNexus: The Zero-Server Code Intelligence Engine - GitNexus is a client-side knowledge graph creator that runs entirely in your browser. Drop in a git repository (Github, Gitlab, Azure, Local) or ZIP file, and get an interactive knowledge graph with a built in Graph RAG Agent. Perfect for code exploration",
+      "descriptions": {
+        "zh": "GitNexus: The Zero-Server Code Intelligence Engine - GitNexus is a client-side knowledge graph creator that runs entirely in your browser. Drop in a git repository (Github, Gitlab, Azure, Local) or ZIP file, and get an interactive knowledge graph with a built in Graph RAG Agent. Perfect for code exploration",
+        "en": "GitNexus: The Zero-Server Code Intelligence Engine - GitNexus is a client-side knowledge graph creator that runs entirely in your browser. Drop in a git repository (Github, Gitlab, Azure, Local) or ZIP file, and get an interactive knowledge graph with a built in Graph RAG Agent. Perfect for code exploration"
+      },
+      "language": "TypeScript",
+      "stars_total": 46027,
+      "forks_total": 5089,
+      "stars_today": 189
+    },
+    {
+      "rank": 6,
+      "repo": "JetBrains/go-modern-guidelines",
+      "owner": "JetBrains",
+      "name": "go-modern-guidelines",
+      "url": "https://github.com/JetBrains/go-modern-guidelines",
+      "description": "Help AI coding agents write modern Go",
+      "descriptions": {
+        "zh": "Help AI coding agents write modern Go",
+        "en": "Help AI coding agents write modern Go"
+      },
+      "language": "Go",
+      "stars_total": 2434,
+      "forks_total": 74,
+      "stars_today": 574
     }
   ]
 }
