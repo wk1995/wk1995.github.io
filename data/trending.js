@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-28T12:42:39.200933+00:00",
+  "generated_at": "2026-08-29T07:49:48.214756+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,9 +15,9 @@ window.__TRENDING_DATA__ = {
         "en": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export."
       },
       "language": "JavaScript",
-      "stars_total": 25544,
-      "forks_total": 1639,
-      "stars_today": 4561
+      "stars_total": 28591,
+      "forks_total": 1794,
+      "stars_today": 4562
     },
     {
       "rank": 2,
@@ -31,8 +31,8 @@ window.__TRENDING_DATA__ = {
         "en": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 175,000+ scientists worldwide. 163 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard."
       },
       "language": "Python",
-      "stars_total": 35782,
-      "forks_total": 3439,
+      "stars_total": 37024,
+      "forks_total": 3514,
       "stars_today": 720
     },
     {
@@ -47,8 +47,8 @@ window.__TRENDING_DATA__ = {
         "en": "Official, Anthropic-managed directory of high quality Claude Code Plugins."
       },
       "language": "Python",
-      "stars_total": 34854,
-      "forks_total": 3925,
+      "stars_total": 35136,
+      "forks_total": 3940,
       "stars_today": 457
     },
     {
@@ -63,9 +63,9 @@ window.__TRENDING_DATA__ = {
         "en": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe."
       },
       "language": "JavaScript",
-      "stars_total": 10035,
-      "forks_total": 2077,
-      "stars_today": 1984
+      "stars_total": 11506,
+      "forks_total": 2318,
+      "stars_today": 3829
     },
     {
       "rank": 5,
@@ -79,9 +79,9 @@ window.__TRENDING_DATA__ = {
         "en": "GitNexus: The Zero-Server Code Intelligence Engine - GitNexus is a client-side knowledge graph creator that runs entirely in your browser. Drop in a git repository (Github, Gitlab, Azure, Local) or ZIP file, and get an interactive knowledge graph with a built in Graph RAG Agent. Perfect for code exploration"
       },
       "language": "TypeScript",
-      "stars_total": 46027,
-      "forks_total": 5089,
-      "stars_today": 189
+      "stars_total": 46236,
+      "forks_total": 5107,
+      "stars_today": 202
     },
     {
       "rank": 6,
@@ -95,8 +95,8 @@ window.__TRENDING_DATA__ = {
         "en": "Help AI coding agents write modern Go"
       },
       "language": "Go",
-      "stars_total": 2434,
-      "forks_total": 74,
+      "stars_total": 2679,
+      "forks_total": 79,
       "stars_today": 574
     }
   ]
