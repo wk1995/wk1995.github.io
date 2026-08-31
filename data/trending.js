@@ -1,103 +1,100 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-30T06:35:06.309574+00:00",
+  "generated_at": "2026-08-31T06:59:36.942992+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "tt-a1i/archify",
-      "owner": "tt-a1i",
-      "name": "archify",
-      "url": "https://github.com/tt-a1i/archify",
-      "description": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.",
-      "descriptions": {
-        "zh": "具有漂亮、可验证的架构、工作流程、序列、数据流和生命周期图的代理技能——具有动态和清晰导出功能的独立 HTML。",
-        "en": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export."
-      },
-      "language": "JavaScript",
-      "stars_total": 31837,
-      "forks_total": 1988,
-      "stars_today": 3902
-    },
-    {
-      "rank": 2,
-      "repo": "bilawalsidhu/gods-eye-view",
-      "owner": "bilawalsidhu",
-      "name": "gods-eye-view",
-      "url": "https://github.com/bilawalsidhu/gods-eye-view",
-      "description": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe.",
-      "descriptions": {
-        "zh": "浏览器中的间谍卫星模拟器，只不过数据是真实的。在逼真的 3D 地球仪上实时呈现开源空间智能。",
-        "en": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe."
-      },
-      "language": "JavaScript",
-      "stars_total": 12911,
-      "forks_total": 2555,
-      "stars_today": 1855
-    },
-    {
-      "rank": 3,
-      "repo": "K-Dense-AI/scientific-agent-skills",
-      "owner": "K-Dense-AI",
-      "name": "scientific-agent-skills",
-      "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
-      "description": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 190,000+ scientists worldwide. 165 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard.",
-      "descriptions": {
-        "zh": "将任何人工智能代理变成人工智能科学家。排名第一的科学代理技能库，全球有 190,000 多名科学家使用。 165 种经过验证的现成技能以及 100 多个涵盖生物学、化学、医学和药物发现的科学数据库。与 Cursor、Claude Code、Codex、Pi、Antigravity 和开放代理技能标准兼容。",
-        "en": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 190,000+ scientists worldwide. 165 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard."
-      },
-      "language": "Python",
-      "stars_total": 38123,
-      "forks_total": 3591,
-      "stars_today": 1587
-    },
-    {
-      "rank": 4,
-      "repo": "tailscale/tailcat",
-      "owner": "tailscale",
-      "name": "tailcat",
-      "url": "https://github.com/tailscale/tailcat",
-      "description": "like netcat, but over Tailscale's data plane, without Tailscale's control plane",
-      "descriptions": {
-        "zh": "类似于 netcat，但通过 Tailscale 的数据平面，没有 Tailscale 的控制平面",
-        "en": "like netcat, but over Tailscale's data plane, without Tailscale's control plane"
-      },
-      "language": "Go",
-      "stars_total": 3713,
-      "forks_total": 113,
-      "stars_today": 789
-    },
-    {
-      "rank": 5,
       "repo": "THU-MAIC/OpenMAIC",
       "owner": "THU-MAIC",
       "name": "OpenMAIC",
       "url": "https://github.com/THU-MAIC/OpenMAIC",
       "description": "Open Multi-Agent Interactive Classroom — Get an immersive, multi-agent learning experience in just one click",
       "descriptions": {
-        "zh": "开放式多智能体互动课堂——一键获得沉浸式多智能体学习体验",
+        "zh": "Open Multi-Agent Interactive Classroom — Get an immersive, multi-agent learning experience in just one click",
         "en": "Open Multi-Agent Interactive Classroom — Get an immersive, multi-agent learning experience in just one click"
       },
       "language": "TypeScript",
-      "stars_total": 22573,
-      "forks_total": 4355,
-      "stars_today": 907
+      "stars_total": 24966,
+      "forks_total": 4575,
+      "stars_today": 1370
     },
     {
-      "rank": 6,
+      "rank": 2,
+      "repo": "K-Dense-AI/scientific-agent-skills",
+      "owner": "K-Dense-AI",
+      "name": "scientific-agent-skills",
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "description": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 190,000+ scientists worldwide. 165 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard.",
+      "descriptions": {
+        "zh": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 190,000+ scientists worldwide. 165 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard.",
+        "en": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 190,000+ scientists worldwide. 165 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard."
+      },
+      "language": "Python",
+      "stars_total": 39851,
+      "forks_total": 3706,
+      "stars_today": 1114
+    },
+    {
+      "rank": 3,
+      "repo": "Lakr233/vphone-cli",
+      "owner": "Lakr233",
+      "name": "vphone-cli",
+      "url": "https://github.com/Lakr233/vphone-cli",
+      "description": null,
+      "descriptions": null,
+      "language": "Swift",
+      "stars_total": 9825,
+      "forks_total": 1294,
+      "stars_today": 361
+    },
+    {
+      "rank": 4,
+      "repo": "tt-a1i/archify",
+      "owner": "tt-a1i",
+      "name": "archify",
+      "url": "https://github.com/tt-a1i/archify",
+      "description": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.",
+      "descriptions": {
+        "zh": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.",
+        "en": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export."
+      },
+      "language": "JavaScript",
+      "stars_total": 35931,
+      "forks_total": 2306,
+      "stars_today": 3722
+    },
+    {
+      "rank": 5,
       "repo": "p-e-w/heretic",
       "owner": "p-e-w",
       "name": "heretic",
       "url": "https://github.com/p-e-w/heretic",
       "description": "Fully automatic censorship removal for language models",
       "descriptions": {
-        "zh": "全自动消除语言模型审查",
+        "zh": "Fully automatic censorship removal for language models",
         "en": "Fully automatic censorship removal for language models"
       },
       "language": "Python",
-      "stars_total": 28795,
-      "forks_total": 3173,
-      "stars_today": 150
+      "stars_total": 29318,
+      "forks_total": 3214,
+      "stars_today": 369
+    },
+    {
+      "rank": 6,
+      "repo": "unclecode/crawl4ai",
+      "owner": "unclecode",
+      "name": "crawl4ai",
+      "url": "https://github.com/unclecode/crawl4ai",
+      "description": "🚀🤖 Crawl4AI: Open-source LLM Friendly Web Crawler & Scraper. Don't be shy, join here: https://discord.gg/jP8KfhDhyN",
+      "descriptions": {
+        "zh": "🚀🤖 Crawl4AI: Open-source LLM Friendly Web Crawler & Scraper. Don't be shy, join here: https://discord.gg/jP8KfhDhyN",
+        "en": "🚀🤖 Crawl4AI: Open-source LLM Friendly Web Crawler & Scraper. Don't be shy, join here: https://discord.gg/jP8KfhDhyN"
+      },
+      "language": "Python",
+      "stars_total": 80413,
+      "forks_total": 8321,
+      "stars_today": 221
     }
   ]
 }
