@@ -13,11 +13,15 @@ Use it when another project needs to publish release packages into this site, in
 
 The skill helps Codex generate or update source-project workflows that:
 
-1. Wait for a release/build workflow to finish.
-2. Download the selected build artifacts.
-3. Check out `wk1995/wk1995.github.io`.
-4. Copy artifacts into the correct package directory.
-5. Commit and push the published files.
+1. Build and smoke-test the release path on pull requests without exposing
+   production credentials.
+2. Accept only successful trusted-branch release runs and verify the exact
+   source commit.
+3. Verify signed artifact metadata and SHA-256 digests from a release manifest.
+4. Check out `wk1995/wk1995.github.io` at `main`.
+5. Publish each version immutably: identical retries are no-ops and changed
+   content under an existing version is rejected.
+6. Commit and push the package files without force-pushing.
 
 The publish target is fixed to:
 
@@ -69,6 +73,9 @@ PUBLISH_APP_FROM_<APP_NAME>_TO_GITHUB_IO
 
 The secret value must be a fine-grained GitHub Personal Access Token with write access to `wk1995/wk1995.github.io`.
 
+Prefer storing the secret in a protected `release` environment that permits
+deployments only from the source repository's trusted release branch.
+
 Minimum permission:
 
 ```text
@@ -102,4 +109,9 @@ lets the target repository regenerate `apps/packages/manifest.json`.
 - `assets/publish-apk-artifact.yml`
 - `assets/publish-desktop-artifact.yml`
 
-These templates are starting points. Codex should adapt artifact names, app names, metadata files, version lookup, and secret names for each source project while keeping the target repository fixed.
+These templates are starting points. Codex should adapt artifact names, app
+names, trusted source branches, release-manifest schemas, and secret names for
+each source project while keeping the target repository and trust checks fixed.
+The corresponding `Build Release` workflow must produce signed artifacts with
+source provenance and file digests; the publish workflow intentionally rejects
+ordinary pull-request artifacts.

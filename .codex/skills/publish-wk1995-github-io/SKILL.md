@@ -2,7 +2,7 @@
 name: publish-wk1995-github-io
 description: Create or update GitHub Actions workflows that publish build artifacts to wk1995.github.io / wk1995/wk1995.github.io, with artifact paths selected by application type such as Android APK, Windows desktop, macOS desktop, or Linux desktop.
 metadata:
-  version: "0.0.4"
+  version: "0.0.5"
 ---
 
 # Publish wk1995.github.io
@@ -60,21 +60,72 @@ Create `.github/workflows/` if it does not exist.
 
 ## Source Workflow Contract
 
-The source repository should have a successful release/build workflow that
-uploads artifacts before the publish workflow runs.
+Treat the build workflow and publish workflow as one release contract. Inspect
+both before editing either one; a green unsigned build is not proof that the
+signed artifact or cross-repository publish path works.
 
 Default contract:
 
 - A workflow named `Build Release` exists.
+- `Build Release` runs on pull requests targeting the source repository's
+  default/release branch, pushes to that branch, and `workflow_dispatch`.
+- Pull requests run the same signing, digest, manifest, and immutable-copy
+  scripts with a disposable CI signing key. Never expose production signing or
+  target-repository credentials to pull requests.
+- Pushes and manual runs eligible for publication use the real signing secrets
+  only in a protected `release` environment whose deployment branch policy
+  allows the source default/release branch.
+- A publishable artifact is signed and contains a release manifest that binds
+  the source commit SHA, source ref, source event, build run ID, app/package
+  version, expected files, and SHA-256 digests.
 - The publish workflow is triggered by `workflow_run` for `Build Release`.
 - The publish workflow also supports `workflow_dispatch` with an optional
   `run_id` input for manually republishing a previous successful run.
-- The publish workflow downloads non-expired artifacts from the selected build
-  run.
+- The publish workflow accepts only successful `Build Release` runs from the
+  source default/release branch whose event is `push` or `workflow_dispatch`.
+  Explicitly reject pull-request runs even though a `workflow_run` job can read
+  default-branch secrets.
+- For manual `run_id`, validate that it is a positive integer and verify the
+  selected run's workflow name, conclusion, event, branch, and commit before
+  downloading anything. Do not trust artifact names alone.
+- Check out the source repository at the selected run's exact commit, verify
+  that commit is contained in the trusted branch, then verify the manifest and
+  all file digests before using metadata or copying files.
+- Missing, expired, ambiguous, unsigned, malformed, or untrusted artifacts fail
+  the publish job. Do not turn a required publication into a successful no-op.
 
-If the source workflow has a different name, artifact prefix, version file, or
-metadata layout, adapt the source-side lookup only. Keep the target repository
-fixed as `wk1995/wk1995.github.io`.
+The bundled templates use release-manifest schema version `1`. Generate the
+manifest only after the final files are signed or packaged:
+
+- Shared fields: `schema_version`, `source_sha`, `source_ref`, `source_event`,
+  and `build_run_id` (`github.run_id`).
+- Android fields: `package_name`, `app_version`, and non-empty `apk_files`
+  entries containing the unique APK basename and lowercase SHA-256 digest.
+- Desktop fields: `app_name` and non-empty `archive_files` entries containing
+  the unique archive basename, lowercase SHA-256 digest, `platform`, `version`,
+  and `systemos`.
+
+If a source project uses a different schema, update the producer and verifier
+together and preserve equivalent provenance, digest, and target-path checks.
+
+If the source workflow has a different name, artifact prefix, workflow filename,
+version file, or metadata layout, adapt the source-side lookup and manifest
+schema. Keep the trust checks and target repository fixed as
+`wk1995/wk1995.github.io`.
+
+## Workflow Hardening
+
+- Pin every third-party GitHub Action to a full 40-character commit SHA and keep
+  the human-readable release tag in a comment, for example
+  `actions/checkout@<sha> # v7`.
+- Give both build and publish workflows explicit least-privilege `permissions`,
+  timeouts, and concurrency groups. Do not cancel an in-progress publication.
+- Serialize publications for one app. Before the final push, integrate current
+  target-branch changes without force-pushing so simultaneous publishers do not
+  silently lose package commits.
+- Keep reusable signing, manifest verification, and immutable-copy logic in
+  checked-in scripts under `.github/scripts/` when it is shared by PR and
+  production jobs. Exercise those exact scripts in the PR smoke test.
 
 ## Secret Naming
 
@@ -94,7 +145,10 @@ Do not reuse `PUBLISH_APP_FROM_BODYOS_TO_GITHUB_IO` for unrelated projects.
 ## Secret Value Requirements
 
 The secret value must be a GitHub Personal Access Token that can write to the
-target repository `wk1995/wk1995.github.io`.
+target repository `wk1995/wk1995.github.io`. Prefer storing it as a secret in
+the protected `release` environment used by the publish job; a repository
+secret is acceptable only when the workflow's trusted-run checks and branch
+protections provide an equivalent boundary.
 
 Recommended setup in GitHub:
 
@@ -126,7 +180,7 @@ target repository:
 Then use the same secret to checkout the target repository:
 
 ```yaml
-- uses: actions/checkout@v4
+- uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
   with:
     repository: wk1995/wk1995.github.io
     ref: main
@@ -159,9 +213,11 @@ segment and reject empty values, `.`, `..`, path separators, traversal
 sequences, and characters outside the format expected for that segment. Resolve
 the final target and confirm it remains inside the selected platform root.
 
-Keep repeated publication idempotent: copy the selected files into the same
-version directory, and skip the final Git commit when no tracked content
-changed.
+Treat published versions as immutable. Repeating a publication with
+byte-for-byte identical files is an idempotent success and should skip the final Git
+commit. If the version directory already exists with different, missing, or
+additional tracked package content, fail and require a new version; never
+overwrite an existing version in place.
 
 ### Android APK
 
@@ -262,14 +318,20 @@ Available starter templates:
 - `assets/publish-desktop-artifact.yml`: Windows/macOS desktop starter workflow.
 
 Templates are starting points. Adapt source-side artifact names, metadata files,
-app name, and secret name to match the current repository. Keep the target
-repository and publish directory rules from this skill.
+app name, trusted source branch, manifest schema, and secret name to match the
+current repository. Keep the target repository, trust checks, and publish
+directory rules from this skill. The source `Build Release` workflow must meet
+the contract above; a publish template does not make an unsigned or
+unprovenanced artifact trustworthy by itself.
 
 ## Validation
 
 After writing or updating the workflow:
 
 - Check YAML syntax and indentation.
+- Run `actionlint` so GitHub Actions expressions, event properties, and job
+  dependencies are checked in addition to YAML parsing.
+- Confirm every third-party `uses:` reference is pinned to a full commit SHA.
 - Confirm the workflow contains `repository: wk1995/wk1995.github.io`.
 - Confirm the target checkout uses `ref: main`; package files must first enter
   `main` and must not be published directly to `page`.
@@ -280,6 +342,16 @@ After writing or updating the workflow:
 - Confirm the workflow trigger includes `workflow_run` for `Build Release` and
   `workflow_dispatch`, unless the user explicitly requested a different source
   workflow.
+- Confirm `Build Release` runs for pull requests and trusted-branch pushes, and
+  that the PR job smoke-tests production signing/manifest/copy scripts with a
+  disposable key.
+- Confirm the publish job rejects pull-request runs and validates workflow name,
+  success conclusion, trusted branch, `push`/`workflow_dispatch` event, source
+  SHA, manifest metadata, and file digests before checkout of the target.
+- Confirm manual `run_id` is validated and cannot select an artifact merely by
+  matching its name.
+- Confirm release credentials are scoped behind the protected `release`
+  environment or an equivalent trusted-branch boundary.
 - Confirm the publish paths match the program type:
   - Android: `apps/packages/android/<packageName>/<version>`.
   - Windows: `apps/packages/windows/<appName>/<version>/<systemos>`.
@@ -287,6 +359,10 @@ After writing or updating the workflow:
   - Linux: `apps/packages/linux/<appName>/<version>/<systemos>`.
 - Confirm the platform root must already exist but the workflow creates missing
   app/version directories after validating path segments and containment.
+- Confirm republishing identical content is a no-op and republishing different
+  content under the same version fails without overwriting files.
+- Confirm publish concurrency is serialized and the final push handles benign
+  target-branch advancement without force-pushing.
 - Confirm the target repository synchronizes accepted package changes from
   `main` to `page`, invokes the deploy workflow from `main`, then regenerates the
   global manifest and deploys the Apps catalog from the checked-out `page`

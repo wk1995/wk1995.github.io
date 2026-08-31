@@ -1,4 +1,5 @@
 from pathlib import Path
+import re
 import unittest
 
 
@@ -67,6 +68,25 @@ class RefreshTrendingWorkflowTest(unittest.TestCase):
             self.assertIn("repository: wk1995/wk1995.github.io", asset)
             self.assertIn("ref: main", asset)
             self.assertNotIn("ref: page", asset)
+
+    def test_publish_skill_assets_enforce_trusted_immutable_releases(self):
+        for asset_path in PUBLISH_ASSETS:
+            asset = asset_path.read_text(encoding="utf-8")
+            self.assertIn("environment: release", asset)
+            self.assertIn("cancel-in-progress: false", asset)
+            self.assertIn("github.event.workflow_run.event == 'push'", asset)
+            self.assertIn('run_id must be a positive integer.', asset)
+            self.assertIn('run_name" != "Build Release"', asset)
+            self.assertIn("release-manifest.json", asset)
+            self.assertIn("merge-base --is-ancestor", asset)
+            self.assertIn("refusing to overwrite it", asset)
+            self.assertIn("git pull --rebase origin main", asset)
+            self.assertNotIn("git push --force", asset)
+
+            uses = re.findall(r"^\s*uses:\s*([^\s#]+)", asset, flags=re.MULTILINE)
+            self.assertTrue(uses)
+            for action in uses:
+                self.assertRegex(action, r"@[0-9a-f]{40}$")
 
 
 if __name__ == "__main__":
