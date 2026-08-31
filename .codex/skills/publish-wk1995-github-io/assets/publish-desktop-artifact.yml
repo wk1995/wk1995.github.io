@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       run_id:
-        description: Build Release run ID. Leave empty to use the latest successful run with a desktop artifact.
+        description: Trusted Build Release run ID. Leave empty to use the latest eligible run.
         required: false
         type: string
 
@@ -17,21 +17,28 @@ permissions:
   actions: read
   contents: read
 
+concurrency:
+  group: publish-adbpilot-desktop
+  cancel-in-progress: false
+
 jobs:
   publish-desktop-artifact:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    if: >-
+      (github.event_name == 'workflow_dispatch' &&
+       github.ref == 'refs/heads/master') ||
+      (github.event_name == 'workflow_run' &&
+       github.event.workflow_run.conclusion == 'success' &&
+       (github.event.workflow_run.event == 'push' ||
+        github.event.workflow_run.event == 'workflow_dispatch') &&
+       github.event.workflow_run.head_branch == 'master')
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: release
 
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v4
-        with:
-          path: source
-          fetch-depth: 0
-
-      - name: Resolve desktop artifacts
+      - name: Resolve trusted desktop artifact
         id: artifact
-        working-directory: source
+        shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
           SOURCE_REPOSITORY: ${{ github.repository }}
@@ -39,6 +46,7 @@ jobs:
           WORKFLOW_RUN_ID: ${{ github.event.workflow_run.id || '' }}
           INPUT_RUN_ID: ${{ github.event.inputs.run_id || '' }}
           ARTIFACT_PREFIX: adbpilot-
+          TRUSTED_BRANCH: master
         run: |
           set -euo pipefail
 
@@ -49,64 +57,116 @@ jobs:
           if [ "$EVENT_NAME" = "workflow_run" ]; then
             run_ids=("$WORKFLOW_RUN_ID")
           elif [ -n "$INPUT_RUN_ID" ]; then
+            if [[ ! "$INPUT_RUN_ID" =~ ^[1-9][0-9]*$ ]]; then
+              echo "run_id must be a positive integer." >&2
+              exit 1
+            fi
             run_ids=("$INPUT_RUN_ID")
           else
             mapfile -t run_ids < <(gh api \
-              "repos/$SOURCE_REPOSITORY/actions/workflows/release.yml/runs?status=success&branch=master&per_page=10" \
+              "repos/$SOURCE_REPOSITORY/actions/workflows/build-release.yml/runs?status=success&branch=$TRUSTED_BRANCH&per_page=30" \
               --jq '.workflow_runs[].id')
           fi
 
           if [ "${#run_ids[@]}" -eq 0 ] || [ -z "${run_ids[0]}" ]; then
-            echo "No Build Release runs found."
-            echo "has_artifact=false" >> "$GITHUB_OUTPUT"
-            exit 0
+            echo "No successful Build Release runs were found." >&2
+            exit 1
           fi
 
           selected_run_id=""
-          selected_artifacts=()
+          selected_artifact=""
+          selected_source_sha=""
+          selected_source_event=""
           for run_id in "${run_ids[@]}"; do
             [ -n "$run_id" ] || continue
+
+            run_name="$(gh api "repos/$SOURCE_REPOSITORY/actions/runs/$run_id" --jq '.name')"
+            run_event="$(gh api "repos/$SOURCE_REPOSITORY/actions/runs/$run_id" --jq '.event')"
+            run_branch="$(gh api "repos/$SOURCE_REPOSITORY/actions/runs/$run_id" --jq '.head_branch // empty')"
+            run_sha="$(gh api "repos/$SOURCE_REPOSITORY/actions/runs/$run_id" --jq '.head_sha')"
+            conclusion="$(gh api "repos/$SOURCE_REPOSITORY/actions/runs/$run_id" --jq '.conclusion')"
+
+            if [ "$run_name" != "Build Release" ] || \
+              [[ "$run_event" != "push" && "$run_event" != "workflow_dispatch" ]] || \
+              [ "$run_branch" != "$TRUSTED_BRANCH" ] || \
+              [ "$conclusion" != "success" ] || \
+              [[ ! "$run_sha" =~ ^[0-9a-f]{40}$ ]]; then
+              echo "Run $run_id is not a trusted successful Build Release run; skipping."
+              continue
+            fi
+
             mapfile -t artifact_names < <(gh api \
               "repos/$SOURCE_REPOSITORY/actions/runs/$run_id/artifacts" \
               --jq ".artifacts[] | select(.expired == false and (.name | startswith(\"$ARTIFACT_PREFIX\"))) | .name")
-
-            if [ "${#artifact_names[@]}" -eq 0 ]; then
-              echo "Run $run_id has no non-expired $ARTIFACT_PREFIX* desktop artifact."
+            if [ "${#artifact_names[@]}" -ne 1 ]; then
+              echo "Run $run_id must contain exactly one non-expired $ARTIFACT_PREFIX* desktop artifact."
               continue
             fi
 
             selected_run_id="$run_id"
-            selected_artifacts=("${artifact_names[@]}")
+            selected_artifact="${artifact_names[0]}"
+            selected_source_sha="$run_sha"
+            selected_source_event="$run_event"
             break
           done
 
           if [ -z "$selected_run_id" ]; then
-            echo "No desktop artifact found; publish step will end without changes."
-            echo "has_artifact=false" >> "$GITHUB_OUTPUT"
-            exit 0
+            echo "No trusted desktop artifact was found." >&2
+            exit 1
           fi
 
-          for artifact_name in "${selected_artifacts[@]}"; do
-            echo "Downloading artifact $artifact_name from run $selected_run_id"
-            gh run download "$selected_run_id" \
-              --repo "$SOURCE_REPOSITORY" \
-              --name "$artifact_name" \
-              --dir "$artifact_root/$artifact_name"
-          done
+          gh run download "$selected_run_id" \
+            --repo "$SOURCE_REPOSITORY" \
+            --name "$selected_artifact" \
+            --dir "$artifact_root"
 
-          zip_count="$(find "$artifact_root" -type f -name '*.zip' | wc -l | tr -d ' ')"
-          if [ "$zip_count" = "0" ]; then
-            echo "Desktop artifacts exist but contain no .zip files; publish step will end without changes."
-            echo "has_artifact=false" >> "$GITHUB_OUTPUT"
-            exit 0
+          archive_count="$(find "$artifact_root" -type f \( \
+            -iname '*.exe' -o -iname '*.msi' -o -iname '*.msix' -o -iname '*.appx' -o \
+            -iname '*.dmg' -o -iname '*.pkg' -o -iname '*.deb' -o -iname '*.rpm' -o \
+            -iname '*.appimage' -o -iname '*.zip' \) | wc -l | tr -d ' ')"
+          manifest_count="$(find "$artifact_root" -type f -name 'release-manifest.json' | wc -l | tr -d ' ')"
+          if [ "$archive_count" = "0" ] || [ "$manifest_count" != "1" ]; then
+            echo "Artifact must contain at least one desktop archive and exactly one release-manifest.json." >&2
+            exit 1
           fi
 
-          echo "Found $zip_count desktop package file(s) in release artifacts."
-          echo "has_artifact=true" >> "$GITHUB_OUTPUT"
-          echo "source_run_id=$selected_run_id" >> "$GITHUB_OUTPUT"
+          {
+            echo "source_run_id=$selected_run_id"
+            echo "source_sha=$selected_source_sha"
+            echo "source_event=$selected_source_event"
+            echo "manifest_path=$(find "$artifact_root" -type f -name 'release-manifest.json' -print -quit)"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Checkout exact release source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ steps.artifact.outputs.source_sha }}
+          path: source-verification
+          fetch-depth: 0
+
+      - name: Verify source and desktop artifact provenance
+        id: provenance
+        shell: bash
+        env:
+          EXPECTED_RUN_ID: ${{ steps.artifact.outputs.source_run_id }}
+          EXPECTED_SOURCE_SHA: ${{ steps.artifact.outputs.source_sha }}
+          EXPECTED_SOURCE_REF: refs/heads/master
+          EXPECTED_SOURCE_EVENT: ${{ steps.artifact.outputs.source_event }}
+          RELEASE_ARTIFACT_ROOT: ${{ github.workspace }}/desktop-artifacts
+          RELEASE_MANIFEST_FILE: ${{ steps.artifact.outputs.manifest_path }}
+          RELEASE_KIND: desktop
+          TRUSTED_BRANCH: master
+        run: |
+          set -euo pipefail
+
+          git -C source-verification fetch --no-tags origin "+refs/heads/$TRUSTED_BRANCH:refs/remotes/origin/$TRUSTED_BRANCH"
+          if ! git -C source-verification merge-base --is-ancestor "$EXPECTED_SOURCE_SHA" "refs/remotes/origin/$TRUSTED_BRANCH"; then
+            echo "Release source commit is not contained in $TRUSTED_BRANCH." >&2
+            exit 1
+          fi
+          python3 source-verification/.github/scripts/verify_release_artifact.py
 
       - name: Check target repository token
-        if: steps.artifact.outputs.has_artifact == 'true'
         env:
           TARGET_REPO_TOKEN: ${{ secrets.PUBLISH_APP_FROM_ADB_PILOT_TO_GITHUB_IO }}
         run: |
@@ -117,123 +177,23 @@ jobs:
           fi
 
       - name: Checkout target repository
-        if: steps.artifact.outputs.has_artifact == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           repository: wk1995/wk1995.github.io
           ref: main
           token: ${{ secrets.PUBLISH_APP_FROM_ADB_PILOT_TO_GITHUB_IO }}
           path: target-site
+          fetch-depth: 0
 
-      - name: Copy desktop package files
-        if: steps.artifact.outputs.has_artifact == 'true'
+      - name: Stage immutable desktop packages
+        shell: bash
         env:
-          SOURCE_RUN_ID: ${{ steps.artifact.outputs.source_run_id }}
-          APP_NAME: adbPilot
-        run: |
-          set -euo pipefail
-
-          python - <<'PY'
-          import json
-          import os
-          import re
-          import shutil
-          from pathlib import Path
-
-          workspace = Path(os.environ["GITHUB_WORKSPACE"])
-          source = workspace / "source"
-          artifacts = workspace / "desktop-artifacts"
-          target_site = workspace / "target-site"
-          source_run_id = os.environ["SOURCE_RUN_ID"]
-          app_name = os.environ["APP_NAME"]
-          pattern = re.compile(
-              r"^.+-(window|windows|mac|macos|linux)-(\d+\.\d+\.\d+)-(32|64|arm64|x86_64|universal2|appimage-x86_64|deb-x86_64)\.zip$"
-          )
-          platform_aliases = {
-              "window": "windows",
-              "windows": "windows",
-              "mac": "macos",
-              "macos": "macos",
-              "linux": "linux",
-          }
-
-          def validate_segment(label, value, allowed):
-              if (
-                  not value
-                  or value in {".", ".."}
-                  or "/" in value
-                  or "\\" in value
-                  or ".." in value
-                  or not re.fullmatch(allowed, value)
-              ):
-                  raise SystemExit(f"Unsafe {label} path segment: {value}")
-
-          validate_segment("app name", app_name, r"[A-Za-z0-9][A-Za-z0-9._-]*")
-
-          readme_file = next(
-              (
-                  path
-                  for path in sorted(source.iterdir())
-                  if path.is_file() and path.name.lower().startswith("readme")
-              ),
-              None,
-          )
-          copied_paths = []
-
-          for package_file in sorted(artifacts.rglob("*.zip")):
-              match = pattern.match(package_file.name)
-              if not match:
-                  raise SystemExit(f"Unsupported desktop package name: {package_file.name}")
-
-              platform_alias, version, systemos = match.groups()
-              platform = platform_aliases[platform_alias]
-              validate_segment("version", version, r"[A-Za-z0-9][A-Za-z0-9._+-]*")
-              validate_segment("system architecture", systemos, r"[A-Za-z0-9][A-Za-z0-9._-]*")
-
-              platform_root = target_site / "apps" / "packages" / platform
-              if not platform_root.is_dir():
-                  raise SystemExit(
-                      f"Target platform root does not exist: apps/packages/{platform}"
-                  )
-
-              target_path = Path("apps") / "packages" / platform / app_name / version / systemos
-              target_dir = target_site / target_path
-              resolved_root = platform_root.resolve()
-              resolved_target = target_dir.resolve()
-              if resolved_root not in resolved_target.parents:
-                  raise SystemExit(
-                      f"Resolved target escapes the {platform} platform root: {target_path}"
-                  )
-              target_dir.mkdir(parents=True, exist_ok=True)
-
-              shutil.copy2(package_file, target_dir / package_file.name)
-              if readme_file:
-                  shutil.copy2(readme_file, target_dir / readme_file.name)
-
-              manifest = {
-                  "app": app_name,
-                  "platform": platform,
-                  "version": version,
-                  "systemos": systemos,
-                  "sourceRunId": source_run_id,
-                  "files": sorted(path.name for path in target_dir.glob("*.zip")),
-              }
-              (target_dir / "manifest.json").write_text(
-                  json.dumps(manifest, indent=2) + "\n",
-                  encoding="utf-8",
-              )
-              copied_paths.append(str(target_path))
-
-          if not copied_paths:
-              raise SystemExit("No desktop packages copied.")
-
-          print("Copied packages to:")
-          for target_path in copied_paths:
-              print(f"- {target_path}")
-          PY
+          ARTIFACT_ROOT: ${{ github.workspace }}/desktop-artifacts
+          TARGET_REPOSITORY_ROOT: ${{ github.workspace }}/target-site
+          PUBLISHED_PATHS_FILE: ${{ github.workspace }}/published-desktop-paths.txt
+        run: python3 source-verification/.github/scripts/stage_immutable_desktop_packages.py
 
       - name: Commit and push package files
-        if: steps.artifact.outputs.has_artifact == 'true'
         working-directory: target-site
         env:
           SOURCE_RUN_ID: ${{ steps.artifact.outputs.source_run_id }}
@@ -242,12 +202,22 @@ jobs:
 
           git config user.name "github-publish-actions[bot]"
           git config user.email "41898282+github-publish-actions[bot]@users.noreply.github.com"
-          git add apps/packages/windows apps/packages/macos apps/packages/linux
-
+          while IFS= read -r target_path; do
+            [ -n "$target_path" ] || continue
+            git add -- "$target_path"
+          done < "$GITHUB_WORKSPACE/published-desktop-paths.txt"
           if git diff --cached --quiet; then
             echo "No package file changes to commit."
             exit 0
           fi
 
-          git commit -m "[codex] publish desktop artifacts from run $SOURCE_RUN_ID"
-          git push
+          git commit -m "[codex] publish immutable desktop artifacts from run $SOURCE_RUN_ID"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Target main advanced during push (attempt $attempt); retrying."
+          done
+          echo "Could not push package commit after 3 attempts." >&2
+          exit 1

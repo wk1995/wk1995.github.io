@@ -68,6 +68,5 @@ class RefreshTrendingWorkflowTest(unittest.TestCase):
             self.assertIn("ref: main", asset)
             self.assertNotIn("ref: page", asset)
 
-
 if __name__ == "__main__":
     unittest.main()
