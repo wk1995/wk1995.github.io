@@ -127,10 +127,12 @@ jobs:
             exit 1
           fi
 
-          echo "source_run_id=$selected_run_id" >> "$GITHUB_OUTPUT"
-          echo "source_sha=$selected_source_sha" >> "$GITHUB_OUTPUT"
-          echo "source_event=$selected_source_event" >> "$GITHUB_OUTPUT"
-          echo "manifest_path=$(find "$artifact_root" -type f -name 'release-manifest.json' -print -quit)" >> "$GITHUB_OUTPUT"
+          {
+            echo "source_run_id=$selected_run_id"
+            echo "source_sha=$selected_source_sha"
+            echo "source_event=$selected_source_event"
+            echo "manifest_path=$(find "$artifact_root" -type f -name 'release-manifest.json' -print -quit)"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Checkout exact release source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7

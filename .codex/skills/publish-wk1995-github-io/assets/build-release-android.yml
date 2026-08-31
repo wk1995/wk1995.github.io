@@ -114,9 +114,11 @@ jobs:
               exit 1
               ;;
           esac
-          echo "source_sha=$source_sha" >> "$GITHUB_OUTPUT"
-          echo "source_ref=$source_ref" >> "$GITHUB_OUTPUT"
-          echo "is_release=$is_release" >> "$GITHUB_OUTPUT"
+          {
+            echo "source_sha=$source_sha"
+            echo "source_ref=$source_ref"
+            echo "is_release=$is_release"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Lint, test, and build release APK
         run: >-
