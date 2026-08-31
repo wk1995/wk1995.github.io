@@ -1,0 +1,316 @@
+name: Build Release
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: build-bodyos-android-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-test:
+    name: Validate and build release APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      package_name: ${{ steps.metadata.outputs.package_name }}
+      app_version: ${{ steps.metadata.outputs.app_version }}
+      source_sha: ${{ steps.trust.outputs.source_sha }}
+      source_ref: ${{ steps.trust.outputs.source_ref }}
+      is_release: ${{ steps.trust.outputs.is_release }}
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: gradle
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6
+
+      - name: Validate Gradle wrapper
+        uses: gradle/actions/wrapper-validation@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6
+
+      - name: Read Android package metadata
+        id: metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Adapt this reader when the project keeps versions outside app/build.gradle.kts.
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import pathlib
+          import re
+
+          text = pathlib.Path("app/build.gradle.kts").read_text(encoding="utf-8")
+
+          def required(pattern, label):
+              match = re.search(pattern, text)
+              if not match:
+                  raise SystemExit(f"{label} not found in app/build.gradle.kts")
+              return match.group(1)
+
+          package_name = required(r'applicationId\s*=\s*"([^"]+)"', "applicationId")
+          version_code = required(r'versionCode\s*=\s*([0-9]+)', "versionCode")
+          version_name = required(r'versionName\s*=\s*"([^"]+)"', "versionName")
+          if not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]*(?:\.[A-Za-z][A-Za-z0-9_]*)+", package_name):
+              raise SystemExit(f"Unsafe applicationId: {package_name}")
+          if not re.fullmatch(r"[1-9][0-9]*", version_code):
+              raise SystemExit(f"Unsafe versionCode: {version_code}")
+          if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._+-]*", version_name):
+              raise SystemExit(f"Unsafe versionName: {version_name}")
+          print(f"package_name={package_name}")
+          print(f"app_version={version_code}({version_name})")
+          PY
+
+      - name: Verify source trust boundary
+        id: trust
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          set -euo pipefail
+          source_sha="$(git rev-parse HEAD)"
+          source_ref="$GITHUB_REF"
+          is_release=false
+          case "$EVENT_NAME" in
+            pull_request)
+              if [ "$BASE_REF" != "master" ]; then
+                echo "Pull request must target master." >&2
+                exit 1
+              fi
+              ;;
+            push|workflow_dispatch)
+              if [ "$source_ref" != "refs/heads/master" ]; then
+                echo "Release builds must run from master." >&2
+                exit 1
+              fi
+              git fetch --no-tags origin "+refs/heads/master:refs/remotes/origin/master"
+              if [ "$source_sha" != "$(git rev-parse refs/remotes/origin/master)" ]; then
+                echo "Checked-out commit is not the current tip of master." >&2
+                exit 1
+              fi
+              is_release=true
+              ;;
+            *)
+              echo "Unsupported Build Release event: $EVENT_NAME" >&2
+              exit 1
+              ;;
+          esac
+          echo "source_sha=$source_sha" >> "$GITHUB_OUTPUT"
+          echo "source_ref=$source_ref" >> "$GITHUB_OUTPUT"
+          echo "is_release=$is_release" >> "$GITHUB_OUTPUT"
+
+      - name: Lint, test, and build release APK
+        run: >-
+          ./gradlew --no-daemon
+          :app:lintRelease
+          :app:testReleaseUnitTest
+          :app:assembleRelease
+
+      - name: Collect unsigned APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          artifact_dir="$RUNNER_TEMP/bodyos-android-unsigned"
+          mkdir -p "$artifact_dir"
+          mapfile -d '' apk_files < <(find app/build/outputs/apk/release -type f -name '*.apk' -print0)
+          if [ "${#apk_files[@]}" -eq 0 ]; then
+            echo "No release APK was produced." >&2
+            exit 1
+          fi
+          for apk_file in "${apk_files[@]}"; do
+            cp "$apk_file" "$artifact_dir/"
+          done
+          readme_file="$(find . -maxdepth 1 -type f -iname 'README*' -print -quit)"
+          if [ -n "$readme_file" ]; then
+            cp "$readme_file" "$artifact_dir/"
+          fi
+
+      - name: Upload unsigned APK
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: bodyos-android-unsigned-${{ steps.metadata.outputs.app_version }}
+          path: ${{ runner.temp }}/bodyos-android-unsigned/
+          if-no-files-found: error
+          retention-days: 7
+
+  smoke-test-release-contract:
+    name: Smoke-test signing and immutable publishing
+    if: github.event_name == 'pull_request'
+    needs:
+      - build-and-test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout shared release scripts
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Download unsigned APK
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
+        with:
+          name: bodyos-android-unsigned-${{ needs.build-and-test.outputs.app_version }}
+          path: ${{ runner.temp }}/bodyos-android-unsigned
+
+      - name: Create disposable signing key
+        shell: bash
+        run: |
+          set -euo pipefail
+          key_store_path="$RUNNER_TEMP/bodyos-ci-smoke-test.jks"
+          keytool -genkeypair -keystore "$key_store_path" \
+            -storepass ci-smoke-test -keypass ci-smoke-test \
+            -alias ci-smoke-test -keyalg RSA -keysize 2048 -validity 1 \
+            -dname "CN=BodyOS CI Smoke Test" -noprompt
+          echo "ANDROID_KEYSTORE_PATH=$key_store_path" >> "$GITHUB_ENV"
+
+      - name: Sign and verify with disposable key
+        env:
+          INPUT_APK_DIR: ${{ runner.temp }}/bodyos-android-unsigned
+          OUTPUT_APK_DIR: ${{ runner.temp }}/bodyos-android-release-smoke
+          APP_VERSION: ${{ needs.build-and-test.outputs.app_version }}
+          ANDROID_KEY_ALIAS: ci-smoke-test
+          ANDROID_KEY_PASSWORD: ci-smoke-test
+          ANDROID_KEYSTORE_PASSWORD: ci-smoke-test
+        run: bash .github/scripts/sign_and_verify_apks.sh
+
+      - name: Create and verify release manifest
+        env:
+          SIGNED_ARTIFACT_DIR: ${{ runner.temp }}/bodyos-android-release-smoke
+          PACKAGE_NAME: ${{ needs.build-and-test.outputs.package_name }}
+          APP_VERSION: ${{ needs.build-and-test.outputs.app_version }}
+          SOURCE_SHA: ${{ needs.build-and-test.outputs.source_sha }}
+          SOURCE_REF: ${{ needs.build-and-test.outputs.source_ref }}
+          SOURCE_EVENT: pull_request
+          BUILD_RUN_ID: ${{ github.run_id }}
+          RELEASE_ARTIFACT_ROOT: ${{ runner.temp }}/bodyos-android-release-smoke
+          RELEASE_MANIFEST_FILE: ${{ runner.temp }}/bodyos-android-release-smoke/release-manifest.json
+          RELEASE_KIND: android
+          EXPECTED_RUN_ID: ${{ github.run_id }}
+          EXPECTED_SOURCE_SHA: ${{ needs.build-and-test.outputs.source_sha }}
+          EXPECTED_SOURCE_REF: ${{ needs.build-and-test.outputs.source_ref }}
+          EXPECTED_SOURCE_EVENT: pull_request
+        run: |
+          python3 .github/scripts/create_android_release_manifest.py
+          python3 .github/scripts/verify_release_artifact.py
+
+      - name: Exercise immutable staging
+        env:
+          ARTIFACT_ROOT: ${{ runner.temp }}/bodyos-android-release-smoke
+          TARGET_REPOSITORY_ROOT: ${{ runner.temp }}/target-site
+          PACKAGE_NAME: ${{ needs.build-and-test.outputs.package_name }}
+          APP_VERSION: ${{ needs.build-and-test.outputs.app_version }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$TARGET_REPOSITORY_ROOT/apps/packages/android"
+          python3 .github/scripts/stage_immutable_android_package.py
+          python3 .github/scripts/stage_immutable_android_package.py
+          target_dir="$TARGET_REPOSITORY_ROOT/apps/packages/android/$PACKAGE_NAME/$APP_VERSION"
+          printf 'tampered' >> "$(find "$target_dir" -type f -name '*.apk' -print -quit)"
+          if python3 .github/scripts/stage_immutable_android_package.py; then
+            echo "Immutable overwrite rejection failed." >&2
+            exit 1
+          fi
+
+  sign-release:
+    name: Sign trusted release APK
+    if: needs.build-and-test.outputs.is_release == 'true'
+    needs:
+      - build-and-test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: release
+
+    steps:
+      - name: Checkout shared release scripts
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Download unsigned APK
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
+        with:
+          name: bodyos-android-unsigned-${{ needs.build-and-test.outputs.app_version }}
+          path: ${{ runner.temp }}/bodyos-android-unsigned
+
+      - name: Decode production signing key
+        env:
+          ANDROID_SIGNING_KEY_BASE64: ${{ secrets.ANDROID_SIGNING_KEY_BASE64 }}
+        run: |
+          set -euo pipefail
+          if [ -z "$ANDROID_SIGNING_KEY_BASE64" ]; then
+            echo "Missing ANDROID_SIGNING_KEY_BASE64." >&2
+            exit 1
+          fi
+          key_store_path="$RUNNER_TEMP/bodyos-release.jks"
+          printf '%s' "$ANDROID_SIGNING_KEY_BASE64" | base64 --decode > "$key_store_path"
+          echo "ANDROID_KEYSTORE_PATH=$key_store_path" >> "$GITHUB_ENV"
+
+      - name: Sign and verify release APK
+        env:
+          INPUT_APK_DIR: ${{ runner.temp }}/bodyos-android-unsigned
+          OUTPUT_APK_DIR: ${{ runner.temp }}/bodyos-android-release
+          APP_VERSION: ${{ needs.build-and-test.outputs.app_version }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: bash .github/scripts/sign_and_verify_apks.sh
+
+      - name: Create and verify signed release manifest
+        env:
+          SIGNED_ARTIFACT_DIR: ${{ runner.temp }}/bodyos-android-release
+          PACKAGE_NAME: ${{ needs.build-and-test.outputs.package_name }}
+          APP_VERSION: ${{ needs.build-and-test.outputs.app_version }}
+          SOURCE_SHA: ${{ needs.build-and-test.outputs.source_sha }}
+          SOURCE_REF: ${{ needs.build-and-test.outputs.source_ref }}
+          SOURCE_EVENT: ${{ github.event_name }}
+          BUILD_RUN_ID: ${{ github.run_id }}
+          RELEASE_ARTIFACT_ROOT: ${{ runner.temp }}/bodyos-android-release
+          RELEASE_MANIFEST_FILE: ${{ runner.temp }}/bodyos-android-release/release-manifest.json
+          RELEASE_KIND: android
+          EXPECTED_RUN_ID: ${{ github.run_id }}
+          EXPECTED_SOURCE_SHA: ${{ needs.build-and-test.outputs.source_sha }}
+          EXPECTED_SOURCE_REF: ${{ needs.build-and-test.outputs.source_ref }}
+          EXPECTED_SOURCE_EVENT: ${{ github.event_name }}
+        run: |
+          readme_file="$(find "$RUNNER_TEMP/bodyos-android-unsigned" -type f -iname 'README*' -print -quit)"
+          if [ -n "$readme_file" ]; then
+            cp "$readme_file" "$SIGNED_ARTIFACT_DIR/"
+          fi
+          python3 .github/scripts/create_android_release_manifest.py
+          python3 .github/scripts/verify_release_artifact.py
+
+      - name: Upload signed release artifact
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: bodyos-android-${{ needs.build-and-test.outputs.app_version }}
+          path: ${{ runner.temp }}/bodyos-android-release/
+          if-no-files-found: error
+          retention-days: 30

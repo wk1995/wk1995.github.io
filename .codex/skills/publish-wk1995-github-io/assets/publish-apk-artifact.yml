@@ -130,6 +130,7 @@ jobs:
           echo "source_run_id=$selected_run_id" >> "$GITHUB_OUTPUT"
           echo "source_sha=$selected_source_sha" >> "$GITHUB_OUTPUT"
           echo "source_event=$selected_source_event" >> "$GITHUB_OUTPUT"
+          echo "manifest_path=$(find "$artifact_root" -type f -name 'release-manifest.json' -print -quit)" >> "$GITHUB_OUTPUT"
 
       - name: Checkout exact release source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -144,74 +145,21 @@ jobs:
         env:
           EXPECTED_RUN_ID: ${{ steps.artifact.outputs.source_run_id }}
           EXPECTED_SOURCE_SHA: ${{ steps.artifact.outputs.source_sha }}
+          EXPECTED_SOURCE_REF: refs/heads/master
           EXPECTED_SOURCE_EVENT: ${{ steps.artifact.outputs.source_event }}
+          RELEASE_ARTIFACT_ROOT: ${{ github.workspace }}/apk-artifacts
+          RELEASE_MANIFEST_FILE: ${{ steps.artifact.outputs.manifest_path }}
+          RELEASE_KIND: android
           TRUSTED_BRANCH: master
         run: |
           set -euo pipefail
 
-          artifact_root="$GITHUB_WORKSPACE/apk-artifacts"
-          manifest_file="$(find "$artifact_root" -type f -name 'release-manifest.json' -print -quit)"
-          schema_version="$(jq -er '.schema_version | tostring' "$manifest_file")"
-          package_name="$(jq -er '.package_name' "$manifest_file")"
-          app_version="$(jq -er '.app_version' "$manifest_file")"
-          source_sha="$(jq -er '.source_sha' "$manifest_file")"
-          source_ref="$(jq -er '.source_ref' "$manifest_file")"
-          source_event="$(jq -er '.source_event' "$manifest_file")"
-          build_run_id="$(jq -er '.build_run_id | tostring' "$manifest_file")"
-
-          if [ "$schema_version" != "1" ] || \
-            [[ ! "$package_name" =~ ^[A-Za-z0-9][A-Za-z0-9._+-]*$ ]] || \
-            [[ ! "$app_version" =~ ^[A-Za-z0-9][A-Za-z0-9._()+-]*$ ]] || \
-            [ "$source_sha" != "$EXPECTED_SOURCE_SHA" ] || \
-            [ "$source_ref" != "refs/heads/$TRUSTED_BRANCH" ] || \
-            [ "$source_event" != "$EXPECTED_SOURCE_EVENT" ] || \
-            [[ ! "$source_event" =~ ^(push|workflow_dispatch)$ ]] || \
-            [ "$build_run_id" != "$EXPECTED_RUN_ID" ]; then
-            echo "Release manifest provenance validation failed." >&2
-            exit 1
-          fi
-
           git -C source-verification fetch --no-tags origin "+refs/heads/$TRUSTED_BRANCH:refs/remotes/origin/$TRUSTED_BRANCH"
-          if ! git -C source-verification merge-base --is-ancestor "$source_sha" "refs/remotes/origin/$TRUSTED_BRANCH"; then
+          if ! git -C source-verification merge-base --is-ancestor "$EXPECTED_SOURCE_SHA" "refs/remotes/origin/$TRUSTED_BRANCH"; then
             echo "Release source commit is not contained in $TRUSTED_BRANCH." >&2
             exit 1
           fi
-
-          python3 - "$artifact_root" "$manifest_file" <<'PY'
-          import hashlib
-          import json
-          import pathlib
-          import re
-          import sys
-
-          artifact_root = pathlib.Path(sys.argv[1])
-          manifest = json.loads(pathlib.Path(sys.argv[2]).read_text(encoding="utf-8"))
-          declared = manifest.get("apk_files")
-          if not isinstance(declared, list) or not declared:
-              raise SystemExit("Release manifest contains no APK declarations")
-
-          expected = {}
-          for item in declared:
-              name = item.get("name") if isinstance(item, dict) else None
-              digest = item.get("sha256") if isinstance(item, dict) else None
-              if not isinstance(name, str) or pathlib.Path(name).name != name:
-                  raise SystemExit("Unsafe APK filename in release manifest")
-              if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest):
-                  raise SystemExit("Invalid APK SHA-256 in release manifest")
-              if name in expected:
-                  raise SystemExit("Duplicate APK filename in release manifest")
-              expected[name] = digest
-
-          actual = list(artifact_root.rglob("*.apk"))
-          if len({path.name for path in actual}) != len(actual) or {path.name for path in actual} != set(expected):
-              raise SystemExit("APK file set does not match release manifest")
-          for path in actual:
-              if hashlib.sha256(path.read_bytes()).hexdigest() != expected[path.name]:
-                  raise SystemExit(f"APK digest mismatch: {path.name}")
-          PY
-
-          echo "package_name=$package_name" >> "$GITHUB_OUTPUT"
-          echo "app_version=$app_version" >> "$GITHUB_OUTPUT"
+          python3 source-verification/.github/scripts/verify_release_artifact.py
 
       - name: Check target repository token
         env:
@@ -236,65 +184,11 @@ jobs:
         id: package
         shell: bash
         env:
+          ARTIFACT_ROOT: ${{ github.workspace }}/apk-artifacts
+          TARGET_REPOSITORY_ROOT: ${{ github.workspace }}/target-site
           PACKAGE_NAME: ${{ steps.provenance.outputs.package_name }}
           APP_VERSION: ${{ steps.provenance.outputs.app_version }}
-        run: |
-          set -euo pipefail
-
-          python3 - <<'PY' >> "$GITHUB_OUTPUT"
-          import hashlib
-          import os
-          import pathlib
-          import re
-          import shutil
-          import sys
-          import tempfile
-
-          workspace = pathlib.Path(os.environ["GITHUB_WORKSPACE"])
-          artifact_root = workspace / "apk-artifacts"
-          target_site = workspace / "target-site"
-          package_name = os.environ["PACKAGE_NAME"]
-          app_version = os.environ["APP_VERSION"]
-
-          def validate(label, value, pattern):
-              if not re.fullmatch(pattern, value) or value in {".", ".."} or ".." in value:
-                  raise SystemExit(f"Unsafe {label} path segment: {value}")
-
-          validate("package name", package_name, r"[A-Za-z0-9][A-Za-z0-9._+-]*")
-          validate("app version", app_version, r"[A-Za-z0-9][A-Za-z0-9._()+-]*")
-          platform_root = (target_site / "apps/packages/android").resolve(strict=True)
-          target_path = pathlib.Path("apps/packages/android") / package_name / app_version
-          target_dir = target_site / target_path
-          resolved_target = target_dir.resolve(strict=False)
-          if platform_root not in resolved_target.parents:
-              raise SystemExit(f"Resolved target escapes Android root: {target_path}")
-
-          def snapshot(root):
-              return {
-                  str(path.relative_to(root)): hashlib.sha256(path.read_bytes()).hexdigest()
-                  for path in sorted(root.rglob("*")) if path.is_file()
-              }
-
-          with tempfile.TemporaryDirectory() as temporary:
-              staging = pathlib.Path(temporary)
-              for apk in artifact_root.rglob("*.apk"):
-                  shutil.copy2(apk, staging / apk.name)
-              manifest = next(artifact_root.rglob("release-manifest.json"))
-              shutil.copy2(manifest, staging / manifest.name)
-              readme = next((path for path in artifact_root.rglob("README*") if path.is_file()), None)
-              if readme:
-                  shutil.copy2(readme, staging / readme.name)
-
-              if target_dir.exists() and any(target_dir.iterdir()):
-                  if snapshot(staging) != snapshot(target_dir):
-                      raise SystemExit(f"Version {app_version} already exists with different content; refusing to overwrite it")
-                  print(f"Version {app_version} is already published with identical content.", file=sys.stderr)
-              else:
-                  target_dir.mkdir(parents=True, exist_ok=True)
-                  shutil.copytree(staging, target_dir, dirs_exist_ok=True)
-
-          print(f"target_path={target_path}")
-          PY
+        run: python3 source-verification/.github/scripts/stage_immutable_android_package.py
 
       - name: Commit and push package files
         working-directory: target-site

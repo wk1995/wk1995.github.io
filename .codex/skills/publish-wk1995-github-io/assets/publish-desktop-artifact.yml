@@ -120,7 +120,10 @@ jobs:
             --name "$selected_artifact" \
             --dir "$artifact_root"
 
-          archive_count="$(find "$artifact_root" -type f -name '*.zip' | wc -l | tr -d ' ')"
+          archive_count="$(find "$artifact_root" -type f \( \
+            -iname '*.exe' -o -iname '*.msi' -o -iname '*.msix' -o -iname '*.appx' -o \
+            -iname '*.dmg' -o -iname '*.pkg' -o -iname '*.deb' -o -iname '*.rpm' -o \
+            -iname '*.appimage' -o -iname '*.zip' \) | wc -l | tr -d ' ')"
           manifest_count="$(find "$artifact_root" -type f -name 'release-manifest.json' | wc -l | tr -d ' ')"
           if [ "$archive_count" = "0" ] || [ "$manifest_count" != "1" ]; then
             echo "Artifact must contain at least one desktop archive and exactly one release-manifest.json." >&2
@@ -130,6 +133,7 @@ jobs:
           echo "source_run_id=$selected_run_id" >> "$GITHUB_OUTPUT"
           echo "source_sha=$selected_source_sha" >> "$GITHUB_OUTPUT"
           echo "source_event=$selected_source_event" >> "$GITHUB_OUTPUT"
+          echo "manifest_path=$(find "$artifact_root" -type f -name 'release-manifest.json' -print -quit)" >> "$GITHUB_OUTPUT"
 
       - name: Checkout exact release source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -139,84 +143,26 @@ jobs:
           fetch-depth: 0
 
       - name: Verify source and desktop artifact provenance
+        id: provenance
         shell: bash
         env:
           EXPECTED_RUN_ID: ${{ steps.artifact.outputs.source_run_id }}
           EXPECTED_SOURCE_SHA: ${{ steps.artifact.outputs.source_sha }}
+          EXPECTED_SOURCE_REF: refs/heads/master
           EXPECTED_SOURCE_EVENT: ${{ steps.artifact.outputs.source_event }}
+          RELEASE_ARTIFACT_ROOT: ${{ github.workspace }}/desktop-artifacts
+          RELEASE_MANIFEST_FILE: ${{ steps.artifact.outputs.manifest_path }}
+          RELEASE_KIND: desktop
           TRUSTED_BRANCH: master
         run: |
           set -euo pipefail
 
-          artifact_root="$GITHUB_WORKSPACE/desktop-artifacts"
-          manifest_file="$(find "$artifact_root" -type f -name 'release-manifest.json' -print -quit)"
-          source_sha="$(jq -er '.source_sha' "$manifest_file")"
-          source_ref="$(jq -er '.source_ref' "$manifest_file")"
-          source_event="$(jq -er '.source_event' "$manifest_file")"
-          build_run_id="$(jq -er '.build_run_id | tostring' "$manifest_file")"
-
-          if [ "$source_sha" != "$EXPECTED_SOURCE_SHA" ] || \
-            [ "$source_ref" != "refs/heads/$TRUSTED_BRANCH" ] || \
-            [ "$source_event" != "$EXPECTED_SOURCE_EVENT" ] || \
-            [[ ! "$source_event" =~ ^(push|workflow_dispatch)$ ]] || \
-            [ "$build_run_id" != "$EXPECTED_RUN_ID" ]; then
-            echo "Release manifest provenance validation failed." >&2
-            exit 1
-          fi
-
           git -C source-verification fetch --no-tags origin "+refs/heads/$TRUSTED_BRANCH:refs/remotes/origin/$TRUSTED_BRANCH"
-          if ! git -C source-verification merge-base --is-ancestor "$source_sha" "refs/remotes/origin/$TRUSTED_BRANCH"; then
+          if ! git -C source-verification merge-base --is-ancestor "$EXPECTED_SOURCE_SHA" "refs/remotes/origin/$TRUSTED_BRANCH"; then
             echo "Release source commit is not contained in $TRUSTED_BRANCH." >&2
             exit 1
           fi
-
-          python3 - "$artifact_root" "$manifest_file" <<'PY'
-          import hashlib
-          import json
-          import pathlib
-          import re
-          import sys
-
-          artifact_root = pathlib.Path(sys.argv[1])
-          manifest = json.loads(pathlib.Path(sys.argv[2]).read_text(encoding="utf-8"))
-          if manifest.get("schema_version") != 1:
-              raise SystemExit("Unsupported desktop release manifest schema")
-          if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*", manifest.get("app_name", "")):
-              raise SystemExit("Unsafe app name in desktop release manifest")
-
-          entries = manifest.get("archive_files")
-          if not isinstance(entries, list) or not entries:
-              raise SystemExit("Desktop release manifest contains no archive declarations")
-          expected = {}
-          for item in entries:
-              if not isinstance(item, dict):
-                  raise SystemExit("Invalid desktop archive declaration")
-              name = item.get("name")
-              digest = item.get("sha256")
-              platform = item.get("platform")
-              version = item.get("version")
-              systemos = item.get("systemos")
-              if not isinstance(name, str) or pathlib.Path(name).name != name:
-                  raise SystemExit("Unsafe archive filename in release manifest")
-              if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest):
-                  raise SystemExit("Invalid archive SHA-256 in release manifest")
-              if platform not in {"windows", "macos", "linux"}:
-                  raise SystemExit("Unsupported desktop platform in release manifest")
-              if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._+-]*", version or ""):
-                  raise SystemExit("Unsafe desktop version in release manifest")
-              if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*", systemos or ""):
-                  raise SystemExit("Unsafe desktop architecture in release manifest")
-              if name in expected:
-                  raise SystemExit("Duplicate archive filename in release manifest")
-              expected[name] = digest
-
-          actual = list(artifact_root.rglob("*.zip"))
-          if len({path.name for path in actual}) != len(actual) or {path.name for path in actual} != set(expected):
-              raise SystemExit("Desktop archive set does not match release manifest")
-          for path in actual:
-              if hashlib.sha256(path.read_bytes()).hexdigest() != expected[path.name]:
-                  raise SystemExit(f"Desktop archive digest mismatch: {path.name}")
-          PY
+          python3 source-verification/.github/scripts/verify_release_artifact.py
 
       - name: Check target repository token
         env:
@@ -240,82 +186,10 @@ jobs:
       - name: Stage immutable desktop packages
         shell: bash
         env:
-          SOURCE_RUN_ID: ${{ steps.artifact.outputs.source_run_id }}
-        run: |
-          set -euo pipefail
-
-          python3 - <<'PY'
-          import hashlib
-          import json
-          import os
-          import pathlib
-          import shutil
-          import tempfile
-
-          workspace = pathlib.Path(os.environ["GITHUB_WORKSPACE"])
-          artifacts = workspace / "desktop-artifacts"
-          target_site = workspace / "target-site"
-          manifest_file = next(artifacts.rglob("release-manifest.json"))
-          manifest = json.loads(manifest_file.read_text(encoding="utf-8"))
-          app_name = manifest["app_name"]
-          source_run_id = os.environ["SOURCE_RUN_ID"]
-          readme = next((path for path in artifacts.rglob("README*") if path.is_file()), None)
-
-          archive_by_name = {path.name: path for path in artifacts.rglob("*.zip")}
-          groups = {}
-          for entry in manifest["archive_files"]:
-              key = (entry["platform"], entry["version"], entry["systemos"])
-              groups.setdefault(key, []).append(entry)
-
-          def snapshot(root):
-              return {
-                  str(path.relative_to(root)): hashlib.sha256(path.read_bytes()).hexdigest()
-                  for path in sorted(root.rglob("*")) if path.is_file()
-              }
-
-          published_paths = []
-          for (platform, version, systemos), entries in sorted(groups.items()):
-              platform_root = (target_site / "apps/packages" / platform).resolve(strict=True)
-              target_path = pathlib.Path("apps/packages") / platform / app_name / version / systemos
-              target_dir = target_site / target_path
-              resolved_target = target_dir.resolve(strict=False)
-              if platform_root not in resolved_target.parents:
-                  raise SystemExit(f"Resolved target escapes {platform} root: {target_path}")
-
-              with tempfile.TemporaryDirectory() as temporary:
-                  staging = pathlib.Path(temporary)
-                  for entry in entries:
-                      archive = archive_by_name[entry["name"]]
-                      shutil.copy2(archive, staging / archive.name)
-                  if readme:
-                      shutil.copy2(readme, staging / readme.name)
-                  local_manifest = {
-                      "app": app_name,
-                      "platform": platform,
-                      "version": version,
-                      "systemos": systemos,
-                      "sourceRunId": source_run_id,
-                      "files": sorted(entry["name"] for entry in entries),
-                  }
-                  (staging / "manifest.json").write_text(
-                      json.dumps(local_manifest, indent=2) + "\n",
-                      encoding="utf-8",
-                  )
-
-                  if target_dir.exists() and any(target_dir.iterdir()):
-                      if snapshot(staging) != snapshot(target_dir):
-                          raise SystemExit(f"{target_path} already exists with different content; refusing to overwrite it")
-                      print(f"{target_path} is already published with identical content.")
-                  else:
-                      target_dir.mkdir(parents=True, exist_ok=True)
-                      shutil.copytree(staging, target_dir, dirs_exist_ok=True)
-              published_paths.append(str(target_path))
-
-          (workspace / "published-desktop-paths.txt").write_text(
-              "\n".join(published_paths) + "\n",
-              encoding="utf-8",
-          )
-          PY
+          ARTIFACT_ROOT: ${{ github.workspace }}/desktop-artifacts
+          TARGET_REPOSITORY_ROOT: ${{ github.workspace }}/target-site
+          PUBLISHED_PATHS_FILE: ${{ github.workspace }}/published-desktop-paths.txt
+        run: python3 source-verification/.github/scripts/stage_immutable_desktop_packages.py
 
       - name: Commit and push package files
         working-directory: target-site

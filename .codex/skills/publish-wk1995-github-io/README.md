@@ -47,6 +47,10 @@ Starter workflow templates are bundled in:
 .codex/skills/publish-wk1995-github-io/assets/
 ```
 
+Copy reusable release helpers from `assets/github-scripts/` into the source
+repository's `.github/scripts/` so PR smoke tests and production publishing run
+the same code.
+
 ## How Other Users Can Use It
 
 Copy this skill directory into a Codex skills directory:
@@ -106,8 +110,10 @@ lets the target repository regenerate `apps/packages/manifest.json`.
 
 ## Included Templates
 
+- `assets/build-release-android.yml`
 - `assets/publish-apk-artifact.yml`
 - `assets/publish-desktop-artifact.yml`
+- `assets/github-scripts/`
 
 These templates are starting points. Codex should adapt artifact names, app
 names, trusted source branches, release-manifest schemas, and secret names for
@@ -115,3 +121,6 @@ each source project while keeping the target repository and trust checks fixed.
 The corresponding `Build Release` workflow must produce signed artifacts with
 source provenance and file digests; the publish workflow intentionally rejects
 ordinary pull-request artifacts.
+
+The desktop template supports `.exe`, `.msi`, `.msix`, `.appx`, `.zip`, `.dmg`,
+`.pkg`, `.deb`, `.rpm`, and `.AppImage` according to the selected platform.

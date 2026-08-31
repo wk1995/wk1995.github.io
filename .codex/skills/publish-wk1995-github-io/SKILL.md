@@ -2,7 +2,7 @@
 name: publish-wk1995-github-io
 description: Create or update GitHub Actions workflows that publish build artifacts to wk1995.github.io / wk1995/wk1995.github.io, with artifact paths selected by application type such as Android APK, Windows desktop, macOS desktop, or Linux desktop.
 metadata:
-  version: "0.0.5"
+  version: "0.0.6"
 ---
 
 # Publish wk1995.github.io
@@ -126,6 +126,11 @@ schema. Keep the trust checks and target repository fixed as
 - Keep reusable signing, manifest verification, and immutable-copy logic in
   checked-in scripts under `.github/scripts/` when it is shared by PR and
   production jobs. Exercise those exact scripts in the PR smoke test.
+
+Copy the relevant files from `assets/github-scripts/` into the source
+repository's `.github/scripts/` directory. Keep their interfaces stable when
+adapting them so `Build Release`, PR smoke tests, and publish workflows invoke
+the same implementation.
 
 ## Secret Naming
 
@@ -298,6 +303,13 @@ apps/packages/linux/<appName>/<version>/<systemos>
 Recommended `<systemos>` values include `x86_64`, `arm64`, `deb-x86_64`, or
 `appimage-x86_64`, depending on the artifact format the project publishes.
 
+The desktop contract accepts the same package extensions as the target manifest
+generator:
+
+- Windows: `.exe`, `.msi`, `.msix`, `.appx`, `.zip`.
+- macOS: `.dmg`, `.pkg`, `.zip`.
+- Linux: `.deb`, `.rpm`, `.AppImage`, `.zip`.
+
 ## Manifest Refresh and Pages Deployment
 
 After package files are accepted into `main`, rely on the target repository to
@@ -314,8 +326,12 @@ architecture is included in the Apps catalog.
 
 Available starter templates:
 
+- `assets/build-release-android.yml`: Android build, disposable-key PR smoke
+  test, production signing, manifest generation, and signed-artifact upload.
 - `assets/publish-apk-artifact.yml`: Android APK-oriented starter workflow.
 - `assets/publish-desktop-artifact.yml`: Windows/macOS desktop starter workflow.
+- `assets/github-scripts/`: shared signing, manifest verification, and immutable
+  staging scripts to copy into the source repository's `.github/scripts/`.
 
 Templates are starting points. Adapt source-side artifact names, metadata files,
 app name, trusted source branch, manifest schema, and secret name to match the
@@ -323,6 +339,14 @@ current repository. Keep the target repository, trust checks, and publish
 directory rules from this skill. The source `Build Release` workflow must meet
 the contract above; a publish template does not make an unsigned or
 unprovenanced artifact trustworthy by itself.
+
+The Android build starter expects these protected `release` environment
+secrets in addition to the app-specific target-repository token:
+
+- `ANDROID_SIGNING_KEY_BASE64`
+- `ANDROID_KEY_ALIAS`
+- `ANDROID_KEY_PASSWORD`
+- `ANDROID_KEYSTORE_PASSWORD`
 
 ## Validation
 
@@ -369,5 +393,10 @@ After writing or updating the workflow:
   branch.
 - Confirm desktop archives under `<version>/<systemos>` are included in the
   generated manifest.
+- Confirm desktop verification and staging accept every package extension the
+  target manifest generator supports for that platform.
+- Confirm shared script behavior is tested with valid artifacts, digest
+  mismatches, traversal attempts, identical retries, and changed-content
+  overwrite rejection.
 - Confirm the final response names the required secret and describes the
   required secret value permissions.
