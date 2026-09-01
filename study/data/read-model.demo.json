@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.0.0",
+  "source_commit": "0123456789abcdef0123456789abcdef01234567",
+  "generator_version": "0.1.0",
+  "generated_at": "2026-09-01T00:00:00Z",
+  "projects": [
+    {
+      "project_id": "PROJECT-DEMO-KOTLIN",
+      "title": "Kotlin 协程实验室（演示）",
+      "status": "active",
+      "updated": "2026-09-01",
+      "source": { "path": "fixtures/demo/README.md", "line": 1 }
+    }
+  ],
+  "plans": [
+    {
+      "plan_id": "PLAN-DEMO-CYCLE-2",
+      "project_id": "PROJECT-DEMO-KOTLIN",
+      "title": "第 2 周期：结构化并发",
+      "status": "active",
+      "priority": "P1",
+      "start_date": "2026-08-26",
+      "target_date": "2026-09-08",
+      "source": { "path": "fixtures/demo/计划.md", "line": 1 }
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "T-001",
+      "plan_id": "PLAN-DEMO-CYCLE-2",
+      "project_id": "PROJECT-DEMO-KOTLIN",
+      "title": "梳理 Job 层级与取消传播",
+      "kind": "Reading",
+      "status": "Done",
+      "issue_url": "",
+      "source": { "path": "fixtures/demo/计划.md", "line": 42 }
+    },
+    {
+      "task_id": "T-002",
+      "plan_id": "PLAN-DEMO-CYCLE-2",
+      "project_id": "PROJECT-DEMO-KOTLIN",
+      "title": "实现并发异常处理实验",
+      "kind": "Coding",
+      "status": "In Progress",
+      "issue_url": "",
+      "source": { "path": "fixtures/demo/计划.md", "line": 43 }
+    },
+    {
+      "task_id": "T-003",
+      "plan_id": "PLAN-DEMO-CYCLE-2",
+      "project_id": "PROJECT-DEMO-KOTLIN",
+      "title": "完成周期复测",
+      "kind": "Review",
+      "status": "Todo",
+      "issue_url": "",
+      "source": { "path": "fixtures/demo/计划.md", "line": 44 }
+    }
+  ],
+  "progress": [
+    {
+      "progress_id": "PROGRESS-DEMO-CYCLE-2",
+      "plan_id": "PLAN-DEMO-CYCLE-2",
+      "project_id": "PROJECT-DEMO-KOTLIN",
+      "execution_percent": 58,
+      "health": "on_track",
+      "updated": "2026-09-01",
+      "source": { "path": "fixtures/demo/进度.md", "line": 1 }
+    }
+  ],
+  "assessments": [
+    {
+      "assessment_id": "ASSESSMENT-DEMO-CYCLE-2",
+      "record_id": "RECORD-DEMO-CYCLE-2-ASSESSMENT",
+      "project_id": "PROJECT-DEMO-KOTLIN",
+      "plan_id": "PLAN-DEMO-CYCLE-2",
+      "kind": "periodic",
+      "cycle_index": 2,
+      "score_status": "scored",
+      "score_total": 82,
+      "level": "independent",
+      "selected_score_run_id": "SCORE-DEMO-WEB-001",
+      "attempts": [
+        {
+          "attempt_id": "ATTEMPT-DEMO-CODEX-001",
+          "source_type": "codex",
+          "source_locator": "codex://demo/task/1",
+          "actor_id": "learner-demo",
+          "submitted_at": "2026-08-24T10:00:00Z",
+          "period": "cycle-1",
+          "question_schema_version": "1.0.0",
+          "answer_template_version": "1.0.0",
+          "answer_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "input_snapshot_id": "SNAPSHOT-DEMO-001",
+          "operation_id": "OP-DEMO-CODEX-001"
+        },
+        {
+          "attempt_id": "ATTEMPT-DEMO-WEB-001",
+          "source_type": "web",
+          "source_locator": "web://demo/session/2",
+          "actor_id": "learner-demo",
+          "submitted_at": "2026-09-01T09:30:00Z",
+          "period": "cycle-2",
+          "question_schema_version": "1.0.0",
+          "answer_template_version": "1.0.0",
+          "answer_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "input_snapshot_id": "SNAPSHOT-DEMO-002",
+          "operation_id": "OP-DEMO-WEB-001"
+        }
+      ],
+      "score_runs": [
+        {
+          "score_run_id": "SCORE-DEMO-WEB-001",
+          "attempt_id": "ATTEMPT-DEMO-WEB-001",
+          "answer_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "status": "succeeded",
+          "provider": "demo-provider",
+          "exact_model": "demo-model-2026-08",
+          "score_key": "demo-profile-v1:bbbbbbbb",
+          "total": 82,
+          "possible": 100,
+          "confidence": 0.87,
+          "breakdown": [
+            { "dimension": "正确性", "possible": 40, "awarded": 34, "reason": "关键取消路径判断正确。" },
+            { "dimension": "理解表达", "possible": 25, "awarded": 21, "reason": "能够说明结构化并发边界。" },
+            { "dimension": "工程质量", "possible": 25, "awarded": 19, "reason": "异常覆盖仍可补充。" },
+            { "dimension": "复盘", "possible": 10, "awarded": 8, "reason": "给出了下一轮验证点。" }
+          ],
+          "created_at": "2026-09-01T09:32:00Z"
+        }
+      ],
+      "review_decisions": [
+        {
+          "review_id": "REVIEW-DEMO-001",
+          "score_run_id": "SCORE-DEMO-WEB-001",
+          "decision": "approved",
+          "actor_id": "learner-demo",
+          "source_type": "android",
+          "reason": "分项依据与答卷一致。",
+          "decided_at": "2026-09-01T09:40:00Z",
+          "audit_event_id": "AUDIT-DEMO-REVIEW-001"
+        }
+      ],
+      "cycle_decision": {
+        "decision": "continue",
+        "score_run_id": "SCORE-DEMO-WEB-001",
+        "actor_id": "learner-demo",
+        "source_type": "web",
+        "reason": "异常传播边界仍需一个周期的工程练习。",
+        "decided_at": "2026-09-01T09:45:00Z",
+        "audit_event_id": "AUDIT-DEMO-CYCLE-002"
+      },
+      "source": { "path": "fixtures/demo/周期测试.md", "line": 1 }
+    }
+  ]
+}
