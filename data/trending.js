@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-09-01T06:12:48.866028+00:00",
+  "generated_at": "2026-09-01T08:16:58.479952+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,8 +15,8 @@ window.__TRENDING_DATA__ = {
         "en": "Open Multi-Agent Interactive Classroom — Get an immersive, multi-agent learning experience in just one click"
       },
       "language": "TypeScript",
-      "stars_total": 27908,
-      "forks_total": 4836,
+      "stars_total": 28298,
+      "forks_total": 4867,
       "stars_today": 2824
     },
     {
@@ -31,8 +31,8 @@ window.__TRENDING_DATA__ = {
         "en": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export."
       },
       "language": "JavaScript",
-      "stars_total": 39744,
-      "forks_total": 2527,
+      "stars_total": 40215,
+      "forks_total": 2543,
       "stars_today": 3991
     },
     {
@@ -47,8 +47,8 @@ window.__TRENDING_DATA__ = {
         "en": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 190,000+ scientists worldwide. 165 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard."
       },
       "language": "Python",
-      "stars_total": 40972,
-      "forks_total": 3785,
+      "stars_total": 41092,
+      "forks_total": 3793,
       "stars_today": 1980
     },
     {
@@ -63,8 +63,8 @@ window.__TRENDING_DATA__ = {
         "en": "Advanced UX and interoperability extension for Wand (WeMod) app"
       },
       "language": "C#",
-      "stars_total": 23470,
-      "forks_total": 59704,
+      "stars_total": 23508,
+      "forks_total": 59756,
       "stars_today": 582
     },
     {
@@ -79,8 +79,8 @@ window.__TRENDING_DATA__ = {
         "en": "Command-line tool that allows searching and downloading app packages (known as ipa files) for iOS, iPadOS, tvOS, and visionOS from the App Store."
       },
       "language": "Go",
-      "stars_total": 10626,
-      "forks_total": 898,
+      "stars_total": 10666,
+      "forks_total": 899,
       "stars_today": 373
     },
     {
@@ -95,8 +95,8 @@ window.__TRENDING_DATA__ = {
         "en": "🧠 Train a 64M-parameter LLM from scratch in just 2h!"
       },
       "language": "Python",
-      "stars_total": 56426,
-      "forks_total": 7351,
+      "stars_total": 56554,
+      "forks_total": 7371,
       "stars_today": 495
     }
   ]
