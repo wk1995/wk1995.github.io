@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-08-31T07:55:53.343734+00:00",
+  "generated_at": "2026-09-01T06:12:48.866028+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,41 +15,12 @@
         "en": "Open Multi-Agent Interactive Classroom — Get an immersive, multi-agent learning experience in just one click"
       },
       "language": "TypeScript",
-      "stars_total": 25130,
-      "forks_total": 4586,
-      "stars_today": 1370
+      "stars_total": 27908,
+      "forks_total": 4836,
+      "stars_today": 2824
     },
     {
       "rank": 2,
-      "repo": "K-Dense-AI/scientific-agent-skills",
-      "owner": "K-Dense-AI",
-      "name": "scientific-agent-skills",
-      "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
-      "description": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 190,000+ scientists worldwide. 165 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard.",
-      "descriptions": {
-        "zh": "将任何人工智能代理变成人工智能科学家。排名第一的科学代理技能库，全球有 190,000 多名科学家使用。 165 种经过验证的现成技能以及 100 多个涵盖生物学、化学、医学和药物发现的科学数据库。与 Cursor、Claude Code、Codex、Pi、Antigravity 和开放代理技能标准兼容。",
-        "en": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 190,000+ scientists worldwide. 165 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard."
-      },
-      "language": "Python",
-      "stars_total": 39980,
-      "forks_total": 3713,
-      "stars_today": 1114
-    },
-    {
-      "rank": 3,
-      "repo": "Lakr233/vphone-cli",
-      "owner": "Lakr233",
-      "name": "vphone-cli",
-      "url": "https://github.com/Lakr233/vphone-cli",
-      "description": null,
-      "descriptions": null,
-      "language": "Swift",
-      "stars_total": 9856,
-      "forks_total": 1297,
-      "stars_today": 361
-    },
-    {
-      "rank": 4,
       "repo": "tt-a1i/archify",
       "owner": "tt-a1i",
       "name": "archify",
@@ -60,41 +31,73 @@
         "en": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export."
       },
       "language": "JavaScript",
-      "stars_total": 36153,
-      "forks_total": 2315,
-      "stars_today": 3722
+      "stars_total": 39744,
+      "forks_total": 2527,
+      "stars_today": 3991
+    },
+    {
+      "rank": 3,
+      "repo": "K-Dense-AI/scientific-agent-skills",
+      "owner": "K-Dense-AI",
+      "name": "scientific-agent-skills",
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "description": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 190,000+ scientists worldwide. 165 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard.",
+      "descriptions": {
+        "zh": "将任何人工智能代理变成人工智能科学家。排名第一的科学代理技能库，全球有 190,000 多名科学家使用。 165 种经过验证的现成技能以及 100 多个涵盖生物学、化学、医学和药物发现的科学数据库。与 Cursor、Claude Code、Codex、Pi、Antigravity 和开放代理技能标准兼容。",
+        "en": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 190,000+ scientists worldwide. 165 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard."
+      },
+      "language": "Python",
+      "stars_total": 40972,
+      "forks_total": 3785,
+      "stars_today": 1980
+    },
+    {
+      "rank": 4,
+      "repo": "k1tbyte/Wand-Enhancer",
+      "owner": "k1tbyte",
+      "name": "Wand-Enhancer",
+      "url": "https://github.com/k1tbyte/Wand-Enhancer",
+      "description": "Advanced UX and interoperability extension for Wand (WeMod) app",
+      "descriptions": {
+        "zh": "Wand (WeMod) 应用程序的高级用户体验和互操作性扩展",
+        "en": "Advanced UX and interoperability extension for Wand (WeMod) app"
+      },
+      "language": "C#",
+      "stars_total": 23470,
+      "forks_total": 59704,
+      "stars_today": 582
     },
     {
       "rank": 5,
-      "repo": "p-e-w/heretic",
-      "owner": "p-e-w",
-      "name": "heretic",
-      "url": "https://github.com/p-e-w/heretic",
-      "description": "Fully automatic censorship removal for language models",
+      "repo": "majd/ipatool",
+      "owner": "majd",
+      "name": "ipatool",
+      "url": "https://github.com/majd/ipatool",
+      "description": "Command-line tool that allows searching and downloading app packages (known as ipa files) for iOS, iPadOS, tvOS, and visionOS from the App Store.",
       "descriptions": {
-        "zh": "全自动消除语言模型审查",
-        "en": "Fully automatic censorship removal for language models"
+        "zh": "命令行工具，允许从 App Store 搜索和下载 iOS、iPadOS、tvOS 和 VisionOS 的应用程序包（称为 ipa 文件）。",
+        "en": "Command-line tool that allows searching and downloading app packages (known as ipa files) for iOS, iPadOS, tvOS, and visionOS from the App Store."
       },
-      "language": "Python",
-      "stars_total": 29345,
-      "forks_total": 3220,
-      "stars_today": 369
+      "language": "Go",
+      "stars_total": 10626,
+      "forks_total": 898,
+      "stars_today": 373
     },
     {
       "rank": 6,
-      "repo": "unclecode/crawl4ai",
-      "owner": "unclecode",
-      "name": "crawl4ai",
-      "url": "https://github.com/unclecode/crawl4ai",
-      "description": "🚀🤖 Crawl4AI: Open-source LLM Friendly Web Crawler & Scraper. Don't be shy, join here: https://discord.gg/jP8KfhDhyN",
+      "repo": "jingyaogong/minimind",
+      "owner": "jingyaogong",
+      "name": "minimind",
+      "url": "https://github.com/jingyaogong/minimind",
+      "description": "🧠 Train a 64M-parameter LLM from scratch in just 2h!",
       "descriptions": {
-        "zh": "🚀🤖 Crawl4AI：开源 LLM 友好的网络爬虫和爬虫。不要害羞，加入这里：https://discord.gg/jP8KfhDhyN",
-        "en": "🚀🤖 Crawl4AI: Open-source LLM Friendly Web Crawler & Scraper. Don't be shy, join here: https://discord.gg/jP8KfhDhyN"
+        "zh": "🧠 只需 2 小时从头开始训练 64M 参数的 LLM！",
+        "en": "🧠 Train a 64M-parameter LLM from scratch in just 2h!"
       },
       "language": "Python",
-      "stars_total": 80443,
-      "forks_total": 8325,
-      "stars_today": 221
+      "stars_total": 56426,
+      "forks_total": 7351,
+      "stars_today": 495
     }
   ]
 }
