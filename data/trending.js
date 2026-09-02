@@ -1,10 +1,42 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-09-01T08:16:58.479952+00:00",
+  "generated_at": "2026-09-02T05:45:14.520701+00:00",
   "items": [
     {
       "rank": 1,
+      "repo": "Gitlawb/openclaude",
+      "owner": "Gitlawb",
+      "name": "openclaude",
+      "url": "https://github.com/Gitlawb/openclaude",
+      "description": "runs anywhere. uses anything",
+      "descriptions": {
+        "zh": "跑到任何地方。使用任何东西",
+        "en": "runs anywhere. uses anything"
+      },
+      "language": "TypeScript",
+      "stars_total": 31503,
+      "forks_total": 8964,
+      "stars_today": 80
+    },
+    {
+      "rank": 2,
+      "repo": "Imbad0202/academic-research-skills",
+      "owner": "Imbad0202",
+      "name": "academic-research-skills",
+      "url": "https://github.com/Imbad0202/academic-research-skills",
+      "description": "Academic Research Skills for Claude Code: research → write → review → revise → finalize",
+      "descriptions": {
+        "zh": "克劳德·代码的学术研究技巧：研究→写作→审阅→修改→定稿",
+        "en": "Academic Research Skills for Claude Code: research → write → review → revise → finalize"
+      },
+      "language": "Python",
+      "stars_total": 45108,
+      "forks_total": 3558,
+      "stars_today": 193
+    },
+    {
+      "rank": 3,
       "repo": "THU-MAIC/OpenMAIC",
       "owner": "THU-MAIC",
       "name": "OpenMAIC",
@@ -15,76 +47,28 @@ window.__TRENDING_DATA__ = {
         "en": "Open Multi-Agent Interactive Classroom — Get an immersive, multi-agent learning experience in just one click"
       },
       "language": "TypeScript",
-      "stars_total": 28298,
-      "forks_total": 4867,
-      "stars_today": 2824
-    },
-    {
-      "rank": 2,
-      "repo": "tt-a1i/archify",
-      "owner": "tt-a1i",
-      "name": "archify",
-      "url": "https://github.com/tt-a1i/archify",
-      "description": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.",
-      "descriptions": {
-        "zh": "具有漂亮、可验证的架构、工作流程、序列、数据流和生命周期图的代理技能——具有动态和清晰导出功能的独立 HTML。",
-        "en": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export."
-      },
-      "language": "JavaScript",
-      "stars_total": 40215,
-      "forks_total": 2543,
-      "stars_today": 3991
-    },
-    {
-      "rank": 3,
-      "repo": "K-Dense-AI/scientific-agent-skills",
-      "owner": "K-Dense-AI",
-      "name": "scientific-agent-skills",
-      "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
-      "description": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 190,000+ scientists worldwide. 165 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard.",
-      "descriptions": {
-        "zh": "将任何人工智能代理变成人工智能科学家。排名第一的科学代理技能库，全球有 190,000 多名科学家使用。 165 种经过验证的现成技能以及 100 多个涵盖生物学、化学、医学和药物发现的科学数据库。与 Cursor、Claude Code、Codex、Pi、Antigravity 和开放代理技能标准兼容。",
-        "en": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 190,000+ scientists worldwide. 165 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard."
-      },
-      "language": "Python",
-      "stars_total": 41092,
-      "forks_total": 3793,
-      "stars_today": 1980
+      "stars_total": 29805,
+      "forks_total": 5002,
+      "stars_today": 3128
     },
     {
       "rank": 4,
-      "repo": "k1tbyte/Wand-Enhancer",
-      "owner": "k1tbyte",
-      "name": "Wand-Enhancer",
-      "url": "https://github.com/k1tbyte/Wand-Enhancer",
-      "description": "Advanced UX and interoperability extension for Wand (WeMod) app",
+      "repo": "iv-org/invidious",
+      "owner": "iv-org",
+      "name": "invidious",
+      "url": "https://github.com/iv-org/invidious",
+      "description": "Invidious is an alternative front-end to YouTube",
       "descriptions": {
-        "zh": "Wand (WeMod) 应用程序的高级用户体验和互操作性扩展",
-        "en": "Advanced UX and interoperability extension for Wand (WeMod) app"
+        "zh": "Invidious 是 YouTube 的替代前端",
+        "en": "Invidious is an alternative front-end to YouTube"
       },
-      "language": "C#",
-      "stars_total": 23508,
-      "forks_total": 59756,
-      "stars_today": 582
+      "language": "Crystal",
+      "stars_total": 23843,
+      "forks_total": 2676,
+      "stars_today": 577
     },
     {
       "rank": 5,
-      "repo": "majd/ipatool",
-      "owner": "majd",
-      "name": "ipatool",
-      "url": "https://github.com/majd/ipatool",
-      "description": "Command-line tool that allows searching and downloading app packages (known as ipa files) for iOS, iPadOS, tvOS, and visionOS from the App Store.",
-      "descriptions": {
-        "zh": "命令行工具，允许从 App Store 搜索和下载 iOS、iPadOS、tvOS 和 VisionOS 的应用程序包（称为 ipa 文件）。",
-        "en": "Command-line tool that allows searching and downloading app packages (known as ipa files) for iOS, iPadOS, tvOS, and visionOS from the App Store."
-      },
-      "language": "Go",
-      "stars_total": 10666,
-      "forks_total": 899,
-      "stars_today": 373
-    },
-    {
-      "rank": 6,
       "repo": "jingyaogong/minimind",
       "owner": "jingyaogong",
       "name": "minimind",
@@ -95,9 +79,25 @@ window.__TRENDING_DATA__ = {
         "en": "🧠 Train a 64M-parameter LLM from scratch in just 2h!"
       },
       "language": "Python",
-      "stars_total": 56554,
-      "forks_total": 7371,
-      "stars_today": 495
+      "stars_total": 57306,
+      "forks_total": 7450,
+      "stars_today": 1005
+    },
+    {
+      "rank": 6,
+      "repo": "3b1b/manim",
+      "owner": "3b1b",
+      "name": "manim",
+      "url": "https://github.com/3b1b/manim",
+      "description": "Animation engine for explanatory math videos",
+      "descriptions": {
+        "zh": "用于解释数学视频的动画引擎",
+        "en": "Animation engine for explanatory math videos"
+      },
+      "language": "Python",
+      "stars_total": 92668,
+      "forks_total": 7625,
+      "stars_today": 86
     }
   ]
 }
