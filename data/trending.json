@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-09-03T05:43:38.338006+00:00",
+  "generated_at": "2026-09-04T05:49:00.144585+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,28 +15,44 @@
         "en": "A modern formatting library"
       },
       "language": "C++",
-      "stars_total": 24443,
-      "forks_total": 2993,
-      "stars_today": 14
+      "stars_total": 25216,
+      "forks_total": 3021,
+      "stars_today": 963
     },
     {
       "rank": 2,
-      "repo": "google-research/timesfm",
-      "owner": "google-research",
-      "name": "timesfm",
-      "url": "https://github.com/google-research/timesfm",
-      "description": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting.",
+      "repo": "mattpocock/skills",
+      "owner": "mattpocock",
+      "name": "skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
       "descriptions": {
-        "zh": "TimesFM（时间序列基础模型）是 Google Research 开发的用于时间序列预测的预训练时间序列基础模型。",
-        "en": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting."
+        "zh": "真正工程师的技能。直接来自我的 .agents 目录。",
+        "en": "Skills for Real Engineers. Straight from my .agents directory."
       },
-      "language": "Python",
-      "stars_total": 30132,
-      "forks_total": 2888,
-      "stars_today": 343
+      "language": "Shell",
+      "stars_total": 247946,
+      "forks_total": 21011,
+      "stars_today": 1601
     },
     {
       "rank": 3,
+      "repo": "NousResearch/hermes-agent",
+      "owner": "NousResearch",
+      "name": "hermes-agent",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "description": "The agent that grows with you",
+      "descriptions": {
+        "zh": "与您共同成长的代理商",
+        "en": "The agent that grows with you"
+      },
+      "language": "Python",
+      "stars_total": 241006,
+      "forks_total": 49392,
+      "stars_today": 774
+    },
+    {
+      "rank": 4,
       "repo": "DietrichGebert/ponytail",
       "owner": "DietrichGebert",
       "name": "ponytail",
@@ -47,57 +63,41 @@
         "en": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote."
       },
       "language": "JavaScript",
-      "stars_total": 122094,
-      "forks_total": 6598,
-      "stars_today": 1354
-    },
-    {
-      "rank": 4,
-      "repo": "debpalash/VoiceStudio",
-      "owner": "debpalash",
-      "name": "VoiceStudio",
-      "url": "https://github.com/debpalash/VoiceStudio",
-      "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages.",
-      "descriptions": {
-        "zh": "VoiceStudio 是 ElevenLabs 的开源、完全本地化替代方案 — 提供 646 种语言的语音克隆、语音设计、视频配音、听写、转录和有声读物创建。",
-        "en": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages."
-      },
-      "language": "Python",
-      "stars_total": 15163,
-      "forks_total": 2137,
-      "stars_today": 832
+      "stars_total": 123801,
+      "forks_total": 6688,
+      "stars_today": 2128
     },
     {
       "rank": 5,
-      "repo": "sngyai/Sequoia-X",
-      "owner": "sngyai",
-      "name": "Sequoia-X",
-      "url": "https://github.com/sngyai/Sequoia-X",
-      "description": "A股自动选股系统 — 多种技术形态自动扫描，收盘后自动运行并推送飞书",
+      "repo": "anthropics/skills",
+      "owner": "anthropics",
+      "name": "skills",
+      "url": "https://github.com/anthropics/skills",
+      "description": "Public repository for Agent Skills",
       "descriptions": {
-        "zh": "A股自动选股系统 — 多种技术形态自动扫描，收盘后自动运行并推送飞书",
-        "en": "A-share automatic stock selection system - automatically scans multiple technical forms, automatically runs and pushes Feishu after the market closes"
+        "zh": "代理技能的公共存储库",
+        "en": "Public repository for Agent Skills"
       },
       "language": "Python",
-      "stars_total": 6254,
-      "forks_total": 1279,
-      "stars_today": 63
+      "stars_total": 173769,
+      "forks_total": 20610,
+      "stars_today": 281
     },
     {
       "rank": 6,
-      "repo": "ChromeDevTools/chrome-devtools-mcp",
-      "owner": "ChromeDevTools",
-      "name": "chrome-devtools-mcp",
-      "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
-      "description": "Chrome DevTools for coding agents",
+      "repo": "affaan-m/ECC",
+      "owner": "affaan-m",
+      "name": "ECC",
+      "url": "https://github.com/affaan-m/ECC",
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
       "descriptions": {
-        "zh": "用于编码代理的 Chrome DevTools",
-        "en": "Chrome DevTools for coding agents"
+        "zh": "代理利用性能优化系统。 Claude Code、Codex、Opencode、Cursor 等的技能、直觉、记忆、安全性和研究优先的开发。",
+        "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
       },
-      "language": "TypeScript",
-      "stars_total": 50719,
-      "forks_total": 3557,
-      "stars_today": 148
+      "language": "JavaScript",
+      "stars_total": 247415,
+      "forks_total": 37284,
+      "stars_today": 751
     }
   ]
 }
