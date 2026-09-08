@@ -15,4 +15,11 @@ describe('learning dashboard contract', () => {
   it('rejects an incompatible schema', () => {
     expect(() => assertCompatibleReadModel({ ...fixture, schema_version: '2.0.0' })).toThrow('不兼容')
   })
+
+  it('keeps read model 1.0 compatible while defaulting new collections', () => {
+    const previous: unknown = { ...fixture, schema_version: '1.0.0', evidence_coverage: undefined, audit_events: undefined }
+    assertCompatibleReadModel(previous)
+    expect(previous.evidence_coverage).toEqual([])
+    expect(previous.audit_events).toEqual([])
+  })
 })
