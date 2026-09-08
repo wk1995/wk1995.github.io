@@ -60,6 +60,8 @@ export type ScoreRun = {
   possible: number
   confidence: number
   breakdown: Array<{ dimension: string; possible: number; awarded: number; reason: string }>
+  questions: Array<{ question_id: string; possible: number; awarded: number; deductions: Array<{ code: string; points: number; reason: string }>; evidence_refs: string[] }>
+  review_policy: string
   created_at: string
 }
 
@@ -68,6 +70,9 @@ export type Assessment = {
   record_id: string
   project_id: string
   plan_id: string
+  title?: string
+  question_set_id?: string | null
+  questions: Array<{ question_id: string; type: string; possible: number; prompt: string; focus: string; acceptance_criteria: string }>
   kind: string
   cycle_index: number
   score_status: 'pending' | 'scored' | 'review'
@@ -81,11 +86,25 @@ export type Assessment = {
   source: Source
 }
 
+export type LlmProfile = {
+  profile_id: string
+  profile_version: string
+  provider: string
+  exact_model: string
+  secret_ref: string
+  prompt_version: string
+  rubric_version: string
+  review_policy: string
+  enabled?: boolean
+  description?: string
+}
+
 export type ReadModel = {
   schema_version: string
   source_commit: string
   generator_version: string
   generated_at: string
+  llm_profiles?: LlmProfile[]
   projects: Project[]
   plans: Plan[]
   tasks: Task[]
