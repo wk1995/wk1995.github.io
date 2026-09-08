@@ -3,6 +3,22 @@
   "source_commit": "0123456789abcdef0123456789abcdef01234567",
   "generator_version": "0.1.0",
   "generated_at": "2026-09-01T00:00:00Z",
+  "llm_profiles": [
+    {
+      "profile_id": "LLM-PROFILE-DEMO-001",
+      "profile_version": "1.0.0",
+      "provider": "demo-provider",
+      "exact_model": "demo-model-2026-08",
+      "endpoint": "https://example.invalid/v1/responses",
+      "secret_ref": "DEMO_DISABLED_SECRET",
+      "temperature": 0,
+      "prompt_version": "demo-score.v1",
+      "rubric_version": "demo-rubric.v1",
+      "review_policy": "review_required",
+      "enabled": false,
+      "description": "公开脱敏 fixture，仅用于展示，不可触发真实评分。"
+    }
+  ],
   "projects": [
     {
       "project_id": "PROJECT-DEMO-KOTLIN",

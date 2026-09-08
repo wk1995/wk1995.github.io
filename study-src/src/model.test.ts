@@ -9,6 +9,7 @@ describe('learning dashboard contract', () => {
     expect(fixture.tasks).toHaveLength(3)
     expect(fixture.assessments[0].attempts.map((item) => item.source_type)).toEqual(['codex', 'web'])
     expect(fixture.assessments[0].cycle_decision.decision).toBe('continue')
+    expect(fixture.llm_profiles[0].profile_id).toBe('LLM-PROFILE-DEMO-001')
   })
 
   it('rejects an incompatible schema', () => {

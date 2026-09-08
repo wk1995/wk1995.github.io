@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useMemo, useState } from 'react'
 import { assertCompatibleReadModel, type Assessment, type ReadModel } from './model'
+import { hasAuthenticatedBackend, loadPrivateReadModel, selectScore, submitAttempt, triggerScore } from './mutations'
 
 const routes = [
   ['dashboard', '概览', '⌂'],
@@ -20,9 +21,12 @@ function currentRoute(): Route {
 }
 
 async function loadReadModel(): Promise<ReadModel> {
-  const response = await fetch(`${import.meta.env.BASE_URL}data/read-model.demo.json`, { cache: 'no-store' })
-  if (!response.ok) throw new Error(`读取失败：HTTP ${response.status}`)
-  const data: unknown = await response.json()
+  const data: unknown = hasAuthenticatedBackend()
+    ? await loadPrivateReadModel()
+    : await fetch(`${import.meta.env.BASE_URL}data/read-model.demo.json`, { cache: 'no-store' }).then((response) => {
+      if (!response.ok) throw new Error(`读取失败：HTTP ${response.status}`)
+      return response.json()
+    })
   assertCompatibleReadModel(data)
   return data
 }
@@ -97,16 +101,49 @@ function Plans({ data }: { data: ReadModel }) {
   return <Page title="计划与任务" subtitle="执行状态来自计划文件；完成任务不会自动提升掌握度。">{data.plans.map((plan) => <section className="card plan-card" key={plan.plan_id}><div className="inline-title"><div><p className="eyebrow">{plan.priority} · {plan.status}</p><h2>{plan.title}</h2></div><span className="mono">{plan.plan_id}</span></div><div className="task-list">{data.tasks.filter((task) => task.plan_id === plan.plan_id).map((task) => <div className="task" key={`${plan.plan_id}-${task.task_id}`}><span className={`check ${task.status.toLowerCase() === 'done' ? 'checked' : ''}`}>{task.status.toLowerCase() === 'done' ? '✓' : ''}</span><div><strong>{task.title}</strong><p>{task.task_id} · {task.kind}</p></div><StatusPill tone={task.status.toLowerCase() === 'in progress' ? 'warn' : 'neutral'}>{task.status}</StatusPill></div>)}</div></section>)}</Page>
 }
 
-function Assessments({ data }: { data: ReadModel }) {
-  return <Page title="测试与评分" subtitle="同一套题可以保留多个时期、多个入口的答卷；所有评分和审核均留档。">{data.assessments.length ? <div className="assessment-list">{data.assessments.map((assessment) => <article className="card detail-card" key={assessment.assessment_id}><AssessmentSummary assessment={assessment}/><div className="history"><h3>答卷来源</h3>{assessment.attempts.map((attempt) => <div className="history-row" key={attempt.attempt_id}><span className="source-icon">{attempt.source_type.slice(0,1).toUpperCase()}</span><div><strong>{attempt.source_type}</strong><p>{new Date(attempt.submitted_at).toLocaleString('zh-CN')} · {attempt.attempt_id}</p></div></div>)}</div>{assessment.score_runs.map((score) => <div className="score-detail" key={score.score_run_id}><div className="inline-title"><h3>{score.provider} / {score.exact_model}</h3><strong>{score.total}/{score.possible}</strong></div>{score.breakdown.map((item) => <div className="breakdown" key={item.dimension}><span>{item.dimension}</span><ProgressBar value={Math.round(item.awarded / item.possible * 100)} /><b>{item.awarded}/{item.possible}</b><p>{item.reason}</p></div>)}</div>)}</article>)}</div> : <Empty title="尚无检测" detail="当前周期结束前会预建一份测试。" />}</Page>
+function AssessmentMutationPanel({ assessment, data, profileId }: { assessment: Assessment; data: ReadModel; profileId?: string }) {
+  const [answers, setAnswers] = useState<Record<string, string>>({})
+  const [preview, setPreview] = useState(false)
+  const [working, setWorking] = useState(false)
+  const [message, setMessage] = useState('')
+  const canWrite = hasAuthenticatedBackend()
+  const complete = assessment.questions.every((question) => answers[question.question_id]?.trim())
+  const run = async (operation: () => Promise<{ status: string; pr_url: string; attempt_id?: string }>) => {
+    setWorking(true)
+    try {
+      const receipt = await operation()
+      setMessage(`${receipt.status}${receipt.attempt_id ? ` · ${receipt.attempt_id}` : ''} · PR ${receipt.pr_url}`)
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : '操作失败')
+    } finally {
+      setWorking(false)
+    }
+  }
+  return <section className="mutation-panel">
+    {!canWrite && <p>公开演示构建为只读；配置 <code>VITE_STUDY_BFF_URL</code> 后才连接受认证写入服务。</p>}
+    {canWrite && assessment.attempts.length === 0 && <>
+      <h3>提交答卷</h3>
+      {assessment.questions.map((question) => <label key={question.question_id}><strong>{question.question_id} · {question.prompt}</strong><textarea value={answers[question.question_id] ?? ''} onChange={(event) => { setPreview(false); setAnswers((value) => ({ ...value, [question.question_id]: event.target.value })) }}/></label>)}
+      {preview && <pre>{JSON.stringify({ file: `生成/学习仪表盘/assessments/${assessment.assessment_id}.assessment.json`, base_commit: data.source_commit, operation: 'append AnswerAttempt', questions: assessment.questions.length }, null, 2)}</pre>}
+      <button className="button" disabled={!complete || working} onClick={() => preview ? void run(() => submitAttempt(assessment, answers, data.source_commit)) : setPreview(true)}>{preview ? '确认创建 PR' : '预览文件变更'}</button>
+    </>}
+    {canWrite && assessment.attempts.length > 0 && !assessment.selected_score_run_id && <button className="button" disabled={!profileId || working} onClick={() => void run(() => triggerScore(assessment, assessment.attempts.at(-1)!.attempt_id, profileId!, data.source_commit))}>触发版本化 LLM 评分</button>}
+    {canWrite && assessment.score_runs.filter((score) => score.status === 'succeeded' && score.score_run_id !== assessment.selected_score_run_id).map((score) => <button className="button secondary" disabled={working} key={score.score_run_id} onClick={() => void run(() => selectScore(assessment, score.score_run_id, data.source_commit))}>选择 {score.exact_model} · {score.score_run_id}</button>)}
+    {message && <p role="status">{message}</p>}
+  </section>
+}
+
+function Assessments({ data, profileId }: { data: ReadModel; profileId?: string }) {
+  return <Page title="测试与评分" subtitle="同一套题可以保留多个时期、多个入口的答卷；所有评分和审核均留档。">{data.assessments.length ? <div className="assessment-list">{data.assessments.map((assessment) => <article className="card detail-card" key={assessment.assessment_id}><AssessmentSummary assessment={assessment}/><AssessmentMutationPanel assessment={assessment} data={data} profileId={profileId}/><div className="history"><h3>答卷来源</h3>{assessment.attempts.map((attempt) => <div className="history-row" key={attempt.attempt_id}><span className="source-icon">{attempt.source_type.slice(0,1).toUpperCase()}</span><div><strong>{attempt.source_type}</strong><p>{new Date(attempt.submitted_at).toLocaleString('zh-CN')} · {attempt.attempt_id}</p></div></div>)}</div>{assessment.score_runs.map((score) => <div className="score-detail" key={score.score_run_id}><div className="inline-title"><h3>{score.provider} / {score.exact_model}</h3><strong>{score.total}/{score.possible}</strong></div>{score.breakdown.map((item) => <div className="breakdown" key={item.dimension}><span>{item.dimension}</span><ProgressBar value={Math.round(item.awarded / item.possible * 100)} /><b>{item.awarded}/{item.possible}</b><p>{item.reason}</p></div>)}{score.questions?.map((question) => <div key={question.question_id}><strong>{question.question_id}: {question.awarded}/{question.possible}</strong>{question.deductions.map((item) => <p key={item.code}>扣 {item.points}：{item.reason}</p>)}</div>)}</div>)}</article>)}</div> : <Empty title="尚无检测" detail="当前周期结束前会预建一份测试。" />}</Page>
 }
 
 function ProgressPage({ data }: { data: ReadModel }) {
   return <Page title="学习进度" subtitle="执行进度与检测掌握度分开展示。"><div className="list-grid">{data.progress.map((item) => { const plan = data.plans.find((candidate) => candidate.plan_id === item.plan_id); const assessment = data.assessments.filter((candidate) => candidate.plan_id === item.plan_id).at(-1); return <article className="card progress-detail" key={item.progress_id}><h2>{plan?.title ?? item.plan_id}</h2><div className="split-stat"><div><span>执行进度</span><strong>{item.execution_percent}%</strong><ProgressBar value={item.execution_percent}/></div><div><span>最近检测</span><strong>{assessment?.score_total ?? '—'}{assessment?.score_total != null ? ' 分' : ''}</strong><p>{assessment?.level ?? '未完成评分'}</p></div></div></article> })}</div></Page>
 }
 
-function Settings() {
-  return <Page title="评分设置" subtitle="当前为安全演示模式，不保存 LLM 密钥或 GitHub Token。"><article className="card settings-card"><div><p className="card-label">LLM Profile</p><h2>demo-scoring-v1</h2><p>模型调用必须由受认证 BFF、Codex 或 CI 执行。客户端只提交 profile 版本与答卷引用。</p></div><dl><div><dt>Provider</dt><dd>demo-provider</dd></div><div><dt>Exact model</dt><dd>demo-model-2026-08</dd></div><div><dt>复用策略</dt><dd>当前 answer_hash 已有有效 ScoreRun 时跳过 CI 评分</dd></div><div><dt>审核策略</dt><dd>评分后需要审核；用户也可以显式跳过</dd></div></dl></article></Page>
+function Settings({ data, profileId, onSelect }: { data: ReadModel; profileId?: string; onSelect: (id: string) => void }) {
+  const profiles = data.llm_profiles ?? []
+  return <Page title="评分设置" subtitle="Web 只保存 Profile ID；LLM 密钥由 GitHub Actions Secret 或 BFF 保存。"><div className="list-grid">{profiles.map((profile) => <button className={`card settings-card ${profile.profile_id === profileId ? 'selected' : ''}`} key={profile.profile_id} onClick={() => onSelect(profile.profile_id)}><div><p className="card-label">LLM Profile v{profile.profile_version}</p><h2>{profile.exact_model}</h2><p>{profile.description}</p></div><dl><div><dt>Provider</dt><dd>{profile.provider}</dd></div><div><dt>Prompt / Rubric</dt><dd>{profile.prompt_version} / {profile.rubric_version}</dd></div><div><dt>审核策略</dt><dd>{profile.review_policy}</dd></div><div><dt>Secret 引用</dt><dd>{profile.secret_ref}</dd></div></dl></button>)}</div>{profiles.length === 0 && <Empty title="没有 LLM Profile" detail="请刷新由私人仓库生成的 read model。"/>}</Page>
 }
 
 function Diagnostics({ data, refetch, fetching }: { data: ReadModel; refetch: () => void; fetching: boolean }) {
@@ -120,6 +157,8 @@ function Page({ title, subtitle, children }: { title: string; subtitle: string; 
 export function App() {
   const [route, setRoute] = useState<Route>(currentRoute)
   const query = useQuery({ queryKey: ['read-model'], queryFn: loadReadModel })
+  const [profileId, setProfileId] = useState<string | undefined>(() => localStorage.getItem('study-llm-profile') ?? undefined)
+  useEffect(() => { const profiles = query.data?.llm_profiles?.filter((item) => item.enabled !== false) ?? []; if (!profiles.some((item) => item.profile_id === profileId) && profiles[0]) { setProfileId(profiles[0].profile_id); localStorage.setItem('study-llm-profile', profiles[0].profile_id) } }, [query.data, profileId])
   useEffect(() => { const handler = () => setRoute(currentRoute()); window.addEventListener('hashchange', handler); return () => window.removeEventListener('hashchange', handler) }, [])
   const routeLabel = useMemo(() => routes.find(([value]) => value === route)?.[1] ?? '概览', [route])
   return <div className="app-shell">
@@ -130,9 +169,9 @@ export function App() {
       {query.data && route === 'dashboard' && <Dashboard data={query.data}/>}
       {query.data && route === 'projects' && <Projects data={query.data}/>}
       {query.data && route === 'plans' && <Plans data={query.data}/>}
-      {query.data && route === 'assessments' && <Assessments data={query.data}/>}
+      {query.data && route === 'assessments' && <Assessments data={query.data} profileId={profileId}/>}
       {query.data && route === 'progress' && <ProgressPage data={query.data}/>}
-      {query.data && route === 'settings' && <Settings/>}
+      {query.data && route === 'settings' && <Settings data={query.data} profileId={profileId} onSelect={(id) => { setProfileId(id); localStorage.setItem('study-llm-profile', id) }}/>}
       {query.data && route === 'diagnostics' && <Diagnostics data={query.data} refetch={() => void query.refetch()} fetching={query.isFetching}/>}
     </div></main>
     <nav className="bottom-nav" aria-label="移动端导航">{routes.slice(0, 5).map(([value, label, icon]) => <a href={`#/${value}`} className={route === value ? 'active' : ''} key={value}><span>{icon}</span>{label.slice(0, 2)}</a>)}</nav>
