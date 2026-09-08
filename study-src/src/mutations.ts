@@ -3,7 +3,7 @@ import type { Assessment } from './model'
 export type MutationReceipt = {
   operation_id: string
   attempt_id?: string
-  pr_url: string
+  pr_url?: string
   status: 'submitted' | 'merged' | 'failed'
 }
 
@@ -11,6 +11,24 @@ const configuredBase = (import.meta.env.VITE_STUDY_BFF_URL as string | undefined
 
 export function hasAuthenticatedBackend(): boolean {
   return Boolean(configuredBase)
+}
+
+export function backendLoginUrl(): string | undefined {
+  return configuredBase ? `${configuredBase}/oauth/start` : undefined
+}
+
+export async function loadSession(): Promise<{ authenticated: boolean; login?: string; expires_in_seconds?: number }> {
+  if (!configuredBase) return { authenticated: false }
+  try { return await request('/v1/session') } catch { return { authenticated: false } }
+}
+
+export async function logout(): Promise<void> {
+  await request('/v1/logout', { method: 'POST', body: '{}' })
+}
+
+export function attemptDiffPreview(assessment: Assessment, answers: Record<string, string>, sourceCommit: string): string {
+  const rows = assessment.questions.map(({ question_id }) => `+ ${question_id}: [REDACTED ${answers[question_id]?.trim().length ?? 0} chars]`).join('\n')
+  return `--- a/生成/学习仪表盘/assessments/${assessment.assessment_id}.assessment.json\n+++ b/生成/学习仪表盘/assessments/${assessment.assessment_id}.assessment.json\n@@ attempts @@\n+ source_type: web\n+ base_commit: ${sourceCommit}\n${rows}`
 }
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
@@ -50,10 +68,12 @@ export async function triggerScore(
   attemptId: string,
   profileId: string,
   sourceCommit: string,
+  reviewPolicy: string,
+  forceRescore = false,
 ): Promise<MutationReceipt> {
   return request(`/v1/assessments/${encodeURIComponent(assessment.record_id)}/attempts/${encodeURIComponent(attemptId)}/scores`, {
     method: 'POST',
-    body: JSON.stringify({ llm_profile_id: profileId, base_commit: sourceCommit }),
+    body: JSON.stringify({ assessment_id: assessment.assessment_id, llm_profile_id: profileId, review_policy: reviewPolicy, base_commit: sourceCommit, force_rescore: forceRescore }),
   })
 }
 
@@ -66,6 +86,14 @@ export async function selectScore(
   if (!attemptId) throw new Error('评分结果没有对应答卷')
   return request(`/v1/assessments/${encodeURIComponent(assessment.record_id)}/attempts/${encodeURIComponent(attemptId)}/score-selection`, {
     method: 'POST',
-    body: JSON.stringify({ selected_score_run_id: scoreRunId, base_commit: sourceCommit }),
+    body: JSON.stringify({ assessment_id: assessment.assessment_id, selected_score_run_id: scoreRunId, expected_selected_score_run_id: assessment.selected_score_run_id, base_commit: sourceCommit }),
   })
+}
+
+export async function reviewScore(assessment: Assessment, scoreRunId: string, decision: string, reason: string, sourceCommit: string): Promise<MutationReceipt> {
+  return request(`/v1/assessments/${encodeURIComponent(assessment.record_id)}/scores/${encodeURIComponent(scoreRunId)}/review`, { method: 'POST', body: JSON.stringify({ assessment_id: assessment.assessment_id, decision, reason, base_commit: sourceCommit }) })
+}
+
+export async function decideCycle(assessment: Assessment, decision: string, reason: string, sourceCommit: string): Promise<MutationReceipt> {
+  return request(`/v1/assessments/${encodeURIComponent(assessment.record_id)}/cycle-decision`, { method: 'POST', body: JSON.stringify({ assessment_id: assessment.assessment_id, decision, reason, base_commit: sourceCommit }) })
 }

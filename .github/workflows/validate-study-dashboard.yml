@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "study-src/**"
+      - "api/study/**"
       - ".github/workflows/validate-study-dashboard.yml"
   workflow_dispatch:
 
@@ -25,7 +26,12 @@ jobs:
           cache-dependency-path: study-src/package-lock.json
       - run: npm ci
       - run: npm test
+      - run: npm run test:bff
       - run: npm run build
+      - name: Validate BFF syntax
+        run: |
+          node --check '../api/study/[...path].js'
+          node --check ../api/study/_lib.js
       - name: Enforce public Pages privacy boundary
         run: |
           test -f ../study/index.html

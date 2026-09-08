@@ -1,8 +1,116 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "source_commit": "0123456789abcdef0123456789abcdef01234567",
   "generator_version": "0.1.0",
   "generated_at": "2026-09-01T00:00:00Z",
+  "llm_profiles": [
+    {
+      "profile_id": "LLM-PROFILE-DEMO-001",
+      "profile_version": "1.1.0",
+      "provider": "demo-provider",
+      "exact_model": "demo-model-2026-08",
+      "endpoint": "https://example.invalid/v1/responses",
+      "secret_ref": "DEMO_DISABLED_SECRET",
+      "temperature": 0,
+      "prompt_version": "demo-score.v1",
+      "prompt_path": "配置/学习仪表盘/prompts/demo-score.v1.txt",
+      "rubric_version": "demo-rubric.v1",
+      "rubric_path": "配置/学习仪表盘/rubrics/demo-rubric.v1.json",
+      "score_schema_version": "1.0.0",
+      "review_policy": "review_required",
+      "enabled": false,
+      "description": "公开脱敏 fixture，仅用于展示，不可触发真实评分。"
+    }
+  ],
+  "evidence_coverage": [
+    {
+      "project_id": "PROJECT-DEMO-KOTLIN",
+      "covered_items": 2,
+      "total_items": 2,
+      "percent": 100,
+      "gaps": []
+    }
+  ],
+  "audit_events": [
+    {
+      "audit_event_id": "AUDIT-DEMO-ATTEMPT-001",
+      "operation_id": "OP-DEMO-CODEX-001",
+      "operation": "submit_answer",
+      "source_type": "codex",
+      "source_locator": "codex://demo/task/1",
+      "actor_id": "learner-demo",
+      "input_artifact_ids": ["QUESTIONSET-DEMO-KOTLIN-CYCLE-2-v1"],
+      "output_artifact_ids": ["ATTEMPT-DEMO-CODEX-001"],
+      "source_commit": "0123456789abcdef0123456789abcdef01234567",
+      "status": "succeeded",
+      "created_at": "2026-08-24T10:00:00Z"
+    },
+    {
+      "audit_event_id": "AUDIT-DEMO-SCORE-FAILED",
+      "operation_id": "OP-DEMO-SCORE-FAILED",
+      "operation": "score",
+      "source_type": "codex",
+      "source_locator": "codex://demo/task/1/score/failed",
+      "actor_id": "learner-demo",
+      "input_artifact_ids": ["ATTEMPT-DEMO-CODEX-001"],
+      "output_artifact_ids": ["SCORE-DEMO-CODEX-FAILED"],
+      "source_commit": "0123456789abcdef0123456789abcdef01234567",
+      "status": "failed",
+      "created_at": "2026-08-24T10:02:00Z"
+    },
+    {
+      "audit_event_id": "AUDIT-DEMO-ATTEMPT-002",
+      "operation_id": "OP-DEMO-WEB-001",
+      "operation": "submit_answer",
+      "source_type": "web",
+      "source_locator": "web://demo/session/2",
+      "actor_id": "learner-demo",
+      "input_artifact_ids": ["QUESTIONSET-DEMO-KOTLIN-CYCLE-2-v1"],
+      "output_artifact_ids": ["ATTEMPT-DEMO-WEB-001"],
+      "source_commit": "0123456789abcdef0123456789abcdef01234567",
+      "status": "succeeded",
+      "created_at": "2026-09-01T09:30:00Z"
+    },
+    {
+      "audit_event_id": "AUDIT-DEMO-SCORE-001",
+      "operation_id": "OP-DEMO-SCORE-001",
+      "operation": "score",
+      "source_type": "web",
+      "source_locator": "web://demo/session/2/score/1",
+      "actor_id": "learner-demo",
+      "input_artifact_ids": ["ATTEMPT-DEMO-WEB-001"],
+      "output_artifact_ids": ["SCORE-DEMO-WEB-001"],
+      "source_commit": "0123456789abcdef0123456789abcdef01234567",
+      "status": "succeeded",
+      "created_at": "2026-09-01T09:32:00Z"
+    },
+    {
+      "audit_event_id": "AUDIT-DEMO-REVIEW-001",
+      "operation_id": "OP-DEMO-REVIEW-001",
+      "operation": "review",
+      "source_type": "android",
+      "source_locator": "android://demo/review/1",
+      "actor_id": "learner-demo",
+      "input_artifact_ids": ["SCORE-DEMO-WEB-001"],
+      "output_artifact_ids": ["REVIEW-DEMO-001"],
+      "source_commit": "0123456789abcdef0123456789abcdef01234567",
+      "status": "succeeded",
+      "created_at": "2026-09-01T09:40:00Z"
+    },
+    {
+      "audit_event_id": "AUDIT-DEMO-CYCLE-002",
+      "operation_id": "OP-DEMO-CYCLE-002",
+      "operation": "decide_cycle",
+      "source_type": "web",
+      "source_locator": "web://demo/session/2/cycle",
+      "actor_id": "learner-demo",
+      "input_artifact_ids": ["SCORE-DEMO-WEB-001", "REVIEW-DEMO-001"],
+      "output_artifact_ids": ["ASSESSMENT-DEMO-CYCLE-2:cycle-decision"],
+      "source_commit": "0123456789abcdef0123456789abcdef01234567",
+      "status": "succeeded",
+      "created_at": "2026-09-01T09:45:00Z"
+    }
+  ],
   "projects": [
     {
       "project_id": "PROJECT-DEMO-KOTLIN",
@@ -73,6 +181,28 @@
       "record_id": "RECORD-DEMO-CYCLE-2-ASSESSMENT",
       "project_id": "PROJECT-DEMO-KOTLIN",
       "plan_id": "PLAN-DEMO-CYCLE-2",
+      "title": "Kotlin 协程周期测试",
+      "question_set_id": "QUESTIONSET-DEMO-KOTLIN-CYCLE-2-v1",
+      "questions": [
+        {
+          "question_id": "Q-001",
+          "type": "代码阅读",
+          "possible": 50,
+          "prompt": "说明协程取消时的资源清理边界。",
+          "focus": "结构化并发与取消",
+          "acceptance_criteria": "识别父子协程取消与资源释放责任。",
+          "source": { "path": "fixtures/demo/周期测试.md", "line": 20 }
+        },
+        {
+          "question_id": "Q-002",
+          "type": "异常分析",
+          "possible": 50,
+          "prompt": "分析多个子协程失败时的异常传播。",
+          "focus": "异常传播与聚合",
+          "acceptance_criteria": "说明首个异常和后续异常的处理边界。",
+          "source": { "path": "fixtures/demo/周期测试.md", "line": 21 }
+        }
+      ],
       "kind": "periodic",
       "cycle_index": 2,
       "score_status": "scored",
@@ -91,7 +221,8 @@
           "answer_template_version": "1.0.0",
           "answer_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
           "input_snapshot_id": "SNAPSHOT-DEMO-001",
-          "operation_id": "OP-DEMO-CODEX-001"
+          "operation_id": "OP-DEMO-CODEX-001",
+          "audit_event_id": "AUDIT-DEMO-ATTEMPT-001"
         },
         {
           "attempt_id": "ATTEMPT-DEMO-WEB-001",
@@ -104,20 +235,30 @@
           "answer_template_version": "1.0.0",
           "answer_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
           "input_snapshot_id": "SNAPSHOT-DEMO-002",
-          "operation_id": "OP-DEMO-WEB-001"
+          "operation_id": "OP-DEMO-WEB-001",
+          "audit_event_id": "AUDIT-DEMO-ATTEMPT-002"
         }
       ],
       "score_runs": [
         {
           "score_run_id": "SCORE-DEMO-WEB-001",
+          "generation_run_id": "RUN-DEMO-WEB-001",
           "attempt_id": "ATTEMPT-DEMO-WEB-001",
           "answer_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
           "status": "succeeded",
+          "scoring_method": "llm",
           "provider": "demo-provider",
           "exact_model": "demo-model-2026-08",
-          "score_key": "demo-profile-v1:bbbbbbbb",
+          "llm_profile_id": "LLM-PROFILE-DEMO-001",
+          "profile_version": "1.1.0",
+          "config_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+          "input_hash": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+          "prompt_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          "rubric_hash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+          "score_key": "9999999999999999999999999999999999999999999999999999999999999999",
           "total": 82,
           "possible": 100,
+          "level": "independent",
           "confidence": 0.87,
           "breakdown": [
             { "dimension": "正确性", "possible": 40, "awarded": 34, "reason": "关键取消路径判断正确。" },
@@ -125,7 +266,58 @@
             { "dimension": "工程质量", "possible": 25, "awarded": 19, "reason": "异常覆盖仍可补充。" },
             { "dimension": "复盘", "possible": 10, "awarded": 8, "reason": "给出了下一轮验证点。" }
           ],
+          "questions": [
+            {
+              "question_id": "Q-001",
+              "possible": 50,
+              "awarded": 42,
+              "deductions": [
+                { "code": "missing-boundary-case", "points": 8, "reason": "没有覆盖父协程取消后的资源清理边界。" }
+              ],
+              "evidence_refs": ["fixtures/demo/周期测试.md#Q-001"]
+            },
+            {
+              "question_id": "Q-002",
+              "possible": 50,
+              "awarded": 40,
+              "deductions": [
+                { "code": "partial-exception-analysis", "points": 10, "reason": "异常聚合顺序说明不完整。" }
+              ],
+              "evidence_refs": ["fixtures/demo/周期测试.md#Q-002"]
+            }
+          ],
+          "unscored_items": [],
+          "source_commit": "0123456789abcdef0123456789abcdef01234567",
+          "source_type": "web",
+          "source_locator": "web://demo/session/2/score/1",
+          "review_policy": "review_required",
+          "audit_event_id": "AUDIT-DEMO-SCORE-001",
           "created_at": "2026-09-01T09:32:00Z"
+        },
+        {
+          "score_run_id": "SCORE-DEMO-CODEX-FAILED",
+          "generation_run_id": "RUN-DEMO-CODEX-FAILED",
+          "attempt_id": "ATTEMPT-DEMO-CODEX-001",
+          "answer_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "status": "failed",
+          "scoring_method": "llm",
+          "provider": "demo-provider",
+          "exact_model": "demo-model-2026-08",
+          "llm_profile_id": "LLM-PROFILE-DEMO-001",
+          "profile_version": "1.1.0",
+          "config_hash": "7777777777777777777777777777777777777777777777777777777777777777",
+          "input_hash": "6666666666666666666666666666666666666666666666666666666666666666",
+          "prompt_hash": "5555555555555555555555555555555555555555555555555555555555555555",
+          "rubric_hash": "4444444444444444444444444444444444444444444444444444444444444444",
+          "score_key": "3333333333333333333333333333333333333333333333333333333333333333",
+          "source_commit": "0123456789abcdef0123456789abcdef01234567",
+          "source_type": "codex",
+          "source_locator": "codex://demo/task/1/score/failed",
+          "review_policy": "review_optional",
+          "audit_event_id": "AUDIT-DEMO-SCORE-FAILED",
+          "error_code": "provider_timeout",
+          "error_message": "演示：模型调用超时，未产生分数。",
+          "created_at": "2026-08-24T10:02:00Z"
         }
       ],
       "review_decisions": [
