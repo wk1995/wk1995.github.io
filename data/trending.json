@@ -1,103 +1,103 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-09-08T05:54:53.921153+00:00",
+  "generated_at": "2026-09-09T05:56:25.455674+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "heygen-com/hyperframes",
-      "owner": "heygen-com",
-      "name": "hyperframes",
-      "url": "https://github.com/heygen-com/hyperframes",
-      "description": "Write HTML. Render video. Built for agents.",
+      "repo": "ayghri/i-have-adhd",
+      "owner": "ayghri",
+      "name": "i-have-adhd",
+      "url": "https://github.com/ayghri/i-have-adhd",
+      "description": "A skill to stop your coding agent from burying the answer. ADHD-friendly output.",
       "descriptions": {
-        "zh": "编写 HTML。渲染视频。专为代理商打造。",
-        "en": "Write HTML. Render video. Built for agents."
+        "zh": "A skill to stop your coding agent from burying the answer. ADHD-friendly output.",
+        "en": "A skill to stop your coding agent from burying the answer. ADHD-friendly output."
       },
-      "language": "TypeScript",
-      "stars_total": 46567,
-      "forks_total": 4345,
-      "stars_today": 474
+      "language": "Python",
+      "stars_total": 31389,
+      "forks_total": 1893,
+      "stars_today": 656
     },
     {
       "rank": 2,
-      "repo": "microsoft/markitdown",
-      "owner": "microsoft",
-      "name": "markitdown",
-      "url": "https://github.com/microsoft/markitdown",
-      "description": "Python tool for converting files and office documents to Markdown.",
+      "repo": "cathrynlavery/diagram-design",
+      "owner": "cathrynlavery",
+      "name": "diagram-design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "description": "38 editorial diagram types for Claude Code, Codex, and Pi. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
       "descriptions": {
-        "zh": "用于将文件和 Office 文档转换为 Markdown 的 Python 工具。",
-        "en": "Python tool for converting files and office documents to Markdown."
+        "zh": "38 editorial diagram types for Claude Code, Codex, and Pi. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+        "en": "38 editorial diagram types for Claude Code, Codex, and Pi. Self-contained HTML + SVG. No shadows. No Mermaid slop."
       },
-      "language": "Python",
-      "stars_total": 180748,
-      "forks_total": 13281,
-      "stars_today": 886
+      "language": "HTML",
+      "stars_total": 35353,
+      "forks_total": 2222,
+      "stars_today": 710
     },
     {
       "rank": 3,
-      "repo": "mksglu/context-mode",
-      "owner": "mksglu",
-      "name": "context-mode",
-      "url": "https://github.com/mksglu/context-mode",
-      "description": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks.",
+      "repo": "openai/skills",
+      "owner": "openai",
+      "name": "skills",
+      "url": "https://github.com/openai/skills",
+      "description": "Skills Catalog for Codex",
       "descriptions": {
-        "zh": "AI 编码代理的上下文窗口优化。沙箱工具输出（减少 98%）、保留会话内存，并通过 MCP + 挂钩强制跨 17 个平台进行路由。",
-        "en": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks."
+        "zh": "Skills Catalog for Codex",
+        "en": "Skills Catalog for Codex"
       },
-      "language": "TypeScript",
-      "stars_total": 21018,
-      "forks_total": 1524,
-      "stars_today": 96
+      "language": "Python",
+      "stars_total": 26621,
+      "forks_total": 1785,
+      "stars_today": 490
     },
     {
       "rank": 4,
-      "repo": "jo-inc/camofox-browser",
-      "owner": "jo-inc",
-      "name": "camofox-browser",
-      "url": "https://github.com/jo-inc/camofox-browser",
-      "description": "Stealth headless browser for AI agents — bypass Cloudflare, bot detection, and anti-scraping. Drop-in Puppeteer/Playwright replacement.",
-      "descriptions": {
-        "zh": "适用于 AI 代理的隐形无头浏览器 — 绕过 Cloudflare、机器人检测和反抓取。替代木偶师/剧作家。",
-        "en": "Stealth headless browser for AI agents — bypass Cloudflare, bot detection, and anti-scraping. Drop-in Puppeteer/Playwright replacement."
-      },
-      "language": "JavaScript",
-      "stars_total": 9932,
-      "forks_total": 1031,
-      "stars_today": 135
-    },
-    {
-      "rank": 5,
-      "repo": "MoonTechLab/LunaTV",
-      "owner": "MoonTechLab",
-      "name": "LunaTV",
-      "url": "https://github.com/MoonTechLab/LunaTV",
-      "description": "本项目采用 CC BY-NC-SA 协议，禁止任何商业化行为，任何衍生项目必须保留本项目地址并以相同协议开源",
-      "descriptions": {
-        "zh": "本项目采用 CC BY-NC-SA 协议，禁止任何商业化行为，任何衍生项目必须保留本项目地址并以相同协议开源",
-        "en": "This project adopts the CC BY-NC-SA agreement and prohibits any commercialization. Any derivative projects must retain the project address and be open source under the same agreement."
-      },
-      "language": "TypeScript",
-      "stars_total": 9893,
-      "forks_total": 9008,
-      "stars_today": 197
-    },
-    {
-      "rank": 6,
       "repo": "affaan-m/ECC",
       "owner": "affaan-m",
       "name": "ECC",
       "url": "https://github.com/affaan-m/ECC",
       "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
       "descriptions": {
-        "zh": "代理利用性能优化系统。 Claude Code、Codex、Opencode、Cursor 等的技能、直觉、记忆、安全性和研究优先的开发。",
+        "zh": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
         "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
       },
       "language": "JavaScript",
-      "stars_total": 253145,
-      "forks_total": 37973,
-      "stars_today": 1897
+      "stars_total": 254521,
+      "forks_total": 38131,
+      "stars_today": 1427
+    },
+    {
+      "rank": 5,
+      "repo": "heygen-com/hyperframes",
+      "owner": "heygen-com",
+      "name": "hyperframes",
+      "url": "https://github.com/heygen-com/hyperframes",
+      "description": "Write HTML. Render video. Built for agents.",
+      "descriptions": {
+        "zh": "Write HTML. Render video. Built for agents.",
+        "en": "Write HTML. Render video. Built for agents."
+      },
+      "language": "TypeScript",
+      "stars_total": 47966,
+      "forks_total": 4406,
+      "stars_today": 2627
+    },
+    {
+      "rank": 6,
+      "repo": "coreyhaines31/marketingskills",
+      "owner": "coreyhaines31",
+      "name": "marketingskills",
+      "url": "https://github.com/coreyhaines31/marketingskills",
+      "description": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering.",
+      "descriptions": {
+        "zh": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering.",
+        "en": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering."
+      },
+      "language": "JavaScript",
+      "stars_total": 48962,
+      "forks_total": 7502,
+      "stars_today": 666
     }
   ]
 }
