@@ -1,5 +1,8 @@
-import { useQuery } from '@tanstack/react-query'
-import { useEffect, useMemo, useState } from 'react'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useEffect, useRef, useState } from 'react'
+import { useAssessmentDraft } from './drafts'
+import { Changes, LocalNotes, PlanDetail, TaskDetail } from './DetailPages'
+import { parseRoute, routeId } from './routes'
 import { assertCompatibleReadModel, type Assessment, type ReadModel } from './model'
 import { attemptDiffPreview, backendLoginUrl, decideCycle, hasAuthenticatedBackend, loadPrivateReadModel, loadSession, logout, reviewScore, selectScore, submitAttempt, triggerScore } from './mutations'
 
@@ -11,13 +14,13 @@ const routes = [
   ['progress', '学习进度', '↗'],
   ['settings', '评分设置', '⚙'],
   ['diagnostics', '同步诊断', '↻'],
+  ['changes', '变更审阅', '⇄'],
 ] as const
 
-type Route = (typeof routes)[number][0]
+type Route = string
 
 function currentRoute(): Route {
-  const value = window.location.hash.replace(/^#\/?/, '') as Route
-  return routes.some(([route]) => route === value) ? value : 'dashboard'
+  return parseRoute(window.location.hash)
 }
 
 async function loadReadModel(): Promise<ReadModel> {
@@ -100,23 +103,29 @@ function Projects({ data }: { data: ReadModel }) {
 }
 
 function Plans({ data }: { data: ReadModel }) {
-  return <Page title="计划与任务" subtitle="执行状态来自计划文件；完成任务不会自动提升掌握度。">{data.plans.map((plan) => <section className="card plan-card" key={plan.plan_id}><div className="inline-title"><div><p className="eyebrow">{plan.priority} · {plan.status}</p><h2>{plan.title}</h2></div><span className="mono">{plan.plan_id}</span></div><div className="task-list">{data.tasks.filter((task) => task.plan_id === plan.plan_id).map((task) => <div className="task" key={`${plan.plan_id}-${task.task_id}`}><span className={`check ${task.status.toLowerCase() === 'done' ? 'checked' : ''}`}>{task.status.toLowerCase() === 'done' ? '✓' : ''}</span><div><strong>{task.title}</strong><p>{task.task_id} · {task.kind}</p></div><StatusPill tone={task.status.toLowerCase() === 'in progress' ? 'warn' : 'neutral'}>{task.status}</StatusPill></div>)}</div></section>)}</Page>
+  return <Page title="计划与任务" subtitle="执行状态来自计划文件；完成任务不会自动提升掌握度。">{data.plans.map((plan) => <section className="card plan-card" key={plan.plan_id}><div className="inline-title"><div><p className="eyebrow">{plan.priority} · {plan.status}</p><h2><a href={`#/plans/${encodeURIComponent(plan.plan_id)}`}>{plan.title}</a></h2></div><span className="mono">{plan.plan_id}</span></div><div className="task-list">{data.tasks.filter((task) => task.plan_id === plan.plan_id).map((task) => <div className="task" key={`${plan.plan_id}-${task.task_id}`}><span className={`check ${task.status.toLowerCase() === 'done' ? 'checked' : ''}`}>{task.status.toLowerCase() === 'done' ? '✓' : ''}</span><div><strong>{task.title}</strong><p>{task.task_id} · {task.kind}</p></div><StatusPill tone={task.status.toLowerCase() === 'in progress' ? 'warn' : 'neutral'}>{task.status}</StatusPill></div>)}</div></section>)}</Page>
 }
 
 function AssessmentMutationPanel({ assessment, data, profileId, reviewPolicy }: { assessment: Assessment; data: ReadModel; profileId?: string; reviewPolicy: string }) {
-  const [answers, setAnswers] = useState<Record<string, string>>({})
+  const session = useQuery({ queryKey: ['study-session'], queryFn: loadSession })
+  const store = useAssessmentDraft(`${import.meta.env.VITE_STUDY_BFF_URL ?? 'demo'}:${session.data?.login ?? 'signed-out'}:${assessment.assessment_id}:${assessment.question_set_id}`)
+  const answers = store.draft.answers
   const [preview, setPreview] = useState(false)
   const [working, setWorking] = useState(false)
   const [message, setMessage] = useState('')
   const [reason, setReason] = useState('')
-  const canWrite = hasAuthenticatedBackend()
+  const [confirmation, setConfirmation] = useState<{ text: string; operation: () => Promise<import('./mutations').MutationReceipt> } | null>(null)
+  const dialog = useRef<HTMLDialogElement>(null)
+  useEffect(() => { if (confirmation) dialog.current?.showModal() }, [confirmation])
+  const canWrite = hasAuthenticatedBackend() && session.data?.authenticated === true
   const complete = assessment.questions.every((question) => answers[question.question_id]?.trim())
   const selectedScore = assessment.score_runs.find((item) => item.score_run_id === assessment.selected_score_run_id)
   const selectedReview = assessment.review_decisions.filter((item) => item.score_run_id === assessment.selected_score_run_id).at(-1)
-  const run = async (operation: () => Promise<{ status: string; pr_url?: string; attempt_id?: string }>) => {
+  const execute = async (operation: () => Promise<import('./mutations').MutationReceipt>) => {
     setWorking(true)
     try {
       const receipt = await operation()
+      if (receipt.attempt_id) await store.recordReceipt(receipt)
       setMessage(`${receipt.status}${receipt.attempt_id ? ` · ${receipt.attempt_id}` : ''}${receipt.pr_url ? ` · PR ${receipt.pr_url}` : ' · workflow 已触发'}`)
     } catch (error) {
       setMessage(error instanceof Error ? error.message : '操作失败')
@@ -124,17 +133,24 @@ function AssessmentMutationPanel({ assessment, data, profileId, reviewPolicy }: 
       setWorking(false)
     }
   }
+  const run = async (operation: () => Promise<import('./mutations').MutationReceipt>, diff?: string) => {
+    if (diff) { setConfirmation({ operation, text: `base_commit: ${data.source_commit}\n${diff}` }); return }
+    await execute(operation)
+  }
   return <section className="mutation-panel">
+    {confirmation && <dialog ref={dialog} aria-label="审阅变更" className="card detail-card" onCancel={() => setConfirmation(null)}><h3>审阅变更</h3><pre>{confirmation.text}</pre><button onClick={() => { const operation = confirmation.operation; setConfirmation(null); void execute(operation) }}>确认提交</button><button onClick={() => setConfirmation(null)}>取消</button></dialog>}
     {!canWrite && <p>公开演示构建为只读；配置 <code>VITE_STUDY_BFF_URL</code> 后才连接受认证写入服务。</p>}
-    {canWrite && assessment.attempts.length === 0 && <>
+    {canWrite && <>
+      {store.error && <p role="alert">{store.error}</p>}
+      {store.draft.receipt && <p>答卷 {store.draft.receipt.attempt_id} · {store.draft.receipt.status} · <a href={store.draft.receipt.pr_url}>查看归档 PR</a> <button onClick={() => { void store.restart(); setPreview(false) }}>开始新答卷</button></p>}
       <h3>提交答卷</h3>
-      {assessment.questions.map((question) => <label key={question.question_id}><strong>{question.question_id} · {question.prompt}</strong><textarea value={answers[question.question_id] ?? ''} onChange={(event) => { setPreview(false); setAnswers((value) => ({ ...value, [question.question_id]: event.target.value })) }}/></label>)}
+      {assessment.questions.map((question) => <label key={question.question_id}><strong>{question.question_id} · {question.prompt}</strong><textarea disabled={!store.ready || working || Boolean(store.draft.receipt)} value={answers[question.question_id] ?? ''} onChange={(event) => { setPreview(false); store.changeAnswer(question.question_id, event.target.value) }}/></label>)}
       {preview && <pre>{attemptDiffPreview(assessment, answers, data.source_commit)}</pre>}
-      <button className="button" disabled={!complete || working} onClick={() => preview ? void run(() => submitAttempt(assessment, answers, data.source_commit)) : setPreview(true)}>{preview ? '确认创建 PR' : '预览文件变更'}</button>
+      <button className="button" disabled={!store.ready || !complete || working || Boolean(store.draft.receipt)} onClick={() => preview ? void run(() => submitAttempt(assessment, answers, data.source_commit, store.draft.token, store.draft.submittedAt)) : setPreview(true)}>{preview ? '确认创建 PR' : '预览文件变更'}</button>
     </>}
     {canWrite && assessment.attempts.length > 0 && !assessment.selected_score_run_id && <button className="button" disabled={!profileId || working} onClick={() => void run(() => triggerScore(assessment, assessment.attempts.at(-1)!.attempt_id, profileId!, data.source_commit, reviewPolicy))}>触发版本化 LLM 评分</button>}
-    {canWrite && assessment.score_runs.filter((score) => score.status === 'succeeded' && score.score_run_id !== assessment.selected_score_run_id).map((score) => <button className="button secondary" disabled={working} key={score.score_run_id} onClick={() => void run(() => selectScore(assessment, score.score_run_id, data.source_commit))}>选择 {score.exact_model} · {score.score_run_id}</button>)}
-    {canWrite && assessment.selected_score_run_id && <div className="decision-actions"><label><strong>审核/周期决定理由</strong><textarea value={reason} onChange={(event) => setReason(event.target.value)} /></label><div className="button-row"><button className="button secondary" disabled={!reason.trim() || working} onClick={() => void run(() => reviewScore(assessment, assessment.selected_score_run_id!, 'approved', reason, data.source_commit))}>审核通过</button><button className="button secondary" disabled={!reason.trim() || working || selectedScore?.review_policy !== 'review_optional'} onClick={() => void run(() => reviewScore(assessment, assessment.selected_score_run_id!, 'skipped', reason, data.source_commit))}>明确跳过</button><button className="button secondary" disabled={!reason.trim() || working} onClick={() => void run(() => reviewScore(assessment, assessment.selected_score_run_id!, 'rejected', reason, data.source_commit))}>驳回</button>{profileId && selectedScore && selectedReview?.decision === 'rejected' && <button className="button secondary" disabled={working} onClick={() => void run(() => triggerScore(assessment, selectedScore.attempt_id, profileId, data.source_commit, reviewPolicy, true))}>强制重新评分</button>}</div><div className="button-row"><button className="button" disabled={!reason.trim() || working} onClick={() => void run(() => decideCycle(assessment, 'continue', reason, data.source_commit))}>继续下一周期</button><button className="button secondary" disabled={!reason.trim() || working} onClick={() => void run(() => decideCycle(assessment, 'stop_by_user', reason, data.source_commit))}>停止学习</button></div></div>}
+    {canWrite && assessment.score_runs.filter((score) => score.status === 'succeeded' && score.score_run_id !== assessment.selected_score_run_id).map((score) => <button className="button secondary" disabled={working} key={score.score_run_id} onClick={() => void run(() => selectScore(assessment, score.score_run_id, data.source_commit), `- selected_score_run_id: ${assessment.selected_score_run_id}\n+ selected_score_run_id: ${score.score_run_id}`)}>选择 {score.exact_model} · {score.score_run_id}</button>)}
+    {canWrite && assessment.selected_score_run_id && <div className="decision-actions"><label><strong>审核/周期决定理由</strong><textarea value={reason} onChange={(event) => setReason(event.target.value)} /></label><div className="button-row"><button className="button secondary" disabled={!reason.trim() || working} onClick={() => void run(() => reviewScore(assessment, assessment.selected_score_run_id!, 'approved', reason, data.source_commit), `+ 审核：approved\n+ ScoreRun：${assessment.selected_score_run_id}\n+ 理由：${reason}`)}>审核通过</button><button className="button secondary" disabled={!reason.trim() || working || selectedScore?.review_policy !== 'review_optional'} onClick={() => void run(() => reviewScore(assessment, assessment.selected_score_run_id!, 'skipped', reason, data.source_commit), `+ 审核：skipped\n+ ScoreRun：${assessment.selected_score_run_id}\n+ 理由：${reason}`)}>明确跳过</button><button className="button secondary" disabled={!reason.trim() || working} onClick={() => void run(() => reviewScore(assessment, assessment.selected_score_run_id!, 'rejected', reason, data.source_commit), `+ 审核：rejected\n+ ScoreRun：${assessment.selected_score_run_id}\n+ 理由：${reason}`)}>驳回</button>{profileId && selectedScore && selectedReview?.decision === 'rejected' && <button className="button secondary" disabled={working} onClick={() => void run(() => triggerScore(assessment, selectedScore.attempt_id, profileId, data.source_commit, reviewPolicy, true))}>强制重新评分</button>}</div><div className="button-row"><button className="button" disabled={!reason.trim() || working} onClick={() => void run(() => decideCycle(assessment, 'continue', reason, data.source_commit), `- 周期结论：${assessment.cycle_decision?.decision ?? 'pending'}\n+ 周期结论：continue\n+ 理由：${reason}`)}>继续下一周期</button><button className="button secondary" disabled={!reason.trim() || working} onClick={() => void run(() => decideCycle(assessment, 'stop_by_user', reason, data.source_commit), `- 周期结论：${assessment.cycle_decision?.decision ?? 'pending'}\n+ 周期结论：stop_by_user\n+ 理由：${reason}`)}>停止学习</button></div></div>}
     {message && <p role="status">{message}</p>}
   </section>
 }
@@ -149,7 +165,8 @@ function ProgressPage({ data }: { data: ReadModel }) {
 
 function Settings({ data, profileId, reviewPolicy, onSelect, onSelectReviewPolicy, session, onLogout }: { data: ReadModel; profileId?: string; reviewPolicy: string; onSelect: (id: string) => void; onSelectReviewPolicy: (policy: string) => void; session?: { authenticated: boolean; login?: string }; onLogout: () => void }) {
   const profiles = data.llm_profiles ?? []
-  return <Page title="评分设置" subtitle="Web 只保存 Profile ID 与审核策略；OAuth Token 使用短期 HttpOnly Cookie，LLM 密钥由 GitHub Actions Secret 保存。"><article className="card diagnostic-card"><div><h2>GitHub 私有仓库连接</h2><p>{session?.authenticated ? `已连接 ${session.login}` : '尚未建立 BFF 短期会话'}</p></div>{session?.authenticated ? <button className="button secondary" onClick={onLogout}>退出</button> : backendLoginUrl() ? <a className="button" href={backendLoginUrl()}>使用 GitHub 登录</a> : <span>当前构建未配置 BFF</span>}</article><article className="card review-policy-card"><h2>审核策略</h2><div className="button-row">{[['review_required', '必须审核'], ['review_optional', '允许明确跳过'], ['review_not_required', '无需审核']].map(([value, label]) => <button className={`button ${reviewPolicy === value ? '' : 'secondary'}`} key={value} onClick={() => onSelectReviewPolicy(value)}>{label}</button>)}</div><p>此选择独立于 Profile 默认值，并会作为本次评分的归档策略。</p></article><div className="list-grid">{profiles.map((profile) => <button className={`card settings-card ${profile.profile_id === profileId ? 'selected' : ''}`} key={profile.profile_id} onClick={() => onSelect(profile.profile_id)}><div><p className="card-label">LLM Profile v{profile.profile_version}</p><h2>{profile.exact_model}</h2><p>{profile.description}</p></div><dl><div><dt>Provider</dt><dd>{profile.provider}</dd></div><div><dt>Prompt / Rubric</dt><dd>{profile.prompt_version} / {profile.rubric_version}</dd></div><div><dt>Profile 默认审核策略</dt><dd>{profile.review_policy}</dd></div><div><dt>Secret 引用</dt><dd>{profile.secret_ref}</dd></div></dl></button>)}</div>{profiles.length === 0 && <Empty title="没有 LLM Profile" detail="请刷新由私人仓库生成的 read model。"/>}</Page>
+  const noteLinks = <p><a href="#/ideas">Idea 记录</a> · <a href="#/crashes">Crash 记录</a> · <a href="#/bugs">Bug 登记</a></p>
+  return <Page title="评分设置" subtitle="Web 只保存 Profile ID 与审核策略；OAuth Token 使用短期 HttpOnly Cookie，LLM 密钥由 GitHub Actions Secret 保存。">{noteLinks}<article className="card diagnostic-card"><div><h2>GitHub 私有仓库连接</h2><p>{session?.authenticated ? `已连接 ${session.login}` : '尚未建立 BFF 短期会话'}</p></div>{session?.authenticated ? <button className="button secondary" onClick={onLogout}>退出</button> : backendLoginUrl() ? <a className="button" href={backendLoginUrl()}>使用 GitHub 登录</a> : <span>当前构建未配置 BFF</span>}</article><article className="card review-policy-card"><h2>审核策略</h2><div className="button-row">{[['review_required', '必须审核'], ['review_optional', '允许明确跳过'], ['review_not_required', '无需审核']].map(([value, label]) => <button className={`button ${reviewPolicy === value ? '' : 'secondary'}`} key={value} onClick={() => onSelectReviewPolicy(value)}>{label}</button>)}</div><p>此选择独立于 Profile 默认值，并会作为本次评分的归档策略。</p></article><div className="list-grid">{profiles.map((profile) => <button className={`card settings-card ${profile.profile_id === profileId ? 'selected' : ''}`} key={profile.profile_id} onClick={() => onSelect(profile.profile_id)}><div><p className="card-label">LLM Profile v{profile.profile_version}</p><h2>{profile.exact_model}</h2><p>{profile.description}</p></div><dl><div><dt>Provider</dt><dd>{profile.provider}</dd></div><div><dt>Prompt / Rubric</dt><dd>{profile.prompt_version} / {profile.rubric_version}</dd></div><div><dt>Profile 默认审核策略</dt><dd>{profile.review_policy}</dd></div><div><dt>Secret 引用</dt><dd>{profile.secret_ref}</dd></div></dl></button>)}</div>{profiles.length === 0 && <Empty title="没有 LLM Profile" detail="请刷新由私人仓库生成的 read model。"/>}</Page>
 }
 
 function Diagnostics({ data, refetch, fetching }: { data: ReadModel; refetch: () => void; fetching: boolean }) {
@@ -163,22 +180,27 @@ function Page({ title, subtitle, children }: { title: string; subtitle: string; 
 
 export function App() {
   const [route, setRoute] = useState<Route>(currentRoute)
-  const query = useQuery({ queryKey: ['read-model'], queryFn: loadReadModel })
   const sessionQuery = useQuery({ queryKey: ['study-session'], queryFn: loadSession })
+  const queryClient = useQueryClient()
+  const query = useQuery({ queryKey: ['read-model', sessionQuery.data?.login ?? 'demo'], queryFn: loadReadModel, enabled: !hasAuthenticatedBackend() || sessionQuery.data?.authenticated === true })
   const [profileId, setProfileId] = useState<string | undefined>(() => localStorage.getItem('study-llm-profile') ?? undefined)
   const [reviewPolicy, setReviewPolicy] = useState(() => localStorage.getItem('study-review-policy') ?? 'review_optional')
   useEffect(() => { const profiles = query.data?.llm_profiles?.filter((item) => item.enabled !== false) ?? []; if (!profiles.some((item) => item.profile_id === profileId) && profiles[0]) { setProfileId(profiles[0].profile_id); localStorage.setItem('study-llm-profile', profiles[0].profile_id) } }, [query.data, profileId])
   useEffect(() => { if (query.data) localStorage.setItem('study-last-successful-sync', new Date().toISOString()) }, [query.data])
   useEffect(() => { const handler = () => setRoute(currentRoute()); window.addEventListener('hashchange', handler); return () => window.removeEventListener('hashchange', handler) }, [])
-  const routeLabel = useMemo(() => routes.find(([value]) => value === route)?.[1] ?? '概览', [route])
   return <div className="app-shell">
-    <aside className="sidebar"><a className="brand" href="#/dashboard" aria-label="Study 首页"><span>S</span><strong>Study</strong></a><nav aria-label="主导航">{routes.map(([value, label, icon]) => <a href={`#/${value}`} className={route === value ? 'active' : ''} key={value}><span aria-hidden="true">{icon}</span>{label}</a>)}</nav><div className="privacy-note"><span>●</span><p><strong>演示模式</strong><br/>仅加载公开脱敏数据</p></div></aside>
-    <main><header className="mobile-header"><a className="brand" href="#/dashboard"><span>S</span><strong>Study</strong></a><span>{routeLabel}</span></header><div className="content">
+    <aside className="sidebar"><a className="brand" href="#/dashboard" aria-label="Study 首页"><span>S</span><strong>Study</strong></a><nav aria-label="主导航">{routes.map(([value, label, icon]) => <a href={`#/${value}`} className={route === value ? 'active' : ''} key={value}><span aria-hidden="true">{icon}</span>{label}</a>)}</nav><div className="privacy-note"><span>●</span><p><strong>{hasAuthenticatedBackend() ? '私有工作区' : '演示模式'}</strong><br/>{hasAuthenticatedBackend() ? '通过授权会话读取' : '仅加载公开脱敏数据'}</p></div></aside>
+    <main><header className="mobile-header"><a className="brand" href="#/dashboard"><span>S</span><strong>Study</strong></a><select aria-label="切换页面" value={route.split('/')[0]} onChange={(event) => { window.location.hash = `/${event.target.value}` }}>{routes.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></header><div className="content">
       {query.isLoading && <section className="loading" aria-live="polite"><span/><p>正在读取学习状态…</p></section>}
+      {hasAuthenticatedBackend() && !sessionQuery.isPending && !sessionQuery.data?.authenticated && <section className="card detail-card"><h1>连接 GitHub</h1><p>登录后读取你的学习项目。</p><a className="button" href={backendLoginUrl()}>使用 GitHub 登录</a></section>}
       {query.isError && <section className="error" role="alert"><h1>无法读取学习状态</h1><p>{query.error.message}</p><div className="button-row"><button className="button" onClick={() => query.refetch()}>重试</button>{backendLoginUrl() && <a className="button secondary" href={backendLoginUrl()}>使用 GitHub 登录</a>}</div></section>}
       {query.data && route === 'dashboard' && <Dashboard data={query.data}/>}
       {query.data && route === 'projects' && <Projects data={query.data}/>}
       {query.data && route === 'plans' && <Plans data={query.data}/>}
+      {query.data && route.startsWith('plans/') && <PlanDetail data={query.data} id={routeId(route)}/>}
+      {query.data && route.startsWith('tasks/') && <TaskDetail data={query.data} id={routeId(route)}/>}
+      {query.data && route === 'changes' && <Changes data={query.data}/>}
+      {['ideas', 'crashes', 'bugs'].includes(route) && <LocalNotes key={route} category={route}/>}
       {query.data && route === 'assessments' && <Assessments data={query.data} profileId={profileId} reviewPolicy={reviewPolicy}/>}
       {query.data && route === 'progress' && <ProgressPage data={query.data}/>}
       {query.data && route === 'settings' && <Settings
@@ -186,7 +208,7 @@ export function App() {
         profileId={profileId}
         reviewPolicy={reviewPolicy}
         session={sessionQuery.data}
-        onLogout={() => { void logout().then(() => { void sessionQuery.refetch(); void query.refetch() }) }}
+        onLogout={() => { void logout().then(() => { queryClient.removeQueries({ queryKey: ['read-model'] }); queryClient.removeQueries({ queryKey: ['study-changes'] }); void sessionQuery.refetch() }) }}
         onSelect={(id) => { setProfileId(id); localStorage.setItem('study-llm-profile', id) }}
         onSelectReviewPolicy={(policy) => { setReviewPolicy(policy); localStorage.setItem('study-review-policy', policy) }}
       />}

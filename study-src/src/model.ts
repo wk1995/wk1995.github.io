@@ -27,6 +27,8 @@ export type Task = {
   title: string
   kind: string
   status: string
+  acceptance_criteria?: string
+  dependencies?: string
   issue_url?: string
   source: Source
 }
@@ -109,9 +111,12 @@ export type LlmProfile = {
 }
 
 export type EvidenceCoverage = { project_id: string; covered_items: number; total_items: number; percent: number; gaps: string[] }
-export type AuditEvent = { audit_event_id: string; operation_id: string; operation: string; source_type: string; source_locator: string; actor_id: string; input_artifact_ids: string[]; output_artifact_ids: string[]; source_commit: string; status: string; reason?: string; created_at: string }
+export type AuditEvent = { audit_event_id: string; operation_id: string; operation: string; source_type: string; source_locator: string; actor_id: string; input_snapshot_id?: string; output_artifact_id?: string | null; input_artifact_ids: string[]; output_artifact_ids: string[]; source_commit: string; status: string; reason?: string; created_at: string }
 
 export type ReadModel = {
+  learning_records?: Array<{ record_id: string; project_id: string; plan_id: string; title: string; record_type: string; source: Source }>
+  generation_runs?: Array<{ generation_run_id: string; score_run_id: string; assessment_id: string; status: string; source: Source }>
+  evidence_refs?: Array<{ evidence_id: string; project_id: string; locator: string; source: Source }>
   schema_version: string
   source_commit: string
   generator_version: string
@@ -149,6 +154,17 @@ export function assertCompatibleReadModel(value: unknown): asserts value is Read
   unique('audit_event_id', model.audit_events!.map((item) => item.audit_event_id))
   const projectIds = new Set(model.projects!.map((item) => item.project_id))
   const planIds = new Set(model.plans!.map((item) => item.plan_id))
+  for (const key of ['learning_records', 'generation_runs', 'evidence_refs'] as const) {
+    model[key] ??= []
+    if (!Array.isArray(model[key])) throw new Error(`${key} 无效`)
+  }
+  unique('record_id', model.learning_records!.map((item) => item.record_id))
+  unique('generation_run_id', model.generation_runs!.map((item) => item.generation_run_id))
+  unique('evidence_id', model.evidence_refs!.map((item) => item.evidence_id))
+  const planProjects = new Map(model.plans!.map((item) => [item.plan_id, item.project_id]))
+  if ([...model.tasks!, ...model.progress!, ...model.assessments!, ...model.learning_records!].some((item) => planProjects.get(item.plan_id) !== item.project_id)) throw new Error('计划与项目归属不一致')
+  if (model.evidence_refs!.some((item) => !projectIds.has(item.project_id))) throw new Error('证据项目关联无效')
+  if (model.generation_runs!.some((run) => !model.assessments!.some((item) => item.assessment_id === run.assessment_id && item.score_runs.some((score) => score.score_run_id === run.score_run_id)))) throw new Error('生成记录关联无效')
   if (model.plans!.some((item) => !projectIds.has(item.project_id)) || model.tasks!.some((item) => !projectIds.has(item.project_id) || !planIds.has(item.plan_id)) || model.assessments!.some((item) => !projectIds.has(item.project_id) || !planIds.has(item.plan_id))) throw new Error('稳定 ID 引用关系无效')
   model.assessments!.forEach((assessment) => {
     unique(`${assessment.assessment_id}:attempt_id`, assessment.attempts.map((item) => item.attempt_id))

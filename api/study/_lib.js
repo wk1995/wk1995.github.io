@@ -38,7 +38,9 @@ function unseal(value) {
 }
 
 function setCookie(res, name, value, maxAge) {
-  const next = `${name}=${encodeURIComponent(value)}; Path=/api/study; HttpOnly; Secure; SameSite=Lax; Max-Age=${maxAge}`;
+  const crossOrigin = process.env.STUDY_BFF_ORIGIN && process.env.STUDY_WEB_ORIGIN && new URL(process.env.STUDY_BFF_ORIGIN).origin !== new URL(process.env.STUDY_WEB_ORIGIN).origin;
+  const sameSite = name === SESSION_COOKIE && crossOrigin ? "None" : "Lax";
+  const next = `${name}=${encodeURIComponent(value)}; Path=/api/study; HttpOnly; Secure; SameSite=${sameSite}; Max-Age=${maxAge}`;
   const existing = res.getHeader("Set-Cookie");
   res.setHeader("Set-Cookie", existing ? [...(Array.isArray(existing) ? existing : [existing]), next] : next);
 }
@@ -67,6 +69,7 @@ function applyCors(req, res) {
 }
 
 async function github(path, token, init = {}) {
+  if (path.startsWith("http") && new URL(path).origin !== API) throw new Error("Invalid GitHub API origin");
   const response = await fetch(path.startsWith("http") ? path : `${API}${path}`, {
     ...init,
     headers: {
@@ -79,8 +82,7 @@ async function github(path, token, init = {}) {
     redirect: "manual",
   });
   if (!response.ok) {
-    const text = await response.text();
-    const error = new Error(`GitHub API ${response.status}: ${text.slice(0, 400)}`);
+    const error = new Error(`GitHub API ${response.status}`);
     error.status = response.status;
     throw error;
   }
@@ -90,6 +92,7 @@ async function github(path, token, init = {}) {
 }
 
 async function downloadGithubArtifact(url, token) {
+  if (new URL(url).origin !== API) throw new Error("Invalid Artifact API origin");
   const initial = await fetch(url, {
     headers: {
       Accept: "application/vnd.github+json",
@@ -104,18 +107,37 @@ async function downloadGithubArtifact(url, token) {
   if (!location || !location.startsWith("https://")) throw new Error("Artifact download redirect is invalid");
   const response = await fetch(location, { redirect: "error" });
   if (!response.ok) throw new Error(`Artifact object download failed: HTTP ${response.status}`);
-  const bytes = Buffer.from(await response.arrayBuffer());
-  if (bytes.length > 6 * 1024 * 1024) throw new Error("Artifact ZIP is too large");
-  return bytes;
+  return readBounded(response, 6 * 1024 * 1024);
+}
+
+async function readBounded(response, limit) {
+  if (Number(response.headers.get("content-length")) > limit) throw new Error("Artifact ZIP is too large");
+  const reader = response.body.getReader();
+  const chunks = [];
+  let size = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      size += value.byteLength;
+      if (size > limit) throw new Error("Artifact ZIP is too large");
+      chunks.push(Buffer.from(value));
+    }
+    return Buffer.concat(chunks, size);
+  } finally { await reader.cancel(); reader.releaseLock(); }
 }
 
 function unzipFirstJson(zip) {
+  if (zip.length > 6 * 1024 * 1024) throw new Error("Artifact ZIP is too large");
   const eocd = zip.lastIndexOf(Buffer.from([0x50, 0x4b, 0x05, 0x06]));
-  if (eocd < 0) throw new Error("Artifact ZIP is invalid");
+  if (eocd < 0 || eocd + 22 > zip.length) throw new Error("Artifact ZIP is invalid");
   const count = zip.readUInt16LE(eocd + 10);
   let offset = zip.readUInt32LE(eocd + 16);
   if (count > 20) throw new Error("Artifact contains too many files");
+  let selected = null;
+  const names = new Set();
   for (let index = 0; index < count; index += 1) {
+    if (offset + 46 > eocd) throw new Error("Artifact central directory is truncated");
     if (zip.readUInt32LE(offset) !== 0x02014b50) throw new Error("Artifact central directory is invalid");
     const method = zip.readUInt16LE(offset + 10);
     const compressedSize = zip.readUInt32LE(offset + 20);
@@ -125,19 +147,24 @@ function unzipFirstJson(zip) {
     const commentLength = zip.readUInt16LE(offset + 32);
     const localOffset = zip.readUInt32LE(offset + 42);
     const name = zip.subarray(offset + 46, offset + 46 + nameLength).toString("utf8");
+    if (offset + 46 + nameLength + extraLength + commentLength > eocd || name.startsWith("/") || name.includes("\\") || name.split("/").includes("..") || names.has(name)) throw new Error("Artifact entry path is invalid");
+    names.add(name);
     if (name.endsWith(".json")) {
       if (compressedSize > 6 * 1024 * 1024 || uncompressedSize > 5 * 1024 * 1024) throw new Error("Artifact read model is too large");
+      if (selected || localOffset + 30 > offset || zip.readUInt32LE(localOffset) !== 0x04034b50) throw new Error("Artifact must have one valid JSON entry");
       const localNameLength = zip.readUInt16LE(localOffset + 26);
       const localExtraLength = zip.readUInt16LE(localOffset + 28);
       const start = localOffset + 30 + localNameLength + localExtraLength;
+      if (start + compressedSize > offset) throw new Error("Artifact JSON is truncated");
       const bytes = zip.subarray(start, start + compressedSize);
-      const output = method === 0 ? bytes : method === 8 ? zlib.inflateRawSync(bytes) : null;
+      const output = method === 0 ? bytes : method === 8 ? zlib.inflateRawSync(bytes, { maxOutputLength: 5 * 1024 * 1024 }) : null;
       if (!output || output.length !== uncompressedSize) throw new Error("Artifact entry cannot be decoded");
-      return JSON.parse(output.toString("utf8"));
+      selected = JSON.parse(output.toString("utf8"));
     }
     offset += 46 + nameLength + extraLength + commentLength;
   }
-  throw new Error("Artifact has no JSON read model");
+  if (!selected) throw new Error("Artifact has no JSON read model");
+  return selected;
 }
 
 function repoConfig() {
@@ -160,9 +187,13 @@ async function loadReadModel(token) {
     error.status = 409;
     throw error;
   }
+  if (artifact.workflow_run?.head_sha !== commit.sha || !artifact.workflow_run?.id) throw new Error("Artifact workflow source mismatch");
+  const run = await github(`/repos/${owner}/${repo}/actions/runs/${artifact.workflow_run.id}`, token);
+  if (run.head_sha !== commit.sha || run.status !== "completed" || run.conclusion !== "success") throw new Error("Artifact workflow is not successful for current HEAD");
   const zip = await downloadGithubArtifact(artifact.archive_download_url, token);
   const model = unzipFirstJson(zip);
   if (model.source_commit !== commit.sha) throw new Error("Artifact source_commit 与默认分支 HEAD 不一致");
+  if (!["1.0.0", "1.1.0"].includes(model.schema_version) || !/^0\.[1-3]\.\d+$/.test(model.generator_version)) throw new Error("Unsupported read model version");
   return model;
 }
 
@@ -173,12 +204,13 @@ function session(req) {
     error.status = 401;
     throw error;
   }
-  return unseal(value);
+  try { return unseal(value); }
+  catch { throw Object.assign(new Error("Session expired or invalid"), { status: 401 }); }
 }
 
 module.exports = {
   API, SESSION_COOKIE, STATE_COOKIE, applyCors, clearCookie, cookieMap, env, github,
   downloadGithubArtifact, json, loadReadModel, repoConfig, seal, session, setCookie, sha256(value) {
     return crypto.createHash("sha256").update(typeof value === "string" ? value : JSON.stringify(value)).digest("hex");
-  }, unzipFirstJson, unseal,
+  }, unzipFirstJson, unseal, readBounded,
 };
