@@ -4,7 +4,7 @@ export type MutationReceipt = {
   operation_id: string
   attempt_id?: string
   pr_url?: string
-  status: 'submitted' | 'merged' | 'failed'
+  status: 'submitted' | 'merged' | 'closed' | 'failed'
 }
 
 const configuredBase = (import.meta.env.VITE_STUDY_BFF_URL as string | undefined)?.replace(/\/$/, '')
@@ -46,14 +46,21 @@ export async function loadPrivateReadModel(): Promise<unknown> {
   return request('/v1/read-model')
 }
 
+export type Change = { pr_url: string; title: string; state: string; checks: string; mergeable: boolean | null; files: Array<{ path: string; status: string; additions: number; deletions: number; patch: string }> }
+export async function loadChanges(): Promise<Change[]> { return request('/v1/changes') }
+
 export async function submitAttempt(
   assessment: Assessment,
   answers: Record<string, string>,
   sourceCommit: string,
+  operationToken: string,
+  submittedAt: string,
 ): Promise<MutationReceipt> {
   return request(`/v1/assessments/${encodeURIComponent(assessment.record_id)}/attempts`, {
     method: 'POST',
+    headers: { 'X-Idempotency-Key': operationToken },
     body: JSON.stringify({
+      submitted_at: submittedAt,
       assessment_id: assessment.assessment_id,
       question_schema_version: '1.0.0',
       answer_template_version: '1.0.0',

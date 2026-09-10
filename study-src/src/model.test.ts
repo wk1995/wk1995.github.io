@@ -3,6 +3,10 @@ import fixture from '../public/data/read-model.demo.json'
 import { assertCompatibleReadModel } from './model'
 
 describe('learning dashboard contract', () => {
+  it('keeps the existing generator version bounds', () => {
+    for (const generator_version of ['0.1.0', '0.2.0', '0.3.3', '0.3.999']) expect(() => assertCompatibleReadModel({ ...fixture, generator_version })).not.toThrow()
+    for (const generator_version of ['0.0.9', '0.4.0', '1.0.0', '0.3', '0.3.3-beta', '']) expect(() => assertCompatibleReadModel({ ...fixture, generator_version })).toThrow('generator_version')
+  })
   it('accepts the shared demo fixture', () => {
     assertCompatibleReadModel(fixture)
     expect(fixture.projects).toHaveLength(1)
