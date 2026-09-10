@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-09-09T05:56:25.455674+00:00",
+  "generated_at": "2026-09-10T05:54:58.994226+00:00",
   "items": [
     {
       "rank": 1,
@@ -11,93 +11,93 @@
       "url": "https://github.com/ayghri/i-have-adhd",
       "description": "A skill to stop your coding agent from burying the answer. ADHD-friendly output.",
       "descriptions": {
-        "zh": "A skill to stop your coding agent from burying the answer. ADHD-friendly output.",
+        "zh": "阻止编码代理隐藏答案的技能。多动症友好的输出。",
         "en": "A skill to stop your coding agent from burying the answer. ADHD-friendly output."
       },
       "language": "Python",
-      "stars_total": 31389,
-      "forks_total": 1893,
-      "stars_today": 656
+      "stars_total": 35412,
+      "forks_total": 2067,
+      "stars_today": 4650
     },
     {
       "rank": 2,
+      "repo": "Tencent/teamai-cli",
+      "owner": "Tencent",
+      "name": "teamai-cli",
+      "url": "https://github.com/Tencent/teamai-cli",
+      "description": "Make Every Team AI Native",
+      "descriptions": {
+        "zh": "让每个团队的 AI 都原生化",
+        "en": "Make Every Team AI Native"
+      },
+      "language": "TypeScript",
+      "stars_total": 3242,
+      "forks_total": 205,
+      "stars_today": 556
+    },
+    {
+      "rank": 3,
+      "repo": "obra/superpowers",
+      "owner": "obra",
+      "name": "superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "descriptions": {
+        "zh": "有效的代理技能框架和软件开发方法。",
+        "en": "An agentic skills framework & software development methodology that works."
+      },
+      "language": "Shell",
+      "stars_total": 284165,
+      "forks_total": 25422,
+      "stars_today": 688
+    },
+    {
+      "rank": 4,
+      "repo": "pascalorg/editor",
+      "owner": "pascalorg",
+      "name": "editor",
+      "url": "https://github.com/pascalorg/editor",
+      "description": "Open-source 3D architectural editor with a local CLI, MCP tools, and practical workflows for humans and AI agents.",
+      "descriptions": {
+        "zh": "开源 3D 建筑编辑器，具有本地 CLI、MCP 工具以及适用于人类和 AI 代理的实用工作流程。",
+        "en": "Open-source 3D architectural editor with a local CLI, MCP tools, and practical workflows for humans and AI agents."
+      },
+      "language": "TypeScript",
+      "stars_total": 23072,
+      "forks_total": 2906,
+      "stars_today": 107
+    },
+    {
+      "rank": 5,
+      "repo": "earthtojake/text-to-cad",
+      "owner": "earthtojake",
+      "name": "text-to-cad",
+      "url": "https://github.com/earthtojake/text-to-cad",
+      "description": "A library of agent skills for CAD, CAE and CAM",
+      "descriptions": {
+        "zh": "CAD、CAE 和 CAM 代理技能库",
+        "en": "A library of agent skills for CAD, CAE and CAM"
+      },
+      "language": "Python",
+      "stars_total": 15155,
+      "forks_total": 1567,
+      "stars_today": 124
+    },
+    {
+      "rank": 6,
       "repo": "cathrynlavery/diagram-design",
       "owner": "cathrynlavery",
       "name": "diagram-design",
       "url": "https://github.com/cathrynlavery/diagram-design",
       "description": "38 editorial diagram types for Claude Code, Codex, and Pi. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
       "descriptions": {
-        "zh": "38 editorial diagram types for Claude Code, Codex, and Pi. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+        "zh": "Claude Code、Codex 和 Pi 的 38 种编辑图表类型。独立的 HTML + SVG。没有阴影。没有美人鱼污水。",
         "en": "38 editorial diagram types for Claude Code, Codex, and Pi. Self-contained HTML + SVG. No shadows. No Mermaid slop."
       },
       "language": "HTML",
-      "stars_total": 35353,
-      "forks_total": 2222,
-      "stars_today": 710
-    },
-    {
-      "rank": 3,
-      "repo": "openai/skills",
-      "owner": "openai",
-      "name": "skills",
-      "url": "https://github.com/openai/skills",
-      "description": "Skills Catalog for Codex",
-      "descriptions": {
-        "zh": "Skills Catalog for Codex",
-        "en": "Skills Catalog for Codex"
-      },
-      "language": "Python",
-      "stars_total": 26621,
-      "forks_total": 1785,
-      "stars_today": 490
-    },
-    {
-      "rank": 4,
-      "repo": "affaan-m/ECC",
-      "owner": "affaan-m",
-      "name": "ECC",
-      "url": "https://github.com/affaan-m/ECC",
-      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
-      "descriptions": {
-        "zh": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
-        "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
-      },
-      "language": "JavaScript",
-      "stars_total": 254521,
-      "forks_total": 38131,
-      "stars_today": 1427
-    },
-    {
-      "rank": 5,
-      "repo": "heygen-com/hyperframes",
-      "owner": "heygen-com",
-      "name": "hyperframes",
-      "url": "https://github.com/heygen-com/hyperframes",
-      "description": "Write HTML. Render video. Built for agents.",
-      "descriptions": {
-        "zh": "Write HTML. Render video. Built for agents.",
-        "en": "Write HTML. Render video. Built for agents."
-      },
-      "language": "TypeScript",
-      "stars_total": 47966,
-      "forks_total": 4406,
-      "stars_today": 2627
-    },
-    {
-      "rank": 6,
-      "repo": "coreyhaines31/marketingskills",
-      "owner": "coreyhaines31",
-      "name": "marketingskills",
-      "url": "https://github.com/coreyhaines31/marketingskills",
-      "description": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering.",
-      "descriptions": {
-        "zh": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering.",
-        "en": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering."
-      },
-      "language": "JavaScript",
-      "stars_total": 48962,
-      "forks_total": 7502,
-      "stars_today": 666
+      "stars_total": 36893,
+      "forks_total": 2340,
+      "stars_today": 2249
     }
   ]
 }
