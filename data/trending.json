@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-09-10T05:54:58.994226+00:00",
+  "generated_at": "2026-09-11T05:53:51.579532+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,25 +15,25 @@
         "en": "A skill to stop your coding agent from burying the answer. ADHD-friendly output."
       },
       "language": "Python",
-      "stars_total": 35412,
-      "forks_total": 2067,
-      "stars_today": 4650
+      "stars_total": 38990,
+      "forks_total": 2233,
+      "stars_today": 3882
     },
     {
       "rank": 2,
-      "repo": "Tencent/teamai-cli",
-      "owner": "Tencent",
-      "name": "teamai-cli",
-      "url": "https://github.com/Tencent/teamai-cli",
-      "description": "Make Every Team AI Native",
+      "repo": "bilawalsidhu/gods-eye-view",
+      "owner": "bilawalsidhu",
+      "name": "gods-eye-view",
+      "url": "https://github.com/bilawalsidhu/gods-eye-view",
+      "description": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe.",
       "descriptions": {
-        "zh": "让每个团队的 AI 都原生化",
-        "en": "Make Every Team AI Native"
+        "zh": "浏览器中的间谍卫星模拟器，只不过数据是真实的。在逼真的 3D 地球仪上实时呈现开源空间智能。",
+        "en": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe."
       },
-      "language": "TypeScript",
-      "stars_total": 3242,
-      "forks_total": 205,
-      "stars_today": 556
+      "language": "JavaScript",
+      "stars_total": 24959,
+      "forks_total": 5152,
+      "stars_today": 1762
     },
     {
       "rank": 3,
@@ -47,57 +47,57 @@
         "en": "An agentic skills framework & software development methodology that works."
       },
       "language": "Shell",
-      "stars_total": 284165,
-      "forks_total": 25422,
-      "stars_today": 688
+      "stars_total": 284842,
+      "forks_total": 25482,
+      "stars_today": 732
     },
     {
       "rank": 4,
-      "repo": "pascalorg/editor",
-      "owner": "pascalorg",
-      "name": "editor",
-      "url": "https://github.com/pascalorg/editor",
-      "description": "Open-source 3D architectural editor with a local CLI, MCP tools, and practical workflows for humans and AI agents.",
+      "repo": "alsk1992/CloddsBot",
+      "owner": "alsk1992",
+      "name": "CloddsBot",
+      "url": "https://github.com/alsk1992/CloddsBot",
+      "description": "Open Source AI trading agent that operates autonomously across 1000+ markets - Polymarket, Kalshi, Binance, Hyperliquid, Solana DEXs, 5 EVM chains. Scans for edge, executes instantly, manages risk while you sleep. Agent commerce protocol for machine-to-machine payments. Self-hosted. Built on Claude.",
       "descriptions": {
-        "zh": "开源 3D 建筑编辑器，具有本地 CLI、MCP 工具以及适用于人类和 AI 代理的实用工作流程。",
-        "en": "Open-source 3D architectural editor with a local CLI, MCP tools, and practical workflows for humans and AI agents."
+        "zh": "开源人工智能交易代理，在 1000 多个市场中自主运营 - Polymarket、Kalshi、Binance、Hyperliquid、Solana DEX、5 个 EVM 链。扫描边缘，立即执行，在您睡觉时管理风险。用于机器对机器支付的代理商务协议。自托管。建立在克劳德.",
+        "en": "Open Source AI trading agent that operates autonomously across 1000+ markets - Polymarket, Kalshi, Binance, Hyperliquid, Solana DEXs, 5 EVM chains. Scans for edge, executes instantly, manages risk while you sleep. Agent commerce protocol for machine-to-machine payments. Self-hosted. Built on Claude."
       },
       "language": "TypeScript",
-      "stars_total": 23072,
-      "forks_total": 2906,
-      "stars_today": 107
+      "stars_total": 1793,
+      "forks_total": 262,
+      "stars_today": 277
     },
     {
       "rank": 5,
-      "repo": "earthtojake/text-to-cad",
-      "owner": "earthtojake",
-      "name": "text-to-cad",
-      "url": "https://github.com/earthtojake/text-to-cad",
-      "description": "A library of agent skills for CAD, CAE and CAM",
+      "repo": "Tencent/teamai-cli",
+      "owner": "Tencent",
+      "name": "teamai-cli",
+      "url": "https://github.com/Tencent/teamai-cli",
+      "description": "Make Every Team AI Native",
       "descriptions": {
-        "zh": "CAD、CAE 和 CAM 代理技能库",
-        "en": "A library of agent skills for CAD, CAE and CAM"
+        "zh": "让每个团队的 AI 都原生化",
+        "en": "Make Every Team AI Native"
       },
-      "language": "Python",
-      "stars_total": 15155,
-      "forks_total": 1567,
-      "stars_today": 124
+      "language": "TypeScript",
+      "stars_total": 3944,
+      "forks_total": 253,
+      "stars_today": 841
     },
     {
       "rank": 6,
-      "repo": "cathrynlavery/diagram-design",
-      "owner": "cathrynlavery",
-      "name": "diagram-design",
-      "url": "https://github.com/cathrynlavery/diagram-design",
-      "description": "38 editorial diagram types for Claude Code, Codex, and Pi. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+      "repo": "AlexsJones/llmfit",
+      "owner": "AlexsJones",
+      "name": "llmfit",
+      "url": "https://github.com/AlexsJones/llmfit",
+      "description": "Hundreds of models & providers. One command to find what runs on your hardware.",
       "descriptions": {
-        "zh": "Claude Code、Codex 和 Pi 的 38 种编辑图表类型。独立的 HTML + SVG。没有阴影。没有美人鱼污水。",
-        "en": "38 editorial diagram types for Claude Code, Codex, and Pi. Self-contained HTML + SVG. No shadows. No Mermaid slop."
+        "zh": "数百个模型和提供商。一个命令即可查找您的硬件上运行的内容。",
+        "en": "Hundreds of models & providers. One command to find what runs on your hardware."
       },
-      "language": "HTML",
-      "stars_total": 36893,
-      "forks_total": 2340,
-      "stars_today": 2249
+      "language": "Rust",
+      "stars_total": 35846,
+      "forks_total": 2270,
+      "stars_today": 258
     }
   ]
 }
