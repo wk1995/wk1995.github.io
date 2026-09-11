@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-09-11T05:53:51.579532+00:00",
+  "generated_at": "2026-09-11T12:47:35.321296+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,8 +15,8 @@ window.__TRENDING_DATA__ = {
         "en": "A skill to stop your coding agent from burying the answer. ADHD-friendly output."
       },
       "language": "Python",
-      "stars_total": 38990,
-      "forks_total": 2233,
+      "stars_total": 40074,
+      "forks_total": 2287,
       "stars_today": 3882
     },
     {
@@ -31,73 +31,73 @@ window.__TRENDING_DATA__ = {
         "en": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe."
       },
       "language": "JavaScript",
-      "stars_total": 24959,
-      "forks_total": 5152,
+      "stars_total": 25946,
+      "forks_total": 5311,
       "stars_today": 1762
     },
     {
       "rank": 3,
-      "repo": "obra/superpowers",
-      "owner": "obra",
-      "name": "superpowers",
-      "url": "https://github.com/obra/superpowers",
-      "description": "An agentic skills framework & software development methodology that works.",
+      "repo": "nab138/iloader",
+      "owner": "nab138",
+      "name": "iloader",
+      "url": "https://github.com/nab138/iloader",
+      "description": "User friendly sideloader",
       "descriptions": {
-        "zh": "有效的代理技能框架和软件开发方法。",
-        "en": "An agentic skills framework & software development methodology that works."
+        "zh": "用户友好的侧装载机",
+        "en": "User friendly sideloader"
       },
-      "language": "Shell",
-      "stars_total": 284842,
-      "forks_total": 25482,
-      "stars_today": 732
+      "language": "TypeScript",
+      "stars_total": 2799,
+      "forks_total": 195,
+      "stars_today": 36
     },
     {
       "rank": 4,
-      "repo": "alsk1992/CloddsBot",
-      "owner": "alsk1992",
-      "name": "CloddsBot",
-      "url": "https://github.com/alsk1992/CloddsBot",
-      "description": "Open Source AI trading agent that operates autonomously across 1000+ markets - Polymarket, Kalshi, Binance, Hyperliquid, Solana DEXs, 5 EVM chains. Scans for edge, executes instantly, manages risk while you sleep. Agent commerce protocol for machine-to-machine payments. Self-hosted. Built on Claude.",
+      "repo": "melgarafael/DeskcommCRM",
+      "owner": "melgarafael",
+      "name": "DeskcommCRM",
+      "url": "https://github.com/melgarafael/DeskcommCRM",
+      "description": "Open-source AI sales OS — self-hosted CRM with native AI agents + WhatsApp (WAHA). Open alternative to Kommo, Octadesk & Intercom for any business that sells by chat. MCP-ready, multi-tenant, LGPD.",
       "descriptions": {
-        "zh": "开源人工智能交易代理，在 1000 多个市场中自主运营 - Polymarket、Kalshi、Binance、Hyperliquid、Solana DEX、5 个 EVM 链。扫描边缘，立即执行，在您睡觉时管理风险。用于机器对机器支付的代理商务协议。自托管。建立在克劳德.",
-        "en": "Open Source AI trading agent that operates autonomously across 1000+ markets - Polymarket, Kalshi, Binance, Hyperliquid, Solana DEXs, 5 EVM chains. Scans for edge, executes instantly, manages risk while you sleep. Agent commerce protocol for machine-to-machine payments. Self-hosted. Built on Claude."
+        "zh": "开源人工智能销售操作系统——带有原生人工智能代理的自托管 CRM + WhatsApp (WAHA)。为任何通过聊天进行销售的企业提供 Kommo、Octadesk 和 Intercom 的开放替代方案。 MCP 就绪、多租户、LGPD。",
+        "en": "Open-source AI sales OS — self-hosted CRM with native AI agents + WhatsApp (WAHA). Open alternative to Kommo, Octadesk & Intercom for any business that sells by chat. MCP-ready, multi-tenant, LGPD."
       },
       "language": "TypeScript",
-      "stars_total": 1793,
-      "forks_total": 262,
-      "stars_today": 277
+      "stars_total": 1094,
+      "forks_total": 464,
+      "stars_today": 126
     },
     {
       "rank": 5,
-      "repo": "Tencent/teamai-cli",
-      "owner": "Tencent",
-      "name": "teamai-cli",
-      "url": "https://github.com/Tencent/teamai-cli",
-      "description": "Make Every Team AI Native",
+      "repo": "vastsa/PI-Desktop",
+      "owner": "vastsa",
+      "name": "PI-Desktop",
+      "url": "https://github.com/vastsa/PI-Desktop",
+      "description": "Local-first AI coding agent desktop: Electron + Rust host core + pi Agent Harness + user-installable plugins",
       "descriptions": {
-        "zh": "让每个团队的 AI 都原生化",
-        "en": "Make Every Team AI Native"
+        "zh": "本地优先的 AI 编码代理桌面：Electron + Rust 主机核心 + pi Agent Harness + 用户可安装的插件",
+        "en": "Local-first AI coding agent desktop: Electron + Rust host core + pi Agent Harness + user-installable plugins"
       },
       "language": "TypeScript",
-      "stars_total": 3944,
-      "forks_total": 253,
-      "stars_today": 841
+      "stars_total": 2613,
+      "forks_total": 208,
+      "stars_today": 624
     },
     {
       "rank": 6,
-      "repo": "AlexsJones/llmfit",
-      "owner": "AlexsJones",
-      "name": "llmfit",
-      "url": "https://github.com/AlexsJones/llmfit",
-      "description": "Hundreds of models & providers. One command to find what runs on your hardware.",
+      "repo": "armory3d/armorpaint",
+      "owner": "armory3d",
+      "name": "armorpaint",
+      "url": "https://github.com/armory3d/armorpaint",
+      "description": "Graphics Creation Tools",
       "descriptions": {
-        "zh": "数百个模型和提供商。一个命令即可查找您的硬件上运行的内容。",
-        "en": "Hundreds of models & providers. One command to find what runs on your hardware."
+        "zh": "图形创建工具",
+        "en": "Graphics Creation Tools"
       },
-      "language": "Rust",
-      "stars_total": 35846,
-      "forks_total": 2270,
-      "stars_today": 258
+      "language": "C",
+      "stars_total": 4606,
+      "forks_total": 525,
+      "stars_today": 72
     }
   ]
 }
