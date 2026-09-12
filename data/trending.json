@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-09-11T12:47:35.321296+00:00",
+  "generated_at": "2026-09-12T05:42:41.062901+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,9 +15,9 @@
         "en": "A skill to stop your coding agent from burying the answer. ADHD-friendly output."
       },
       "language": "Python",
-      "stars_total": 40074,
-      "forks_total": 2287,
-      "stars_today": 3882
+      "stars_total": 42300,
+      "forks_total": 2398,
+      "stars_today": 3463
     },
     {
       "rank": 2,
@@ -31,9 +31,9 @@
         "en": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe."
       },
       "language": "JavaScript",
-      "stars_total": 25946,
-      "forks_total": 5311,
-      "stars_today": 1762
+      "stars_total": 27445,
+      "forks_total": 5613,
+      "stars_today": 3680
     },
     {
       "rank": 3,
@@ -47,9 +47,9 @@
         "en": "User friendly sideloader"
       },
       "language": "TypeScript",
-      "stars_total": 2799,
-      "forks_total": 195,
-      "stars_today": 36
+      "stars_total": 2946,
+      "forks_total": 204,
+      "stars_today": 50
     },
     {
       "rank": 4,
@@ -63,9 +63,9 @@
         "en": "Open-source AI sales OS — self-hosted CRM with native AI agents + WhatsApp (WAHA). Open alternative to Kommo, Octadesk & Intercom for any business that sells by chat. MCP-ready, multi-tenant, LGPD."
       },
       "language": "TypeScript",
-      "stars_total": 1094,
-      "forks_total": 464,
-      "stars_today": 126
+      "stars_total": 1443,
+      "forks_total": 505,
+      "stars_today": 152
     },
     {
       "rank": 5,
@@ -79,9 +79,9 @@
         "en": "Local-first AI coding agent desktop: Electron + Rust host core + pi Agent Harness + user-installable plugins"
       },
       "language": "TypeScript",
-      "stars_total": 2613,
-      "forks_total": 208,
-      "stars_today": 624
+      "stars_total": 2867,
+      "forks_total": 224,
+      "stars_today": 552
     },
     {
       "rank": 6,
@@ -95,9 +95,9 @@
         "en": "Graphics Creation Tools"
       },
       "language": "C",
-      "stars_total": 4606,
-      "forks_total": 525,
-      "stars_today": 72
+      "stars_total": 4772,
+      "forks_total": 536,
+      "stars_today": 350
     }
   ]
 }
