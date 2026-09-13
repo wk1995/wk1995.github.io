@@ -1,26 +1,10 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-09-12T05:42:41.062901+00:00",
+  "generated_at": "2026-09-13T06:03:46.722149+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "ayghri/i-have-adhd",
-      "owner": "ayghri",
-      "name": "i-have-adhd",
-      "url": "https://github.com/ayghri/i-have-adhd",
-      "description": "A skill to stop your coding agent from burying the answer. ADHD-friendly output.",
-      "descriptions": {
-        "zh": "阻止编码代理隐藏答案的技能。多动症友好的输出。",
-        "en": "A skill to stop your coding agent from burying the answer. ADHD-friendly output."
-      },
-      "language": "Python",
-      "stars_total": 42300,
-      "forks_total": 2398,
-      "stars_today": 3463
-    },
-    {
-      "rank": 2,
       "repo": "bilawalsidhu/gods-eye-view",
       "owner": "bilawalsidhu",
       "name": "gods-eye-view",
@@ -31,28 +15,12 @@ window.__TRENDING_DATA__ = {
         "en": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe."
       },
       "language": "JavaScript",
-      "stars_total": 27445,
-      "forks_total": 5613,
-      "stars_today": 3680
+      "stars_total": 30391,
+      "forks_total": 6108,
+      "stars_today": 2265
     },
     {
-      "rank": 3,
-      "repo": "nab138/iloader",
-      "owner": "nab138",
-      "name": "iloader",
-      "url": "https://github.com/nab138/iloader",
-      "description": "User friendly sideloader",
-      "descriptions": {
-        "zh": "用户友好的侧装载机",
-        "en": "User friendly sideloader"
-      },
-      "language": "TypeScript",
-      "stars_total": 2946,
-      "forks_total": 204,
-      "stars_today": 50
-    },
-    {
-      "rank": 4,
+      "rank": 2,
       "repo": "melgarafael/DeskcommCRM",
       "owner": "melgarafael",
       "name": "DeskcommCRM",
@@ -63,41 +31,70 @@ window.__TRENDING_DATA__ = {
         "en": "Open-source AI sales OS — self-hosted CRM with native AI agents + WhatsApp (WAHA). Open alternative to Kommo, Octadesk & Intercom for any business that sells by chat. MCP-ready, multi-tenant, LGPD."
       },
       "language": "TypeScript",
-      "stars_total": 1443,
-      "forks_total": 505,
-      "stars_today": 152
+      "stars_total": 1895,
+      "forks_total": 561,
+      "stars_today": 504
+    },
+    {
+      "rank": 3,
+      "repo": "asgeirtj/system_prompts_leaks",
+      "owner": "asgeirtj",
+      "name": "system_prompts_leaks",
+      "url": "https://github.com/asgeirtj/system_prompts_leaks",
+      "description": "Extracted system prompts from Anthropic - Claude Fable 5.1, Opus 5, Claude Design, Claude Code. OpenAI - ChatGPT GPT-6-Astra, Codex. Google - Gemini 3.8 Flash, 3.1 Pro, Antigravity. xAI - Grok, Grok Bot, Cursor, Kimi and more! Updated regularly.",
+      "descriptions": {
+        "zh": "从 Anthropic 中提取的系统提示 - Claude Fable 5.1、Opus 5、Claude Design、Claude Code。 OpenAI - ChatGPT GPT-6-Astra，法典。 Google - Gemini 3.8 Flash、3.1 Pro、反重力。 xAI - Grok、Grok Bot、Cursor、Kimi 等等！定期更新。",
+        "en": "Extracted system prompts from Anthropic - Claude Fable 5.1, Opus 5, Claude Design, Claude Code. OpenAI - ChatGPT GPT-6-Astra, Codex. Google - Gemini 3.8 Flash, 3.1 Pro, Antigravity. xAI - Grok, Grok Bot, Cursor, Kimi and more! Updated regularly."
+      },
+      "language": "JavaScript",
+      "stars_total": 65556,
+      "forks_total": 10758,
+      "stars_today": 217
+    },
+    {
+      "rank": 4,
+      "repo": "nab138/iloader",
+      "owner": "nab138",
+      "name": "iloader",
+      "url": "https://github.com/nab138/iloader",
+      "description": "User friendly sideloader",
+      "descriptions": {
+        "zh": "用户友好的侧装载机",
+        "en": "User friendly sideloader"
+      },
+      "language": "TypeScript",
+      "stars_total": 3138,
+      "forks_total": 215,
+      "stars_today": 209
     },
     {
       "rank": 5,
-      "repo": "vastsa/PI-Desktop",
-      "owner": "vastsa",
-      "name": "PI-Desktop",
-      "url": "https://github.com/vastsa/PI-Desktop",
-      "description": "Local-first AI coding agent desktop: Electron + Rust host core + pi Agent Harness + user-installable plugins",
-      "descriptions": {
-        "zh": "本地优先的 AI 编码代理桌面：Electron + Rust 主机核心 + pi Agent Harness + 用户可安装的插件",
-        "en": "Local-first AI coding agent desktop: Electron + Rust host core + pi Agent Harness + user-installable plugins"
-      },
-      "language": "TypeScript",
-      "stars_total": 2867,
-      "forks_total": 224,
-      "stars_today": 552
+      "repo": "Flowseal/zapret-discord-youtube",
+      "owner": "Flowseal",
+      "name": "zapret-discord-youtube",
+      "url": "https://github.com/Flowseal/zapret-discord-youtube",
+      "description": null,
+      "descriptions": null,
+      "language": "Batchfile",
+      "stars_total": 33221,
+      "forks_total": 2540,
+      "stars_today": 65
     },
     {
       "rank": 6,
-      "repo": "armory3d/armorpaint",
-      "owner": "armory3d",
-      "name": "armorpaint",
-      "url": "https://github.com/armory3d/armorpaint",
-      "description": "Graphics Creation Tools",
+      "repo": "jihe520/MathModelAgent",
+      "owner": "jihe520",
+      "name": "MathModelAgent",
+      "url": "https://github.com/jihe520/MathModelAgent",
+      "description": "🤖📐专为数学建模设计的 Agent & skills ,自动完成数学建模，生成一份完整的可以直接提交的论文。 An Agent Designed for Mathematical Modeling ,Automatically complete mathmodel and generate a complete paper ready for submission.",
       "descriptions": {
-        "zh": "图形创建工具",
-        "en": "Graphics Creation Tools"
+        "zh": "🤖📐专为数学建模设计的 Agent & skills ,自动完成数学建模，生成一份完整的可以直接提交的论文。 An Agent Designed for Mathematical Modeling ,Automatically complete mathmodel and generate a complete paper ready for submission.",
+        "en": "🤖📐Agent & skills specially designed for mathematical modeling, automatically complete mathematical modeling and generate a complete paper that can be submitted directly. An Agent Designed for Mathematical Modeling, Automatically complete mathmodel and generate a complete paper ready for submission."
       },
-      "language": "C",
-      "stars_total": 4772,
-      "forks_total": 536,
-      "stars_today": 350
+      "language": "Python",
+      "stars_total": 5190,
+      "forks_total": 404,
+      "stars_today": 262
     }
   ]
 }
