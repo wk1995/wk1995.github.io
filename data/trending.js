@@ -1,10 +1,42 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-09-13T06:03:46.722149+00:00",
+  "generated_at": "2026-09-14T06:10:43.401938+00:00",
   "items": [
     {
       "rank": 1,
+      "repo": "JustVugg/colibri",
+      "owner": "JustVugg",
+      "name": "colibri",
+      "url": "https://github.com/JustVugg/colibri",
+      "description": "Run frontier MoE models on hardware you already own — pure C, zero deps, experts streamed from disk. Tiny engine, immense model. 🐦",
+      "descriptions": {
+        "zh": "在您已经拥有的硬件上运行前沿 MoE 模型 - 纯 C、零依赖、从磁盘流式传输的专家。微小的发动机，巨大的模型。 🐦",
+        "en": "Run frontier MoE models on hardware you already own — pure C, zero deps, experts streamed from disk. Tiny engine, immense model. 🐦"
+      },
+      "language": "C",
+      "stars_total": 30322,
+      "forks_total": 3281,
+      "stars_today": 868
+    },
+    {
+      "rank": 2,
+      "repo": "ever-co/ever-gauzy",
+      "owner": "ever-co",
+      "name": "ever-gauzy",
+      "url": "https://github.com/ever-co/ever-gauzy",
+      "description": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
+      "descriptions": {
+        "zh": "Ever® Gauzy™ - 开放式业务管理平台 (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
+        "en": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co"
+      },
+      "language": "TypeScript",
+      "stars_total": 5378,
+      "forks_total": 957,
+      "stars_today": 191
+    },
+    {
+      "rank": 3,
       "repo": "bilawalsidhu/gods-eye-view",
       "owner": "bilawalsidhu",
       "name": "gods-eye-view",
@@ -15,12 +47,28 @@ window.__TRENDING_DATA__ = {
         "en": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe."
       },
       "language": "JavaScript",
-      "stars_total": 30391,
-      "forks_total": 6108,
-      "stars_today": 2265
+      "stars_total": 32375,
+      "forks_total": 6477,
+      "stars_today": 2680
     },
     {
-      "rank": 2,
+      "rank": 4,
+      "repo": "tech-leads-club/agent-skills",
+      "owner": "tech-leads-club",
+      "name": "agent-skills",
+      "url": "https://github.com/tech-leads-club/agent-skills",
+      "description": "The secure, validated skill registry for professional AI coding agents. Extend Antigravity, Claude Code, Cursor, Copilot and more with absolute confidence.",
+      "descriptions": {
+        "zh": "专业人工智能编码代理的安全、经过验证的技能注册表。绝对有信心扩展反重力、克劳德密码、光标、副驾驶等。",
+        "en": "The secure, validated skill registry for professional AI coding agents. Extend Antigravity, Claude Code, Cursor, Copilot and more with absolute confidence."
+      },
+      "language": "TypeScript",
+      "stars_total": 5789,
+      "forks_total": 503,
+      "stars_today": 265
+    },
+    {
+      "rank": 5,
       "repo": "melgarafael/DeskcommCRM",
       "owner": "melgarafael",
       "name": "DeskcommCRM",
@@ -31,70 +79,25 @@ window.__TRENDING_DATA__ = {
         "en": "Open-source AI sales OS — self-hosted CRM with native AI agents + WhatsApp (WAHA). Open alternative to Kommo, Octadesk & Intercom for any business that sells by chat. MCP-ready, multi-tenant, LGPD."
       },
       "language": "TypeScript",
-      "stars_total": 1895,
-      "forks_total": 561,
-      "stars_today": 504
-    },
-    {
-      "rank": 3,
-      "repo": "asgeirtj/system_prompts_leaks",
-      "owner": "asgeirtj",
-      "name": "system_prompts_leaks",
-      "url": "https://github.com/asgeirtj/system_prompts_leaks",
-      "description": "Extracted system prompts from Anthropic - Claude Fable 5.1, Opus 5, Claude Design, Claude Code. OpenAI - ChatGPT GPT-6-Astra, Codex. Google - Gemini 3.8 Flash, 3.1 Pro, Antigravity. xAI - Grok, Grok Bot, Cursor, Kimi and more! Updated regularly.",
-      "descriptions": {
-        "zh": "从 Anthropic 中提取的系统提示 - Claude Fable 5.1、Opus 5、Claude Design、Claude Code。 OpenAI - ChatGPT GPT-6-Astra，法典。 Google - Gemini 3.8 Flash、3.1 Pro、反重力。 xAI - Grok、Grok Bot、Cursor、Kimi 等等！定期更新。",
-        "en": "Extracted system prompts from Anthropic - Claude Fable 5.1, Opus 5, Claude Design, Claude Code. OpenAI - ChatGPT GPT-6-Astra, Codex. Google - Gemini 3.8 Flash, 3.1 Pro, Antigravity. xAI - Grok, Grok Bot, Cursor, Kimi and more! Updated regularly."
-      },
-      "language": "JavaScript",
-      "stars_total": 65556,
-      "forks_total": 10758,
-      "stars_today": 217
-    },
-    {
-      "rank": 4,
-      "repo": "nab138/iloader",
-      "owner": "nab138",
-      "name": "iloader",
-      "url": "https://github.com/nab138/iloader",
-      "description": "User friendly sideloader",
-      "descriptions": {
-        "zh": "用户友好的侧装载机",
-        "en": "User friendly sideloader"
-      },
-      "language": "TypeScript",
-      "stars_total": 3138,
-      "forks_total": 215,
-      "stars_today": 209
-    },
-    {
-      "rank": 5,
-      "repo": "Flowseal/zapret-discord-youtube",
-      "owner": "Flowseal",
-      "name": "zapret-discord-youtube",
-      "url": "https://github.com/Flowseal/zapret-discord-youtube",
-      "description": null,
-      "descriptions": null,
-      "language": "Batchfile",
-      "stars_total": 33221,
-      "forks_total": 2540,
-      "stars_today": 65
+      "stars_total": 2329,
+      "forks_total": 607,
+      "stars_today": 432
     },
     {
       "rank": 6,
-      "repo": "jihe520/MathModelAgent",
-      "owner": "jihe520",
-      "name": "MathModelAgent",
-      "url": "https://github.com/jihe520/MathModelAgent",
-      "description": "🤖📐专为数学建模设计的 Agent & skills ,自动完成数学建模，生成一份完整的可以直接提交的论文。 An Agent Designed for Mathematical Modeling ,Automatically complete mathmodel and generate a complete paper ready for submission.",
+      "repo": "calesthio/OpenMontage",
+      "owner": "calesthio",
+      "name": "OpenMontage",
+      "url": "https://github.com/calesthio/OpenMontage",
+      "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
       "descriptions": {
-        "zh": "🤖📐专为数学建模设计的 Agent & skills ,自动完成数学建模，生成一份完整的可以直接提交的论文。 An Agent Designed for Mathematical Modeling ,Automatically complete mathmodel and generate a complete paper ready for submission.",
-        "en": "🤖📐Agent & skills specially designed for mathematical modeling, automatically complete mathematical modeling and generate a complete paper that can be submitted directly. An Agent Designed for Mathematical Modeling, Automatically complete mathmodel and generate a complete paper ready for submission."
+        "zh": "世界上第一个开源的代理视频制作系统。 12 条生产管道、100 多种工具、700 多种代理技能和生产知识文件。将您的人工智能编码助手变成一个完整的视频制作工作室。",
+        "en": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio."
       },
       "language": "Python",
-      "stars_total": 5190,
-      "forks_total": 404,
-      "stars_today": 262
+      "stars_total": 58689,
+      "forks_total": 7374,
+      "stars_today": 380
     }
   ]
 }
