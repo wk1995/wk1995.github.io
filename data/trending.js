@@ -1,26 +1,10 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-09-15T06:07:33.366674+00:00",
+  "generated_at": "2026-09-16T05:57:26.783014+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "JustVugg/colibri",
-      "owner": "JustVugg",
-      "name": "colibri",
-      "url": "https://github.com/JustVugg/colibri",
-      "description": "Run frontier MoE models on hardware you already own — pure C, zero deps, experts streamed from disk. Tiny engine, immense model. 🐦",
-      "descriptions": {
-        "zh": "在您已经拥有的硬件上运行前沿 MoE 模型 - 纯 C、零依赖、从磁盘流式传输的专家。微小的发动机，巨大的模型。 🐦",
-        "en": "Run frontier MoE models on hardware you already own — pure C, zero deps, experts streamed from disk. Tiny engine, immense model. 🐦"
-      },
-      "language": "C",
-      "stars_total": 32491,
-      "forks_total": 3419,
-      "stars_today": 2173
-    },
-    {
-      "rank": 2,
       "repo": "alibaba/open-code-review",
       "owner": "alibaba",
       "name": "open-code-review",
@@ -31,25 +15,41 @@ window.__TRENDING_DATA__ = {
         "en": "Fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible."
       },
       "language": "Go",
-      "stars_total": 26364,
-      "forks_total": 1899,
-      "stars_today": 1571
+      "stars_total": 29266,
+      "forks_total": 2079,
+      "stars_today": 2756
+    },
+    {
+      "rank": 2,
+      "repo": "JustVugg/colibri",
+      "owner": "JustVugg",
+      "name": "colibri",
+      "url": "https://github.com/JustVugg/colibri",
+      "description": "Run frontier MoE models on hardware you already own — pure C, zero deps, experts streamed from disk. Tiny engine, immense model. 🐦",
+      "descriptions": {
+        "zh": "在您已经拥有的硬件上运行前沿 MoE 模型 - 纯 C、零依赖、从磁盘流式传输的专家。微小的发动机，巨大的模型。 🐦",
+        "en": "Run frontier MoE models on hardware you already own — pure C, zero deps, experts streamed from disk. Tiny engine, immense model. 🐦"
+      },
+      "language": "C",
+      "stars_total": 34144,
+      "forks_total": 3573,
+      "stars_today": 2026
     },
     {
       "rank": 3,
-      "repo": "multimodal-art-projection/YuE",
-      "owner": "multimodal-art-projection",
-      "name": "YuE",
-      "url": "https://github.com/multimodal-art-projection/YuE",
-      "description": "YuE2: frontier music generation with symbolic planning, zero-shot covers, and agentic music editing.",
+      "repo": "ever-co/ever-gauzy",
+      "owner": "ever-co",
+      "name": "ever-gauzy",
+      "url": "https://github.com/ever-co/ever-gauzy",
+      "description": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
       "descriptions": {
-        "zh": "YuE2：具有象征性规划、零镜头翻唱和代理音乐编辑的前沿音乐生成。",
-        "en": "YuE2: frontier music generation with symbolic planning, zero-shot covers, and agentic music editing."
+        "zh": "Ever® Gauzy™ - 开放式业务管理平台 (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
+        "en": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co"
       },
-      "language": "Python",
-      "stars_total": 8595,
-      "forks_total": 923,
-      "stars_today": 559
+      "language": "TypeScript",
+      "stars_total": 6851,
+      "forks_total": 1053,
+      "stars_today": 634
     },
     {
       "rank": 4,
@@ -63,41 +63,41 @@ window.__TRENDING_DATA__ = {
         "en": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages."
       },
       "language": "Python",
-      "stars_total": 29724,
-      "forks_total": 3600,
-      "stars_today": 2776
+      "stars_total": 31287,
+      "forks_total": 3721,
+      "stars_today": 2072
     },
     {
       "rank": 5,
-      "repo": "666ghj/MiroFish",
-      "owner": "666ghj",
-      "name": "MiroFish",
-      "url": "https://github.com/666ghj/MiroFish",
-      "description": "A Simple and Universal Swarm Intelligence Engine, Predicting Anything. 简洁通用的群体智能引擎，预测万物",
+      "repo": "Homebrew/BrewUI",
+      "owner": "Homebrew",
+      "name": "BrewUI",
+      "url": "https://github.com/Homebrew/BrewUI",
+      "description": "📺 Homebrew's official macOS GUI",
       "descriptions": {
-        "zh": "A Simple and Universal Swarm Intelligence Engine, Predicting Anything. 简洁通用的群体智能引擎，预测万物",
-        "en": "A Simple and Universal Swarm Intelligence Engine, Predicting Anything."
+        "zh": "📺 Homebrew 的官方 macOS GUI",
+        "en": "📺 Homebrew's official macOS GUI"
       },
-      "language": "Python",
-      "stars_total": 73392,
-      "forks_total": 11298,
-      "stars_today": 560
+      "language": "Swift",
+      "stars_total": 1534,
+      "forks_total": 35,
+      "stars_today": 271
     },
     {
       "rank": 6,
-      "repo": "Panniantong/Agent-Reach",
-      "owner": "Panniantong",
-      "name": "Agent-Reach",
-      "url": "https://github.com/Panniantong/Agent-Reach",
-      "description": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
+      "repo": "melgarafael/DeskcommCRM",
+      "owner": "melgarafael",
+      "name": "DeskcommCRM",
+      "url": "https://github.com/melgarafael/DeskcommCRM",
+      "description": "Open-source AI sales OS — self-hosted CRM with native AI agents + WhatsApp (WAHA). Open alternative to Kommo, Octadesk & Intercom for any business that sells by chat. MCP-ready, multi-tenant, LGPD.",
       "descriptions": {
-        "zh": "让您的人工智能代理有一双能够看到整个互联网的眼睛。阅读和搜索 Twitter、Reddit、YouTube、GitHub、Bilibili、小红书 — 一个 CLI，零 API 费用。",
-        "en": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees."
+        "zh": "开源人工智能销售操作系统——带有原生人工智能代理的自托管 CRM + WhatsApp (WAHA)。为任何通过聊天进行销售的企业提供 Kommo、Octadesk 和 Intercom 的开放替代方案。 MCP 就绪、多租户、LGPD。",
+        "en": "Open-source AI sales OS — self-hosted CRM with native AI agents + WhatsApp (WAHA). Open alternative to Kommo, Octadesk & Intercom for any business that sells by chat. MCP-ready, multi-tenant, LGPD."
       },
-      "language": "Python",
-      "stars_total": 81581,
-      "forks_total": 7096,
-      "stars_today": 651
+      "language": "TypeScript",
+      "stars_total": 2951,
+      "forks_total": 692,
+      "stars_today": 193
     }
   ]
 }
