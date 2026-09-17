@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-09-16T05:57:26.783014+00:00",
+  "generated_at": "2026-09-17T06:05:42.723780+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,12 +15,28 @@
         "en": "Fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible."
       },
       "language": "Go",
-      "stars_total": 29266,
-      "forks_total": 2079,
-      "stars_today": 2756
+      "stars_total": 32660,
+      "forks_total": 2310,
+      "stars_today": 3231
     },
     {
       "rank": 2,
+      "repo": "cloudflare/security-audit-skill",
+      "owner": "cloudflare",
+      "name": "security-audit-skill",
+      "url": "https://github.com/cloudflare/security-audit-skill",
+      "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+      "descriptions": {
+        "zh": "用于多阶段安全审计的编码代理技能，具有独立验证的机器可读结果",
+        "en": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings"
+      },
+      "language": "JavaScript",
+      "stars_total": 7861,
+      "forks_total": 442,
+      "stars_today": 927
+    },
+    {
+      "rank": 3,
       "repo": "JustVugg/colibri",
       "owner": "JustVugg",
       "name": "colibri",
@@ -31,73 +47,54 @@
         "en": "Run frontier MoE models on hardware you already own — pure C, zero deps, experts streamed from disk. Tiny engine, immense model. 🐦"
       },
       "language": "C",
-      "stars_total": 34144,
-      "forks_total": 3573,
-      "stars_today": 2026
-    },
-    {
-      "rank": 3,
-      "repo": "ever-co/ever-gauzy",
-      "owner": "ever-co",
-      "name": "ever-gauzy",
-      "url": "https://github.com/ever-co/ever-gauzy",
-      "description": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
-      "descriptions": {
-        "zh": "Ever® Gauzy™ - 开放式业务管理平台 (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
-        "en": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co"
-      },
-      "language": "TypeScript",
-      "stars_total": 6851,
-      "forks_total": 1053,
-      "stars_today": 634
+      "stars_total": 35191,
+      "forks_total": 3699,
+      "stars_today": 1546
     },
     {
       "rank": 4,
-      "repo": "debpalash/VoiceStudio",
-      "owner": "debpalash",
-      "name": "VoiceStudio",
-      "url": "https://github.com/debpalash/VoiceStudio",
-      "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages.",
+      "repo": "abue-ammar/tinycast",
+      "owner": "abue-ammar",
+      "name": "tinycast",
+      "url": "https://github.com/abue-ammar/tinycast",
+      "description": "Tinycast — a tiny, fully native macOS launcher, hotkeys, and clipboard history.",
       "descriptions": {
-        "zh": "VoiceStudio 是 ElevenLabs 的开源、完全本地化替代方案 — 提供 646 种语言的语音克隆、语音设计、视频配音、听写、转录和有声读物创建。",
-        "en": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages."
+        "zh": "Tinycast — 一个小型、完全原生的 macOS 启动器、热键和剪贴板历史记录。",
+        "en": "Tinycast — a tiny, fully native macOS launcher, hotkeys, and clipboard history."
       },
-      "language": "Python",
-      "stars_total": 31287,
-      "forks_total": 3721,
-      "stars_today": 2072
+      "language": "Swift",
+      "stars_total": 5755,
+      "forks_total": 274,
+      "stars_today": 1179
     },
     {
       "rank": 5,
-      "repo": "Homebrew/BrewUI",
-      "owner": "Homebrew",
-      "name": "BrewUI",
-      "url": "https://github.com/Homebrew/BrewUI",
-      "description": "📺 Homebrew's official macOS GUI",
+      "repo": "jamiepine/voicebox",
+      "owner": "jamiepine",
+      "name": "voicebox",
+      "url": "https://github.com/jamiepine/voicebox",
+      "description": "The open-source AI voice studio. Clone, dictate, create.",
       "descriptions": {
-        "zh": "📺 Homebrew 的官方 macOS GUI",
-        "en": "📺 Homebrew's official macOS GUI"
+        "zh": "开源人工智能语音工作室。克隆、指令、创造。",
+        "en": "The open-source AI voice studio. Clone, dictate, create."
       },
-      "language": "Swift",
-      "stars_total": 1534,
-      "forks_total": 35,
-      "stars_today": 271
+      "language": "TypeScript",
+      "stars_total": 54538,
+      "forks_total": 6798,
+      "stars_today": 417
     },
     {
       "rank": 6,
-      "repo": "melgarafael/DeskcommCRM",
-      "owner": "melgarafael",
-      "name": "DeskcommCRM",
-      "url": "https://github.com/melgarafael/DeskcommCRM",
-      "description": "Open-source AI sales OS — self-hosted CRM with native AI agents + WhatsApp (WAHA). Open alternative to Kommo, Octadesk & Intercom for any business that sells by chat. MCP-ready, multi-tenant, LGPD.",
-      "descriptions": {
-        "zh": "开源人工智能销售操作系统——带有原生人工智能代理的自托管 CRM + WhatsApp (WAHA)。为任何通过聊天进行销售的企业提供 Kommo、Octadesk 和 Intercom 的开放替代方案。 MCP 就绪、多租户、LGPD。",
-        "en": "Open-source AI sales OS — self-hosted CRM with native AI agents + WhatsApp (WAHA). Open alternative to Kommo, Octadesk & Intercom for any business that sells by chat. MCP-ready, multi-tenant, LGPD."
-      },
-      "language": "TypeScript",
-      "stars_total": 2951,
-      "forks_total": 692,
-      "stars_today": 193
+      "repo": "Lakr233/vphone-cli",
+      "owner": "Lakr233",
+      "name": "vphone-cli",
+      "url": "https://github.com/Lakr233/vphone-cli",
+      "description": null,
+      "descriptions": null,
+      "language": "Swift",
+      "stars_total": 13452,
+      "forks_total": 1594,
+      "stars_today": 547
     }
   ]
 }
