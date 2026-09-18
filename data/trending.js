@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-09-17T06:05:42.723780+00:00",
+  "generated_at": "2026-09-18T05:51:32.525108+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,9 +15,9 @@ window.__TRENDING_DATA__ = {
         "en": "Fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible."
       },
       "language": "Go",
-      "stars_total": 32660,
-      "forks_total": 2310,
-      "stars_today": 3231
+      "stars_total": 35421,
+      "forks_total": 2509,
+      "stars_today": 3286
     },
     {
       "rank": 2,
@@ -27,74 +27,77 @@ window.__TRENDING_DATA__ = {
       "url": "https://github.com/cloudflare/security-audit-skill",
       "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
       "descriptions": {
-        "zh": "用于多阶段安全审计的编码代理技能，具有独立验证的机器可读结果",
+        "zh": "用于多阶段安全审计的编码代理技能，具有独立验证、机器可读的结果",
         "en": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings"
       },
       "language": "JavaScript",
-      "stars_total": 7861,
-      "forks_total": 442,
-      "stars_today": 927
+      "stars_total": 11113,
+      "forks_total": 597,
+      "stars_today": 3607
     },
     {
       "rank": 3,
-      "repo": "JustVugg/colibri",
-      "owner": "JustVugg",
-      "name": "colibri",
-      "url": "https://github.com/JustVugg/colibri",
-      "description": "Run frontier MoE models on hardware you already own — pure C, zero deps, experts streamed from disk. Tiny engine, immense model. 🐦",
+      "repo": "addyosmani/agent-skills",
+      "owner": "addyosmani",
+      "name": "agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "description": "Production-grade engineering skills for AI coding agents.",
       "descriptions": {
-        "zh": "在您已经拥有的硬件上运行前沿 MoE 模型 - 纯 C、零依赖、从磁盘流式传输的专家。微小的发动机，巨大的模型。 🐦",
-        "en": "Run frontier MoE models on hardware you already own — pure C, zero deps, experts streamed from disk. Tiny engine, immense model. 🐦"
+        "zh": "AI 编码代理的生产级工程技能。",
+        "en": "Production-grade engineering skills for AI coding agents."
       },
-      "language": "C",
-      "stars_total": 35191,
-      "forks_total": 3699,
-      "stars_today": 1546
+      "language": "JavaScript",
+      "stars_total": 95984,
+      "forks_total": 10157,
+      "stars_today": 680
     },
     {
       "rank": 4,
-      "repo": "abue-ammar/tinycast",
-      "owner": "abue-ammar",
-      "name": "tinycast",
-      "url": "https://github.com/abue-ammar/tinycast",
-      "description": "Tinycast — a tiny, fully native macOS launcher, hotkeys, and clipboard history.",
+      "repo": "Tencent/BrowserSkill",
+      "owner": "Tencent",
+      "name": "BrowserSkill",
+      "url": "https://github.com/Tencent/BrowserSkill",
+      "description": "Let AI agents use your real, logged-in browser without interrupting your work. CLI + extension for browser automation across any shell-capable AI agent.",
       "descriptions": {
-        "zh": "Tinycast — 一个小型、完全原生的 macOS 启动器、热键和剪贴板历史记录。",
-        "en": "Tinycast — a tiny, fully native macOS launcher, hotkeys, and clipboard history."
+        "zh": "让 AI 代理使用您真实登录的浏览器，而不会中断您的工作。 CLI + 扩展，可跨任何支持 shell 的 AI 代理实现浏览器自动化。",
+        "en": "Let AI agents use your real, logged-in browser without interrupting your work. CLI + extension for browser automation across any shell-capable AI agent."
       },
-      "language": "Swift",
-      "stars_total": 5755,
-      "forks_total": 274,
-      "stars_today": 1179
+      "language": "TypeScript",
+      "stars_total": 4503,
+      "forks_total": 317,
+      "stars_today": 1302
     },
     {
       "rank": 5,
-      "repo": "jamiepine/voicebox",
-      "owner": "jamiepine",
-      "name": "voicebox",
-      "url": "https://github.com/jamiepine/voicebox",
-      "description": "The open-source AI voice studio. Clone, dictate, create.",
+      "repo": "alphaXiv/OpenResearch",
+      "owner": "alphaXiv",
+      "name": "OpenResearch",
+      "url": "https://github.com/alphaXiv/OpenResearch",
+      "description": "Turn your coding agents into research agents",
       "descriptions": {
-        "zh": "开源人工智能语音工作室。克隆、指令、创造。",
-        "en": "The open-source AI voice studio. Clone, dictate, create."
+        "zh": "将您的编码代理转变为研究代理",
+        "en": "Turn your coding agents into research agents"
       },
-      "language": "TypeScript",
-      "stars_total": 54538,
-      "forks_total": 6798,
-      "stars_today": 417
+      "language": "Rust",
+      "stars_total": 5088,
+      "forks_total": 309,
+      "stars_today": 939
     },
     {
       "rank": 6,
-      "repo": "Lakr233/vphone-cli",
-      "owner": "Lakr233",
-      "name": "vphone-cli",
-      "url": "https://github.com/Lakr233/vphone-cli",
-      "description": null,
-      "descriptions": null,
-      "language": "Swift",
-      "stars_total": 13452,
-      "forks_total": 1594,
-      "stars_today": 547
+      "repo": "anthropics/claude-code",
+      "owner": "anthropics",
+      "name": "claude-code",
+      "url": "https://github.com/anthropics/claude-code",
+      "description": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.",
+      "descriptions": {
+        "zh": "Claude Code 是一种代理编码工具，它位于您的终端中，了解您的代码库，并通过执行例行任务、解释复杂代码和处理 git 工作流程来帮助您更快地编码 - 所有这些都通过自然语言命令进行。",
+        "en": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands."
+      },
+      "language": "TypeScript",
+      "stars_total": 145949,
+      "forks_total": 23655,
+      "stars_today": 538
     }
   ]
 }
