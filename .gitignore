@@ -1,5 +1,7 @@
 .video-resolver-env.json
 preview-*.log
+/study-src/test-results/
+/study-src/playwright-report/
 
 # macOS AppleDouble metadata files
 ._*

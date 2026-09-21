@@ -3,15 +3,27 @@ import fixture from '../public/data/read-model.demo.json'
 import { assertCompatibleReadModel } from './model'
 
 describe('learning dashboard contract', () => {
+  it('keeps the existing generator version bounds', () => {
+    for (const generator_version of ['0.1.0', '0.2.0', '0.3.3', '0.3.999']) expect(() => assertCompatibleReadModel({ ...fixture, generator_version })).not.toThrow()
+    for (const generator_version of ['0.0.9', '0.4.0', '1.0.0', '0.3', '0.3.3-beta', '']) expect(() => assertCompatibleReadModel({ ...fixture, generator_version })).toThrow('generator_version')
+  })
   it('accepts the shared demo fixture', () => {
     assertCompatibleReadModel(fixture)
     expect(fixture.projects).toHaveLength(1)
     expect(fixture.tasks).toHaveLength(3)
     expect(fixture.assessments[0].attempts.map((item) => item.source_type)).toEqual(['codex', 'web'])
     expect(fixture.assessments[0].cycle_decision.decision).toBe('continue')
+    expect(fixture.llm_profiles[0].profile_id).toBe('LLM-PROFILE-DEMO-001')
   })
 
   it('rejects an incompatible schema', () => {
     expect(() => assertCompatibleReadModel({ ...fixture, schema_version: '2.0.0' })).toThrow('不兼容')
+  })
+
+  it('keeps read model 1.0 compatible while defaulting new collections', () => {
+    const previous: unknown = { ...fixture, schema_version: '1.0.0', evidence_coverage: undefined, audit_events: undefined }
+    assertCompatibleReadModel(previous)
+    expect(previous.evidence_coverage).toEqual([])
+    expect(previous.audit_events).toEqual([])
   })
 })
