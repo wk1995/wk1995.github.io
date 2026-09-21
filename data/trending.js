@@ -1,26 +1,58 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-09-20T06:09:04.319453+00:00",
+  "generated_at": "2026-09-21T06:14:48.427545+00:00",
   "items": [
     {
       "rank": 1,
+      "repo": "affaan-m/ECC",
+      "owner": "affaan-m",
+      "name": "ECC",
+      "url": "https://github.com/affaan-m/ECC",
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "descriptions": {
+        "zh": "代理利用性能优化系统。 Claude Code、Codex、Opencode、Cursor 等的技能、直觉、记忆、安全性和研究优先的开发。",
+        "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
+      },
+      "language": "JavaScript",
+      "stars_total": 264001,
+      "forks_total": 39487,
+      "stars_today": 826
+    },
+    {
+      "rank": 2,
+      "repo": "BuilderIO/agent-native",
+      "owner": "BuilderIO",
+      "name": "agent-native",
+      "url": "https://github.com/BuilderIO/agent-native",
+      "description": "A framework for building agentic apps",
+      "descriptions": {
+        "zh": "用于构建代理应用程序的框架",
+        "en": "A framework for building agentic apps"
+      },
+      "language": "TypeScript",
+      "stars_total": 5403,
+      "forks_total": 502,
+      "stars_today": 98
+    },
+    {
+      "rank": 3,
       "repo": "cloudflare/security-audit-skill",
       "owner": "cloudflare",
       "name": "security-audit-skill",
       "url": "https://github.com/cloudflare/security-audit-skill",
       "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
       "descriptions": {
-        "zh": "用于多阶段安全审计的编码代理技能，具有独立验证的机器可读结果",
+        "zh": "用于多阶段安全审计的编码代理技能，具有独立验证、机器可读的结果",
         "en": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings"
       },
       "language": "JavaScript",
-      "stars_total": 16818,
-      "forks_total": 921,
-      "stars_today": 3155
+      "stars_total": 18292,
+      "forks_total": 1024,
+      "stars_today": 2428
     },
     {
-      "rank": 2,
+      "rank": 4,
       "repo": "trycua/cua",
       "owner": "trycua",
       "name": "cua",
@@ -31,73 +63,38 @@ window.__TRENDING_DATA__ = {
         "en": "Scale computer-use 2.0 with open-source drivers, cross-OS fleets, and benchmarks for training, evaluation, and data generation."
       },
       "language": "HTML",
-      "stars_total": 24651,
-      "forks_total": 1695,
-      "stars_today": 859
-    },
-    {
-      "rank": 3,
-      "repo": "addyosmani/agent-skills",
-      "owner": "addyosmani",
-      "name": "agent-skills",
-      "url": "https://github.com/addyosmani/agent-skills",
-      "description": "Production-grade engineering skills for AI coding agents.",
-      "descriptions": {
-        "zh": "AI 编码代理的生产级工程技能。",
-        "en": "Production-grade engineering skills for AI coding agents."
-      },
-      "language": "JavaScript",
-      "stars_total": 97195,
-      "forks_total": 10258,
-      "stars_today": 556
-    },
-    {
-      "rank": 4,
-      "repo": "coder/coder",
-      "owner": "coder",
-      "name": "coder",
-      "url": "https://github.com/coder/coder",
-      "description": "Secure environments for developers and their agents",
-      "descriptions": {
-        "zh": "为开发人员及其代理提供安全的环境",
-        "en": "Secure environments for developers and their agents"
-      },
-      "language": "Go",
-      "stars_total": 15699,
-      "forks_total": 1525,
-      "stars_today": 402
+      "stars_total": 25315,
+      "forks_total": 1742,
+      "stars_today": 1018
     },
     {
       "rank": 5,
-      "repo": "anthropics/claude-code",
+      "repo": "anthropics/financial-services",
       "owner": "anthropics",
-      "name": "claude-code",
-      "url": "https://github.com/anthropics/claude-code",
-      "description": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.",
-      "descriptions": {
-        "zh": "Claude Code 是一种代理编码工具，它位于您的终端中，了解您的代码库，并通过执行例行任务、解释复杂代码和处理 git 工作流程来帮助您更快地编码 - 所有这些都通过自然语言命令进行。",
-        "en": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands."
-      },
-      "language": "TypeScript",
-      "stars_total": 146803,
-      "forks_total": 23978,
-      "stars_today": 483
+      "name": "financial-services",
+      "url": "https://github.com/anthropics/financial-services",
+      "description": null,
+      "descriptions": null,
+      "language": "Python",
+      "stars_total": 35493,
+      "forks_total": 5256,
+      "stars_today": 260
     },
     {
       "rank": 6,
-      "repo": "Open-Dev-Society/OpenStock",
-      "owner": "Open-Dev-Society",
-      "name": "OpenStock",
-      "url": "https://github.com/Open-Dev-Society/OpenStock",
-      "description": "OpenStock is an open-source alternative to expensive market platforms. Track real-time prices, set personalized alerts, and explore detailed company insights — built openly, for everyone, forever free.",
+      "repo": "paperless-ngx/paperless-ngx",
+      "owner": "paperless-ngx",
+      "name": "paperless-ngx",
+      "url": "https://github.com/paperless-ngx/paperless-ngx",
+      "description": "A community-supported supercharged document management system: scan, index and archive all your documents",
       "descriptions": {
-        "zh": "OpenStock 是昂贵市场平台的开源替代品。跟踪实时价格、设置个性化提醒并探索详细的公司见解 - 为所有人公开构建，并且永远免费。",
-        "en": "OpenStock is an open-source alternative to expensive market platforms. Track real-time prices, set personalized alerts, and explore detailed company insights — built openly, for everyone, forever free."
+        "zh": "社区支持的强大文档管理系统：扫描、索引和归档您的所有文档",
+        "en": "A community-supported supercharged document management system: scan, index and archive all your documents"
       },
-      "language": "TypeScript",
-      "stars_total": 16250,
-      "forks_total": 2099,
-      "stars_today": 472
+      "language": "Python",
+      "stars_total": 45678,
+      "forks_total": 3158,
+      "stars_today": 57
     }
   ]
 }
