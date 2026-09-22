@@ -37,32 +37,70 @@
   </nav>
 
   <main class="catalog-shell">
-    <header class="catalog-page-head">
-      <div>
-        <p class="catalog-kicker" data-app-text="eyebrow">Personal Apps</p>
-        <h1 data-app-text="title">个人 App 列表</h1>
-        <p data-app-text="intro">workflow 生成的安装包按平台放入 apps/packages，页面会自动按 Android、iOS、Harmony、Windows、macOS 等平台生成下载入口和二维码。</p>
+    <header class="catalog-page-head apps-hero">
+      <div class="apps-hero-copy">
+        <p class="catalog-kicker" data-app-text="eyebrow">App Distribution</p>
+        <h1 data-app-text="title">应用分发中心</h1>
+        <p data-app-text="intro">集中查看由 CI 持续发布的安装包，按平台或版本快速定位，并通过链接或二维码获取最新构建。</p>
       </div>
-      <a class="catalog-primary-link" href="packages/" data-app-text="packageDir">安装包目录</a>
+      <a class="catalog-primary-link apps-directory-link" href="packages/">
+        <span data-app-text="packageDir">浏览文件目录</span>
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M5.22 3.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06L8.44 8 5.22 4.78a.75.75 0 0 1 0-1.06Z"></path>
+        </svg>
+      </a>
+      <div class="apps-overview" aria-label="发布概览">
+        <div class="apps-overview-item">
+          <span data-app-text="publishedApps">已发布应用</span>
+          <strong id="app-total-stat">0</strong>
+        </div>
+        <div class="apps-overview-item">
+          <span data-app-text="activePlatforms">覆盖平台</span>
+          <strong id="app-platform-stat">0</strong>
+        </div>
+        <div class="apps-overview-item">
+          <span data-app-text="availableBuilds">可用版本</span>
+          <strong id="app-release-stat">0</strong>
+        </div>
+        <div class="apps-overview-signal is-loading" id="app-sync-status" role="status" aria-live="polite">
+          <span class="apps-signal-dot" aria-hidden="true"></span>
+          <span id="app-sync-label">正在读取清单</span>
+        </div>
+      </div>
     </header>
 
-    <section class="catalog-toolbar" aria-label="App 筛选">
-      <label class="catalog-search">
-        <span data-app-text="searchLabel">搜索 App</span>
-        <input id="app-search" type="search" autocomplete="off" placeholder="App 名称 / 平台 / 版本">
-      </label>
-      <div class="catalog-current" id="app-source"></div>
-    </section>
+    <div class="apps-workbench">
+      <aside class="apps-sidebar" aria-label="App 筛选">
+        <section class="catalog-toolbar">
+          <label class="catalog-search">
+            <span data-app-text="searchLabel">搜索应用</span>
+            <span class="apps-search-field">
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M6.75 2a4.75 4.75 0 1 0 2.993 8.44l2.909 2.908a.75.75 0 1 0 1.06-1.06l-2.908-2.909A4.75 4.75 0 0 0 6.75 2Zm-3.25 4.75a3.25 3.25 0 1 1 6.5 0 3.25 3.25 0 0 1-6.5 0Z"></path>
+              </svg>
+              <input id="app-search" type="search" autocomplete="off" placeholder="名称 / 包名 / 版本">
+            </span>
+          </label>
+          <div class="catalog-current" id="app-source"></div>
+        </section>
 
-    <nav class="catalog-platforms" id="app-platforms" aria-label="平台分类"></nav>
+        <div class="apps-filter-heading">
+          <span data-app-text="platformFilter">平台筛选</span>
+        </div>
+        <nav class="catalog-platforms" id="app-platforms" aria-label="平台分类"></nav>
+      </aside>
 
-    <section class="catalog-section">
-      <div class="catalog-section-head">
-        <h2 data-app-text="listTitle">App 安装包</h2>
-        <span id="app-count">0</span>
-      </div>
-      <div class="app-platform-groups" id="app-groups"></div>
-    </section>
+      <section class="catalog-section apps-results">
+        <div class="catalog-section-head">
+          <div>
+            <p class="catalog-kicker" data-app-text="listEyebrow">Release Library</p>
+            <h2 data-app-text="listTitle">应用与安装包</h2>
+          </div>
+          <span class="apps-result-count"><strong id="app-count">0</strong> <span data-app-text="resultUnit">项</span></span>
+        </div>
+        <div class="app-platform-groups" id="app-groups"></div>
+      </section>
+    </div>
 
     <div class="catalog-status" id="app-status" role="status" aria-live="polite"></div>
   </main>

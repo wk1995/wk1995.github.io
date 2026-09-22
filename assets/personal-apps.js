@@ -1,13 +1,22 @@
 (function () {
   const text = {
     zh: {
-      eyebrow: "Personal Apps",
-      title: "个人 App 列表",
-      intro: "workflow 生成的安装包按平台放入 apps/packages，页面会自动按 Android、iOS、Harmony、Windows、macOS 等平台生成下载入口和二维码。",
-      packageDir: "安装包目录",
-      searchLabel: "搜索 App",
-      searchPlaceholder: "App 名称 / 平台 / 版本",
-      listTitle: "App 安装包",
+      eyebrow: "App Distribution",
+      title: "应用分发中心",
+      intro: "集中查看由 CI 持续发布的安装包，按平台或版本快速定位，并通过链接或二维码获取最新构建。",
+      packageDir: "浏览文件目录",
+      publishedApps: "已发布应用",
+      activePlatforms: "覆盖平台",
+      availableBuilds: "可用版本",
+      syncLoading: "正在读取清单",
+      syncSuccess: "清单已同步",
+      syncFailed: "清单同步失败",
+      platformFilter: "平台筛选",
+      searchLabel: "搜索应用",
+      searchPlaceholder: "名称 / 包名 / 版本",
+      listEyebrow: "Release Library",
+      listTitle: "应用与安装包",
+      resultUnit: "项",
       sourceTitle: "清单来源",
       sourceBody: "apps/packages/manifest.json",
       emptyTitle: "暂无安装包",
@@ -34,15 +43,26 @@
       latestVersion: "最新版本",
       installFiles: "安装包",
       pageVersion: "页面版本",
+      packageName: "包名",
+      fileCount: "文件",
     },
     en: {
-      eyebrow: "Personal Apps",
-      title: "Personal app list",
-      intro: "Place workflow-generated packages under apps/packages by platform. This page groups Android, iOS, Harmony, Windows, macOS, and other packages with download QR codes.",
-      packageDir: "Package directory",
+      eyebrow: "App Distribution",
+      title: "App distribution center",
+      intro: "Browse packages continuously published by CI, locate builds by platform or version, and get the latest release by link or QR code.",
+      packageDir: "Browse files",
+      publishedApps: "Published apps",
+      activePlatforms: "Platforms",
+      availableBuilds: "Available builds",
+      syncLoading: "Loading manifest",
+      syncSuccess: "Manifest synced",
+      syncFailed: "Manifest sync failed",
+      platformFilter: "Filter by platform",
       searchLabel: "Search apps",
-      searchPlaceholder: "App name / platform / version",
-      listTitle: "App packages",
+      searchPlaceholder: "Name / package / version",
+      listEyebrow: "Release Library",
+      listTitle: "Apps and packages",
+      resultUnit: "items",
       sourceTitle: "Manifest",
       sourceBody: "apps/packages/manifest.json",
       emptyTitle: "No packages yet",
@@ -69,6 +89,8 @@
       latestVersion: "Latest",
       installFiles: "Packages",
       pageVersion: "Page version",
+      packageName: "Package",
+      fileCount: "Files",
     },
   };
 
@@ -125,6 +147,7 @@
     manifest: { basePath: "packages/", apps: [] },
     filter: "",
     platform: "all",
+    loadState: "loading",
     error: "",
   };
 
@@ -284,6 +307,13 @@
     return releases;
   }
 
+  function productNameFromFile(value) {
+    const fileName = String(value || "").split(/[\\/]/).pop().replace(/\.[^.]+$/, "");
+    const platformBuild = fileName.match(/^(.+?)[-_ ](?:windows?|mac(?:os)?|linux)[-_ ]v?\d.*$/i);
+    const match = platformBuild || fileName.match(/^(.+?)(?:[-_ ]v?\d[\d._-]*)$/i);
+    return (match ? match[1] : fileName).replace(/[-_]+/g, " ").trim();
+  }
+
   function normalizeAppItem(item, index, context) {
     const source = item || {};
     const sourceId = typeof source.id === "string" && source.id.trim() ? source.id.trim() : "";
@@ -296,9 +326,14 @@
       : context.basePath || meta.defaultBasePath;
     const releases = normalizeReleases(source, { basePath: basePath });
     const latest = normalizeRelease(source.latest, { basePath: basePath }, "latest") || releases[releases.length - 1] || null;
-    const name = typeof source.name === "string" && source.name.trim()
+    let name = typeof source.name === "string" && source.name.trim()
       ? source.name.trim()
       : sourceId.split("/").pop() || "";
+    const packageName = sourceId.split("/").pop() || "";
+    const inferredProductName = productNameFromFile(latest && latest.file);
+    if (name.toLowerCase() === packageName.toLowerCase() && inferredProductName) {
+      name = inferredProductName;
+    }
     if (!name || !latest) {
       return null;
     }
@@ -413,6 +448,12 @@
 
   function appInitial(app) {
     return app.name.replace(/^[^a-zA-Z0-9\u4e00-\u9fa5]+/, "").slice(0, 1).toUpperCase() || "A";
+  }
+
+  function appPackageName(app) {
+    const id = String(app.id || "");
+    const parts = id.split("/").filter(Boolean);
+    return parts.length ? parts[parts.length - 1] : (app.slug || app.file || "-");
   }
 
   function matchesFilter(app) {
@@ -743,6 +784,10 @@
     return svg;
   }
 
+  window.WKAppsQR = {
+    createSvg: qrSvg,
+  };
+
   function createChip(label) {
     const chip = document.createElement("span");
     chip.className = "catalog-chip";
@@ -781,6 +826,7 @@
     const heading = document.createElement("h3");
     const meta = document.createElement("p");
     const description = document.createElement("p");
+    const facts = document.createElement("dl");
     const chips = document.createElement("div");
     const download = document.createElement("div");
     const qr = document.createElement("div");
@@ -790,14 +836,16 @@
     const detailLink = document.createElement("a");
     const actions = document.createElement("div");
 
-    card.className = "app-card";
+    card.className = "app-card app-card--" + app.platformId;
     head.className = "app-card-head";
     mark.className = "app-mark";
     title.className = "app-title";
-    chips.className = "catalog-chip-row";
+    description.className = "app-description";
+    facts.className = "app-facts";
+    chips.className = "catalog-chip-row app-supporting-chips";
     download.className = "app-download";
     qr.className = "app-qr";
-    link.className = "app-download-link";
+    link.className = "catalog-action app-download-link";
     link.href = url;
     link.textContent = t("download");
     link.download = app.file || "";
@@ -809,16 +857,24 @@
     mark.textContent = appInitial(app);
     heading.textContent = app.name;
     meta.textContent = [platformLabel(app.platformId), app.version].filter(Boolean).join(" · ");
-    description.textContent = app.description || url;
-    if (app.platformId) {
-      chips.appendChild(createChip(t("platform") + " · " + platformLabel(app.platformId)));
-    }
-    if (app.version) {
-      chips.appendChild(createChip(t("version") + " · " + app.version));
-    }
-    if (app.updatedAt) {
-      chips.appendChild(createChip(t("updated") + " · " + app.updatedAt));
-    }
+    description.textContent = app.description || app.file || appPackageName(app);
+
+    [
+      [t("packageName"), appPackageName(app)],
+      [t("latestVersion"), app.version || "-"],
+      [t("updated"), app.updatedAt || "-"],
+      [t("fileCount"), String(app.latest && app.latest.files ? app.latest.files.length : 1)],
+    ].forEach(function (fact) {
+      const item = document.createElement("div");
+      const label = document.createElement("dt");
+      const value = document.createElement("dd");
+      label.textContent = fact[0];
+      value.textContent = fact[1];
+      item.appendChild(label);
+      item.appendChild(value);
+      facts.appendChild(item);
+    });
+
     if (app.size) {
       chips.appendChild(createChip(app.size));
     }
@@ -846,8 +902,7 @@
     qrLabel.className = "catalog-card-label";
     qrLabel.textContent = t("qrLabel");
     downloadText.appendChild(qrLabel);
-    downloadText.appendChild(document.createElement("br"));
-    downloadText.appendChild(link);
+    actions.appendChild(link);
     actions.appendChild(detailLink);
 
     title.appendChild(heading);
@@ -860,6 +915,7 @@
     download.appendChild(downloadText);
     card.appendChild(head);
     card.appendChild(description);
+    card.appendChild(facts);
     if (chips.childNodes.length) {
       card.appendChild(chips);
     }
@@ -889,6 +945,25 @@
     if (detail.textContent) {
       refs.source.appendChild(detail);
     }
+  }
+
+  function renderOverview() {
+    const apps = state.manifest.apps;
+    const platformCount = new Set(apps.map(function (app) { return app.platformId; })).size;
+    const releaseCount = apps.reduce(function (total, app) {
+      return total + Math.max((app.versions || []).length, 1);
+    }, 0);
+    refs.totalStat.textContent = String(apps.length);
+    refs.platformStat.textContent = String(platformCount);
+    refs.releaseStat.textContent = String(releaseCount);
+  }
+
+  function renderSyncStatus() {
+    const stateKey = state.loadState === "success"
+      ? "syncSuccess"
+      : (state.loadState === "error" ? "syncFailed" : "syncLoading");
+    refs.syncStatus.className = "apps-overview-signal is-" + state.loadState;
+    refs.syncLabel.textContent = t(stateKey);
   }
 
   function appsForCurrentView() {
@@ -1011,6 +1086,8 @@
 
   function render() {
     applyStaticText();
+    renderOverview();
+    renderSyncStatus();
     renderSource();
     renderPlatformNav();
     renderApps();
@@ -1030,9 +1107,11 @@
         throw new Error("HTTP " + response.status);
       }
       state.manifest = normalizeManifest(await response.json());
+      state.loadState = "success";
       state.error = "";
     } catch (error) {
       state.manifest = normalizeManifest({});
+      state.loadState = "error";
       state.error = t("loadFailed");
     }
     render();
@@ -1057,9 +1136,17 @@
     refs.groups = document.getElementById("app-groups");
     refs.count = document.getElementById("app-count");
     refs.status = document.getElementById("app-status");
+    refs.totalStat = document.getElementById("app-total-stat");
+    refs.platformStat = document.getElementById("app-platform-stat");
+    refs.releaseStat = document.getElementById("app-release-stat");
+    refs.syncStatus = document.getElementById("app-sync-status");
+    refs.syncLabel = document.getElementById("app-sync-label");
   }
 
   function init() {
+    if (!document.getElementById("app-search")) {
+      return;
+    }
     state.platform = selectedPlatformFromUrl();
     collect();
     bind();

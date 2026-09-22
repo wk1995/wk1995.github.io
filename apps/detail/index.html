@@ -37,29 +37,71 @@
   </nav>
 
   <main class="catalog-shell app-detail-shell">
-    <header class="catalog-page-head">
-      <div>
-        <p class="catalog-kicker" id="app-detail-platform">App Detail</p>
-        <h1 id="app-detail-title">App 详情</h1>
-        <p id="app-detail-summary">读取安装包清单中。</p>
+    <div class="app-detail-breadcrumb">
+      <a href="../" id="app-detail-back">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.78 2.22a.75.75 0 0 1 0 1.06L3.81 7.25H14a.75.75 0 0 1 0 1.5H3.81l3.97 3.97a.75.75 0 1 1-1.06 1.06l-5.25-5.25a.75.75 0 0 1 0-1.06l5.25-5.25a.75.75 0 0 1 1.06 0Z"></path></svg>
+        <span>返回列表</span>
+      </a>
+      <span aria-hidden="true">/</span>
+      <span id="app-detail-breadcrumb-name">App 详情</span>
+    </div>
+
+    <section class="app-detail-hero" aria-labelledby="app-detail-title">
+      <div class="app-detail-identity">
+        <span class="app-detail-mark" id="app-detail-mark" aria-hidden="true">A</span>
+        <div class="app-detail-copy">
+          <p class="catalog-kicker" id="app-detail-platform">App Detail</p>
+          <h1 id="app-detail-title">App 详情</h1>
+          <p id="app-detail-summary">读取安装包清单中。</p>
+          <div class="app-detail-chips" aria-label="版本摘要">
+            <span class="app-detail-live"><i></i><span id="app-detail-release-state">持续发布</span></span>
+            <span id="app-detail-version-chip">Latest</span>
+            <span id="app-detail-updated-chip">—</span>
+          </div>
+        </div>
       </div>
-      <a class="catalog-primary-link" href="../" id="app-detail-back">返回列表</a>
-    </header>
+
+      <aside class="app-latest-release" aria-labelledby="app-latest-title">
+        <div class="app-latest-copy">
+          <p id="app-latest-label">最新版本</p>
+          <h2 id="app-latest-title">—</h2>
+          <span id="app-latest-meta">—</span>
+        </div>
+        <div class="app-latest-qr" id="app-latest-qr" aria-label="扫码下载"></div>
+        <a class="app-latest-download" id="app-latest-download" href="#">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8.75 1.75a.75.75 0 0 0-1.5 0v7.69L4.78 6.97a.75.75 0 0 0-1.06 1.06l3.75 3.75a.75.75 0 0 0 1.06 0l3.75-3.75a.75.75 0 1 0-1.06-1.06L8.75 9.44V1.75ZM2.5 12a.75.75 0 0 0-1.5 0v1.25C1 14.216 1.784 15 2.75 15h10.5A1.75 1.75 0 0 0 15 13.25V12a.75.75 0 0 0-1.5 0v1.25a.25.25 0 0 1-.25.25H2.75a.25.25 0 0 1-.25-.25V12Z"></path></svg>
+          <span>下载最新版本</span>
+        </a>
+      </aside>
+
+      <dl class="app-detail-facts">
+        <div><dt id="app-fact-package-label">包名</dt><dd id="app-fact-package">—</dd></div>
+        <div><dt id="app-fact-platform-label">平台</dt><dd id="app-fact-platform">—</dd></div>
+        <div><dt id="app-fact-size-label">安装包大小</dt><dd id="app-fact-size">—</dd></div>
+        <div><dt id="app-fact-builds-label">可用版本</dt><dd id="app-fact-builds">0</dd></div>
+      </dl>
+    </section>
 
     <section class="app-detail-layout">
-      <article class="catalog-section">
-        <div class="catalog-section-head">
-          <h2 id="app-readme-title">项目介绍</h2>
-        </div>
-        <div class="app-readme" id="app-readme"></div>
-      </article>
-
-      <aside class="catalog-section">
-        <div class="catalog-section-head">
-          <h2 id="app-version-title">版本安装包</h2>
-          <span id="app-version-count">0</span>
+      <article class="catalog-section app-release-section">
+        <div class="catalog-section-head app-release-head">
+          <div>
+            <p class="catalog-kicker" id="app-version-kicker">Release activity</p>
+            <h2 id="app-version-title">版本动态</h2>
+          </div>
+          <span class="app-release-count"><strong id="app-version-count">0</strong><span id="app-version-count-unit"> 个版本</span></span>
         </div>
         <div class="app-version-list" id="app-version-list"></div>
+      </article>
+
+      <aside class="catalog-section app-about-section">
+        <div class="catalog-section-head">
+          <div>
+            <p class="catalog-kicker" id="app-readme-kicker">About</p>
+            <h2 id="app-readme-title">项目介绍</h2>
+          </div>
+        </div>
+        <div class="app-readme" id="app-readme"></div>
       </aside>
     </section>
 
@@ -67,6 +109,7 @@
   </main>
 
   <script src="../../assets/site.js"></script>
+  <script src="../../assets/personal-apps.js"></script>
   <script src="../../assets/app-detail.js"></script>
 </body>
 </html>

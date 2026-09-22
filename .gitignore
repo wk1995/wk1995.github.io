@@ -2,3 +2,6 @@
 preview-*.log
 .workbuddy/
 __pycache__/
+
+# macOS AppleDouble metadata files
+._*

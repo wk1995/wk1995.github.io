@@ -5,10 +5,23 @@
       loading: "读取安装包清单中。",
       back: "返回列表",
       readmeTitle: "项目介绍",
-      versionsTitle: "版本安装包",
+      readmeKicker: "About",
+      versionsTitle: "版本动态",
+      versionsKicker: "Release activity",
       notFound: "没有找到这个 App。",
-      noReadme: "这个 App 暂无 README 项目介绍。",
+      noReadme: "项目暂未提供 README，可从左侧版本动态中选择最新或历史安装包。",
       download: "下载",
+      downloadLatest: "下载最新版本",
+      latestVersion: "最新版本",
+      latestBadge: "当前版本",
+      releaseState: "持续发布",
+      scanDownload: "扫码下载",
+      packageName: "包名",
+      platform: "平台",
+      packageSize: "安装包大小",
+      availableBuilds: "可用版本",
+      buildUnit: " 个版本",
+      distributionSummary: "{platform} 持续集成构建，可直接获取最新版本或选择历史安装包。",
       updated: "更新",
       size: "大小",
       fileType: "类型",
@@ -26,10 +39,23 @@
       loading: "Reading the package manifest.",
       back: "Back to list",
       readmeTitle: "Project README",
-      versionsTitle: "Version packages",
+      readmeKicker: "About",
+      versionsTitle: "Release activity",
+      versionsKicker: "Release activity",
       notFound: "This app was not found.",
-      noReadme: "No README is available for this app yet.",
+      noReadme: "No README is available yet. Choose the latest or an earlier package from the release activity.",
       download: "Download",
+      downloadLatest: "Download latest",
+      latestVersion: "Latest release",
+      latestBadge: "Current",
+      releaseState: "Continuously published",
+      scanDownload: "Scan to download",
+      packageName: "Package",
+      platform: "Platform",
+      packageSize: "Package size",
+      availableBuilds: "Available builds",
+      buildUnit: " builds",
+      distributionSummary: "Continuously delivered {platform} builds. Download the latest release or choose an earlier package.",
       updated: "Updated",
       size: "Size",
       fileType: "Type",
@@ -187,6 +213,13 @@
     return releases;
   }
 
+  function productNameFromFile(value) {
+    const fileName = String(value || "").split(/[\\/]/).pop().replace(/\.[^.]+$/, "");
+    const platformBuild = fileName.match(/^(.+?)[-_ ](?:windows?|mac(?:os)?|linux)[-_ ]v?\d.*$/i);
+    const match = platformBuild || fileName.match(/^(.+?)(?:[-_ ]v?\d[\d._-]*)$/i);
+    return (match ? match[1] : fileName).replace(/[-_]+/g, " ").trim();
+  }
+
   function normalizeApp(item, index) {
     const source = item || {};
     const id = typeof source.id === "string" && source.id.trim() ? source.id.trim() : "";
@@ -196,13 +229,19 @@
       : platformMeta(platformId).defaultBasePath;
     const versions = normalizeReleases(source, { basePath: basePath });
     const latest = normalizeRelease(source.latest, { basePath: basePath }, "latest") || versions[versions.length - 1] || null;
-    const name = typeof source.name === "string" && source.name.trim() ? source.name.trim() : id.split("/").pop() || "App";
+    let name = typeof source.name === "string" && source.name.trim() ? source.name.trim() : id.split("/").pop() || "App";
+    const packageName = id.split("/").pop() || "";
+    const inferredProductName = productNameFromFile(latest && latest.file);
+    if (name.toLowerCase() === packageName.toLowerCase() && inferredProductName) {
+      name = inferredProductName;
+    }
     if (!latest) {
       return null;
     }
     return {
       id: id || platformId + "-app-" + index,
       name: name,
+      slug: typeof source.slug === "string" ? source.slug.trim() : "",
       platformId: platformId,
       description: typeof source.description === "string" ? source.description.trim() : "",
       readme: typeof source.readme === "string" ? source.readme : "",
@@ -302,48 +341,118 @@
     refs.readme.innerHTML = html.join("");
   }
 
-  function renderVersion(release, app) {
-    const card = document.createElement("article");
+  function appInitial(app) {
+    return app.name.replace(/^[^a-zA-Z0-9\u4e00-\u9fa5]+/, "").slice(0, 1).toUpperCase() || "A";
+  }
+
+  function appPackageName(app) {
+    const parts = String(app.id || "").split("/").filter(Boolean);
+    return parts.length ? parts[parts.length - 1] : app.slug || "—";
+  }
+
+  function latestFile(app) {
+    return app && app.latest && app.latest.files ? app.latest.files[0] : null;
+  }
+
+  function renderVersion(release, app, isLatest) {
+    const entry = document.createElement("article");
+    const marker = document.createElement("span");
+    const content = document.createElement("div");
+    const head = document.createElement("div");
+    const headingWrap = document.createElement("div");
     const heading = document.createElement("h3");
+    const badge = document.createElement("span");
     const meta = document.createElement("p");
     const list = document.createElement("div");
-    card.className = "app-version-card";
+    entry.className = "app-release-entry" + (isLatest ? " is-latest" : "");
+    marker.className = "app-release-marker";
+    content.className = "app-release-content";
+    head.className = "app-release-entry-head";
+    headingWrap.className = "app-release-heading";
     heading.textContent = release.version || "latest";
+    badge.className = "app-release-current";
+    badge.textContent = t("latestBadge");
     meta.textContent = release.updatedAt ? t("updated") + " · " + release.updatedAt : "";
-    list.className = "app-version-files";
+    list.className = "app-release-files";
+
+    headingWrap.appendChild(heading);
+    if (isLatest) {
+      headingWrap.appendChild(badge);
+    }
+    head.appendChild(headingWrap);
+    if (meta.textContent) {
+      head.appendChild(meta);
+    }
+
     release.files.forEach(function (file) {
       const link = document.createElement("a");
-      const detail = document.createElement("span");
-      link.className = "app-version-file";
+      const type = document.createElement("span");
+      const copy = document.createElement("span");
+      const name = document.createElement("strong");
+      const detail = document.createElement("small");
+      const action = document.createElement("span");
+      link.className = "app-release-file";
       link.href = fileUrl(app, release, file);
       link.download = file.file || "";
-      link.textContent = file.file || file.url || t("download");
+      type.className = "app-release-file-type";
+      type.textContent = String(file.type || "file").slice(0, 4).toUpperCase();
+      copy.className = "app-release-file-copy";
+      name.textContent = file.file || file.url || t("download");
       detail.textContent = [
         file.type ? t("fileType") + " · " + file.type : "",
         file.size ? t("size") + " · " + file.size : "",
-      ].filter(Boolean).join("  ");
-      list.appendChild(link);
+      ].filter(Boolean).join("  /  ");
+      action.className = "app-release-file-action";
+      action.textContent = "↓";
+      copy.appendChild(name);
       if (detail.textContent) {
-        list.appendChild(detail);
+        copy.appendChild(detail);
       }
+      link.appendChild(type);
+      link.appendChild(copy);
+      link.appendChild(action);
+      list.appendChild(link);
     });
-    card.appendChild(heading);
-    if (meta.textContent) {
-      card.appendChild(meta);
-    }
-    card.appendChild(list);
-    return card;
+
+    content.appendChild(head);
+    content.appendChild(list);
+    entry.appendChild(marker);
+    entry.appendChild(content);
+    return entry;
   }
 
   function render() {
     refs.back.textContent = t("back");
     refs.readmeTitle.textContent = t("readmeTitle");
+    refs.readmeKicker.textContent = t("readmeKicker");
     refs.versionTitle.textContent = t("versionsTitle");
+    refs.versionKicker.textContent = t("versionsKicker");
+    refs.latestLabel.textContent = t("latestVersion");
+    refs.latestDownloadText.textContent = t("downloadLatest");
+    refs.releaseState.textContent = t("releaseState");
+    refs.packageLabel.textContent = t("packageName");
+    refs.platformLabel.textContent = t("platform");
+    refs.sizeLabel.textContent = t("packageSize");
+    refs.buildsLabel.textContent = t("availableBuilds");
+    refs.versionCountUnit.textContent = t("buildUnit");
+    refs.latestQr.setAttribute("aria-label", t("scanDownload"));
     if (!state.app) {
       document.title = t("title") + " · WK1995";
       refs.title.textContent = t("title");
+      refs.breadcrumbName.textContent = t("title");
       refs.summary.textContent = state.error || t("loading");
       refs.platform.textContent = "App Detail";
+      refs.mark.textContent = "A";
+      refs.latestTitle.textContent = "—";
+      refs.latestMeta.textContent = "—";
+      refs.latestDownload.removeAttribute("href");
+      refs.latestQr.innerHTML = "";
+      refs.versionChip.textContent = "Latest";
+      refs.updatedChip.textContent = "—";
+      refs.packageValue.textContent = "—";
+      refs.platformValue.textContent = "—";
+      refs.sizeValue.textContent = "—";
+      refs.buildsValue.textContent = "0";
       refs.readme.innerHTML = "";
       refs.versionList.innerHTML = "";
       refs.versionCount.textContent = "0";
@@ -352,13 +461,47 @@
     }
     document.title = state.app.name + " · " + t("title") + " · WK1995";
     refs.title.textContent = state.app.name;
-    refs.summary.textContent = state.app.description || state.app.latest.file || "";
+    refs.breadcrumbName.textContent = state.app.name;
+    refs.summary.textContent = state.app.description || t("distributionSummary").replace("{platform}", platformLabel(state.app.platformId));
     refs.platform.textContent = platformLabel(state.app.platformId);
+    refs.mark.textContent = appInitial(state.app);
+    refs.versionChip.textContent = state.app.latest.version || t("latestVersion");
+    refs.updatedChip.textContent = state.app.latest.updatedAt ? t("updated") + " · " + state.app.latest.updatedAt : "—";
+    refs.packageValue.textContent = appPackageName(state.app);
+    refs.platformValue.textContent = platformLabel(state.app.platformId);
+    refs.buildsValue.textContent = String(state.app.versions.length);
+
+    const currentFile = latestFile(state.app);
+    const currentDownloadUrl = currentFile ? fileUrl(state.app, state.app.latest, currentFile) : "";
+    refs.latestTitle.textContent = state.app.latest.version || t("latestVersion");
+    refs.latestMeta.textContent = [
+      currentFile && (currentFile.file || currentFile.url),
+      currentFile && currentFile.size,
+    ].filter(Boolean).join(" · ") || "—";
+    refs.sizeValue.textContent = currentFile && currentFile.size ? currentFile.size : "—";
+    refs.latestDownload.href = currentDownloadUrl || "#";
+    refs.latestDownload.download = currentFile && currentFile.file ? currentFile.file : "";
+    refs.latestQr.innerHTML = "";
+    if (currentDownloadUrl && window.WKAppsQR && typeof window.WKAppsQR.createSvg === "function") {
+      try {
+        refs.latestQr.appendChild(window.WKAppsQR.createSvg(currentDownloadUrl));
+      } catch (error) {
+        refs.latestQr.textContent = "QR";
+      }
+    }
     renderMarkdown(state.app.readme || state.app.latest.readme || "");
     refs.versionList.innerHTML = "";
     refs.versionCount.textContent = String(state.app.versions.length);
-    state.app.versions.slice().reverse().forEach(function (release) {
-      refs.versionList.appendChild(renderVersion(release, state.app));
+    const releases = state.app.versions.filter(function (release) {
+      return !(
+        release.version === state.app.latest.version &&
+        release.basePath === state.app.latest.basePath &&
+        release.file === state.app.latest.file
+      );
+    }).reverse();
+    releases.unshift(state.app.latest);
+    releases.forEach(function (release, index) {
+      refs.versionList.appendChild(renderVersion(release, state.app, index === 0));
     });
     refs.status.textContent = "";
   }
@@ -389,11 +532,33 @@
     refs.platform = document.getElementById("app-detail-platform");
     refs.title = document.getElementById("app-detail-title");
     refs.summary = document.getElementById("app-detail-summary");
-    refs.back = document.getElementById("app-detail-back");
+    refs.back = document.querySelector("#app-detail-back span");
+    refs.breadcrumbName = document.getElementById("app-detail-breadcrumb-name");
+    refs.mark = document.getElementById("app-detail-mark");
+    refs.releaseState = document.getElementById("app-detail-release-state");
+    refs.versionChip = document.getElementById("app-detail-version-chip");
+    refs.updatedChip = document.getElementById("app-detail-updated-chip");
+    refs.latestLabel = document.getElementById("app-latest-label");
+    refs.latestTitle = document.getElementById("app-latest-title");
+    refs.latestMeta = document.getElementById("app-latest-meta");
+    refs.latestQr = document.getElementById("app-latest-qr");
+    refs.latestDownload = document.getElementById("app-latest-download");
+    refs.latestDownloadText = refs.latestDownload.querySelector("span");
+    refs.packageLabel = document.getElementById("app-fact-package-label");
+    refs.packageValue = document.getElementById("app-fact-package");
+    refs.platformLabel = document.getElementById("app-fact-platform-label");
+    refs.platformValue = document.getElementById("app-fact-platform");
+    refs.sizeLabel = document.getElementById("app-fact-size-label");
+    refs.sizeValue = document.getElementById("app-fact-size");
+    refs.buildsLabel = document.getElementById("app-fact-builds-label");
+    refs.buildsValue = document.getElementById("app-fact-builds");
     refs.readmeTitle = document.getElementById("app-readme-title");
+    refs.readmeKicker = document.getElementById("app-readme-kicker");
     refs.readme = document.getElementById("app-readme");
     refs.versionTitle = document.getElementById("app-version-title");
+    refs.versionKicker = document.getElementById("app-version-kicker");
     refs.versionCount = document.getElementById("app-version-count");
+    refs.versionCountUnit = document.getElementById("app-version-count-unit");
     refs.versionList = document.getElementById("app-version-list");
     refs.status = document.getElementById("app-detail-status");
   }

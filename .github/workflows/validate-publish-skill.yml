@@ -1,0 +1,48 @@
+name: Validate Publish Skill
+
+on:
+  pull_request:
+    paths:
+      - .codex/skills/publish-wk1995-github-io/**
+      - scripts/test_publish_skill.py
+      - scripts/test_refresh_trending_workflow.py
+      - .github/workflows/validate-publish-skill.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-publish-skill-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Validate scripts and behavior
+        run: |
+          set -euo pipefail
+          python3 -m py_compile .codex/skills/publish-wk1995-github-io/assets/github-scripts/*.py
+          bash -n .codex/skills/publish-wk1995-github-io/assets/github-scripts/*.sh
+          python3 -m unittest discover -s scripts -p 'test_*.py'
+
+      - name: Install pinned actionlint
+        env:
+          GOBIN: ${{ runner.temp }}/bin
+        run: |
+          set -euo pipefail
+          mkdir -p "$GOBIN"
+          go install github.com/rhysd/actionlint/cmd/actionlint@914e7df21a07ef503a81201c76d2b11c789d3fca
+
+      - name: Validate GitHub Actions workflows
+        env:
+          ACTIONLINT: ${{ runner.temp }}/bin/actionlint
+        run: |
+          set -euo pipefail
+          "$ACTIONLINT" .github/workflows/validate-publish-skill.yml
+          "$ACTIONLINT" .codex/skills/publish-wk1995-github-io/assets/*.yml

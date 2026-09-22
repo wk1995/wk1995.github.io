@@ -1,0 +1,32 @@
+name: Validate study dashboard
+
+on:
+  pull_request:
+    paths:
+      - "study-src/**"
+      - ".github/workflows/validate-study-dashboard.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: study-src
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: study-src/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - name: Enforce public Pages privacy boundary
+        run: |
+          test -f ../study/index.html
+          ! rg -i "github_pat_|ghp_|oauth[_-]?secret|api[_-]?key|学习项目/|日记/" ../study
