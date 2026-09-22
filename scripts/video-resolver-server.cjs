@@ -45,6 +45,10 @@ function routeApi(req, res) {
       prefix: "/api/video/env",
       file: "api/video/env.js",
     },
+    {
+      prefix: "/api/apps",
+      file: "api/apps/index.js",
+    },
   ];
 
   const route = apiRoutes.find((candidate) => parsed.pathname.startsWith(candidate.prefix));
