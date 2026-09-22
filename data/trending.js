@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-09-22T05:48:09.204091+00:00",
+  "generated_at": "2026-09-22T06:07:07.769504+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,7 +15,7 @@ window.__TRENDING_DATA__ = {
         "en": "A framework for building agentic apps"
       },
       "language": "TypeScript",
-      "stars_total": 6072,
+      "stars_total": 6083,
       "forks_total": 554,
       "stars_today": 607
     },
@@ -31,8 +31,8 @@ window.__TRENDING_DATA__ = {
         "en": "Scale computer-use 2.0 with open-source drivers, cross-OS fleets, and benchmarks for training, evaluation, and data generation."
       },
       "language": "HTML",
-      "stars_total": 25799,
-      "forks_total": 1772,
+      "stars_total": 25803,
+      "forks_total": 1773,
       "stars_today": 609
     },
     {
@@ -43,12 +43,12 @@ window.__TRENDING_DATA__ = {
       "url": "https://github.com/Open-Dev-Society/OpenStock",
       "description": "OpenStock is an open-source alternative to expensive market platforms. Track real-time prices, set personalized alerts, and explore detailed company insights — built openly, for everyone, forever free.",
       "descriptions": {
-        "zh": "OpenStock 是昂贵市场平台的开源替代品。跟踪实时价格，设置个性化提醒，并探索详细的公司见解 - 为所有人公开构建，并且永远免费。",
+        "zh": "OpenStock 是昂贵市场平台的开源替代品。跟踪实时价格、设置个性化提醒并探索详细的公司见解 - 为所有人公开构建，并且永远免费。",
         "en": "OpenStock is an open-source alternative to expensive market platforms. Track real-time prices, set personalized alerts, and explore detailed company insights — built openly, for everyone, forever free."
       },
       "language": "TypeScript",
-      "stars_total": 17975,
-      "forks_total": 2218,
+      "stars_total": 17988,
+      "forks_total": 2219,
       "stars_today": 844
     },
     {
@@ -63,7 +63,7 @@ window.__TRENDING_DATA__ = {
         "en": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors"
       },
       "language": "Rust",
-      "stars_total": 7820,
+      "stars_total": 7823,
       "forks_total": 527,
       "stars_today": 167
     },
@@ -79,7 +79,7 @@ window.__TRENDING_DATA__ = {
         "en": "Secure environments for developers and their agents"
       },
       "language": "Go",
-      "stars_total": 16495,
+      "stars_total": 16503,
       "forks_total": 1569,
       "stars_today": 460
     },
@@ -92,7 +92,7 @@ window.__TRENDING_DATA__ = {
       "description": null,
       "descriptions": null,
       "language": "Python",
-      "stars_total": 35923,
+      "stars_total": 35929,
       "forks_total": 5273,
       "stars_today": 424
     }
