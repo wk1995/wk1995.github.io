@@ -1,6 +1,7 @@
 .video-resolver-env.json
 preview-*.log
 .workbuddy/
+.workbuddy-ai/
 __pycache__/
 
 # macOS AppleDouble metadata files
