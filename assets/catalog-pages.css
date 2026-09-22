@@ -1485,10 +1485,29 @@ body[data-page="personalAppsPage"] .apps-hero p:not(.catalog-kicker) {
   box-shadow: 0 14px 34px var(--cta-shadow) !important;
 }
 
-.apps-directory-link svg {
+.apps-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.65rem;
+}
+
+.apps-directory-link svg,
+.apps-api-link svg {
   width: 16px;
   height: 16px;
   fill: currentColor;
+}
+
+.apps-api-link {
+  gap: 0.45rem;
+  min-height: 48px;
+  padding-inline: 1.05rem;
+  border-radius: 999px;
+  border-color: color-mix(in srgb, var(--catalog-text) 18%, transparent);
+  background: transparent;
+  color: var(--catalog-text);
+  font-weight: 700;
 }
 
 .apps-overview {
@@ -1973,8 +1992,14 @@ body[data-page="personalAppsPage"] .catalog-status:empty {
     font-size: clamp(2.35rem, 13vw, 3.5rem);
   }
 
-  .apps-directory-link {
-    width: 100%;
+  .apps-hero-actions {
+    justify-content: stretch;
+  }
+
+  .apps-directory-link,
+  .apps-api-link {
+    flex: 1 1 0;
+    width: auto;
   }
 
   .apps-overview {
