@@ -22,6 +22,12 @@
  * 写操作后自动：
  *   - 重新计算 platforms 分组
  *   - 将 manifest.updatedAt 刷新为今天（本地时区）
+ *
+ * 分发渠道（betaqr，可选）：每条 App 可携带 `betaqr` 块记录其在
+ *   betaqr.com.cn 的分发信息（id / short / tokenRef / enabled）。
+ *   注意：betaqr 的 api_token 属于密钥，绝不放进 manifest.json，
+ *   统一存放在服务端配置（如 .betaqr-env.json），由后续代理接口按
+ *   tokenRef / id 解析。本接口只负责数据模型，不发任何线上请求。
  */
 
 const fs = require("fs");
@@ -31,6 +37,7 @@ const MANIFEST_PATH = path.resolve(__dirname, "..", "..", "apps", "packages", "m
 const WRITE_ENV = "APPS_API_WRITE";
 const PLATFORMS = ["android", "ios", "harmony", "windows", "macos", "linux", "web", "other"];
 const APP_ID_RE = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
+const BETAQR_SHORT_RE = /^[A-Za-z0-9_-]+$/;
 
 function setCorsHeaders(res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -106,6 +113,41 @@ function findApp(apps, id) {
   return apps.find((app) => app && app.id === id) || null;
 }
 
+/**
+ * 校验可选的 betaqr 分发渠道块。
+ * 允许字段：id / short / tokenRef / enabled。
+ * api_token 属于密钥，不在此处，也不进 manifest —— 由服务端配置按 tokenRef 解析。
+ */
+function validateBetaqr(input) {
+  if (!input || typeof input !== "object") {
+    return "betaqr 必须是对象";
+  }
+  const allowed = ["id", "short", "tokenRef", "enabled"];
+  const unknown = Object.keys(input).filter((key) => allowed.indexOf(key) === -1);
+  if (unknown.length) {
+    return "betaqr 包含未知字段：" + unknown.join(", ");
+  }
+  if (input.id !== undefined) {
+    if (typeof input.id !== "string" || !input.id.trim()) {
+      return "betaqr.id 必须是非空字符串";
+    }
+  }
+  if (input.short !== undefined) {
+    if (typeof input.short !== "string" || !BETAQR_SHORT_RE.test(input.short.trim())) {
+      return "betaqr.short 只能是字母、数字、下划线和连字符";
+    }
+  }
+  if (input.tokenRef !== undefined) {
+    if (typeof input.tokenRef !== "string" || !input.tokenRef.trim()) {
+      return "betaqr.tokenRef 必须是非空字符串（指向服务端密钥配置的逻辑键）";
+    }
+  }
+  if (input.enabled !== undefined && typeof input.enabled !== "boolean") {
+    return "betaqr.enabled 必须是布尔值";
+  }
+  return "";
+}
+
 function validateAppInput(body, { requireId }) {
   if (!body || typeof body !== "object") {
     return "请求体必须是 JSON 对象";
@@ -125,6 +167,12 @@ function validateAppInput(body, { requireId }) {
   const platform = normalizePlatform(body.platformId || body.platform);
   if (body.platformId !== undefined && body.platformId !== "" && !platform && body.platformId) {
     return "platformId 必须是已知平台：" + PLATFORMS.join(", ");
+  }
+  if (body.betaqr !== undefined && body.betaqr !== null) {
+    const betaqrError = validateBetaqr(body.betaqr);
+    if (betaqrError) {
+      return betaqrError;
+    }
   }
   return "";
 }
@@ -380,6 +428,11 @@ module.exports = async function handler(req, res) {
         sendJson(res, 400, { status: "error", error: "PATCH 需要 ?id= 参数或 body.id" });
         return;
       }
+      const patchValidation = validateAppInput(body, { requireId: false });
+      if (patchValidation) {
+        sendJson(res, 400, { status: "error", error: patchValidation });
+        return;
+      }
       const manifest = readManifest();
       const existing = findApp(manifest.apps, id);
       if (!existing) {
@@ -414,3 +467,4 @@ module.exports = async function handler(req, res) {
 module.exports.readManifest = readManifest;
 module.exports.writeManifest = writeManifest;
 module.exports.validateAppInput = validateAppInput;
+module.exports.validateBetaqr = validateBetaqr;

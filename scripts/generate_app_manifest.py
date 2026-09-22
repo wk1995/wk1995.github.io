@@ -232,7 +232,7 @@ def release_from_directory(directory: Path, platform: str, version: str):
     }
 
 
-def package_record(platform: str, package_dir: Path):
+def package_record(platform: str, package_dir: Path, existing: dict):
     package_readme_path = find_readme(package_dir)
     package_readme = read_text_file(package_readme_path) if package_readme_path else ""
     direct_release = release_from_directory(package_dir, platform, "latest")
@@ -271,9 +271,19 @@ def package_record(platform: str, package_dir: Path):
         "updatedAt": latest.get("updatedAt", ""),
     }
 
+    # 保留通过接口（如 /api/apps）写入的分发渠道信息，重建时不被清空。
+    existing_app = next(
+        (app for app in existing.get("apps", []) if isinstance(app, dict) and app.get("id") == app_id),
+        None,
+    )
+    if existing_app and isinstance(existing_app.get("betaqr"), dict):
+        record["betaqr"] = dict(existing_app["betaqr"])
+    return record
+
 
 def build_manifest():
-    release = release_metadata(existing_manifest())
+    existing = existing_manifest()
+    release = release_metadata(existing)
     apps = []
     for platform in PLATFORMS:
         platform_dir = PACKAGES_DIR / platform
@@ -281,7 +291,7 @@ def build_manifest():
         for package_dir in sorted(platform_dir.iterdir(), key=lambda path: path.name.lower()):
             if not package_dir.is_dir() or package_dir.name.startswith("."):
                 continue
-            record = package_record(platform, package_dir)
+            record = package_record(platform, package_dir, existing)
             if record:
                 apps.append(record)
 
