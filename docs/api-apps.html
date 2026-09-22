@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>App 列表接口文档 · WK1995</title>
+  <meta name="description" content="个人 App 列表查询 / 更新接口（/api/apps）开发者文档">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="stylesheet" href="../assets/catalog-pages.css">
+  <style>
+    .api-doc { max-width: 920px; margin: 0 auto; padding: 32px 20px 80px; }
+    .api-doc h1 { font-size: 28px; margin: 0 0 6px; }
+    .api-doc h2 { font-size: 20px; margin: 40px 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border, #e5e7eb); }
+    .api-doc h3 { font-size: 16px; margin: 24px 0 8px; }
+    .api-doc p, .api-doc li { line-height: 1.7; color: #374151; }
+    .api-doc code { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+    .api-doc pre { background: #0f172a; color: #e2e8f0; padding: 14px 16px; border-radius: 10px; overflow:auto; font-size: 13px; line-height: 1.55; }
+    .api-doc pre code { background: none; padding: 0; color: inherit; }
+    .api-doc table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+    .api-doc th, .api-doc td { border: 1px solid var(--border, #e5e7eb); padding: 8px 10px; text-align: left; vertical-align: top; }
+    .api-doc th { background: #f8fafc; font-weight: 600; }
+    .api-doc .method { display: inline-block; min-width: 52px; text-align: center; padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: 12px; color: #fff; }
+    .api-doc .m-get { background: #2563eb; }
+    .api-doc .m-post { background: #16a34a; }
+    .api-doc .m-put { background: #d97706; }
+    .api-doc .m-patch { background: #9333ea; }
+    .api-doc .m-delete { background: #dc2626; }
+    .api-doc .required { color: #dc2626; font-size: 12px; }
+    .api-doc .note { background: #fffbeb; border: 1px solid #fde68a; padding: 10px 14px; border-radius: 8px; margin: 14px 0; }
+    .api-doc .note strong { color: #92400e; }
+    .api-doc .endpoint { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <main class="api-doc">
+    <h1>App 列表接口文档</h1>
+    <p class="endpoint">Base URL：<code>http://127.0.0.1:8024</code> &nbsp;·&nbsp; 路径前缀：<code>/api/apps</code></p>
+
+    <div class="note">
+      <strong>说明：</strong>本接口以 <code>apps/packages/manifest.json</code> 为数据源，提供 App 列表的
+      <strong>查询与更新</strong>。所有响应为 JSON，已开启 CORS（<code>Access-Control-Allow-Origin: *</code>）。
+      接口约定与仓库内其他 <code>api/*</code> 处理器一致（导出 <code>async function handler(req, res)</code>）。
+    </div>
+
+    <h2>一、快速开始</h2>
+    <p>启动本地 Node 服务（写操作需 <code>APPS_API_WRITE=1</code>）：</p>
+    <pre><code>APPS_API_WRITE=1 node scripts/video-resolver-server.cjs
+# 默认端口 8024，可用 PORT=xxxx 覆盖</code></pre>
+    <p>接口在线地址：<code>GET http://127.0.0.1:8024/api/apps</code></p>
+
+    <h2>二、接口列表</h2>
+    <table>
+      <thead>
+        <tr><th>方法</th><th>路径</th><th>说明</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="method m-get">GET</span></td><td><code>/api/apps</code></td><td>列出全部 App，支持 <code>?platform=</code> / <code>?q=</code> 过滤</td></tr>
+        <tr><td><span class="method m-get">GET</span></td><td><code>/api/apps?id=</code></td><td>按 id 获取单条（404 若不存在）</td></tr>
+        <tr><td><span class="method m-post">POST</span></td><td><code>/api/apps</code></td><td>更新已有条目，body 需含 <code>id</code> + <code>name</code>；不存在返回 404</td></tr>
+        <tr><td><span class="method m-put">PUT</span></td><td><code>/api/apps?id=</code></td><td>替换可写字段，保留 latest / versions 等生成字段</td></tr>
+        <tr><td><span class="method m-patch">PATCH</span></td><td><code>/api/apps?id=</code></td><td>局部合并；betaqr 按字段浅合并</td></tr>
+        <tr><td><span class="method m-delete">DELETE</span></td><td><code>/api/apps?id=</code></td><td>删除某条</td></tr>
+      </tbody>
+    </table>
+
+    <h2>三、查询参数</h2>
+    <table>
+      <thead><tr><th>参数</th><th>位置</th><th>类型</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td><code>platform</code></td><td>query</td><td>string</td><td>按平台过滤（platformId），如 <code>android</code>。可选值见下文平台枚举</td></tr>
+        <tr><td><code>q</code></td><td>query</td><td>string</td><td>关键字，匹配 name / id / platform / description / version</td></tr>
+        <tr><td><code>id</code></td><td>query</td><td>string <span class="required">（写/单条必填）</span></td><td>App 唯一标识，格式 <code>平台/slug</code>，如 <code>android/cn.wk.android.body.os</code></td></tr>
+      </tbody>
+    </table>
+
+    <h2>四、写保护</h2>
+    <p>所有写操作（POST / PUT / PATCH / DELETE）需要环境变量 <code>APPS_API_WRITE=1</code>，否则返回：</p>
+    <pre><code>HTTP 403
+{ "status": "error", "error": "写操作被禁用。请在启动时设置环境变量 APPS_API_WRITE=1 后再试。",
+  "hint": "APPS_API_WRITE=1 node scripts/video-resolver-server.cjs" }</code></pre>
+
+    <h2>五、数据模型</h2>
+    <h3>App 条目</h3>
+    <table>
+      <thead><tr><th>字段</th><th>类型</th><th>必填</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td><code>id</code></td><td>string</td><td>是</td><td><code>平台/slug</code>，如 <code>android/cn.wk.android.body.os</code></td></tr>
+        <tr><td><code>name</code></td><td>string</td><td>写入必填</td><td>展示名</td></tr>
+        <tr><td><code>platformId</code></td><td>string</td><td>否</td><td>平台键；缺省从 id 前缀推断</td></tr>
+        <tr><td><code>platform</code></td><td>string</td><td>否</td><td>平台展示名，缺省由 platformId 推导</td></tr>
+        <tr><td><code>description</code></td><td>string</td><td>否</td><td>简介</td></tr>
+        <tr><td><code>latest</code> / <code>versions</code></td><td>object / array</td><td>否</td><td>最新版本与历史版本</td></tr>
+        <tr><td><code>hasHistory</code></td><td>boolean</td><td>否</td><td>是否有多版本</td></tr>
+        <tr><td><code>updatedAt</code></td><td>string</td><td>否</td><td>更新日期；写操作自动刷新为今天</td></tr>
+        <tr><td><code>betaqr</code></td><td>object</td><td>否</td><td>betaqr 分发渠道块（见下）</td></tr>
+      </tbody>
+    </table>
+
+    <h3>betaqr 分发渠道块（可选）</h3>
+    <table>
+      <thead><tr><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td><code>id</code></td><td>string</td><td>betaqr 应用 id（应用管理 → 基本信息）</td></tr>
+        <tr><td><code>short</code></td><td>string</td><td>应用短链接；仅含字母、数字、<code>_</code>、<code>-</code></td></tr>
+        <tr><td><code>tokenRef</code></td><td>string</td><td>指向服务端密钥配置的逻辑键（对应 <code>api_token</code>）</td></tr>
+        <tr><td><code>enabled</code></td><td>boolean</td><td>是否启用 betaqr 分发，默认 true</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <strong>安全约定：</strong><code>api_token</code> 是密钥，<strong>绝不进 manifest</strong>，统一存放于服务端配置
+      （约定 <code>.betaqr-env.json</code>，已写入 <code>.gitignore</code>）。本接口只负责数据模型，不向 betaqr 发起任何请求。未知 <code>?platform=</code> 返回空列表。请求体上限 64KB。
+    </div>
+
+    <h2>六、请求 / 响应示例</h2>
+    <h3>GET 列表</h3>
+    <pre><code>GET /api/apps?platform=android
+
+{
+  "status": "success",
+  "total": 1, "count": 1, "platform": "android", "q": "",
+  "apps": [
+    { "id": "android/cn.wk.android.body.os", "name": "Cn.Wk.Android.Body.Os",
+      "platformId": "android", "version": "7(1.00.06)", "updatedAt": "2026-06-14" }
+  ],
+  "manifestVersion": "20260630150829", "updatedAt": "2026-06-14"
+}</code></pre>
+
+    <h3>POST 更新已有条目（带 betaqr）</h3>
+    <pre><code>POST /api/apps
+Content-Type: application/json
+
+{
+  "id": "android/cn.wk.android.body.os",
+  "name": "Cn.Wk.Android.Body.Os",
+  "platformId": "android",
+  "betaqr": { "id": "AbC123Def456", "short": "bodyos", "tokenRef": "wk-default", "enabled": true }
+}
+
+→ 200 { "status": "success", "action": "updated", "app": { ... }, "updatedAt": "2026-09-22" }</code></pre>
+
+    <h3>PATCH 局部合并</h3>
+    <pre><code>PATCH /api/apps?id=android%2Fcn.wk.android.body.os
+{ "betaqr": { "short": "bodyos2" } }
+→ 200 { "status": "success", "action": "patched", "app": { ... } }</code></pre>
+
+    <h2>七、错误码</h2>
+    <table>
+      <thead><tr><th>HTTP</th><th>场景</th></tr></thead>
+      <tbody>
+        <tr><td>400</td><td>请求体非 JSON / 缺 id 或 name / 字段校验失败（如 betaqr.short 非法）</td></tr>
+        <tr><td>403</td><td>写操作但未设置 <code>APPS_API_WRITE=1</code></td></tr>
+        <tr><td>404</td><td>按 id 取单条 / PUT / PATCH / DELETE 时 id 不存在</td></tr>
+        <tr><td>405</td><td>不支持的 HTTP 方法</td></tr>
+        <tr><td>500</td><td>服务端异常</td></tr>
+      </tbody>
+    </table>
+
+    <h2>八、平台枚举</h2>
+    <p><code>android</code> · <code>ios</code> · <code>harmony</code> · <code>windows</code> · <code>macos</code> · <code>linux</code> · <code>web</code> · <code>other</code></p>
+
+    <h2>九、机器可读文档</h2>
+    <p>配套的 OpenAPI 3.0 规范见 <code>api/apps/openapi.json</code>，可供 AI 代理与代码生成工具直接解析调用。</p>
+  </main>
+</body>
+</html>

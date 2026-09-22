@@ -1,0 +1,274 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "App 列表接口 (/api/apps)",
+    "version": "1.0.0",
+    "description": "基于 apps/packages/manifest.json 的 App 列表查询与更新接口。所有响应为 JSON，已开启 CORS。写操作（POST/PUT/PATCH/DELETE）需服务端设置环境变量 APPS_API_WRITE=1，否则返回 403。本接口仅维护数据模型（含可选的 betaqr 分发渠道块），不向 betaqr.com.cn 发起任何请求；api_token 等密钥存放于服务端配置，绝不进入 manifest。"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8024",
+      "description": "本地预览服务，需通过 node scripts/video-resolver-server.cjs 启动"
+    }
+  ],
+  "tags": [
+    { "name": "apps", "description": "App 列表查询与更新" }
+  ],
+  "paths": {
+    "/api/apps": {
+      "get": {
+        "tags": ["apps"],
+        "summary": "列出全部 App，或按 id 获取单条",
+        "operationId": "listOrGetApp",
+        "parameters": [
+          {
+            "name": "platform",
+            "in": "query",
+            "description": "按平台过滤（platformId）",
+            "schema": { "$ref": "#/components/schemas/Platform" }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "关键字，匹配 name/id/platform/description/version",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "App 唯一标识，格式 平台/slug。提供时返回单条；不存在返回 404",
+            "schema": { "type": "string", "pattern": "^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。提供 id 时返回单条对象，否则返回列表对象",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    { "$ref": "#/components/schemas/AppListResponse" },
+                    { "$ref": "#/components/schemas/SingleAppResponse" }
+                  ]
+                }
+              }
+            }
+          },
+          "405": { "$ref": "#/components/responses/MethodNotAllowed" }
+        }
+      },
+      "post": {
+        "tags": ["apps"],
+        "summary": "更新已有 App（不存在返回 404，不能凭空创建）",
+        "operationId": "upsertApp",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AppWrite" },
+              "example": {
+                "id": "android/cn.wk.android.body.os",
+                "name": "Cn.Wk.Android.Body.Os",
+                "platformId": "android",
+                "betaqr": { "id": "AbC123Def456", "short": "bodyos", "tokenRef": "wk-default", "enabled": true }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "成功", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/WriteResult" } } } },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "403": { "$ref": "#/components/responses/WriteDisabled" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      },
+      "put": {
+        "tags": ["apps"],
+        "summary": "替换可写字段，保留 latest/versions 等生成字段（不存在返回 404）",
+        "operationId": "replaceApp",
+        "parameters": [
+          { "name": "id", "in": "query", "required": true, "description": "App 唯一标识", "schema": { "type": "string", "pattern": "^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AppWrite" } } }
+        },
+        "responses": {
+          "200": { "description": "成功", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/WriteResult" } } } },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "403": { "$ref": "#/components/responses/WriteDisabled" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      },
+      "patch": {
+        "tags": ["apps"],
+        "summary": "局部合并更新某条 App 的字段",
+        "operationId": "patchApp",
+        "parameters": [
+          { "name": "id", "in": "query", "required": true, "description": "App 唯一标识", "schema": { "type": "string", "pattern": "^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AppPatch" },
+              "example": { "betaqr": { "short": "bodyos2" } }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "成功", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/WriteResult" } } } },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "403": { "$ref": "#/components/responses/WriteDisabled" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      },
+      "delete": {
+        "tags": ["apps"],
+        "summary": "删除某条 App",
+        "operationId": "deleteApp",
+        "parameters": [
+          { "name": "id", "in": "query", "required": true, "description": "App 唯一标识", "schema": { "type": "string", "pattern": "^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$" } }
+        ],
+        "responses": {
+          "200": { "description": "成功", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/DeleteResult" } } } },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "403": { "$ref": "#/components/responses/WriteDisabled" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Platform": {
+        "type": "string",
+        "enum": ["android", "ios", "harmony", "windows", "macos", "linux", "web", "other"]
+      },
+      "Betaqr": {
+        "type": "object",
+        "description": "可选的分发渠道块。api_token 不在此处，由服务端按 tokenRef 解析。",
+        "properties": {
+          "id": { "type": "string", "description": "betaqr 应用 id" },
+          "short": { "type": "string", "pattern": "^[A-Za-z0-9_-]+$", "description": "应用短链接，仅含字母、数字、_、-", "examples": ["bodyos"] },
+          "tokenRef": { "type": "string", "description": "指向服务端密钥配置的逻辑键（对应 api_token）", "examples": ["wk-default"] },
+          "enabled": { "type": "boolean", "description": "是否启用 betaqr 分发", "default": true }
+        },
+        "additionalProperties": false
+      },
+      "App": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$" },
+          "slug": { "type": "string" },
+          "name": { "type": "string" },
+          "platform": { "type": "string" },
+          "platformId": { "$ref": "#/components/schemas/Platform" },
+          "description": { "type": "string" },
+          "readme": { "type": "string" },
+          "readmeFile": { "type": "string" },
+          "latest": { "type": "object", "description": "最新版本（含 version/basePath/file/files/updatedAt）" },
+          "versions": { "type": "array", "items": { "type": "object" } },
+          "hasHistory": { "type": "boolean" },
+          "updatedAt": { "type": "string", "examples": ["2026-06-14"] },
+          "betaqr": { "$ref": "#/components/schemas/Betaqr" }
+        }
+      },
+      "AppWrite": {
+        "type": "object",
+        "required": ["id", "name"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$" },
+          "name": { "type": "string" },
+          "platformId": { "$ref": "#/components/schemas/Platform" },
+          "description": { "type": "string" },
+          "betaqr": { "$ref": "#/components/schemas/Betaqr" }
+        },
+        "additionalProperties": false
+      },
+      "AppPatch": {
+        "type": "object",
+        "description": "局部合并：仅发送需要更新的字段；betaqr 为 App 级浅合并（发送完整 betaqr 块以保留其他子字段）",
+        "properties": {
+          "name": { "type": "string" },
+          "platformId": { "$ref": "#/components/schemas/Platform" },
+          "description": { "type": "string" },
+          "betaqr": { "$ref": "#/components/schemas/Betaqr" }
+        },
+        "additionalProperties": false
+      },
+      "AppListResponse": {
+        "type": "object",
+        "required": ["status", "apps"],
+        "properties": {
+          "status": { "type": "string", "examples": ["success"] },
+          "total": { "type": "integer" },
+          "count": { "type": "integer" },
+          "platform": { "type": "string" },
+          "q": { "type": "string" },
+          "apps": { "type": "array", "items": { "$ref": "#/components/schemas/App" } },
+          "manifestVersion": { "type": "string" },
+          "updatedAt": { "type": "string" }
+        }
+      },
+      "SingleAppResponse": {
+        "type": "object",
+        "required": ["status", "app"],
+        "properties": {
+          "status": { "type": "string", "examples": ["success"] },
+          "app": { "$ref": "#/components/schemas/App" },
+          "manifestVersion": { "type": "string" },
+          "updatedAt": { "type": "string" }
+        }
+      },
+      "WriteResult": {
+        "type": "object",
+        "required": ["status", "action", "app"],
+        "properties": {
+          "status": { "type": "string", "examples": ["success"] },
+          "action": { "type": "string", "enum": ["updated", "replaced", "patched"] },
+          "app": { "$ref": "#/components/schemas/App" },
+          "updatedAt": { "type": "string" }
+        }
+      },
+      "DeleteResult": {
+        "type": "object",
+        "required": ["status", "deleted"],
+        "properties": {
+          "status": { "type": "string", "examples": ["success"] },
+          "deleted": { "type": "string" },
+          "remaining": { "type": "integer" },
+          "updatedAt": { "type": "string" }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "required": ["status", "error"],
+        "properties": {
+          "status": { "type": "string", "examples": ["error"] },
+          "error": { "type": "string" },
+          "hint": { "type": "string" }
+        }
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "请求体非法或字段校验失败",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" }, "example": { "status": "error", "error": "betaqr.short 只能是字母、数字、下划线和连字符" } } }
+      },
+      "WriteDisabled": {
+        "description": "写操作但未设置 APPS_API_WRITE=1",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" }, "example": { "status": "error", "error": "写操作被禁用。请在启动时设置环境变量 APPS_API_WRITE=1 后再试。", "hint": "APPS_API_WRITE=1 node scripts/video-resolver-server.cjs" } } }
+      },
+      "NotFound": {
+        "description": "id 不存在",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" }, "example": { "status": "error", "error": "未找到 id 为 android/xxx 的 App" } } }
+      },
+      "MethodNotAllowed": {
+        "description": "不支持的 HTTP 方法",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } }
+      }
+    }
+  }
+}

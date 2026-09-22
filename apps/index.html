@@ -43,12 +43,20 @@
         <h1 data-app-text="title">应用分发中心</h1>
         <p data-app-text="intro">集中查看由 CI 持续发布的安装包，按平台或版本快速定位，并通过链接或二维码获取最新构建。</p>
       </div>
-      <a class="catalog-primary-link apps-directory-link" href="packages/">
-        <span data-app-text="packageDir">浏览文件目录</span>
-        <svg viewBox="0 0 16 16" aria-hidden="true">
-          <path d="M5.22 3.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06L8.44 8 5.22 4.78a.75.75 0 0 1 0-1.06Z"></path>
-        </svg>
-      </a>
+      <div class="apps-hero-actions">
+        <a class="catalog-primary-link apps-directory-link" href="packages/">
+          <span data-app-text="packageDir">浏览文件目录</span>
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M5.22 3.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06L8.44 8 5.22 4.78a.75.75 0 0 1 0-1.06Z"></path>
+          </svg>
+        </a>
+        <a class="catalog-secondary-action apps-api-link" href="../docs/api-apps.html">
+          <span data-app-text="apiDocs">API 文档</span>
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.75 1.5A1.75 1.75 0 0 0 3 3.25v9.5c0 .966.784 1.75 1.75 1.75h6.5A1.75 1.75 0 0 0 13 12.75v-7.5a.75.75 0 0 0-.22-.53l-3-3a.75.75 0 0 0-.53-.22h-4.5ZM4.5 3.25c0-.138.112-.25.25-.25H9v2.25c0 .966.784 1.75 1.75 1.75h2.25v5.75a.25.25 0 0 1-.25.25h-6.5a.25.25 0 0 1-.25-.25v-9.5Zm6.69 2.25a.25.25 0 0 1-.19-.25V3.56L12.94 5.5h-1.75Z"></path>
+          </svg>
+        </a>
+      </div>
       <div class="apps-overview" aria-label="发布概览">
         <div class="apps-overview-item">
           <span data-app-text="publishedApps">已发布应用</span>
