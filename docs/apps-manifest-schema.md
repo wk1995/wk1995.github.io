@@ -45,8 +45,10 @@
 | `updatedAt` | string | 否 | 该 App 更新日期 |
 | `betaqr` | object | 否 | **betaqr 分发渠道块（见下）** |
 
-> 通过 `/api/apps` 写入时：`POST`/`PUT` 要求 `id` + `name`；`platformId` 缺省从
-> `id` 前缀推断；`updatedAt` 自动刷新为今天。
+> 通过 `/api/apps` 写入时：只能更新已有条目，不能凭空创建。`POST`/`PUT` 要求
+> `id` + `name`。可写字段只有 `name`、`platformId`、`description`、`betaqr`；
+> `latest`、`versions`、`readme` 等生成字段会被保留。`platform` 展示名使用小写
+> 平台键。`updatedAt` 自动刷新为今天。PATCH 对 `betaqr` 做字段级浅合并。
 
 ---
 
@@ -81,8 +83,8 @@
 ### 安全说明（重要）
 
 - **`api_token` 是密钥，绝不放进 `manifest.json`，也不进任何前端代码。**
-- `api_token` 统一存放在**服务端**配置（约定文件 `.betaqr-env.json`，不入库），
-  结构如 `{ "wk-default": "<API_TOKEN>" }`。
+- `api_token` 统一存放在**服务端**配置（约定文件 `.betaqr-env.json`，已写入
+  `.gitignore`，不入库），结构如 `{ "wk-default": "<API_TOKEN>" }`。
 - `betaqr.tokenRef` 仅记录「用哪个密钥」的逻辑键，后续代理接口据此解析真实
   `api_token`，再代 App 向 betaqr 发起检测更新 / 取安装页等请求。
 - 写接口（`/api/apps` 的 POST/PUT/PATCH）对 `betaqr` 做字段级校验：未知字段、

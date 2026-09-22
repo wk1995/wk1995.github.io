@@ -260,7 +260,7 @@ def package_record(platform: str, package_dir: Path, existing: dict):
     latest = releases[-1]
     app_id = f"{platform}/{slug(package_dir.name)}"
     description = summary_from_readme(package_readme) or summary_from_readme(latest.get("readme", ""))
-    return {
+    record = {
         "id": app_id,
         "slug": slug(package_dir.name),
         "name": display_name(package_dir.name),
@@ -276,8 +276,9 @@ def package_record(platform: str, package_dir: Path, existing: dict):
     }
 
     # 保留通过接口（如 /api/apps）写入的分发渠道信息，重建时不被清空。
+    existing_apps = existing.get("apps", []) if isinstance(existing, dict) else []
     existing_app = next(
-        (app for app in existing.get("apps", []) if isinstance(app, dict) and app.get("id") == app_id),
+        (app for app in existing_apps if isinstance(app, dict) and app.get("id") == app_id),
         None,
     )
     if existing_app and isinstance(existing_app.get("betaqr"), dict):

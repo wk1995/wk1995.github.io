@@ -1,4 +1,5 @@
 .video-resolver-env.json
+.betaqr-env.json
 preview-*.log
 .workbuddy/
 .workbuddy-ai/

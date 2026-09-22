@@ -59,7 +59,7 @@
       },
       "post": {
         "tags": ["apps"],
-        "summary": "新增或更新一条 App（upsert）",
+        "summary": "更新已有 App（不存在返回 404，不能凭空创建）",
         "operationId": "upsertApp",
         "requestBody": {
           "required": true,
@@ -78,12 +78,13 @@
         "responses": {
           "200": { "description": "成功", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/WriteResult" } } } },
           "400": { "$ref": "#/components/responses/BadRequest" },
-          "403": { "$ref": "#/components/responses/WriteDisabled" }
+          "403": { "$ref": "#/components/responses/WriteDisabled" },
+          "404": { "$ref": "#/components/responses/NotFound" }
         }
       },
       "put": {
         "tags": ["apps"],
-        "summary": "整体替换某条 App（不存在返回 404）",
+        "summary": "替换可写字段，保留 latest/versions 等生成字段（不存在返回 404）",
         "operationId": "replaceApp",
         "parameters": [
           { "name": "id", "in": "query", "required": true, "description": "App 唯一标识", "schema": { "type": "string", "pattern": "^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$" } }
@@ -226,7 +227,7 @@
         "required": ["status", "action", "app"],
         "properties": {
           "status": { "type": "string", "examples": ["success"] },
-          "action": { "type": "string", "enum": ["created", "updated", "replaced", "patched"] },
+          "action": { "type": "string", "enum": ["updated", "replaced", "patched"] },
           "app": { "$ref": "#/components/schemas/App" },
           "updatedAt": { "type": "string" }
         }

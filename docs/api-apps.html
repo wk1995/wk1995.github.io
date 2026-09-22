@@ -56,9 +56,9 @@
       <tbody>
         <tr><td><span class="method m-get">GET</span></td><td><code>/api/apps</code></td><td>列出全部 App，支持 <code>?platform=</code> / <code>?q=</code> 过滤</td></tr>
         <tr><td><span class="method m-get">GET</span></td><td><code>/api/apps?id=</code></td><td>按 id 获取单条（404 若不存在）</td></tr>
-        <tr><td><span class="method m-post">POST</span></td><td><code>/api/apps</code></td><td>新增或更新（upsert），body 需含 <code>id</code> + <code>name</code></td></tr>
-        <tr><td><span class="method m-put">PUT</span></td><td><code>/api/apps?id=</code></td><td>整体替换某条（不存在返回 404）</td></tr>
-        <tr><td><span class="method m-patch">PATCH</span></td><td><code>/api/apps?id=</code></td><td>局部合并更新字段</td></tr>
+        <tr><td><span class="method m-post">POST</span></td><td><code>/api/apps</code></td><td>更新已有条目，body 需含 <code>id</code> + <code>name</code>；不存在返回 404</td></tr>
+        <tr><td><span class="method m-put">PUT</span></td><td><code>/api/apps?id=</code></td><td>替换可写字段，保留 latest / versions 等生成字段</td></tr>
+        <tr><td><span class="method m-patch">PATCH</span></td><td><code>/api/apps?id=</code></td><td>局部合并；betaqr 按字段浅合并</td></tr>
         <tr><td><span class="method m-delete">DELETE</span></td><td><code>/api/apps?id=</code></td><td>删除某条</td></tr>
       </tbody>
     </table>
@@ -108,7 +108,7 @@
     </table>
     <div class="note">
       <strong>安全约定：</strong><code>api_token</code> 是密钥，<strong>绝不进 manifest</strong>，统一存放于服务端配置
-      （约定 <code>.betaqr-env.json</code>，不入库）。本接口只负责数据模型，不向 betaqr 发起任何请求。
+      （约定 <code>.betaqr-env.json</code>，已写入 <code>.gitignore</code>）。本接口只负责数据模型，不向 betaqr 发起任何请求。未知 <code>?platform=</code> 返回空列表。请求体上限 64KB。
     </div>
 
     <h2>六、请求 / 响应示例</h2>
@@ -125,7 +125,7 @@
   "manifestVersion": "20260630150829", "updatedAt": "2026-06-14"
 }</code></pre>
 
-    <h3>POST upsert（带 betaqr）</h3>
+    <h3>POST 更新已有条目（带 betaqr）</h3>
     <pre><code>POST /api/apps
 Content-Type: application/json
 

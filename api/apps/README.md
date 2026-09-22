@@ -20,9 +20,9 @@ APPS_API_WRITE=1 node scripts/video-resolver-server.cjs
 | --- | --- | --- |
 | `GET` | `/api/apps` | 列表，支持 `?platform=` / `?q=` 过滤 |
 | `GET` | `/api/apps?id=` | 单条（404 若不存在） |
-| `POST` | `/api/apps` | upsert，body 需 `id` + `name` |
-| `PUT` | `/api/apps?id=` | 整体替换（404 若不存在） |
-| `PATCH` | `/api/apps?id=` | 局部合并 |
+| `POST` | `/api/apps` | 更新已有条目，body 需 `id` + `name`；不存在返回 404 |
+| `PUT` | `/api/apps?id=` | 替换可写字段，保留 `latest` / `versions` 等生成字段 |
+| `PATCH` | `/api/apps?id=` | 局部合并；`betaqr` 按字段浅合并 |
 | `DELETE` | `/api/apps?id=` | 删除 |
 
 ## 写保护
@@ -38,7 +38,7 @@ curl "http://127.0.0.1:8024/api/apps?platform=android"
 # 单条
 curl "http://127.0.0.1:8024/api/apps?id=android%2Fcn.wk.android.body.os"
 
-# 新增 / 更新（upsert），带 betaqr 分发渠道块
+# 更新已有条目，带 betaqr 分发渠道块
 curl -X POST "http://127.0.0.1:8024/api/apps" \
   -H "Content-Type: application/json" \
   -d '{
@@ -48,7 +48,7 @@ curl -X POST "http://127.0.0.1:8024/api/apps" \
     "betaqr": { "id": "AbC123Def456", "short": "bodyos", "tokenRef": "wk-default", "enabled": true }
   }'
 
-# 局部合并
+# 局部合并：betaqr 按字段浅合并，不会清掉未提交的 id / tokenRef / enabled
 curl -X PATCH "http://127.0.0.1:8024/api/apps?id=android%2Fcn.wk.android.body.os" \
   -H "Content-Type: application/json" \
   -d '{ "betaqr": { "short": "bodyos2" } }'
@@ -71,16 +71,16 @@ App 条目关键字段：`id`（必填，`平台/slug`）、`name`（写入必�
 | `tokenRef` | string | 指向服务端密钥配置的逻辑键（对应 `api_token`） |
 | `enabled` | boolean | 是否启用 betaqr 分发，默认 `true` |
 
-**安全约定**：`api_token` 是密钥，绝不进 manifest，统一存放于服务端配置（约定 `.betaqr-env.json`，不入库）。
+**安全约定**：`api_token` 是密钥，绝不进 manifest，统一存放于服务端配置（约定 `.betaqr-env.json`，已写入 `.gitignore`）。
 本接口只负责数据模型，不向 betaqr 发起任何请求。
 
 ## 错误码
 
 | HTTP | 场景 |
 | --- | --- |
-| 400 | 请求体非 JSON / 缺 `id` 或 `name` / 字段校验失败（如 `betaqr.short` 非法） |
+| 400 | 请求体非 JSON / 缺 `id` 或 `name` / 字段校验失败（如 `betaqr.short` 非法）/ 安装包目录不存在 / 请求体超过 64KB |
 | 403 | 写操作但未设置 `APPS_API_WRITE=1` |
-| 404 | 按 `id` 取单条 / PUT / PATCH / DELETE 时 `id` 不存在 |
+| 404 | 按 `id` 取单条 / POST / PUT / PATCH / DELETE 时 `id` 不存在 |
 | 405 | 不支持的方法 |
 | 500 | 服务端异常 |
 

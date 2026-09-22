@@ -48,10 +48,17 @@ function routeApi(req, res) {
     {
       prefix: "/api/apps",
       file: "api/apps/index.js",
+      exact: true,
     },
   ];
 
-  const route = apiRoutes.find((candidate) => parsed.pathname.startsWith(candidate.prefix));
+  const route = apiRoutes.find((candidate) => {
+    const pathname = parsed.pathname;
+    if (candidate.exact) {
+      return pathname === candidate.prefix;
+    }
+    return pathname === candidate.prefix || pathname.startsWith(`${candidate.prefix}/`);
+  });
   if (!route) {
     return false;
   }
