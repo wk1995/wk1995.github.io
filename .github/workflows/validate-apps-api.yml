@@ -1,0 +1,35 @@
+name: Validate Apps API
+
+on:
+  pull_request:
+    paths:
+      - api/apps/**
+      - scripts/test_apps_api.js
+      - scripts/generate_app_manifest.py
+      - scripts/video-resolver-server.cjs
+      - .github/workflows/validate-apps-api.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run apps API checks
+        run: node scripts/test_apps_api.js
