@@ -1,26 +1,10 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-09-21T06:14:48.427545+00:00",
+  "generated_at": "2026-09-22T05:48:09.204091+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "affaan-m/ECC",
-      "owner": "affaan-m",
-      "name": "ECC",
-      "url": "https://github.com/affaan-m/ECC",
-      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
-      "descriptions": {
-        "zh": "代理利用性能优化系统。 Claude Code、Codex、Opencode、Cursor 等的技能、直觉、记忆、安全性和研究优先的开发。",
-        "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
-      },
-      "language": "JavaScript",
-      "stars_total": 264001,
-      "forks_total": 39487,
-      "stars_today": 826
-    },
-    {
-      "rank": 2,
       "repo": "BuilderIO/agent-native",
       "owner": "BuilderIO",
       "name": "agent-native",
@@ -31,28 +15,12 @@
         "en": "A framework for building agentic apps"
       },
       "language": "TypeScript",
-      "stars_total": 5403,
-      "forks_total": 502,
-      "stars_today": 98
+      "stars_total": 6072,
+      "forks_total": 554,
+      "stars_today": 607
     },
     {
-      "rank": 3,
-      "repo": "cloudflare/security-audit-skill",
-      "owner": "cloudflare",
-      "name": "security-audit-skill",
-      "url": "https://github.com/cloudflare/security-audit-skill",
-      "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
-      "descriptions": {
-        "zh": "用于多阶段安全审计的编码代理技能，具有独立验证、机器可读的结果",
-        "en": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings"
-      },
-      "language": "JavaScript",
-      "stars_total": 18292,
-      "forks_total": 1024,
-      "stars_today": 2428
-    },
-    {
-      "rank": 4,
+      "rank": 2,
       "repo": "trycua/cua",
       "owner": "trycua",
       "name": "cua",
@@ -63,12 +31,60 @@
         "en": "Scale computer-use 2.0 with open-source drivers, cross-OS fleets, and benchmarks for training, evaluation, and data generation."
       },
       "language": "HTML",
-      "stars_total": 25315,
-      "forks_total": 1742,
-      "stars_today": 1018
+      "stars_total": 25799,
+      "forks_total": 1772,
+      "stars_today": 609
+    },
+    {
+      "rank": 3,
+      "repo": "Open-Dev-Society/OpenStock",
+      "owner": "Open-Dev-Society",
+      "name": "OpenStock",
+      "url": "https://github.com/Open-Dev-Society/OpenStock",
+      "description": "OpenStock is an open-source alternative to expensive market platforms. Track real-time prices, set personalized alerts, and explore detailed company insights — built openly, for everyone, forever free.",
+      "descriptions": {
+        "zh": "OpenStock 是昂贵市场平台的开源替代品。跟踪实时价格，设置个性化提醒，并探索详细的公司见解 - 为所有人公开构建，并且永远免费。",
+        "en": "OpenStock is an open-source alternative to expensive market platforms. Track real-time prices, set personalized alerts, and explore detailed company insights — built openly, for everyone, forever free."
+      },
+      "language": "TypeScript",
+      "stars_total": 17975,
+      "forks_total": 2218,
+      "stars_today": 844
+    },
+    {
+      "rank": 4,
+      "repo": "akitaonrails/ai-memory",
+      "owner": "akitaonrails",
+      "name": "ai-memory",
+      "url": "https://github.com/akitaonrails/ai-memory",
+      "description": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors",
+      "descriptions": {
+        "zh": "用于代理编码 CLI 的长期记忆解决方案，并促进不同代理供应商之间的切换",
+        "en": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors"
+      },
+      "language": "Rust",
+      "stars_total": 7820,
+      "forks_total": 527,
+      "stars_today": 167
     },
     {
       "rank": 5,
+      "repo": "coder/coder",
+      "owner": "coder",
+      "name": "coder",
+      "url": "https://github.com/coder/coder",
+      "description": "Secure environments for developers and their agents",
+      "descriptions": {
+        "zh": "为开发人员及其代理提供安全的环境",
+        "en": "Secure environments for developers and their agents"
+      },
+      "language": "Go",
+      "stars_total": 16495,
+      "forks_total": 1569,
+      "stars_today": 460
+    },
+    {
+      "rank": 6,
       "repo": "anthropics/financial-services",
       "owner": "anthropics",
       "name": "financial-services",
@@ -76,25 +92,9 @@
       "description": null,
       "descriptions": null,
       "language": "Python",
-      "stars_total": 35493,
-      "forks_total": 5256,
-      "stars_today": 260
-    },
-    {
-      "rank": 6,
-      "repo": "paperless-ngx/paperless-ngx",
-      "owner": "paperless-ngx",
-      "name": "paperless-ngx",
-      "url": "https://github.com/paperless-ngx/paperless-ngx",
-      "description": "A community-supported supercharged document management system: scan, index and archive all your documents",
-      "descriptions": {
-        "zh": "社区支持的强大文档管理系统：扫描、索引和归档您的所有文档",
-        "en": "A community-supported supercharged document management system: scan, index and archive all your documents"
-      },
-      "language": "Python",
-      "stars_total": 45678,
-      "forks_total": 3158,
-      "stars_today": 57
+      "stars_total": 35923,
+      "forks_total": 5273,
+      "stars_today": 424
     }
   ]
 }
