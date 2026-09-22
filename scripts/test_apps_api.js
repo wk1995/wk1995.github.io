@@ -82,7 +82,25 @@ function testUnknownPlatformDoesNotMatchAll() {
   assert.strictEqual(api.appMatchesQuery(app, "android", ""), true);
 }
 
-function testGeneratorPreservesBetaqr() {
+function testStaleLockCanBeTakenOver() {
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), "apps-lock-"));
+  try {
+    fs.writeFileSync(path.join(temp, "manifest.json"), JSON.stringify(fixture));
+    const lockPath = path.join(temp, "manifest.json.lock");
+    fs.writeFileSync(lockPath, "");
+    const stale = new Date(Date.now() - 60 * 1000);
+    fs.utimesSync(lockPath, stale, stale);
+    api.setPackagesDir(temp);
+    api.writeManifest(JSON.parse(JSON.stringify(fixture)));
+    assert.ok(!fs.existsSync(lockPath));
+    const written = JSON.parse(fs.readFileSync(path.join(temp, "manifest.json"), "utf8"));
+    assert.strictEqual(written.apps[0].id, "android/demo");
+  } finally {
+    fs.rmSync(temp, { recursive: true, force: true });
+  }
+}
+
+function testGeneratorPreservesApiFields() {
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), "apps-manifest-"));
   try {
     const packages = path.join(temp, "apps", "packages", "android", "demo");
@@ -92,6 +110,8 @@ function testGeneratorPreservesBetaqr() {
     fs.writeFileSync(manifestPath, JSON.stringify({
       apps: [{
         id: "android/demo",
+        name: "接口改过的名字",
+        description: "接口改过的简介",
         betaqr: { id: "AbC", short: "demo", tokenRef: "wk", enabled: true },
       }],
     }));
@@ -267,7 +287,8 @@ async function main() {
   testPutDoesNotDropGeneratedFields();
   testValidation();
   testUnknownPlatformDoesNotMatchAll();
-  testGeneratorPreservesBetaqr();
+  testStaleLockCanBeTakenOver();
+  testGeneratorPreservesApiFields();
   testRouteDoesNotCaptureOpenApi();
   testGitignoreCoversTokenFile();
   await testHttpAgainstTempManifest();

@@ -275,14 +275,19 @@ def package_record(platform: str, package_dir: Path, existing: dict):
         "updatedAt": latest.get("updatedAt", ""),
     }
 
-    # 保留通过接口（如 /api/apps）写入的分发渠道信息，重建时不被清空。
+    # 保留通过接口（如 /api/apps）写入的名称、简介和分发渠道，重建时不被清空。
     existing_apps = existing.get("apps", []) if isinstance(existing, dict) else []
     existing_app = next(
         (app for app in existing_apps if isinstance(app, dict) and app.get("id") == app_id),
         None,
     )
-    if existing_app and isinstance(existing_app.get("betaqr"), dict):
-        record["betaqr"] = dict(existing_app["betaqr"])
+    if existing_app:
+        for field in ("name", "description"):
+            value = existing_app.get(field)
+            if isinstance(value, str) and value.strip():
+                record[field] = value.strip()
+        if isinstance(existing_app.get("betaqr"), dict):
+            record["betaqr"] = dict(existing_app["betaqr"])
     return record
 
 

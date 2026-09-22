@@ -100,8 +100,9 @@
 ### 与生成脚本的关系
 
 `scripts/generate_app_manifest.py` 按文件系统重建 manifest 时，会按 `id` 从旧
-manifest 继承已有的 `betaqr` 块，因此通过 `/api/apps` 写入的 betaqr 信息不会被
-重新生成覆盖清空。
+manifest 继承已有的 `name`、`description` 和 `betaqr`。因此通过 `/api/apps`
+写入的展示名、简介和 betaqr 信息不会被重新生成覆盖清空。空字符串不继承，
+仍按目录名或 README 重新生成。
 
 ---
 

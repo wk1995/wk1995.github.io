@@ -82,20 +82,44 @@ function readManifest() {
   }
 }
 
+const LOCK_STALE_MS = 30 * 1000;
+
+function acquireManifestLock(lockPath) {
+  try {
+    return fs.openSync(lockPath, "wx");
+  } catch (error) {
+    if (!error || error.code !== "EEXIST") {
+      throw error;
+    }
+  }
+  let age = 0;
+  try {
+    age = Date.now() - fs.statSync(lockPath).mtimeMs;
+  } catch (error) {
+    if (error && error.code === "ENOENT") {
+      return fs.openSync(lockPath, "wx");
+    }
+    throw error;
+  }
+  if (age < LOCK_STALE_MS) {
+    throw new Error("清单正在被其他写入占用，请稍后重试");
+  }
+  try {
+    fs.unlinkSync(lockPath);
+  } catch (error) {
+    if (!error || error.code !== "ENOENT") {
+      throw error;
+    }
+  }
+  return fs.openSync(lockPath, "wx");
+}
+
 function writeManifest(manifest) {
   const payload = JSON.stringify(manifest, null, 2) + "\n";
   const dir = path.dirname(MANIFEST_PATH);
   const tmpPath = path.join(dir, `.manifest.${process.pid}.${Date.now()}.tmp`);
   const lockPath = MANIFEST_PATH + ".lock";
-  let lockFd;
-  try {
-    lockFd = fs.openSync(lockPath, "wx");
-  } catch (error) {
-    if (error && error.code === "EEXIST") {
-      throw new Error("清单正在被其他写入占用，请稍后重试");
-    }
-    throw error;
-  }
+  const lockFd = acquireManifestLock(lockPath);
   try {
     fs.writeFileSync(tmpPath, payload, "utf8");
     fs.renameSync(tmpPath, MANIFEST_PATH);
