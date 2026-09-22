@@ -1,2 +1,4 @@
 .video-resolver-env.json
 preview-*.log
+.workbuddy/
+__pycache__/
