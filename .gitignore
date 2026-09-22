@@ -3,6 +3,8 @@
 preview-*.log
 .workbuddy/
 .workbuddy-ai/
+.idea/
+study-src/test-results/
 __pycache__/
 
 # macOS AppleDouble metadata files
