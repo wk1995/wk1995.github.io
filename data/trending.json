@@ -1,90 +1,10 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-09-22T06:07:07.769504+00:00",
+  "generated_at": "2026-09-23T05:54:23.709487+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "BuilderIO/agent-native",
-      "owner": "BuilderIO",
-      "name": "agent-native",
-      "url": "https://github.com/BuilderIO/agent-native",
-      "description": "A framework for building agentic apps",
-      "descriptions": {
-        "zh": "用于构建代理应用程序的框架",
-        "en": "A framework for building agentic apps"
-      },
-      "language": "TypeScript",
-      "stars_total": 6083,
-      "forks_total": 554,
-      "stars_today": 607
-    },
-    {
-      "rank": 2,
-      "repo": "trycua/cua",
-      "owner": "trycua",
-      "name": "cua",
-      "url": "https://github.com/trycua/cua",
-      "description": "Scale computer-use 2.0 with open-source drivers, cross-OS fleets, and benchmarks for training, evaluation, and data generation.",
-      "descriptions": {
-        "zh": "通过开源驱动程序、跨操作系统队列以及培训、评估和数据生成基准来扩展计算机使用 2.0。",
-        "en": "Scale computer-use 2.0 with open-source drivers, cross-OS fleets, and benchmarks for training, evaluation, and data generation."
-      },
-      "language": "HTML",
-      "stars_total": 25803,
-      "forks_total": 1773,
-      "stars_today": 609
-    },
-    {
-      "rank": 3,
-      "repo": "Open-Dev-Society/OpenStock",
-      "owner": "Open-Dev-Society",
-      "name": "OpenStock",
-      "url": "https://github.com/Open-Dev-Society/OpenStock",
-      "description": "OpenStock is an open-source alternative to expensive market platforms. Track real-time prices, set personalized alerts, and explore detailed company insights — built openly, for everyone, forever free.",
-      "descriptions": {
-        "zh": "OpenStock 是昂贵市场平台的开源替代品。跟踪实时价格、设置个性化提醒并探索详细的公司见解 - 为所有人公开构建，并且永远免费。",
-        "en": "OpenStock is an open-source alternative to expensive market platforms. Track real-time prices, set personalized alerts, and explore detailed company insights — built openly, for everyone, forever free."
-      },
-      "language": "TypeScript",
-      "stars_total": 17988,
-      "forks_total": 2219,
-      "stars_today": 844
-    },
-    {
-      "rank": 4,
-      "repo": "akitaonrails/ai-memory",
-      "owner": "akitaonrails",
-      "name": "ai-memory",
-      "url": "https://github.com/akitaonrails/ai-memory",
-      "description": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors",
-      "descriptions": {
-        "zh": "用于代理编码 CLI 的长期记忆解决方案，并促进不同代理供应商之间的切换",
-        "en": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors"
-      },
-      "language": "Rust",
-      "stars_total": 7823,
-      "forks_total": 527,
-      "stars_today": 167
-    },
-    {
-      "rank": 5,
-      "repo": "coder/coder",
-      "owner": "coder",
-      "name": "coder",
-      "url": "https://github.com/coder/coder",
-      "description": "Secure environments for developers and their agents",
-      "descriptions": {
-        "zh": "为开发人员及其代理提供安全的环境",
-        "en": "Secure environments for developers and their agents"
-      },
-      "language": "Go",
-      "stars_total": 16503,
-      "forks_total": 1569,
-      "stars_today": 460
-    },
-    {
-      "rank": 6,
       "repo": "anthropics/financial-services",
       "owner": "anthropics",
       "name": "financial-services",
@@ -92,9 +12,89 @@
       "description": null,
       "descriptions": null,
       "language": "Python",
-      "stars_total": 35929,
-      "forks_total": 5273,
-      "stars_today": 424
+      "stars_total": 36511,
+      "forks_total": 5333,
+      "stars_today": 438
+    },
+    {
+      "rank": 2,
+      "repo": "agent-substrate/substrate",
+      "owner": "agent-substrate",
+      "name": "substrate",
+      "url": "https://github.com/agent-substrate/substrate",
+      "description": "Agent Substrate: the core system",
+      "descriptions": {
+        "zh": "Agent Substrate：核心系统",
+        "en": "Agent Substrate: the core system"
+      },
+      "language": "Go",
+      "stars_total": 3090,
+      "forks_total": 389,
+      "stars_today": 245
+    },
+    {
+      "rank": 3,
+      "repo": "dream-num/univer",
+      "owner": "dream-num",
+      "name": "univer",
+      "url": "https://github.com/dream-num/univer",
+      "description": "The Office Harness for AI Agents — Spreadsheets, Docs, Slides, Canvas, Relational Tables, and PDF in one runtime.",
+      "descriptions": {
+        "zh": "AI 代理的 Office 工具 — 在一个运行时中处理电子表格、文档、幻灯片、画布、关系表和 PDF。",
+        "en": "The Office Harness for AI Agents — Spreadsheets, Docs, Slides, Canvas, Relational Tables, and PDF in one runtime."
+      },
+      "language": "TypeScript",
+      "stars_total": 15740,
+      "forks_total": 1402,
+      "stars_today": 255
+    },
+    {
+      "rank": 4,
+      "repo": "davila7/claude-code-templates",
+      "owner": "davila7",
+      "name": "claude-code-templates",
+      "url": "https://github.com/davila7/claude-code-templates",
+      "description": "CLI tool for configuring and monitoring Claude Code",
+      "descriptions": {
+        "zh": "用于配置和监控 Claude Code 的 CLI 工具",
+        "en": "CLI tool for configuring and monitoring Claude Code"
+      },
+      "language": "Python",
+      "stars_total": 31209,
+      "forks_total": 3549,
+      "stars_today": 64
+    },
+    {
+      "rank": 5,
+      "repo": "google/ax",
+      "owner": "google",
+      "name": "ax",
+      "url": "https://github.com/google/ax",
+      "description": "Google's open agentic orchestration runtime",
+      "descriptions": {
+        "zh": "Google 的开放代理编排运行时",
+        "en": "Google's open agentic orchestration runtime"
+      },
+      "language": "Go",
+      "stars_total": 7929,
+      "forks_total": 368,
+      "stars_today": 2305
+    },
+    {
+      "rank": 6,
+      "repo": "mvt-project/mvt",
+      "owner": "mvt-project",
+      "name": "mvt",
+      "url": "https://github.com/mvt-project/mvt",
+      "description": "MVT (Mobile Verification Toolkit) helps with conducting forensics of mobile devices in order to find signs of a potential compromise.",
+      "descriptions": {
+        "zh": "MVT（移动验证工具包）有助于对移动设备进行取证，以发现潜在危害的迹象。",
+        "en": "MVT (Mobile Verification Toolkit) helps with conducting forensics of mobile devices in order to find signs of a potential compromise."
+      },
+      "language": "Python",
+      "stars_total": 14220,
+      "forks_total": 1367,
+      "stars_today": 441
     }
   ]
 }
