@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-09-23T05:54:23.709487+00:00",
+  "generated_at": "2026-09-24T06:07:06.937111+00:00",
   "items": [
     {
       "rank": 1,
@@ -12,60 +12,12 @@ window.__TRENDING_DATA__ = {
       "description": null,
       "descriptions": null,
       "language": "Python",
-      "stars_total": 36511,
-      "forks_total": 5333,
-      "stars_today": 438
+      "stars_total": 37064,
+      "forks_total": 5388,
+      "stars_today": 664
     },
     {
       "rank": 2,
-      "repo": "agent-substrate/substrate",
-      "owner": "agent-substrate",
-      "name": "substrate",
-      "url": "https://github.com/agent-substrate/substrate",
-      "description": "Agent Substrate: the core system",
-      "descriptions": {
-        "zh": "Agent Substrate：核心系统",
-        "en": "Agent Substrate: the core system"
-      },
-      "language": "Go",
-      "stars_total": 3090,
-      "forks_total": 389,
-      "stars_today": 245
-    },
-    {
-      "rank": 3,
-      "repo": "dream-num/univer",
-      "owner": "dream-num",
-      "name": "univer",
-      "url": "https://github.com/dream-num/univer",
-      "description": "The Office Harness for AI Agents — Spreadsheets, Docs, Slides, Canvas, Relational Tables, and PDF in one runtime.",
-      "descriptions": {
-        "zh": "AI 代理的 Office 工具 — 在一个运行时中处理电子表格、文档、幻灯片、画布、关系表和 PDF。",
-        "en": "The Office Harness for AI Agents — Spreadsheets, Docs, Slides, Canvas, Relational Tables, and PDF in one runtime."
-      },
-      "language": "TypeScript",
-      "stars_total": 15740,
-      "forks_total": 1402,
-      "stars_today": 255
-    },
-    {
-      "rank": 4,
-      "repo": "davila7/claude-code-templates",
-      "owner": "davila7",
-      "name": "claude-code-templates",
-      "url": "https://github.com/davila7/claude-code-templates",
-      "description": "CLI tool for configuring and monitoring Claude Code",
-      "descriptions": {
-        "zh": "用于配置和监控 Claude Code 的 CLI 工具",
-        "en": "CLI tool for configuring and monitoring Claude Code"
-      },
-      "language": "Python",
-      "stars_total": 31209,
-      "forks_total": 3549,
-      "stars_today": 64
-    },
-    {
-      "rank": 5,
       "repo": "google/ax",
       "owner": "google",
       "name": "ax",
@@ -76,25 +28,73 @@ window.__TRENDING_DATA__ = {
         "en": "Google's open agentic orchestration runtime"
       },
       "language": "Go",
-      "stars_total": 7929,
-      "forks_total": 368,
-      "stars_today": 2305
+      "stars_total": 9365,
+      "forks_total": 453,
+      "stars_today": 1543
+    },
+    {
+      "rank": 3,
+      "repo": "davila7/claude-code-templates",
+      "owner": "davila7",
+      "name": "claude-code-templates",
+      "url": "https://github.com/davila7/claude-code-templates",
+      "description": "CLI tool for configuring and monitoring Claude Code",
+      "descriptions": {
+        "zh": "用于配置和监控 Claude Code 的 CLI 工具",
+        "en": "CLI tool for configuring and monitoring Claude Code"
+      },
+      "language": "Python",
+      "stars_total": 31587,
+      "forks_total": 3586,
+      "stars_today": 389
+    },
+    {
+      "rank": 4,
+      "repo": "BuilderIO/agent-native",
+      "owner": "BuilderIO",
+      "name": "agent-native",
+      "url": "https://github.com/BuilderIO/agent-native",
+      "description": "A framework for building agentic apps",
+      "descriptions": {
+        "zh": "用于构建代理应用程序的框架",
+        "en": "A framework for building agentic apps"
+      },
+      "language": "TypeScript",
+      "stars_total": 6643,
+      "forks_total": 595,
+      "stars_today": 87
+    },
+    {
+      "rank": 5,
+      "repo": "obra/superpowers",
+      "owner": "obra",
+      "name": "superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "descriptions": {
+        "zh": "有效的代理技能框架和软件开发方法。",
+        "en": "An agentic skills framework & software development methodology that works."
+      },
+      "language": "Shell",
+      "stars_total": 290812,
+      "forks_total": 26024,
+      "stars_today": 474
     },
     {
       "rank": 6,
-      "repo": "mvt-project/mvt",
-      "owner": "mvt-project",
-      "name": "mvt",
-      "url": "https://github.com/mvt-project/mvt",
-      "description": "MVT (Mobile Verification Toolkit) helps with conducting forensics of mobile devices in order to find signs of a potential compromise.",
+      "repo": "dream-num/univer",
+      "owner": "dream-num",
+      "name": "univer",
+      "url": "https://github.com/dream-num/univer",
+      "description": "The Office Harness for AI Agents — Spreadsheets, Docs, Slides, Canvas, Relational Tables, and PDF in one runtime.",
       "descriptions": {
-        "zh": "MVT（移动验证工具包）有助于对移动设备进行取证，以发现潜在危害的迹象。",
-        "en": "MVT (Mobile Verification Toolkit) helps with conducting forensics of mobile devices in order to find signs of a potential compromise."
+        "zh": "AI 代理的 Office 工具 — 在一个运行时中处理电子表格、文档、幻灯片、画布、关系表和 PDF。",
+        "en": "The Office Harness for AI Agents — Spreadsheets, Docs, Slides, Canvas, Relational Tables, and PDF in one runtime."
       },
-      "language": "Python",
-      "stars_total": 14220,
-      "forks_total": 1367,
-      "stars_today": 441
+      "language": "TypeScript",
+      "stars_total": 16494,
+      "forks_total": 1459,
+      "stars_today": 1142
     }
   ]
 }
