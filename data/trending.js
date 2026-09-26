@@ -1,26 +1,42 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-09-25T06:08:28.724675+00:00",
+  "generated_at": "2026-09-26T06:07:09.448626+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "rohitg00/ai-engineering-from-scratch",
-      "owner": "rohitg00",
-      "name": "ai-engineering-from-scratch",
-      "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
-      "description": "Learn it. Build it. Ship it for others.",
+      "repo": "paperclipai/paperclip",
+      "owner": "paperclipai",
+      "name": "paperclip",
+      "url": "https://github.com/paperclipai/paperclip",
+      "description": "The open-source app everyone uses to manage agents at work",
       "descriptions": {
-        "zh": "学习它。建造它。寄给别人。",
-        "en": "Learn it. Build it. Ship it for others."
+        "zh": "每个人都用它来管理工作中的座席的开源应用程序",
+        "en": "The open-source app everyone uses to manage agents at work"
       },
-      "language": "Python",
-      "stars_total": 56805,
-      "forks_total": 9957,
-      "stars_today": 347
+      "language": "TypeScript",
+      "stars_total": 85380,
+      "forks_total": 15267,
+      "stars_today": 2109
     },
     {
       "rank": 2,
+      "repo": "anthropics/claude-plugins-official",
+      "owner": "anthropics",
+      "name": "claude-plugins-official",
+      "url": "https://github.com/anthropics/claude-plugins-official",
+      "description": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
+      "descriptions": {
+        "zh": "由 Anthropic 管理的官方高品质 Claude 代码插件目录。",
+        "en": "Official, Anthropic-managed directory of high quality Claude Code Plugins."
+      },
+      "language": "Python",
+      "stars_total": 36984,
+      "forks_total": 4155,
+      "stars_today": 83
+    },
+    {
+      "rank": 3,
       "repo": "vectorize-io/hindsight",
       "owner": "vectorize-io",
       "name": "hindsight",
@@ -31,12 +47,44 @@ window.__TRENDING_DATA__ = {
         "en": "Hindsight: Agent Memory That Learns"
       },
       "language": "Python",
-      "stars_total": 28171,
-      "forks_total": 2770,
-      "stars_today": 1668
+      "stars_total": 30161,
+      "forks_total": 3227,
+      "stars_today": 1653
     },
     {
-      "rank": 3,
+      "rank": 4,
+      "repo": "obra/superpowers",
+      "owner": "obra",
+      "name": "superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "descriptions": {
+        "zh": "有效的代理技能框架和软件开发方法。",
+        "en": "An agentic skills framework & software development methodology that works."
+      },
+      "language": "Shell",
+      "stars_total": 291728,
+      "forks_total": 26111,
+      "stars_today": 468
+    },
+    {
+      "rank": 5,
+      "repo": "mattpocock/skills",
+      "owner": "mattpocock",
+      "name": "skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "descriptions": {
+        "zh": "真正工程师的技能。直接来自我的 .agents 目录。",
+        "en": "Skills for Real Engineers. Straight from my .agents directory."
+      },
+      "language": "Shell",
+      "stars_total": 269829,
+      "forks_total": 22737,
+      "stars_today": 583
+    },
+    {
+      "rank": 6,
       "repo": "dream-num/univer",
       "owner": "dream-num",
       "name": "univer",
@@ -47,57 +95,9 @@ window.__TRENDING_DATA__ = {
         "en": "The Office Harness for AI Agents — Spreadsheets, Docs, Slides, Canvas, Relational Tables, and PDF in one runtime."
       },
       "language": "TypeScript",
-      "stars_total": 17958,
-      "forks_total": 1543,
-      "stars_today": 1082
-    },
-    {
-      "rank": 4,
-      "repo": "google/ax",
-      "owner": "google",
-      "name": "ax",
-      "url": "https://github.com/google/ax",
-      "description": "Google's open agentic orchestration runtime",
-      "descriptions": {
-        "zh": "Google 的开放代理编排运行时",
-        "en": "Google's open agentic orchestration runtime"
-      },
-      "language": "Go",
-      "stars_total": 10727,
-      "forks_total": 525,
-      "stars_today": 1373
-    },
-    {
-      "rank": 5,
-      "repo": "NVIDIA/Model-Optimizer",
-      "owner": "NVIDIA",
-      "name": "Model-Optimizer",
-      "url": "https://github.com/NVIDIA/Model-Optimizer",
-      "description": "A unified library of SOTA model optimization techniques like quantization, distillation, pruning, neural architecture search, speculative decoding, etc. It compresses deep learning models for downstream deployment frameworks like TensorRT-LLM, TensorRT, vLLM, etc. to optimize inference speed.",
-      "descriptions": {
-        "zh": "量化、蒸馏、剪枝、神经架构搜索、推测解码等 SOTA 模型优化技术的统一库。它为 TensorRT-LLM、TensorRT、vLLM 等下游部署框架压缩深度学习模型，以优化推理速度。",
-        "en": "A unified library of SOTA model optimization techniques like quantization, distillation, pruning, neural architecture search, speculative decoding, etc. It compresses deep learning models for downstream deployment frameworks like TensorRT-LLM, TensorRT, vLLM, etc. to optimize inference speed."
-      },
-      "language": "Python",
-      "stars_total": 4156,
-      "forks_total": 633,
-      "stars_today": 44
-    },
-    {
-      "rank": 6,
-      "repo": "FxEmbed/FxEmbed",
-      "owner": "FxEmbed",
-      "name": "FxEmbed",
-      "url": "https://github.com/FxEmbed/FxEmbed",
-      "description": "Fix X/Twitter and Bluesky embeds! Use multiple images, videos, polls, translations and more on Discord, Telegram and others",
-      "descriptions": {
-        "zh": "修复 X/Twitter 和 Bluesky 嵌入！在 Discord、Telegram 等上使用多个图像、视频、民意调查、翻译等",
-        "en": "Fix X/Twitter and Bluesky embeds! Use multiple images, videos, polls, translations and more on Discord, Telegram and others"
-      },
-      "language": "TypeScript",
-      "stars_total": 5402,
-      "forks_total": 252,
-      "stars_today": 182
+      "stars_total": 18791,
+      "forks_total": 1606,
+      "stars_today": 1050
     }
   ]
 }
