@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-09-27T06:33:58.354972+00:00",
+  "generated_at": "2026-09-28T06:45:36.790741+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,9 +15,9 @@
         "en": "The open-source app everyone uses to manage agents at work"
       },
       "language": "TypeScript",
-      "stars_total": 87875,
-      "forks_total": 15482,
-      "stars_today": 2608
+      "stars_total": 90757,
+      "forks_total": 15728,
+      "stars_today": 2401
     },
     {
       "rank": 2,
@@ -31,60 +31,28 @@
         "en": "Hindsight: Agent Memory That Learns"
       },
       "language": "Python",
-      "stars_total": 33638,
-      "forks_total": 3937,
-      "stars_today": 2147
+      "stars_total": 38397,
+      "forks_total": 5017,
+      "stars_today": 4520
     },
     {
       "rank": 3,
-      "repo": "NVIDIA/Model-Optimizer",
-      "owner": "NVIDIA",
-      "name": "Model-Optimizer",
-      "url": "https://github.com/NVIDIA/Model-Optimizer",
-      "description": "A unified library of SOTA model optimization techniques like quantization, distillation, pruning, neural architecture search, speculative decoding, etc. It compresses deep learning models for downstream deployment frameworks like TensorRT-LLM, TensorRT, vLLM, etc. to optimize inference speed.",
+      "repo": "debpalash/VoiceStudio",
+      "owner": "debpalash",
+      "name": "VoiceStudio",
+      "url": "https://github.com/debpalash/VoiceStudio",
+      "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages.",
       "descriptions": {
-        "zh": "量化、蒸馏、剪枝、神经架构搜索、推测解码等 SOTA 模型优化技术的统一库。它为 TensorRT-LLM、TensorRT、vLLM 等下游部署框架压缩深度学习模型，以优化推理速度。",
-        "en": "A unified library of SOTA model optimization techniques like quantization, distillation, pruning, neural architecture search, speculative decoding, etc. It compresses deep learning models for downstream deployment frameworks like TensorRT-LLM, TensorRT, vLLM, etc. to optimize inference speed."
+        "zh": "VoiceStudio 是 ElevenLabs 的开源、完全本地化替代方案 — 提供 646 种语言的语音克隆、语音设计、视频配音、听写、转录和有声读物创建。",
+        "en": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages."
       },
       "language": "Python",
-      "stars_total": 4817,
-      "forks_total": 672,
-      "stars_today": 357
+      "stars_total": 40863,
+      "forks_total": 4853,
+      "stars_today": 3086
     },
     {
       "rank": 4,
-      "repo": "dream-num/univer",
-      "owner": "dream-num",
-      "name": "univer",
-      "url": "https://github.com/dream-num/univer",
-      "description": "The Office Harness for AI Agents — Spreadsheets, Docs, Slides, Canvas, Relational Tables, and PDF in one runtime.",
-      "descriptions": {
-        "zh": "AI 代理的 Office 工具 — 在一个运行时中处理电子表格、文档、幻灯片、画布、关系表和 PDF。",
-        "en": "The Office Harness for AI Agents — Spreadsheets, Docs, Slides, Canvas, Relational Tables, and PDF in one runtime."
-      },
-      "language": "TypeScript",
-      "stars_total": 19711,
-      "forks_total": 1661,
-      "stars_today": 849
-    },
-    {
-      "rank": 5,
-      "repo": "tensorflow/tensorflow",
-      "owner": "tensorflow",
-      "name": "tensorflow",
-      "url": "https://github.com/tensorflow/tensorflow",
-      "description": "An Open Source Machine Learning Framework for Everyone",
-      "descriptions": {
-        "zh": "适合所有人的开源机器学习框架",
-        "en": "An Open Source Machine Learning Framework for Everyone"
-      },
-      "language": "C++",
-      "stars_total": 200497,
-      "forks_total": 77667,
-      "stars_today": 46
-    },
-    {
-      "rank": 6,
       "repo": "rohitg00/ai-engineering-from-scratch",
       "owner": "rohitg00",
       "name": "ai-engineering-from-scratch",
@@ -95,9 +63,41 @@
         "en": "Learn it. Build it. Ship it for others."
       },
       "language": "Python",
-      "stars_total": 58539,
-      "forks_total": 10150,
-      "stars_today": 827
+      "stars_total": 59713,
+      "forks_total": 10282,
+      "stars_today": 790
+    },
+    {
+      "rank": 5,
+      "repo": "InfinityLoop1308/PipePipe",
+      "owner": "InfinityLoop1308",
+      "name": "PipePipe",
+      "url": "https://github.com/InfinityLoop1308/PipePipe",
+      "description": "An open-source Android app to let you browse YouTube and other services freely.",
+      "descriptions": {
+        "zh": "一款开源 Android 应用程序，可让您自由浏览 YouTube 和其他服务。",
+        "en": "An open-source Android app to let you browse YouTube and other services freely."
+      },
+      "language": "Shell",
+      "stars_total": 6687,
+      "forks_total": 225,
+      "stars_today": 242
+    },
+    {
+      "rank": 6,
+      "repo": "vercel-labs/scriptc",
+      "owner": "vercel-labs",
+      "name": "scriptc",
+      "url": "https://github.com/vercel-labs/scriptc",
+      "description": "TypeScript-to-Native Compiler",
+      "descriptions": {
+        "zh": "TypeScript 到 Native 编译器",
+        "en": "TypeScript-to-Native Compiler"
+      },
+      "language": "TypeScript",
+      "stars_total": 5497,
+      "forks_total": 143,
+      "stars_today": 102
     }
   ]
 }
