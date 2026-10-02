@@ -1,74 +1,10 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-10-01T07:09:13.392811+00:00",
+  "generated_at": "2026-10-02T06:57:34.774111+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "NVIDIA/OpenShell",
-      "owner": "NVIDIA",
-      "name": "OpenShell",
-      "url": "https://github.com/NVIDIA/OpenShell",
-      "description": "OpenShell is the safe, private runtime for autonomous AI agents.",
-      "descriptions": {
-        "zh": "OpenShell 是自主 AI 代理的安全、私有运行时。",
-        "en": "OpenShell is the safe, private runtime for autonomous AI agents."
-      },
-      "language": "Rust",
-      "stars_total": 13205,
-      "forks_total": 1572,
-      "stars_today": 1281
-    },
-    {
-      "rank": 2,
-      "repo": "debpalash/VoiceStudio",
-      "owner": "debpalash",
-      "name": "VoiceStudio",
-      "url": "https://github.com/debpalash/VoiceStudio",
-      "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages.",
-      "descriptions": {
-        "zh": "VoiceStudio 是 ElevenLabs 的开源、完全本地化替代方案 — 提供 646 种语言的语音克隆、语音设计、视频配音、听写、转录和有声读物创建。",
-        "en": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages."
-      },
-      "language": "Python",
-      "stars_total": 50780,
-      "forks_total": 5630,
-      "stars_today": 3483
-    },
-    {
-      "rank": 3,
-      "repo": "mvschwarz/openrig",
-      "owner": "mvschwarz",
-      "name": "openrig",
-      "url": "https://github.com/mvschwarz/openrig",
-      "description": "Multi-agent harness that runs Claude Code and Codex together as one system",
-      "descriptions": {
-        "zh": "将 Claude Code 和 Codex 作为一个系统一起运行的多代理工具",
-        "en": "Multi-agent harness that runs Claude Code and Codex together as one system"
-      },
-      "language": "TypeScript",
-      "stars_total": 3194,
-      "forks_total": 219,
-      "stars_today": 624
-    },
-    {
-      "rank": 4,
-      "repo": "mksglu/context-mode",
-      "owner": "mksglu",
-      "name": "context-mode",
-      "url": "https://github.com/mksglu/context-mode",
-      "description": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks.",
-      "descriptions": {
-        "zh": "AI 编码代理的上下文窗口优化。沙箱工具输出（减少 98%）、保留会话内存，并通过 MCP + 挂钩强制跨 17 个平台进行路由。",
-        "en": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks."
-      },
-      "language": "TypeScript",
-      "stars_total": 24565,
-      "forks_total": 1771,
-      "stars_today": 90
-    },
-    {
-      "rank": 5,
       "repo": "DietrichGebert/ponytail",
       "owner": "DietrichGebert",
       "name": "ponytail",
@@ -79,25 +15,89 @@
         "en": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote."
       },
       "language": "JavaScript",
-      "stars_total": 149502,
-      "forks_total": 8031,
-      "stars_today": 743
+      "stars_total": 150863,
+      "forks_total": 8096,
+      "stars_today": 1194
+    },
+    {
+      "rank": 2,
+      "repo": "mattpocock/skills",
+      "owner": "mattpocock",
+      "name": "skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "descriptions": {
+        "zh": "真正工程师的技能。直接来自我的 .agents 目录。",
+        "en": "Skills for Real Engineers. Straight from my .agents directory."
+      },
+      "language": "Shell",
+      "stars_total": 274128,
+      "forks_total": 23022,
+      "stars_today": 883
+    },
+    {
+      "rank": 3,
+      "repo": "NVIDIA/OpenShell",
+      "owner": "NVIDIA",
+      "name": "OpenShell",
+      "url": "https://github.com/NVIDIA/OpenShell",
+      "description": "OpenShell is the safe, private runtime for autonomous AI agents.",
+      "descriptions": {
+        "zh": "OpenShell 是自主 AI 代理的安全、私有运行时。",
+        "en": "OpenShell is the safe, private runtime for autonomous AI agents."
+      },
+      "language": "Rust",
+      "stars_total": 14137,
+      "forks_total": 1635,
+      "stars_today": 2456
+    },
+    {
+      "rank": 4,
+      "repo": "firebase/firebase-ios-sdk",
+      "owner": "firebase",
+      "name": "firebase-ios-sdk",
+      "url": "https://github.com/firebase/firebase-ios-sdk",
+      "description": "Firebase SDK for Apple App Development",
+      "descriptions": {
+        "zh": "用于 Apple 应用开发的 Firebase SDK",
+        "en": "Firebase SDK for Apple App Development"
+      },
+      "language": "C++",
+      "stars_total": 6892,
+      "forks_total": 1808,
+      "stars_today": 112
+    },
+    {
+      "rank": 5,
+      "repo": "mvschwarz/openrig",
+      "owner": "mvschwarz",
+      "name": "openrig",
+      "url": "https://github.com/mvschwarz/openrig",
+      "description": "Build your own network of agents from Claude Code, Codex and Pi: persistent teams with roles, shared context and owned work.",
+      "descriptions": {
+        "zh": "从 Claude Code、Codex 和 Pi 构建您自己的代理网络：具有角色、共享上下文和拥有工作的持久团队。",
+        "en": "Build your own network of agents from Claude Code, Codex and Pi: persistent teams with roles, shared context and owned work."
+      },
+      "language": "TypeScript",
+      "stars_total": 3873,
+      "forks_total": 256,
+      "stars_today": 642
     },
     {
       "rank": 6,
-      "repo": "harry0703/MoneyPrinterTurbo",
-      "owner": "harry0703",
-      "name": "MoneyPrinterTurbo",
-      "url": "https://github.com/harry0703/MoneyPrinterTurbo",
-      "description": "利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow.",
+      "repo": "cursor/plugins",
+      "owner": "cursor",
+      "name": "plugins",
+      "url": "https://github.com/cursor/plugins",
+      "description": "Cursor plugin specification and official plugins",
       "descriptions": {
-        "zh": "利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow.",
-        "en": "Use AI large models and automated workflows to generate high-definition short videos based on topics or keywords with one click. Generate HD short videos from a topic or keyword with an automated AI workflow."
+        "zh": "光标插件规范和官方插件",
+        "en": "Cursor plugin specification and official plugins"
       },
-      "language": "Python",
-      "stars_total": 127692,
-      "forks_total": 19972,
-      "stars_today": 431
+      "language": "TypeScript",
+      "stars_total": 9359,
+      "forks_total": 887,
+      "stars_today": 150
     }
   ]
 }
