@@ -1,58 +1,10 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-10-03T06:24:58.747254+00:00",
+  "generated_at": "2026-10-04T06:47:53.925986+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "Panniantong/Agent-Reach",
-      "owner": "Panniantong",
-      "name": "Agent-Reach",
-      "url": "https://github.com/Panniantong/Agent-Reach",
-      "description": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
-      "descriptions": {
-        "zh": "让您的人工智能代理有一双能够看到整个互联网的眼睛。阅读和搜索 Twitter、Reddit、YouTube、GitHub、Bilibili、小红书 — 一个 CLI，零 API 费用。",
-        "en": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees."
-      },
-      "language": "Python",
-      "stars_total": 88974,
-      "forks_total": 7837,
-      "stars_today": 696
-    },
-    {
-      "rank": 2,
-      "repo": "JuliusBrussee/caveman",
-      "owner": "JuliusBrussee",
-      "name": "caveman",
-      "url": "https://github.com/JuliusBrussee/caveman",
-      "description": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman.",
-      "descriptions": {
-        "zh": "🪨 当很少的令牌可以欺骗时为什么要使用很多令牌。病毒技能 + 编码代理的代理，通过像穴居人一样说话来减少 65% 的代币。",
-        "en": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman."
-      },
-      "language": "Go",
-      "stars_total": 109205,
-      "forks_total": 6320,
-      "stars_today": 209
-    },
-    {
-      "rank": 3,
-      "repo": "obra/superpowers",
-      "owner": "obra",
-      "name": "superpowers",
-      "url": "https://github.com/obra/superpowers",
-      "description": "An agentic skills framework & software development methodology that works.",
-      "descriptions": {
-        "zh": "有效的代理技能框架和软件开发方法。",
-        "en": "An agentic skills framework & software development methodology that works."
-      },
-      "language": "Shell",
-      "stars_total": 294559,
-      "forks_total": 26330,
-      "stars_today": 556
-    },
-    {
-      "rank": 4,
       "repo": "DietrichGebert/ponytail",
       "owner": "DietrichGebert",
       "name": "ponytail",
@@ -63,12 +15,12 @@ window.__TRENDING_DATA__ = {
         "en": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote."
       },
       "language": "JavaScript",
-      "stars_total": 152048,
-      "forks_total": 8155,
-      "stars_today": 1435
+      "stars_total": 153783,
+      "forks_total": 8267,
+      "stars_today": 1281
     },
     {
-      "rank": 5,
+      "rank": 2,
       "repo": "pbakaus/impeccable",
       "owner": "pbakaus",
       "name": "impeccable",
@@ -79,25 +31,73 @@ window.__TRENDING_DATA__ = {
         "en": "The design language that makes your AI harness better at design."
       },
       "language": "JavaScript",
-      "stars_total": 74480,
-      "forks_total": 4488,
-      "stars_today": 722
+      "stars_total": 75550,
+      "forks_total": 4527,
+      "stars_today": 699
+    },
+    {
+      "rank": 3,
+      "repo": "affaan-m/ECC",
+      "owner": "affaan-m",
+      "name": "ECC",
+      "url": "https://github.com/affaan-m/ECC",
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "descriptions": {
+        "zh": "代理利用性能优化系统。 Claude Code、Codex、Opencode、Cursor 等的技能、直觉、记忆、安全性和研究优先的开发。",
+        "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
+      },
+      "language": "JavaScript",
+      "stars_total": 272421,
+      "forks_total": 40679,
+      "stars_today": 897
+    },
+    {
+      "rank": 4,
+      "repo": "Effect-TS/effect",
+      "owner": "Effect-TS",
+      "name": "effect",
+      "url": "https://github.com/Effect-TS/effect",
+      "description": "Build production-ready applications in TypeScript",
+      "descriptions": {
+        "zh": "在 TypeScript 中构建生产就绪的应用程序",
+        "en": "Build production-ready applications in TypeScript"
+      },
+      "language": "TypeScript",
+      "stars_total": 16881,
+      "forks_total": 816,
+      "stars_today": 302
+    },
+    {
+      "rank": 5,
+      "repo": "JuliusBrussee/caveman",
+      "owner": "JuliusBrussee",
+      "name": "caveman",
+      "url": "https://github.com/JuliusBrussee/caveman",
+      "description": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman.",
+      "descriptions": {
+        "zh": "🪨 当很少的令牌可以欺骗时为什么要使用很多令牌。病毒式技能 + 编码代理的代理，通过像穴居人一样说话来减少 65% 的代币。",
+        "en": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman."
+      },
+      "language": "Go",
+      "stars_total": 109626,
+      "forks_total": 6341,
+      "stars_today": 507
     },
     {
       "rank": 6,
-      "repo": "mattpocock/skills",
-      "owner": "mattpocock",
-      "name": "skills",
-      "url": "https://github.com/mattpocock/skills",
-      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "repo": "Panniantong/Agent-Reach",
+      "owner": "Panniantong",
+      "name": "Agent-Reach",
+      "url": "https://github.com/Panniantong/Agent-Reach",
+      "description": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
       "descriptions": {
-        "zh": "真正工程师的技能。直接来自我的 .agents 目录。",
-        "en": "Skills for Real Engineers. Straight from my .agents directory."
+        "zh": "让您的人工智能代理有一双能够看到整个互联网的眼睛。阅读和搜索 Twitter、Reddit、YouTube、GitHub、Bilibili、小红书 — 一个 CLI，零 API 费用。",
+        "en": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees."
       },
-      "language": "Shell",
-      "stars_total": 274847,
-      "forks_total": 23069,
-      "stars_today": 955
+      "language": "Python",
+      "stars_total": 90045,
+      "forks_total": 7921,
+      "stars_today": 1696
     }
   ]
 }
