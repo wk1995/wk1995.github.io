@@ -1,23 +1,23 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-10-04T06:47:53.925986+00:00",
+  "generated_at": "2026-10-05T06:56:57.573157+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "DietrichGebert/ponytail",
-      "owner": "DietrichGebert",
-      "name": "ponytail",
-      "url": "https://github.com/DietrichGebert/ponytail",
-      "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
+      "repo": "tester-army/e2e",
+      "owner": "tester-army",
+      "name": "e2e",
+      "url": "https://github.com/tester-army/e2e",
+      "description": "Next generation e2e testing framework for web and mobile apps.",
       "descriptions": {
-        "zh": "让你的人工智能代理像房间里最懒的高级开发人员一样思考。最好的代码是你从未编写过的代码。",
-        "en": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote."
+        "zh": "适用于 Web 和移动应用程序的下一代 e2e 测试框架。",
+        "en": "Next generation e2e testing framework for web and mobile apps."
       },
-      "language": "JavaScript",
-      "stars_total": 153783,
-      "forks_total": 8267,
-      "stars_today": 1281
+      "language": "TypeScript",
+      "stars_total": 3488,
+      "forks_total": 134,
+      "stars_today": 345
     },
     {
       "rank": 2,
@@ -31,57 +31,57 @@ window.__TRENDING_DATA__ = {
         "en": "The design language that makes your AI harness better at design."
       },
       "language": "JavaScript",
-      "stars_total": 75550,
-      "forks_total": 4527,
-      "stars_today": 699
+      "stars_total": 76525,
+      "forks_total": 4566,
+      "stars_today": 1171
     },
     {
       "rank": 3,
-      "repo": "affaan-m/ECC",
-      "owner": "affaan-m",
-      "name": "ECC",
-      "url": "https://github.com/affaan-m/ECC",
-      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "repo": "coreyhaines31/marketingskills",
+      "owner": "coreyhaines31",
+      "name": "marketingskills",
+      "url": "https://github.com/coreyhaines31/marketingskills",
+      "description": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering.",
       "descriptions": {
-        "zh": "代理利用性能优化系统。 Claude Code、Codex、Opencode、Cursor 等的技能、直觉、记忆、安全性和研究优先的开发。",
-        "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
+        "zh": "Claude Code 和 AI 代理的营销技巧。 CRO、文案、SEO、分析和增长工程。",
+        "en": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering."
       },
       "language": "JavaScript",
-      "stars_total": 272421,
-      "forks_total": 40679,
-      "stars_today": 897
+      "stars_total": 53197,
+      "forks_total": 7925,
+      "stars_today": 197
     },
     {
       "rank": 4,
-      "repo": "Effect-TS/effect",
-      "owner": "Effect-TS",
-      "name": "effect",
-      "url": "https://github.com/Effect-TS/effect",
-      "description": "Build production-ready applications in TypeScript",
+      "repo": "DietrichGebert/ponytail",
+      "owner": "DietrichGebert",
+      "name": "ponytail",
+      "url": "https://github.com/DietrichGebert/ponytail",
+      "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
       "descriptions": {
-        "zh": "在 TypeScript 中构建生产就绪的应用程序",
-        "en": "Build production-ready applications in TypeScript"
+        "zh": "让你的人工智能代理像房间里最懒的高级开发人员一样思考。最好的代码是你从未编写过的代码。",
+        "en": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote."
       },
-      "language": "TypeScript",
-      "stars_total": 16881,
-      "forks_total": 816,
-      "stars_today": 302
+      "language": "JavaScript",
+      "stars_total": 155218,
+      "forks_total": 8342,
+      "stars_today": 1894
     },
     {
       "rank": 5,
-      "repo": "JuliusBrussee/caveman",
-      "owner": "JuliusBrussee",
-      "name": "caveman",
-      "url": "https://github.com/JuliusBrussee/caveman",
-      "description": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman.",
+      "repo": "earthtojake/text-to-cad",
+      "owner": "earthtojake",
+      "name": "text-to-cad",
+      "url": "https://github.com/earthtojake/text-to-cad",
+      "description": "Give your agent CAD superpowers.",
       "descriptions": {
-        "zh": "🪨 当很少的令牌可以欺骗时为什么要使用很多令牌。病毒式技能 + 编码代理的代理，通过像穴居人一样说话来减少 65% 的代币。",
-        "en": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman."
+        "zh": "赋予您的代理 CAD 超能力。",
+        "en": "Give your agent CAD superpowers."
       },
-      "language": "Go",
-      "stars_total": 109626,
-      "forks_total": 6341,
-      "stars_today": 507
+      "language": "Python",
+      "stars_total": 16996,
+      "forks_total": 1750,
+      "stars_today": 83
     },
     {
       "rank": 6,
@@ -95,9 +95,9 @@ window.__TRENDING_DATA__ = {
         "en": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees."
       },
       "language": "Python",
-      "stars_total": 90045,
-      "forks_total": 7921,
-      "stars_today": 1696
+      "stars_total": 91183,
+      "forks_total": 8008,
+      "stars_today": 980
     }
   ]
 }
