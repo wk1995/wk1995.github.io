@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-10-06T07:29:48.672069+00:00",
+  "generated_at": "2026-10-07T07:10:33.691440+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,25 +15,25 @@
         "en": "Next generation e2e testing framework for web and mobile apps."
       },
       "language": "TypeScript",
-      "stars_total": 5213,
-      "forks_total": 221,
-      "stars_today": 1398
+      "stars_total": 6640,
+      "forks_total": 294,
+      "stars_today": 1725
     },
     {
       "rank": 2,
-      "repo": "thedotmack/claude-mem",
-      "owner": "thedotmack",
-      "name": "claude-mem",
-      "url": "https://github.com/thedotmack/claude-mem",
-      "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
+      "repo": "mattpocock/skills",
+      "owner": "mattpocock",
+      "name": "skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
       "descriptions": {
-        "zh": "每个座席跨会话的持久上下文 – 捕获座席在会话期间所做的所有操作，使用 AI 对其进行压缩，并将相关上下文注入到未来的会话中。适用于 Claude Code、OpenClaw、Codex、Gemini、Hermes、Copilot、OpenCode 等",
-        "en": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More"
+        "zh": "真正工程师的技能。直接来自我的 .agents 目录。",
+        "en": "Skills for Real Engineers. Straight from my .agents directory."
       },
-      "language": "TypeScript",
-      "stars_total": 96751,
-      "forks_total": 8536,
-      "stars_today": 534
+      "language": "Shell",
+      "stars_total": 278482,
+      "forks_total": 23324,
+      "stars_today": 889
     },
     {
       "rank": 3,
@@ -47,25 +47,12 @@
         "en": "Give your agent CAD superpowers."
       },
       "language": "Python",
-      "stars_total": 17581,
-      "forks_total": 1779,
-      "stars_today": 437
+      "stars_total": 18124,
+      "forks_total": 1811,
+      "stars_today": 619
     },
     {
       "rank": 4,
-      "repo": "pingdotgg/t3code",
-      "owner": "pingdotgg",
-      "name": "t3code",
-      "url": "https://github.com/pingdotgg/t3code",
-      "description": null,
-      "descriptions": null,
-      "language": "TypeScript",
-      "stars_total": 25717,
-      "forks_total": 6620,
-      "stars_today": 485
-    },
-    {
-      "rank": 5,
       "repo": "boykopovar/AnyPS5",
       "owner": "boykopovar",
       "name": "AnyPS5",
@@ -76,25 +63,41 @@
         "en": "Tool for automatic PS5 executables porting to Linux and Windows"
       },
       "language": "C++",
-      "stars_total": 5166,
-      "forks_total": 379,
-      "stars_today": 997
+      "stars_total": 7114,
+      "forks_total": 531,
+      "stars_today": 949
+    },
+    {
+      "rank": 5,
+      "repo": "pbakaus/impeccable",
+      "owner": "pbakaus",
+      "name": "impeccable",
+      "url": "https://github.com/pbakaus/impeccable",
+      "description": "The design language that makes your AI harness better at design.",
+      "descriptions": {
+        "zh": "使您的 AI 线束在设计上更加出色的设计语言。",
+        "en": "The design language that makes your AI harness better at design."
+      },
+      "language": "JavaScript",
+      "stars_total": 77894,
+      "forks_total": 4634,
+      "stars_today": 616
     },
     {
       "rank": 6,
-      "repo": "Panniantong/Agent-Reach",
-      "owner": "Panniantong",
-      "name": "Agent-Reach",
-      "url": "https://github.com/Panniantong/Agent-Reach",
-      "description": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
+      "repo": "thedotmack/claude-mem",
+      "owner": "thedotmack",
+      "name": "claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
       "descriptions": {
-        "zh": "让您的人工智能代理有一双能够看到整个互联网的眼睛。阅读和搜索 Twitter、Reddit、YouTube、GitHub、Bilibili、小红书 — 一个 CLI，零 API 费用。",
-        "en": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees."
+        "zh": "每个座席跨会话的持久上下文 – 捕获座席在会话期间所做的所有操作，使用 AI 对其进行压缩，并将相关上下文注入到未来的会话中。适用于 Claude Code、OpenClaw、Codex、Gemini、Hermes、Copilot、OpenCode 等",
+        "en": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More"
       },
-      "language": "Python",
-      "stars_total": 92152,
-      "forks_total": 8085,
-      "stars_today": 1155
+      "language": "TypeScript",
+      "stars_total": 97308,
+      "forks_total": 8573,
+      "stars_today": 534
     }
   ]
 }
