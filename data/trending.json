@@ -1,42 +1,10 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-10-08T07:16:48.327791+00:00",
+  "generated_at": "2026-10-09T07:19:41.398855+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "morluto/rea",
-      "owner": "morluto",
-      "name": "rea",
-      "url": "https://github.com/morluto/rea",
-      "description": "Reverse engineer anything with agents, from app behavior down to native binaries.",
-      "descriptions": {
-        "zh": "使用代理对任何内容进行逆向工程，从应用程序行为到本机二进制文件。",
-        "en": "Reverse engineer anything with agents, from app behavior down to native binaries."
-      },
-      "language": "TypeScript",
-      "stars_total": 17588,
-      "forks_total": 1844,
-      "stars_today": 4655
-    },
-    {
-      "rank": 2,
-      "repo": "mattpocock/skills",
-      "owner": "mattpocock",
-      "name": "skills",
-      "url": "https://github.com/mattpocock/skills",
-      "description": "Skills for Real Engineers. Straight from my .agents directory.",
-      "descriptions": {
-        "zh": "真正工程师的技能。直接来自我的 .agents 目录。",
-        "en": "Skills for Real Engineers. Straight from my .agents directory."
-      },
-      "language": "Shell",
-      "stars_total": 280113,
-      "forks_total": 23475,
-      "stars_today": 1403
-    },
-    {
-      "rank": 3,
       "repo": "boykopovar/AnyPS5",
       "owner": "boykopovar",
       "name": "AnyPS5",
@@ -47,28 +15,12 @@
         "en": "Tool for automatic PS5 executables porting to Linux and Windows"
       },
       "language": "C++",
-      "stars_total": 11688,
-      "forks_total": 890,
-      "stars_today": 2716
+      "stars_total": 17198,
+      "forks_total": 1375,
+      "stars_today": 4669
     },
     {
-      "rank": 4,
-      "repo": "ayghri/i-have-adhd",
-      "owner": "ayghri",
-      "name": "i-have-adhd",
-      "url": "https://github.com/ayghri/i-have-adhd",
-      "description": "A skill to stop your coding agent from burying the answer. ADHD-friendly output.",
-      "descriptions": {
-        "zh": "阻止编码代理隐藏答案的技能。多动症友好的输出。",
-        "en": "A skill to stop your coding agent from burying the answer. ADHD-friendly output."
-      },
-      "language": "Python",
-      "stars_total": 55409,
-      "forks_total": 3168,
-      "stars_today": 619
-    },
-    {
-      "rank": 5,
+      "rank": 2,
       "repo": "cathrynlavery/diagram-design",
       "owner": "cathrynlavery",
       "name": "diagram-design",
@@ -79,25 +31,73 @@
         "en": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Factory Droid, and Pi. 42 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop."
       },
       "language": "HTML",
-      "stars_total": 45330,
-      "forks_total": 2909,
-      "stars_today": 825
+      "stars_total": 46901,
+      "forks_total": 2981,
+      "stars_today": 1160
+    },
+    {
+      "rank": 3,
+      "repo": "morluto/rea",
+      "owner": "morluto",
+      "name": "rea",
+      "url": "https://github.com/morluto/rea",
+      "description": "Reverse engineer anything with agents, from app behavior down to native binaries.",
+      "descriptions": {
+        "zh": "使用代理对任何内容进行逆向工程，从应用程序行为到本机二进制文件。",
+        "en": "Reverse engineer anything with agents, from app behavior down to native binaries."
+      },
+      "language": "TypeScript",
+      "stars_total": 31279,
+      "forks_total": 3771,
+      "stars_today": 7738
+    },
+    {
+      "rank": 4,
+      "repo": "mattpocock/skills",
+      "owner": "mattpocock",
+      "name": "skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "descriptions": {
+        "zh": "真正工程师的技能。直接来自我的 .agents 目录。",
+        "en": "Skills for Real Engineers. Straight from my .agents directory."
+      },
+      "language": "Shell",
+      "stars_total": 281564,
+      "forks_total": 23599,
+      "stars_today": 1774
+    },
+    {
+      "rank": 5,
+      "repo": "thedotmack/claude-mem",
+      "owner": "thedotmack",
+      "name": "claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
+      "descriptions": {
+        "zh": "每个座席跨会话的持久上下文 – 捕获座席在会话期间所做的所有操作，使用 AI 对其进行压缩，并将相关上下文注入到未来的会话中。适用于 Claude Code、OpenClaw、Codex、Gemini、Hermes、Copilot、OpenCode 等",
+        "en": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More"
+      },
+      "language": "TypeScript",
+      "stars_total": 98721,
+      "forks_total": 8655,
+      "stars_today": 670
     },
     {
       "rank": 6,
-      "repo": "addyosmani/agent-skills",
-      "owner": "addyosmani",
-      "name": "agent-skills",
-      "url": "https://github.com/addyosmani/agent-skills",
-      "description": "Production-grade engineering skills for AI coding agents.",
+      "repo": "EpicGames/raddebugger",
+      "owner": "EpicGames",
+      "name": "raddebugger",
+      "url": "https://github.com/EpicGames/raddebugger",
+      "description": "A native, user-mode, multi-process, graphical debugger.",
       "descriptions": {
-        "zh": "AI 编码代理的生产级工程技能。",
-        "en": "Production-grade engineering skills for AI coding agents."
+        "zh": "本机、用户模式、多进程、图形调试器。",
+        "en": "A native, user-mode, multi-process, graphical debugger."
       },
-      "language": "JavaScript",
-      "stars_total": 103031,
-      "forks_total": 10784,
-      "stars_today": 677
+      "language": "C",
+      "stars_total": 8181,
+      "forks_total": 392,
+      "stars_today": 279
     }
   ]
 }
