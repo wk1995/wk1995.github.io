@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-10-10T06:59:22.847112+00:00",
+  "generated_at": "2026-10-11T07:06:20.148179+00:00",
   "items": [
     {
       "rank": 1,
@@ -11,13 +11,13 @@
       "url": "https://github.com/morluto/rea",
       "description": "Reverse engineer anything with agents, from app behavior down to native binaries.",
       "descriptions": {
-        "zh": "使用代理对任何内容进行逆向工程，从应用程序行为到本机二进制文件。",
+        "zh": "Reverse engineer anything with agents, from app behavior down to native binaries.",
         "en": "Reverse engineer anything with agents, from app behavior down to native binaries."
       },
       "language": "TypeScript",
-      "stars_total": 54199,
-      "forks_total": 10270,
-      "stars_today": 14927
+      "stars_total": 79564,
+      "forks_total": 17190,
+      "stars_today": 25793
     },
     {
       "rank": 2,
@@ -27,29 +27,29 @@
       "url": "https://github.com/boykopovar/AnyPS5",
       "description": "Tool for automatic PS5 executables porting to Linux and Windows",
       "descriptions": {
-        "zh": "自动将 PS5 可执行文件移植到 Linux 和 Windows 的工具",
+        "zh": "Tool for automatic PS5 executables porting to Linux and Windows",
         "en": "Tool for automatic PS5 executables porting to Linux and Windows"
       },
       "language": "C++",
-      "stars_total": 23362,
-      "forks_total": 1928,
-      "stars_today": 5868
+      "stars_total": 27576,
+      "forks_total": 2334,
+      "stars_today": 5805
     },
     {
       "rank": 3,
-      "repo": "mattpocock/skills",
-      "owner": "mattpocock",
-      "name": "skills",
-      "url": "https://github.com/mattpocock/skills",
-      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "repo": "storytold/artcraft",
+      "owner": "storytold",
+      "name": "artcraft",
+      "url": "https://github.com/storytold/artcraft",
+      "description": "ArtCraft is an intentional crafting engine for artists, designers, and filmmakers",
       "descriptions": {
-        "zh": "真正工程师的技能。直接来自我的 .agents 目录。",
-        "en": "Skills for Real Engineers. Straight from my .agents directory."
+        "zh": "ArtCraft is an intentional crafting engine for artists, designers, and filmmakers",
+        "en": "ArtCraft is an intentional crafting engine for artists, designers, and filmmakers"
       },
-      "language": "Shell",
-      "stars_total": 283201,
-      "forks_total": 23724,
-      "stars_today": 1687
+      "language": "Rust",
+      "stars_total": 15194,
+      "forks_total": 2420,
+      "stars_today": 3222
     },
     {
       "rank": 4,
@@ -57,47 +57,47 @@
       "owner": "cathrynlavery",
       "name": "diagram-design",
       "url": "https://github.com/cathrynlavery/diagram-design",
-      "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Factory Droid, and Pi. 44 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+      "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, and Pi. 44 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
       "descriptions": {
-        "zh": "Claude Code、Codex、GitHub Copilot、Factory Droid 和 Pi 的编辑图设计。 44 种图表类型。独立的 HTML + SVG。没有阴影。没有美人鱼污水。",
-        "en": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Factory Droid, and Pi. 44 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop."
+        "zh": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, and Pi. 44 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+        "en": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, and Pi. 44 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop."
       },
       "language": "HTML",
-      "stars_total": 48208,
-      "forks_total": 3051,
-      "stars_today": 1739
+      "stars_total": 49256,
+      "forks_total": 3119,
+      "stars_today": 1190
     },
     {
       "rank": 5,
-      "repo": "alibaba/open-code-review",
-      "owner": "alibaba",
-      "name": "open-code-review",
-      "url": "https://github.com/alibaba/open-code-review",
-      "description": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
+      "repo": "mksglu/context-mode",
+      "owner": "mksglu",
+      "name": "context-mode",
+      "url": "https://github.com/mksglu/context-mode",
+      "description": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks.",
       "descriptions": {
-        "zh": "安全、快速、高效，经过阿里巴巴规模的实战考验。混合架构代码审查工具：确定性管道+LLM代理，精确的行级注释，内置多语言规则集（NPE，线程安全，XSS，SQL注入），兼容OpenAI和Anthropic。",
-        "en": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible."
+        "zh": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks.",
+        "en": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks."
       },
-      "language": "Go",
-      "stars_total": 45519,
-      "forks_total": 3286,
-      "stars_today": 326
+      "language": "TypeScript",
+      "stars_total": 26456,
+      "forks_total": 1903,
+      "stars_today": 178
     },
     {
       "rank": 6,
-      "repo": "anthropics/knowledge-work-plugins",
-      "owner": "anthropics",
-      "name": "knowledge-work-plugins",
-      "url": "https://github.com/anthropics/knowledge-work-plugins",
-      "description": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork",
+      "repo": "mattpocock/skills",
+      "owner": "mattpocock",
+      "name": "skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
       "descriptions": {
-        "zh": "主要供知识工作者在 Claude Cowork 中使用的开源插件存储库",
-        "en": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork"
+        "zh": "Skills for Real Engineers. Straight from my .agents directory.",
+        "en": "Skills for Real Engineers. Straight from my .agents directory."
       },
-      "language": "Python",
-      "stars_total": 28431,
-      "forks_total": 3256,
-      "stars_today": 709
+      "language": "Shell",
+      "stars_total": 284913,
+      "forks_total": 23844,
+      "stars_today": 1736
     }
   ]
 }
