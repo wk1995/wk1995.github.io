@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-10-11T07:06:20.148179+00:00",
+  "generated_at": "2026-10-12T07:17:31.836936+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,9 +15,9 @@ window.__TRENDING_DATA__ = {
         "en": "Reverse engineer anything with agents, from app behavior down to native binaries."
       },
       "language": "TypeScript",
-      "stars_total": 79564,
-      "forks_total": 17190,
-      "stars_today": 25793
+      "stars_total": 120373,
+      "forks_total": 27024,
+      "stars_today": 25599
     },
     {
       "rank": 2,
@@ -31,9 +31,9 @@ window.__TRENDING_DATA__ = {
         "en": "Tool for automatic PS5 executables porting to Linux and Windows"
       },
       "language": "C++",
-      "stars_total": 27576,
-      "forks_total": 2334,
-      "stars_today": 5805
+      "stars_total": 30981,
+      "forks_total": 2667,
+      "stars_today": 3952
     },
     {
       "rank": 3,
@@ -47,9 +47,9 @@ window.__TRENDING_DATA__ = {
         "en": "ArtCraft is an intentional crafting engine for artists, designers, and filmmakers"
       },
       "language": "Rust",
-      "stars_total": 15194,
-      "forks_total": 2420,
-      "stars_today": 3222
+      "stars_total": 19082,
+      "forks_total": 3118,
+      "stars_today": 2957
     },
     {
       "rank": 4,
@@ -63,41 +63,41 @@ window.__TRENDING_DATA__ = {
         "en": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, and Pi. 44 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop."
       },
       "language": "HTML",
-      "stars_total": 49256,
-      "forks_total": 3119,
-      "stars_today": 1190
+      "stars_total": 51057,
+      "forks_total": 3235,
+      "stars_today": 1083
     },
     {
       "rank": 5,
-      "repo": "mksglu/context-mode",
-      "owner": "mksglu",
-      "name": "context-mode",
-      "url": "https://github.com/mksglu/context-mode",
-      "description": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks.",
+      "repo": "bilawalsidhu/gods-eye-view",
+      "owner": "bilawalsidhu",
+      "name": "gods-eye-view",
+      "url": "https://github.com/bilawalsidhu/gods-eye-view",
+      "description": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe.",
       "descriptions": {
-        "zh": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks.",
-        "en": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks."
+        "zh": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe.",
+        "en": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe."
       },
-      "language": "TypeScript",
-      "stars_total": 26456,
-      "forks_total": 1903,
-      "stars_today": 178
+      "language": "JavaScript",
+      "stars_total": 52240,
+      "forks_total": 10448,
+      "stars_today": 886
     },
     {
       "rank": 6,
-      "repo": "mattpocock/skills",
-      "owner": "mattpocock",
-      "name": "skills",
-      "url": "https://github.com/mattpocock/skills",
-      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "repo": "pytorch/pytorch",
+      "owner": "pytorch",
+      "name": "pytorch",
+      "url": "https://github.com/pytorch/pytorch",
+      "description": "Tensors and Dynamic neural networks in Python with strong GPU acceleration",
       "descriptions": {
-        "zh": "Skills for Real Engineers. Straight from my .agents directory.",
-        "en": "Skills for Real Engineers. Straight from my .agents directory."
+        "zh": "Tensors and Dynamic neural networks in Python with strong GPU acceleration",
+        "en": "Tensors and Dynamic neural networks in Python with strong GPU acceleration"
       },
-      "language": "Shell",
-      "stars_total": 284913,
-      "forks_total": 23844,
-      "stars_today": 1736
+      "language": "Python",
+      "stars_total": 104647,
+      "forks_total": 32185,
+      "stars_today": 315
     }
   ]
 }
