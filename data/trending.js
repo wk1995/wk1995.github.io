@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-10-14T06:04:54.313959+00:00",
+  "generated_at": "2026-10-15T05:51:09.975334+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,28 +15,12 @@ window.__TRENDING_DATA__ = {
         "en": "Reverse engineer anything with agents, from app behavior down to native binaries."
       },
       "language": "TypeScript",
-      "stars_total": 216881,
-      "forks_total": 53560,
-      "stars_today": 54679
+      "stars_total": 249605,
+      "forks_total": 62673,
+      "stars_today": 41034
     },
     {
       "rank": 2,
-      "repo": "bilawalsidhu/gods-eye-view",
-      "owner": "bilawalsidhu",
-      "name": "gods-eye-view",
-      "url": "https://github.com/bilawalsidhu/gods-eye-view",
-      "description": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe.",
-      "descriptions": {
-        "zh": "浏览器中的间谍卫星模拟器，只不过数据是真实的。在逼真的 3D 地球仪上实时呈现开源空间智能。",
-        "en": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe."
-      },
-      "language": "JavaScript",
-      "stars_total": 55784,
-      "forks_total": 10885,
-      "stars_today": 1961
-    },
-    {
-      "rank": 3,
       "repo": "debpalash/VoiceStudio",
       "owner": "debpalash",
       "name": "VoiceStudio",
@@ -47,12 +31,12 @@ window.__TRENDING_DATA__ = {
         "en": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages."
       },
       "language": "Python",
-      "stars_total": 64065,
-      "forks_total": 7125,
-      "stars_today": 1748
+      "stars_total": 67036,
+      "forks_total": 7368,
+      "stars_today": 3538
     },
     {
-      "rank": 4,
+      "rank": 3,
       "repo": "mksglu/context-mode",
       "owner": "mksglu",
       "name": "context-mode",
@@ -63,41 +47,57 @@ window.__TRENDING_DATA__ = {
         "en": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks."
       },
       "language": "TypeScript",
-      "stars_total": 28450,
-      "forks_total": 2005,
-      "stars_today": 969
+      "stars_total": 29321,
+      "forks_total": 2055,
+      "stars_today": 947
+    },
+    {
+      "rank": 4,
+      "repo": "nvm-sh/nvm",
+      "owner": "nvm-sh",
+      "name": "nvm",
+      "url": "https://github.com/nvm-sh/nvm",
+      "description": "Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions.",
+      "descriptions": {
+        "zh": "Node Version Manager - 符合 POSIX 的 bash 脚本，用于管理多个活动的 Node.js 版本。",
+        "en": "Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions."
+      },
+      "language": "Shell",
+      "stars_total": 95494,
+      "forks_total": 10523,
+      "stars_today": 52
     },
     {
       "rank": 5,
-      "repo": "cathrynlavery/diagram-design",
-      "owner": "cathrynlavery",
-      "name": "diagram-design",
-      "url": "https://github.com/cathrynlavery/diagram-design",
-      "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, and Pi. 44 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+      "repo": "K-Dense-AI/scientific-agent-skills",
+      "owner": "K-Dense-AI",
+      "name": "scientific-agent-skills",
+      "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "description": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 250,000+ scientists worldwide. 177 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard.",
       "descriptions": {
-        "zh": "Claude Code、Codex、GitHub Copilot、Cursor、Factory Droid 和 Pi 的编辑图设计。 44 种图表类型。独立的 HTML + SVG。没有阴影。没有美人鱼污水。",
-        "en": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, and Pi. 44 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop."
+        "zh": "将任何人工智能代理变成人工智能科学家。排名第一的科学代理技能库，全球有超过 250,000 名科学家使用。 177 种经过验证的现成技能以及 100 多个涵盖生物学、化学、医学和药物发现的科学数据库。与 Cursor、Claude Code、Codex、Pi、Antigravity 和开放代理技能标准兼容。",
+        "en": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 250,000+ scientists worldwide. 177 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard."
       },
-      "language": "HTML",
-      "stars_total": 54551,
-      "forks_total": 3451,
-      "stars_today": 1815
+      "language": "Python",
+      "stars_total": 49596,
+      "forks_total": 4438,
+      "stars_today": 163
     },
     {
       "rank": 6,
-      "repo": "vercel-labs/skills",
-      "owner": "vercel-labs",
-      "name": "skills",
-      "url": "https://github.com/vercel-labs/skills",
-      "description": "The open agent skills tool - npx skills",
+      "repo": "HKUDS/CLI-Anything",
+      "owner": "HKUDS",
+      "name": "CLI-Anything",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
       "descriptions": {
-        "zh": "开放代理技能工具——npx技能",
-        "en": "The open agent skills tool - npx skills"
+        "zh": "“CLI-Anything：使所有软件代理原生”--CLI-Hub：https://clianything.cc/",
+        "en": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/"
       },
-      "language": "TypeScript",
-      "stars_total": 34686,
-      "forks_total": 2958,
-      "stars_today": 190
+      "language": "Python",
+      "stars_total": 52694,
+      "forks_total": 4781,
+      "stars_today": 103
     }
   ]
 }
