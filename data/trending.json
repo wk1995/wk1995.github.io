@@ -1,87 +1,87 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-10-18T05:49:08.292082+00:00",
+  "generated_at": "2026-10-19T06:06:15.705630+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "anthropics/claude-plugins-official",
-      "owner": "anthropics",
-      "name": "claude-plugins-official",
-      "url": "https://github.com/anthropics/claude-plugins-official",
-      "description": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
-      "descriptions": {
-        "zh": "由 Anthropic 管理的官方高品质 Claude 代码插件目录。",
-        "en": "Official, Anthropic-managed directory of high quality Claude Code Plugins."
-      },
-      "language": "Python",
-      "stars_total": 41978,
-      "forks_total": 4475,
-      "stars_today": 1397
-    },
-    {
-      "rank": 2,
       "repo": "MadsLorentzen/ai-job-search",
       "owner": "MadsLorentzen",
       "name": "ai-job-search",
       "url": "https://github.com/MadsLorentzen/ai-job-search",
       "description": "The job search that runs on your machine. AI job application framework built on Claude Code: evaluate postings, tailor CVs, write cover letters, prep interviews. Fork it and own it.",
       "descriptions": {
-        "zh": "在您的计算机上运行的职位搜索。基于 Claude Code 构建的人工智能职位申请框架：评估职位、定制简历、撰写求职信、准备面试。分叉并拥有它。",
+        "zh": "The job search that runs on your machine. AI job application framework built on Claude Code: evaluate postings, tailor CVs, write cover letters, prep interviews. Fork it and own it.",
         "en": "The job search that runs on your machine. AI job application framework built on Claude Code: evaluate postings, tailor CVs, write cover letters, prep interviews. Fork it and own it."
       },
       "language": "Python",
-      "stars_total": 50813,
-      "forks_total": 16976,
-      "stars_today": 1365
+      "stars_total": 54124,
+      "forks_total": 17540,
+      "stars_today": 2232
+    },
+    {
+      "rank": 2,
+      "repo": "anthropics/claude-plugins-official",
+      "owner": "anthropics",
+      "name": "claude-plugins-official",
+      "url": "https://github.com/anthropics/claude-plugins-official",
+      "description": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
+      "descriptions": {
+        "zh": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
+        "en": "Official, Anthropic-managed directory of high quality Claude Code Plugins."
+      },
+      "language": "Python",
+      "stars_total": 42869,
+      "forks_total": 4541,
+      "stars_today": 1175
     },
     {
       "rank": 3,
-      "repo": "affaan-m/ECC",
-      "owner": "affaan-m",
-      "name": "ECC",
-      "url": "https://github.com/affaan-m/ECC",
-      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "repo": "anomalyco/opencode",
+      "owner": "anomalyco",
+      "name": "opencode",
+      "url": "https://github.com/anomalyco/opencode",
+      "description": "The open source coding agent.",
       "descriptions": {
-        "zh": "代理利用性能优化系统。 Claude Code、Codex、Opencode、Cursor 等的技能、直觉、记忆、安全性和研究优先的开发。",
-        "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
+        "zh": "The open source coding agent.",
+        "en": "The open source coding agent."
       },
-      "language": "JavaScript",
-      "stars_total": 282695,
-      "forks_total": 42001,
-      "stars_today": 1145
+      "language": "TypeScript",
+      "stars_total": 216863,
+      "forks_total": 29026,
+      "stars_today": 1414
     },
     {
       "rank": 4,
-      "repo": "HKUDS/CLI-Anything",
-      "owner": "HKUDS",
-      "name": "CLI-Anything",
-      "url": "https://github.com/HKUDS/CLI-Anything",
-      "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
+      "repo": "cursor/plugins",
+      "owner": "cursor",
+      "name": "plugins",
+      "url": "https://github.com/cursor/plugins",
+      "description": "Cursor plugin specification and official plugins",
       "descriptions": {
-        "zh": "“CLI-Anything：使所有软件代理原生”--CLI-Hub：https://clianything.cc/",
-        "en": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/"
+        "zh": "Cursor plugin specification and official plugins",
+        "en": "Cursor plugin specification and official plugins"
       },
-      "language": "Python",
-      "stars_total": 54175,
-      "forks_total": 4910,
-      "stars_today": 574
+      "language": "TypeScript",
+      "stars_total": 12845,
+      "forks_total": 1264,
+      "stars_today": 350
     },
     {
       "rank": 5,
-      "repo": "K-Dense-AI/scientific-agent-skills",
-      "owner": "K-Dense-AI",
-      "name": "scientific-agent-skills",
-      "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
-      "description": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 250,000+ scientists worldwide. 177 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard.",
+      "repo": "ruvnet/ruflo",
+      "owner": "ruvnet",
+      "name": "ruflo",
+      "url": "https://github.com/ruvnet/ruflo",
+      "description": "🌊 The original agent harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, and build conversational AI systems. Features adaptive memory, self-learning intelligence, federation, vector RAG integration, and native Claude Code / Codex / Hermes and many more Integrated",
       "descriptions": {
-        "zh": "将任何人工智能代理变成人工智能科学家。排名第一的科学代理技能库，全球有超过 250,000 名科学家使用。 177 种经过验证的现成技能以及 100 多个涵盖生物学、化学、医学和药物发现的科学数据库。与 Cursor、Claude Code、Codex、Pi、Antigravity 和开放代理技能标准兼容。",
-        "en": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 250,000+ scientists worldwide. 177 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard."
+        "zh": "🌊 The original agent harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, and build conversational AI systems. Features adaptive memory, self-learning intelligence, federation, vector RAG integration, and native Claude Code / Codex / Hermes and many more Integrated",
+        "en": "🌊 The original agent harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, and build conversational AI systems. Features adaptive memory, self-learning intelligence, federation, vector RAG integration, and native Claude Code / Codex / Hermes and many more Integrated"
       },
-      "language": "Python",
-      "stars_total": 52384,
-      "forks_total": 4638,
-      "stars_today": 878
+      "language": "TypeScript",
+      "stars_total": 76684,
+      "forks_total": 9066,
+      "stars_today": 513
     },
     {
       "rank": 6,
@@ -91,13 +91,13 @@
       "url": "https://github.com/akitaonrails/ai-memory",
       "description": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors",
       "descriptions": {
-        "zh": "用于代理编码 CLI 的长期记忆解决方案，并促进不同代理供应商之间的切换",
+        "zh": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors",
         "en": "Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors"
       },
       "language": "Rust",
-      "stars_total": 10046,
-      "forks_total": 726,
-      "stars_today": 178
+      "stars_total": 10682,
+      "forks_total": 755,
+      "stars_today": 512
     }
   ]
 }
