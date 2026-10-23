@@ -1,74 +1,42 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-10-22T06:04:23.056289+00:00",
+  "generated_at": "2026-10-23T03:34:38.139163+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "cloudflare/security-audit-skill",
-      "owner": "cloudflare",
-      "name": "security-audit-skill",
-      "url": "https://github.com/cloudflare/security-audit-skill",
-      "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+      "repo": "php/php-src",
+      "owner": "php",
+      "name": "php-src",
+      "url": "https://github.com/php/php-src",
+      "description": "The PHP Interpreter",
       "descriptions": {
-        "zh": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
-        "en": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings"
+        "zh": "The PHP Interpreter",
+        "en": "The PHP Interpreter"
       },
-      "language": "JavaScript",
-      "stars_total": 37228,
-      "forks_total": 2325,
-      "stars_today": 2012
+      "language": "C",
+      "stars_total": 41240,
+      "forks_total": 8322,
+      "stars_today": 287
     },
     {
       "rank": 2,
-      "repo": "vllm-project/vllm",
-      "owner": "vllm-project",
-      "name": "vllm",
-      "url": "https://github.com/vllm-project/vllm",
-      "description": "A high-throughput and memory-efficient inference and serving engine for LLMs",
+      "repo": "anthropics/knowledge-work-plugins",
+      "owner": "anthropics",
+      "name": "knowledge-work-plugins",
+      "url": "https://github.com/anthropics/knowledge-work-plugins",
+      "description": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork",
       "descriptions": {
-        "zh": "A high-throughput and memory-efficient inference and serving engine for LLMs",
-        "en": "A high-throughput and memory-efficient inference and serving engine for LLMs"
+        "zh": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork",
+        "en": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork"
       },
       "language": "Python",
-      "stars_total": 94992,
-      "forks_total": 23768,
-      "stars_today": 441
+      "stars_total": 31704,
+      "forks_total": 3539,
+      "stars_today": 303
     },
     {
       "rank": 3,
-      "repo": "stablyai/orca",
-      "owner": "stablyai",
-      "name": "orca",
-      "url": "https://github.com/stablyai/orca",
-      "description": "Orca is the place for working with a fleet of agents (e.g. Grok Bot, Claude Code). Run any coding agent with your own subscription. Available on desktop, mobile and remote runtime.",
-      "descriptions": {
-        "zh": "Orca is the place for working with a fleet of agents (e.g. Grok Bot, Claude Code). Run any coding agent with your own subscription. Available on desktop, mobile and remote runtime.",
-        "en": "Orca is the place for working with a fleet of agents (e.g. Grok Bot, Claude Code). Run any coding agent with your own subscription. Available on desktop, mobile and remote runtime."
-      },
-      "language": "TypeScript",
-      "stars_total": 101685,
-      "forks_total": 6430,
-      "stars_today": 1541
-    },
-    {
-      "rank": 4,
-      "repo": "headroomlabs-ai/headroom",
-      "owner": "headroomlabs-ai",
-      "name": "headroom",
-      "url": "https://github.com/headroomlabs-ai/headroom",
-      "description": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% fewer tokens for JSON, same answers. Library, proxy, MCP server.",
-      "descriptions": {
-        "zh": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% fewer tokens for JSON, same answers. Library, proxy, MCP server.",
-        "en": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% fewer tokens for JSON, same answers. Library, proxy, MCP server."
-      },
-      "language": "Python",
-      "stars_total": 77379,
-      "forks_total": 6009,
-      "stars_today": 474
-    },
-    {
-      "rank": 5,
       "repo": "DietrichGebert/ponytail",
       "owner": "DietrichGebert",
       "name": "ponytail",
@@ -79,25 +47,57 @@
         "en": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote."
       },
       "language": "JavaScript",
-      "stars_total": 172059,
-      "forks_total": 9365,
-      "stars_today": 2079
+      "stars_total": 173715,
+      "forks_total": 9457,
+      "stars_today": 1948
+    },
+    {
+      "rank": 4,
+      "repo": "cloudflare/security-audit-skill",
+      "owner": "cloudflare",
+      "name": "security-audit-skill",
+      "url": "https://github.com/cloudflare/security-audit-skill",
+      "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+      "descriptions": {
+        "zh": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+        "en": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings"
+      },
+      "language": "JavaScript",
+      "stars_total": 39816,
+      "forks_total": 2482,
+      "stars_today": 2979
+    },
+    {
+      "rank": 5,
+      "repo": "Graphify-Labs/graphify",
+      "owner": "Graphify-Labs",
+      "name": "graphify",
+      "url": "https://github.com/Graphify-Labs/graphify",
+      "description": "Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store.",
+      "descriptions": {
+        "zh": "Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store.",
+        "en": "Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store."
+      },
+      "language": "Python",
+      "stars_total": 133116,
+      "forks_total": 12732,
+      "stars_today": 1408
     },
     {
       "rank": 6,
-      "repo": "Comfy-Org/ComfyUI",
-      "owner": "Comfy-Org",
-      "name": "ComfyUI",
-      "url": "https://github.com/Comfy-Org/ComfyUI",
-      "description": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface. The fastest local inference engine in the world.",
+      "repo": "supabase/supabase",
+      "owner": "supabase",
+      "name": "supabase",
+      "url": "https://github.com/supabase/supabase",
+      "description": "The Postgres development platform. Supabase gives you a dedicated Postgres database to build your web, mobile, and AI applications.",
       "descriptions": {
-        "zh": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface. The fastest local inference engine in the world.",
-        "en": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface. The fastest local inference engine in the world."
+        "zh": "The Postgres development platform. Supabase gives you a dedicated Postgres database to build your web, mobile, and AI applications.",
+        "en": "The Postgres development platform. Supabase gives you a dedicated Postgres database to build your web, mobile, and AI applications."
       },
-      "language": "Python",
-      "stars_total": 141691,
-      "forks_total": 16744,
-      "stars_today": 939
+      "language": "TypeScript",
+      "stars_total": 113542,
+      "forks_total": 17008,
+      "stars_today": 693
     }
   ]
 }
