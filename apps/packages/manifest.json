@@ -1,13 +1,13 @@
 {
   "schemaVersion": 2,
   "version": 2,
-  "versionName": "page-20261022140439",
-  "versionNumber": "20261022140439",
+  "versionName": "page-20261023113451",
+  "versionNumber": "20261023113451",
   "release": {
-    "versionName": "page-20261022140439",
-    "versionNumber": "20261022140439"
+    "versionName": "page-20261023113451",
+    "versionNumber": "20261023113451"
   },
-  "updatedAt": "2026-09-11",
+  "updatedAt": "2026-10-23",
   "basePath": "packages/",
   "basePaths": {
     "android": "packages/android/",
@@ -30,20 +30,20 @@
       "readme": "",
       "readmeFile": "",
       "latest": {
-        "version": "7(1.00.06)",
-        "basePath": "packages/android/cn.wk.android.body.os/7(1.00.06)/",
-        "file": "BodyOS-1.00.06-20260614001.apk",
+        "version": "8(1.00.07)",
+        "basePath": "packages/android/cn.wk.android.body.os/8(1.00.07)/",
+        "file": "BodyOS-1.00.07-20261023001.apk",
         "files": [
           {
-            "file": "BodyOS-1.00.06-20260614001.apk",
+            "file": "BodyOS-1.00.07-20261023001.apk",
             "type": "apk",
             "size": "43.2 MB",
-            "updatedAt": "2026-06-14"
+            "updatedAt": "2026-10-23"
           }
         ],
         "readme": "",
         "readmeFile": "",
-        "updatedAt": "2026-06-14"
+        "updatedAt": "2026-10-23"
       },
       "versions": [
         {
@@ -125,10 +125,26 @@
           "readme": "",
           "readmeFile": "",
           "updatedAt": "2026-06-14"
+        },
+        {
+          "version": "8(1.00.07)",
+          "basePath": "packages/android/cn.wk.android.body.os/8(1.00.07)/",
+          "file": "BodyOS-1.00.07-20261023001.apk",
+          "files": [
+            {
+              "file": "BodyOS-1.00.07-20261023001.apk",
+              "type": "apk",
+              "size": "43.2 MB",
+              "updatedAt": "2026-10-23"
+            }
+          ],
+          "readme": "",
+          "readmeFile": "",
+          "updatedAt": "2026-10-23"
         }
       ],
       "hasHistory": true,
-      "updatedAt": "2026-06-14"
+      "updatedAt": "2026-10-23"
     },
     {
       "id": "android/com.wk.car.manger",
