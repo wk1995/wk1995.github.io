@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-10-24T05:44:23.983481+00:00",
+  "generated_at": "2026-10-25T06:00:40.660162+00:00",
   "items": [
     {
       "rank": 1,
@@ -11,48 +11,16 @@ window.__TRENDING_DATA__ = {
       "url": "https://github.com/cloudflare/security-audit-skill",
       "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
       "descriptions": {
-        "zh": "用于多阶段安全审计的编码代理技能，具有独立验证、机器可读的结果",
+        "zh": "用于多阶段安全审计的编码代理技能，具有独立验证的机器可读结果",
         "en": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings"
       },
       "language": "JavaScript",
-      "stars_total": 42510,
-      "forks_total": 2657,
-      "stars_today": 2716
+      "stars_total": 45101,
+      "forks_total": 2803,
+      "stars_today": 2264
     },
     {
       "rank": 2,
-      "repo": "php/php-src",
-      "owner": "php",
-      "name": "php-src",
-      "url": "https://github.com/php/php-src",
-      "description": "The PHP Interpreter",
-      "descriptions": {
-        "zh": "PHP 解释器",
-        "en": "The PHP Interpreter"
-      },
-      "language": "C",
-      "stars_total": 41598,
-      "forks_total": 8362,
-      "stars_today": 716
-    },
-    {
-      "rank": 3,
-      "repo": "anthropics/knowledge-work-plugins",
-      "owner": "anthropics",
-      "name": "knowledge-work-plugins",
-      "url": "https://github.com/anthropics/knowledge-work-plugins",
-      "description": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork",
-      "descriptions": {
-        "zh": "主要供知识工作者在 Claude Cowork 中使用的开源插件存储库",
-        "en": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork"
-      },
-      "language": "Python",
-      "stars_total": 32338,
-      "forks_total": 3576,
-      "stars_today": 635
-    },
-    {
-      "rank": 4,
       "repo": "NVIDIA/OpenShell",
       "owner": "NVIDIA",
       "name": "OpenShell",
@@ -63,41 +31,73 @@ window.__TRENDING_DATA__ = {
         "en": "OpenShell is the safe, private runtime for autonomous AI agents."
       },
       "language": "Rust",
-      "stars_total": 18928,
-      "forks_total": 1891,
-      "stars_today": 1119
+      "stars_total": 19601,
+      "forks_total": 1940,
+      "stars_today": 896
+    },
+    {
+      "rank": 3,
+      "repo": "aws/agent-toolkit-for-aws",
+      "owner": "aws",
+      "name": "agent-toolkit-for-aws",
+      "url": "https://github.com/aws/agent-toolkit-for-aws",
+      "description": "Official, AWS-supported MCP servers, skills, and plugins to help AI agents build on AWS",
+      "descriptions": {
+        "zh": "AWS 支持的官方 MCP 服务器、技能和插件可帮助 AI 代理在 AWS 上构建",
+        "en": "Official, AWS-supported MCP servers, skills, and plugins to help AI agents build on AWS"
+      },
+      "language": "Python",
+      "stars_total": 3198,
+      "forks_total": 403,
+      "stars_today": 13
+    },
+    {
+      "rank": 4,
+      "repo": "Nutlope/hallmark",
+      "owner": "Nutlope",
+      "name": "hallmark",
+      "url": "https://github.com/Nutlope/hallmark",
+      "description": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
+      "descriptions": {
+        "zh": "Claude Code、Cursor、Codex 的防 AI 设计技巧。",
+        "en": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex."
+      },
+      "language": "CSS",
+      "stars_total": 32441,
+      "forks_total": 1671,
+      "stars_today": 455
     },
     {
       "rank": 5,
-      "repo": "Renhuai123/ziwei-doushu",
-      "owner": "Renhuai123",
-      "name": "ziwei-doushu",
-      "url": "https://github.com/Renhuai123/ziwei-doushu",
-      "description": "紫微斗数开源排盘引擎 — 基于倪海厦《天纪》体系，含完整排盘算法、四化系统、格局知识库、古籍原文数据",
+      "repo": "luongnv89/claude-howto",
+      "owner": "luongnv89",
+      "name": "claude-howto",
+      "url": "https://github.com/luongnv89/claude-howto",
+      "description": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.",
       "descriptions": {
-        "zh": "紫微斗数开源排盘引擎 — 基于倪海厦《天纪》体系，含完整排盘算法、四化系统、格局知识库、古籍原文数据",
-        "en": "Ziwei Doushu open source ranking engine - based on Ni Haixia's \"Tianji\" system, including complete ranking algorithm, four modernization systems, pattern knowledge base, and original text data of ancient books"
+        "zh": "克劳德代码的可视化、示例驱动指南——从基本概念到高级代理，以及可带来即时价值的复制粘贴模板。",
+        "en": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value."
       },
-      "language": "TypeScript",
-      "stars_total": 7010,
-      "forks_total": 1430,
-      "stars_today": 546
+      "language": "Python",
+      "stars_total": 44705,
+      "forks_total": 5501,
+      "stars_today": 392
     },
     {
       "rank": 6,
-      "repo": "SnailSploit/Claude-Red",
-      "owner": "SnailSploit",
-      "name": "Claude-Red",
-      "url": "https://github.com/SnailSploit/Claude-Red",
-      "description": "claude-red is a curated library of offensive security skills designed for the Claude skills system. Each skill is a structured SKILL.md file that primes Claude with expert-level methodology for a specific attack surface — from SQLi to shellcode, EDR evasion to exploit development.",
+      "repo": "pbakaus/impeccable",
+      "owner": "pbakaus",
+      "name": "impeccable",
+      "url": "https://github.com/pbakaus/impeccable",
+      "description": "The design language that makes your AI harness better at design.",
       "descriptions": {
-        "zh": "claude-red 是一个专为 Claude 技能系统设计的进攻性安全技能库。每项技能都是一个结构化的 SKILL.md 文件，为 Claude 提供针对特定攻击面的专家级方法——从 SQLi 到 shellcode，从 EDR 规避到漏洞利用开发。",
-        "en": "claude-red is a curated library of offensive security skills designed for the Claude skills system. Each skill is a structured SKILL.md file that primes Claude with expert-level methodology for a specific attack surface — from SQLi to shellcode, EDR evasion to exploit development."
+        "zh": "使您的 AI 线束在设计上更加出色的设计语言。",
+        "en": "The design language that makes your AI harness better at design."
       },
-      "language": "Python",
-      "stars_total": 8617,
-      "forks_total": 1108,
-      "stars_today": 226
+      "language": "Rust",
+      "stars_total": 86621,
+      "forks_total": 5171,
+      "stars_today": 619
     }
   ]
 }
