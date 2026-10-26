@@ -1,103 +1,103 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-10-25T06:00:40.660162+00:00",
+  "generated_at": "2026-10-26T06:04:40.777262+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "cloudflare/security-audit-skill",
-      "owner": "cloudflare",
-      "name": "security-audit-skill",
-      "url": "https://github.com/cloudflare/security-audit-skill",
-      "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+      "repo": "makecindy/cindy",
+      "owner": "makecindy",
+      "name": "cindy",
+      "url": "https://github.com/makecindy/cindy",
+      "description": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
       "descriptions": {
-        "zh": "用于多阶段安全审计的编码代理技能，具有独立验证的机器可读结果",
-        "en": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings"
+        "zh": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
+        "en": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。"
       },
-      "language": "JavaScript",
-      "stars_total": 45101,
-      "forks_total": 2803,
-      "stars_today": 2264
+      "language": "TypeScript",
+      "stars_total": 5228,
+      "forks_total": 695,
+      "stars_today": 675
     },
     {
       "rank": 2,
-      "repo": "NVIDIA/OpenShell",
-      "owner": "NVIDIA",
-      "name": "OpenShell",
-      "url": "https://github.com/NVIDIA/OpenShell",
-      "description": "OpenShell is the safe, private runtime for autonomous AI agents.",
-      "descriptions": {
-        "zh": "OpenShell 是自主 AI 代理的安全、私有运行时。",
-        "en": "OpenShell is the safe, private runtime for autonomous AI agents."
-      },
-      "language": "Rust",
-      "stars_total": 19601,
-      "forks_total": 1940,
-      "stars_today": 896
-    },
-    {
-      "rank": 3,
-      "repo": "aws/agent-toolkit-for-aws",
-      "owner": "aws",
-      "name": "agent-toolkit-for-aws",
-      "url": "https://github.com/aws/agent-toolkit-for-aws",
-      "description": "Official, AWS-supported MCP servers, skills, and plugins to help AI agents build on AWS",
-      "descriptions": {
-        "zh": "AWS 支持的官方 MCP 服务器、技能和插件可帮助 AI 代理在 AWS 上构建",
-        "en": "Official, AWS-supported MCP servers, skills, and plugins to help AI agents build on AWS"
-      },
-      "language": "Python",
-      "stars_total": 3198,
-      "forks_total": 403,
-      "stars_today": 13
-    },
-    {
-      "rank": 4,
       "repo": "Nutlope/hallmark",
       "owner": "Nutlope",
       "name": "hallmark",
       "url": "https://github.com/Nutlope/hallmark",
       "description": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
       "descriptions": {
-        "zh": "Claude Code、Cursor、Codex 的防 AI 设计技巧。",
+        "zh": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
         "en": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex."
       },
       "language": "CSS",
-      "stars_total": 32441,
-      "forks_total": 1671,
-      "stars_today": 455
+      "stars_total": 34373,
+      "forks_total": 1792,
+      "stars_today": 1317
     },
     {
-      "rank": 5,
-      "repo": "luongnv89/claude-howto",
-      "owner": "luongnv89",
-      "name": "claude-howto",
-      "url": "https://github.com/luongnv89/claude-howto",
-      "description": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.",
+      "rank": 3,
+      "repo": "debpalash/VoiceStudio",
+      "owner": "debpalash",
+      "name": "VoiceStudio",
+      "url": "https://github.com/debpalash/VoiceStudio",
+      "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages.",
       "descriptions": {
-        "zh": "克劳德代码的可视化、示例驱动指南——从基本概念到高级代理，以及可带来即时价值的复制粘贴模板。",
-        "en": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value."
+        "zh": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages.",
+        "en": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages."
       },
       "language": "Python",
-      "stars_total": 44705,
-      "forks_total": 5501,
-      "stars_today": 392
+      "stars_total": 87311,
+      "forks_total": 9653,
+      "stars_today": 1592
     },
     {
-      "rank": 6,
+      "rank": 4,
       "repo": "pbakaus/impeccable",
       "owner": "pbakaus",
       "name": "impeccable",
       "url": "https://github.com/pbakaus/impeccable",
       "description": "The design language that makes your AI harness better at design.",
       "descriptions": {
-        "zh": "使您的 AI 线束在设计上更加出色的设计语言。",
+        "zh": "The design language that makes your AI harness better at design.",
         "en": "The design language that makes your AI harness better at design."
       },
       "language": "Rust",
-      "stars_total": 86621,
-      "forks_total": 5171,
-      "stars_today": 619
+      "stars_total": 88028,
+      "forks_total": 5261,
+      "stars_today": 1092
+    },
+    {
+      "rank": 5,
+      "repo": "pollen-robotics/microduck",
+      "owner": "pollen-robotics",
+      "name": "microduck",
+      "url": "https://github.com/pollen-robotics/microduck",
+      "description": "A Tiny biped duck robot 🦆",
+      "descriptions": {
+        "zh": "A Tiny biped duck robot 🦆",
+        "en": "A Tiny biped duck robot 🦆"
+      },
+      "language": "Rust",
+      "stars_total": 11881,
+      "forks_total": 1502,
+      "stars_today": 647
+    },
+    {
+      "rank": 6,
+      "repo": "TauricResearch/TradingAgents",
+      "owner": "TauricResearch",
+      "name": "TradingAgents",
+      "url": "https://github.com/TauricResearch/TradingAgents",
+      "description": "TradingAgents: Multi-Agents LLM Financial Trading Framework",
+      "descriptions": {
+        "zh": "TradingAgents: Multi-Agents LLM Financial Trading Framework",
+        "en": "TradingAgents: Multi-Agents LLM Financial Trading Framework"
+      },
+      "language": "Python",
+      "stars_total": 114898,
+      "forks_total": 22156,
+      "stars_today": 381
     }
   ]
 }
