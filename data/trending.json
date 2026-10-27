@@ -1,26 +1,10 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-10-26T06:04:40.777262+00:00",
+  "generated_at": "2026-10-27T06:12:22.078229+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "makecindy/cindy",
-      "owner": "makecindy",
-      "name": "cindy",
-      "url": "https://github.com/makecindy/cindy",
-      "description": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
-      "descriptions": {
-        "zh": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
-        "en": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。"
-      },
-      "language": "TypeScript",
-      "stars_total": 5228,
-      "forks_total": 695,
-      "stars_today": 675
-    },
-    {
-      "rank": 2,
       "repo": "Nutlope/hallmark",
       "owner": "Nutlope",
       "name": "hallmark",
@@ -31,60 +15,12 @@
         "en": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex."
       },
       "language": "CSS",
-      "stars_total": 34373,
-      "forks_total": 1792,
-      "stars_today": 1317
+      "stars_total": 37034,
+      "forks_total": 1929,
+      "stars_today": 2244
     },
     {
-      "rank": 3,
-      "repo": "debpalash/VoiceStudio",
-      "owner": "debpalash",
-      "name": "VoiceStudio",
-      "url": "https://github.com/debpalash/VoiceStudio",
-      "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages.",
-      "descriptions": {
-        "zh": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages.",
-        "en": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages."
-      },
-      "language": "Python",
-      "stars_total": 87311,
-      "forks_total": 9653,
-      "stars_today": 1592
-    },
-    {
-      "rank": 4,
-      "repo": "pbakaus/impeccable",
-      "owner": "pbakaus",
-      "name": "impeccable",
-      "url": "https://github.com/pbakaus/impeccable",
-      "description": "The design language that makes your AI harness better at design.",
-      "descriptions": {
-        "zh": "The design language that makes your AI harness better at design.",
-        "en": "The design language that makes your AI harness better at design."
-      },
-      "language": "Rust",
-      "stars_total": 88028,
-      "forks_total": 5261,
-      "stars_today": 1092
-    },
-    {
-      "rank": 5,
-      "repo": "pollen-robotics/microduck",
-      "owner": "pollen-robotics",
-      "name": "microduck",
-      "url": "https://github.com/pollen-robotics/microduck",
-      "description": "A Tiny biped duck robot 🦆",
-      "descriptions": {
-        "zh": "A Tiny biped duck robot 🦆",
-        "en": "A Tiny biped duck robot 🦆"
-      },
-      "language": "Rust",
-      "stars_total": 11881,
-      "forks_total": 1502,
-      "stars_today": 647
-    },
-    {
-      "rank": 6,
+      "rank": 2,
       "repo": "TauricResearch/TradingAgents",
       "owner": "TauricResearch",
       "name": "TradingAgents",
@@ -95,9 +31,73 @@
         "en": "TradingAgents: Multi-Agents LLM Financial Trading Framework"
       },
       "language": "Python",
-      "stars_total": 114898,
-      "forks_total": 22156,
-      "stars_today": 381
+      "stars_total": 116509,
+      "forks_total": 22330,
+      "stars_today": 1395
+    },
+    {
+      "rank": 3,
+      "repo": "JetBrains/thinkrail",
+      "owner": "JetBrains",
+      "name": "thinkrail",
+      "url": "https://github.com/JetBrains/thinkrail",
+      "description": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need",
+      "descriptions": {
+        "zh": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need",
+        "en": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need"
+      },
+      "language": "TypeScript",
+      "stars_total": 3191,
+      "forks_total": 175,
+      "stars_today": 1173
+    },
+    {
+      "rank": 4,
+      "repo": "makecindy/cindy",
+      "owner": "makecindy",
+      "name": "cindy",
+      "url": "https://github.com/makecindy/cindy",
+      "description": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
+      "descriptions": {
+        "zh": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
+        "en": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。"
+      },
+      "language": "TypeScript",
+      "stars_total": 6808,
+      "forks_total": 818,
+      "stars_today": 1296
+    },
+    {
+      "rank": 5,
+      "repo": "affaan-m/ECC",
+      "owner": "affaan-m",
+      "name": "ECC",
+      "url": "https://github.com/affaan-m/ECC",
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "descriptions": {
+        "zh": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+        "en": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
+      },
+      "language": "JavaScript",
+      "stars_total": 290059,
+      "forks_total": 42988,
+      "stars_today": 896
+    },
+    {
+      "rank": 6,
+      "repo": "pbakaus/impeccable",
+      "owner": "pbakaus",
+      "name": "impeccable",
+      "url": "https://github.com/pbakaus/impeccable",
+      "description": "The design language that makes your AI harness better at design.",
+      "descriptions": {
+        "zh": "The design language that makes your AI harness better at design.",
+        "en": "The design language that makes your AI harness better at design."
+      },
+      "language": "Rust",
+      "stars_total": 89496,
+      "forks_total": 5325,
+      "stars_today": 1506
     }
   ]
 }
