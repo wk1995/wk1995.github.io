@@ -1,10 +1,26 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-10-28T06:48:29.226490+00:00",
+  "generated_at": "2026-10-29T06:59:37.901307+00:00",
   "items": [
     {
       "rank": 1,
+      "repo": "JetBrains/thinkrail",
+      "owner": "JetBrains",
+      "name": "thinkrail",
+      "url": "https://github.com/JetBrains/thinkrail",
+      "description": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need",
+      "descriptions": {
+        "zh": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need",
+        "en": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need"
+      },
+      "language": "TypeScript",
+      "stars_total": 5393,
+      "forks_total": 273,
+      "stars_today": 1068
+    },
+    {
+      "rank": 2,
       "repo": "elayadesign/ai-design-skills",
       "owner": "elayadesign",
       "name": "ai-design-skills",
@@ -12,44 +28,12 @@ window.__TRENDING_DATA__ = {
       "description": null,
       "descriptions": null,
       "language": null,
-      "stars_total": 9975,
-      "forks_total": 699,
-      "stars_today": 1395
-    },
-    {
-      "rank": 2,
-      "repo": "Nutlope/hallmark",
-      "owner": "Nutlope",
-      "name": "hallmark",
-      "url": "https://github.com/Nutlope/hallmark",
-      "description": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
-      "descriptions": {
-        "zh": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
-        "en": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex."
-      },
-      "language": "CSS",
-      "stars_total": 39461,
-      "forks_total": 2057,
-      "stars_today": 2830
+      "stars_total": 11446,
+      "forks_total": 825,
+      "stars_today": 2139
     },
     {
       "rank": 3,
-      "repo": "nightly-labs/openbot",
-      "owner": "nightly-labs",
-      "name": "openbot",
-      "url": "https://github.com/nightly-labs/openbot",
-      "description": "A local-first desktop workspace for persistent AI teammates. Run Codex, Claude, and Grok with dedicated workspaces, task queues, file sharing, browser control, and agent-to-agent collaboration.",
-      "descriptions": {
-        "zh": "A local-first desktop workspace for persistent AI teammates. Run Codex, Claude, and Grok with dedicated workspaces, task queues, file sharing, browser control, and agent-to-agent collaboration.",
-        "en": "A local-first desktop workspace for persistent AI teammates. Run Codex, Claude, and Grok with dedicated workspaces, task queues, file sharing, browser control, and agent-to-agent collaboration."
-      },
-      "language": "TypeScript",
-      "stars_total": 2678,
-      "forks_total": 274,
-      "stars_today": 777
-    },
-    {
-      "rank": 4,
       "repo": "obra/superpowers",
       "owner": "obra",
       "name": "superpowers",
@@ -60,41 +44,57 @@ window.__TRENDING_DATA__ = {
         "en": "An agentic skills framework & software development methodology that works."
       },
       "language": "Shell",
-      "stars_total": 306698,
-      "forks_total": 27298,
-      "stars_today": 617
+      "stars_total": 307678,
+      "forks_total": 27367,
+      "stars_today": 1095
+    },
+    {
+      "rank": 4,
+      "repo": "HKUDS/DeepTutor",
+      "owner": "HKUDS",
+      "name": "DeepTutor",
+      "url": "https://github.com/HKUDS/DeepTutor",
+      "description": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/ .",
+      "descriptions": {
+        "zh": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/ .",
+        "en": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/ ."
+      },
+      "language": "Python",
+      "stars_total": 48591,
+      "forks_total": 6019,
+      "stars_today": 2371
     },
     {
       "rank": 5,
-      "repo": "pbakaus/impeccable",
-      "owner": "pbakaus",
-      "name": "impeccable",
-      "url": "https://github.com/pbakaus/impeccable",
-      "description": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.",
+      "repo": "macro-inc/macro",
+      "owner": "macro-inc",
+      "name": "macro",
+      "url": "https://github.com/macro-inc/macro",
+      "description": "Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory.",
       "descriptions": {
-        "zh": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.",
-        "en": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships."
+        "zh": "Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory.",
+        "en": "Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory."
       },
       "language": "Rust",
-      "stars_total": 90982,
-      "forks_total": 5391,
-      "stars_today": 1449
+      "stars_total": 5555,
+      "forks_total": 527,
+      "stars_today": 117
     },
     {
       "rank": 6,
-      "repo": "makecindy/cindy",
-      "owner": "makecindy",
-      "name": "cindy",
-      "url": "https://github.com/makecindy/cindy",
-      "description": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
+      "repo": "Nutlope/hallmark",
+      "owner": "Nutlope",
+      "name": "hallmark",
+      "url": "https://github.com/Nutlope/hallmark",
+      "description": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
       "descriptions": {
-        "zh": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
-        "en": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。"
+        "zh": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
+        "en": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex."
       },
-      "language": "TypeScript",
-      "stars_total": 7686,
-      "forks_total": 911,
-      "stars_today": 1465
+      "language": "CSS",
+      "stars_total": 41081,
+      "forks_total": 2133,
+      "stars_today": 2110
     }
   ]
 }
