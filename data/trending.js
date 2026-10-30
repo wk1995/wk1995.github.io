@@ -1,55 +1,10 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-10-29T06:59:37.901307+00:00",
+  "generated_at": "2026-10-30T07:02:13.200556+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "JetBrains/thinkrail",
-      "owner": "JetBrains",
-      "name": "thinkrail",
-      "url": "https://github.com/JetBrains/thinkrail",
-      "description": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need",
-      "descriptions": {
-        "zh": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need",
-        "en": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need"
-      },
-      "language": "TypeScript",
-      "stars_total": 5393,
-      "forks_total": 273,
-      "stars_today": 1068
-    },
-    {
-      "rank": 2,
-      "repo": "elayadesign/ai-design-skills",
-      "owner": "elayadesign",
-      "name": "ai-design-skills",
-      "url": "https://github.com/elayadesign/ai-design-skills",
-      "description": null,
-      "descriptions": null,
-      "language": null,
-      "stars_total": 11446,
-      "forks_total": 825,
-      "stars_today": 2139
-    },
-    {
-      "rank": 3,
-      "repo": "obra/superpowers",
-      "owner": "obra",
-      "name": "superpowers",
-      "url": "https://github.com/obra/superpowers",
-      "description": "An agentic skills framework & software development methodology that works.",
-      "descriptions": {
-        "zh": "An agentic skills framework & software development methodology that works.",
-        "en": "An agentic skills framework & software development methodology that works."
-      },
-      "language": "Shell",
-      "stars_total": 307678,
-      "forks_total": 27367,
-      "stars_today": 1095
-    },
-    {
-      "rank": 4,
       "repo": "HKUDS/DeepTutor",
       "owner": "HKUDS",
       "name": "DeepTutor",
@@ -60,41 +15,89 @@ window.__TRENDING_DATA__ = {
         "en": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/ ."
       },
       "language": "Python",
-      "stars_total": 48591,
-      "forks_total": 6019,
-      "stars_today": 2371
+      "stars_total": 50801,
+      "forks_total": 6242,
+      "stars_today": 1930
+    },
+    {
+      "rank": 2,
+      "repo": "obra/superpowers",
+      "owner": "obra",
+      "name": "superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "descriptions": {
+        "zh": "An agentic skills framework & software development methodology that works.",
+        "en": "An agentic skills framework & software development methodology that works."
+      },
+      "language": "Shell",
+      "stars_total": 308856,
+      "forks_total": 27470,
+      "stars_today": 1034
+    },
+    {
+      "rank": 3,
+      "repo": "pbakaus/impeccable",
+      "owner": "pbakaus",
+      "name": "impeccable",
+      "url": "https://github.com/pbakaus/impeccable",
+      "description": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.",
+      "descriptions": {
+        "zh": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.",
+        "en": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships."
+      },
+      "language": "Rust",
+      "stars_total": 95913,
+      "forks_total": 5650,
+      "stars_today": 2870
+    },
+    {
+      "rank": 4,
+      "repo": "JetBrains/thinkrail",
+      "owner": "JetBrains",
+      "name": "thinkrail",
+      "url": "https://github.com/JetBrains/thinkrail",
+      "description": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need",
+      "descriptions": {
+        "zh": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need",
+        "en": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need"
+      },
+      "language": "TypeScript",
+      "stars_total": 6198,
+      "forks_total": 337,
+      "stars_today": 1117
     },
     {
       "rank": 5,
-      "repo": "macro-inc/macro",
-      "owner": "macro-inc",
-      "name": "macro",
-      "url": "https://github.com/macro-inc/macro",
-      "description": "Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory.",
+      "repo": "milind-soni/OpenMausBot",
+      "owner": "milind-soni",
+      "name": "OpenMausBot",
+      "url": "https://github.com/milind-soni/OpenMausBot",
+      "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
       "descriptions": {
-        "zh": "Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory.",
-        "en": "Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory."
+        "zh": "Open-source Grok Bot alternative with a virtual machine that bots can use",
+        "en": "Open-source Grok Bot alternative with a virtual machine that bots can use"
       },
-      "language": "Rust",
-      "stars_total": 5555,
-      "forks_total": 527,
-      "stars_today": 117
+      "language": "TypeScript",
+      "stars_total": 7704,
+      "forks_total": 1133,
+      "stars_today": 1199
     },
     {
       "rank": 6,
-      "repo": "Nutlope/hallmark",
-      "owner": "Nutlope",
-      "name": "hallmark",
-      "url": "https://github.com/Nutlope/hallmark",
-      "description": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
+      "repo": "nightly-labs/openbot",
+      "owner": "nightly-labs",
+      "name": "openbot",
+      "url": "https://github.com/nightly-labs/openbot",
+      "description": "A local-first desktop workspace for persistent AI teammates. Run Codex, Claude, and Grok with dedicated workspaces, task queues, file sharing, browser control, and agent-to-agent collaboration.",
       "descriptions": {
-        "zh": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
-        "en": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex."
+        "zh": "A local-first desktop workspace for persistent AI teammates. Run Codex, Claude, and Grok with dedicated workspaces, task queues, file sharing, browser control, and agent-to-agent collaboration.",
+        "en": "A local-first desktop workspace for persistent AI teammates. Run Codex, Claude, and Grok with dedicated workspaces, task queues, file sharing, browser control, and agent-to-agent collaboration."
       },
-      "language": "CSS",
-      "stars_total": 41081,
-      "forks_total": 2133,
-      "stars_today": 2110
+      "language": "TypeScript",
+      "stars_total": 4035,
+      "forks_total": 371,
+      "stars_today": 709
     }
   ]
 }
