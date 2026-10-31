@@ -1,39 +1,39 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-10-30T07:02:13.200556+00:00",
+  "generated_at": "2026-10-31T06:56:06.382965+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "HKUDS/DeepTutor",
-      "owner": "HKUDS",
-      "name": "DeepTutor",
-      "url": "https://github.com/HKUDS/DeepTutor",
-      "description": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/ .",
+      "repo": "thedotmack/claude-mem",
+      "owner": "thedotmack",
+      "name": "claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
       "descriptions": {
-        "zh": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/ .",
-        "en": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/ ."
+        "zh": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
+        "en": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More"
       },
-      "language": "Python",
-      "stars_total": 50801,
-      "forks_total": 6242,
-      "stars_today": 1930
+      "language": "TypeScript",
+      "stars_total": 106681,
+      "forks_total": 9386,
+      "stars_today": 1140
     },
     {
       "rank": 2,
-      "repo": "obra/superpowers",
-      "owner": "obra",
-      "name": "superpowers",
-      "url": "https://github.com/obra/superpowers",
-      "description": "An agentic skills framework & software development methodology that works.",
+      "repo": "milind-soni/OpenMausBot",
+      "owner": "milind-soni",
+      "name": "OpenMausBot",
+      "url": "https://github.com/milind-soni/OpenMausBot",
+      "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
       "descriptions": {
-        "zh": "An agentic skills framework & software development methodology that works.",
-        "en": "An agentic skills framework & software development methodology that works."
+        "zh": "Open-source Grok Bot alternative with a virtual machine that bots can use",
+        "en": "Open-source Grok Bot alternative with a virtual machine that bots can use"
       },
-      "language": "Shell",
-      "stars_total": 308856,
-      "forks_total": 27470,
-      "stars_today": 1034
+      "language": "TypeScript",
+      "stars_total": 8949,
+      "forks_total": 1231,
+      "stars_today": 895
     },
     {
       "rank": 3,
@@ -47,57 +47,57 @@ window.__TRENDING_DATA__ = {
         "en": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships."
       },
       "language": "Rust",
-      "stars_total": 95913,
-      "forks_total": 5650,
-      "stars_today": 2870
+      "stars_total": 97389,
+      "forks_total": 5738,
+      "stars_today": 2300
     },
     {
       "rank": 4,
-      "repo": "JetBrains/thinkrail",
-      "owner": "JetBrains",
-      "name": "thinkrail",
-      "url": "https://github.com/JetBrains/thinkrail",
-      "description": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need",
+      "repo": "CopilotKit/OpenBot",
+      "owner": "CopilotKit",
+      "name": "OpenBot",
+      "url": "https://github.com/CopilotKit/OpenBot",
+      "description": "Open-source AI coworkers that each get a computer of their own: a browser, files and tools, with every action decided before it happens and recorded after. Bring any AG-UI agent.",
       "descriptions": {
-        "zh": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need",
-        "en": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need"
+        "zh": "Open-source AI coworkers that each get a computer of their own: a browser, files and tools, with every action decided before it happens and recorded after. Bring any AG-UI agent.",
+        "en": "Open-source AI coworkers that each get a computer of their own: a browser, files and tools, with every action decided before it happens and recorded after. Bring any AG-UI agent."
       },
       "language": "TypeScript",
-      "stars_total": 6198,
-      "forks_total": 337,
-      "stars_today": 1117
+      "stars_total": 8930,
+      "forks_total": 1119,
+      "stars_today": 706
     },
     {
       "rank": 5,
-      "repo": "milind-soni/OpenMausBot",
-      "owner": "milind-soni",
-      "name": "OpenMausBot",
-      "url": "https://github.com/milind-soni/OpenMausBot",
-      "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
+      "repo": "Renhuai123/ziwei-doushu",
+      "owner": "Renhuai123",
+      "name": "ziwei-doushu",
+      "url": "https://github.com/Renhuai123/ziwei-doushu",
+      "description": "紫微斗数开源排盘引擎 — 基于倪海厦《天纪》体系，含完整排盘算法、四化系统、格局知识库、古籍原文数据",
       "descriptions": {
-        "zh": "Open-source Grok Bot alternative with a virtual machine that bots can use",
-        "en": "Open-source Grok Bot alternative with a virtual machine that bots can use"
+        "zh": "紫微斗数开源排盘引擎 — 基于倪海厦《天纪》体系，含完整排盘算法、四化系统、格局知识库、古籍原文数据",
+        "en": "紫微斗数开源排盘引擎 — 基于倪海厦《天纪》体系，含完整排盘算法、四化系统、格局知识库、古籍原文数据"
       },
       "language": "TypeScript",
-      "stars_total": 7704,
-      "forks_total": 1133,
-      "stars_today": 1199
+      "stars_total": 11564,
+      "forks_total": 2285,
+      "stars_today": 1126
     },
     {
       "rank": 6,
-      "repo": "nightly-labs/openbot",
-      "owner": "nightly-labs",
-      "name": "openbot",
-      "url": "https://github.com/nightly-labs/openbot",
-      "description": "A local-first desktop workspace for persistent AI teammates. Run Codex, Claude, and Grok with dedicated workspaces, task queues, file sharing, browser control, and agent-to-agent collaboration.",
+      "repo": "expo/skills",
+      "owner": "expo",
+      "name": "skills",
+      "url": "https://github.com/expo/skills",
+      "description": "A collection of AI agent skills for working with Expo projects and Expo Application Services",
       "descriptions": {
-        "zh": "A local-first desktop workspace for persistent AI teammates. Run Codex, Claude, and Grok with dedicated workspaces, task queues, file sharing, browser control, and agent-to-agent collaboration.",
-        "en": "A local-first desktop workspace for persistent AI teammates. Run Codex, Claude, and Grok with dedicated workspaces, task queues, file sharing, browser control, and agent-to-agent collaboration."
+        "zh": "A collection of AI agent skills for working with Expo projects and Expo Application Services",
+        "en": "A collection of AI agent skills for working with Expo projects and Expo Application Services"
       },
-      "language": "TypeScript",
-      "stars_total": 4035,
-      "forks_total": 371,
-      "stars_today": 709
+      "language": "Shell",
+      "stars_total": 3936,
+      "forks_total": 248,
+      "stars_today": 38
     }
   ]
 }
