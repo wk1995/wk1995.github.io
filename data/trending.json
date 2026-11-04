@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-11-03T14:18:38.280850+00:00",
+  "generated_at": "2026-11-04T07:27:15.722565+00:00",
   "items": [
     {
       "rank": 1,
@@ -11,13 +11,13 @@
       "url": "https://github.com/thedotmack/claude-mem",
       "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
       "descriptions": {
-        "zh": "每个座席跨会话的持久上下文 – 捕获座席在会话期间所做的所有操作，使用 AI 对其进行压缩，并将相关上下文注入到未来的会话中。适用于 Claude Code、OpenClaw、Codex、Gemini、Hermes、Copilot、OpenCode 等",
+        "zh": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
         "en": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More"
       },
       "language": "TypeScript",
-      "stars_total": 111411,
-      "forks_total": 9707,
-      "stars_today": 1138
+      "stars_total": 112227,
+      "forks_total": 9760,
+      "stars_today": 1139
     },
     {
       "rank": 2,
@@ -27,13 +27,13 @@
       "url": "https://github.com/vercel-labs/agent-desktop",
       "description": "Computer use CLI for AI agents",
       "descriptions": {
-        "zh": "计算机使用 CLI 进行 AI 代理",
+        "zh": "Computer use CLI for AI agents",
         "en": "Computer use CLI for AI agents"
       },
       "language": "Rust",
-      "stars_total": 11786,
-      "forks_total": 800,
-      "stars_today": 3792
+      "stars_total": 13466,
+      "forks_total": 927,
+      "stars_today": 3791
     },
     {
       "rank": 3,
@@ -43,13 +43,13 @@
       "url": "https://github.com/max-sixty/worktrunk",
       "description": "Worktrunk is a CLI for Git worktree management, designed for parallel AI agent workflows",
       "descriptions": {
-        "zh": "Worktrunk 是一个用于 Git 工作树管理的 CLI，专为并行 AI 代理工作流程而设计",
+        "zh": "Worktrunk is a CLI for Git worktree management, designed for parallel AI agent workflows",
         "en": "Worktrunk is a CLI for Git worktree management, designed for parallel AI agent workflows"
       },
       "language": "Rust",
-      "stars_total": 10295,
-      "forks_total": 370,
-      "stars_today": 437
+      "stars_total": 10669,
+      "forks_total": 388,
+      "stars_today": 438
     },
     {
       "rank": 4,
@@ -59,13 +59,13 @@
       "url": "https://github.com/JustVugg/colibri",
       "description": "A hierarchical inference engine for frontier MoE models: hot experts on the GPU (CUDA, Vulkan), warm ones in RAM, cold ones streamed from NVMe. Written in C, runs on the hardware you already own.",
       "descriptions": {
-        "zh": "用于前沿 MoE 模型的分层推理引擎：GPU 上的热门专家（CUDA、Vulkan）、RAM 中的热专家、来自 NVMe 的冷专家。用 C 编写，在您已有的硬件上运行。",
+        "zh": "A hierarchical inference engine for frontier MoE models: hot experts on the GPU (CUDA, Vulkan), warm ones in RAM, cold ones streamed from NVMe. Written in C, runs on the hardware you already own.",
         "en": "A hierarchical inference engine for frontier MoE models: hot experts on the GPU (CUDA, Vulkan), warm ones in RAM, cold ones streamed from NVMe. Written in C, runs on the hardware you already own."
       },
       "language": "C",
-      "stars_total": 46992,
-      "forks_total": 5428,
-      "stars_today": 803
+      "stars_total": 47424,
+      "forks_total": 5478,
+      "stars_today": 802
     },
     {
       "rank": 5,
@@ -75,12 +75,12 @@
       "url": "https://github.com/mattpocock/skills",
       "description": "Skills for Real Engineers. Straight from my .agents directory.",
       "descriptions": {
-        "zh": "真正工程师的技能。直接来自我的 .agents 目录。",
+        "zh": "Skills for Real Engineers. Straight from my .agents directory.",
         "en": "Skills for Real Engineers. Straight from my .agents directory."
       },
       "language": "Shell",
-      "stars_total": 310951,
-      "forks_total": 26155,
+      "stars_total": 311830,
+      "forks_total": 26204,
       "stars_today": 1164
     },
     {
@@ -91,13 +91,13 @@
       "url": "https://github.com/p-e-w/heretic",
       "description": "Training-free language model modification: Remove censorship, suppress slop, reduce sycophancy, and more",
       "descriptions": {
-        "zh": "免训练语言模型修改：消除审查、抑制废话、减少阿谀奉承等",
+        "zh": "Training-free language model modification: Remove censorship, suppress slop, reduce sycophancy, and more",
         "en": "Training-free language model modification: Remove censorship, suppress slop, reduce sycophancy, and more"
       },
       "language": "Python",
-      "stars_total": 38525,
-      "forks_total": 4352,
-      "stars_today": 699
+      "stars_total": 39017,
+      "forks_total": 4402,
+      "stars_today": 701
     }
   ]
 }
