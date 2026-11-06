@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-11-05T07:52:12.244257+00:00",
+  "generated_at": "2026-11-06T07:52:58.044871+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,28 +15,12 @@ window.__TRENDING_DATA__ = {
         "en": "Auto Ontology is a Python framework for building semantic, graph-based reasoning layers over data. It enables deterministic query generation, better context retrieval, and more explainable AI for LLM and agent workflows."
       },
       "language": "Python",
-      "stars_total": 5877,
-      "forks_total": 460,
-      "stars_today": 2050
+      "stars_total": 7949,
+      "forks_total": 639,
+      "stars_today": 2679
     },
     {
       "rank": 2,
-      "repo": "max-sixty/worktrunk",
-      "owner": "max-sixty",
-      "name": "worktrunk",
-      "url": "https://github.com/max-sixty/worktrunk",
-      "description": "Worktrunk is a CLI for Git worktree management, designed for parallel AI agent workflows",
-      "descriptions": {
-        "zh": "Worktrunk is a CLI for Git worktree management, designed for parallel AI agent workflows",
-        "en": "Worktrunk is a CLI for Git worktree management, designed for parallel AI agent workflows"
-      },
-      "language": "Rust",
-      "stars_total": 11217,
-      "forks_total": 420,
-      "stars_today": 531
-    },
-    {
-      "rank": 3,
       "repo": "mattpocock/skills",
       "owner": "mattpocock",
       "name": "skills",
@@ -47,41 +31,57 @@ window.__TRENDING_DATA__ = {
         "en": "Skills for Real Engineers. Straight from my .agents directory."
       },
       "language": "Shell",
-      "stars_total": 313798,
-      "forks_total": 26310,
-      "stars_today": 1379
+      "stars_total": 315791,
+      "forks_total": 26432,
+      "stars_today": 2071
+    },
+    {
+      "rank": 3,
+      "repo": "garrytan/gstack",
+      "owner": "garrytan",
+      "name": "gstack",
+      "url": "https://github.com/garrytan/gstack",
+      "description": "Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager, Release Manager, Doc Engineer, and QA",
+      "descriptions": {
+        "zh": "Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager, Release Manager, Doc Engineer, and QA",
+        "en": "Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager, Release Manager, Doc Engineer, and QA"
+      },
+      "language": "TypeScript",
+      "stars_total": 140183,
+      "forks_total": 20709,
+      "stars_today": 612
     },
     {
       "rank": 4,
-      "repo": "floci-io/floci",
-      "owner": "floci-io",
-      "name": "floci",
-      "url": "https://github.com/floci-io/floci",
-      "description": "Light, fluffy, and always free - The AWS Local Emulator alternative",
+      "repo": "Usagi-org/ai-goofish-monitor",
+      "owner": "Usagi-org",
+      "name": "ai-goofish-monitor",
+      "url": "https://github.com/Usagi-org/ai-goofish-monitor",
+      "description": "基于 Playwright 和AI实现的闲鱼多任务实时/定时监控与智能分析系统，配备了功能完善的后台管理UI。帮助用户从闲鱼海量商品中，找到心仪产品。",
       "descriptions": {
-        "zh": "Light, fluffy, and always free - The AWS Local Emulator alternative",
-        "en": "Light, fluffy, and always free - The AWS Local Emulator alternative"
+        "zh": "基于 Playwright 和AI实现的闲鱼多任务实时/定时监控与智能分析系统，配备了功能完善的后台管理UI。帮助用户从闲鱼海量商品中，找到心仪产品。",
+        "en": "基于 Playwright 和AI实现的闲鱼多任务实时/定时监控与智能分析系统，配备了功能完善的后台管理UI。帮助用户从闲鱼海量商品中，找到心仪产品。"
       },
-      "language": "Java",
-      "stars_total": 29847,
-      "forks_total": 3294,
-      "stars_today": 1090
+      "language": "Python",
+      "stars_total": 17974,
+      "forks_total": 2980,
+      "stars_today": 240
     },
     {
       "rank": 5,
-      "repo": "thedotmack/claude-mem",
-      "owner": "thedotmack",
-      "name": "claude-mem",
-      "url": "https://github.com/thedotmack/claude-mem",
-      "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
+      "repo": "D4Vinci/Scrapling",
+      "owner": "D4Vinci",
+      "name": "Scrapling",
+      "url": "https://github.com/D4Vinci/Scrapling",
+      "description": "🕷️ The BEST Web Scraping framework that handles everything from a single request to a full-scale crawl! Don't be shy, join here: https://discord.gg/EMgGbDceNQ and follow here for daily tips and tricks: https://x.com/Scrapling_dev",
       "descriptions": {
-        "zh": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
-        "en": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More"
+        "zh": "🕷️ The BEST Web Scraping framework that handles everything from a single request to a full-scale crawl! Don't be shy, join here: https://discord.gg/EMgGbDceNQ and follow here for daily tips and tricks: https://x.com/Scrapling_dev",
+        "en": "🕷️ The BEST Web Scraping framework that handles everything from a single request to a full-scale crawl! Don't be shy, join here: https://discord.gg/EMgGbDceNQ and follow here for daily tips and tricks: https://x.com/Scrapling_dev"
       },
-      "language": "TypeScript",
-      "stars_total": 113123,
-      "forks_total": 9820,
-      "stars_today": 1172
+      "language": "Python",
+      "stars_total": 98377,
+      "forks_total": 10305,
+      "stars_today": 1655
     },
     {
       "rank": 6,
@@ -95,9 +95,9 @@ window.__TRENDING_DATA__ = {
         "en": "Computer use CLI for AI agents"
       },
       "language": "Rust",
-      "stars_total": 15805,
-      "forks_total": 1103,
-      "stars_today": 2470
+      "stars_total": 17393,
+      "forks_total": 1237,
+      "stars_today": 2173
     }
   ]
 }
