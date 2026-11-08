@@ -1,103 +1,103 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-11-07T07:01:42.680943+00:00",
+  "generated_at": "2026-11-08T07:14:11.292203+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "zed-industries/zed",
-      "owner": "zed-industries",
-      "name": "zed",
-      "url": "https://github.com/zed-industries/zed",
-      "description": "Code at the speed of thought – Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.",
+      "repo": "vercel-labs/agent-browser",
+      "owner": "vercel-labs",
+      "name": "agent-browser",
+      "url": "https://github.com/vercel-labs/agent-browser",
+      "description": "Browser automation CLI for AI agents",
       "descriptions": {
-        "zh": "Code at the speed of thought – Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.",
-        "en": "Code at the speed of thought – Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter."
+        "zh": "Browser automation CLI for AI agents",
+        "en": "Browser automation CLI for AI agents"
       },
       "language": "Rust",
-      "stars_total": 93842,
-      "forks_total": 11512,
-      "stars_today": 306
+      "stars_total": 47033,
+      "forks_total": 3222,
+      "stars_today": 190
     },
     {
       "rank": 2,
-      "repo": "NVIDIA/auto-ontology",
-      "owner": "NVIDIA",
-      "name": "auto-ontology",
-      "url": "https://github.com/NVIDIA/auto-ontology",
-      "description": "Auto Ontology is a Python framework for building semantic, graph-based reasoning layers over data. It enables deterministic query generation, better context retrieval, and more explainable AI for LLM and agent workflows.",
+      "repo": "cloudflare/security-audit-skill",
+      "owner": "cloudflare",
+      "name": "security-audit-skill",
+      "url": "https://github.com/cloudflare/security-audit-skill",
+      "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
       "descriptions": {
-        "zh": "Auto Ontology is a Python framework for building semantic, graph-based reasoning layers over data. It enables deterministic query generation, better context retrieval, and more explainable AI for LLM and agent workflows.",
-        "en": "Auto Ontology is a Python framework for building semantic, graph-based reasoning layers over data. It enables deterministic query generation, better context retrieval, and more explainable AI for LLM and agent workflows."
+        "zh": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+        "en": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings"
       },
-      "language": "Python",
-      "stars_total": 9341,
-      "forks_total": 739,
-      "stars_today": 2015
+      "language": "JavaScript",
+      "stars_total": 66062,
+      "forks_total": 4298,
+      "stars_today": 2085
     },
     {
       "rank": 3,
-      "repo": "rails/rails",
-      "owner": "rails",
-      "name": "rails",
-      "url": "https://github.com/rails/rails",
-      "description": "Ruby on Rails",
+      "repo": "google/skills",
+      "owner": "google",
+      "name": "skills",
+      "url": "https://github.com/google/skills",
+      "description": "Agent Skills for Google products and technologies",
       "descriptions": {
-        "zh": "Ruby on Rails",
-        "en": "Ruby on Rails"
+        "zh": "Agent Skills for Google products and technologies",
+        "en": "Agent Skills for Google products and technologies"
       },
-      "language": "Ruby",
-      "stars_total": 59059,
-      "forks_total": 23833,
-      "stars_today": 142
+      "language": "Python",
+      "stars_total": 23536,
+      "forks_total": 1967,
+      "stars_today": 443
     },
     {
       "rank": 4,
-      "repo": "mpv-player/mpv",
-      "owner": "mpv-player",
-      "name": "mpv",
-      "url": "https://github.com/mpv-player/mpv",
-      "description": "🎥 Command line media player",
+      "repo": "mattpocock/skills",
+      "owner": "mattpocock",
+      "name": "skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
       "descriptions": {
-        "zh": "🎥 Command line media player",
-        "en": "🎥 Command line media player"
+        "zh": "Skills for Real Engineers. Straight from my .agents directory.",
+        "en": "Skills for Real Engineers. Straight from my .agents directory."
       },
-      "language": "C",
-      "stars_total": 37936,
-      "forks_total": 3635,
-      "stars_today": 37
+      "language": "Shell",
+      "stars_total": 317959,
+      "forks_total": 26605,
+      "stars_today": 1100
     },
     {
       "rank": 5,
-      "repo": "rust-lang/rust",
-      "owner": "rust-lang",
-      "name": "rust",
-      "url": "https://github.com/rust-lang/rust",
-      "description": "Empowering everyone to build reliable and efficient software.",
+      "repo": "anthropics/skills",
+      "owner": "anthropics",
+      "name": "skills",
+      "url": "https://github.com/anthropics/skills",
+      "description": "Public repository for Agent Skills",
       "descriptions": {
-        "zh": "Empowering everyone to build reliable and efficient software.",
-        "en": "Empowering everyone to build reliable and efficient software."
+        "zh": "Public repository for Agent Skills",
+        "en": "Public repository for Agent Skills"
       },
-      "language": "Rust",
-      "stars_total": 121528,
-      "forks_total": 17369,
-      "stars_today": 192
+      "language": "Python",
+      "stars_total": 188959,
+      "forks_total": 22274,
+      "stars_today": 390
     },
     {
       "rank": 6,
-      "repo": "react/react",
-      "owner": "react",
-      "name": "react",
-      "url": "https://github.com/react/react",
-      "description": "The library for web and native user interfaces.",
+      "repo": "meta/astryx",
+      "owner": "meta",
+      "name": "astryx",
+      "url": "https://github.com/meta/astryx",
+      "description": "An open source design system that's fully customizable and agent ready",
       "descriptions": {
-        "zh": "The library for web and native user interfaces.",
-        "en": "The library for web and native user interfaces."
+        "zh": "An open source design system that's fully customizable and agent ready",
+        "en": "An open source design system that's fully customizable and agent ready"
       },
-      "language": "JavaScript",
-      "stars_total": 252309,
-      "forks_total": 51833,
-      "stars_today": 248
+      "language": "TypeScript",
+      "stars_total": 14781,
+      "forks_total": 1211,
+      "stars_today": 96
     }
   ]
 }
