@@ -1,74 +1,10 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-11-08T07:14:11.292203+00:00",
+  "generated_at": "2026-11-10T08:21:10.792965+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "vercel-labs/agent-browser",
-      "owner": "vercel-labs",
-      "name": "agent-browser",
-      "url": "https://github.com/vercel-labs/agent-browser",
-      "description": "Browser automation CLI for AI agents",
-      "descriptions": {
-        "zh": "Browser automation CLI for AI agents",
-        "en": "Browser automation CLI for AI agents"
-      },
-      "language": "Rust",
-      "stars_total": 47033,
-      "forks_total": 3222,
-      "stars_today": 190
-    },
-    {
-      "rank": 2,
-      "repo": "cloudflare/security-audit-skill",
-      "owner": "cloudflare",
-      "name": "security-audit-skill",
-      "url": "https://github.com/cloudflare/security-audit-skill",
-      "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
-      "descriptions": {
-        "zh": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
-        "en": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings"
-      },
-      "language": "JavaScript",
-      "stars_total": 66062,
-      "forks_total": 4298,
-      "stars_today": 2085
-    },
-    {
-      "rank": 3,
-      "repo": "google/skills",
-      "owner": "google",
-      "name": "skills",
-      "url": "https://github.com/google/skills",
-      "description": "Agent Skills for Google products and technologies",
-      "descriptions": {
-        "zh": "Agent Skills for Google products and technologies",
-        "en": "Agent Skills for Google products and technologies"
-      },
-      "language": "Python",
-      "stars_total": 23536,
-      "forks_total": 1967,
-      "stars_today": 443
-    },
-    {
-      "rank": 4,
-      "repo": "mattpocock/skills",
-      "owner": "mattpocock",
-      "name": "skills",
-      "url": "https://github.com/mattpocock/skills",
-      "description": "Skills for Real Engineers. Straight from my .agents directory.",
-      "descriptions": {
-        "zh": "Skills for Real Engineers. Straight from my .agents directory.",
-        "en": "Skills for Real Engineers. Straight from my .agents directory."
-      },
-      "language": "Shell",
-      "stars_total": 317959,
-      "forks_total": 26605,
-      "stars_today": 1100
-    },
-    {
-      "rank": 5,
       "repo": "anthropics/skills",
       "owner": "anthropics",
       "name": "skills",
@@ -79,12 +15,12 @@
         "en": "Public repository for Agent Skills"
       },
       "language": "Python",
-      "stars_total": 188959,
-      "forks_total": 22274,
-      "stars_today": 390
+      "stars_total": 191512,
+      "forks_total": 22479,
+      "stars_today": 1038
     },
     {
-      "rank": 6,
+      "rank": 2,
       "repo": "meta/astryx",
       "owner": "meta",
       "name": "astryx",
@@ -95,9 +31,73 @@
         "en": "An open source design system that's fully customizable and agent ready"
       },
       "language": "TypeScript",
-      "stars_total": 14781,
-      "forks_total": 1211,
-      "stars_today": 96
+      "stars_total": 21004,
+      "forks_total": 1587,
+      "stars_today": 3278
+    },
+    {
+      "rank": 3,
+      "repo": "sherlock-project/sherlock",
+      "owner": "sherlock-project",
+      "name": "sherlock",
+      "url": "https://github.com/sherlock-project/sherlock",
+      "description": "Hunt down social media accounts by username across social networks",
+      "descriptions": {
+        "zh": "Hunt down social media accounts by username across social networks",
+        "en": "Hunt down social media accounts by username across social networks"
+      },
+      "language": "Python",
+      "stars_total": 107880,
+      "forks_total": 12468,
+      "stars_today": 4267
+    },
+    {
+      "rank": 4,
+      "repo": "google-deepmind/mujoco",
+      "owner": "google-deepmind",
+      "name": "mujoco",
+      "url": "https://github.com/google-deepmind/mujoco",
+      "description": "Multi-Joint dynamics with Contact. A general purpose physics simulator.",
+      "descriptions": {
+        "zh": "Multi-Joint dynamics with Contact. A general purpose physics simulator.",
+        "en": "Multi-Joint dynamics with Contact. A general purpose physics simulator."
+      },
+      "language": "C++",
+      "stars_total": 17094,
+      "forks_total": 2016,
+      "stars_today": 574
+    },
+    {
+      "rank": 5,
+      "repo": "anthropics/claude-quickstarts",
+      "owner": "anthropics",
+      "name": "claude-quickstarts",
+      "url": "https://github.com/anthropics/claude-quickstarts",
+      "description": "A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API",
+      "descriptions": {
+        "zh": "A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API",
+        "en": "A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API"
+      },
+      "language": "Python",
+      "stars_total": 20188,
+      "forks_total": 3329,
+      "stars_today": 551
+    },
+    {
+      "rank": 6,
+      "repo": "garrytan/gbrain",
+      "owner": "garrytan",
+      "name": "gbrain",
+      "url": "https://github.com/garrytan/gbrain",
+      "description": "Garry's Opinionated OpenClaw/Hermes Agent Brain",
+      "descriptions": {
+        "zh": "Garry's Opinionated OpenClaw/Hermes Agent Brain",
+        "en": "Garry's Opinionated OpenClaw/Hermes Agent Brain"
+      },
+      "language": "TypeScript",
+      "stars_total": 32342,
+      "forks_total": 4781,
+      "stars_today": 216
     }
   ]
 }
