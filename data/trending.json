@@ -1,26 +1,10 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-11-10T08:21:10.792965+00:00",
+  "generated_at": "2026-11-11T07:42:25.282188+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "anthropics/skills",
-      "owner": "anthropics",
-      "name": "skills",
-      "url": "https://github.com/anthropics/skills",
-      "description": "Public repository for Agent Skills",
-      "descriptions": {
-        "zh": "Public repository for Agent Skills",
-        "en": "Public repository for Agent Skills"
-      },
-      "language": "Python",
-      "stars_total": 191512,
-      "forks_total": 22479,
-      "stars_today": 1038
-    },
-    {
-      "rank": 2,
       "repo": "meta/astryx",
       "owner": "meta",
       "name": "astryx",
@@ -31,44 +15,44 @@
         "en": "An open source design system that's fully customizable and agent ready"
       },
       "language": "TypeScript",
-      "stars_total": 21004,
-      "forks_total": 1587,
-      "stars_today": 3278
+      "stars_total": 23695,
+      "forks_total": 1861,
+      "stars_today": 3108
+    },
+    {
+      "rank": 2,
+      "repo": "anthropics/skills",
+      "owner": "anthropics",
+      "name": "skills",
+      "url": "https://github.com/anthropics/skills",
+      "description": "Public repository for Agent Skills",
+      "descriptions": {
+        "zh": "Public repository for Agent Skills",
+        "en": "Public repository for Agent Skills"
+      },
+      "language": "Python",
+      "stars_total": 192641,
+      "forks_total": 22673,
+      "stars_today": 1679
     },
     {
       "rank": 3,
-      "repo": "sherlock-project/sherlock",
-      "owner": "sherlock-project",
-      "name": "sherlock",
-      "url": "https://github.com/sherlock-project/sherlock",
-      "description": "Hunt down social media accounts by username across social networks",
+      "repo": "addyosmani/agent-skills",
+      "owner": "addyosmani",
+      "name": "agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "description": "Production-grade engineering skills for AI coding agents.",
       "descriptions": {
-        "zh": "Hunt down social media accounts by username across social networks",
-        "en": "Hunt down social media accounts by username across social networks"
+        "zh": "Production-grade engineering skills for AI coding agents.",
+        "en": "Production-grade engineering skills for AI coding agents."
       },
-      "language": "Python",
-      "stars_total": 107880,
-      "forks_total": 12468,
-      "stars_today": 4267
+      "language": "JavaScript",
+      "stars_total": 115402,
+      "forks_total": 12110,
+      "stars_today": 465
     },
     {
       "rank": 4,
-      "repo": "google-deepmind/mujoco",
-      "owner": "google-deepmind",
-      "name": "mujoco",
-      "url": "https://github.com/google-deepmind/mujoco",
-      "description": "Multi-Joint dynamics with Contact. A general purpose physics simulator.",
-      "descriptions": {
-        "zh": "Multi-Joint dynamics with Contact. A general purpose physics simulator.",
-        "en": "Multi-Joint dynamics with Contact. A general purpose physics simulator."
-      },
-      "language": "C++",
-      "stars_total": 17094,
-      "forks_total": 2016,
-      "stars_today": 574
-    },
-    {
-      "rank": 5,
       "repo": "anthropics/claude-quickstarts",
       "owner": "anthropics",
       "name": "claude-quickstarts",
@@ -79,25 +63,41 @@
         "en": "A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API"
       },
       "language": "Python",
-      "stars_total": 20188,
-      "forks_total": 3329,
-      "stars_today": 551
+      "stars_total": 20649,
+      "forks_total": 3478,
+      "stars_today": 531
+    },
+    {
+      "rank": 5,
+      "repo": "google-deepmind/mujoco",
+      "owner": "google-deepmind",
+      "name": "mujoco",
+      "url": "https://github.com/google-deepmind/mujoco",
+      "description": "Multi-Joint dynamics with Contact. A general purpose physics simulator.",
+      "descriptions": {
+        "zh": "Multi-Joint dynamics with Contact. A general purpose physics simulator.",
+        "en": "Multi-Joint dynamics with Contact. A general purpose physics simulator."
+      },
+      "language": "C++",
+      "stars_total": 17506,
+      "forks_total": 2159,
+      "stars_today": 456
     },
     {
       "rank": 6,
-      "repo": "garrytan/gbrain",
-      "owner": "garrytan",
-      "name": "gbrain",
-      "url": "https://github.com/garrytan/gbrain",
-      "description": "Garry's Opinionated OpenClaw/Hermes Agent Brain",
+      "repo": "we-promise/sure",
+      "owner": "we-promise",
+      "name": "sure",
+      "url": "https://github.com/we-promise/sure",
+      "description": "The personal finance app for everyone (by everyone)",
       "descriptions": {
-        "zh": "Garry's Opinionated OpenClaw/Hermes Agent Brain",
-        "en": "Garry's Opinionated OpenClaw/Hermes Agent Brain"
+        "zh": "The personal finance app for everyone (by everyone)",
+        "en": "The personal finance app for everyone (by everyone)"
       },
-      "language": "TypeScript",
-      "stars_total": 32342,
-      "forks_total": 4781,
-      "stars_today": 216
+      "language": "Ruby",
+      "stars_total": 12281,
+      "forks_total": 909,
+      "stars_today": 159
     }
   ]
 }
