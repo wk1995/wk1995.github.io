@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-11-11T07:42:25.282188+00:00",
+  "generated_at": "2026-11-12T08:12:42.520406+00:00",
   "items": [
     {
       "rank": 1,
@@ -11,93 +11,90 @@ window.__TRENDING_DATA__ = {
       "url": "https://github.com/meta/astryx",
       "description": "An open source design system that's fully customizable and agent ready",
       "descriptions": {
-        "zh": "An open source design system that's fully customizable and agent ready",
+        "zh": "完全可定制且可供代理使用的开源设计系统",
         "en": "An open source design system that's fully customizable and agent ready"
       },
       "language": "TypeScript",
-      "stars_total": 23695,
-      "forks_total": 1861,
-      "stars_today": 3108
+      "stars_total": 25621,
+      "forks_total": 1994,
+      "stars_today": 2776
     },
     {
       "rank": 2,
-      "repo": "anthropics/skills",
-      "owner": "anthropics",
-      "name": "skills",
-      "url": "https://github.com/anthropics/skills",
-      "description": "Public repository for Agent Skills",
+      "repo": "ZhuLinsen/daily_stock_analysis",
+      "owner": "ZhuLinsen",
+      "name": "daily_stock_analysis",
+      "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
+      "description": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
       "descriptions": {
-        "zh": "Public repository for Agent Skills",
-        "en": "Public repository for Agent Skills"
+        "zh": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
+        "en": "LLM-driven multi-market stock intelligent analysis system: multi-source quotes, real-time news, decision-making boards and automatic push, supporting zero-cost scheduled operation. LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs."
       },
       "language": "Python",
-      "stars_total": 192641,
-      "forks_total": 22673,
-      "stars_today": 1679
+      "stars_total": 70784,
+      "forks_total": 57016,
+      "stars_today": 278
     },
     {
       "rank": 3,
+      "repo": "GoogleChrome/modern-web-guidance-src",
+      "owner": "GoogleChrome",
+      "name": "modern-web-guidance-src",
+      "url": "https://github.com/GoogleChrome/modern-web-guidance-src",
+      "description": null,
+      "descriptions": null,
+      "language": "TypeScript",
+      "stars_total": 2048,
+      "forks_total": 152,
+      "stars_today": 159
+    },
+    {
+      "rank": 4,
+      "repo": "shadcn/improve",
+      "owner": "shadcn",
+      "name": "improve",
+      "url": "https://github.com/shadcn/improve",
+      "description": "Use your most capable model to audit your codebase and write plans for cheaper models to execute.",
+      "descriptions": {
+        "zh": "使用最有能力的模型来审核您的代码库并编写更便宜的模型执行计划。",
+        "en": "Use your most capable model to audit your codebase and write plans for cheaper models to execute."
+      },
+      "language": null,
+      "stars_total": 11212,
+      "forks_total": 455,
+      "stars_today": 361
+    },
+    {
+      "rank": 5,
       "repo": "addyosmani/agent-skills",
       "owner": "addyosmani",
       "name": "agent-skills",
       "url": "https://github.com/addyosmani/agent-skills",
       "description": "Production-grade engineering skills for AI coding agents.",
       "descriptions": {
-        "zh": "Production-grade engineering skills for AI coding agents.",
+        "zh": "AI 编码代理的生产级工程技能。",
         "en": "Production-grade engineering skills for AI coding agents."
       },
       "language": "JavaScript",
-      "stars_total": 115402,
-      "forks_total": 12110,
-      "stars_today": 465
-    },
-    {
-      "rank": 4,
-      "repo": "anthropics/claude-quickstarts",
-      "owner": "anthropics",
-      "name": "claude-quickstarts",
-      "url": "https://github.com/anthropics/claude-quickstarts",
-      "description": "A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API",
-      "descriptions": {
-        "zh": "A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API",
-        "en": "A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API"
-      },
-      "language": "Python",
-      "stars_total": 20649,
-      "forks_total": 3478,
-      "stars_today": 531
-    },
-    {
-      "rank": 5,
-      "repo": "google-deepmind/mujoco",
-      "owner": "google-deepmind",
-      "name": "mujoco",
-      "url": "https://github.com/google-deepmind/mujoco",
-      "description": "Multi-Joint dynamics with Contact. A general purpose physics simulator.",
-      "descriptions": {
-        "zh": "Multi-Joint dynamics with Contact. A general purpose physics simulator.",
-        "en": "Multi-Joint dynamics with Contact. A general purpose physics simulator."
-      },
-      "language": "C++",
-      "stars_total": 17506,
-      "forks_total": 2159,
-      "stars_today": 456
+      "stars_total": 116191,
+      "forks_total": 12175,
+      "stars_today": 787
     },
     {
       "rank": 6,
-      "repo": "we-promise/sure",
-      "owner": "we-promise",
-      "name": "sure",
-      "url": "https://github.com/we-promise/sure",
-      "description": "The personal finance app for everyone (by everyone)",
+      "repo": "vercel-labs/agent-browser",
+      "owner": "vercel-labs",
+      "name": "agent-browser",
+      "url": "https://github.com/vercel-labs/agent-browser",
+      "description": "Browser automation CLI for AI agents",
       "descriptions": {
-        "zh": "The personal finance app for everyone (by everyone)",
-        "en": "The personal finance app for everyone (by everyone)"
+        "zh": "用于 AI 代理的浏览器自动化 CLI",
+        "en": "Browser automation CLI for AI agents"
       },
-      "language": "Ruby",
-      "stars_total": 12281,
-      "forks_total": 909,
-      "stars_today": 159
+      "language": "Rust",
+      "stars_total": 50074,
+      "forks_total": 3494,
+      "stars_today": 708
     }
   ]
 }
