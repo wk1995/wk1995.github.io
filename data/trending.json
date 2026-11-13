@@ -1,100 +1,103 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-11-12T08:12:42.520406+00:00",
+  "generated_at": "2026-11-13T07:51:20.377168+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "meta/astryx",
-      "owner": "meta",
-      "name": "astryx",
-      "url": "https://github.com/meta/astryx",
-      "description": "An open source design system that's fully customizable and agent ready",
-      "descriptions": {
-        "zh": "完全可定制且可供代理使用的开源设计系统",
-        "en": "An open source design system that's fully customizable and agent ready"
-      },
-      "language": "TypeScript",
-      "stars_total": 25621,
-      "forks_total": 1994,
-      "stars_today": 2776
-    },
-    {
-      "rank": 2,
-      "repo": "ZhuLinsen/daily_stock_analysis",
-      "owner": "ZhuLinsen",
-      "name": "daily_stock_analysis",
-      "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
-      "description": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
-      "descriptions": {
-        "zh": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
-        "en": "LLM-driven multi-market stock intelligent analysis system: multi-source quotes, real-time news, decision-making boards and automatic push, supporting zero-cost scheduled operation. LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs."
-      },
-      "language": "Python",
-      "stars_total": 70784,
-      "forks_total": 57016,
-      "stars_today": 278
-    },
-    {
-      "rank": 3,
       "repo": "GoogleChrome/modern-web-guidance-src",
       "owner": "GoogleChrome",
       "name": "modern-web-guidance-src",
       "url": "https://github.com/GoogleChrome/modern-web-guidance-src",
-      "description": null,
-      "descriptions": null,
+      "description": "Keep your coding agent up to date with the latest web best practices",
+      "descriptions": {
+        "zh": "Keep your coding agent up to date with the latest web best practices",
+        "en": "Keep your coding agent up to date with the latest web best practices"
+      },
       "language": "TypeScript",
-      "stars_total": 2048,
-      "forks_total": 152,
-      "stars_today": 159
+      "stars_total": 3708,
+      "forks_total": 226,
+      "stars_today": 739
+    },
+    {
+      "rank": 2,
+      "repo": "openai/codex-security",
+      "owner": "openai",
+      "name": "codex-security",
+      "url": "https://github.com/openai/codex-security",
+      "description": "OpenAI's Codex Security CLI and TypeScript SDK for finding, validating, and fixing security vulnerabilities. npm: https://www.npmjs.com/package/@openai/codex-security",
+      "descriptions": {
+        "zh": "OpenAI's Codex Security CLI and TypeScript SDK for finding, validating, and fixing security vulnerabilities. npm: https://www.npmjs.com/package/@openai/codex-security",
+        "en": "OpenAI's Codex Security CLI and TypeScript SDK for finding, validating, and fixing security vulnerabilities. npm: https://www.npmjs.com/package/@openai/codex-security"
+      },
+      "language": "TypeScript",
+      "stars_total": 12684,
+      "forks_total": 992,
+      "stars_today": 643
+    },
+    {
+      "rank": 3,
+      "repo": "nvm-sh/nvm",
+      "owner": "nvm-sh",
+      "name": "nvm",
+      "url": "https://github.com/nvm-sh/nvm",
+      "description": "Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions.",
+      "descriptions": {
+        "zh": "Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions.",
+        "en": "Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions."
+      },
+      "language": "Shell",
+      "stars_total": 96067,
+      "forks_total": 10762,
+      "stars_today": 63
     },
     {
       "rank": 4,
-      "repo": "shadcn/improve",
-      "owner": "shadcn",
-      "name": "improve",
-      "url": "https://github.com/shadcn/improve",
-      "description": "Use your most capable model to audit your codebase and write plans for cheaper models to execute.",
+      "repo": "pookjw/HermesEnabler",
+      "owner": "pookjw",
+      "name": "HermesEnabler",
+      "url": "https://github.com/pookjw/HermesEnabler",
+      "description": "Enable Hermès Watch Faces on any Apple Watch devices",
       "descriptions": {
-        "zh": "使用最有能力的模型来审核您的代码库并编写更便宜的模型执行计划。",
-        "en": "Use your most capable model to audit your codebase and write plans for cheaper models to execute."
+        "zh": "Enable Hermès Watch Faces on any Apple Watch devices",
+        "en": "Enable Hermès Watch Faces on any Apple Watch devices"
       },
-      "language": null,
-      "stars_total": 11212,
-      "forks_total": 455,
-      "stars_today": 361
+      "language": "Objective-C",
+      "stars_total": 1658,
+      "forks_total": 146,
+      "stars_today": 218
     },
     {
       "rank": 5,
-      "repo": "addyosmani/agent-skills",
-      "owner": "addyosmani",
-      "name": "agent-skills",
-      "url": "https://github.com/addyosmani/agent-skills",
-      "description": "Production-grade engineering skills for AI coding agents.",
+      "repo": "we-promise/sure",
+      "owner": "we-promise",
+      "name": "sure",
+      "url": "https://github.com/we-promise/sure",
+      "description": "The personal finance app for everyone (by everyone)",
       "descriptions": {
-        "zh": "AI 编码代理的生产级工程技能。",
-        "en": "Production-grade engineering skills for AI coding agents."
+        "zh": "The personal finance app for everyone (by everyone)",
+        "en": "The personal finance app for everyone (by everyone)"
       },
-      "language": "JavaScript",
-      "stars_total": 116191,
-      "forks_total": 12175,
-      "stars_today": 787
+      "language": "Ruby",
+      "stars_total": 14205,
+      "forks_total": 1072,
+      "stars_today": 967
     },
     {
       "rank": 6,
-      "repo": "vercel-labs/agent-browser",
-      "owner": "vercel-labs",
-      "name": "agent-browser",
-      "url": "https://github.com/vercel-labs/agent-browser",
-      "description": "Browser automation CLI for AI agents",
+      "repo": "QwenLM/qwen-code",
+      "owner": "QwenLM",
+      "name": "qwen-code",
+      "url": "https://github.com/QwenLM/qwen-code",
+      "description": "An open-source AI coding agent that lives in your terminal.",
       "descriptions": {
-        "zh": "用于 AI 代理的浏览器自动化 CLI",
-        "en": "Browser automation CLI for AI agents"
+        "zh": "An open-source AI coding agent that lives in your terminal.",
+        "en": "An open-source AI coding agent that lives in your terminal."
       },
-      "language": "Rust",
-      "stars_total": 50074,
-      "forks_total": 3494,
-      "stars_today": 708
+      "language": "TypeScript",
+      "stars_total": 30003,
+      "forks_total": 3410,
+      "stars_today": 151
     }
   ]
 }
