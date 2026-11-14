@@ -1,10 +1,26 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-11-13T07:51:20.377168+00:00",
+  "generated_at": "2026-11-14T07:33:05.345384+00:00",
   "items": [
     {
       "rank": 1,
+      "repo": "alibaba/open-code-review",
+      "owner": "alibaba",
+      "name": "open-code-review",
+      "url": "https://github.com/alibaba/open-code-review",
+      "description": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
+      "descriptions": {
+        "zh": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
+        "en": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible."
+      },
+      "language": "Go",
+      "stars_total": 50870,
+      "forks_total": 3789,
+      "stars_today": 215
+    },
+    {
+      "rank": 2,
       "repo": "GoogleChrome/modern-web-guidance-src",
       "owner": "GoogleChrome",
       "name": "modern-web-guidance-src",
@@ -15,12 +31,12 @@ window.__TRENDING_DATA__ = {
         "en": "Keep your coding agent up to date with the latest web best practices"
       },
       "language": "TypeScript",
-      "stars_total": 3708,
-      "forks_total": 226,
-      "stars_today": 739
+      "stars_total": 5109,
+      "forks_total": 282,
+      "stars_today": 1925
     },
     {
-      "rank": 2,
+      "rank": 3,
       "repo": "openai/codex-security",
       "owner": "openai",
       "name": "codex-security",
@@ -31,41 +47,25 @@ window.__TRENDING_DATA__ = {
         "en": "OpenAI's Codex Security CLI and TypeScript SDK for finding, validating, and fixing security vulnerabilities. npm: https://www.npmjs.com/package/@openai/codex-security"
       },
       "language": "TypeScript",
-      "stars_total": 12684,
-      "forks_total": 992,
-      "stars_today": 643
-    },
-    {
-      "rank": 3,
-      "repo": "nvm-sh/nvm",
-      "owner": "nvm-sh",
-      "name": "nvm",
-      "url": "https://github.com/nvm-sh/nvm",
-      "description": "Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions.",
-      "descriptions": {
-        "zh": "Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions.",
-        "en": "Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions."
-      },
-      "language": "Shell",
-      "stars_total": 96067,
-      "forks_total": 10762,
-      "stars_today": 63
+      "stars_total": 13285,
+      "forks_total": 1029,
+      "stars_today": 751
     },
     {
       "rank": 4,
-      "repo": "pookjw/HermesEnabler",
-      "owner": "pookjw",
-      "name": "HermesEnabler",
-      "url": "https://github.com/pookjw/HermesEnabler",
-      "description": "Enable Hermès Watch Faces on any Apple Watch devices",
+      "repo": "ZhuLinsen/daily_stock_analysis",
+      "owner": "ZhuLinsen",
+      "name": "daily_stock_analysis",
+      "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
+      "description": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
       "descriptions": {
-        "zh": "Enable Hermès Watch Faces on any Apple Watch devices",
-        "en": "Enable Hermès Watch Faces on any Apple Watch devices"
+        "zh": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
+        "en": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。 LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs."
       },
-      "language": "Objective-C",
-      "stars_total": 1658,
-      "forks_total": 146,
-      "stars_today": 218
+      "language": "Python",
+      "stars_total": 71891,
+      "forks_total": 57368,
+      "stars_today": 256
     },
     {
       "rank": 5,
@@ -79,25 +79,25 @@ window.__TRENDING_DATA__ = {
         "en": "The personal finance app for everyone (by everyone)"
       },
       "language": "Ruby",
-      "stars_total": 14205,
-      "forks_total": 1072,
-      "stars_today": 967
+      "stars_total": 14899,
+      "forks_total": 1132,
+      "stars_today": 925
     },
     {
       "rank": 6,
-      "repo": "QwenLM/qwen-code",
-      "owner": "QwenLM",
-      "name": "qwen-code",
-      "url": "https://github.com/QwenLM/qwen-code",
-      "description": "An open-source AI coding agent that lives in your terminal.",
+      "repo": "backnotprop/plannotator",
+      "owner": "backnotprop",
+      "name": "plannotator",
+      "url": "https://github.com/backnotprop/plannotator",
+      "description": "The workspace to stay in the loop and on top of agents - shape, decide, plan, annotate, review code, share with team, and send all feedback to agents with one click.",
       "descriptions": {
-        "zh": "An open-source AI coding agent that lives in your terminal.",
-        "en": "An open-source AI coding agent that lives in your terminal."
+        "zh": "The workspace to stay in the loop and on top of agents - shape, decide, plan, annotate, review code, share with team, and send all feedback to agents with one click.",
+        "en": "The workspace to stay in the loop and on top of agents - shape, decide, plan, annotate, review code, share with team, and send all feedback to agents with one click."
       },
       "language": "TypeScript",
-      "stars_total": 30003,
-      "forks_total": 3410,
-      "stars_today": 151
+      "stars_total": 10576,
+      "forks_total": 791,
+      "stars_today": 108
     }
   ]
 }
