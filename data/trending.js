@@ -1,10 +1,58 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-11-15T07:47:16.394279+00:00",
+  "generated_at": "2026-11-16T07:54:22.080060+00:00",
   "items": [
     {
       "rank": 1,
+      "repo": "dream-num/univer",
+      "owner": "dream-num",
+      "name": "univer",
+      "url": "https://github.com/dream-num/univer",
+      "description": "Build your own AI office with Univer Office SDK. Bring editing, calculation, collaboration, and file processing into your product for people and AI agents. Built on an extensible open-source core.",
+      "descriptions": {
+        "zh": "Build your own AI office with Univer Office SDK. Bring editing, calculation, collaboration, and file processing into your product for people and AI agents. Built on an extensible open-source core.",
+        "en": "Build your own AI office with Univer Office SDK. Bring editing, calculation, collaboration, and file processing into your product for people and AI agents. Built on an extensible open-source core."
+      },
+      "language": "TypeScript",
+      "stars_total": 26652,
+      "forks_total": 2428,
+      "stars_today": 988
+    },
+    {
+      "rank": 2,
+      "repo": "ag-ui-protocol/ag-ui",
+      "owner": "ag-ui-protocol",
+      "name": "ag-ui",
+      "url": "https://github.com/ag-ui-protocol/ag-ui",
+      "description": "AG-UI: the Agent-User Interaction Protocol. Bring Agents into Frontend Applications.",
+      "descriptions": {
+        "zh": "AG-UI: the Agent-User Interaction Protocol. Bring Agents into Frontend Applications.",
+        "en": "AG-UI: the Agent-User Interaction Protocol. Bring Agents into Frontend Applications."
+      },
+      "language": "TypeScript",
+      "stars_total": 18185,
+      "forks_total": 1878,
+      "stars_today": 355
+    },
+    {
+      "rank": 3,
+      "repo": "google-labs-code/stitch-skills",
+      "owner": "google-labs-code",
+      "name": "stitch-skills",
+      "url": "https://github.com/google-labs-code/stitch-skills",
+      "description": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor.",
+      "descriptions": {
+        "zh": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor.",
+        "en": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor."
+      },
+      "language": "TypeScript",
+      "stars_total": 9483,
+      "forks_total": 1179,
+      "stars_today": 247
+    },
+    {
+      "rank": 4,
       "repo": "backnotprop/plannotator",
       "owner": "backnotprop",
       "name": "plannotator",
@@ -15,44 +63,12 @@ window.__TRENDING_DATA__ = {
         "en": "The workspace to stay in the loop and on top of agents - shape, decide, plan, annotate, review code, share with team, and send all feedback to agents with one click."
       },
       "language": "TypeScript",
-      "stars_total": 11383,
-      "forks_total": 983,
-      "stars_today": 408
+      "stars_total": 12082,
+      "forks_total": 1135,
+      "stars_today": 866
     },
     {
-      "rank": 2,
-      "repo": "GoogleChrome/modern-web-guidance-src",
-      "owner": "GoogleChrome",
-      "name": "modern-web-guidance-src",
-      "url": "https://github.com/GoogleChrome/modern-web-guidance-src",
-      "description": "Keep your coding agent up to date with the latest web best practices",
-      "descriptions": {
-        "zh": "Keep your coding agent up to date with the latest web best practices",
-        "en": "Keep your coding agent up to date with the latest web best practices"
-      },
-      "language": "TypeScript",
-      "stars_total": 6333,
-      "forks_total": 479,
-      "stars_today": 1231
-    },
-    {
-      "rank": 3,
-      "repo": "tradermonty/claude-trading-skills",
-      "owner": "tradermonty",
-      "name": "claude-trading-skills",
-      "url": "https://github.com/tradermonty/claude-trading-skills",
-      "description": "Claude Code skills for equity investors and traders — market analysis, technical charting, economic calendars, screeners, and trading strategy development.",
-      "descriptions": {
-        "zh": "Claude Code skills for equity investors and traders — market analysis, technical charting, economic calendars, screeners, and trading strategy development.",
-        "en": "Claude Code skills for equity investors and traders — market analysis, technical charting, economic calendars, screeners, and trading strategy development."
-      },
-      "language": "Python",
-      "stars_total": 5027,
-      "forks_total": 1055,
-      "stars_today": 553
-    },
-    {
-      "rank": 4,
+      "rank": 5,
       "repo": "ChromeDevTools/chrome-devtools-mcp",
       "owner": "ChromeDevTools",
       "name": "chrome-devtools-mcp",
@@ -63,12 +79,12 @@ window.__TRENDING_DATA__ = {
         "en": "Chrome DevTools for coding agents"
       },
       "language": "TypeScript",
-      "stars_total": 56486,
-      "forks_total": 4782,
-      "stars_today": 664
+      "stars_total": 57255,
+      "forks_total": 4827,
+      "stars_today": 717
     },
     {
-      "rank": 5,
+      "rank": 6,
       "repo": "alibaba/open-code-review",
       "owner": "alibaba",
       "name": "open-code-review",
@@ -79,25 +95,9 @@ window.__TRENDING_DATA__ = {
         "en": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible."
       },
       "language": "Go",
-      "stars_total": 51593,
-      "forks_total": 3990,
-      "stars_today": 893
-    },
-    {
-      "rank": 6,
-      "repo": "QwenLM/qwen-code",
-      "owner": "QwenLM",
-      "name": "qwen-code",
-      "url": "https://github.com/QwenLM/qwen-code",
-      "description": "An open-source AI coding agent that lives in your terminal.",
-      "descriptions": {
-        "zh": "An open-source AI coding agent that lives in your terminal.",
-        "en": "An open-source AI coding agent that lives in your terminal."
-      },
-      "language": "TypeScript",
-      "stars_total": 30432,
-      "forks_total": 3523,
-      "stars_today": 64
+      "stars_total": 52454,
+      "forks_total": 4202,
+      "stars_today": 691
     }
   ]
 }
