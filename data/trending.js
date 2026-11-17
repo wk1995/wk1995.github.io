@@ -1,26 +1,10 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-11-16T07:54:22.080060+00:00",
+  "generated_at": "2026-11-17T09:07:38.662617+00:00",
   "items": [
     {
       "rank": 1,
-      "repo": "dream-num/univer",
-      "owner": "dream-num",
-      "name": "univer",
-      "url": "https://github.com/dream-num/univer",
-      "description": "Build your own AI office with Univer Office SDK. Bring editing, calculation, collaboration, and file processing into your product for people and AI agents. Built on an extensible open-source core.",
-      "descriptions": {
-        "zh": "Build your own AI office with Univer Office SDK. Bring editing, calculation, collaboration, and file processing into your product for people and AI agents. Built on an extensible open-source core.",
-        "en": "Build your own AI office with Univer Office SDK. Bring editing, calculation, collaboration, and file processing into your product for people and AI agents. Built on an extensible open-source core."
-      },
-      "language": "TypeScript",
-      "stars_total": 26652,
-      "forks_total": 2428,
-      "stars_today": 988
-    },
-    {
-      "rank": 2,
       "repo": "ag-ui-protocol/ag-ui",
       "owner": "ag-ui-protocol",
       "name": "ag-ui",
@@ -31,28 +15,12 @@ window.__TRENDING_DATA__ = {
         "en": "AG-UI: the Agent-User Interaction Protocol. Bring Agents into Frontend Applications."
       },
       "language": "TypeScript",
-      "stars_total": 18185,
-      "forks_total": 1878,
-      "stars_today": 355
+      "stars_total": 19613,
+      "forks_total": 2025,
+      "stars_today": 791
     },
     {
-      "rank": 3,
-      "repo": "google-labs-code/stitch-skills",
-      "owner": "google-labs-code",
-      "name": "stitch-skills",
-      "url": "https://github.com/google-labs-code/stitch-skills",
-      "description": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor.",
-      "descriptions": {
-        "zh": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor.",
-        "en": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor."
-      },
-      "language": "TypeScript",
-      "stars_total": 9483,
-      "forks_total": 1179,
-      "stars_today": 247
-    },
-    {
-      "rank": 4,
+      "rank": 2,
       "repo": "backnotprop/plannotator",
       "owner": "backnotprop",
       "name": "plannotator",
@@ -63,41 +31,73 @@ window.__TRENDING_DATA__ = {
         "en": "The workspace to stay in the loop and on top of agents - shape, decide, plan, annotate, review code, share with team, and send all feedback to agents with one click."
       },
       "language": "TypeScript",
-      "stars_total": 12082,
-      "forks_total": 1135,
-      "stars_today": 866
+      "stars_total": 12831,
+      "forks_total": 1273,
+      "stars_today": 696
+    },
+    {
+      "rank": 3,
+      "repo": "dream-num/univer",
+      "owner": "dream-num",
+      "name": "univer",
+      "url": "https://github.com/dream-num/univer",
+      "description": "Build your own AI office with Univer Office SDK. Bring editing, calculation, collaboration, and file processing into your product for people and AI agents. Built on an extensible open-source core.",
+      "descriptions": {
+        "zh": "Build your own AI office with Univer Office SDK. Bring editing, calculation, collaboration, and file processing into your product for people and AI agents. Built on an extensible open-source core.",
+        "en": "Build your own AI office with Univer Office SDK. Bring editing, calculation, collaboration, and file processing into your product for people and AI agents. Built on an extensible open-source core."
+      },
+      "language": "TypeScript",
+      "stars_total": 28566,
+      "forks_total": 2583,
+      "stars_today": 1828
+    },
+    {
+      "rank": 4,
+      "repo": "tradermonty/claude-trading-skills",
+      "owner": "tradermonty",
+      "name": "claude-trading-skills",
+      "url": "https://github.com/tradermonty/claude-trading-skills",
+      "description": "Claude Code skills for equity investors and traders — market analysis, technical charting, economic calendars, screeners, and trading strategy development.",
+      "descriptions": {
+        "zh": "Claude Code skills for equity investors and traders — market analysis, technical charting, economic calendars, screeners, and trading strategy development.",
+        "en": "Claude Code skills for equity investors and traders — market analysis, technical charting, economic calendars, screeners, and trading strategy development."
+      },
+      "language": "Python",
+      "stars_total": 6633,
+      "forks_total": 1379,
+      "stars_today": 837
     },
     {
       "rank": 5,
-      "repo": "ChromeDevTools/chrome-devtools-mcp",
-      "owner": "ChromeDevTools",
-      "name": "chrome-devtools-mcp",
-      "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
-      "description": "Chrome DevTools for coding agents",
+      "repo": "elementalsouls/Claude-BugHunter",
+      "owner": "elementalsouls",
+      "name": "Claude-BugHunter",
+      "url": "https://github.com/elementalsouls/Claude-BugHunter",
+      "description": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
       "descriptions": {
-        "zh": "Chrome DevTools for coding agents",
-        "en": "Chrome DevTools for coding agents"
+        "zh": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
+        "en": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices."
       },
-      "language": "TypeScript",
-      "stars_total": 57255,
-      "forks_total": 4827,
-      "stars_today": 717
+      "language": "Python",
+      "stars_total": 7857,
+      "forks_total": 1217,
+      "stars_today": 1094
     },
     {
       "rank": 6,
-      "repo": "alibaba/open-code-review",
-      "owner": "alibaba",
-      "name": "open-code-review",
-      "url": "https://github.com/alibaba/open-code-review",
-      "description": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
+      "repo": "getarcaneapp/arcane",
+      "owner": "getarcaneapp",
+      "name": "arcane",
+      "url": "https://github.com/getarcaneapp/arcane",
+      "description": "Modern Docker Management, Designed for Everyone",
       "descriptions": {
-        "zh": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
-        "en": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible."
+        "zh": "Modern Docker Management, Designed for Everyone",
+        "en": "Modern Docker Management, Designed for Everyone"
       },
       "language": "Go",
-      "stars_total": 52454,
-      "forks_total": 4202,
-      "stars_today": 691
+      "stars_total": 8970,
+      "forks_total": 463,
+      "stars_today": 46
     }
   ]
 }
