@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-11-22T07:57:02.853016+00:00",
+  "generated_at": "2026-11-23T08:56:43.782673+00:00",
   "items": [
     {
       "rank": 1,
@@ -11,13 +11,13 @@ window.__TRENDING_DATA__ = {
       "url": "https://github.com/elementalsouls/Claude-BugHunter",
       "description": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
       "descriptions": {
-        "zh": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
+        "zh": "用于错误搜寻和外部红队工作的 Claude Code 技能包 - 82 项技能、15 个斜线命令、涵盖 24 个核心漏洞类别的 681 个披露报告模式，以及企业身份 + 基础设施攻击矩阵。",
         "en": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices."
       },
       "language": "Python",
-      "stars_total": 16499,
-      "forks_total": 1872,
-      "stars_today": 1803
+      "stars_total": 18558,
+      "forks_total": 2030,
+      "stars_today": 1716
     },
     {
       "rank": 2,
@@ -27,13 +27,13 @@ window.__TRENDING_DATA__ = {
       "url": "https://github.com/obra/superpowers",
       "description": "An agentic skills framework & software development methodology that works.",
       "descriptions": {
-        "zh": "An agentic skills framework & software development methodology that works.",
+        "zh": "有效的代理技能框架和软件开发方法。",
         "en": "An agentic skills framework & software development methodology that works."
       },
       "language": "Shell",
-      "stars_total": 323911,
-      "forks_total": 28730,
-      "stars_today": 883
+      "stars_total": 324482,
+      "forks_total": 28793,
+      "stars_today": 788
     },
     {
       "rank": 3,
@@ -43,13 +43,13 @@ window.__TRENDING_DATA__ = {
       "url": "https://github.com/HKUDS/CLI-Anything",
       "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
       "descriptions": {
-        "zh": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
+        "zh": "“CLI-Anything：使所有软件代理原生”--CLI-Hub：https://clianything.cc/",
         "en": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/"
       },
       "language": "Python",
-      "stars_total": 62271,
-      "forks_total": 5653,
-      "stars_today": 769
+      "stars_total": 63082,
+      "forks_total": 5736,
+      "stars_today": 699
     },
     {
       "rank": 4,
@@ -60,12 +60,12 @@ window.__TRENDING_DATA__ = {
       "description": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
       "descriptions": {
         "zh": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
-        "en": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours."
+        "en": "🧠 Train your 64M large model from scratch in two hours. Train your own 64M LLM from scratch in 2 hours."
       },
       "language": "Python",
-      "stars_total": 68288,
-      "forks_total": 8929,
-      "stars_today": 488
+      "stars_total": 69085,
+      "forks_total": 9025,
+      "stars_today": 473
     },
     {
       "rank": 5,
@@ -75,13 +75,13 @@ window.__TRENDING_DATA__ = {
       "url": "https://github.com/cursor/plugins",
       "description": "Cursor plugin specification and official plugins",
       "descriptions": {
-        "zh": "Cursor plugin specification and official plugins",
+        "zh": "光标插件规范和官方插件",
         "en": "Cursor plugin specification and official plugins"
       },
       "language": "TypeScript",
-      "stars_total": 18192,
-      "forks_total": 1987,
-      "stars_today": 260
+      "stars_total": 18596,
+      "forks_total": 2024,
+      "stars_today": 294
     },
     {
       "rank": 6,
@@ -91,13 +91,13 @@ window.__TRENDING_DATA__ = {
       "url": "https://github.com/firecrawl/firecrawl",
       "description": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API.",
       "descriptions": {
-        "zh": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API.",
+        "zh": "知识基础设施让您的座席变得更加聪明。通过一个 API 搜索、抓取和访问 550 多个数据提供商。",
         "en": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API."
       },
       "language": "TypeScript",
-      "stars_total": 206442,
-      "forks_total": 10793,
-      "stars_today": 1006
+      "stars_total": 207342,
+      "forks_total": 10838,
+      "stars_today": 915
     }
   ]
 }
