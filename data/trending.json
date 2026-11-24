@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-11-23T08:56:43.782673+00:00",
+  "generated_at": "2026-11-24T10:51:05.739935+00:00",
   "items": [
     {
       "rank": 1,
@@ -9,15 +9,15 @@
       "owner": "elementalsouls",
       "name": "Claude-BugHunter",
       "url": "https://github.com/elementalsouls/Claude-BugHunter",
-      "description": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
+      "description": "A Claude Code skill bundle for bug hunting and external red-team work - 84 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
       "descriptions": {
-        "zh": "用于错误搜寻和外部红队工作的 Claude Code 技能包 - 82 项技能、15 个斜线命令、涵盖 24 个核心漏洞类别的 681 个披露报告模式，以及企业身份 + 基础设施攻击矩阵。",
-        "en": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices."
+        "zh": "用于错误搜寻和外部红队工作的 Claude Code 技能包 - 84 项技能、15 个斜线命令、涵盖 24 个核心漏洞类别的 681 个披露报告模式，以及企业身份 + 基础设施攻击矩阵。",
+        "en": "A Claude Code skill bundle for bug hunting and external red-team work - 84 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices."
       },
       "language": "Python",
-      "stars_total": 18558,
-      "forks_total": 2030,
-      "stars_today": 1716
+      "stars_total": 20517,
+      "forks_total": 2172,
+      "stars_today": 2029
     },
     {
       "rank": 2,
@@ -31,9 +31,9 @@
         "en": "An agentic skills framework & software development methodology that works."
       },
       "language": "Shell",
-      "stars_total": 324482,
-      "forks_total": 28793,
-      "stars_today": 788
+      "stars_total": 325505,
+      "forks_total": 28865,
+      "stars_today": 840
     },
     {
       "rank": 3,
@@ -47,9 +47,9 @@
         "en": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/"
       },
       "language": "Python",
-      "stars_total": 63082,
-      "forks_total": 5736,
-      "stars_today": 699
+      "stars_total": 64179,
+      "forks_total": 5838,
+      "stars_today": 790
     },
     {
       "rank": 4,
@@ -63,9 +63,9 @@
         "en": "🧠 Train your 64M large model from scratch in two hours. Train your own 64M LLM from scratch in 2 hours."
       },
       "language": "Python",
-      "stars_total": 69085,
-      "forks_total": 9025,
-      "stars_today": 473
+      "stars_total": 69868,
+      "forks_total": 9107,
+      "stars_today": 828
     },
     {
       "rank": 5,
@@ -79,9 +79,9 @@
         "en": "Cursor plugin specification and official plugins"
       },
       "language": "TypeScript",
-      "stars_total": 18596,
-      "forks_total": 2024,
-      "stars_today": 294
+      "stars_total": 18977,
+      "forks_total": 2054,
+      "stars_today": 397
     },
     {
       "rank": 6,
@@ -95,9 +95,9 @@
         "en": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API."
       },
       "language": "TypeScript",
-      "stars_total": 207342,
-      "forks_total": 10838,
-      "stars_today": 915
+      "stars_total": 208354,
+      "forks_total": 10886,
+      "stars_today": 924
     }
   ]
 }
