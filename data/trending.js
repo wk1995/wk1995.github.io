@@ -1,7 +1,7 @@
 window.__TRENDING_DATA__ = {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-11-25T09:46:05.757317+00:00",
+  "generated_at": "2026-11-26T09:26:15.750707+00:00",
   "items": [
     {
       "rank": 1,
@@ -9,15 +9,15 @@ window.__TRENDING_DATA__ = {
       "owner": "elementalsouls",
       "name": "Claude-BugHunter",
       "url": "https://github.com/elementalsouls/Claude-BugHunter",
-      "description": "A Claude Code skill bundle for bug hunting and external red-team work - 84 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
+      "description": "A Claude Code skill bundle for bug hunting and external red-team work - 85 skills, 16 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
       "descriptions": {
-        "zh": "用于错误搜寻和外部红队工作的 Claude Code 技能包 - 84 项技能、15 个斜线命令、涵盖 24 个核心漏洞类别的 681 个披露报告模式，以及企业身份 + 基础设施攻击矩阵。",
-        "en": "A Claude Code skill bundle for bug hunting and external red-team work - 84 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices."
+        "zh": "用于错误搜寻和外部红队工作的 Claude Code 技能包 - 85 项技能、16 个斜线命令、涵盖 24 个核心漏洞类别的 681 个披露报告模式，以及企业身份 + 基础设施攻击矩阵。",
+        "en": "A Claude Code skill bundle for bug hunting and external red-team work - 85 skills, 16 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices."
       },
       "language": "Python",
-      "stars_total": 22097,
-      "forks_total": 2282,
-      "stars_today": 1826
+      "stars_total": 23596,
+      "forks_total": 2403,
+      "stars_today": 1652
     },
     {
       "rank": 2,
@@ -31,9 +31,9 @@ window.__TRENDING_DATA__ = {
         "en": "An agentic skills framework & software development methodology that works."
       },
       "language": "Shell",
-      "stars_total": 326157,
-      "forks_total": 28945,
-      "stars_today": 1003
+      "stars_total": 326946,
+      "forks_total": 29002,
+      "stars_today": 903
     },
     {
       "rank": 3,
@@ -47,9 +47,9 @@ window.__TRENDING_DATA__ = {
         "en": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/"
       },
       "language": "Python",
-      "stars_total": 65227,
-      "forks_total": 5935,
-      "stars_today": 1074
+      "stars_total": 65974,
+      "forks_total": 5998,
+      "stars_today": 1106
     },
     {
       "rank": 4,
@@ -63,9 +63,9 @@ window.__TRENDING_DATA__ = {
         "en": "🧠 Train your 64M large model from scratch in two hours. Train your own 64M LLM from scratch in 2 hours."
       },
       "language": "Python",
-      "stars_total": 70640,
-      "forks_total": 9180,
-      "stars_today": 727
+      "stars_total": 71319,
+      "forks_total": 9255,
+      "stars_today": 826
     },
     {
       "rank": 5,
@@ -79,9 +79,9 @@ window.__TRENDING_DATA__ = {
         "en": "Cursor plugin specification and official plugins"
       },
       "language": "TypeScript",
-      "stars_total": 19378,
-      "forks_total": 2091,
-      "stars_today": 360
+      "stars_total": 19637,
+      "forks_total": 2121,
+      "stars_today": 416
     },
     {
       "rank": 6,
@@ -95,9 +95,9 @@ window.__TRENDING_DATA__ = {
         "en": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API."
       },
       "language": "TypeScript",
-      "stars_total": 209369,
-      "forks_total": 10946,
-      "stars_today": 991
+      "stars_total": 210408,
+      "forks_total": 11013,
+      "stars_today": 1135
     }
   ]
 }
