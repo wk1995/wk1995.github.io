@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/trending?since=daily",
   "since": "daily",
-  "generated_at": "2026-11-27T09:37:31.347255+00:00",
+  "generated_at": "2026-11-28T08:52:29.827347+00:00",
   "items": [
     {
       "rank": 1,
@@ -15,9 +15,9 @@
         "en": "A Claude Code skill bundle for bug hunting and external red-team work - 85 skills, 16 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices."
       },
       "language": "Python",
-      "stars_total": 25198,
-      "forks_total": 2561,
-      "stars_today": 1597
+      "stars_total": 26517,
+      "forks_total": 2714,
+      "stars_today": 1608
     },
     {
       "rank": 2,
@@ -31,9 +31,9 @@
         "en": "An agentic skills framework & software development methodology that works."
       },
       "language": "Shell",
-      "stars_total": 327833,
-      "forks_total": 29093,
-      "stars_today": 854
+      "stars_total": 328576,
+      "forks_total": 29205,
+      "stars_today": 922
     },
     {
       "rank": 3,
@@ -47,9 +47,9 @@
         "en": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/"
       },
       "language": "Python",
-      "stars_total": 66639,
-      "forks_total": 6082,
-      "stars_today": 746
+      "stars_total": 67159,
+      "forks_total": 6181,
+      "stars_today": 666
     },
     {
       "rank": 4,
@@ -63,9 +63,9 @@
         "en": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours."
       },
       "language": "Python",
-      "stars_total": 71969,
-      "forks_total": 9363,
-      "stars_today": 702
+      "stars_total": 72354,
+      "forks_total": 9465,
+      "stars_today": 660
     },
     {
       "rank": 5,
@@ -79,9 +79,9 @@
         "en": "Cursor plugin specification and official plugins"
       },
       "language": "TypeScript",
-      "stars_total": 19879,
-      "forks_total": 2171,
-      "stars_today": 270
+      "stars_total": 20074,
+      "forks_total": 2249,
+      "stars_today": 243
     },
     {
       "rank": 6,
@@ -95,9 +95,9 @@
         "en": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API."
       },
       "language": "TypeScript",
-      "stars_total": 211229,
-      "forks_total": 11076,
-      "stars_today": 1046
+      "stars_total": 211889,
+      "forks_total": 11158,
+      "stars_today": 822
     }
   ]
 }
